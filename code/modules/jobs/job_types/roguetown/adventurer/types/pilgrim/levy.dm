@@ -10,41 +10,33 @@
 	category_tags = list(CTAG_TOWNER)
 	townie_contract_gate_exempt = TRUE
 	maximum_possible_slots = 5 // They're still Towners who contribute to the econ, even when not fighting or bog-larping.
-	subclass_stats = list(
-		STATKEY_CON = 1,
-		STATKEY_STR = 1,
-		STATKEY_WIL = 1,
-		STATKEY_INT = -1,
-	)
 	subclass_skills = list(
-		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/hunting = SKILL_LEVEL_NOVICE,
-		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
-		/datum/skill/craft/carpentry = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/tanning = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/masonry = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/blacksmithing = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/armorsmithing = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/weaponsmithing = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/mining = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/labor/farming = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/butchering = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/adventurer/levy/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/helmet/kettle/iron
-	neck = /obj/item/clothing/neck/roguetown/coif
-	mask = /obj/item/clothing/head/roguetown/armingcap
-	cloak = /obj/item/clothing/cloak/tabard/stabard/bog/levy
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	neck = /obj/item/clothing/neck/roguetown/coif/padded
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -55,22 +47,85 @@
 	backpack_contents = list(
 		/obj/item/rope = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/huntingknife/throwingknife/triumph = 1,
 		/obj/item/signal_horn = 1,
 	)
-	
+
+
+	to_chat(H, span_notice("<b>WHO YOU WERE BEFORE THE LEVY?</b>"))
+
+	to_chat(H, span_info("<b>AN AVERAGE JOE, SER!!</b><br>\
+	Traits: None.<br>\
+	Final Stats: No changes.<br>\
+	Skills: No extras.<br>\
+	Equipment: Rope, Signal Horn, 4x Beer.<br><br>"))
+
+	to_chat(H, span_info("<b>A TOUGH SOD, SER!!</b><br>\
+	Traits: Enduring, Steelhearted.<br>\
+	Final Stats: +3 CON, +2 STR, +2 WIL, -2 INT, -2 SPD, -1 LCK.<br>\
+	Skills: No extras.<br>\
+	Equipment: Rope, Signal Horn, 4x Beer.<br><br>"))
+
+	to_chat(H, span_info("<b>A SKINNY WIMP, SER!!</b><br>\
+	Traits: Dodge Expert.<br>\
+	Final Stats: -3 CON, +1 STR, +1 WIL, -1 INT, +3 SPD, -1 LCK.<br>\
+	Skills: No extras.<br>\
+	Equipment: Rope, Signal Horn, Coal, Iron Ore, Scissors.<br><br>"))
+
+	to_chat(H, span_info("<b>A SMART COOKIE, SER!!</b><br>\
+	Traits: Jack of All Trades.<br>\
+	Final Stats: +3 INT, +1 SPD.<br>\
+	Skills: No extras.<br>\
+	Equipment: Rope, Signal Horn, Coal, Iron Ore, Bottlin' Kit, Healing Juice Recipe.<br><br>"))
+
+	if(H.mind)
+		var/list/specialties = list(
+			"AN AVERAGE JOE, SER!!",
+			"A TOUGH SOD, SER!!",
+			"A SKINNY WIMP, SER!!",
+			"A SMART COOKIE, SER!!",
+		)
+		var/specialty_choice = tgui_input_list(H, "What type of a Peasant were ya'?", "FIT BEFORE THE LEVY?", specialties)
+		switch(specialty_choice)
+
+			if("AN AVERAGE JOE, SER!!")
+				H.change_stat(STATKEY_PER, 1)
+				H.change_stat(STATKEY_CON, 1)
+				H.change_stat(STATKEY_SPD, 1)
+				H.change_stat(STATKEY_INT, -1)
+
+			if("A TOUGH SOD, SER!!")
+				H.change_stat(STATKEY_STR, 1)
+				H.change_stat(STATKEY_CON, 1)
+				H.change_stat(STATKEY_WIL, 1)
+				H.change_stat(STATKEY_INT, -1)
+				H.change_stat(STATKEY_SPD, -1)
+
+			if("A SKINNY WIMP, SER!!")
+				H.change_stat(STATKEY_CON, -1)
+				H.change_stat(STATKEY_STR, -1)
+				H.change_stat(STATKEY_SPD, 1)
+				H.change_stat(STATKEY_PER, 1)
+
+			if("A SMART COOKIE, SER!!")
+				H.change_stat(STATKEY_STR, -1)
+				H.change_stat(STATKEY_WIL, 1)
+				H.change_stat(STATKEY_INT, 1)
+				H.change_stat(STATKEY_SPD, -1)
+
 	to_chat(H, span_notice("<b>THE WEAPON I COULD SCROUNGE UP:</b>"))
 	to_chat(H, span_info("<b>THE FAMILY SWORD</b> - Journeyman Swords. Comes with a militia falchion."))
+	to_chat(H, span_info("<b>A BIG KNIFE</b> - Journeyman Daggers. Comes with a Combat Knife."))
 	to_chat(H, span_info("<b>THE LEGENDARY BOG-STICK</b> - Journeyman Maces. Comes with a militia club."))
 	to_chat(H, span_info("<b>AN OLDE CATTLE LASH</b> - Journeyman Whips & Flails. Comes with a whip."))
 	to_chat(H, span_info("<b>THE FINEST PITCHFORK</b> - Journeyman Polearms. Comes with a militia spear."))
+	to_chat(H, span_info("<b>THE GOOD DAE'S GREETINGS</b> - Journeyman Polearms. Comes with a militia Goedendag."))
 	to_chat(H, span_info("<b>MINE THRESHER</b> - Journeyman Whips & Flails. Comes with a militia flail."))
 	to_chat(H, span_info("<b>A GOOD SHOVEL</b> - Journeyman Axes. Comes with a militia greataxe."))
 	to_chat(H, span_info("<b>THE MINER'S PICKAXE</b> - Journeyman Mining. Comes with a militia pickaxe."))
 	to_chat(H, span_info("<b>MINE SCYTHE</b> - Journeyman Farming. Comes with a militia scythe."))
 	to_chat(H, span_info("<b>THE WHOLE KITCHEN</b> - Journeyman Cooking and Knives. Comes with a mess kit and cleaver."))
-	to_chat(H, span_info("<b>THESE GODS-GIVEN FISTS</b> - Journeyman Unarmed. Comes with handwraps."))
+	to_chat(H, span_info("<b>THESE GODS-GIVEN FISTS</b> - Journeyman Unarmed & Wrestling. Comes with handwraps."))
 
 	if(H.mind)
 		var/list/weapons = list(
@@ -88,7 +143,7 @@
 			"MINE SCYTHE (Scythe)",
 			"THE RELIABLE VOLFKILLER (Staff)",
 			"THE WHOLE KITCHEN (Mess Kit + Cleaver)",
-			"THESE GODS-GIVEN FISTS (Unarmed)",
+			"THESE GODS-GIVEN FISTS (Unarmed & Wrestling)",
 		)
 
 		var/weapon_choice = tgui_input_list(H, "Choose what you could nab and turn into a weapon.", "WHAT IS YOUR WEAPON?", weapons)
@@ -176,11 +231,45 @@
 				gloves = /obj/item/clothing/gloves/roguetown/leather
 				backr = /obj/item/rogueweapon/woodstaff/quarterstaff/virtue
 
-			if ("THESE GODS-GIVEN FISTS (Unarmed)")
+			if ("THESE GODS-GIVEN FISTS (Unarmed & Wrestling)")
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
+				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 
+		var/helmets = list(
+		"Nasal Helmet" 	= /obj/item/clothing/head/roguetown/helmet/nasal/iron,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle/iron,
+		"Leather Helmet"	= /obj/item/clothing/head/roguetown/helmet/leather,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet/iron,
+		"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
+		"Chain coif"		= /obj/item/clothing/neck/roguetown/chaincoif/iron,
+		"None"
+		)
+		var/helmchoice = input(H, "Choose yer nogginpad.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
+
+	var/tabards = list("Levy Tabard", "Levy hood")
+	var/tabard_choice = input(H, "Choose your CLOAK.", "BARE YOUR MASTER'S HERALDRY.") as anything in tabards
+	switch(tabard_choice)
+		if("Levy Tabard")
+			cloak = /obj/item/clothing/cloak/tabard/stabard/bog/levy
+		if("Levy hood")
+			cloak = /obj/item/clothing/cloak/tabard/stabard/bog/levy/hood
+
+	if(H.mind)
+		var/armor_options = list("Leather Armor.", "Gambeson Armor.")
+		var/armor_choice = input(H, "Put your clothes on!.", "TAKE UP ARMAMENTS!") as anything in armor_options
+
+		switch(armor_choice)
+			if("Leather Armor.")
+				armor = /obj/item/clothing/suit/roguetown/armor/leather
+				pants = /obj/item/clothing/under/roguetown/tights/clothlegs
+
+			if("Gambeson Armor.")
+				armor = /obj/item/clothing/suit/roguetown/armor/gambeson
+				pants = /obj/item/clothing/under/roguetown/trou/leather
 
 	if(H.mind)
 		SStreasury.grant_savings(ECONOMIC_DESTITUTE, H)
