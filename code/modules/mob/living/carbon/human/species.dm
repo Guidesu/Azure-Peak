@@ -102,6 +102,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/attack_verb = "punch"	// punch-specific attack verb
 	var/sound/attack_sound = 'sound/combat/hits/punch/punch (1).ogg'
 	var/sound/miss_sound = 'sound/blank.ogg'
+	/// Associative list of IC claw-style names to cosmetic punch intent paths. Null means this species cannot justify natural claws. Wort wort wort
+	var/list/cosmetic_claw_types
 
 	var/enflamed_icon = "Standing"
 
@@ -1366,8 +1368,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "got a stun punch with their previous punch")*/
 		if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
-		if(!nodmg)
+		if(user.cosmetic_claw_intent)
+			// The selected claw sound describes the motion, not the impact. Armor supplies its own material hit sound;
+			// an attack which reaches flesh still needs the ordinary unarmed flesh impact beneath the cosmetic woosh.
 			playsound(target.loc, user.used_intent.hitsound, 100, FALSE)
+			if(!nodmg)
+				playsound(target.loc, pick(
+					'sound/combat/hits/punch/punch_hard (1).ogg',
+					'sound/combat/hits/punch/punch_hard (2).ogg',
+					'sound/combat/hits/punch/punch_hard (3).ogg',
+				), 100, FALSE)
+		else if(!nodmg)
+			playsound(target.loc, user.used_intent.hitsound, 100, FALSE)
+		if(!nodmg)
 			if(user.mind)
 				user.dodgetime = (clamp(user.dodgetime - 2, 0, CLICK_CD_DODGE))
 				user.changeMaxDodge(3)
