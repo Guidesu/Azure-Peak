@@ -1,6 +1,7 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf
+	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/volf.dmi'
 	name = "volf"
 	desc = "A snarling beast of mangy fur and yellowed teeth. Volves are known to attack hapless travelers in the deep forests when prey is scarce."

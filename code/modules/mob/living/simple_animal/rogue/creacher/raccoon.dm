@@ -1,5 +1,6 @@
 //Raccoons are a faster, still hostile, but weakest small predator.
 /mob/living/simple_animal/hostile/retaliate/rogue/raccoon
+	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/raccoon.dmi'
 	name = "rakun"
 	desc = "An adorable albiet dangerous creacher of Azuria's northern coast, known to steal food from bins or eat small game."

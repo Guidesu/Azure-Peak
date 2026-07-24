@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat
+	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/bigrat.dmi'
 	name = "rous"
 	desc = "This is a big rat with beady red eyes, drawn to decay and filth."

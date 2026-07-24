@@ -1,5 +1,6 @@
 //Badgers are a little stronger than raccoons, but still weak compared to volfs and foxes.
 /mob/living/simple_animal/hostile/retaliate/rogue/badger
+	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/badger.dmi'
 	name = "bauson"
 	desc = "A hostile little thing, it can put some volfs to shame with its aggression."

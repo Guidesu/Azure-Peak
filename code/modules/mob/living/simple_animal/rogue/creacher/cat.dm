@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/cat
+	anatomy_type = /datum/anatomy/quadruped/trash
 	name = "cat"
 	desc = "A ferocious little beast."
 	icon = 'icons/mob/pets.dmi'
