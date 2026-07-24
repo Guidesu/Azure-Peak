@@ -18,6 +18,8 @@
 	var/datum/anatomy_zone/hit_zone = profile.get_zone(zone)
 	if(!hit_zone)
 		return 1
+	if(check_zone(zone) in broken_parts)
+		return 1
 	return hit_zone.damage_mult
 
 /mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user)

@@ -24,13 +24,14 @@
 				playsound(src, 'sound/combat/vulnerable_pop.ogg', 100, TRUE)
 				visible_message(span_biginfo("[src] is struck while vulnerable!"))
 				remove_status_effect(/datum/status_effect/debuff/vulnerable)
+			newforce *= weakpoint_damage_mod(user.zone_selected)
 			apply_damage(newforce, I.damtype, hitlim, armor)
 			I.remove_bintegrity(1)
 			if(I.damtype == BRUTE && !nodmg)
 				if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 					if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
 						newforce *= SILVER_SIMPLEMOB_DAM_MULT
-					simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
+					simple_woundcritroll(user.used_intent.blade_class, newforce, user, user.zone_selected)
 				if(newforce > 5)
 					if(haha != BCLASS_BLUNT)
 						I.add_mob_blood(src)
@@ -122,7 +123,7 @@
 			attack_threshold_check(damage, hitlim, armorcheck = armor)
 			log_combat(M, src, "attacked")
 			updatehealth()
-			simple_woundcritroll(M.used_intent.blade_class, damage, M, hitlim)
+			simple_woundcritroll(M.used_intent.blade_class, damage, M, M.zone_selected)
 			visible_message(span_danger("[M] [atk_verb] [src]![next_attack_msg.Join()]"),\
 							span_danger("[M] [atk_verb] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 			next_attack_msg.Cut()
@@ -215,7 +216,7 @@
 		attack_threshold_check(damage, hitlim, armorcheck = armor)
 		log_combat(M, src, "attacked")
 		updatehealth()
-		simple_woundcritroll(M.used_intent.blade_class, damage, M, hitlim)
+		simple_woundcritroll(M.used_intent.blade_class, damage, M, M.zone_selected)
 		visible_message(span_danger("[M] [atk_verb] [src]![next_attack_msg.Join()]"),\
 						span_danger("[M] [atk_verb] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 		next_attack_msg.Cut()
@@ -232,7 +233,7 @@
 		if(armor > 0)
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		attack_threshold_check(damage, hitlim, M.melee_damage_type, armor)
-		simple_woundcritroll(M.a_intent.blade_class, damage, M, hitlim)
+		simple_woundcritroll(M.a_intent.blade_class, damage, M, M.zone_selected)
 		visible_message(span_danger("\The [M] [pick(M.a_intent.attack_verb)] [src]![next_attack_msg.Join()]"), \
 					span_danger("\The [M] [pick(M.a_intent.attack_verb)] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 		next_attack_msg.Cut()
