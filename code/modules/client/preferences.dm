@@ -389,9 +389,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;'>Change Character</a>"
 			dat += "</td>"
 			dat += "<td style='width:33%;text-align:center'>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Class Selection</a>"
+			dat += dreamvalley_tat_character_sheet_link()
 			dat += "</td>"
 			dat += "<td style='width:33%;text-align:right'>"
+			dat += dreamvalley_character_continue_link(user)
 			dat += "</td>"
 			dat += "</tr>"
 
@@ -891,7 +892,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				dat += "<a href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
 			else
 				dat += "<a class='linkOff' href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
-			dat += " - <a href='?_src_=prefs;preference=migrants'>MIGRATION</a>"
+			if(!GLOB.dreamvalley_campaign?.should_suppress_automatic_migrants())
+				dat += " - <a href='?_src_=prefs;preference=migrants'>MIGRATION</a>"
 			dat += "<br><a href='?_src_=prefs;preference=manifest'>ACTORS</a>"
 			dat += " - <a href='?_src_=prefs;preference=observe'>VOYEUR</a>"
 	else
@@ -1408,6 +1410,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			C.clear_character_previews()
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(dreamvalley_handle_continue_link(user, href_list))
+		return
+	if(href_list["preference"] == "dreamvalley_tat")
+		dreamvalley_open_tat(user)
+		return
 	if(href_list["bancheck"])
 		var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["bancheck"])
 		var/admin = FALSE
@@ -3009,6 +3016,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						to_chat(user, span_warning("You are no longer a voice."))
 
 				if("migrants")
+					if(GLOB.dreamvalley_campaign?.should_suppress_automatic_migrants())
+						to_chat(user, span_notice("Automatic migration is disabled for this campaign. Use JOIN or CONTINUE instead."))
+						return
 					migrant.show_ui()
 					return
 

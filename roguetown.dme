@@ -8,7 +8,6 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
-#include "_maps\map_files\generic\CentCom.dmm"
 #include "_maps\templates\arcyne_fortress.dm"
 #include "code\__byond_version_compat.dm"
 #include "code\_compile_options.dm"
@@ -3622,4 +3621,5 @@
 #include "modular\piercing\piercings.dm"
 #include "modular\piercing\supply.dm"
 #include "modular\ze_genesis_call\genesis_call.dm"
+#include "modular_dreamvalley\_dreamvalley.dm"
 // END_INCLUDE

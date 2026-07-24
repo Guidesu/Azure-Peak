@@ -88,14 +88,14 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		remove_ranged_ability()
 	return ..()
 
-/obj/effect/proc_holder/proc/InterceptClickOn(mob/living/caller, params, atom/A)
+/obj/effect/proc_holder/proc/InterceptClickOn(mob/living/click_user, params, atom/A)
 	var/list/modifiers = params2list(params)
 	if(!modifiers["middle"])
 		return TRUE
 
-	if(caller.ranged_ability != src || ranged_ability_user != caller) //I'm not actually sure how these would trigger, but, uh, safety, I guess?
-		to_chat(caller, span_info("<b>[caller.ranged_ability.name]</b> has been disabled."))
-		caller.ranged_ability.remove_ranged_ability()
+	if(click_user.ranged_ability != src || ranged_ability_user != click_user) //I'm not actually sure how these would trigger, but, uh, safety, I guess?
+		to_chat(click_user, span_info("<b>[click_user.ranged_ability.name]</b> has been disabled."))
+		click_user.ranged_ability.remove_ranged_ability()
 		return TRUE //TRUE for failed, FALSE for passed.
 	if(ranged_clickcd_override >= 0)
 		ranged_ability_user.next_click = world.time + ranged_clickcd_override

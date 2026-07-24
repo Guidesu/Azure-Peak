@@ -27,11 +27,21 @@ SUBSYSTEM_DEF(migrants)
 	return ..()
 
 /datum/controller/subsystem/migrants/fire(resumed)
+	if(GLOB.dreamvalley_campaign?.should_suppress_automatic_migrants())
+		process_forced_tracks()
+		update_ui()
+		return
 	process_track(MIGRANT_TRACK_REGULAR, regular_roll_interval, FALSE)
 	process_track(MIGRANT_TRACK_SPECIAL, special_roll_interval, TRUE)
 	process_triumph_track()
 	process_event_track()
 	update_ui()
+
+/datum/controller/subsystem/migrants/proc/process_forced_tracks()
+	for(var/track in track_forming)
+		if(!track_forced[track] || world.time < track_arrival[track])
+			continue
+		resolve_forming_wave(track)
 
 /datum/controller/subsystem/migrants/proc/process_event_track()
 	if(!track_forming[MIGRANT_TRACK_EVENT])
@@ -76,10 +86,13 @@ SUBSYSTEM_DEF(migrants)
 	return FALSE
 
 /datum/controller/subsystem/migrants/proc/begin_forming(track, wave_type, forced = FALSE)
+	if(GLOB.dreamvalley_campaign?.should_suppress_automatic_migrants() && !forced)
+		return FALSE
 	track_forming[track] = wave_type
 	track_arrival[track] = world.time + wave_wait_time
 	track_forced[track] = forced
 	log_game("Migrants: [track] track rolled wave: [wave_type][forced ? " (forced)" : ""]")
+	return TRUE
 
 /datum/controller/subsystem/migrants/proc/resolve_forming_wave(track)
 	var/wave_type = track_forming[track]

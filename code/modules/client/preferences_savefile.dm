@@ -215,6 +215,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
 
+	if(!tat_build)
+		tat_build = new(src)
+
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -651,6 +654,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!selected_patron) //failsafe
 			selected_patron = GLOB.patronlist[default_patron]
 
+	var/list/tat_character_data
+	S["tat_build"] >> tat_character_data
+	dreamvalley_get_tat_build().load_tat_slots_state_from_list(tat_character_data)
+
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		var/savefile_slot_name = custom_name_id + "_name" //TODO remove this
@@ -964,6 +971,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["nsfw_img_gallery"] , nsfw_img_gallery)
 
 	WRITE_FILE(S["gear_list"], gear_list)
+
+	if(tat_build)
+		WRITE_FILE(S["tat_build"], tat_build.export_tat_slots_state_to_list())
 
 	//Familiar Files
 	WRITE_FILE(S["familiar_names"] , familiar_prefs.familiar_names)

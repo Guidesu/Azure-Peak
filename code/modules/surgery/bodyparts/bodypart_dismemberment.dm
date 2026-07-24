@@ -98,7 +98,7 @@
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
 	if(user)
-		if(zone_precise in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND) && C.mind)
+		if((zone_precise in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND)) && C.mind)
 			return FALSE //No dismemberment on hand/feet on humans, but we do mobs.
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)

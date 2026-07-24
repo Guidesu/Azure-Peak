@@ -478,6 +478,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		character.client.update_ooc_verb_visibility()
 
 /mob/dead/new_player/proc/LateChoices()
+	if(dreamvalley_open_tat_join(src))
+		return
 	if(SSticker?.HasRoundStarted() && SSgamemode?.current_storyteller)
 		gnollslot_update()
 		update_scaling_slots()

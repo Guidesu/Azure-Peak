@@ -41,7 +41,7 @@
 		return 0
 	return !density
 
-/obj/structure/fluff/canopy/booth/CanAStarPass(ID, to_dir, caller)
+/obj/structure/fluff/canopy/booth/CanAStarPass(ID, to_dir, pathing_mover)
 	if(to_dir == dir)
 		return FALSE // don't even bother climbing over it
 	return ..()

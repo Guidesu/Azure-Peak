@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 //	add_overlay(eye_lights)
 	set_light(5)
 
-/obj/structure/roguemachine/titan/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, message)
+/obj/structure/roguemachine/titan/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, message_mods)
 //	. = ..()
 	if(speaker == src)
 		return

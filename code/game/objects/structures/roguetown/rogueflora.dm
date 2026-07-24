@@ -466,11 +466,11 @@
 /obj/structure/flora/roguegrass/bush/update_icon()
 	icon_state = "bush[rand(2, 4)]"
 
-/obj/structure/flora/roguegrass/bush/CanAStarPass(ID, travel_dir, caller)
+/obj/structure/flora/roguegrass/bush/CanAStarPass(ID, travel_dir, pathing_mover)
 	if(occupied)
 		return FALSE
-	if(ismovableatom(caller))
-		var/atom/movable/mover = caller
+	if(ismovableatom(pathing_mover))
+		var/atom/movable/mover = pathing_mover
 		if(mover.pass_flags & PASSGRILLE)
 			return TRUE
 	if(travel_dir == dir)
@@ -573,9 +573,9 @@
 		return 0
 	return 1
 
-/obj/structure/flora/rogueshroom/CanAStarPass(ID, travel_dir, caller)
-	if(ismovableatom(caller))
-		var/atom/movable/mover = caller
+/obj/structure/flora/rogueshroom/CanAStarPass(ID, travel_dir, pathing_mover)
+	if(ismovableatom(pathing_mover))
+		var/atom/movable/mover = pathing_mover
 		if(mover.pass_flags & PASSGRILLE)
 			return TRUE
 	if(travel_dir == dir)

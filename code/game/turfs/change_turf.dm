@@ -365,6 +365,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		CALCULATE_ADJACENT_TURFS(src)
 
 	HandleTurfChange(src)
+	GLOB.dreamvalley_campaign?.mark_turf_dirty(src)
 
 /turf/open/AfterChange(flags)
 	..()
@@ -403,4 +404,3 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 		if(!prob(chance))
 			return
-

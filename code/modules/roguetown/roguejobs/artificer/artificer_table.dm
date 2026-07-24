@@ -141,10 +141,10 @@
 		return 1
 	return !density
 
-/obj/structure/artificer_table/CanAStarPass(ID, dir, caller)
+/obj/structure/artificer_table/CanAStarPass(ID, dir, pathing_mover)
 	. = ..()
-	if(ismovableatom(caller))
-		var/atom/movable/mover = caller
+	if(ismovableatom(pathing_mover))
+		var/atom/movable/mover = pathing_mover
 		. ||= (mover.pass_flags & PASSTABLE)
 
 //we're adding stress with the attached speed at 24, up this if we want to increase the setup difficulty

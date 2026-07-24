@@ -65,6 +65,7 @@
 #include "component_tests.dm"
 #include "craftable_hardset_sellprice.dm"
 #include "create_and_destroy.dm"
+#include "dreamvalley_character_round_trip.dm"
 #include "focus_only_tests.dm"
 #include "nodupe_salvageresult.dm"
 #include "nodupe_smeltresult.dm"

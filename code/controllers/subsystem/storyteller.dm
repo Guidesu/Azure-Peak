@@ -17,10 +17,14 @@
 	return SSgamemode?.get_storyteller(TRUE)
 
 /proc/is_storyteller_villain_blocked()
+	if(GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		return TRUE
 	var/datum/storyteller/preset = active_preset()
 	return preset?.block_hard
 
 /proc/is_storyteller_soft_antag_blocked()
+	if(GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		return TRUE
 	var/datum/storyteller/preset = active_preset()
 	return preset?.block_soft
 
@@ -38,6 +42,8 @@
 		blocked_job.spawn_positions = allowed_slots
 
 /proc/is_roundstart_roles_blocked_storyteller()
+	if(GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		return TRUE
 	// The whole roundstart injection roll is only skipped when nothing can spawn at all - hard antags blocked
 	// AND no dreamwalker allowed. (No-Antag/Regular still runs the track so a dreamwalker can roll.)
 	var/datum/storyteller/preset = active_preset()
@@ -300,6 +306,7 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[event.track] += event //Add it to the categorized event pools
 
 	load_roundstart_data()
+	GLOB.dreamvalley_campaign?.apply_gamemode_rules(src)
 
 	check_roundstart_gods_rankings()
 	. = ..()
@@ -390,6 +397,8 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
+	if(GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		return FALSE
 	return (get_antag_cap() > get_antag_count())
 
 /// Gets candidates for antagonist roles.
@@ -774,6 +783,8 @@ SUBSYSTEM_DEF(gamemode)
 	return
 
 /datum/controller/subsystem/gamemode/proc/check_finished(force_ending) //to be called by SSticker
+	if(GLOB.dreamvalley_campaign?.should_suppress_round_end())
+		return FALSE
 	if(!SSticker.setup_done)
 		return FALSE
 	if(force_ending)
@@ -1135,6 +1146,8 @@ SUBSYSTEM_DEF(gamemode)
 		effective_flags = isnull(storyteller_midround_antag_flags) ? storyteller_antag_flags : storyteller_midround_antag_flags
 	if(!effective_flags)
 		return FALSE
+	if(GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		return TRUE
 	storyteller_type = story_policy_type(roundstart, storyteller_type)
 	if(!storyteller_type)
 		return FALSE

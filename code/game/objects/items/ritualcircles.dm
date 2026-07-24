@@ -121,7 +121,7 @@
 			spawn(120)
 				icon_state = "astrata_chalky"
 
-/obj/structure/ritualcircle/astrata/proc/guidinglight(src)
+/obj/structure/ritualcircle/astrata/proc/guidinglight(ritual_source)
 	var/ritualtargets = view(7, loc) // Range of 7 from the source, which is the rune
 	for(var/mob/living/carbon/human/target in ritualtargets) // defines the target as every human in this range
 		target.apply_status_effect(/datum/status_effect/buff/guidinglight) // applies the status effect
@@ -178,12 +178,12 @@
 			mooninspiration(src)
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 
-/obj/structure/ritualcircle/noc/proc/moonlightdance(src)
+/obj/structure/ritualcircle/noc/proc/moonlightdance(ritual_source)
 	var/ritualtargets = view(7, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/moonlightdance)
 
-/obj/structure/ritualcircle/noc/proc/mooninspiration(src)
+/obj/structure/ritualcircle/noc/proc/mooninspiration(ritual_source)
 	var/ritualtargets = view(2, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.mind.sleep_adv.sleep_adv_points += 3
@@ -225,7 +225,7 @@
 			stagehands_silence(src)
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 
-/obj/structure/ritualcircle/xylix/proc/stagehands_silence(src)
+/obj/structure/ritualcircle/xylix/proc/stagehands_silence(ritual_source)
 	var/ritualtargets = view(1, loc) // only works for those in a 1 tile radius around the rune. might need to be made just whoever is on top of it.
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/stagehands_silence)
@@ -336,7 +336,7 @@
 			spawn(120)
 				icon_state = "pestra_chalky"						
 
-/obj/structure/ritualcircle/pestra/proc/flylordstriage(src)
+/obj/structure/ritualcircle/pestra/proc/flylordstriage(ritual_source)
 	var/ritualtargets = view(0, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		to_chat(target,span_userdanger("You feel them crawling into your wounds and pores. Their horrific hum rings through your ears as they do their work!"))
@@ -456,7 +456,7 @@
 			spawn(120)
 				icon_state = "malum_chalky"
 
-/obj/structure/ritualcircle/malum/proc/malumblessing(src)
+/obj/structure/ritualcircle/malum/proc/malumblessing(ritual_source)
 	var/ritualtargets = view(4, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/malumritual)
@@ -1179,7 +1179,7 @@
 	src.coinslot -= 1 // -1 coin, please insert more coins.
 	user.apply_status_effect(/datum/status_effect/debuff/ritesexpended) // only after a succesful revive
 
-/obj/structure/ritualcircle/necra/proc/undermaidenbargain(src)
+/obj/structure/ritualcircle/necra/proc/undermaidenbargain(ritual_source)
 	var/ritualtargets = view(7, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/undermaidenbargain)
@@ -1339,7 +1339,7 @@
 			spawn(120)
 				icon_state = "eora_chalky"
 
-/obj/structure/ritualcircle/eora/proc/pacify(src)
+/obj/structure/ritualcircle/eora/proc/pacify(ritual_source)
 	var/ritualtargets = view(0, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		loc.visible_message(span_warning("[target] sways like windchimes in the wind..."))

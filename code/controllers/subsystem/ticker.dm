@@ -188,6 +188,7 @@ SUBSYSTEM_DEF(ticker)
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 	// Offset time drift but start right in the morning of Monday.
 	gametime_offset = 288001
+	GLOB.dreamvalley_campaign?.apply_clock()
 	return ..()
 
 /datum/controller/subsystem/ticker/fire()
@@ -439,8 +440,9 @@ SUBSYSTEM_DEF(ticker)
 		if(C.mob)
 			C.mob.playsound_local(C.mob, 'sound/misc/roundstart.ogg', 100, FALSE)
 
-	SSgamemode.roll_roundstart_antag()
-	SSgamemode.spawn_extra_antags()
+	if(!GLOB.dreamvalley_campaign?.should_suppress_antagonists())
+		SSgamemode.roll_roundstart_antag()
+		SSgamemode.spawn_extra_antags()
 
 //	SEND_SOUND(world, sound('sound/misc/roundstart.ogg'))
 	current_state = GAME_STATE_PLAYING
@@ -470,7 +472,8 @@ SUBSYSTEM_DEF(ticker)
 	job_change_locked = FALSE
 
 //	setup_hell()
-	SStriumphs.fire_on_PostSetup()
+	if(!GLOB.dreamvalley_campaign?.should_suppress_round_rewards())
+		SStriumphs.fire_on_PostSetup()
 	for(var/i in GLOB.start_landmarks_list)
 		var/obj/effect/landmark/start/S = i
 		if(istype(S))							//we can not runtime here. not in this important of a proc.

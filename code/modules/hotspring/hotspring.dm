@@ -35,7 +35,7 @@
 
 /obj/structure/hotspring/Initialize()
 	. = ..()
-	particle_effect = new(src, /particles/hotspring_steam, 6)
+	particle_effect = new(src, /particles/hotspring_steam, NONE, 6)
 	//render the steam over mobs and objects on the game plane
 	particle_effect.vis_flags &= ~VIS_INHERIT_PLANE
 

@@ -613,7 +613,7 @@
 	anchorable = FALSE
 	var/obj/structure/autosmither/parent
 
-/obj/structure/closet/crate/chest/autosmither/CanAStarPass(ID, dir, caller)
+/obj/structure/closet/crate/chest/autosmither/CanAStarPass(ID, dir, pathing_mover)
 	return TRUE
 
 /obj/structure/closet/crate/chest/autosmither/CanPass(atom/movable/mover, turf/target)

@@ -78,7 +78,7 @@
 				return FALSE
 	return ..()
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
@@ -106,8 +106,11 @@
 			our_turf.platform_atom_count++
 		if(ai_path_weight)
 			our_turf.ai_path_weight += ai_path_weight
+	if(!mapload && dreamvalley_auto_persist && SSticker?.current_state == GAME_STATE_PLAYING && !GLOB.dreamvalley_campaign?.restoring_snapshot)
+		GLOB.dreamvalley_campaign.register_persistent(src)
 
 /obj/Destroy(force=FALSE)
+	GLOB.dreamvalley_campaign?.unregister_persistent(src)
 	if(!ismachinery(src))
 		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
 	SStgui.close_uis(src)
@@ -192,7 +195,7 @@
 /obj/get_dumping_location(datum/component/storage/source,mob/user)
 	return get_turf(src)
 
-/obj/proc/CanAStarPass(ID, to_dir, caller)
+/obj/proc/CanAStarPass(ID, to_dir, pathing_mover)
 	. = !density
 
 /obj/proc/check_uplink_validity()

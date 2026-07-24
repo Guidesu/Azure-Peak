@@ -101,9 +101,9 @@
 			var/turf/T = loc
 			T.trigger_weather(src)
 
-/obj/machinery/light/rogue/CanAStarPass(ID, to_dir, atom/movable/caller)
-	if(on && crossfire && isliving(caller))
-		var/mob/living/crosser = caller
+/obj/machinery/light/rogue/CanAStarPass(ID, to_dir, atom/movable/pathing_mover)
+	if(on && crossfire && isliving(pathing_mover))
+		var/mob/living/crosser = pathing_mover
 		if(!(crosser.movement_type & (FLYING|FLOATING)) && !HAS_TRAIT(crosser, TRAIT_NOFIRE))
 			return FALSE
 	return ..()

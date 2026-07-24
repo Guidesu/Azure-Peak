@@ -37,7 +37,7 @@
 		if(blood_color)
 			blood_splatter_icon.ColorTone(blood_color)
 		blood_splatter_icon.Blend(icon(_icon, _icon_state), ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
-		pic = mutable_appearance(blood_splatter_icon, initial(icon_state))
+		pic = mutable_appearance(blood_splatter_icon, icon_state)
 		blood_splatter_appearances[index] = pic
 	pic.alpha = 150
 	return TRUE

@@ -187,11 +187,11 @@
 				<span>[initial(created_stationary.desc)]</span>
 				<div>
 			"}
-	var/obj/item/clothing/suit/roguetown/armor/bookarmor = initial(created_stuff)
-	var/obj/item/rogueweapon/bookweapon = initial(created_stuff)
+	var/obj/item/clothing/suit/roguetown/armor/bookarmor = created_stuff
+	var/obj/item/rogueweapon/bookweapon = created_stuff
 
 	if(!(bookarmor?.armor == "")&&!isnull(bookarmor?.armor) )
-		var/obj/item/clothing/C = initial(created_stuff)
+		var/obj/item/clothing/C = created_stuff
 		if(C.body_parts_covered)
 			html += "\n<b>COVERAGE: </b>"
 			html += " | "

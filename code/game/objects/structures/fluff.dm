@@ -609,7 +609,7 @@
 //			if(SSshuttle.emergency.timeLeft() < 30 MINUTES)
 //				. += span_warning("The last boat will leave in [round(SSshuttle.emergency.timeLeft()/600)] minutes.")
 
-/obj/structure/fluff/clock/CanAStarPass(ID, to_dir, caller)
+/obj/structure/fluff/clock/CanAStarPass(ID, to_dir, pathing_mover)
 	if(to_dir == dir)
 		return FALSE // don't even bother climbing over it
 	return ..()
@@ -827,7 +827,7 @@
 		return 0
 	return !density
 
-/obj/structure/fluff/statue/CanAStarPass(ID, to_dir, caller)
+/obj/structure/fluff/statue/CanAStarPass(ID, to_dir, pathing_mover)
 	if(to_dir == dir)
 		return FALSE // don't even bother climbing over it
 	return ..()
@@ -1186,7 +1186,7 @@
 		return FALSE
 	return !density
 
-/obj/structure/fluff/psycross/CanAStarPass(ID, to_dir, caller)
+/obj/structure/fluff/psycross/CanAStarPass(ID, to_dir, pathing_mover)
 	if(to_dir == dir)
 		return FALSE // don't even bother climbing over it
 	return ..()

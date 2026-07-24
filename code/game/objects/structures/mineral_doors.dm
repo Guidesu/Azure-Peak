@@ -95,6 +95,7 @@
 					user.visible_message(span_warning("[user] kicks open [src]!"), \
 						span_notice("I kick open [src]!"))
 					locked = 0
+					dreamvalley_mark_persistent()
 					force_open()
 				else
 					playsound(src, 'sound/combat/hits/onwood/woodimpact (1).ogg', 100)
@@ -286,16 +287,16 @@
 		return !opacity
 	return !density
 
-/obj/structure/mineral_door/CanAStarPass(ID, to_dir, datum/caller)
+/obj/structure/mineral_door/CanAStarPass(ID, to_dir, datum/pathing_mover)
 	. = ..()
 	if(.) // we can already go through it
 		return TRUE
 	if(!anchored)
 		return FALSE
-	if(HAS_TRAIT(caller, TRAIT_BASHDOORS))
+	if(HAS_TRAIT(pathing_mover, TRAIT_BASHDOORS))
 		return TRUE // bash into it!
 	// it's openable
-	return ishuman(caller) && !locked // only humantype mobs can open doors, as funny as it'd be for a volf to walk in on you ERPing
+	return ishuman(pathing_mover) && !locked // only humantype mobs can open doors, as funny as it'd be for a volf to walk in on you ERPing
 
 /obj/structure/mineral_door/proc/TryToSwitchState(mob/living/user)
 	if(!isliving(user) || isSwitchingStates || !anchored)
@@ -333,6 +334,7 @@
 	update_icon()
 	isSwitchingStates = FALSE
 	alert_ai_visibility_change(src)
+	dreamvalley_mark_persistent()
 
 	if(close_delay != -1)
 		addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
@@ -356,6 +358,7 @@
 	air_update_turf(1)
 	update_icon()
 	isSwitchingStates = FALSE
+	dreamvalley_mark_persistent()
 	if(autobump && src.Adjacent(last_bumper))
 		if(istype(last_bumper.get_active_held_item(), /obj/item/roguekey) || istype(last_bumper.get_active_held_item(), /obj/item/storage/keyring))
 			src.attack_right(last_bumper)
@@ -473,6 +476,7 @@
 						obj_broken = FALSE
 						obj_integrity = max_integrity
 						repair_state = 0
+						dreamvalley_mark_persistent()
 						user.visible_message(span_notice("[user] repaired [src]."), \
 						span_notice("I repaired [src]."))
 	else
@@ -654,6 +658,7 @@
 			span_notice("I lock [src]."))
 		playsound(src, locksound, 100)
 		locked = 1
+	dreamvalley_mark_persistent()
 
 /obj/structure/mineral_door/setAnchored(anchorvalue) //called in default_unfasten_wrench() chain
 	. = ..()
@@ -672,6 +677,7 @@
 		density = FALSE
 		set_opacity(FALSE)
 		brokenstate = TRUE
+		dreamvalley_mark_persistent()
 	..()
 
 /obj/structure/mineral_door/OnCrafted(dirin, user)

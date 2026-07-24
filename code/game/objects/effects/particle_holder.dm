@@ -86,7 +86,7 @@
 	 */
 	var/max_particle_index = 4
 
-/obj/effect/abstract/particle_holder/cached/Initialize(mapload, particle_path = /particles/leaf, particle_flags = NONE, max_particle_index)
+/obj/effect/abstract/particle_holder/cached/Initialize(mapload, particle_path = /particles/leaf, particle_flags = NONE, max_particle_index = 4)
 	src.max_particle_index = max_particle_index
 	return ..()
 

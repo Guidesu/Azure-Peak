@@ -24,8 +24,8 @@
 	qdel(src)
 	new /obj/effect/hotspot(T)
 
-/obj/structure/glowshroom/CanAStarPass(ID, to_dir, caller)
-	return !can_zap(caller)
+/obj/structure/glowshroom/CanAStarPass(ID, to_dir, pathing_mover)
+	return !can_zap(pathing_mover)
 
 /obj/structure/glowshroom/CanPass(atom/movable/mover, turf/target)
 	if(isliving(mover) && mover.z == z)

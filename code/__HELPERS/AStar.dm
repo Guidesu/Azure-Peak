@@ -62,33 +62,33 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 	return b.f - a.f
 
 //wrapper that returns an empty list if A* failed to find a path
-/proc/get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
-	var/l = SSpathfinder.mobs.getfree(caller)
+/proc/get_path_to(pathing_mover, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
+	var/l = SSpathfinder.mobs.getfree(pathing_mover)
 	while(!l)
 		stoplag(3)
-		l = SSpathfinder.mobs.getfree(caller)
-	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude)
+		l = SSpathfinder.mobs.getfree(pathing_mover)
+	var/list/path = AStar(pathing_mover, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude)
 
 	SSpathfinder.mobs.found(l)
 	if(!path)
 		path = list()
 	return path
 
-/proc/cir_get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
-	var/l = SSpathfinder.circuits.getfree(caller)
+/proc/cir_get_path_to(pathing_mover, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
+	var/l = SSpathfinder.circuits.getfree(pathing_mover)
 	while(!l)
 		stoplag(3)
-		l = SSpathfinder.circuits.getfree(caller)
-	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent, id, exclude, allow_multiz)
+		l = SSpathfinder.circuits.getfree(pathing_mover)
+	var/list/path = AStar(pathing_mover, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent, id, exclude, allow_multiz)
 	SSpathfinder.circuits.found(l)
 	if(!path)
 		path = list()
 	return path
 
-/proc/AStar(caller, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
+/proc/AStar(pathing_mover, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = TYPE_PROC_REF(/turf, reachableTurftest), id=null, turf/exclude=null, allow_multiz = TRUE)
 	//sanitation
 	var/turf/end = get_turf(_end)
-	var/turf/start = get_turf(caller)
+	var/turf/start = get_turf(pathing_mover)
 	if(!start || !end)
 		stack_trace("Invalid A* start or destination")
 		return FALSE
@@ -101,7 +101,7 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 		//Yes, this is a hardcoded distance proc. If you want diagonal moves you'll need to change this,
 		//but otherwise this is fine.
 		// EVERYTHING ELSE SHOULD USE THE DIST PARAMETER, THOUGH!
-		if(start.Distance_cardinal_3d(end, caller) > maxnodes)
+		if(start.Distance_cardinal_3d(end, pathing_mover) > maxnodes)
 			return FALSE
 		maxnodedepth = maxnodes //no need to consider path longer than maxnodes
 	var/datum/path_minheap/open = new /datum/path_minheap() //the open list
@@ -109,11 +109,11 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 	var/list/path = null //the returned path, if any
 	//initialization
 	var/const/ALL_DIRS = NORTH|SOUTH|EAST|WEST
-	var/datum/PathNode/cur = new /datum/PathNode(start,null,0,call(start,dist)(end, caller),0,ALL_DIRS,1)//current processed turf
+	var/datum/PathNode/cur = new /datum/PathNode(start,null,0,call(start,dist)(end, pathing_mover),0,ALL_DIRS,1)//current processed turf
 	open.Insert(cur)
 	openc[start] = cur
 	//then run the main loop
-	while(caller && length(open.L) && !path)
+	while(pathing_mover && length(open.L) && !path)
 		cur = open.Pop() //get the lower f turf in the open list
 		//get the lower f node on the open list
 		//if we only want to get near the target, check if we're close enough
@@ -121,7 +121,7 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 		if(mintargetdist) // we let you stop early if you aren't on the same z-level because that enables fun shenanigans like taunting and climbing
 			// I lied, this one is also hardcoded; we don't want to use the heuristic for our termination condition,
 			// only the actual distance.
-			closeenough = cur.source.Distance_cardinal_3d(end, caller) <= mintargetdist
+			closeenough = cur.source.Distance_cardinal_3d(end, pathing_mover) <= mintargetdist
 
 		//found the target turf (or close enough), let's create the path to it
 		if(cur.source == end || closeenough)
@@ -148,18 +148,18 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 			if(T != exclude)
 				var/datum/PathNode/CN = openc[T]  //current checking turf
 				var/reverse = GLOB.reverse_dir[dir_to_check]
-				var/newg = cur.g + call(cur.source,dist)(T, caller) // add the travel distance between these two tiles to the distance so far
+				var/newg = cur.g + call(cur.source,dist)(T, pathing_mover) // add the travel distance between these two tiles to the distance so far
 				if(CN)
 				//is already in open list, check if it's a better way from the current turf
 					CN.bf &= ALL_DIRS^reverse //we have no closed, so just cut off exceed dir.00001111 ^ reverse_dir.We don't need to expand to checked turf.
 					if((newg < CN.g))
-						if(call(cur.source,adjacent)(caller, T, id))
+						if(call(cur.source,adjacent)(pathing_mover, T, id))
 							CN.setp(cur,newg,CN.heuristic,cur.nodes_traversed+1)
 							open.ReSort(CN)//reorder the changed element in the list
 				else
 				//is not already in open list, so add it
-					if(call(cur.source,adjacent)(caller, T, id)) 
-						CN = new(T,cur,newg,call(T,dist)(end, caller),cur.nodes_traversed+1, ALL_DIRS^reverse)
+					if(call(cur.source,adjacent)(pathing_mover, T, id))
+						CN = new(T,cur,newg,call(T,dist)(end, pathing_mover),cur.nodes_traversed+1, ALL_DIRS^reverse)
 						open.Insert(CN)
 						openc[T] = CN
 		cur.bf = 0
@@ -173,25 +173,25 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 	//cleaning after us
 	return path
 
-/// returns TRUE if there exists a way for caller to (safely) move from src to T. non-z-aware
-/turf/proc/reachableTurftest(caller, turf/T, ID)
-	if(T && !T.density && T.can_traverse_safely(caller) && !LinkBlockedWithAccess(T,caller, ID))
+/// returns TRUE if there exists a way for pathing_mover to (safely) move from src to T. non-z-aware
+/turf/proc/reachableTurftest(pathing_mover, turf/T, ID)
+	if(T && !T.density && T.can_traverse_safely(pathing_mover) && !LinkBlockedWithAccess(T,pathing_mover, ID))
 		return TRUE
 
-/// returns TRUE if there exists a way for caller to (safely) move from src to T. z-aware
-/turf/proc/reachableTurftest3d(caller, turf/T, ID, recursive_call = 0)
+/// returns TRUE if there exists a way for pathing_mover to (safely) move from src to T. z-aware
+/turf/proc/reachableTurftest3d(pathing_mover, turf/T, ID, recursive_call = 0)
 	if(!T || T.density)
 		return FALSE
-	if(!T.can_traverse_safely(caller)) // dangerous turf! lava or openspace (or others in the future)
+	if(!T.can_traverse_safely(pathing_mover)) // dangerous turf! lava or openspace (or others in the future)
 		return FALSE
 	var/z_distance = abs(T.z - z)
 	if(!z_distance) // standard check for same-z pathing
-		return !LinkBlockedWithAccess(T, caller, ID)
+		return !LinkBlockedWithAccess(T, pathing_mover, ID)
 	if(z_distance != 1) // no single movement lets you move more than one z-level at a time (currently; update if this changes)
 		return FALSE
 	var/obj/structure/stairs/source_stairs = locate(/obj/structure/stairs) in src
-	var/mob/mob_caller = caller
-	if(ismob(caller) && HAS_TRAIT(mob_caller, TRAIT_ZJUMP)) // where we're going, we don't need stairs!
+	var/mob/mob_caller = pathing_mover
+	if(ismob(pathing_mover) && HAS_TRAIT(mob_caller, TRAIT_ZJUMP)) // where we're going, we don't need stairs!
 		return TRUE
 	if(T.z < z) // going down
 		if(source_stairs?.get_target_loc(GLOB.reverse_dir[source_stairs.dir]) == T)
@@ -201,17 +201,17 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 			return TRUE
 	return FALSE
 
-/turf/proc/LinkBlockedWithAccess(turf/T, caller, ID)
+/turf/proc/LinkBlockedWithAccess(turf/T, pathing_mover, ID)
 	var/adir = get_dir(src, T)
 	var/rdir = GLOB.reverse_dir[adir]
 	for(var/obj/O in T)
-		if(!O.CanAStarPass(ID, rdir, caller))
+		if(!O.CanAStarPass(ID, rdir, pathing_mover))
 			return TRUE
 	for(var/obj/O in src)
-		if(!O.CanAStarPass(ID, adir, caller))
+		if(!O.CanAStarPass(ID, adir, pathing_mover))
 			return TRUE
 	for(var/mob/living/M in T)
-		if(!M.CanPass(caller, src))
+		if(!M.CanPass(pathing_mover, src))
 			return TRUE
 	return FALSE
 

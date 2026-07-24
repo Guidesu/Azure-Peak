@@ -228,7 +228,7 @@
 	structureclimber = null
 
 // You can path over a dense structure if it's climbable.
-/obj/structure/CanAStarPass(ID, to_dir, caller)
+/obj/structure/CanAStarPass(ID, to_dir, pathing_mover)
 	. = climbable || ..()
 
 /obj/structure/examine(mob/user)

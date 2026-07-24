@@ -48,12 +48,12 @@
 	else
 		open_up(user)
 
-/obj/structure/roguetent/CanAStarPass(ID, to_dir, atom/movable/caller)
+/obj/structure/roguetent/CanAStarPass(ID, to_dir, atom/movable/pathing_mover)
 	if(!density)
 		return TRUE
-	if(HAS_TRAIT(caller, TRAIT_BASHDOORS))
+	if(HAS_TRAIT(pathing_mover, TRAIT_BASHDOORS))
 		return TRUE
-	return ishuman(caller)
+	return ishuman(pathing_mover)
 
 /obj/structure/roguetent/Bumped(atom/movable/AM)
 	..()

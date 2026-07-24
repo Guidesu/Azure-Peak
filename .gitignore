@@ -242,5 +242,10 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 *.test.dme
 
+# DreamValley/OpenDream local build artifacts and native dependency.
+# rust_g64.dll is copied from the official rust-g release during local setup.
+/roguetown.json
+/rust_g64.dll
+
 # JavaScript tools
 **/node_modules

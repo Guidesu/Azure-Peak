@@ -222,9 +222,9 @@
 	update_icon()
 
 
-/obj/structure/roguewindow/CanAStarPass(ID, to_dir, caller)
+/obj/structure/roguewindow/CanAStarPass(ID, to_dir, pathing_mover)
 	. = ..()
-	var/atom/movable/mover = caller
+	var/atom/movable/mover = pathing_mover
 	if(!. && istype(mover) && (mover.pass_flags & PASSTABLE) && climbable)
 		return TRUE
 

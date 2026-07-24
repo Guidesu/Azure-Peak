@@ -148,6 +148,7 @@
 	..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
+		dreamvalley_mark_persistent()
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
 		update_icon()
 		return TRUE
@@ -282,7 +283,7 @@
 
 // Mirrors /obj/structure: A* may path through a climbable dense machinery (hearth, etc.).
 // Without this, A* routes around climbable machinery and the climb-on-step-fail fallback never fires.
-/obj/machinery/CanAStarPass(ID, to_dir, caller)
+/obj/machinery/CanAStarPass(ID, to_dir, pathing_mover)
 	. = climbable || ..()
 
 /obj/machinery/proc/climb_structure(mob/living/user)

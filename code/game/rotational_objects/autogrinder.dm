@@ -271,7 +271,7 @@
 	. = ..()
 	open()   // it has no lid; it stays open for good
 
-/obj/structure/closet/crate/chest/autogrinder/CanAStarPass(ID, dir, caller)
+/obj/structure/closet/crate/chest/autogrinder/CanAStarPass(ID, dir, pathing_mover)
 	return TRUE
 
 /obj/structure/closet/crate/chest/autogrinder/CanPass(atom/movable/mover, turf/target)

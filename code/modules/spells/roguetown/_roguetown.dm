@@ -52,16 +52,16 @@
 /obj/effect/proc_holder/spell/invoked/proc/on_deactivation(mob/user)
 	return
 
-/obj/effect/proc_holder/spell/invoked/InterceptClickOn(mob/living/caller, params, atom/target) 
+/obj/effect/proc_holder/spell/invoked/InterceptClickOn(mob/living/click_user, params, atom/target)
 	. = ..()
 	if(.)
 		return FALSE
 	var/list/modifiers = params2list(params)
 	if(!modifiers["middle"])
 		return TRUE
-	if(!can_cast(caller) || !cast_check(FALSE, ranged_ability_user))
+	if(!can_cast(click_user) || !cast_check(FALSE, ranged_ability_user))
 		return FALSE
-	var/client/client = caller.client
+	var/client/client = click_user.client
 	var/percentage_progress = client?.chargedprog
 	var/charge_progress = client?.progress // This is in seconds, same unit as chargetime
 	var/goal = get_chargetime() //if we have no chargetime then we can freely cast (and no early release flag was not set)

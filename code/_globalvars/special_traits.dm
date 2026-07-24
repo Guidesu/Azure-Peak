@@ -44,12 +44,13 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 		apply_dnr_trait(character, player)
 	if(player.prefs.qsr_pref)
 		apply_qsr_trait(character, player)
-	character.mind.triumph_discount_remaining = is_donator(player.ckey) ? 3 : 0 // donators get first 3 triumph points free, spent on retrieval
-	for(var/item_name in player.prefs.gear_list)
-		var/datum/loadout_item/LI = GLOB.loadout_items_by_name[item_name]
-		if(!LI)
-			continue
-		character.mind.special_items[LI.name] = LI.path
+	if(!tat_apply_legacy_preference_loadout(character, player))
+		character.mind.triumph_discount_remaining = is_donator(player.ckey) ? 3 : 0 // donators get first 3 triumph points free, spent on retrieval
+		for(var/item_name in player.prefs.gear_list)
+			var/datum/loadout_item/LI = GLOB.loadout_items_by_name[item_name]
+			if(!LI)
+				continue
+			character.mind.special_items[LI.name] = LI.path
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
 	if(assigned_job)
 		assigned_job.clamp_stats(character)

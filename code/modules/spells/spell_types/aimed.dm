@@ -57,11 +57,11 @@
 /obj/effect/proc_holder/spell/aimed/proc/on_deactivation(mob/user)
 	return
 
-/obj/effect/proc_holder/spell/aimed/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/aimed/InterceptClickOn(mob/living/click_user, params, atom/target)
 	if(..())
 		return FALSE
 	var/ran_out = (current_amount <= 0)
-	if(!can_cast(caller) || !cast_check(!ran_out, ranged_ability_user))
+	if(!can_cast(click_user) || !cast_check(!ran_out, ranged_ability_user))
 		remove_ranged_ability()
 		return FALSE
 	var/list/targets = list(target)

@@ -1705,6 +1705,7 @@
 /area/rogue/indoors/lich_start/lich_lair)
 "wB" = (
 /obj/effect/landmark/start/new_player,
+/turf/closed/indestructible/riveted,
 /area/start)
 "wC" = (
 /obj/effect/decal/cleanable/dirt/cobweb{

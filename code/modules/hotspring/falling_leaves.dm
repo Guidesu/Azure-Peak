@@ -39,6 +39,6 @@
 
 /obj/effect/falling_sakura/Initialize(mapload, ...)
 	. = ..()
-	particle_effect = new(src, /particles/sakura, 6)
+	particle_effect = new(src, /particles/sakura, NONE, 6)
 	//render the steam over mobs and objects on the game plane
 	particle_effect.vis_flags &= ~VIS_INHERIT_PLANE

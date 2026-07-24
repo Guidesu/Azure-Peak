@@ -135,6 +135,43 @@
 			},
 			"dependsOn": "dm: reparse",
 			"label": "Build All (unit tests)"
+		},
+		{
+			"type": "process",
+			"command": "C:\\Users\\lugin\\Desktop\\general\\DreamValley\\external\\OpenDream\\bin\\DMCompiler\\DMCompiler.exe",
+			"args": [
+				"--version=516.1666",
+				"--define=OPENDREAM",
+				"--define=RUST_G=\"rust_g64.dll\"",
+				"--suppress-unimplemented",
+				"--suppress-unsupported",
+				"${workspaceFolder}\\roguetown.dme"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": "build",
+			"label": "DreamValley: Compile Azure Peak"
+		},
+		{
+			"type": "process",
+			"command": "C:\\Users\\lugin\\Desktop\\general\\DreamValley\\external\\OpenDream\\bin\\Content.Server\\OpenDreamServer.exe",
+			"args": [
+				"--cvar",
+				"opendream.json_path=${workspaceFolder}\\roguetown.json",
+				"--cvar",
+				"net.bindto=127.0.0.1",
+				"--cvar",
+				"net.port=0",
+				"--cvar",
+				"status.enabled=false"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"label": "DreamValley: Run Azure Peak locally"
 		}
 	]
 }

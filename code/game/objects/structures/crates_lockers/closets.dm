@@ -119,7 +119,7 @@
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
 			. += span_notice("Ctrl-Shift-click [src] to jump inside.")*/
 
-/obj/structure/closet/CanAStarPass(ID, dir, caller)
+/obj/structure/closet/CanAStarPass(ID, dir, pathing_mover)
 	if(wall_mounted)
 		return TRUE
 	return ..()
@@ -177,6 +177,7 @@
 			return
 	playsound(loc, open_sound, open_sound_volume, FALSE, -3)
 	opened = TRUE
+	dreamvalley_mark_persistent()
 	if(!dense_when_open)
 		density = FALSE
 //	climb_time *= 0.5 //it's faster to climb onto an open thing
@@ -241,6 +242,7 @@
 //	climb_time = initial(climb_time)
 	opened = FALSE
 	density = TRUE
+	dreamvalley_mark_persistent()
 	update_icon()
 	return TRUE
 
@@ -502,6 +504,7 @@
 	welded = FALSE //applies to all lockers
 	locked = FALSE //applies to critter crates and secure lockers only
 	obj_broken = TRUE //applies to secure lockers only
+	dreamvalley_mark_persistent()
 	open()
 /*
 /obj/structure/closet/AltClick(mob/user)
@@ -536,6 +539,7 @@
 			span_notice("I lock [src]."))
 		playsound(src, 'sound/foley/doors/lock.ogg', 100)
 		locked = 1
+	dreamvalley_mark_persistent()
 
 /obj/structure/closet/emag_act(mob/user)
 	if(secure && !obj_broken)

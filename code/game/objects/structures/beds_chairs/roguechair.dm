@@ -83,7 +83,7 @@
 	..()
 	density = FALSE
 
-/obj/structure/chair/bench/CanAStarPass(ID, travel_dir, caller)
+/obj/structure/chair/bench/CanAStarPass(ID, travel_dir, pathing_mover)
 	if(travel_dir == dir)
 		return FALSE // don't even bother climbing over it
 	return ..()

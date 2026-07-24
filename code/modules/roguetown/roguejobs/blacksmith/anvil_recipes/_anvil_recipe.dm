@@ -266,11 +266,11 @@
 			<p>[initial(created_item.desc)]</p>
 			<div>
 		"}
-	var/obj/item/clothing/suit/roguetown/armor/bookarmor = initial(new created_item)
-	var/obj/item/rogueweapon/bookweapon = initial(created_item)
+	var/obj/item/clothing/suit/roguetown/armor/bookarmor = new created_item
+	var/obj/item/rogueweapon/bookweapon = created_item
 
 	if(!(bookarmor.armor == "")&&!isnull(bookarmor.armor) )
-		var/obj/item/clothing/C = initial(new created_item)
+		var/obj/item/clothing/C = new created_item
 		if(C.body_parts_covered)
 			html += "\n<b>COVERAGE: </b>"
 			html += " | "
@@ -377,4 +377,3 @@
 	</html>
 	"}
 	return html
-

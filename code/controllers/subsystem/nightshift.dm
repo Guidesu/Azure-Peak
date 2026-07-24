@@ -30,6 +30,7 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/Initialize()
 	if(!CONFIG_GET(flag/enable_night_shifts))
 		can_fire = FALSE
+	GLOB.dreamvalley_campaign?.apply_clock()
 	current_tod = settod()
 	return ..()
 
@@ -121,6 +122,8 @@ SUBSYSTEM_DEF(nightshift)
 
 /mob/living/carbon/human/proc/handle_sleep_triumphs()
 	if(!mind)
+		return
+	if(GLOB.dreamvalley_campaign?.should_suppress_daily_triumphs())
 		return
 	allmig_reward++
 	adjust_triumphs(1)

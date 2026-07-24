@@ -1,4 +1,4 @@
-/proc/get_spellfist_chant_html(datum/caller, mob/living/carbon/human/H)
+/proc/get_spellfist_chant_html(datum/selection_handler, mob/living/carbon/human/H)
 	var/html = {"<!DOCTYPE html>
 <html>
 <head>
@@ -150,8 +150,8 @@ a.choose-btn:hover {
 </ul>
 </div>
 <div class="sidearm-row">
-<a class="choose-btn" href='?src=\ref[caller];sidearm=katar'>Katar</a>
-<a class="choose-btn" href='?src=\ref[caller];sidearm=knuckledusters'>Knuckledusters</a>
+<a class="choose-btn" href='?src=\ref[selection_handler];sidearm=katar'>Katar</a>
+<a class="choose-btn" href='?src=\ref[selection_handler];sidearm=knuckledusters'>Knuckledusters</a>
 </div>
 </div>
 </body>

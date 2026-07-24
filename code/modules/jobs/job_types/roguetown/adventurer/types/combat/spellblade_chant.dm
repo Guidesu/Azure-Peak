@@ -1,4 +1,4 @@
-/proc/get_spellblade_chant_html(datum/caller, mob/living/carbon/human/H, faction = "conventional", extra_blade_weapon, extra_phalanx_weapon, extra_mace_weapon)
+/proc/get_spellblade_chant_html(datum/selection_handler, mob/living/carbon/human/H, faction = "conventional", extra_blade_weapon, extra_phalanx_weapon, extra_mace_weapon)
 	var/blade_chant = get_blade_chant_text(faction, H)
 	var/phalanx_chant = get_phalanx_chant_text(faction, H)
 	var/macebearer_chant = get_macebearer_chant_text(faction, H)
@@ -299,7 +299,7 @@ a.choose-btn:hover {
 </div>
 <p class="weapon-info">[blade_weapons]</p>
 </div>
-<a class="choose-btn" href='?src=\ref[caller];subclass=blade'>[blade_btn]</a>
+<a class="choose-btn" href='?src=\ref[selection_handler];subclass=blade'>[blade_btn]</a>
 </div>
 <div class="column">
 <div class="column-content">
@@ -318,7 +318,7 @@ a.choose-btn:hover {
 </div>
 <p class="weapon-info">[phalanx_weapons]</p>
 </div>
-<a class="choose-btn" href='?src=\ref[caller];subclass=phalangite'>[phalanx_btn]</a>
+<a class="choose-btn" href='?src=\ref[selection_handler];subclass=phalangite'>[phalanx_btn]</a>
 </div>
 <div class="column">
 <div class="column-content">
@@ -337,7 +337,7 @@ a.choose-btn:hover {
 </div>
 <p class="weapon-info">[mace_weapons]</p>
 </div>
-<a class="choose-btn" href='?src=\ref[caller];subclass=macebearer'>[mace_btn]</a>
+<a class="choose-btn" href='?src=\ref[selection_handler];subclass=macebearer'>[mace_btn]</a>
 </div>
 </div>
 <div class="shared-info">

@@ -138,8 +138,8 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 	original_location = original_turf
 	RegisterSignal(parent, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
-/datum/component/dream_echo/proc/handle_speech(mob/living/speaker, list/args)
-	var/message = args[1]
+/datum/component/dream_echo/proc/handle_speech(mob/living/speaker, list/speech_args)
+	var/message = speech_args[1]
 
 	// Create cleaned message without prefixes
 	var/cleaned_message = message
