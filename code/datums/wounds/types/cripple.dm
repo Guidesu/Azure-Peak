@@ -27,15 +27,27 @@
 		"The joint is smashed apart!",
 	)
 	var/slowdown = 1
+	var/move_penalty = 0.15 SECONDS
+	var/applied_penalty = 0
 
 /datum/wound/cripple/limb/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.add_movespeed_modifier("cripple_[crippled_zone]", multiplicative_slowdown = slowdown)
+	if(!applied_penalty && istype(affected, /mob/living/simple_animal))
+		var/mob/living/simple_animal/animal = affected
+		if(animal.ai_controller)
+			applied_penalty = move_penalty
+			animal.ai_controller.movement_delay += applied_penalty
 	affected.balloon_alert_to_viewers("<font color='#ff3b3b'>leg crippled!</font>")
 
 /datum/wound/cripple/limb/on_mob_loss(mob/living/affected)
 	. = ..()
 	affected.remove_movespeed_modifier("cripple_[crippled_zone]")
+	if(applied_penalty && istype(affected, /mob/living/simple_animal))
+		var/mob/living/simple_animal/animal = affected
+		if(animal.ai_controller)
+			animal.ai_controller.movement_delay -= applied_penalty
+	applied_penalty = 0
 
 /datum/wound/cripple/maw
 	name = "shattered maw"

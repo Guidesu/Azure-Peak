@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/mob/monster/fox.dmi'
 	name = "venard"
 	desc = "A majestic beast of Dendor's realm, hopping through the local fauna."
+	anatomy_type = /datum/anatomy/quadruped
 	icon_state = "fox"
 	icon_living = "fox"
 	icon_dead = "fox_dead"
