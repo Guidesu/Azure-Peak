@@ -101,7 +101,7 @@
 	beltl = /obj/item/rogueweapon/whip/antique/psywhip
 	head = /obj/item/clothing/head/roguetown/inqhat
 	mask = /obj/item/clothing/mask/rogue/spectacles/inq/spawnpair
-	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
+	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	id = /obj/item/clothing/ring/signet/psy
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
@@ -240,7 +240,7 @@
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psychains
-	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
+	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	backpack_contents = list(
 		/obj/item/storage/keyring/inquisitor = 1,
 		/obj/item/paper/inqslip/arrival/inq = 1,
