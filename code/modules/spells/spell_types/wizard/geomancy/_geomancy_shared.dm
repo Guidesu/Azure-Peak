@@ -31,7 +31,6 @@
 	speed = MAGE_PROJ_SLOW
 	accuracy = 50
 	guard_deflectable = TRUE
-	npc_simple_damage_mult = 1.5
 	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	object_damage_multiplier = 2
 	hitsound = 'sound/combat/hits/onstone/wallhit.ogg'

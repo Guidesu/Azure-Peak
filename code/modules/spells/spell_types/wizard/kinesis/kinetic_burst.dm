@@ -24,7 +24,6 @@
 	damage = 60
 	strike_damage_type = BRUTE
 	blade_class = BCLASS_BLUNT
-	npc_simple_damage_mult = 1.5
 	committed_strike = TRUE
 	interruptible = FALSE
 	lock_direction = FALSE

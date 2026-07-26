@@ -8,7 +8,6 @@
 
 	var/damage = 50
 	var/strike_damage_type = BRUTE
-	var/npc_simple_damage_mult = 1.5
 	var/blade_class = BCLASS_CUT
 	var/strike_armor_pen = PEN_NONE
 	var/detonate_sound = 'sound/combat/newstuck.ogg'
@@ -211,11 +210,9 @@
 		sweep_hit_count++
 		if(ishuman(L))
 			var/target_zone = H.zone_selected || BODY_ZONE_CHEST
-			arcyne_strike(H, L, weapon, dmg, target_zone, blade_class, armor_penetration = strike_armor_pen, spell_name = name, damage_type = strike_damage_type, npc_simple_damage_mult = npc_simple_damage_mult, skip_animation = TRUE)
+			arcyne_strike(H, L, weapon, dmg, target_zone, blade_class, armor_penetration = strike_armor_pen, spell_name = name, damage_type = strike_damage_type, skip_animation = TRUE)
 		else
 			var/actual_damage = dmg
-			if(!L.mind)
-				actual_damage *= npc_simple_damage_mult
 			if(strike_damage_type == BURN)
 				L.adjustFireLoss(actual_damage)
 			else

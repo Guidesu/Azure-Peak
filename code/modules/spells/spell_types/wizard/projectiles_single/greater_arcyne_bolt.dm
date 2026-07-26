@@ -47,7 +47,6 @@
 	flag = "blunt"
 	woundclass = BCLASS_BLUNT
 	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
-	npc_simple_damage_mult = 1.5
 	nodamage = FALSE
 	speed = MAGE_PROJ_FAST
 	max_range = MAGE_LONG_PROJ_RANGE

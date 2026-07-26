@@ -56,7 +56,6 @@
 	damage = FIREBALL_DAMAGE
 	damage_type = BURN
 	woundclass = BCLASS_BURN
-	npc_simple_damage_mult = 3
 	nodamage = FALSE
 	flag = "fire"
 	hitsound = 'sound/blank.ogg'
@@ -114,7 +113,6 @@
 				arcyne_strike(caster, L, null, aoe_damage, BODY_ZONE_CHEST, \
 					BCLASS_BURN, spell_name = "Fireball (Blast)", \
 					allow_shield_check = TRUE, damage_type = BURN, \
-					npc_simple_damage_mult = npc_simple_damage_mult, \
 					skip_animation = TRUE)
 				apply_scorch_stack(L, 1)
 				L.apply_status_effect(/datum/status_effect/debuff/vulnerable, WYRMFIRE_VULNERABLE_DURATION)
@@ -207,7 +205,7 @@
 	for(var/turf/T in range(pillar_radius, epicenter))
 		new /obj/effect/temp_visual/pillar_warning/fadein(T, pillar_delay)
 	playsound(epicenter, 'sound/magic/charging_fire.ogg', 80, TRUE)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(pillar_of_flame_erupt), epicenter, owner, pillar_radius, pillar_damage, 2), pillar_delay)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(pillar_of_flame_erupt), epicenter, owner, pillar_radius, pillar_damage), pillar_delay)
 	return TRUE
 
 /obj/effect/temp_visual/pillar_warning
@@ -236,7 +234,7 @@
 	duration = 1 SECONDS
 	layer = MASSIVE_OBJ_LAYER
 
-/proc/pillar_of_flame_erupt(turf/epicenter, mob/living/carbon/human/caster, radius, damage, npc_mult)
+/proc/pillar_of_flame_erupt(turf/epicenter, mob/living/carbon/human/caster, radius, damage)
 	if(!epicenter)
 		return
 	new /obj/effect/temp_visual/explosion(epicenter)
@@ -251,7 +249,7 @@
 			if(L.anti_magic_check())
 				continue
 			if(istype(caster) && !QDELETED(caster))
-				arcyne_strike(caster, L, null, damage, BODY_ZONE_CHEST, BCLASS_BURN, spell_name = "Pillar of Flame", damage_type = BURN, npc_simple_damage_mult = npc_mult, skip_animation = TRUE)
+				arcyne_strike(caster, L, null, damage, BODY_ZONE_CHEST, BCLASS_BURN, spell_name = "Pillar of Flame", damage_type = BURN, skip_animation = TRUE)
 			else
 				L.adjustFireLoss(damage)
 			apply_scorch_stack(L, 2)
@@ -260,7 +258,6 @@
 /obj/projectile/magic/aoe/fireball/rogue/artillery
 	name = "artillery fireball"
 	damage = ARTILLERY_FIREBALL_DAMAGE
-	npc_simple_damage_mult = 3
 	arcyne_aoe_radius = 1
 	arcyne_aoe_damage = ARTILLERY_FIREBALL_AOE_DAMAGE
 	structural_damage = 300

@@ -151,7 +151,7 @@
 		return
 	if(ishuman(L))
 		arcyne_strike(H, L, null, dmg, H.zone_selected || BODY_ZONE_CHEST, BCLASS_BLUNT, \
-			spell_name = name, damage_type = BRUTE, npc_simple_damage_mult = 2, skip_animation = TRUE)
+			spell_name = name, damage_type = BRUTE, skip_animation = TRUE)
 	else
 		L.adjustBruteLoss(dmg * (L.mind ? 1 : 2))
 	new /obj/effect/temp_visual/spell_impact(get_turf(L), spell_color, spell_impact_intensity)

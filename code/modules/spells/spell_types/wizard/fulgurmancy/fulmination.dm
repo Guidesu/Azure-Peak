@@ -35,7 +35,6 @@
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
 	var/hs_damage = 80
-	var/hs_npc_simple_damage_mult = 2
 	var/hs_telegraph = TELEGRAPH_SKILLSHOT
 
 	var/ts_damage = 60
@@ -135,12 +134,10 @@
 			L.visible_message(span_warning("[L] weathers the lightning strike!"))
 			continue
 		var/actual_damage = hs_damage
-		if(!L.mind && !ishuman(L))
-			actual_damage *= hs_npc_simple_damage_mult
 		if(istype(caster) && ishuman(L))
 			arcyne_strike(caster, L, null, actual_damage, target_zone, \
 				BCLASS_BURN, spell_name = "Heaven's Strike", \
-				damage_type = BURN, npc_simple_damage_mult = 1, \
+				damage_type = BURN, \
 				skip_animation = TRUE)
 		else
 			L.electrocute_act(actual_damage, src, 1, SHOCK_NOSTUN)
@@ -181,7 +178,7 @@
 			if(istype(caster) && !QDELETED(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, damage, pick(random_zones), \
 					BCLASS_BURN, spell_name = spell_name, \
-					damage_type = BURN, npc_simple_damage_mult = 1, \
+					damage_type = BURN, \
 					skip_animation = TRUE)
 			else
 				L.electrocute_act(damage, caster, 1, SHOCK_NOSTUN)

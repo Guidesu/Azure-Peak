@@ -137,7 +137,6 @@
 	speed = 3
 	accuracy = 60
 	guard_deflectable = TRUE
-	npc_simple_damage_mult = 1.5
 	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	movement_type = UNSTOPPABLE
 	ricochets_max = 5

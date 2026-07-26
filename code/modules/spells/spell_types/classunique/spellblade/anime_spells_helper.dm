@@ -2,7 +2,7 @@
 These mirror the species.dm melee attack flow (armor check -> apply_damage -> bodypart_attacked_by)
 without going through the click pipeline, so spells can deliver weapon-style strikes. */
 
-/proc/arcyne_strike(mob/living/carbon/human/user, mob/living/target, obj/item/weapon, damage, def_zone, blade_class_override, armor_penetration = 0, spell_name = "Arcyne Strike", skip_animation = FALSE, skip_message = FALSE, allow_shield_check = FALSE, damage_type = BRUTE, npc_simple_damage_mult = 1, intdamage_factor, exact_zone = FALSE, flat_integ = TRUE)
+/proc/arcyne_strike(mob/living/carbon/human/user, mob/living/target, obj/item/weapon, damage, def_zone, blade_class_override, armor_penetration = 0, spell_name = "Arcyne Strike", skip_animation = FALSE, skip_message = FALSE, allow_shield_check = FALSE, damage_type = BRUTE, intdamage_factor, exact_zone = FALSE, flat_integ = TRUE)
 	if(!user || !target || QDELETED(user) || QDELETED(target))
 		return FALSE
 
@@ -75,10 +75,6 @@ without going through the click pipeline, so spells can deliver weapon-style str
 					I.take_damage(floor(damage / 4))
 					break
 			return 0
-
-	// NPC damage multiplier (e.g. fireball's npc_simple_damage_mult)
-	if(npc_simple_damage_mult != 1 && istype(target, /mob/living/simple_animal))
-		damage = round(damage * npc_simple_damage_mult)
 
 	// Default intdamage factor: blunt gets 1.6x (same as melee blunt), others get 1.0
 	if(isnull(intdamage_factor))

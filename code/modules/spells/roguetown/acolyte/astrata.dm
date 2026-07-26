@@ -179,7 +179,6 @@
 	guard_deflectable = TRUE
 	light_color = "#a98107"
 	damage = 50
-	npc_simple_damage_mult = 2
 	damage_type = BURN
 	accuracy = 50 //Astrata show me true or something?
 	nodamage = FALSE

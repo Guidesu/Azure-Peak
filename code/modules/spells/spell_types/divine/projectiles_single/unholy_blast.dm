@@ -35,7 +35,6 @@
 	damage = 20 // wont do much to a heretical worshipper
 	woundclass = BCLASS_CUT // I REALLY wanted to do cut
 	nodamage = FALSE
-	npc_simple_damage_mult = 2 // The Simple Skele Gibber
 	hitsound = 'sound/magic/soulsteal.ogg' // its kinda quiet BUT its cool
 	speed = 1
 

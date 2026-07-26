@@ -46,7 +46,6 @@
 	guard_deflectable = TRUE
 	light_color = LIGHT_COLOR_WHITE
 	damage = 60
-	npc_simple_damage_mult = 2
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3

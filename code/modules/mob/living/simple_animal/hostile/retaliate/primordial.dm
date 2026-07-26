@@ -416,6 +416,5 @@
 /obj/projectile/magic/greater_arcyne_bolt/primordial
 	name = "primordial gale"
 	damage = 27
-	npc_simple_damage_mult = 1
 	arcshot = TRUE
 

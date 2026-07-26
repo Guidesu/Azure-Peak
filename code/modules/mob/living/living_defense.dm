@@ -257,10 +257,6 @@
 	if(istype(src, /mob/living/simple_animal))
 		var/mob/living/simple_animal/weakpoint_target = src
 		actual_damage *= weakpoint_target.weakpoint_damage_mod(def_zone)
-	if(!mind && istype(src, /mob/living/simple_animal))
-		var/datum/component/saddleborn = GetComponent(/datum/component/precious_creature)
-		if(!saddleborn)
-			actual_damage *= P.npc_simple_damage_mult
 	var/nodmg = FALSE
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
 		if(!apply_damage(actual_damage, P.damage_type, def_zone, armor))

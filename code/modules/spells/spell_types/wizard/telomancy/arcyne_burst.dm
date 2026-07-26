@@ -82,7 +82,7 @@
 			if(istype(caster) && !QDELETED(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, damage, pick(random_zones), \
 					BCLASS_BLUNT, spell_name = spell_name, \
-					damage_type = BRUTE, npc_simple_damage_mult = 1, \
+					damage_type = BRUTE, \
 					skip_animation = TRUE)
 			else
 				L.adjustBruteLoss(damage * 1.5)

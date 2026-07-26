@@ -42,7 +42,6 @@
 	light_outer_range = 2
 	speed = MAGE_PROJ_VERY_SLOW
 	damage = SPITFIRE_DAMAGE
-	npc_simple_damage_mult = 2
 	damage_type = BURN
 	woundclass = BCLASS_BURN
 	nodamage = FALSE

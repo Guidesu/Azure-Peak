@@ -54,7 +54,6 @@
 	name = "frost shard"
 	icon_state = "ice_2"
 	damage = 35
-	npc_simple_damage_mult = 2
 	damage_type = BURN
 	woundclass = BCLASS_BURN
 	flag = "fire"
@@ -115,7 +114,6 @@
 	name = "frost bolt"
 	icon_state = "ice_2"
 	damage = 30
-	npc_simple_damage_mult = 2
 	damage_type = BURN
 	woundclass = BCLASS_BURN
 	flag = "fire"

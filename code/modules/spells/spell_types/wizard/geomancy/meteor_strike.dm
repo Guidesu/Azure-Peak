@@ -43,7 +43,6 @@
 	var/splash_damage = 40
 	displayed_damage = 120
 	var/fragment_damage = 15
-	var/npc_simple_damage_mult = 2
 	var/impact_count = 12
 
 /datum/action/cooldown/spell/meteor_strike/cast(atom/cast_on)
@@ -120,12 +119,10 @@
 			L.visible_message(span_warning("[L] endures the boulder strike!"))
 			continue
 		var/actual_damage = direct_damage
-		if(!L.mind && !ishuman(L))
-			actual_damage *= npc_simple_damage_mult
 		if(istype(caster) && ishuman(L))
 			arcyne_strike(caster, L, null, actual_damage, pick(random_zones), \
 				BCLASS_BLUNT, spell_name = "Meteor Strike", \
-				damage_type = BRUTE, npc_simple_damage_mult = 1, \
+				damage_type = BRUTE, \
 				skip_animation = TRUE)
 		else
 			L.adjustBruteLoss(actual_damage)
@@ -143,12 +140,10 @@
 			if(spell_guard_check(L, TRUE))
 				continue
 			var/actual_damage = splash_damage
-			if(!L.mind && !ishuman(L))
-				actual_damage *= npc_simple_damage_mult
 			if(istype(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, actual_damage, pick(random_zones), \
 					BCLASS_BLUNT, spell_name = "Meteor Strike", \
-					damage_type = BRUTE, npc_simple_damage_mult = 1, \
+					damage_type = BRUTE, \
 					skip_animation = TRUE)
 			else
 				L.adjustBruteLoss(actual_damage)

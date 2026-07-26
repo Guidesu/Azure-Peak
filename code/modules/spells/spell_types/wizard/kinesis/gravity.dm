@@ -46,7 +46,6 @@
 	var/offbalance_time = 10
 	/// STR threshold — at or below this, full knockdown. Above, off-balanced only
 	var/str_threshold = 15
-	var/simple_npc_damage_modifier = 2
 
 /datum/action/cooldown/spell/gravity/cast(atom/cast_on)
 	. = ..()
@@ -92,7 +91,7 @@
 		if(L.STASTR <= str_threshold)
 			arcyne_strike(owner, L, null, crush_damage, target_zone, BCLASS_BLUNT, \
 				spell_name = "Gravity", damage_type = BRUTE, \
-				npc_simple_damage_mult = simple_npc_damage_modifier, skip_animation = TRUE)
+				skip_animation = TRUE)
 			if(!adapted)
 				L.Knockdown(knockdown_time)
 				L.mob_timers[MT_GRAVITY_ADAPTATION] = world.time
@@ -102,7 +101,7 @@
 		else
 			arcyne_strike(owner, L, null, resisted_damage, target_zone, BCLASS_BLUNT, \
 				spell_name = "Gravity", damage_type = BRUTE, \
-				npc_simple_damage_mult = simple_npc_damage_modifier, skip_animation = TRUE)
+				skip_animation = TRUE)
 			if(!adapted)
 				L.OffBalance(offbalance_time)
 				L.mob_timers[MT_GRAVITY_ADAPTATION] = world.time

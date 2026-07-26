@@ -39,7 +39,6 @@
 	damage = 20 // wont do much to a divine worshipper
 	woundclass = BCLASS_STAB // divine blade!
 	nodamage = FALSE
-	npc_simple_damage_mult = 2 // The Simple Skele Gibber
 	hitsound = 'sound/magic/churn.ogg'
 	speed = 1
 
