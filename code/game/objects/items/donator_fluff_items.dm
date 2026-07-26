@@ -2246,6 +2246,23 @@ As Excaliber."
 	worn_offsets = list("x" = 0, "y" = 14)
 	color = null
 
+/obj/item/clothing/cloak/longest_night
+	name = "Longest Night Cloak"
+	desc = "A silver lined cloak, capable of quickly being wrapped around the arm for comfort. \
+	The Longest Night sect is an underground 'association,' those involved are often those who wish to be the least, and those who wish to be a part will never be. \
+	Few know of the sect, fewer of their secrets.\ </br>Inside the cloak, woven words preach,\ </br>‎<font color='c4c9d2'>Are those within the cave to be faulted, when all they know of reality are the shadows it casts on the wall?\
+	 </br>Fault or not, it falls upon us to lead them out of that wretched cave.</font>"
+	icon = 'icons/clothing/donor_clothes.dmi'
+	experimental_inhand = FALSE
+	experimental_onback = FALSE
+	alternate_worn_layer = 16
+	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
+	icon_state = "night_cloak"
+	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
+	item_state = "night_cloak"
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_BACK_L
+
 // MORTOSASYE
 /obj/item/rogueweapon/woodstaff/implement/grand/morto
 	base_implement_name = null
