@@ -183,6 +183,12 @@
 #define ARCHER_NPC_LANE_SEARCH          3
 #define ARCHER_NPC_DEFAULT_PROJECTILE_SPEED 0.8
 
+#define MELEE_NPC_REACTION_TIME_BASE      5
+#define MELEE_NPC_REACTION_TIME_MIN       2
+#define MELEE_NPC_REACTION_PER_STAT_POINT 12
+#define MELEE_NPC_WHIFF_FLOOR_CHANCE      8
+#define MELEE_NPC_TRACK_CEILING_CHANCE    40
+
 // Keys used by one and only one behavior
 // Used to hold state without making bigass lists
 /// For /datum/ai_behavior/find_potential_targets, what if any field are we using currently

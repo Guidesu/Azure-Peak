@@ -169,7 +169,7 @@
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "swings its massive head wildly!"
-	miss_sound = "bluntswoosh"
+	miss_sound = "bladewooshlarge"
 	swingdelay = 0.7 SECONDS
 	cleave = /datum/cleave_pattern/frontal_t
 

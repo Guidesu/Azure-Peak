@@ -84,7 +84,7 @@
 	name = "slam"
 	icon_state = "instrike"
 	attack_verb = list("slam", "rams")
-	animname = "blank22"
+	animname = "strike"
 	blade_class = BCLASS_BLUNT
 	hitsound = 'sound/combat/hits/onstone/wallhit.ogg'
 	chargetime = 0

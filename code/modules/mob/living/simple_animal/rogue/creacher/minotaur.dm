@@ -167,7 +167,7 @@
 	name = "minotaur unarmed"
 	icon_state = "instrike"
 	attack_verb = list("punches", "strikes", "kicks", "steps on", "crushes", "bites")
-	animname = "blank22"
+	animname = "cut"
 	blade_class = BCLASS_CUT
 	hitsound = "smallslash"
 	chargetime = 0
@@ -182,7 +182,7 @@
 	name = "minotaur axe"
 	icon_state = "instrike"
 	attack_verb = list("hacks at", "slashes", "chops", "steps on", "crushes", "bites")
-	animname = "blank22"
+	animname = "chop"
 	blade_class = BCLASS_CUT
 	hitsound = "genchop"
 	chargetime = 10

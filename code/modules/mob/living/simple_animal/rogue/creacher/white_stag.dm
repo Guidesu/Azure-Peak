@@ -145,7 +145,7 @@
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "thrusts its antlers wildly!"
-	miss_sound = "bluntswoosh"
+	miss_sound = "bladewooshmed"
 
 /obj/item/rogueweapon/stag_antlers
 	name = "ancient antlers"
