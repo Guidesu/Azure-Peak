@@ -1,8 +1,15 @@
+/mob/living/simple_animal/proc/resolve_melee_zone(mob/living/user, obj/item/I, datum/intent/attack_intent)
+	if(!user)
+		return BODY_ZONE_CHEST
+	var/skill = I ? I.associated_skill : /datum/skill/combat/unarmed
+	return melee_accuracy_check(user.zone_selected, user, src, skill, attack_intent || user.used_intent, I) || BODY_ZONE_CHEST
+
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)
 	if(I.force_dynamic < force_threshold || I.damtype == STAMINA)
 		playsound(loc, 'sound/blank.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
-		var/hitlim = simple_limb_hit(user.zone_selected)
+		var/selzone = resolve_melee_zone(user, I)
+		var/hitlim = simple_limb_hit(selzone)
 		I.funny_attack_effects(src, user)
 		if(I.force_dynamic)
 			var/newforce = get_complex_damage(I, user)
@@ -24,14 +31,14 @@
 				playsound(src, 'sound/combat/vulnerable_pop.ogg', 100, TRUE)
 				visible_message(span_biginfo("[src] is struck while vulnerable!"))
 				remove_status_effect(/datum/status_effect/debuff/vulnerable)
-			newforce *= weakpoint_damage_mod(user.zone_selected)
+			newforce *= weakpoint_damage_mod(selzone)
 			apply_damage(newforce, I.damtype, hitlim, armor)
 			I.remove_bintegrity(1)
 			if(I.damtype == BRUTE && !nodmg)
 				if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 					if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
 						newforce *= SILVER_SIMPLEMOB_DAM_MULT
-					simple_woundcritroll(user.used_intent.blade_class, newforce, user, user.zone_selected)
+					simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone)
 				if(newforce > 5)
 					if(haha != BCLASS_BLUNT)
 						I.add_mob_blood(src)
@@ -115,15 +122,17 @@
 			playsound(loc, attacked_sound, 25, TRUE, -1)
 			var/damage = M.get_punch_dmg()
 			next_attack_msg.Cut()
-			var/hitlim = simple_limb_hit(M.zone_selected)
+			var/selzone = resolve_melee_zone(M)
+			var/hitlim = simple_limb_hit(selzone)
 			var/haha = M.used_intent.item_d_type
 			var/armor = run_armor_check(null, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
 			if(armor > 0)
 				next_attack_msg += VISMSG_ARMOR_BLOCKED
+			damage *= weakpoint_damage_mod(selzone)
 			attack_threshold_check(damage, hitlim, armorcheck = armor)
 			log_combat(M, src, "attacked")
 			updatehealth()
-			simple_woundcritroll(M.used_intent.blade_class, damage, M, M.zone_selected)
+			simple_woundcritroll(M.used_intent.blade_class, damage, M, selzone)
 			visible_message(span_danger("[M] [atk_verb] [src]![next_attack_msg.Join()]"),\
 							span_danger("[M] [atk_verb] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 			next_attack_msg.Cut()
@@ -208,15 +217,17 @@
 		playsound(loc, attacked_sound, 25, TRUE, -1)
 		var/damage = M.get_punch_dmg()
 		next_attack_msg.Cut()
-		var/hitlim = simple_limb_hit(M.zone_selected)
+		var/selzone = resolve_melee_zone(M)
+		var/hitlim = simple_limb_hit(selzone)
 		var/haha = M.used_intent.item_d_type
 		var/armor = run_armor_check(null, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
 		if(armor > 0)
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
+		damage *= weakpoint_damage_mod(selzone)
 		attack_threshold_check(damage, hitlim, armorcheck = armor)
 		log_combat(M, src, "attacked")
 		updatehealth()
-		simple_woundcritroll(M.used_intent.blade_class, damage, M, M.zone_selected)
+		simple_woundcritroll(M.used_intent.blade_class, damage, M, selzone)
 		visible_message(span_danger("[M] [atk_verb] [src]![next_attack_msg.Join()]"),\
 						span_danger("[M] [atk_verb] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 		next_attack_msg.Cut()
