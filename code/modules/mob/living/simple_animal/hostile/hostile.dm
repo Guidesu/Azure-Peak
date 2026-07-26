@@ -479,20 +479,16 @@
 	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
 
 
+	var/turf/locked_turf = get_turf(A)
+	var/aim_window = get_ranged_aim_window()
+	var/datum/callback/cb = CALLBACK(src, PROC_REF(Shoot), A, locked_turf)
 	if(rapid > 1)
-		var/datum/callback/cb = CALLBACK(src, PROC_REF(Shoot), A)
 		for(var/i in 1 to rapid)
-			addtimer(cb, (i - 1)*rapid_fire_delay)
+			addtimer(cb, aim_window + ((i - 1) * rapid_fire_delay))
 	else
-		Shoot(A)
+		addtimer(cb, aim_window)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-
-/mob/living/simple_animal/hostile/proc/get_ranged_spread()
-	var/spread = max(0, ARCHER_NPC_PER_BASELINE - STAPER) * ARCHER_NPC_SPREAD_PER_POINT
-	if(spread <= 0)
-		return 0
-	return round((rand() - 0.5) * RANGED_SPREAD_JITTER * rand(0, spread))
 
 /mob/living/simple_animal/hostile/proc/apply_ranged_accuracy(obj/projectile/P)
 	if(!P)
@@ -500,28 +496,33 @@
 	P.accuracy += (STAPER - 9) * 4
 	P.bonus_accuracy += (STAPER - 8) * 3
 
-/mob/living/simple_animal/hostile/proc/Shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/proc/Shoot(atom/targeted_atom, turf/locked_turf)
+	if(QDELETED(src) || QDELETED(targets_from) || !targets_from.loc)
+		return
 	if( QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from )
 		return
 	var/turf/startloc = get_turf(targets_from)
-	var/spread = get_ranged_spread()
 	if(casingtype)
 		var/obj/item/ammo_casing/casing = new casingtype(startloc)
 		playsound(src, projectilesound, 100, TRUE)
 		apply_ranged_accuracy(casing.BB)
-		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), spread,  src)
+		var/atom/aim_at = locked_turf ? get_ranged_lead_turf(targeted_atom, locked_turf, casing.BB?.speed) : targeted_atom
+		casing.fire_casing(aim_at || targeted_atom, src, null, null, null, ran_zone(), 0,  src)
 	else if(projectiletype)
 		var/obj/projectile/P = new projectiletype(startloc)
 		playsound(src, projectilesound, 100, TRUE)
+		var/atom/aim_at = locked_turf ? get_ranged_lead_turf(targeted_atom, locked_turf, P.speed) : targeted_atom
+		if(!aim_at)
+			aim_at = targeted_atom
 		P.starting = startloc
 		P.firer = src
 		P.fired_from = src
-		P.yo = targeted_atom.y - startloc.y
-		P.xo = targeted_atom.x - startloc.x
-		P.original = targeted_atom
+		P.yo = aim_at.y - startloc.y
+		P.xo = aim_at.x - startloc.x
+		P.original = aim_at
 		P.def_zone = ran_zone()
 		apply_ranged_accuracy(P)
-		P.preparePixelProjectile(targeted_atom, src, null, spread)
+		P.preparePixelProjectile(aim_at, src)
 		P.fire()
 		return P
 

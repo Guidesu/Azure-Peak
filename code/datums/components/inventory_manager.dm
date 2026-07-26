@@ -126,14 +126,16 @@
 	if(!has_container)
 		_classify_item(equipment, slot)
 
-/datum/component/ai_inventory_manager/proc/on_unequip(datum/source, obj/item/equipment, slot)
+/datum/component/ai_inventory_manager/proc/on_unequip(datum/source, obj/item/equipment)
 	SIGNAL_HANDLER
-	if(!(slot & AI_INVENTORY_WATCHED_SLOTS))
-		return
-	_purge_slot(slot)
-	if(slot in container_refs)
-		UnregisterSignal(container_refs[slot], COMSIG_PARENT_QDELETING)
-		container_refs -= slot
+	for(var/slot_flag in container_refs)
+		if(container_refs[slot_flag] != equipment)
+			continue
+		UnregisterSignal(equipment, list(COMSIG_PARENT_QDELETING, COMSIG_STORAGE_ADDED))
+		_purge_slot(slot_flag)
+		container_refs -= slot_flag
+		break
+	_remove_item(equipment)
 
 /datum/component/ai_inventory_manager/proc/on_drop(datum/source, obj/item/dropped)
 	SIGNAL_HANDLER

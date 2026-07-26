@@ -138,12 +138,12 @@
 		/datum/ai_planning_subtree/tree_climb,
 		/datum/ai_planning_subtree/archer_base, // Archer only
 		/datum/ai_planning_subtree/ranged_attack_subtree, // Archer only
+		/datum/ai_planning_subtree/retrieve_arrows,
 		/datum/ai_planning_subtree/aggro_find_target,
 		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/leap_attack,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/human_npc,
 		/datum/ai_planning_subtree/find_weapon,
 		/datum/ai_planning_subtree/equip_item,
-		/datum/ai_planning_subtree/retrieve_arrows,
 		/datum/ai_planning_subtree/loot,
 	)

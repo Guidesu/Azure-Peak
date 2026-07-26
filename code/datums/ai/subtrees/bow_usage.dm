@@ -90,17 +90,23 @@
 
 	pawn.face_atom(target)
 
-	// Loose the instant a shot is ready; we never stop moving to do it (move-and-perform).
 	if(bow.chambered && world.time >= controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] && can_see(pawn, target, ARCHER_NPC_SHOOT_RANGE))
-		_loose_arrow(pawn, target, bow)
-		if(is_crossbow)
-			controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time)
-		else
-			controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time + bow.get_npc_chargetime(pawn))
-		var/turf/juke = _archer_reposition_turf(pawn, target)
-		if(juke)
-			controller.set_blackboard_key(BB_ARCHER_NPC_REPOSITION_TURF, juke)
-			controller.set_blackboard_key(BB_ARCHER_NPC_REPOSITION_UNTIL, world.time + ARCHER_NPC_REPOSITION_TIME)
+		var/release_at = controller.blackboard[BB_ARCHER_NPC_AIM_RELEASE]
+		if(!release_at)
+			controller.set_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF, get_turf(target))
+			controller.set_blackboard_key(BB_ARCHER_NPC_AIM_RELEASE, world.time + pawn.get_ranged_aim_window())
+		else if(world.time >= release_at)
+			_loose_arrow(pawn, target, bow, controller.blackboard[BB_ARCHER_NPC_AIM_LOCK_TURF])
+			controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF)
+			controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_RELEASE)
+			if(is_crossbow)
+				controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time)
+			else
+				controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time + bow.get_npc_chargetime(pawn))
+			var/turf/juke = _archer_reposition_turf(pawn, target)
+			if(juke)
+				controller.set_blackboard_key(BB_ARCHER_NPC_REPOSITION_TURF, juke)
+				controller.set_blackboard_key(BB_ARCHER_NPC_REPOSITION_UNTIL, world.time + ARCHER_NPC_REPOSITION_TIME)
 
 	var/draw_slow = _bow_draw_slowdown(bow)
 	if(draw_slow && world.time < controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT])
@@ -130,6 +136,8 @@
 /datum/ai_behavior/ranged_attack_bow/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()
 	var/mob/living/carbon/human/pawn = controller.pawn
+	controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF)
+	controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_RELEASE)
 	_restore_stashed_weapon(controller, pawn)
 
 /proc/_archer_retreat_turf(mob/living/carbon/human/pawn, atom/target)
@@ -196,11 +204,12 @@
 	return null
 
 /proc/_draw_into_hand(mob/living/carbon/human/pawn, obj/item/it, active = TRUE)
-	if(it.loc == pawn)
+	var/was_worn = (it.loc == pawn)
+	if(was_worn)
 		pawn.temporarilyRemoveItemFromInventory(it, force = TRUE)
-	if(active)
-		return pawn.put_in_active_hand(it)
-	return pawn.put_in_inactive_hand(it)
+	. = active ? pawn.put_in_active_hand(it) : pawn.put_in_inactive_hand(it)
+	if(!. && was_worn && it.loc == pawn)
+		pawn.dropItemToGround(it, TRUE)
 
 /proc/_enter_bow_stance(datum/ai_controller/controller, mob/living/carbon/human/pawn, obj/item/gun/ballistic/revolver/grenadelauncher/bow)
 	var/is_sling = istype(bow, /obj/item/gun/ballistic/revolver/grenadelauncher/sling)
@@ -291,10 +300,13 @@
 			return TRUE
 	return FALSE
 
-/proc/_loose_arrow(mob/living/carbon/human/pawn, atom/target, obj/item/gun/ballistic/revolver/grenadelauncher/bow)
+/proc/_loose_arrow(mob/living/carbon/human/pawn, atom/target, obj/item/gun/ballistic/revolver/grenadelauncher/bow, turf/locked_turf)
+	var/atom/aim_at = target
+	if(locked_turf)
+		aim_at = pawn.get_ranged_lead_turf(target, locked_turf, bow.chambered?.BB?.speed) || target
 	var/should_arc = FALSE
 	var/turf/pt = get_turf(pawn)
-	var/turf/tt = get_turf(target)
+	var/turf/tt = get_turf(aim_at)
 	if(pt && tt)
 		for(var/turf/T in getline(pt, tt))
 			if(T == pt || T == tt)
@@ -308,8 +320,7 @@
 			if(should_arc)
 				break
 	bow.npc_force_arc = should_arc
-	var/bonus_spread = ARCHER_NPC_BASE_SPREAD + max(0, ARCHER_NPC_PER_BASELINE - pawn.STAPER) * ARCHER_NPC_SPREAD_PER_POINT
 	if(should_arc)
-		bonus_spread += ARCHER_NPC_ARC_SPREAD_PENALTY
-	bow.process_fire(target, pawn, TRUE, null, "", bonus_spread)
+		aim_at = pawn.scatter_aim_turf(get_turf(aim_at), target, rand(1, ARCHER_NPC_ARC_MISS_TILES)) || aim_at
+	bow.process_fire(aim_at, pawn, TRUE, null, "", 0)
 	bow.npc_force_arc = FALSE

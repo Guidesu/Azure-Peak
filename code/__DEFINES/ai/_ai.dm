@@ -135,6 +135,8 @@
 #define BB_ARCHER_NPC_NEXT_SHOT         "archer_next_shot"     // world.time the archer may next loose an arrow
 #define BB_ARCHER_NPC_REPOSITION_TURF   "archer_reposition_turf"  // post-shot juke destination we're committed to
 #define BB_ARCHER_NPC_REPOSITION_UNTIL  "archer_reposition_until" // world.time the post-shot juke commitment expires
+#define BB_ARCHER_NPC_AIM_LOCK_TURF     "archer_aim_lock_turf"   // Where the target was when the shot is fired
+#define BB_ARCHER_NPC_AIM_RELEASE       "archer_aim_release"      // The time where it was actually shot
 #define BB_INVENTORY_MAP        "inventory_map"        // list(category = list(item_ref = slot_name))
 #define BB_CONTAINER_REFS       "container_refs"       // list(slot_name = item_ref)
 #define BB_INVENTORY_DIRTY      "inventory_dirty"      // bool, triggers reappraisal
@@ -154,7 +156,6 @@
 #define ARCHER_NPC_KITE_RANGE           5 
 #define ARCHER_NPC_SHOOT_RANGE          7
 #define ARCHER_NPC_ROF_PENALTY          1.3
-#define ARCHER_NPC_BASE_SPREAD          25 
 #define ARCHER_NPC_RETREAT_PROJECT      4
 #define ARCHER_NPC_REPOSITION_TIME      (0.6 SECONDS) // how long a post-shot random juke commits before the straight retreat resumes
 #define ARCHER_NPC_ARROW_SEARCH_RANGE   9
@@ -162,9 +163,21 @@
 #define ARCHER_NPC_MIN_CROSSBOW_CHARGETIME  3 SECONDS // crossbows are slower to fire
 #define ARCHER_NPC_MIN_BOW_CHARGETIME        2.0 SECONDS
 #define ARCHER_NPC_MIN_SLING_CHARGETIME     2.0 SECONDS
-#define ARCHER_NPC_PER_BASELINE         15    // PER at which an NPC stops scattering
-#define ARCHER_NPC_SPREAD_PER_POINT     7     // spread per PER point below the baseline
-#define ARCHER_NPC_ARC_SPREAD_PENALTY   20    // extra spread when arcing over allies
+#define ARCHER_NPC_AIM_BASELINE         10
+#define ARCHER_NPC_AIM_WINDOW_BASE      5
+#define ARCHER_NPC_AIM_WINDOW_MIN       3
+#define ARCHER_NPC_AIM_PER_STAT_POINT   3
+#define ARCHER_NPC_MAX_LEAD             3
+#define ARCHER_NPC_STATIONARY_MISS      15
+#define ARCHER_NPC_MOVING_TARGET_ERROR  30
+#define ARCHER_NPC_LEAD_ERROR_PER_POINT 3
+#define ARCHER_NPC_LEAD_ERROR_MAX_BONUS 15
+#define ARCHER_NPC_LEAD_ERROR_PER_POOR  5
+#define ARCHER_NPC_LEAD_ERROR_FLOOR     5
+#define ARCHER_NPC_LEAD_ERROR_CEILING   85
+#define ARCHER_NPC_MISS_OFFSET_TILES    1
+#define ARCHER_NPC_ARC_MISS_TILES       3
+#define ARCHER_NPC_DEFAULT_PROJECTILE_SPEED 0.8
 
 // Keys used by one and only one behavior
 // Used to hold state without making bigass lists
