@@ -41,9 +41,43 @@
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
 
+/datum/anatomy/biped
+	limb_names = list(
+		BODY_ZONE_HEAD = "head",
+		BODY_ZONE_PRECISE_R_EYE = "head",
+		BODY_ZONE_PRECISE_L_EYE = "head",
+		BODY_ZONE_PRECISE_SKULL = "head",
+		BODY_ZONE_PRECISE_EARS = "head",
+		BODY_ZONE_PRECISE_NOSE = "nose",
+		BODY_ZONE_PRECISE_MOUTH = "mouth",
+		BODY_ZONE_PRECISE_NECK = "neck",
+		BODY_ZONE_L_ARM = "arm",
+		BODY_ZONE_R_ARM = "arm",
+		BODY_ZONE_PRECISE_L_HAND = "hand",
+		BODY_ZONE_PRECISE_R_HAND = "hand",
+		BODY_ZONE_L_LEG = "leg",
+		BODY_ZONE_R_LEG = "leg",
+		BODY_ZONE_PRECISE_L_FOOT = "foot",
+		BODY_ZONE_PRECISE_R_FOOT = "foot",
+		BODY_ZONE_PRECISE_STOMACH = "gut",
+		BODY_ZONE_PRECISE_GROIN = "groin",
+	)
+
 /datum/anatomy/biped/build_zones()
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/skull, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb, hint = "legs")
+
+/* Tough biped, taller than a human. Head is gated by reach, and is an instant kill with
+less hp than their global HP pool. It also stop it from reanimating. Guts is a part that allows you to kill them by disembowelment. Legs will topple it. Arms will weaken its attacks.
+Aiming legs should be nearly guaranteed due to their profile
+*/ 
+/datum/anatomy/biped/tough/build_zones()
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_LONG, melee_hit_bonus = -10, ranged_hit_bonus = -15) // Better build up that PER chudling
+	add_zone(BODY_ZONE_PRECISE_STOMACH, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 150, break_wound = /datum/wound/cripple/guts, hint = "gut")
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)

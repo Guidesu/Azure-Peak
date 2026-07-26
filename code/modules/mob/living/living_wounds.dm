@@ -114,10 +114,10 @@
 		qdel(wound)
 
 /// Simple version of crit rolling, attempts to do a critical hit on a mob that uses simple wounds - DO NOT CALL THIS ON CARBON MOBS, THEY HAVE BODYPARTS!
-/mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, no_crit = FALSE)
+/mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, no_crit = FALSE, obj/item/weapon)
 	if(!bclass || !dam || (status_flags & GODMODE) || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
-	register_part_damage(zone_precise, dam, user)
+	register_part_damage(zone_precise, dam, user, weapon)
 	var/do_crit = !no_crit
 	if(user)
 		if(user.goodluck(2))

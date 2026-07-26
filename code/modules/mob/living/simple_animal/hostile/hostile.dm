@@ -173,7 +173,7 @@
 		FindTarget(list(user), 1)
 	return ..()
 
-/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
 	if(stat == CONSCIOUS && !target && AIStatus != NPC_AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)

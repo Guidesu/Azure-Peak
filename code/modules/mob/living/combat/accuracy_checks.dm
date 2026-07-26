@@ -47,6 +47,7 @@
 
 	if(!(user.mobility_flags & MOBILITY_STAND) && (zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)))
 		chance2hit += 5
+	chance2hit += target.get_zone_melee_hit_bonus(zone)
 	chance2hit += accuracy_bonus
 
 	chance2hit = CLAMP(chance2hit, 5, 95)
@@ -143,7 +144,7 @@
 /mob/living/proc/bullet_hit_accuracy_check(final_accuracy, def_zone = BODY_ZONE_CHEST)
 	// No matter what, 5% chance to hit the zone. No benefit from overaccuracy (unlikely)
 	var/zone_type = ranged_zone_difficulty(def_zone)
-	var/chance2hit = final_accuracy
+	var/chance2hit = final_accuracy + get_zone_ranged_hit_bonus(def_zone)
 	// If you aim very precisely, you take -25 on hit chance, and then no matter what, it is clamped at 50%
 	// If you aim precisely (at limb), -10, 75% max.
 	// Aiming very precise part has a chance of hitting the parent limb instead.
@@ -154,21 +155,21 @@
 
 	switch(zone_type)
 		if(ULTRA_PRECISE_ZONE)
-			chance2hit -= RANGED_ULTRA_PRECISE_HIT_PENALTY
+			chance2hit += RANGED_ULTRA_PRECISE_HIT_PENALTY
 			chance2hit = CLAMP(chance2hit, 5, RANGED_MAX_ULTRA_PRECISE_HIT_CHANCE)
 		if(PRECISE_ZONE)
-			chance2hit -= RANGED_PRECISE_HIT_PENALTY
+			chance2hit += RANGED_PRECISE_HIT_PENALTY
 			chance2hit = CLAMP(chance2hit, 5, RANGED_MAX_PRECISE_HIT_CHANCE)
 		if(PRECISE_FACE_ZONE)
-			chance2hit -= (RANGED_ULTRA_PRECISE_HIT_PENALTY + RANGED_PRECISE_HIT_PENALTY)
+			chance2hit += (RANGED_ULTRA_PRECISE_HIT_PENALTY + RANGED_PRECISE_HIT_PENALTY)
 			chance2hit = CLAMP(chance2hit, 5, RANGED_MAX_FACE_HIT_CHANCE)
 
 	if(prob(chance2hit))
 		return def_zone
-	else if(prob(chance2hit))
-		return check_zone(def_zone)
-	else
-		return BODY_ZONE_CHEST
+	var/parent_zone = check_zone(def_zone)
+	if(parent_zone != def_zone && prob(chance2hit))
+		return parent_zone
+	return BODY_ZONE_CHEST
 
 #undef ULTRA_PRECISE_ZONE
 #undef PRECISE_ZONE

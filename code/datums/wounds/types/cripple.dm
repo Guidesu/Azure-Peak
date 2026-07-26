@@ -156,3 +156,55 @@
 		hostile_affected.aggro_vision_range += removed_aggro
 	if(mortal_break)
 		REMOVE_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS, "[type]")
+
+/datum/wound/cripple/decapitate
+	name = "destroyed head"
+	crit_message = list(
+		"The head is torn from the shoulders!",
+		"The skull bursts apart in a shower of gore!",
+	)
+	break_alert = "HEAD DESTROYED!"
+
+/datum/wound/cripple/decapitate/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(istype(affected, /mob/living/simple_animal))
+		var/mob/living/simple_animal/animal = affected
+		animal.no_reanimate = TRUE
+		if(animal.head_butcher)
+			var/head_type = animal.head_butcher
+			new head_type(affected.drop_location())
+			animal.head_butcher = null
+	affected.visible_message(span_userdanger("[affected]'s head is torn from its shoulders!"))
+	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
+	affected.death()
+
+/datum/wound/cripple/guts
+	name = "spilled guts"
+	crit_message = list(
+		"The belly splits, spilling its guts across the ground!",
+		"The entrails burst free in a gout of blood!",
+	)
+	break_alert = "GUTS SPILLED!"
+
+/datum/wound/cripple/guts/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(istype(affected, /mob/living/simple_animal))
+		var/mob/living/simple_animal/animal = affected
+		animal.no_reanimate = TRUE
+	affected.visible_message(span_userdanger("[affected]'s guts spill out in a steaming heap!"))
+	new /obj/item/alch/viscera(affected.drop_location())
+	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
+	affected.death()
+
+/datum/wound/cripple/limb/topple
+	name = "shattered leg"
+	crit_message = list(
+		"The leg shatters - it crashes to the ground!",
+		"The knee is blown out, and it falls flat!",
+	)
+	break_alert = "toppled!"
+	move_penalty = 0.4 SECONDS
+
+/datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
+	. = ..()
+	affected.Knockdown(20)

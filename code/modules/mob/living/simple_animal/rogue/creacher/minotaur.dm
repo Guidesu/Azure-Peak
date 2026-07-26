@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur
+	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/mob/newminotaur.dmi'
 	name = "Minotaur"
 	desc = "An unusually giant relative of the more familiar manners of Wild-Kin. This one looks aggressive."

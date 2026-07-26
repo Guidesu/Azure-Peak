@@ -38,7 +38,7 @@
 				if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 					if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
 						newforce *= SILVER_SIMPLEMOB_DAM_MULT
-					simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone)
+					simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone, weapon = I)
 				if(newforce > 5)
 					if(haha != BCLASS_BLUNT)
 						I.add_mob_blood(src)

@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll
+	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/roguetown/mob/monster/trolls/trolls.dmi'
 	name = "troll"
 	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
@@ -93,7 +94,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
 	..()
 	update_icon()
-	if(!QDELETED(src))
+	if(!QDELETED(src) && !no_reanimate)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
