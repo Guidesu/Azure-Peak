@@ -177,7 +177,7 @@
 	// Stuff
 	if(!mind.current)
 		return
-	if(HAS_TRAIT(mind.current, TRAIT_CURSE_ABYSSOR))
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_WULFRIC))
 		to_chat(mind.current, span_notice("His domain is forbidden to the likes of me."))
 		return
 	if(prob(0)) //TODO SLEEP ADV SPECIALS
@@ -306,7 +306,7 @@
 	var/datum/skill/bought_skill = GetSkillRef(skill_type)
 	if(bought_skill && !bought_skill.learnable_in_sleep)
 		return
-	if(HAS_TRAIT(mind.current, TRAIT_CURSE_MALUM))
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_HANDWERRA))
 		to_chat(mind.current, span_warning("My dreams turn to nitemares."))
 		return
 	var/datum/skill/skill = GetSkillRef(skill_type)

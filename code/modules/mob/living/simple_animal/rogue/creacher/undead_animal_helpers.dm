@@ -119,12 +119,12 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 	qdel(mob)
 
 /datum/component/deadite_animal_reanimation/proc/get_reanimation_chance()
-	if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
+	if(has_world_trait(/datum/world_trait/aurelian_pet_cementery))
 		return 100
 	return ZOMBIE_REANIMATION_CHANCE
 
 /datum/component/deadite_animal_reanimation/proc/get_reanimation_time()
-	if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
+	if(has_world_trait(/datum/world_trait/aurelian_pet_cementery))
 		return 1.5 MINUTES
 	return ZOMBIE_REANIMATION_TIMER
 

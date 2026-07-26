@@ -19,7 +19,7 @@
 
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/noc, /obj/item/clothing/neck/roguetown/psicross/silver/noc, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/miluse, /obj/item/clothing/neck/roguetown/psicross/silver/miluse, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /////////////////////
 // T0 - Nitevision //
@@ -239,7 +239,7 @@
 	spell_tier = 0
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/noc, /obj/item/clothing/neck/roguetown/psicross/silver/noc, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/miluse, /obj/item/clothing/neck/roguetown/psicross/silver/miluse, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /datum/action/cooldown/spell/projectile/moonscorch/cast(atom/cast_on)
 	var/mob/living/carbon/human/H = owner

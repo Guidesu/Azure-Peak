@@ -1,6 +1,7 @@
 /datum/sex_action/masturbate/breasts
 	name = "Fondle breasts"
 	debug_erp_panel_verb = FALSE
+	subtle_supported = TRUE // Stealth-mode extension
 
 /datum/sex_action/masturbate/breasts/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user != target)
@@ -29,11 +30,11 @@
 
 /datum/sex_action/masturbate/breasts/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts fondling [user.p_their()] breasts..."))
+	stealth_visible_message(user, target, span_warning("[user] starts fondling [user.p_their()] breasts..."))
 
 /datum/sex_action/masturbate/breasts/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops fondling [user.p_their()] breasts."))
+	stealth_visible_message(user, target, span_warning("[user] stops fondling [user.p_their()] breasts."))
 
 /datum/sex_action/masturbate/anus/lock_sex_object(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
@@ -41,7 +42,8 @@
 
 /datum/sex_action/masturbate/breasts/on_perform_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] fondles [user.p_their()] breasts..."))
+	var/do_subtle = is_being_done_subtly(user, target)
+	stealth_visible_message(user, target, sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective(is_stealth = do_subtle)] fondles [user.p_their()] breasts..."))
 
 /datum/sex_action/masturbate/breasts/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)

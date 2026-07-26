@@ -34,7 +34,7 @@
 
 	var/amulet_found = FALSE
 	for(var/obj/item/clothing/neck/current_item in user.get_equipped_items(TRUE))
-		if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/necra))
+		if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/morwenna))
 			amulet_found = TRUE
 
 	if(!amulet_found)

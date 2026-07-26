@@ -63,12 +63,12 @@
 			damage += 10
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(istype(H.patron, /datum/patron/divine))
+		if(istype(H.patron, /datum/patron/concordat))
 			if(H in GLOB.excommunicated_players)
 				damage += 20
-		if(istype(H.patron, /datum/patron/inhumen))
+		if(istype(H.patron, /datum/patron/unveiled))
 			damage += 20
-		if(istype(H.patron, /datum/patron/old_god))
+		if(istype(H.patron, /datum/patron/tribunal/praecursor))
 			damage += 20
 		if(HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !H.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
 			H.visible_message("<font color='white'>Divine power rebukes [H]!</font>")
@@ -82,11 +82,11 @@
 		if (ishuman(firer))
 			caster = firer
 			switch(caster.patron.type)
-				if(/datum/patron/divine/undivided)
+				if(/datum/patron/tribunal/custodius)
 					damage += 15 // just more raw damage. As mentioned in UNDIVIDED. Our generics are better as a trade off of not having higher tier uniques.
 					H.visible_message(span_warning("Holy light slams into [H] with force!"), span_warning("Holy light slams into me with force!"))
-				if(/datum/patron/divine/astrata)
-					if(istype(H.patron, /datum/patron/inhumen/matthios))
+				if(/datum/patron/concordat/auxentius)
+					if(istype(H.patron, /datum/patron/concordat/morwenna))
 						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Astrata's <b>hatred</b> sets me aflame!"))
 						H.adjust_fire_stacks(3) //ANCIENT ENEMY I DO NOT FEAR YOU
 						H.ignite_mob()
@@ -94,32 +94,32 @@
 						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Astrata's fury sets me aflame!"))
 						H.adjust_fire_stacks(2) //Remains regular, setting everyone on fire is funnier
 						H.ignite_mob()
-				if(/datum/patron/divine/abyssor)
+				if(/datum/patron/concordat/wulfric)
 					H.visible_message(span_warning("Water seeps from [H]'s lips!"), span_warning("Choking water in my lungs!"))
 					H.Dizzy(5)
 					H.emote("drown")
-				if(/datum/patron/divine/dendor)
+				if(/datum/patron/severance/ignatius)
 					H.Slowdown(2) // Shared with Ravox cuz immobilize + offbal is 2 strong
 					H.visible_message(span_warning("Roots coil around [H]'s legs!"), span_warning("Roots tangle around my legs!"))
-				if(/datum/patron/divine/necra)
+				if(/datum/patron/concordat/morwenna)
 					if((H.mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(H, TRAIT_DEATHLESS)) //DEATH TO THE DEATHLESS, NECRA HATES YOU.
 						H.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
 						H.visible_message(span_warning("[H] is rebuked by Divine Scorn!"), span_warning("The Undermaiden's <b>scornful</b> gaze rebukes me!"))
-				if(/datum/patron/divine/pestra)
+				if(/datum/patron/concordat/handwerra)
 					H.vomit(stun = 0)
 					H.adjustToxLoss(10)
 					H.visible_message(span_warning("[H] expels some leeches out of them!"), span_warning("Something roils within me!"))
 					new /obj/item/natural/worms/leech(get_turf(H))
-				if(/datum/patron/divine/eora)
+				if(/datum/patron/concordat/miluse)
 					H.blur_eyes(10)
-				if(/datum/patron/divine/noc)
+				if(/datum/patron/concordat/miluse)
 					H.visible_message(span_warning("Moonlight engulfs [H]"), span_warning("Moonlight engulfs me!"))
 					damage += (caster.get_stat(STATKEY_INT) * 2)
-				if(/datum/patron/divine/ravox)
+				if(/datum/patron/concordat/auxentius)
 					H.Slowdown(2)
 					H.visible_message(span_warning("Divine chains briefly coil around [H]'s legs!"), span_warning("Divine chains briefly shackle around my legs!"))
-				if(/datum/patron/divine/malum)
+				if(/datum/patron/concordat/handwerra)
 					H.adjustBruteLoss(10) //Think of it like hammering into you, it was straight direct armor-peircing burn damage before and could crit you insanely fast
 					H.visible_message(span_warning("[H] is hammered with divine force!"), span_warning("Malum's disappointment hammers into me!"))
 					//He's not mad, he's not proud, he's not hateful, he's as neutrally disappointed in you as one can be. (Its also funnier this way)

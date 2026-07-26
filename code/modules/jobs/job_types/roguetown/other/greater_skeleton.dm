@@ -26,7 +26,7 @@
 	ADD_TRAIT(H, TRAIT_SHATTER_KILL, TRAIT_GENERIC) //Softer version of crit weakness that only kills with paralysis/rib fractures and nothing else.
 	ADD_TRAIT(H, TRAIT_NO_VOICEPACK_OVERRIDE, TRAIT_GENERIC) //In case we get edge-cases I.E siege skeletons. Otherwise its on the skeleton race too.
 
-	H.set_patron(/datum/patron/inhumen/zizo)
+	H.set_patron(/datum/patron/unveiled/aurelian)
 
 	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

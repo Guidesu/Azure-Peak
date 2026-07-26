@@ -1,11 +1,8 @@
 /datum/tat_directions
 	var/datum/tat_build/owner_build
 	var/foundation = TAT_FOUNDATION_SETTLED
-	var/role_choice = TAT_ROLE_CHOICE_TOWNER
+	var/role_choice = TAT_ROLE_CHOICE_STARTER
 	var/list/points = list()
-
-/proc/tat_towner_battle_direction_cost_mode()
-	return TAT_TOWNER_BATTLE_DIRECTION_COST_MODE
 
 /datum/tat_directions/New(datum/tat_build/B)
 	. = ..()
@@ -14,12 +11,14 @@
 
 /datum/tat_directions/proc/reset()
 	foundation = TAT_FOUNDATION_SETTLED
-	role_choice = TAT_ROLE_CHOICE_TOWNER
+	role_choice = TAT_ROLE_CHOICE_STARTER
 	points = list()
 	for(var/direction in TAT_DIRECTION_ORDER)
 		points[direction] = 0
 	return TRUE
 
+// Foundation and role normalizers retained for save compatibility only.
+// The singular archetype ignores all role/foundation branching.
 /datum/tat_directions/proc/normalize_foundation(value)
 	if(value == TAT_FOUNDATION_WANDERER)
 		return TAT_FOUNDATION_WANDERER
@@ -27,16 +26,10 @@
 
 /datum/tat_directions/proc/get_default_role_for_foundation(value)
 	value = normalize_foundation(value)
-	if(value == TAT_FOUNDATION_WANDERER)
-		return TAT_ROLE_CHOICE_ADVENTURER
-	return TAT_ROLE_CHOICE_TOWNER
+	return TAT_ROLE_CHOICE_STARTER
 
 /datum/tat_directions/proc/normalize_role_choice(value, foundation_value = null)
-	var/normalized_foundation = normalize_foundation(foundation_value || foundation)
-	var/list/choices = GLOB.tat_foundation_role_choices[normalized_foundation]
-	if(islist(choices) && (value in choices))
-		return value
-	return get_default_role_for_foundation(normalized_foundation)
+	return TAT_ROLE_CHOICE_STARTER
 
 /datum/tat_directions/proc/normalize_direction(direction)
 	if(direction in TAT_DIRECTION_ORDER)
@@ -44,12 +37,8 @@
 	return null
 
 /datum/tat_directions/proc/set_foundation(value)
-	var/new_foundation = normalize_foundation(value)
-	var/new_role_choice = normalize_role_choice(role_choice, new_foundation)
-	if(foundation == new_foundation && role_choice == new_role_choice)
-		return TRUE
-	foundation = new_foundation
-	role_choice = new_role_choice
+	foundation = normalize_foundation(value)
+	role_choice = TAT_ROLE_CHOICE_STARTER
 	owner_build?.traits?.sanitize()
 	owner_build?.skills?.refresh_after_trait_change()
 	owner_build?.items?.sanitize()
@@ -57,10 +46,7 @@
 	return TRUE
 
 /datum/tat_directions/proc/set_role_choice(value)
-	var/new_role_choice = normalize_role_choice(value)
-	if(role_choice == new_role_choice)
-		return TRUE
-	role_choice = new_role_choice
+	role_choice = TAT_ROLE_CHOICE_STARTER
 	owner_build?.traits?.sanitize()
 	owner_build?.skills?.refresh_after_trait_change()
 	owner_build?.items?.sanitize()
@@ -68,28 +54,15 @@
 	return TRUE
 
 /datum/tat_directions/proc/get_role_choice()
-	return normalize_role_choice(role_choice)
+	return TAT_ROLE_CHOICE_STARTER
 
 /datum/tat_directions/proc/get_effective_role_trait()
-	var/list/traits_by_role = GLOB.tat_role_choice_effective_traits
-	return traits_by_role[get_role_choice()]
+	return null
 
 /datum/tat_directions/proc/is_role_trait(trait_id)
-	if(!trait_id)
-		return FALSE
-	var/list/traits_by_role = GLOB.tat_role_choice_effective_traits
-	for(var/role_id in traits_by_role)
-		if(traits_by_role[role_id] == trait_id)
-			return TRUE
 	return FALSE
 
 /datum/tat_directions/proc/get_role_choice_for_trait(trait_id)
-	if(!trait_id)
-		return null
-	var/list/traits_by_role = GLOB.tat_role_choice_effective_traits
-	for(var/role_id in traits_by_role)
-		if(traits_by_role[role_id] == trait_id)
-			return role_id
 	return null
 
 /datum/tat_directions/proc/adopt_legacy_role_traits()
@@ -99,11 +72,6 @@
 		var/legacy_role = get_role_choice_for_trait(trait_id)
 		if(!legacy_role)
 			continue
-		role_choice = legacy_role
-		if(legacy_role == TAT_ROLE_CHOICE_ADVENTURER || legacy_role == TAT_ROLE_CHOICE_WRETCH)
-			foundation = TAT_FOUNDATION_WANDERER
-		else
-			foundation = TAT_FOUNDATION_SETTLED
 		return TRUE
 	return FALSE
 
@@ -111,7 +79,7 @@
 	direction = normalize_direction(direction)
 	if(!direction)
 		return 0
-	return get_allocated_points(direction) + get_role_direction_points(direction)
+	return get_allocated_points(direction)
 
 /datum/tat_directions/proc/get_allocated_points(direction)
 	direction = normalize_direction(direction)
@@ -120,94 +88,34 @@
 	return max(0, round(points[direction] || 0))
 
 /datum/tat_directions/proc/get_role_direction_points(direction)
-	direction = normalize_direction(direction)
-	if(!direction)
-		return 0
-	switch(get_role_choice())
-		if(TAT_ROLE_CHOICE_TOWNER)
-			if(direction == TAT_DIRECTION_SKILLS)
-				return 2
-		if(TAT_ROLE_CHOICE_TRADER)
-			if(direction == TAT_DIRECTION_SKILLS)
-				return 1
 	return 0
 
 /datum/tat_directions/proc/is_towner_battle_direction(direction)
-	direction = normalize_direction(direction)
-	if(!direction || get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-		return FALSE
-	return direction in TAT_TOWNER_BATTLE_DIRECTIONS
+	return FALSE
 
 /datum/tat_directions/proc/get_triangular_cost(value)
 	value = max(0, round(text2num("[value]") || 0))
-	return round((value * (value + 1)) / 2)
+	return value
 
 /datum/tat_directions/proc/get_discounted_towner_battle_cost(value)
-	value = max(0, round(text2num("[value]") || 0))
-	var/total = 0
-	for(var/i = 1, i <= value, i++)
-		total += max(1, i - 1)
-	return total
+	return max(0, round(text2num("[value]") || 0))
 
 /datum/tat_directions/proc/has_towner_hunter_direction_discount(direction)
-	if(get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-		return FALSE
-	direction = normalize_direction(direction)
-	if(direction == TAT_DIRECTION_COMBAT && owner_build?.traits?.has_trait(TAT_TRAIT_HUNTER_BEATER))
-		return TRUE
-	if(direction == TAT_DIRECTION_RANGED && owner_build?.traits?.has_trait(TAT_TRAIT_HUNTER_SHOOTER))
-		return TRUE
 	return FALSE
 
 /datum/tat_directions/proc/get_towner_battle_allocated_points(direction_override = null, override_value = null)
-	var/total = 0
-	for(var/direction in TAT_DIRECTION_ORDER)
-		if(!(direction in TAT_TOWNER_BATTLE_DIRECTIONS))
-			continue
-		if(has_towner_hunter_direction_discount(direction))
-			continue
-		if(direction_override && direction == direction_override)
-			total += max(0, round(text2num("[override_value]") || 0))
-		else
-			total += get_allocated_points(direction)
-	return total
+	return 0
 
 /datum/tat_directions/proc/get_towner_battle_spent_points(direction_override = null, override_value = null)
-	if(get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-		return 0
-	var/discounted_total = 0
-	for(var/discounted_direction in TAT_TOWNER_BATTLE_DIRECTIONS)
-		if(!has_towner_hunter_direction_discount(discounted_direction))
-			continue
-		if(direction_override && discounted_direction == direction_override)
-			discounted_total += get_discounted_towner_battle_cost(override_value)
-		else
-			discounted_total += get_discounted_towner_battle_cost(get_allocated_points(discounted_direction))
-	switch(tat_towner_battle_direction_cost_mode())
-		if(TAT_TOWNER_BATTLE_DIRECTION_COST_MODE_BRANCH)
-			var/total = 0
-			for(var/direction in TAT_TOWNER_BATTLE_DIRECTIONS)
-				if(has_towner_hunter_direction_discount(direction))
-					continue
-				var/value = (direction_override && direction == direction_override) ? max(0, round(text2num("[override_value]") || 0)) : get_allocated_points(direction)
-				total += get_triangular_cost(value)
-			return total + discounted_total
-		if(TAT_TOWNER_BATTLE_DIRECTION_COST_MODE_GLOBAL)
-			return get_triangular_cost(get_towner_battle_allocated_points(direction_override, override_value)) + discounted_total
 	return 0
 
 /datum/tat_directions/proc/get_spent_points(direction_override = null, override_value = null)
 	var/total = 0
-	var/use_towner_battle_cost = get_role_choice() == TAT_ROLE_CHOICE_TOWNER
 	for(var/direction in TAT_DIRECTION_ORDER)
-		if(use_towner_battle_cost && (direction in TAT_TOWNER_BATTLE_DIRECTIONS))
-			continue
 		if(direction_override && direction == direction_override)
 			total += max(0, round(text2num("[override_value]") || 0))
 		else
 			total += get_allocated_points(direction)
-	if(use_towner_battle_cost)
-		total += get_towner_battle_spent_points(direction_override, override_value)
 	total += get_ordinary_trait_spent_points()
 	return total
 
@@ -229,14 +137,9 @@
 	return max(0, get_spent_points(direction, current + 1) - get_spent_points())
 
 /datum/tat_directions/proc/get_total_points()
-	return TAT_DIRECTION_POINTS + get_role_bonus_points() + (owner_build?.traits?.get_bonus_direction_points() || 0)
+	return TAT_DIRECTION_POINTS + (owner_build?.traits?.get_bonus_direction_points() || 0)
 
 /datum/tat_directions/proc/get_role_bonus_points()
-	switch(get_role_choice())
-		if(TAT_ROLE_CHOICE_ADVENTURER)
-			return 2
-		if(TAT_ROLE_CHOICE_WRETCH)
-			return 2
 	return 0
 
 /datum/tat_directions/proc/get_remaining_points()
@@ -247,7 +150,6 @@
 	if(!direction)
 		return FALSE
 	value = max(0, round(text2num("[value]") || 0))
-	value = max(0, value - get_role_direction_points(direction))
 	var/current = get_allocated_points(direction)
 	if(value == current)
 		return TRUE
@@ -276,7 +178,14 @@
 
 /datum/tat_directions/proc/get_trait_rule(trait_id)
 	var/list/rule = GLOB.tat_direction_trait_rules[trait_id]
-	return islist(rule) ? rule : null
+	if(islist(rule))
+		return rule
+	// The single Starter archetype deliberately removed the old web of
+	// role/foundation gates. Every normal TAT trait, including the virtue
+	// adapters, therefore spends from the shared Ordinary direction pool.
+	if(owner_build?.traits?.check_trait(trait_id))
+		return list("direction" = TAT_DIRECTION_ORDINARY, "requirements" = list(), "tier" = 0)
+	return null
 
 /datum/tat_directions/proc/is_direction_trait(trait_id)
 	return islist(get_trait_rule(trait_id))
@@ -299,14 +208,7 @@
 /datum/tat_directions/proc/get_handicraft_cluster_trait_cost(trait_id)
 	if(!is_handicraft_cluster_trait(trait_id))
 		return -1
-	switch(get_role_choice())
-		if(TAT_ROLE_CHOICE_TRADER)
-			return 1
-		if(TAT_ROLE_CHOICE_TOWNER)
-			var/first_trait = get_first_selected_handicraft_cluster_trait()
-			if(!first_trait || first_trait == trait_id)
-				return 0
-	return 2
+	return max(0, owner_build?.traits?.get_base_cost(trait_id) || 0)
 
 /datum/tat_directions/proc/get_trait_cost(trait_id)
 	var/list/rule = get_trait_rule(trait_id)
@@ -315,8 +217,6 @@
 	var/handicraft_cost = get_handicraft_cluster_trait_cost(trait_id)
 	if(handicraft_cost >= 0)
 		return handicraft_cost
-	if(trait_id == TRAIT_OUTDOORSMAN && get_role_choice() == TAT_ROLE_CHOICE_TOWNER)
-		return 1
 	return max(0, owner_build?.traits?.get_base_cost(trait_id) || 0)
 
 /datum/tat_directions/proc/get_trait_tier(trait_id)
@@ -412,7 +312,7 @@
 		points = list()
 	adopt_legacy_role_traits()
 	foundation = normalize_foundation(foundation)
-	role_choice = normalize_role_choice(role_choice)
+	role_choice = TAT_ROLE_CHOICE_STARTER
 	if(round(text2num("[points[TAT_DIRECTION_DEFENSE]]") || 0) > 0)
 		points[TAT_DIRECTION_COMBAT] = max(0, round(points[TAT_DIRECTION_COMBAT] || 0)) + max(0, round(text2num("[points[TAT_DIRECTION_DEFENSE]]") || 0))
 		points -= TAT_DIRECTION_DEFENSE
@@ -444,7 +344,7 @@
 		exported_points[direction] = get_allocated_points(direction)
 	return list(
 		"foundation" = foundation,
-		"role_choice" = get_role_choice(),
+		"role_choice" = TAT_ROLE_CHOICE_STARTER,
 		"points" = exported_points,
 	)
 
@@ -453,7 +353,7 @@
 	if(!islist(data))
 		return FALSE
 	foundation = normalize_foundation(data["foundation"])
-	role_choice = normalize_role_choice(data["role_choice"])
+	role_choice = TAT_ROLE_CHOICE_STARTER
 	var/list/imported_points = data["points"]
 	if(islist(imported_points))
 		for(var/direction in imported_points)
@@ -482,7 +382,7 @@
 		)
 	return list(
 		"foundation" = foundation,
-		"role_choice" = get_role_choice(),
+		"role_choice" = TAT_ROLE_CHOICE_STARTER,
 		"points_total" = get_total_points(),
 		"points_spent" = get_spent_points(),
 		"points_remaining" = get_remaining_points(),
@@ -492,3 +392,4 @@
 		"role_choice_names" = GLOB.tat_role_choice_names,
 		"direction_order" = TAT_DIRECTION_ORDER,
 	)
+

@@ -96,7 +96,7 @@
 						var/turf/T = get_turf(src)
 						if(T)
 							var/mob/M = pickweight(attracted_types)
-							if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
+							if(has_world_trait(/datum/world_trait/aurelian_pet_cementery))
 								if(GLOB.animal_to_undead[M])
 									if(prob(75))
 										M = GLOB.animal_to_undead[M]

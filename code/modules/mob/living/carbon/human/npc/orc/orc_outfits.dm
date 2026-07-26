@@ -36,7 +36,7 @@
 	if(prob(8))
 		beltl = /obj/item/repair_kit/bad //So you can get repair kits easier from looting them
 	if(prob(10))
-		id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+		id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 	var/cloak_choice = rand(1, 4)
 	switch(cloak_choice)
 		if(1)
@@ -98,7 +98,7 @@
 	if(prob(10))
 		beltl = /obj/item/repair_kit/bad //So you can get repair kits easier from looting them
 	if(prob(10))
-		id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+		id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 	var/cloak_choice = rand(1, 4)
 	switch(cloak_choice)
 		if(1)
@@ -156,7 +156,7 @@
 	if(prob(15))
 		beltl = /obj/item/repair_kit/bad //So you can get repair kits easier from looting them
 	if(prob(20))
-		id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+		id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 	head = /obj/item/clothing/head/roguetown/helmet/skullcap
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/helmet/horned
@@ -212,7 +212,7 @@
 	if(prob(66))
 		beltr = /obj/item/reagent_containers/glass/bottle/alchemical/healthpot //Small heal to loot since they do a lot of damage
 	if(prob(60))
-		id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+		id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 	var/neck_choice = rand(1, 3)
 	switch(neck_choice)
 		if(1)

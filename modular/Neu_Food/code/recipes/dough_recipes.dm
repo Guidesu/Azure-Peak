@@ -214,7 +214,7 @@
 /datum/food_recipe/dough/crossbun
 	name = "cross bun"
 	base_item = /obj/item/reagent_containers/food/snacks/rogue/doughslice
-	ingredients = list(/obj/item/clothing/neck/roguetown/psicross/astrata = COOKSTEP_TOOL)
+	ingredients = list(/obj/item/clothing/neck/roguetown/psicross/auxentius = COOKSTEP_TOOL)
 	result_type = /obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
 
 /datum/food_recipe/dough/psycrossbun

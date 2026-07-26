@@ -23,11 +23,17 @@
 	var/just_climaxed = FALSE
 	/// Whether to use knot when fucking (for knotted penis types)
 	var/do_knot_action = FALSE
+	// Stealth-mode extension (ported from Ratwood-2.0 do_subtle_action): player-toggleable "keep this quiet/discreet" mode.
+	/// Allows players to decide if they want to subtly do their current action or not (only actions with subtle_supported = TRUE respect this)
+	var/do_subtle_action = FALSE
+	/// When TRUE, moan emotes triggered by this session's actions are suppressed (set/cleared automatically by stealth_visible_message)
+	var/suppress_moan = FALSE
 
 	var/static/sex_id = 0
 	var/our_sex_id = 0 //this is so we can have more then 1 sex id open at once
 
 	// Moved here from proc/get_generic_force_adjective to reduce list initialization/destruction
+	var/static/list/stealth_force_adjectives	= list("subtly", "sneakily", "covertly", "stealthily", "quietly")
 	var/static/list/low_force_adjectives 		= list("gently", "carefully", "tenderly", "gingerly", "delicately", "lazily")
 	var/static/list/mid_force_adjectives 		= list("firmly", "vigorously", "eagerly", "steadily", "intently")
 	var/static/list/high_force_adjectives 		= list("roughly", "carelessly", "forcefully", "fervently", "fiercely")
@@ -199,6 +205,11 @@
 	return TRUE
 
 /datum/sex_session/proc/perform_sex_action(mob/living/carbon/human/action_target, arousal_amt, pain_amt, giving)
+	// Ratwood-2.0 Giant virtue port: deliberately rough players with TRAIT_DEATHBYSNUSNU double the pain
+	// they inflict at high force. Source repo gated this on a strong-attack intent this repo lacks, so
+	// this is scoped to force alone as the closest equivalent.
+	if(user && HAS_TRAIT(user, TRAIT_DEATHBYSNUSNU) && force >= SEX_FORCE_HIGH)
+		pain_amt *= 2
 	SEND_SIGNAL(action_target, COMSIG_SEX_RECEIVE_ACTION, arousal_amt, pain_amt, giving, force, speed)
 
 /datum/sex_session/proc/handle_passive_ejaculation(mob/living/carbon/human/handler)
@@ -300,7 +311,10 @@
 		if(SEX_MANUAL_AROUSAL_FULL)
 			return "<font color='#d146f5'>FULLY ERECT</font>"
 
-/datum/sex_session/proc/get_generic_force_adjective()
+/datum/sex_session/proc/get_generic_force_adjective(is_stealth = FALSE)
+	// Stealth-mode extension: discreet actions use hushed adjectives instead of force-based ones.
+	if(is_stealth)
+		return pick(stealth_force_adjectives)
 	switch(force)
 		if(SEX_FORCE_LOW)
 			return pick(low_force_adjectives)
@@ -386,6 +400,7 @@
 	data["manual_arousal"] = manual_arousal || SEX_MANUAL_AROUSAL_DEFAULT
 	data["do_until_finished"] = do_until_finished
 	data["do_knot_action"] = do_knot_action
+	data["do_subtle_action"] = do_subtle_action // Stealth-mode extension
 
 	var/list/arousal_data = list()
 	SEND_SIGNAL(user, COMSIG_SEX_GET_AROUSAL, arousal_data)
@@ -444,6 +459,9 @@
 			. = TRUE
 		if("toggle_knot")
 			do_knot_action = !do_knot_action
+			. = TRUE
+		if("toggle_subtle") // Stealth-mode extension
+			do_subtle_action = !do_subtle_action
 			. = TRUE
 		if("set_arousal_value")
 			SEND_SIGNAL(user, COMSIG_SEX_SET_AROUSAL, params["amount"])

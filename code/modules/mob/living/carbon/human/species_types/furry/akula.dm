@@ -5,7 +5,7 @@
 	name = "Axian"
 	id = "akula"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/etrusca
+	origin_default = /datum/virtue/origin/ostrovia
 	origin = "Etrusca"
 	base_name = "Beastvolk"
 	desc_title = "Axian"

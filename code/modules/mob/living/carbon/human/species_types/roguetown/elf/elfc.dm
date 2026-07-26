@@ -5,7 +5,7 @@
 	name = "Sun Elf"
 	id = "elfc"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/raneshen
+	origin_default = /datum/virtue/origin/viamedulla
 	origin = "Raneshen"
 	base_name = "Elf"
 	sub_name = "Sun Elf"

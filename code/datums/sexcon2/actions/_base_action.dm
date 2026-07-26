@@ -60,6 +60,9 @@
 	var/ranged_action = FALSE
 	///Whenever it should be actually displayed on the panel or not
 	var/debug_erp_panel_verb = TRUE
+	// Stealth-mode extension (ported from Ratwood-2.0 do_subtle_action): whether this action can be performed discreetly.
+	///Only allow select actions to be done subtly/discreetly
+	var/subtle_supported = FALSE
 
 /datum/sex_action/Destroy()
 	for(var/datum/sex_session_lock/lock in sex_locks)
@@ -73,11 +76,42 @@
 		return FALSE
 	if(user.get_highest_grab_state_on(target) == GRAB_AGGRESSIVE)
 		return TRUE //Battlefuck buff
+	// Ratwood chastity_collar port, Stage 1: let worn intimate accessories (chastity devices, etc.) hide
+	// this action from the target's menu entirely when it targets a locked-away organ.
+	if(target && SEND_SIGNAL(target, COMSIG_CARBON_SEX_ACTION_VALIDATE, user, src, get_acted_sex_part(), TRUE) & COMPONENT_SEX_ACTION_BLOCK)
+		return FALSE
 	return TRUE
 
 /datum/sex_action/proc/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	SHOULD_CALL_PARENT(TRUE)
+	// Ratwood chastity_collar port, Stage 1: let worn intimate accessories (chastity devices, etc.) veto
+	// this action outright when it targets a locked-away organ. See COMSIG_CARBON_SEX_ACTION_VALIDATE
+	// in code/__DEFINES/sex.dm for the full signal contract.
+	if(target && SEND_SIGNAL(target, COMSIG_CARBON_SEX_ACTION_VALIDATE, user, src, get_acted_sex_part(), FALSE) & COMPONENT_SEX_ACTION_BLOCK)
+		return FALSE
 	return TRUE
+
+/**
+ * Ratwood chastity_collar port, Stage 1 helper.
+ * Ratwood's old sexcon tagged every sex_action with a SEX_PART_* bitmask (cock/cunt/anus) describing which
+ * of the receiving mob's own organs were involved, letting chastity's guard component check per-organ lock
+ * state directly. sexcon2's /datum/sex_action has no such concept, and the existing BODY_ZONE_PRECISE_GROIN
+ * constant is too coarse (it can't distinguish penis/vagina/anus, which chastity devices lock independently).
+ * Rather than invent a full parallel targeting system in Stage 1 (out of scope — this is signal plumbing,
+ * not a new targeting system), this defines a minimal SEX_PART_* bitmask (code/__DEFINES/sex.dm) scoped
+ * purely to feeding this signal, and maps action type paths onto it by inspection of what body part each
+ * action type actually acts on. receive_sex_action() on /datum/component/arousal (code/modules/sexcon/components/arousal.dm)
+ * calls this same proc directly on the live action instance rather than duplicating the mapping.
+ * Returns NONE if this action type doesn't clearly target one of the three chastity-relevant organs.
+ */
+/datum/sex_action/proc/get_acted_sex_part()
+	if(istype(src, /datum/sex_action/sex/anal) || istype(src, /datum/sex_action/sex/other/anal) || istype(src, /datum/sex_action/masturbate/anus) || istype(src, /datum/sex_action/masturbate/other/anus) || istype(src, /datum/sex_action/toy/anus) || istype(src, /datum/sex_action/toy/other/anus))
+		return SEX_PART_ANUS
+	if(istype(src, /datum/sex_action/sex/vaginal) || istype(src, /datum/sex_action/sex/other/vagina) || istype(src, /datum/sex_action/masturbate/vagina) || istype(src, /datum/sex_action/masturbate/other/vagina) || istype(src, /datum/sex_action/toy/vagina) || istype(src, /datum/sex_action/toy/other/vagina))
+		return SEX_PART_CUNT
+	if(istype(src, /datum/sex_action/masturbate/penis) || istype(src, /datum/sex_action/masturbate/other/penis) || istype(src, /datum/sex_action/masturbate/penis_over))
+		return SEX_PART_COCK
+	return NONE
 
 /datum/sex_action/proc/try_knot_on_climax(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!knot_on_finish)
@@ -167,13 +201,31 @@
 
 	var/message = get_start_message(user, target)
 	if(message)
-		user.visible_message(message)
+		stealth_visible_message(user, target, message)
 
 	var/sound = get_start_sound(user, target)
 	if(sound)
-		playsound(target, sound, 20, TRUE, ignore_walls = FALSE)
+		playsound(target, sound, is_being_done_subtly(user, target) ? 8 : 20, TRUE, ignore_walls = FALSE)
 
 	return TRUE
+
+// Stealth-mode extension (ported from Ratwood-2.0 do_subtle_action): shared helpers for discreet sex actions.
+/// Returns TRUE if this action both supports and is currently being performed in subtle/discreet mode.
+/datum/sex_action/proc/is_being_done_subtly(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(!subtle_supported)
+		return FALSE
+	var/datum/sex_session/session = get_sex_session(user, target)
+	if(!session)
+		return FALSE
+	return session.do_subtle_action
+
+/// Wraps visible_message with a reduced vision_distance when the action is being done subtly, matching Ratwood's do_subtle_action treatment.
+/datum/sex_action/proc/stealth_visible_message(mob/living/carbon/human/user, mob/living/carbon/human/target, message)
+	var/subtle = is_being_done_subtly(user, target)
+	user.visible_message(message, vision_distance = (subtle ? 1 : DEFAULT_MESSAGE_RANGE))
+	if(subtle)
+		var/datum/sex_session/session = get_sex_session(user, target)
+		session?.suppress_moan = TRUE
 
 /datum/sex_action/proc/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return null
@@ -193,7 +245,11 @@
 
 	var/message = get_finish_message(user, target)
 	if(message)
-		user.visible_message(message)
+		stealth_visible_message(user, target, message)
+
+	var/datum/sex_session/session = get_sex_session(user, target)
+	if(session)
+		session.suppress_moan = FALSE
 
 	return
 

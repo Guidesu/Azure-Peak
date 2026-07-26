@@ -75,7 +75,7 @@
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/northern/heretical_fiend_no_gear/zizo_cultist)
-	patron = /datum/patron/inhumen/zizo
+	patron = /datum/patron/unveiled/aurelian
 	random_voice_NPC()
 	random_hair_NPC()
 	random_eye_color_NPC()

@@ -23,19 +23,19 @@
 	name = "Matthiosian Amulet"
 	cost = 20 //Solid gold
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios,
+					/obj/item/clothing/neck/roguetown/psicross/morwenna,
 				)
 
 /datum/supply_pack/rogue/apparel_inhumen/crosses/inhumenpantheongraggar
 	name = "Graggarite Amulet"
 	cost = 15
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar,
+					/obj/item/clothing/neck/roguetown/psicross/volkovoi,
 				)
 
 /datum/supply_pack/rogue/apparel_inhumen/crosses/inhumenpantheonbaotha
 	name = "Baothan Amulet"
 	cost = 20 //Solid gold
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha,
+					/obj/item/clothing/neck/roguetown/psicross/hausvette,
 				)

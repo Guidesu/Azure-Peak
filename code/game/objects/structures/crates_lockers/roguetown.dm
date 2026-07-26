@@ -291,9 +291,9 @@
 		/obj/item/clothing/ring/bronze = 20,
 		/obj/item/clothing/neck/roguetown/psicross/bronze = 10,
 		/obj/item/clothing/neck/roguetown/psicross/inhumen/bronze = 10,
-		/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/bronze = 10,
-		/obj/item/clothing/neck/roguetown/psicross/malum/bronze = 10,
-		/obj/item/clothing/neck/roguetown/psicross/astrata/bronze = 10,
+		/obj/item/clothing/neck/roguetown/psicross/volkovoi/bronze = 10,
+		/obj/item/clothing/neck/roguetown/psicross/handwerra/malum/bronze = 10,
+		/obj/item/clothing/neck/roguetown/psicross/auxentius/bronze = 10,
 		/obj/item/roguecoin/copper/pile = 5, //Valuables (materials)
 		/obj/item/roguecoin/aalloy/pile = 2,
 		/obj/item/roguegem/yellow = 10,

@@ -81,7 +81,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/eventarea/multiz)
 "an" = (
-/obj/structure/fluff/psycross/graggar/decorated,
+/obj/structure/fluff/psycross/volkovoi/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "ao" = (
@@ -125,7 +125,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/vampire_manor)
 "aw" = (
-/obj/structure/fluff/psycross/psycrucifix/stone,
+/obj/structure/fluff/psycross/praecursorcrucifix/stone,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/woods/wretch_lair)
 "ax" = (
@@ -231,7 +231,7 @@
 /area/rogue/outdoors/woods/vampire_lair)
 "aW" = (
 /obj/structure/fluff/railing/corner/north_east,
-/obj/structure/fluff/psycross/psycrucifix/stone,
+/obj/structure/fluff/psycross/praecursorcrucifix/stone,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
 "aX" = (
@@ -248,7 +248,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "aY" = (
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "aZ" = (
@@ -281,7 +281,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/vampire_manor)
 "bf" = (
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "bg" = (
@@ -495,7 +495,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "bS" = (
-/obj/structure/fluff/psycross/baotha/decorated,
+/obj/structure/fluff/psycross/hausvette/decorated,
 /obj/machinery/light/rogue/candle/blue/l,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
@@ -833,7 +833,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "dw" = (
-/obj/structure/fluff/psycross/matthios,
+/obj/structure/fluff/psycross/morwenna,
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/banditcamp)
 "dx" = (
@@ -1605,7 +1605,7 @@
 /area/rogue/outdoors/woods/wretch_lair)
 "gJ" = (
 /obj/machinery/light/rogue/candle/r,
-/obj/structure/fluff/psycross/baotha,
+/obj/structure/fluff/psycross/hausvette,
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/inhumen)
 "gK" = (
@@ -1706,7 +1706,7 @@
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/vampire_manor)
 "hf" = (
-/obj/structure/fluff/psycross/matthios,
+/obj/structure/fluff/psycross/morwenna,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "hg" = (
@@ -1758,7 +1758,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/vampire_manor)
 "hw" = (
-/obj/structure/fluff/psycross/baotha/decorated,
+/obj/structure/fluff/psycross/hausvette/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "hx" = (
@@ -2900,7 +2900,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/inhumen)
 "mb" = (
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains)
 "mc" = (
@@ -3379,7 +3379,7 @@
 /area/rogue/indoors/vampire_manor)
 "ox" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/inhumen)
 "oy" = (
@@ -3522,7 +3522,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/vampire_lair)
 "pd" = (
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave/inhumen)
 "pe" = (
@@ -3585,7 +3585,7 @@
 	pixel_y = -18;
 	pixel_x = 2
 	},
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/inhumen)
 "pp" = (
@@ -3713,7 +3713,7 @@
 /area/rogue/outdoors/woods/vampire_lair)
 "pH" = (
 /obj/structure/fluff/railing/corner,
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave/inhumen)
 "pI" = (
@@ -4185,7 +4185,7 @@
 /area/rogue/indoors/banditcamp)
 "rK" = (
 /obj/machinery/light/rogue/candle,
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /obj/structure/ritualcircle/matthios,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
@@ -4602,7 +4602,7 @@
 /area/rogue/indoors/vampire_manor)
 "te" = (
 /obj/machinery/light/rogue/candle/r,
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "tf" = (
@@ -5109,7 +5109,7 @@
 /area/rogue/under/cave/inhumen)
 "vm" = (
 /obj/machinery/light/rogue/candle/blue/l,
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/vampire_manor)
 "vn" = (
@@ -5126,7 +5126,7 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "vr" = (
@@ -5176,7 +5176,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/vampire_lair)
 "vA" = (
-/obj/structure/fluff/psycross/matthios,
+/obj/structure/fluff/psycross/morwenna,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "vC" = (
@@ -5197,7 +5197,7 @@
 /turf/closed/wall/mineral/rogue/decostone/long/east_west,
 /area/rogue/under/cave/inhumen)
 "vK" = (
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/vampire_manor)
 "vL" = (
@@ -5363,7 +5363,7 @@
 /area/rogue/under/cave/inhumen)
 "wq" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/structure/fluff/psycross/graggar/decorated,
+/obj/structure/fluff/psycross/volkovoi/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "wr" = (
@@ -6119,7 +6119,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/woods/vampire_lair)
 "zT" = (
-/obj/structure/fluff/psycross/psycrucifix/stone,
+/obj/structure/fluff/psycross/praecursorcrucifix/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "zU" = (
@@ -6906,7 +6906,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "CP" = (
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/inhumen)
 "CQ" = (
@@ -7123,7 +7123,7 @@
 /area/rogue/indoors/banditcamp)
 "DL" = (
 /obj/structure/fluff/railing/border,
-/obj/structure/fluff/psycross/psycrucifix/stone,
+/obj/structure/fluff/psycross/praecursorcrucifix/stone,
 /obj/structure/fluff/walldeco/psybanner/red{
 	pixel_x = 32
 	},
@@ -7888,7 +7888,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/vampire_lair)
 "Hs" = (
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "Ht" = (
@@ -8116,7 +8116,7 @@
 /area/rogue/indoors/vampire_manor)
 "IB" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/fluff/psycross/baotha/decorated,
+/obj/structure/fluff/psycross/hausvette/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "IC" = (
@@ -8263,7 +8263,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/vampire_manor)
 "Jj" = (
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "Jk" = (
@@ -8742,7 +8742,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/inhumen)
 "KV" = (
-/obj/structure/fluff/psycross/zizocross,
+/obj/structure/fluff/psycross/aurelian,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "KZ" = (
@@ -8895,7 +8895,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/vampire_lair)
 "Lr" = (
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/banditcamp)
 "Ls" = (
@@ -8994,7 +8994,7 @@
 /area/rogue/outdoors/woods/vampire_lair)
 "LJ" = (
 /obj/structure/fluff/walldeco/chains,
-/obj/structure/fluff/psycross/baotha/decorated,
+/obj/structure/fluff/psycross/hausvette/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "LL" = (
@@ -9813,7 +9813,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/woods/wretch_lair)
 "Pn" = (
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/inhumen)
 "Pq" = (
@@ -10070,7 +10070,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/vampire_manor)
 "QH" = (
-/obj/structure/fluff/psycross/graggar,
+/obj/structure/fluff/psycross/volkovoi,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "QI" = (
@@ -10619,7 +10619,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains)
 "Tu" = (
-/obj/structure/fluff/psycross/graggar,
+/obj/structure/fluff/psycross/volkovoi,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/woods/wretch_lair)
 "Tv" = (
@@ -10919,7 +10919,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/banditcamp)
 "UH" = (
-/obj/structure/fluff/psycross/matthios/decorated,
+/obj/structure/fluff/psycross/morwenna/decorated,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "UI" = (
@@ -11356,7 +11356,7 @@
 /area/rogue/outdoors/woods/wretch_lair)
 "WD" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/fluff/psycross/graggar/decorated,
+/obj/structure/fluff/psycross/volkovoi/decorated,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "WE" = (
@@ -11645,7 +11645,7 @@
 	pixel_y = 3
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/structure/fluff/psycross/psycrucifix/stone,
+/obj/structure/fluff/psycross/praecursorcrucifix/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "XK" = (
@@ -11935,7 +11935,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
 "YJ" = (
-/obj/structure/fluff/psycross/matthios,
+/obj/structure/fluff/psycross/morwenna,
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/outdoors/banditcamp)
 "YK" = (
@@ -12096,7 +12096,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/woods/vampire_lair)
 "Zu" = (
-/obj/structure/fluff/psycross/matthios,
+/obj/structure/fluff/psycross/morwenna,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/woods/wretch_lair)
 "Zx" = (

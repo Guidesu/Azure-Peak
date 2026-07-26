@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 /obj/item/natural/rock/deconstruct(disassembled = FALSE)
 	if(!disassembled)
 		if(mineralType && mineralAmt)
-			if(has_world_trait(/datum/world_trait/malum_diligence))
+			if(has_world_trait(/datum/world_trait/handwerra_diligence))
 				mineralAmt += rand(1,2)
 			new mineralType(loc, mineralAmt)
 		for(var/i in 1 to rand(1,4))

@@ -471,37 +471,37 @@
 	. = ..()
 	owner.add_stress(/datum/stressevent/resurrected)
 	switch(owner.patron?.type)
-		if(/datum/patron/old_god) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/tribunal/praecursor) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("Blinding light, enveloping warmth, unconditional love. The darkness recedes behind me, as I come closer to the end of the tunnel - yet, just before I crest the horizon, something jerks me back into the inky-black.."))
-		if(/datum/patron/divine/undivided) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/tribunal/custodius) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("Blinding light, enveloping warmth, unconditional love. The darkness recedes behind me, as I come closer to the end of the tunnel - yet, just before I crest the horizon, something jerks me back into the inky-black.."))
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			to_chat(owner, span_gamedeadsay("It was so cold without Her light. I felt it in my bones and my skin and my insides. Permeating darkness - consuming what little light I took with me. I will never take Her warmth for granted again.."))
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			to_chat(owner, span_gamedeadsay("There, at the edge of reality, laid a singular point of light. The more I focused upon it, the more it expanded. A tapestry of stars, speckled amongst a sea of phlogiston, forming indecipherable truths for me to ponder. I shouldn't have stared for so long.."))
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			to_chat(owner, span_gamedeadsay("Her halls were beautiful. Cold. Sterile. The world seems so much more chaotic compared to her demesne. I wasn't meant to come back.."))
-		if(/datum/patron/divine/pestra)
+		if(/datum/patron/concordat/handwerra)
 			to_chat(owner, span_gamedeadsay("I trailed my body as it laid slumped over in that terrible, terrible place. To see my life spilling out onto the soil, to see my flesh wither into crusted rot, and to feel my grasp on this world slipping; it was too much for anyone to bare, let alone me.."))
-		if(/datum/patron/divine/malum)
+		if(/datum/patron/concordat/handwerra)
 			to_chat(owner, span_gamedeadsay("The heat of the forge was overwhelming. My skin was tempered into moving steel and living armor. They fitted me with weapons of war and sent me to the line. There were so many others. All perfect in their construction. Waking up was the sweetest relief.."))
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			to_chat(owner, span_gamedeadsay("The hunting grounds! Absolute freedom - primal violence and dancing madmen. So many were consumed by the beasts. But I was faster, more cunning, staying just ahead of the Mad God.."))
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			to_chat(owner, span_gamedeadsay("The play has come to a close, yet the crowd hungers for an encore. Amidst a sea of tossed rosas, who am I to deny the audience what they crave the most? I clear my throat and prepare.."))
-		if(/datum/patron/divine/eora)
+		if(/datum/patron/concordat/miluse)
 			to_chat(owner, span_gamedeadsay("I woke upon a bed of silken sheets and creamy pillows, surrounded by my family. They looked overjoyed to see me - but I could hardly see their faces. They smiled and spoke, reaching out to welcome me. I wish I could remember what they looked like.."))
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			to_chat(owner, span_gamedeadsay("The rushing currents swept me down, down. Down towards the sleeping God. My lungs cried out in pain as I took saltwater into them. Vision clouding with red and black. His eye opened. His eye opened his eye opened HIS EYE OPENED HIS EYE OPENED HE WAS STIRRING-"))
-		if(/datum/patron/divine/ravox)
+		if(/datum/patron/concordat/auxentius)
 			to_chat(owner, span_gamedeadsay("One by one - the injustices I committed were set upon the scales. Sweat ran down my back as I watched those that I saved plead my case. One by one - the scale lifted so slowly. The line of petitioners growing shorter.."))
-		if(/datum/patron/inhumen/matthios) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/concordat/morwenna) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("It was so cold without Her light. I felt it in my bones and my skin and my insides. Permeating darkness - consuming what little light I took with me. I will never take Her warmth for granted again.."))
-		if(/datum/patron/inhumen/graggar) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/oldkin/volkovoi) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("One by one - the injustices I committed were set upon the scales. Sweat ran down my back as I watched those that I saved plead my case. One by one - the scale lifted so slowly. The line of petitioners growing shorter.."))
-		if(/datum/patron/inhumen/baotha) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/oldkin/hausvette) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("I woke upon a bed of silken sheets and creamy pillows, surrounded by my family. They looked overjoyed to see me - but I could hardly see their faces. They smiled and spoke, reaching out to welcome me. I wish I could remember what they looked like.."))
-		if(/datum/patron/inhumen/zizo) //Pseudoplaceholder. Feel free to rewrite, if desired.
+		if(/datum/patron/unveiled/aurelian) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("There, at the edge of reality, laid a singular point of light. The more I focused upon it, the more it expanded. A tapestry of stars, speckled amongst a sea of phlogiston, forming indecipherable truths for me to ponder. I shouldn't have stared for so long.."))
 		if(/datum/patron/godless) //Pseudoplaceholder. Feel free to rewrite, if desired.
 			to_chat(owner, span_gamedeadsay("I saw my entire lyfe flash before my eyes, and then-.. nothing. No light, no darkness; complete, utter nothingness - save for a single thought, sinking into the inky-blackness.. and into whatever awaited on the other side. Suddenly, I feel myself yanked in a non-existing direction!"))

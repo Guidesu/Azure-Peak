@@ -27,6 +27,7 @@ export interface SexSessionData {
   manual_arousal: number;
   do_until_finished: boolean;
   do_knot_action: boolean;
+  do_subtle_action: boolean;
 
   // Arousal tracking
   arousal: number;

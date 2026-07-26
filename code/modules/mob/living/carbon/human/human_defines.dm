@@ -21,6 +21,14 @@
 
 	var/footstep_type = FOOTSTEP_MOB_HUMAN
 
+	/// Whether this human has already gone through the one-time cosmetic
+	/// claw style prompt (see modular_dreamvalley/ported/azurepeak_upstream/cosmetic_claws.dm).
+	var/cosmetic_claws_configured = FALSE
+	/// The chosen /datum/intent/unarmed/punch/cosmetic_claw subtype, if any.
+	var/cosmetic_claw_intent
+	var/cosmetic_claw_hitsound = "bluntwooshmed"
+	var/cosmetic_claw_miss_sound = "bluntwooshmed"
+
 	var/last_sound //last emote so we have no doubles
 
 	//Hair colour and style
@@ -66,6 +74,9 @@
 	var/obj/item/belt = null
 	var/obj/item/beltl = null
 	var/obj/item/beltr = null
+	/// Ratwood chastity_collar port, Stage 1: the currently worn /obj/item/chastity device, if any. Not a
+	/// traditional equip slot — chastity devices occupy a snowflake slot rather than a clothing layer.
+	var/obj/item/chastity/chastity_device = null
 	var/obj/item/clothing/wear_ring = null
 	var/obj/item/clothing/wear_wrists = null
 	var/obj/item/r_store = null

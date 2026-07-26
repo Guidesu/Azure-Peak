@@ -55,7 +55,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!istype(H))
 		return
-	var/in_the_know = (H.job in profit_id) || (H.patron?.type == /datum/patron/inhumen/baotha)
+	var/in_the_know = (H.job in profit_id) || (H.patron?.type == /datum/patron/oldkin/hausvette)
 	if(!in_the_know)
 		return
 	. += "<span class='info'><b style='color:pink'>[seedy_addendum]</b></span>"

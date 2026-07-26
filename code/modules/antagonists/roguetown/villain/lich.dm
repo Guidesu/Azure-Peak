@@ -122,7 +122,7 @@
 	owner.current.forceMove(pick(GLOB.lich_starts)) // as opposed to spawning at their normal role spot as a skeleton; which is le bad
 	equip_and_traits()
 	L.equipOutfit(/datum/outfit/job/roguetown/lich)
-	L.set_patron(/datum/patron/inhumen/zizo)
+	L.set_patron(/datum/patron/unveiled/aurelian)
 
 
 /datum/outfit/job/roguetown/lich/pre_equip(mob/living/carbon/human/H) //Equipment is located below
@@ -313,7 +313,7 @@
 	new_body.dna.real_name = old_body.real_name
 	new_body.mob_biotypes |= MOB_UNDEAD
 	new_body.faction = list(FACTION_UNDEAD)
-	new_body.set_patron(/datum/patron/inhumen/zizo)
+	new_body.set_patron(/datum/patron/unveiled/aurelian)
 	new_body.mind.grab_ghost(force = TRUE)
 	new_body.ambushable = FALSE
 	new_body.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/other/lich] //evil ass voice stays
@@ -364,11 +364,11 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron.type == /datum/patron/inhumen/zizo) //DIVINITY. ASCENSION. ZIZO. ZIZO. ZIZO.
+		if(H.patron.type == /datum/patron/unveiled/aurelian) //DIVINITY. ASCENSION. ZIZO. ZIZO. ZIZO.
 			. += span_rose("A crystalline fragment of divinity, used by Lyches to thwart death's grasp. If a Lych's incarnation is slain, they will be resurrected wherever their nearest phylactrey happens to be, destroying it in the process. Lyches can only be slain, permenantly, once all phylactries linked to their spirit have been destroyed.")
-		else if(H.patron.type == /datum/patron/divine/necra || H.patron.type == /datum/patron/divine/astrata || H.patron.type == /datum/patron/divine/undivided) //Tennites think Necra's getting your soul (hah) and in their eyes your divinity is false, because they're baised towards their masters.
+		else if(H.patron.type == /datum/patron/concordat/morwenna || H.patron.type == /datum/patron/concordat/auxentius || H.patron.type == /datum/patron/tribunal/custodius) //Tennites think Necra's getting your soul (hah) and in their eyes your divinity is false, because they're baised towards their masters.
 			. += span_rose("A crystalline fragment of false divinity, used by Lyches to thwart Necra's grasp. If a Lych's incarnation is slain, they will be resurrected wherever their nearest phylactrey happens to be, destroying it in the process. Lyches can only be slain, permenantly, once all phylactries linked to their spirit have been destroyed.")
-		else if(H.patron.type == /datum/patron/old_god) //Psydonites are moderately neutral, as they are wildcards, your divinity is self-made. Interpretation is up to you.
+		else if(H.patron.type == /datum/patron/tribunal/praecursor) //Psydonites are moderately neutral, as they are wildcards, your divinity is self-made. Interpretation is up to you.
 			. += span_rose("A crystalline fragment of self-made divinity, used by Lyches to thwart death's grasp. If a Lych's incarnation is slain, they will be resurrected wherever their nearest phylactrey happens to be, destroying it in the process. Lyches can only be slain, permenantly, once all phylactries linked to their spirit have been destroyed.")
 
 /obj/item/phylactery/proc/be_consumed(timer)

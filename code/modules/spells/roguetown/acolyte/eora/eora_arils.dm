@@ -29,7 +29,7 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type == /datum/patron/divine/eora)
+		if(c.patron.type == /datum/patron/concordat/miluse)
 			. += span_info(effect_desc)
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/proc/apply_effects(mob/living/carbon/eater)
@@ -199,7 +199,7 @@
 	if(ishuman(eater))
 		var/mob/living/carbon/human/H = eater
 
-		if(H.patron.type == /datum/patron/divine/eora)
+		if(H.patron.type == /datum/patron/concordat/miluse)
 			// Eora does not appreciate her followers ignoring her most sacred wishes.
 			H.apply_status_effect(/datum/status_effect/debuff/eoran_wilting)
 		else
@@ -223,7 +223,7 @@
 /obj/item/reagent_containers/food/snacks/eoran_aril/ochre/apply_effects(mob/living/carbon/eater)
 	if(ishuman(eater))
 		var/mob/living/carbon/human/H = eater
-		if(H.patron.type == /datum/patron/divine/eora)
+		if(H.patron.type == /datum/patron/concordat/miluse)
 			var/list/mob/living/carbon/human/target_mobs = list()
 
 			for(var/mob/living/carbon/human/target in view(7, H))

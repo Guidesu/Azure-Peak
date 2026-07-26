@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/matthios
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle/matthios
 	r_hand = /obj/item/rogueweapon/flail/peasantwarflail/matthios
-	id = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios //IS THIS TRVE?!
+	id = /obj/item/clothing/neck/roguetown/psicross/morwenna //IS THIS TRVE?!
 
 /datum/outfit/job/roguetown/quest_miniboss/zizo/pre_equip(mob/living/carbon/human/H)
 	. = ..()
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	cloak = /obj/item/clothing/cloak/graggar
-	id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+	id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 
 /datum/outfit/job/roguetown/quest_miniboss/blacksteel/pre_equip(mob/living/carbon/human/H)
 	. = ..()

@@ -47,7 +47,7 @@
 						/datum/sprite_accessory/hair/facial/longbeard))
 	head.sellprice = HEAD_BOUNTY_ORC
 
-	src.set_patron(/datum/patron/inhumen/graggar)
+	src.set_patron(/datum/patron/oldkin/volkovoi)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)

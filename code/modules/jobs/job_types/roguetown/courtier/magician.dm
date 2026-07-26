@@ -87,16 +87,16 @@
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/wizard
 			H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/wizard]
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 

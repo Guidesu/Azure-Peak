@@ -31,7 +31,7 @@ dreaming. Still have to go to sleep to learn skills. Also gives healing tickrate
 	var/ultimate_soak = FALSE
 	var/soapy = FALSE
 
-	if(src.patron?.type == /datum/patron/divine/eora || src.patron?.type == /datum/patron/inhumen/baotha) //BAoTHa
+	if(src.patron?.type == /datum/patron/concordat/miluse || src.patron?.type == /datum/patron/oldkin/hausvette) //BAoTHa
 		buff_strength = 2
 
 	while(do_after(src, ticks, target = pool))

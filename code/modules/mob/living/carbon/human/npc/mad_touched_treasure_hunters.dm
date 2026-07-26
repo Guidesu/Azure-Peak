@@ -75,9 +75,9 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 			if(4)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios //IS THIS TRVE?!
+				id = /obj/item/clothing/neck/roguetown/psicross/morwenna //IS THIS TRVE?!
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	if(prob(20))
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light

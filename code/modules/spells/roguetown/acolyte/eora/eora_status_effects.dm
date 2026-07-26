@@ -212,7 +212,7 @@
 	var/str_change = 0
 	var/perc_change = 0
 
-	if(owner.patron.type != /datum/patron/divine/eora)
+	if(owner.patron.type != /datum/patron/concordat/miluse)
 		str_change = -8
 		perc_change = -8
 	else if (!(owner.get_skill_level(/datum/skill/magic/holy) >= 1))
@@ -263,7 +263,7 @@
 			H.apply_status_effect(/datum/status_effect/buff/healing, 1)
 
 		//People cursed by Eora will suffer visual disorientation and damage over time.
-		else if(HAS_TRAIT(H, TRAIT_CURSE_EORA) && prob(2))
+		else if(HAS_TRAIT(H, TRAIT_CURSE_MILUSE) && prob(2))
 			to_chat(H, span_warning("The tree's beauty burns your eyes!"))
 			H.Dizzy(5)
 			H.blur_eyes(5)

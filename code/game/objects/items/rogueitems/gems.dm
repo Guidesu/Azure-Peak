@@ -138,7 +138,7 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron.type == /datum/patron/inhumen/graggar)
+		if(H.patron.type == /datum/patron/oldkin/volkovoi)
 			. += span_danger("You know this gem well. They are born out of great violence, but only if it involves the mightiest of warriors. </br>Fleshcrafting it with the meat of whatever warrior birthed this gem will allow me to summon another of their kind into this world.")
 
 /obj/item/roguegem/blood_diamond/Initialize()

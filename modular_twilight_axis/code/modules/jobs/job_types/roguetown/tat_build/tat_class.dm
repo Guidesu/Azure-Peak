@@ -90,7 +90,7 @@
 	var/tat_build_post_client_applied = FALSE
 
 /datum/advclass/tat_class
-	name = "Pliant Soul"
+	name = "Free Soul"
 	tutorial = "A freeform class used for the TAT build system."
 
 	allowed_sexes = list(MALE, FEMALE)
@@ -101,8 +101,6 @@
 	subclass_skills = list()
 	traits_applied = list()
 
-	var/required_tat_bucket = null
-
 /datum/advclass/tat_class/check_requirements(mob/living/carbon/human/H)
 	var/key = H?.ckey || H?.client?.ckey
 	if(key)
@@ -111,62 +109,21 @@
 	if(!..())
 		return FALSE
 
-	if(!human_can_use_tat_role_bucket(H, required_tat_bucket))
-		return FALSE
-
-	return human_has_tat_role_bucket(H, required_tat_bucket)
+	return TRUE
 
 /datum/advclass/tat_class/equipme(mob/living/carbon/human/H, dummy = FALSE)
 	if(!H)
 		return FALSE
 
-	// Mark this before the asynchronous base class equipment proc runs. The
-	// priority subclass path may otherwise reach preference-loadout handling
-	// before advjob is assigned, leaving the TAT loadout unapplied.
 	if(!dummy)
 		H.tat_handles_preference_loadout = TRUE
-		H.tat_pliant_title = name
+		H.tat_free_soul_title = name
 		get_human_active_tat_build(H)
 
 	return ..()
 
-/datum/advclass/tat_class/towner
-	name = "Pliant Towner"
-	tutorial = "A custom-built local resident of Psydonia. Your home, work, and place among the townfolk are defined by your active TAT build."
-
-	category_tags = list(CTAG_TOWNER)
-	required_tat_bucket = TAT_ROLE_BUCKET_TOWNER
-	min_pq = -100
-
-/datum/advclass/tat_class/trader
-	name = "Pliant Trader"
-	tutorial = "A custom-built traveler, supplier, artisan, or free tradesoul. This path is for TAT builds without resident, wanted, or outlander status."
-
-	category_tags = list(CTAG_TRADER)
-	class_select_category = CLASS_CAT_TRADER
-	required_tat_bucket = TAT_ROLE_BUCKET_TRADER
-	min_pq = -100
-
-/datum/advclass/tat_class/adventurer
-	name = "Pliant Adventurer"
-	tutorial = "A custom-built wanderer-outlander, or dangerous free soul. This path is for TAT builds with Outlander."
-
-	class_select_category = CLASS_CAT_NOMAD
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
-	required_tat_bucket = TAT_ROLE_BUCKET_ADVENTURER
-	min_pq = -100
-
-/datum/advclass/tat_class/wretch
-	name = "Pliant Wretch"
-	tutorial = "A custom-built outlaw, a nightmare free soul. This path is for TAT builds with Wanted."
-
-	class_select_category = CLASS_CAT_NOMAD
-	category_tags = list(CTAG_WRETCH)
-	required_tat_bucket = TAT_ROLE_BUCKET_WRETCH
-	min_pq = -100
-
 /datum/outfit/job/roguetown/tat_class
-	name = "Pliant Soul"
+	name = "Free Soul"
 
 /datum/outfit/job/roguetown/tat_class/basic/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -226,6 +183,6 @@
 		return
 
 	H.tat_build_post_client_applied = TRUE
-	var/final_title = H.tat_pliant_title || H.advjob || H.mind.assigned_role
+	var/final_title = H.tat_free_soul_title || H.advjob || H.mind.assigned_role
 	if(H.job == "Towner" && length(final_title))
 		SSrole_class_handler.add_class_register_msg("towner", "[H.real_name] is the [final_title]", H)

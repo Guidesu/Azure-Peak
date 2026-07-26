@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/obj/item/ritechalk = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/holysee = 1,	//Unique knife from the Holy See
 		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/clothing/neck/roguetown/psicross/undivided = 1,
+		/obj/item/clothing/neck/roguetown/psicross/custodius = 1,
 		/obj/item/mini_flagpole/church = 1,
 	)
 	H.AddComponent(/datum/component/wise_tree_alert)
@@ -123,76 +123,76 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	if(H.mind)
 		SStreasury.grant_savings(ECONOMIC_UPPER_CLASS, H)
 	switch(H.patron?.type)
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/priest //these are literally the robes made for them
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/necra
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/phys
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/eora
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
 			armor = /obj/item/clothing/cloak/templar/malumite
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/ravox
-		if(/datum/patron/divine/xylix)
-			neck = /obj/item/clothing/neck/roguetown/psicross/xylix
+		if(/datum/patron/concordat/viator)
+			neck = /obj/item/clothing/neck/roguetown/psicross/viator
 			armor = /obj/item/clothing/cloak/templar/xylixian
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 			var/datum/inspiration/I = new /datum/inspiration(H)
 			I.grant_inspiration(H, bard_tier = BARD_T1)
 		else
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/undivided
 
 /datum/outfit/job/roguetown/priest/basic/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 
 	// -- Start of section for god specific bonuses --
-	if(H.patron?.type == /datum/patron/divine/undivided)
+	if(H.patron?.type == /datum/patron/tribunal/custodius)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/astrata)
+	if(H.patron?.type == /datum/patron/concordat/auxentius)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-	if(H.patron?.type == /datum/patron/divine/noc)
+	if(H.patron?.type == /datum/patron/concordat/miluse)
 		H.adjust_skillrank(/datum/skill/magic/arcane, SKILL_LEVEL_APPRENTICE, TRUE)
 		if(H.mind)
 			H.mind.AddSpell(new /datum/action/cooldown/spell/touch/prestidigitation)
 		ADD_TRAIT(H, TRAIT_ARCYNE, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/abyssor)
+	if(H.patron?.type == /datum/patron/concordat/wulfric)
 		ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 		H.grant_language(/datum/language/abyssal)
-	if(H.patron?.type == /datum/patron/divine/necra)
+	if(H.patron?.type == /datum/patron/concordat/morwenna)
 		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-	if(H.patron?.type == /datum/patron/divine/pestra)
+	if(H.patron?.type == /datum/patron/concordat/handwerra)
 		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/eora)
+	if(H.patron?.type == /datum/patron/concordat/miluse)
 		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-	if(H.patron?.type == /datum/patron/divine/malum)
+	if(H.patron?.type == /datum/patron/concordat/handwerra)
 		ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/ravox)
+	if(H.patron?.type == /datum/patron/concordat/auxentius)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 /datum/job/priest/vice //just used to change the priest title
@@ -326,12 +326,12 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		if (!H.patron)
 			continue
 
-		if (istype(H.patron, /datum/patron/divine))
+		if (istype(H.patron, /datum/patron/concordat))
 			H.apply_status_effect(/datum/status_effect/buff/sermon)
 			H.add_stress(/datum/stressevent/sermon)
 			to_chat(H, span_notice("You feel a divine affirmation from your patron."))
 
-		else if (istype(H.patron, /datum/patron/inhumen))
+		else if (istype(H.patron, /datum/patron/unveiled))
 			H.apply_status_effect(/datum/status_effect/debuff/hereticsermon)
 			H.add_stress(/datum/stressevent/heretic_on_sermon)
 			to_chat(H, span_warning("Your patron seethes with disapproval."))
@@ -349,13 +349,13 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	//Flavor messages for cursing certain god's faithful.
 	//Dendor works in mysterious ways.
-	if (istype(H.patron, /datum/patron/divine/dendor))
+	if (istype(H.patron, /datum/patron/severance/ignatius))
 		to_chat(src, span_warning("The mad god Dendor is felt strongly. The wolf in this one balks and trashes as it is faintly restrained."))
 		//If we check this here there's no need to apply this trait preemtively to a bunch of people, and allows for greater fluff feedback.
 		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
 
 	//Abyssor's clergy are gripped by his dream.
-	if (istype(H.patron, /datum/patron/divine/abyssor))
+	if (istype(H.patron, /datum/patron/concordat/wulfric))
 		to_chat(src, span_warning("The Dreamer, Abyssor has his clutches grasped firmly around this one. The light of the ten only barely penetrates the depths."))
 		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
 
@@ -397,7 +397,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		log_game("APOSTASY: [real_name] ([ckey]) has used forgiven apostasy at [H.real_name] ([H.ckey])")
 
 		if (H.real_name == inputty)
-			if (istype(H.patron, /datum/patron/divine) && H.devotion)
+			if (istype(H.patron, /datum/patron/concordat) && H.devotion)
 				H.remove_status_effect(/datum/status_effect/debuff/apostasy)
 				H.remove_stress(/datum/stressevent/apostasy)
 
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 		var/curse_resist = HAS_TRAIT(H, TRAIT_CURSE_RESIST)
 
-		if (istype(H.patron, /datum/patron/divine))
+		if (istype(H.patron, /datum/patron/concordat))
 			H.apply_status_effect(/datum/status_effect/debuff/apostasy, curse_resist)
 			H.add_stress(/datum/stressevent/apostasy)
 			to_chat(H, span_warning("A holy silence falls upon you. Your Patron cannot hear you anymore..."))
@@ -472,7 +472,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 			REMOVE_TRAIT(H, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
 
 			if (H.patron)
-				if (istype(H.patron, /datum/patron/divine))
+				if (istype(H.patron, /datum/patron/concordat))
 					H.remove_stress(/datum/stressevent/excommunicated)
 					H.remove_status_effect(/datum/status_effect/debuff/excomm)
 					to_chat(H, span_warning("No longer a rotten husk, you walk again in their light."))
@@ -492,7 +492,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		COOLDOWN_START(src, priest_excommunicate, PRIEST_EXCOMMUNICATION_COOLDOWN)
 
 		if (H.patron)
-			if (istype(H.patron, /datum/patron/divine))
+			if (istype(H.patron, /datum/patron/concordat))
 				H.add_stress(/datum/stressevent/excommunicated)
 				H.apply_status_effect(/datum/status_effect/debuff/excomm)
 				to_chat(H, span_warning("Your divine light has been severed. Gods turn their backs to you."))
@@ -535,11 +535,11 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 		return
 
 	var/list/curse_choices = list(
-		"Curse of Astrata" = /datum/curse/astrata,
-		"Curse of Noc" = /datum/curse/noc,
-		"Curse of Ravox" = /datum/curse/ravox,
-		"Curse of Necra" = /datum/curse/necra,
-		"Curse of Xylix" = /datum/curse/xylix,
+		"Curse of Astrata" = /datum/curse/auxentius,
+		"Curse of Noc" = /datum/curse/miluse,
+		"Curse of Ravox" = /datum/curse/auxentius,
+		"Curse of Necra" = /datum/curse/morwenna,
+		"Curse of Xylix" = /datum/curse/viator,
 		)
 
 	var/curse_pick = input("Choose a curse to apply or lift.", "Select Curse") as null|anything in curse_choices
@@ -612,7 +612,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 		revert_cast()
 		return FALSE
 
-	if(istype(target.patron, /datum/patron/vheslyn)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
+	if(istype(target.patron, /datum/patron/oldkin/klokner)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
 		to_chat(user, span_userdanger("[target] is UNFORGIVABLE, my attempt to convert them to the TEN, violently sunders my lux!"))
 		if(!HAS_TRAIT(user, TRAIT_NOPAIN))
 			user.emote("agony")

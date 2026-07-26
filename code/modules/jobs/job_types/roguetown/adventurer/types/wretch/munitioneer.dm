@@ -57,7 +57,7 @@
 	belt = /obj/item/storage/backpack/rogue/satchel/beltpack
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
-	wrists = /obj/item/clothing/neck/roguetown/psicross/malum
+	wrists = /obj/item/clothing/neck/roguetown/psicross/handwerra
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 		/obj/item/ritechalk = 1,
@@ -70,7 +70,7 @@
 /datum/outfit/job/roguetown/wretch/munitioneer/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
-		H.set_patron(/datum/patron/divine/malum)
+		H.set_patron(/datum/patron/concordat/handwerra)
 		H.AddComponent(/datum/component/ore_sight) // controversial, and powerful, but it means you're spending less Wretch Time just mining.
 	var/weapons = list("Path of the Hammer - Steel Warhammer", "Path of the Crossbow - Crossbow and Bolts", "Path of the Pick - Pulaski Axe")
 	var/weapon_choice = input(H, "Choose your weapon.", "HOT IS THE ANVYL") as anything in weapons

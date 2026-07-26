@@ -15,6 +15,8 @@
 	var/pleasure = 4
 	var/can_custom = TRUE
 	var/dildo_material
+	/// Set TRUE while this dildo is mounted onto a chastity device (see /obj/item/chastity/proc/attach_toy) so it can't be double-mounted elsewhere.
+	var/is_attached_to_belt = FALSE
 
 /obj/item/dildo/New()
 	. = ..()

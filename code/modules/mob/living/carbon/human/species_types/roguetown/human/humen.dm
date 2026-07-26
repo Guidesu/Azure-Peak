@@ -5,7 +5,7 @@
 	name = "Humen"
 	id = "humen"
 	psydonic = TRUE
-	origin_default = /datum/virtue/origin/grenzelhoft
+	origin_default = /datum/virtue/origin/auxentia
 	origin = "Grenzelhoft"
 	sub_name = "Northern Humen"
 	desc_title = "Humen"

@@ -5,7 +5,7 @@
 	name = "Gnome"
 	id = "gnome"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/hammerhold
+	origin_default = /datum/virtue/origin/vergenmark
 	origin = "Hammerhold"
 	base_name = "Dwarf"
 	desc_title = "Gnome"

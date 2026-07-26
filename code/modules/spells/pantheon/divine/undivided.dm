@@ -21,7 +21,7 @@
 
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /////////////////////////////////////////
 // T0 - Enkindle - Undivided Ignition. //
@@ -42,7 +42,7 @@
 
 	cooldown_time = 15 SECONDS
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 //////////////////////////////////////////////////////////////////////////////////
 // T0 - Recuperation - Restore ENERGY to a target and provide restoration buff. //
@@ -543,10 +543,10 @@
 		return FALSE
 
 	for(var/mob/living/carbon/target in view(cast_range, get_turf(owner)))
-		if(istype(target.patron, /datum/patron/divine))
+		if(istype(target.patron, /datum/patron/concordat))
 			target.apply_status_effect(/datum/status_effect/buff/ten_united)
 			continue
-		if(istype(target.patron, /datum/patron/old_god) || istype(target.patron, /datum/patron/inhumen)) 
+		if(istype(target.patron, /datum/patron/tribunal/praecursor) || istype(target.patron, /datum/patron/unveiled)) 
 			to_chat(target, span_undivided("The divine light leaves me as abruptly as it came."))
 			continue
 		if(!owner.faction_check_mob(target))

@@ -1473,7 +1473,7 @@
 			user.change_stat(STATKEY_LCK, 1)
 		else
 			to_chat(user, span_suicide("As I don the necklace, I feel my very worth draining away.."))
-			ADD_TRAIT(user, TRAIT_CURSE_MATTHIOS, TRAIT_GENERIC)
+			ADD_TRAIT(user, TRAIT_CURSE_MORWENNA, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/roguetown/blkknight/dropped(mob/living/user)
 	..()
@@ -1491,7 +1491,7 @@
 		user.change_stat(STATKEY_LCK, -1)
 	else
 		to_chat(user, span_suicide("..dripping down from the heavens, I feel my worth returning once more.."))
-		REMOVE_TRAIT(user, TRAIT_CURSE_MATTHIOS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_CURSE_MORWENNA, TRAIT_GENERIC)
 
 /obj/item/clothing/suit/roguetown/armor/plate/blkknight
 	slot_flags = ITEM_SLOT_ARMOR

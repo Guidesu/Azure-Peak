@@ -170,6 +170,24 @@ export const SexSession = () => {
                         </Button>
                       </>
                     )}
+                    {' | '}
+                    <Button
+                      inline
+                      compact
+                      color="transparent"
+                      tooltip="Reduces visible/audible range of messages and sounds for this action."
+                      onClick={() => act('toggle_subtle')}
+                    >
+                      <Box
+                        as="span"
+                        bold
+                        style={{
+                          color: data.do_subtle_action ? '#d146f5' : '#eac8de',
+                        }}
+                      >
+                        {data.do_subtle_action ? 'BEING DISCREET' : 'STAY DISCREET'}
+                      </Box>
+                    </Button>
                   </Box>
                 </Stack.Item>
 

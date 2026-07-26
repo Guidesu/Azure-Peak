@@ -96,7 +96,7 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 	if(prob(50))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/rags
 	else
@@ -165,7 +165,7 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 	var/weapon_choice = rand(1, 4)
 	switch(weapon_choice)
 		if(1)
@@ -220,9 +220,9 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 			if(4 to 6)
-				id = /obj/item/clothing/neck/roguetown/psicross/abyssor
+				id = /obj/item/clothing/neck/roguetown/psicross/wulfric
 	if(prob(50))
 		r_hand = /obj/item/rogueweapon/huntingknife/idagger/adagger
 		l_hand = /obj/item/rogueweapon/huntingknife/idagger/adagger
@@ -275,7 +275,7 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 	var/weapon_choice = rand(1, 5)
 	switch(weapon_choice) //Also covers shoes, for a bit of immersion
 		if(1)
@@ -353,7 +353,7 @@
 			if(1)
 				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 		if(prob(60))
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/aalloy
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
@@ -449,7 +449,7 @@
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
-				id = /obj/item/clothing/neck/roguetown/psicross/noc/aalloy
+				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 	var/cloak_choice = rand(1, 3)
 	switch(cloak_choice)
 		if(1)

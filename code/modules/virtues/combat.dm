@@ -43,36 +43,36 @@
 		our_faith.passive_devotion_gain += CLERIC_REGEN_DEVOTEE
 		START_PROCESSING(SSobj, our_faith)
 	switch(recipient.patron?.type)
-		if(/datum/patron/divine/astrata)
-			recipient.mind?.special_items["Amulet of Astrata"] = /obj/item/clothing/neck/roguetown/psicross/astrata
-		if(/datum/patron/divine/abyssor)
-			recipient.mind?.special_items["Amulet of Abyssor"] = /obj/item/clothing/neck/roguetown/psicross/abyssor
-		if(/datum/patron/divine/dendor)
-			recipient.mind?.special_items["Amulet of Dendor"] = /obj/item/clothing/neck/roguetown/psicross/dendor
-		if(/datum/patron/divine/necra)
-			recipient.mind?.special_items["Amulet of Necra"] = /obj/item/clothing/neck/roguetown/psicross/necra
-		if(/datum/patron/divine/pestra)
-			recipient.mind?.special_items["Amulet of Pestra"] = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/eora) 
-			recipient.mind?.special_items["Amulet of Eora"] = /obj/item/clothing/neck/roguetown/psicross/eora
-		if(/datum/patron/divine/noc)
-			recipient.mind?.special_items["Amulet of Noc"] = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/ravox)
-			recipient.mind?.special_items["Amulet of Ravox"] =/obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			recipient.mind?.special_items["Amulet of Malum"] = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/old_god)
+		if(/datum/patron/concordat/auxentius)
+			recipient.mind?.special_items["Amulet of Astrata"] = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/wulfric)
+			recipient.mind?.special_items["Amulet of Abyssor"] = /obj/item/clothing/neck/roguetown/psicross/wulfric
+		if(/datum/patron/severance/ignatius)
+			recipient.mind?.special_items["Amulet of Dendor"] = /obj/item/clothing/neck/roguetown/psicross/ignatius
+		if(/datum/patron/concordat/morwenna)
+			recipient.mind?.special_items["Amulet of Necra"] = /obj/item/clothing/neck/roguetown/psicross/morwenna
+		if(/datum/patron/concordat/handwerra)
+			recipient.mind?.special_items["Amulet of Pestra"] = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse) 
+			recipient.mind?.special_items["Amulet of Eora"] = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/miluse)
+			recipient.mind?.special_items["Amulet of Noc"] = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/auxentius)
+			recipient.mind?.special_items["Amulet of Ravox"] =/obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			recipient.mind?.special_items["Amulet of Malum"] = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/tribunal/praecursor)
 			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
 			recipient.mind?.special_items["Psycross"] = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			recipient.mind?.special_items["Amulet of the Undivided"] = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/inhumen/matthios)
-			recipient.mind?.special_items["Amulet of Matthios"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios
-		if(/datum/patron/inhumen/graggar)
-			recipient.mind?.special_items["Amulet of Graggar"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar
-		if(/datum/patron/inhumen/baotha)
-			recipient.mind?.special_items["Amulet of Baotha"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/tribunal/custodius)
+			recipient.mind?.special_items["Amulet of the Undivided"] = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/morwenna)
+			recipient.mind?.special_items["Amulet of Matthios"] = /obj/item/clothing/neck/roguetown/psicross/morwenna
+		if(/datum/patron/oldkin/volkovoi)
+			recipient.mind?.special_items["Amulet of Graggar"] = /obj/item/clothing/neck/roguetown/psicross/volkovoi
+		if(/datum/patron/oldkin/hausvette)
+			recipient.mind?.special_items["Amulet of Baotha"] = /obj/item/clothing/neck/roguetown/psicross/hausvette
+		if(/datum/patron/unveiled/aurelian)
 			recipient.mind?.special_items["Inverted Psycross"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 
 /datum/virtue/combat/devotee/astratan_affinity
@@ -81,7 +81,7 @@
 	unlisted = TRUE
 
 /datum/virtue/combat/devotee/astratan_affinity/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.patron?.type == /datum/patron/divine/astrata)
+	if(recipient.patron?.type == /datum/patron/concordat/auxentius)
 		..()
 	else
 		return	//goofball you wasted your racial
@@ -236,7 +236,7 @@
 					recipient.dna.species.blood_color = "#530000"
 
 					// inquisition trauma goes here
-					if(!(recipient.patron?.type == /datum/patron/old_god))
+					if(!(recipient.patron?.type == /datum/patron/tribunal/praecursor))
 						var/datum/charflaw/averse/A
 						for(var/datum/charflaw/averse/F in recipient.charflaws)
 							A = F

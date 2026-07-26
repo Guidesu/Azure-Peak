@@ -11,6 +11,9 @@
 	throwforce = 0
 	var/lockhash = 0
 	var/lockid = null
+	/// Ratwood chastity_collar port, Stage 1: set on a chastity device's generated key while the wearer has
+	/// hard mode enabled, so hard-mode keys survive fire/destruction that would normally destroy a roguekey.
+	var/hardmode_indestructible = FALSE
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH|ITEM_SLOT_NECK
 	drop_sound = 'sound/items/gems (1).ogg'
 	anvilrepair = /datum/skill/craft/blacksmithing

@@ -14,38 +14,38 @@
 
 	var/ritechoices = list()
 	switch (user.patron?.type)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			ritechoices+="Rune of Violence"
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			ritechoices+="Rune of Zizo" 
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			ritechoices+="Rune of Transaction"
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			ritechoices+="Rune of Hedonism"
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			ritechoices+= "Rune of Divinity"
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			ritechoices+="Rune of Sun"
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			ritechoices+="Rune of Moon"
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			ritechoices+="Rune of Beasts"
-		if(/datum/patron/divine/malum)
+		if(/datum/patron/concordat/handwerra)
 			ritechoices+="Rune of Forge"
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			ritechoices+="Rune of Trickery"
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			ritechoices+="Rune of Death"
-		if(/datum/patron/divine/pestra)
+		if(/datum/patron/concordat/handwerra)
 			ritechoices+="Rune of Plague"
-		if(/datum/patron/divine/eora)
+		if(/datum/patron/concordat/miluse)
 			ritechoices+="Rune of Love"
-		if(/datum/patron/divine/ravox)
+		if(/datum/patron/concordat/auxentius)
 			ritechoices+="Rune of Justice"
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			ritechoices+="Rune of Storms"
 			ritechoices+="Rune of Stirring"
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			ritechoices+="Rune of Psydon"
 
 	if(HAS_TRAIT(user, TRAIT_DREAMWALKER) && !("Rune of Stirring" in ritechoices))

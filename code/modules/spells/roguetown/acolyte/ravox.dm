@@ -19,7 +19,7 @@
 
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/ravox, , /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, , /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // T0 - Tug of War- Chain a target to yourself and pull them in, prevents them from leaving your vicinity. //
@@ -794,13 +794,13 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		return FALSE
 
 	for(var/mob/living/carbon/target in view(cast_range, get_turf(owner)))
-		if(istype(target.patron, /datum/patron/inhumen))
+		if(istype(target.patron, /datum/patron/unveiled))
 			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
 			continue
-		if(istype(target.patron, /datum/patron/old_god))
+		if(istype(target.patron, /datum/patron/tribunal/praecursor))
 			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
 			continue
-		if(istype(target.patron, /datum/patron/vheslyn))
+		if(istype(target.patron, /datum/patron/oldkin/klokner))
 			to_chat(target, span_danger("You feel... nothing..")) //No effect on Vheslynites, fear them.
 			continue
 		if(!owner.faction_check_mob(target))

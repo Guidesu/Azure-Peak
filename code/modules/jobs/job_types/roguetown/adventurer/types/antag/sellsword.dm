@@ -35,9 +35,9 @@
 
 /datum/outfit/job/roguetown/bandit/sellsword/pre_equip(mob/living/carbon/human/H)
 	..()
-	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
+	if (!(istype(H.patron, /datum/patron/concordat/morwenna)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
 		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
-		H.set_patron(/datum/patron/inhumen/matthios)
+		H.set_patron(/datum/patron/concordat/morwenna)
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored/iron
 	neck = /obj/item/clothing/neck/roguetown/bevor/iron
 	cloak = /obj/item/clothing/cloak/tabard/stabard/dungeon

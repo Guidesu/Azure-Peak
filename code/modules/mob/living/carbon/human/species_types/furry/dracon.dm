@@ -5,7 +5,7 @@
 	name = "Drakian"
 	id = "dracon"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/lirvas
+	origin_default = /datum/virtue/origin/kamenrad
 	origin = "Lirvas"
 	base_name = "Zard"
 	desc_title = "Drakian"

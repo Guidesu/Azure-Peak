@@ -39,12 +39,12 @@
 	src.patron = patron
 	holder?.hud_used?.initialize_bloodpool()
 	holder?.hud_used?.bloodpool.set_fill_color("#3C41A4")
-	if (patron.type == /datum/patron/inhumen/zizo || patron.type == /datum/patron/divine/necra)
+	if (patron.type == /datum/patron/unveiled/aurelian || patron.type == /datum/patron/concordat/morwenna)
 		ADD_TRAIT(holder, TRAIT_DEATHSIGHT, "devotion")
 
 /datum/devotion/Destroy(force)
 	. = ..()
-	if (patron.type == /datum/patron/inhumen/zizo || patron.type == /datum/patron/divine/necra)
+	if (patron.type == /datum/patron/unveiled/aurelian || patron.type == /datum/patron/concordat/morwenna)
 		REMOVE_TRAIT(holder, TRAIT_DEATHSIGHT, "devotion")
 	holder?.hud_used?.shutdown_bloodpool()
 	holder?.devotion = null
@@ -182,7 +182,7 @@
 		return FALSE
 
 	var/prayersesh = 0
-	visible_message("[src] kneels their head in prayer to the Gods.", "I kneel my head in prayer to [istype(devotion.patron, /datum/patron/divine/undivided) ? "the Ten" : devotion.patron.name].")
+	visible_message("[src] kneels their head in prayer to the Gods.", "I kneel my head in prayer to [istype(devotion.patron, /datum/patron/tribunal/custodius) ? "the Ten" : devotion.patron.name].")
 	for(var/i in 1 to 50)
 		if(devotion.devotion >= devotion.max_devotion)
 			to_chat(src, span_warning("I have reached the limit of my devotion..."))

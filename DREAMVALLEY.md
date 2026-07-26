@@ -123,11 +123,11 @@ mismatch cancel before the source character is changed.
 Ordinary character creation and JOIN now use Twilight Axis' TAT builder. Each
 Character Sheet slot owns nine named TAT build presets. The builder edits
 directions, stats, skill domains, traits, purchased equipment, backpack, and
-stash, then **Save & Join World** maps its role direction to Azure's Towner,
-Trader, Adventurer, or Wretch spawn shell and applies the matching Pliant class
-without opening the old random class picker. Before world start it readies that
-build; in a running world it joins immediately. Twilight-only equipment and
-traits which do not exist in this Azure revision are omitted from the catalog.
+stash, then **Save & Join World** maps the single Starter archetype to Azure's
+Towner spawn shell and applies the matching Free Soul class without opening
+the old random class picker. Before world start it readies that build; in a
+running world it joins immediately. Twilight-only equipment and traits which
+do not exist in this Azure revision are omitted from the catalog.
 
 This new-character path is deliberately separate from Continue. Continue
 reconstructs the parked character graph and never applies TAT, a job outfit, or

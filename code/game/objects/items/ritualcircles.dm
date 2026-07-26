@@ -85,7 +85,7 @@
 /obj/structure/ritualcircle/astrata/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/astrata)
+	if((user.patron?.type) != /datum/patron/concordat/auxentius)
 		to_chat(user,span_warning("The rune is unresponsive to touch, as if something deems me unworthy."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -138,7 +138,7 @@
 /obj/structure/ritualcircle/noc/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/noc)
+	if((user.patron?.type) != /datum/patron/concordat/miluse)
 		to_chat(user,span_warning("I can't make any sense of this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -199,7 +199,7 @@
 /obj/structure/ritualcircle/xylix/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/xylix)
+	if((user.patron?.type) != /datum/patron/concordat/viator)
 		to_chat(user,span_warning("Every time I'm about to get it, it turns into something else."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -239,7 +239,7 @@
 /obj/structure/ritualcircle/ravox/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/ravox)
+	if((user.patron?.type) != /datum/patron/concordat/auxentius)
 		to_chat(user,span_warning("I feel a scornful gaze. This rune isn't for me."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -280,7 +280,7 @@
 /obj/structure/ritualcircle/pestra/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/pestra)
+	if((user.patron?.type) != /datum/patron/concordat/handwerra)
 		to_chat(user,span_warning("I don't want to touch this, it smells like decay..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -377,7 +377,7 @@
 /obj/structure/ritualcircle/dendor/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/dendor)
+	if((user.patron?.type) != /datum/patron/severance/ignatius)
 		to_chat(user,span_warning("I can't interpret such mad scrawlings."))
 		return
 	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
@@ -428,7 +428,7 @@
 /obj/structure/ritualcircle/malum/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/malum)
+	if((user.patron?.type) != /datum/patron/concordat/handwerra)
 		to_chat(user,span_warning("This rune references schematics I don't understand."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -486,7 +486,7 @@
 	if(!..())
 		return
 	// Allow both Abyssorites and Dreamwalkers to use the rune
-	if((user.patron?.type) != /datum/patron/divine/abyssor && !HAS_TRAIT(user, TRAIT_DREAMWALKER))
+	if((user.patron?.type) != /datum/patron/concordat/wulfric && !HAS_TRAIT(user, TRAIT_DREAMWALKER))
 		to_chat(user,span_warning("Something pulls at my mind. I feel dizzy for a moment."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -500,7 +500,7 @@
 	var/list/available_rites = list()
 
 	// Abyssorites get access to stirring rites
-	if(user.patron?.type == /datum/patron/divine/abyssor)
+	if(user.patron?.type == /datum/patron/concordat/wulfric)
 		available_rites += stirringrites
 
 		// Time check for Rite of the Crystal Spire
@@ -621,7 +621,7 @@
 /obj/structure/ritualcircle/abyssor/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/abyssor)
+	if((user.patron?.type) != /datum/patron/concordat/wulfric)
 		to_chat(user,span_warning("It looks like half the chalk has been muddled with water. Is that intentional?"))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -706,13 +706,13 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type == /datum/patron/divine/abyssor || !faith_locked)
+		if(c.patron.type == /datum/patron/concordat/wulfric || !faith_locked)
 			. += span_info(effect_desc)
 
 /obj/item/abyssal_marker/attack_self(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type != /datum/patron/divine/abyssor && faith_locked)
+		if(c.patron.type != /datum/patron/concordat/wulfric && faith_locked)
 			to_chat(user, span_warning("My connection to Abyssor's dream is too weak to invoke his power with this crystal."))
 			return ..()
 		//Heretics get FAR stronger spires!
@@ -1053,7 +1053,7 @@
 /obj/structure/ritualcircle/necra/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/necra)
+	if((user.patron?.type) != /datum/patron/concordat/morwenna)
 		to_chat(user,span_warning("I hear angered whispering...I probably shouldn't touch this."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1284,7 +1284,7 @@
 	var/peacerites = list("Rite of Pacification", "Rite of the Open Hearth")
 
 /obj/structure/ritualcircle/eora/attack_hand(mob/living/user)
-	if((user.patron?.type) != /datum/patron/divine/eora)
+	if((user.patron?.type) != /datum/patron/concordat/miluse)
 		to_chat(user,span_warning("I don't have the heart for this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1373,7 +1373,7 @@
 /obj/structure/ritualcircle/undivided/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/divine/undivided)
+	if((user.patron?.type) != /datum/patron/tribunal/custodius)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1398,7 +1398,7 @@
 /obj/structure/ritualcircle/zizo/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/inhumen/zizo)
+	if((user.patron?.type) != /datum/patron/unveiled/aurelian)
 		to_chat(user,span_warning("Touching it sends a cold shock up my arm. I shouldn't be trying to use this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1565,7 +1565,7 @@
 /obj/structure/ritualcircle/matthios/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/inhumen/matthios)
+	if((user.patron?.type) != /datum/patron/concordat/morwenna)
 		to_chat(user,span_warning("Somehow, I get the feeling touching this will take something from me..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1748,7 +1748,7 @@
 /obj/structure/ritualcircle/graggar/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/inhumen/graggar)
+	if((user.patron?.type) != /datum/patron/oldkin/volkovoi)
 		to_chat(user,span_warning("I hear a distant war cry in the back of my mind as I touch this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -1970,7 +1970,7 @@
 /obj/structure/ritualcircle/baotha/attack_hand(mob/living/user)
 	if(!..())
 		return
-	if((user.patron?.type) != /datum/patron/inhumen/baotha)
+	if((user.patron?.type) != /datum/patron/oldkin/hausvette)
 		to_chat(user,span_warning("I feel my fingers going numb, and my arms heaving with unseen weight. I shouldn't be trying to use this..."))
 		return
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
@@ -2090,7 +2090,7 @@
 	name = "Rune of Perseverance"
 	desc = "A holy rune of the Weeping God. </br> <i>It depicts His holy symbol, yet nothing stirs within you.</i>"
 	icon_state = "psydon_chalky"
-	allowed_patron = /datum/patron/old_god
+	allowed_patron = /datum/patron/tribunal/praecursor
 	rituals = list(/datum/runeritual/silver_blessing::name = /datum/runeritual/silver_blessing)
 
 /datum/runeritual/silver_blessing

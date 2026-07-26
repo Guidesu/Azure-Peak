@@ -309,13 +309,13 @@
 		return FALSE
 
 	for(var/mob/living/carbon/target in view(cast_range, get_turf(owner)))
-		if(istype(target.patron, /datum/patron/inhumen))
+		if(istype(target.patron, /datum/patron/unveiled))
 			target.apply_status_effect(/datum/status_effect/buff/call_to_slaughter)	//Buffs inhumens
 			continue
-		if(istype(target.patron, /datum/patron/old_god))
+		if(istype(target.patron, /datum/patron/tribunal/praecursor))
 			to_chat(target, span_danger("You feel a surge of cold wash over you; leaving your body as quick as it hit.."))	//No effect on Psydonians!
 			continue
-		if(istype(target.patron, /datum/patron/vheslyn))
+		if(istype(target.patron, /datum/patron/oldkin/klokner))
 			to_chat(target, span_danger("You feel... nothing..")) //No effect on Vheslynites, fear them.
 			continue
 		if(!owner.faction_check_mob(target))

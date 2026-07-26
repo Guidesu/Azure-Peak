@@ -70,30 +70,30 @@
 		/obj/item/natural/cloth = 1,
 	)
 	switch(H.patron?.type)
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/xylix)
-			neck = /obj/item/clothing/neck/roguetown/psicross/xylix
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/viator)
+			neck = /obj/item/clothing/neck/roguetown/psicross/viator
 		else
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
@@ -127,7 +127,7 @@
 	) //practically only combat skills. Exchanges all of its homesteading (and even T1 Miracles!) for minor combat skills.
 
 /datum/outfit/job/roguetown/sexton/gravetender
-	allowed_patrons = list(/datum/patron/divine/necra)
+	allowed_patrons = list(/datum/patron/concordat/morwenna)
 	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/sexton/gravetender/pre_equip(mob/living/carbon/human/H)
@@ -139,7 +139,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	belt = /obj/item/storage/belt/rogue/leather/black
-	neck = /obj/item/clothing/neck/roguetown/psicross/silver/necra //thematic
+	neck = /obj/item/clothing/neck/roguetown/psicross/silver/morwenna //thematic
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shovel/silver //Not pre-blessed, mind you

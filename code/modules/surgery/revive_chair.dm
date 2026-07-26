@@ -154,7 +154,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron.type == /datum/patron/divine/pestra || H.patron.type == /datum/patron/inhumen/zizo)
+		if(H.patron.type == /datum/patron/concordat/handwerra || H.patron.type == /datum/patron/unveiled/aurelian)
 			. += span_info("You recall that these chairs are often shipped in enigmatic black crates marked with white crosses. The components are assembled by mysterious beaked figures on site, and taking it apart again seems like an impossible task.")
 
 // Special brew reagent

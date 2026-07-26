@@ -43,7 +43,7 @@
 		return FALSE
 	if(!(user.job in GLOB.church_positions))
 		return FALSE
-	if(!istype(user.patron, /datum/patron/divine))
+	if(!istype(user.patron, /datum/patron/concordat))
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_OUTLAW))
 		return FALSE
@@ -70,7 +70,7 @@
 	if(faithful == invoker)
 		to_chat(faithful, span_warning("You cannot assent to your own claim."))
 		return FALSE
-	if(!istype(faithful.patron, /datum/patron/divine))
+	if(!istype(faithful.patron, /datum/patron/concordat))
 		to_chat(faithful, span_warning("Only followers of the Ten may speak assent to this rite."))
 		return FALSE
 	if(!is_qualified_faithful(faithful))

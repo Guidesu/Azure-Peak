@@ -126,3 +126,4 @@
 	if(C)
 		build_ban_cache(C)
 	return !!key
+

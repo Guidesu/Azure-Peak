@@ -4,7 +4,7 @@
 /datum/species/aasimar
 	name = "Aasimar"
 	id = "aasimar"
-	origin_default = /datum/virtue/origin/otava
+	origin_default = /datum/virtue/origin/vergenmark
 	origin = "Otava"
 	base_name = "Godtouched"
 	desc_title = "Aasimar"

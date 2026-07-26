@@ -337,7 +337,7 @@
 						id = /obj/item/clothing/ring/statgemerald/antiquarian
 					if("Vitality")
 						switch(H.patron?.type)
-							if(/datum/patron/inhumen/baotha)
+							if(/datum/patron/oldkin/hausvette)
 								var/baotharing = list("Ring of Vitality","Rosa Ring")
 								var/baotharing_choice = input(H, "A discrete ring, or one of your faith?", "A RARE GIFT") as anything in baotharing
 								H.set_blindness(0)

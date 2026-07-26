@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		to_chat(user, span_warning("I can't cast spells!"))
 		return FALSE
 
-	if(HAS_TRAIT(user, TRAIT_CURSE_NOC))
+	if(HAS_TRAIT(user, TRAIT_CURSE_MILUSE))
 		to_chat(user, span_warning("My magicka has left me..."))
 		return FALSE
 

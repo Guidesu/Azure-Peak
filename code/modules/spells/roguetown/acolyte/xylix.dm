@@ -517,7 +517,7 @@
 		to_chat(vendettatarget, span_notice("A Vendetta has been made agaisnt me and [user], our fight shall be dramatic!"))
 		vendettatarget.apply_status_effect(/datum/status_effect/buff/vendetta)
 		user.apply_status_effect(/datum/status_effect/buff/vendetta)
-		if(istype(vendettatarget.patron, /datum/patron/inhumen)) // make the fight even more interesting
+		if(istype(vendettatarget.patron, /datum/patron/unveiled)) // make the fight even more interesting
 			vendettatarget.apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 			user.apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 		return TRUE

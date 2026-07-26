@@ -470,7 +470,7 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron.type == /datum/patron/inhumen/graggar)
+		if(H.patron.type == /datum/patron/oldkin/volkovoi)
 			. += span_danger("You know this gem well. They are born out of great violence, but only if it involves the mightiest of warriors. </br>Fleshcrafting it with the meat of whatever warrior birthed this gem will allow me to summon another of their kind into this world.  </br>Melting away its crystalline shell is ideal, if you wish to ensure no chance for error while conducting such a ritual.")
 
 /obj/item/ingot/component/glutcrystal/Initialize()

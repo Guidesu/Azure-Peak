@@ -320,7 +320,7 @@
 	if(prob(50) && !isvineimmune(crosser))
 		holder.entangle(crosser)
 	if(!isvineimmune(crosser))
-		if(HAS_TRAIT(crosser, TRAIT_CURSE_DENDOR))
+		if(HAS_TRAIT(crosser, TRAIT_CURSE_IGNATIUS))
 			if(crosser.apply_damage(50, BRUTE))
 				to_chat(crosser, span_alert("The thorny vines are whipping me!"))
 				crosser.emote("scream")
@@ -333,7 +333,7 @@
 	return TRUE
 
 /datum/vine_mutation/earthy/can_cross(obj/structure/vine/holder, mob/living/crosser)
-	if(HAS_TRAIT(crosser, TRAIT_CURSE_DENDOR))
+	if(HAS_TRAIT(crosser, TRAIT_CURSE_IGNATIUS))
 		if(prob(60) && !isvineimmune(crosser))
 			to_chat(crosser, span_warning("The thorny vines are grabbing me!"))
 			crosser.emote("scream")

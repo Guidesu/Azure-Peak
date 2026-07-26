@@ -40,7 +40,7 @@
 			H.charflaws.Remove(cf)
 			QDEL_NULL(cf)
 	H.equipOutfit(/datum/outfit/job/vamplord)
-	H.set_patron(/datum/patron/inhumen/zizo)
+	H.set_patron(/datum/patron/unveiled/aurelian)
 	add_verb(H, /mob/living/carbon/human/proc/demand_submission)
 	H.maxbloodpool += 3000
 	H.adjust_bloodpool(3000)

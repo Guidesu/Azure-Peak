@@ -1210,106 +1210,106 @@
 	max_integrity = 80
 	chance2hear = 10
 
-/obj/structure/fluff/psycross/psycrucifix
-	name = "wooden psydonic crucifix"
-	desc = "A rarely seen symbol of absolute and devoted certainty, more common in Otava: HE yet lyves. HE yet breathes."
+/obj/structure/fluff/psycross/praecursorcrucifix
+	name = "wooden praecursory crucifix"
+	desc = "A rarely seen symbol of absolute and devoted certainty, more common in Vergenmark: HE yet lyves. HE yet breathes."
 	icon_state = "cross_psy"
 	max_integrity = 80
 	chance2hear = 10
 
-/obj/structure/fluff/psycross/psycrucifix/stone
-	name = "stone psydonic crucifix"
+/obj/structure/fluff/psycross/praecursorcrucifix/stone
+	name = "stone praecursory crucifix"
 	desc = "Formed of stone, this great Psycross symbolises that HE is forever ENDURING. Considered a rare sight upon the Peaks."
 	icon_state = "cross_psy_r"
 	max_integrity = 120
 	chance2hear = 10
 
-/obj/structure/fluff/psycross/psycrucifix/silver
-	name = "silver psydonic crucifix"
+/obj/structure/fluff/psycross/praecursorcrucifix/silver
+	name = "silver praecursory crucifix"
 	icon_state = "cross_psy_s"
-	desc = "Constructed of Blessed Silver, this crucifix symbolises absolute faith in the ONE - For PSYDON WEEPS, for all mortal ilk. PSYDON WEEPS, for all who walk upon the soil. PSYDON WEEPS..."
+	desc = "Constructed of Blessed Silver, this crucifix symbolises absolute faith in the WORD - For PRAECURSOR WEEPS, for all mortal ilk. PRAECURSOR WEEPS, for all who walk upon the soil. PRAECURSOR WEEPS..."
 	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
 	max_integrity = 450
 	chance2hear = 10
 
-/obj/structure/fluff/psycross/astrata
-	name = "wooden astratan cross"
+/obj/structure/fluff/psycross/auxentius
+	name = "wooden auxentian cross"
 	icon_state = "cross_astrata"
-	desc = "A simple cross of carved wood, raised in quiet devotion to Astrata."
+	desc = "A simple cross of carved wood, raised in quiet devotion to Auxentius."
 	max_integrity = 100
 	chance2hear = 20
 
-/obj/structure/fluff/psycross/astrata/stone
-	name = "stone astratan cross"
+/obj/structure/fluff/psycross/auxentius/stone
+	name = "stone auxentian cross"
 	icon_state = "cross_astrata_r"
-	desc = "A towering monument to Astrata. Those who stand beneath it feel the warmth of her light."
+	desc = "A towering monument to Auxentius. Those who stand beneath it feel the warmth of his light."
 	max_integrity = 140
 	chance2hear = 20
 
-/obj/structure/fluff/psycross/astrata/golden
-	name = "golden astratan cross"
+/obj/structure/fluff/psycross/auxentius/golden
+	name = "golden auxentian cross"
 	icon_state = "cross_astrata_u"
-	desc = "A radiant monument of gold, devoted to Astrata in her full glory. Its surface gleams with an almost blinding brilliance, catching even the faintest light and casting it forth as a warm, unwavering glow."
+	desc = "A radiant monument of gold, devoted to Auxentius in his full glory. Its surface gleams with an almost blinding brilliance, catching even the faintest light and casting it forth as a warm, unwavering glow."
 	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
 	max_integrity = 400
 	chance2hear = 20
 
-/obj/structure/fluff/psycross/zizocross
+/obj/structure/fluff/psycross/aurelian
 	name = "inverted cross"
 	desc = "An unholy symbol. Blasphemy for most, reverence for few."
 	icon_state = "cross_zizo"
 	divine = FALSE
 
-/obj/structure/fluff/psycross/zizocross/stone
+/obj/structure/fluff/psycross/aurelian/stone
 	name = "stone inverted cross"
 	desc = "An unholy symbol. The knowledge that something so sturdy was able to be put up in reverence of the archlych, completely unattended, is a difficult anchovy to swallow for many."
 	icon_state = "cross_zizo_r"
 	divine = FALSE
 	max_integrity = 200
 
-/obj/structure/fluff/psycross/zizocross/golden
+/obj/structure/fluff/psycross/aurelian/golden
 	name = "golden inverted cross"
 	desc = "An unholy symbol meticulously plated with leaf gold. It stands in defiance to order. The dead will rise."
 	icon_state = "cross_zizo_u"
 	divine = FALSE
 	max_integrity = 350
 
-/obj/structure/fluff/psycross/graggar
+/obj/structure/fluff/psycross/volkovoi
 	name = "vicious cross"
 	desc = "An unholy symbol wrought from stone. It promises glory to the conqueror and chains to the conquered."
 	icon_state = "cross_graggar"
 	divine = FALSE
 	max_integrity = 200
 
-/obj/structure/fluff/psycross/graggar/decorated
+/obj/structure/fluff/psycross/volkovoi/decorated
 	name = "revered vicious cross"
 	desc = "An unholy symbol wrought from stone. Meat impaled on spikes and flesh dangling like ribbons off hooks, an offering, proof of conquest, but does he listen?"
 	icon_state = "cross_graggar_u"
 	divine = FALSE
 	max_integrity = 350
 
-/obj/structure/fluff/psycross/matthios
+/obj/structure/fluff/psycross/morwenna
 	name = "grinning cross"
 	desc = "An unholy stone cross bearing the likeness of drawn daggers and a grinning visage."
 	icon_state = "cross_matthios"
 	divine = FALSE
 	max_integrity = 200
 
-/obj/structure/fluff/psycross/matthios/decorated
+/obj/structure/fluff/psycross/morwenna/decorated
 	name = "ornate cross"
 	desc = "Golden scales dangle from rags and balance the scales. A monument to wealth."
 	icon_state = "cross_matthios_u"
 	divine = FALSE
 	max_integrity = 350
 
-/obj/structure/fluff/psycross/baotha
+/obj/structure/fluff/psycross/hausvette
 	name = "spider cross"
 	desc = "A gnarled stone cross from which carved spider legs unfurl. You feel like you're being beckoned faintly, like a whisper in your ear."
 	icon_state = "cross_baotha"
 	divine = FALSE
 	max_integrity = 200
 
-/obj/structure/fluff/psycross/baotha/decorated
+/obj/structure/fluff/psycross/hausvette/decorated
 	name = "webbed spider cross"
 	desc = "The spider spreads it's legs, the web unfurls. Just looking at it makes bad memories surface."
 	icon_state = "cross_baotha_u"

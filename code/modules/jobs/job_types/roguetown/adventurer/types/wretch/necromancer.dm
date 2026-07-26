@@ -56,7 +56,7 @@
 	H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/wizard]
 	if(H.mind)
 		backr = choose_implement(H, "greater")
-		H.set_patron(/datum/patron/inhumen/zizo)
+		H.set_patron(/datum/patron/unveiled/aurelian)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/eyebite)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/bonechill)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/bonemend)

@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(soil_list)
 		feedback = "I harvest the produce well."
 		modifier += 1
 
-	if(has_world_trait(/datum/world_trait/dendor_fertility))
+	if(has_world_trait(/datum/world_trait/ignatius_fertility))
 		feedback = "Praise Dendor for our harvest is bountiful."
 		modifier += 3
 
@@ -626,14 +626,14 @@ GLOBAL_LIST_EMPTY(soil_list)
 		growth_multiplier *= 1.75
 		nutriment_eat_mutliplier *= 0.6
 
-	if(has_world_trait(/datum/world_trait/dendor_fertility))
+	if(has_world_trait(/datum/world_trait/ignatius_fertility))
 		growth_multiplier *= 2.0
 		nutriment_eat_mutliplier *= 0.4
 
 	if(has_world_trait(/datum/world_trait/fertility))
 		growth_multiplier *= 1.5
 
-	if(has_world_trait(/datum/world_trait/dendor_drought))
+	if(has_world_trait(/datum/world_trait/ignatius_drought))
 		growth_multiplier *= 0.4
 		nutriment_eat_mutliplier *= 2
 	// If there's too many weeds, they hamper the growth of the plant

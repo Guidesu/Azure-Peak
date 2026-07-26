@@ -42,7 +42,7 @@
 /datum/outfit/job/roguetown/wretch/mistwalker/pre_equip(mob/living/carbon/human/H)
 	..()
 	
-	change_origin(H, /datum/virtue/origin/kazengun, "guardian duty")
+	change_origin(H, /datum/virtue/origin/viamedulla, "guardian duty")
 	to_chat(H, span_warning("Failed in your duty, outcast from whence you came you wander. Only the steel in your hand can be trusted."))
 
 	head = /obj/item/clothing/head/roguetown/mentorhat

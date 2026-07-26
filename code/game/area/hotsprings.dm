@@ -1,9 +1,9 @@
-/area/rogue/outdoors/rtfield/eora
-	name = "Eoran Shrine"
+/area/rogue/outdoors/rtfield/miluse
+	name = "Miluše's Shrine"
 	icon_state = "eora"
 	soundenv = 19
 	ambush_times = list("night")
-	first_time_text = "EORAN SHRINE"
+	first_time_text = "MILUSE'S SHRINE"
 	droning_sound = 'sound/newmusic/lovecraft2.ogg'
 	droning_sound_dusk = 'sound/newmusic/lovecraft2.ogg'
 	droning_sound_night = 'sound/newmusic/lovecraft2.ogg'

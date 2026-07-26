@@ -52,6 +52,31 @@
 			result += "[entry.type]"
 	return result
 
+// mind.special_items is an uncollected item stash (label -> /obj/item typepath)
+// granted by virtues, TAT traits, antagonist setups, and other special-trait
+// procs, retrieved later by the player via handle_special_items_retrieval().
+// It must round-trip as plain label->typepath text so unclaimed stash entries
+// survive Far Travel and checkpoint restores instead of being silently lost.
+/proc/dreamvalley_capture_special_items(list/special_items)
+	var/list/result = list()
+	if(!islist(special_items))
+		return result
+	for(var/label in special_items)
+		var/item_path = special_items[label]
+		if(ispath(item_path, /obj/item))
+			result["[label]"] = "[item_path]"
+	return result
+
+/proc/dreamvalley_restore_special_items(list/state)
+	var/list/result = list()
+	if(!islist(state))
+		return result
+	for(var/label in state)
+		var/item_path = text2path(state[label])
+		if(ispath(item_path, /obj/item))
+			result["[label]"] = item_path
+	return result
+
 /proc/dreamvalley_character_inventory_slots()
 	var/list/result = ALL_ITEM_SLOTS
 	result |= list(
@@ -580,7 +605,9 @@
 	result["learned_recipes"] = dreamvalley_path_list(mind.learned_recipes)
 	result["major_aspects"] = dreamvalley_path_list(mind.major_aspects)
 	result["minor_aspects"] = dreamvalley_path_list(mind.minor_aspects)
+	result["special_items"] = dreamvalley_capture_special_items(mind.special_items)
 	result["spells"] = capture_character_spells(character, mind, issues, item_ids)
+	result["manor"] = capture_character_manor(mind)
 	return result
 
 /datum/dreamvalley_campaign_manager/proc/capture_character_spells(mob/living/carbon/human/character, datum/mind/mind, list/issues, list/item_ids)
@@ -1052,7 +1079,9 @@
 		var/aspect_path = text2path(aspect_text)
 		if(ispath(aspect_path, /datum/magic_aspect))
 			mind.attune_aspect(new aspect_path())
+	mind.special_items = dreamvalley_restore_special_items(state["special_items"])
 	restore_character_spells(character, mind, state["spells"], restored_items)
+	restore_character_manor(mind, state["manor"])
 
 /datum/dreamvalley_campaign_manager/proc/restore_character_spells(mob/living/carbon/human/character, datum/mind/mind, list/states, list/restored_items)
 	if(!islist(states))

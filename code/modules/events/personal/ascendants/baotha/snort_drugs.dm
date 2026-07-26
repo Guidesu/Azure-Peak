@@ -20,7 +20,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!istype(H) || H.stat == DEAD || !H.client)
 			continue
-		if(!H.patron || !istype(H.patron, /datum/patron/inhumen/baotha))
+		if(!H.patron || !istype(H.patron, /datum/patron/oldkin/hausvette))
 			continue
 		return TRUE
 
@@ -32,7 +32,7 @@
 	for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
 		if(!istype(human_mob) || human_mob.stat == DEAD || !human_mob.client)
 			continue
-		if(!human_mob.patron || !istype(human_mob.patron, /datum/patron/inhumen/baotha))
+		if(!human_mob.patron || !istype(human_mob.patron, /datum/patron/oldkin/hausvette))
 			continue
 		if(!human_mob.client.prefs || human_mob.client.prefs?.no_storyteller_events)
 			continue

@@ -31,13 +31,13 @@
 
 /datum/outfit/job/roguetown/bandit/iconoclast/pre_equip(mob/living/carbon/human/H)
 	..()
-	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
+	if (!(istype(H.patron, /datum/patron/concordat/morwenna)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
 		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
-		H.set_patron(/datum/patron/inhumen/matthios)
+		H.set_patron(/datum/patron/concordat/morwenna)
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	backr = /obj/item/storage/backpack/rogue/satchel
-	id = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios //IS THIS TRVE? WE NEED TO USE MIRACLES SIRE.
+	id = /obj/item/clothing/neck/roguetown/psicross/morwenna //IS THIS TRVE? WE NEED TO USE MIRACLES SIRE.
 	backpack_contents = list(
 					/obj/item/needle/thorn = 1,
 					/obj/item/natural/cloth = 1,

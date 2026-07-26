@@ -16,31 +16,31 @@
 // -1 TRI
 /datum/loadout_item/psicross/noc/bronze
 	name = "Bronze Amulet of Noc"
-	path = /obj/item/clothing/neck/roguetown/psicross/noc/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/miluse/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
 /datum/loadout_item/psicross/ravox/bronze
 	name = "Bronze Amulet of Ravox"
-	path = /obj/item/clothing/neck/roguetown/psicross/ravox/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
 /datum/loadout_item/psicross/astrata/bronze
 	name = "Bronze Amulet of Astrata"
-	path = /obj/item/clothing/neck/roguetown/psicross/astrata/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/malum/bronze
+/datum/loadout_item/psicross/handwerra/malum/bronze
 	name = "Bronze Amulet of Malum"
-	path = /obj/item/clothing/neck/roguetown/psicross/malum/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/handwerra/malum/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/inhumen/graggar/bronze
+/datum/loadout_item/psicross/volkovoi/bronze
 	name = "Bronze Amulet of Graggar"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/volkovoi/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
@@ -70,7 +70,7 @@
 
 /datum/loadout_item/psicross/noc/paalloy
 	name = "Ancient Amulet of Noc"
-	path = /obj/item/clothing/neck/roguetown/psicross/noc/paalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/miluse/paalloy
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
@@ -246,7 +246,7 @@
 
 /datum/loadout_item/triumph_malumcross
 	name = "Golden Malum Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/malum/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/handwerra/malum/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 

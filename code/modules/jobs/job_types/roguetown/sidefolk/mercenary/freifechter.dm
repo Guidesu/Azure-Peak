@@ -6,7 +6,7 @@
 
 	outfit = /datum/outfit/job/roguetown/mercenary/freelancer
 	subclass_languages = list(/datum/language/aavnic)//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.
-	allowed_patrons = list(/datum/patron/old_god)
+	allowed_patrons = list(/datum/patron/tribunal/praecursor)
 	class_select_category = CLASS_CAT_AAVNR
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/frei_fencer.ogg'
@@ -70,7 +70,7 @@
 	cmode_music = 'sound/music/frei_lancer.ogg'
 	outfit = /datum/outfit/job/roguetown/mercenary/freelancer_lancer
 	subclass_languages = list(/datum/language/aavnic)//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.
-	allowed_patrons = list(/datum/patron/old_god)
+	allowed_patrons = list(/datum/patron/tribunal/praecursor)
 	class_select_category = CLASS_CAT_AAVNR
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/frei_fencer.ogg'
@@ -128,7 +128,7 @@
 
 	outfit = /datum/outfit/job/roguetown/mercenary/freelancer_sabrist
 	subclass_languages = list(/datum/language/aavnic)//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.
-	allowed_patrons = list(/datum/patron/old_god)
+	allowed_patrons = list(/datum/patron/tribunal/praecursor)
 	class_select_category = CLASS_CAT_AAVNR
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/frei_sabre.ogg'

@@ -10,7 +10,7 @@
 	tutorial = "Branded a heretic for your unorthodox beliefs, you turned to an ancient art native to Azurea — the way of the Azurcaephan, a Spellblade. You combined your patron's gifts with martial discipline, forging yourself into a warrior-mage unlike any other. Unlike other spellblades, you know how to wield such terrifying power together with armor. The Church brands you a heretic, the Necromancers call you a fool, the Oaks see only deviation. Let them. One cut at a time, you shall carve your mark upon this world."
 	allowed_sexes = list(MALE, FEMALE)
 	
-	allowed_patrons = list(/datum/patron/inhumen/zizo, /datum/patron/divine/noc)
+	allowed_patrons = list(/datum/patron/unveiled/aurelian, /datum/patron/concordat/miluse)
 	outfit = /datum/outfit/job/roguetown/wretch/heretic_spellblade
 	maximum_possible_slots = 2 // Team rocket!!!
 	class_select_category = CLASS_CAT_BATTLEMAGE
@@ -74,9 +74,9 @@
 	// Determine faction and patron-specific weapon for chant display
 	var/chant_faction = "zizite"
 	var/extra_blade_weapon
-	if(istype(H.patron, /datum/patron/inhumen/zizo))
+	if(istype(H.patron, /datum/patron/unveiled/aurelian))
 		extra_blade_weapon = "Avantyne Arming Sword"
-	else if(istype(H.patron, /datum/patron/divine/noc))
+	else if(istype(H.patron, /datum/patron/concordat/miluse))
 		chant_faction = "noccite"
 	var/selection_html = get_spellblade_chant_html(src, H, chant_faction, extra_blade_weapon)
 	H << browse(selection_html, "window=spellblade_chant;size=1100x900")
@@ -144,7 +144,7 @@
 				"Volfskulle Bascinet"		= /obj/item/clothing/head/roguetown/helmet/heavy/volfplate,
 				"None"
 			)
-			if(istype(H.patron, /datum/patron/divine/noc))
+			if(istype(H.patron, /datum/patron/concordat/miluse))
 				helmets += list("Greatplumed Owl Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/owl)
 			var/helmchoice = input(H, "Choose your Helm.", "LIGHT SHINES THROUGH") as anything in helmets
 			if(helmchoice != "None")
@@ -156,7 +156,7 @@
 		if("blade")
 			var/list/weapons = list("Kriegmesser", "Longsword", "Rapier", "Sabre", "Steel Arming Sword", "Steel Greatsword", "Steel Dagger")
 			// Inject patron-specific weapon
-			if(istype(H.patron, /datum/patron/inhumen/zizo))
+			if(istype(H.patron, /datum/patron/unveiled/aurelian))
 				weapons.Insert(1, "Avantyne Arming Sword")
 			var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			beltr = /obj/item/rogueweapon/scabbard/sword
@@ -228,11 +228,11 @@
 	// Patron-specific bonuses
 	H.cmode_music = 'sound/music/combat_heretic.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.grant_language(/datum/language/undead)
 			ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
-		if(/datum/patron/divine/noc)
-			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/noc(H), SLOT_RING, TRUE)
+		if(/datum/patron/concordat/miluse)
+			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/miluse(H), SLOT_RING, TRUE)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_1, start_maxed = TRUE)

@@ -58,15 +58,15 @@
 			damage += 20
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(istype(H.patron, /datum/patron/divine))
+		if(istype(H.patron, /datum/patron/concordat))
 			damage += 20
-		if(istype(H.patron, /datum/patron/old_god))
+		if(istype(H.patron, /datum/patron/tribunal/praecursor))
 			damage += 20
 		var/mob/living/carbon/human/caster
 		if (ishuman(firer))
 			caster = firer
 			switch(caster.patron.type)
-				if(/datum/patron/inhumen/baotha)
+				if(/datum/patron/oldkin/hausvette)
 					H.adjustToxLoss(10)
 					H.Dizzy(5)
 					H.visible_message(span_warning("[H] looks unwell..."), span_warning("I feel dizzy... and I've been poisoned!"))
@@ -75,7 +75,7 @@
 						to_chat(H, span_userdanger("Unholy wrath rebukes my presence! My body catches aflame!"))
 						H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
-				if(/datum/patron/inhumen/matthios)
+				if(/datum/patron/concordat/morwenna)
 					if(HAS_TRAIT(H, TRAIT_NOBLE))
 						damage += 10 
 						H.adjust_fire_stacks(4) //ditto to Astrata
@@ -89,7 +89,7 @@
 						to_chat(H, span_userdanger("Unholy wrath rebukes my presence! My body catches aflame!"))
 						H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
-				if(/datum/patron/inhumen/graggar)
+				if(/datum/patron/oldkin/volkovoi)
 					H.visible_message(span_warning("A splatter of blood covers [H]'s face!"), span_warning("A glob of blood splatters my vision!"))
 					H.Dizzy(5)
 					H.blur_eyes(5)
@@ -99,23 +99,23 @@
 						H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
 						H.Slowdown(4) //Suffer
-				if(/datum/patron/inhumen/zizo)
-					if(istype(H.patron, /datum/patron/divine/necra)) //Hilarious, always hit with full regardless of silver weak
+				if(/datum/patron/unveiled/aurelian)
+					if(istype(H.patron, /datum/patron/concordat/morwenna)) //Hilarious, always hit with full regardless of silver weak
 						H.adjust_fire_stacks(6, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
 						H.visible_message(span_warning("[H] is smited by unholy spite!"), span_warning("Zizo's seething <b>hatred</b> smites me!"))
 						H.Slowdown(3)
-					if(!HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/divine/necra)) //We churn you for NOT being silver weak. ZIZO. ZIZO. ZIZO.
+					if(!HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/concordat/morwenna)) //We churn you for NOT being silver weak. ZIZO. ZIZO. ZIZO.
 						H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/divine)
 						H.ignite_mob()
 						H.visible_message(span_warning("Seething ambition sears [H]'s flesh aflame!"), span_warning("Visions of progress and ambition sears my flesh, mynd and sets me aflame!"))
 						H.Slowdown(3)
-					if(HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/divine/necra)) //EXCEPT WEREWOLVES... Fuck Dendor. Specifically within werebeast form, hense the trait, not the antag check.
+					if(HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/concordat/morwenna)) //EXCEPT WEREWOLVES... Fuck Dendor. Specifically within werebeast form, hense the trait, not the antag check.
 						H.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine) //Less cause this is an actual antag, UNLESS they worship Necra in which case you kind of deserve this.
 						H.ignite_mob()
 						H.visible_message(span_warning("[H] is churned by unholy spite!"), span_warning("Zizo's seething <b>hatred</b> rebukes me!"))
 						H.Slowdown(3)
-					if(HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/divine/necra))
+					if(HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/concordat/morwenna))
 						H.visible_message(span_warning("Unholy spite slams into [H]!"), span_warning("Unholy spite slams into me!"))
 						H.Slowdown(2) //Less severe slowdown
 	else

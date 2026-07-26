@@ -39,7 +39,7 @@
 		var/obj/item/ritechalk/chalk = new /obj/item/ritechalk(H.loc)
 		H.put_in_r_hand(chalk)
 		neck = /obj/item/storage/belt/rogue/pouch/alchemy
-		wrists = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar
+		wrists = /obj/item/clothing/neck/roguetown/psicross/volkovoi
 		don_pelt(H)
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
 		C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MINOR, start_maxed = TRUE)

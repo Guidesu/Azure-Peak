@@ -838,7 +838,7 @@ var/global/mob/_corpse_sort_ref = null
 			to_chat(user, span_warning("Necra cares not for the vows of the corrupted."))
 			revert_cast()
 			return FALSE
-		if(H.has_status_effect(/datum/status_effect/buff/necras_vow) || H.patron?.type != /datum/patron/divine/necra)
+		if(H.has_status_effect(/datum/status_effect/buff/necras_vow) || H.patron?.type != /datum/patron/concordat/morwenna)
 			to_chat(user, span_notice("They have already pledged a vow."))
 			revert_cast()
 			return FALSE

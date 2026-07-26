@@ -18,6 +18,32 @@
 #define ITEM_QUALITY_MULT_FLAWLESS    1.30
 #define ITEM_QUALITY_MULT_MASTERWORK  1.50
 
+// Stat multipliers applied to combat/armor stats (force, throwforce, max_integrity, wdefense, armor ratings)
+// on quality-tiered items. Kept separate from the price multipliers above (ITEM_QUALITY_MULT_*) since
+// stat swings should be gentler than price swings — a "looted" weapon shouldn't lose 80% of its damage.
+// Range loosely modeled on Vanderlin's blacksmithing quality calculator (~0.6-1.3 swing), widened slightly
+// to cover this repo's extra bottom tiers (looted/ruined) and top tier (masterwork).
+#define ITEM_QUALITY_STAT_MULT_LOOTED      0.20
+#define ITEM_QUALITY_STAT_MULT_RUINED      0.20
+#define ITEM_QUALITY_STAT_MULT_AWFUL       0.55
+#define ITEM_QUALITY_STAT_MULT_CRUDE       0.75
+#define ITEM_QUALITY_STAT_MULT_ROUGH       0.90
+#define ITEM_QUALITY_STAT_MULT_STANDARD    1.00
+#define ITEM_QUALITY_STAT_MULT_FINE        1.10
+#define ITEM_QUALITY_STAT_MULT_FLAWLESS    1.25
+#define ITEM_QUALITY_STAT_MULT_MASTERWORK  1.50
+
+#define ITEM_QUALITY_STAT_MULT(Q) ( \
+	(Q) == ITEM_QUALITY_LOOTED     ? ITEM_QUALITY_STAT_MULT_LOOTED     : ( \
+	(Q) == ITEM_QUALITY_RUINED     ? ITEM_QUALITY_STAT_MULT_RUINED     : ( \
+	(Q) == ITEM_QUALITY_AWFUL      ? ITEM_QUALITY_STAT_MULT_AWFUL      : ( \
+	(Q) == ITEM_QUALITY_CRUDE      ? ITEM_QUALITY_STAT_MULT_CRUDE      : ( \
+	(Q) == ITEM_QUALITY_ROUGH      ? ITEM_QUALITY_STAT_MULT_ROUGH      : ( \
+	(Q) == ITEM_QUALITY_FINE       ? ITEM_QUALITY_STAT_MULT_FINE       : ( \
+	(Q) == ITEM_QUALITY_FLAWLESS   ? ITEM_QUALITY_STAT_MULT_FLAWLESS   : ( \
+	(Q) == ITEM_QUALITY_MASTERWORK ? ITEM_QUALITY_STAT_MULT_MASTERWORK : \
+	ITEM_QUALITY_STAT_MULT_STANDARD))))))))
+
 #define ITEM_QUALITY_PREFIX_LOOTED      "scavenged"
 #define ITEM_QUALITY_PREFIX_RUINED      "ruined"
 #define ITEM_QUALITY_PREFIX_AWFUL       "awful"

@@ -31,7 +31,7 @@
 
 /obj/structure/underworld/carriageman/examine(mob/living/user)
 	. = ..()
-	if((user.patron?.type == /datum/patron/divine/necra) && (HAS_TRAIT(user, TRAIT_RITUALIST)))
+	if((user.patron?.type == /datum/patron/concordat/morwenna) && (HAS_TRAIT(user, TRAIT_RITUALIST)))
 		. += (span_cult(" I could exchange a toll to refresh my rites..."))
 		return
 

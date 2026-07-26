@@ -3,6 +3,7 @@
 	check_same_tile = FALSE
 	intensity = 2
 	debug_erp_panel_verb = FALSE
+	subtle_supported = TRUE // Stealth-mode extension
 
 /datum/sex_action/miscellaneous/grind_body/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -25,7 +26,8 @@
 
 /datum/sex_action/miscellaneous/grind_body/on_perform_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] grinds against [target]."))
+	var/do_subtle = is_being_done_subtly(user, target)
+	stealth_visible_message(user, target, sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective(is_stealth = do_subtle)] grinds against [target]."))
 
 /datum/sex_action/miscellaneous/grind_body/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)

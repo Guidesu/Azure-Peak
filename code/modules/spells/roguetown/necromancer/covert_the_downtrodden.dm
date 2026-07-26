@@ -51,7 +51,7 @@
 		reset_spell_cooldown()
 		return FALSE
 
-	if(istype(target.patron, /datum/patron/vheslyn)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
+	if(istype(target.patron, /datum/patron/oldkin/klokner)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
 		to_chat(user, span_userdanger("[target] is UNFORGIVABLE, my attempt to convert them to my patron, violently sunders my lux!"))
 		if(!HAS_TRAIT(user, TRAIT_NOPAIN))
 			user.emote("agony")

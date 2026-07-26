@@ -54,7 +54,7 @@ The epilogue implies an impending war with Grenzelhoft - for breaking the status
 		return FALSE
 	if(!(user.job in GLOB.inquisition_positions))
 		return FALSE
-	if(!istype(user.patron, /datum/patron/old_god))
+	if(!istype(user.patron, /datum/patron/tribunal/praecursor))
 		return FALSE
 	return TRUE
 
@@ -79,7 +79,7 @@ The epilogue implies an impending war with Grenzelhoft - for breaking the status
 	if(HAS_TRAIT(follower, TRAIT_ROTMAN) || (follower.mob_biotypes & MOB_UNDEAD))
 		to_chat(follower, span_warning("Psydon does not suffer the undead."))
 		return FALSE
-	if(!istype(follower.patron, /datum/patron/old_god))
+	if(!istype(follower.patron, /datum/patron/tribunal/praecursor))
 		to_chat(follower, span_warning("Only the faithful of Psydon may speak assent to this tribunal."))
 		return FALSE
 	if(assenters[follower])

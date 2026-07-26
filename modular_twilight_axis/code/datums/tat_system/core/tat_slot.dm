@@ -53,3 +53,4 @@
 	if(!summary_dirty && islist(summary_cache))
 		return summary_cache
 	return refresh_summary(owner_build)
+

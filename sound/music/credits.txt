@@ -16,7 +16,7 @@ combat_bandit_brigand: Silent Scream - Lateralis
 combat_baotha.ogg: T87-Sulfurhead - Love Within You (Rough Mix) [https://www.youtube.com/@T87-Sulfurhead]
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
 combat_courtmage: T-87 SULFURHEAD - MANASURGE[https://www.youtube.com/@T87-Sulfurhead]
-combat_cult.ogg: Igor Kornelyuk - Воланд
+combat_cult.ogg: Igor Kornelyuk - Voland
 combat_cutpurse: T-87 SULFURHEAD - Cutpurse[https://www.youtube.com/@T87-Sulfurhead]
 combat_darkstar: T-87 SULFURHEAD - Archetype of the Dark Star[https://www.youtube.com/@T87-Sulfurhead]
 combat_deadlyshadows: T-87 SULFURHEAD - Deadly Shadows[https://www.youtube.com/@T87-Sulfurhead]

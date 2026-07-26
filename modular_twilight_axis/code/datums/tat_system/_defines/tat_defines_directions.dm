@@ -1,16 +1,17 @@
-#define TAT_DIRECTION_POINTS 8
-
-#define TAT_TOWNER_BATTLE_DIRECTION_COST_MODE_GLOBAL "global"
-#define TAT_TOWNER_BATTLE_DIRECTION_COST_MODE_BRANCH "branch"
-#define TAT_TOWNER_BATTLE_DIRECTION_COST_MODE TAT_TOWNER_BATTLE_DIRECTION_COST_MODE_GLOBAL
+#define TAT_DIRECTION_POINTS 20
 
 #define TAT_FOUNDATION_SETTLED "settled"
-#define TAT_FOUNDATION_WANDERER "wanderer"
+// Wanderer foundation removed: retain the old token as an alias so legacy TAT
+// slots import cleanly into the single Starter archetype.
+#define TAT_FOUNDATION_WANDERER TAT_FOUNDATION_SETTLED
 
-#define TAT_ROLE_CHOICE_TOWNER TAT_ROLE_BUCKET_TOWNER
-#define TAT_ROLE_CHOICE_TRADER TAT_ROLE_BUCKET_TRADER
-#define TAT_ROLE_CHOICE_ADVENTURER TAT_ROLE_BUCKET_ADVENTURER
-#define TAT_ROLE_CHOICE_WRETCH TAT_ROLE_BUCKET_WRETCH
+#define TAT_ROLE_CHOICE_STARTER "starter"
+// All four legacy role choices are retained as aliases so old saves still
+// denormalize safely, but gameplay now uses TAT_ROLE_CHOICE_STARTER only.
+#define TAT_ROLE_CHOICE_TOWNER    TAT_ROLE_CHOICE_STARTER
+#define TAT_ROLE_CHOICE_TRADER    TAT_ROLE_CHOICE_STARTER
+#define TAT_ROLE_CHOICE_ADVENTURER TAT_ROLE_CHOICE_STARTER
+#define TAT_ROLE_CHOICE_WRETCH    TAT_ROLE_CHOICE_STARTER
 
 #define TAT_DIRECTION_COMBAT "combat"
 #define TAT_DIRECTION_RANGED "ranged"
@@ -43,38 +44,44 @@
 	TAT_DIRECTION_ORDINARY = "Ordinary" \
 )
 
-#define TAT_TOWNER_BATTLE_DIRECTIONS list( \
-	TAT_DIRECTION_COMBAT, \
-	TAT_DIRECTION_RANGED, \
-	TAT_DIRECTION_MIRACLES, \
-	TAT_DIRECTION_MAGIC \
-)
+// Towner battle grouping removed: single archetype uses uniform linear costs.
+#define TAT_TOWNER_BATTLE_DIRECTIONS list()
 
 #define TAT_FOUNDATION_NAMES list( \
-	TAT_FOUNDATION_SETTLED = "Shenanigans", \
-	TAT_FOUNDATION_WANDERER = "Wanderer" \
+	TAT_FOUNDATION_SETTLED = "Starter" \
 )
 
 #define TAT_FOUNDATION_ROLE_CHOICES list( \
-	TAT_FOUNDATION_SETTLED = list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER), \
-	TAT_FOUNDATION_WANDERER = list(TAT_ROLE_CHOICE_ADVENTURER, TAT_ROLE_CHOICE_WRETCH) \
+	TAT_FOUNDATION_SETTLED = list(TAT_ROLE_CHOICE_STARTER) \
 )
 
 #define TAT_ROLE_CHOICE_NAMES list( \
-	TAT_ROLE_CHOICE_TOWNER = "Resident", \
-	TAT_ROLE_CHOICE_TRADER = "Trader", \
-	TAT_ROLE_CHOICE_ADVENTURER = "Adventurer", \
-	TAT_ROLE_CHOICE_WRETCH = "Wretch" \
+	TAT_ROLE_CHOICE_STARTER = "Starter", \
+	TAT_ROLE_CHOICE_TOWNER = "Starter", \
+	TAT_ROLE_CHOICE_TRADER = "Starter", \
+	TAT_ROLE_CHOICE_ADVENTURER = "Starter", \
+	TAT_ROLE_CHOICE_WRETCH = null \
 )
 
 #define TAT_ROLE_CHOICE_EFFECTIVE_TRAITS list( \
-	TAT_ROLE_CHOICE_TOWNER = TAT_TRAIT_RESIDENT, \
-	TAT_ROLE_CHOICE_ADVENTURER = TRAIT_OUTLANDER, \
-	TAT_ROLE_CHOICE_WRETCH = TAT_TRAIT_WANTED \
+	TAT_ROLE_CHOICE_STARTER = null, \
+	TAT_ROLE_CHOICE_TOWNER = null, \
+	TAT_ROLE_CHOICE_TRADER = null, \
+	TAT_ROLE_CHOICE_ADVENTURER = null, \
+	TAT_ROLE_CHOICE_WRETCH = null \
 )
 
 #define TAT_DIRECTION_ENTRY(_direction, _reqs, _tier) list("direction" = (_direction), "requirements" = (_reqs), "tier" = (_tier))
 
+// Per-trait direction categorization and point requirements. Role/foundation
+// GATING was removed for the single-Starter build (nobody needs to be a
+// specific archetype to buy a trait), but this table is what tells the UI
+// which direction tab a trait lives under and how many direction points it
+// costs to unlock — that part was never meant to go away. It previously read
+// as an empty list here, which silently dumped every trait into "Ordinary."
+// Point thresholds below are carried over unscaled from when
+// TAT_DIRECTION_POINTS was 8; now that the pool is 20, consider whether they
+// should be raised to keep the same relative difficulty.
 #define TAT_DIRECTION_TRAIT_RULES list( \
 	TAT_TRAIT_WEAPON_TRAINING = TAT_DIRECTION_ENTRY(TAT_DIRECTION_COMBAT, list(TAT_DIRECTION_COMBAT = 1), 1), \
 	TAT_TRAIT_WARRIOR_EXPERT = TAT_DIRECTION_ENTRY(TAT_DIRECTION_COMBAT, list(TAT_DIRECTION_COMBAT = 3), 3), \
@@ -155,7 +162,7 @@
 	TAT_TRAIT_STRAYING_SOUL_APPRENTICE = TAT_DIRECTION_ENTRY(TAT_DIRECTION_SKILLS, list(TAT_DIRECTION_SKILLS = 1), 1), \
 	TRAIT_KEENEARS = TAT_DIRECTION_ENTRY(TAT_DIRECTION_SKILLS, list(TAT_DIRECTION_SKILLS = 2), 2), \
 	TAT_TRAIT_CONTRACTOR_ENTITY = TAT_DIRECTION_ENTRY(TAT_DIRECTION_ORDINARY, list(TAT_DIRECTION_ORDINARY = 0), 0), \
-	TAT_TRAIT_PLIANT_RENAME = TAT_DIRECTION_ENTRY(TAT_DIRECTION_ORDINARY, list(TAT_DIRECTION_ORDINARY = 0), 0), \
+	TAT_TRAIT_FREE_SOUL_RENAME = TAT_DIRECTION_ENTRY(TAT_DIRECTION_ORDINARY, list(TAT_DIRECTION_ORDINARY = 0), 0), \
 	TRAIT_NASTY_EATER = TAT_DIRECTION_ENTRY(TAT_DIRECTION_ORDINARY, list(TAT_DIRECTION_ORDINARY = 0), 0), \
 	TRAIT_GOODLOVER = TAT_DIRECTION_ENTRY(TAT_DIRECTION_SKILLS, list(TAT_DIRECTION_SKILLS = 1), 1), \
 	TRAIT_TECHNOPHOBE = TAT_DIRECTION_ENTRY(TAT_DIRECTION_ORDINARY, list(TAT_DIRECTION_ORDINARY = 0), 0), \
@@ -218,9 +225,14 @@
 	TAT_TRAIT_POLYGLOT = TAT_DIRECTION_ENTRY(TAT_DIRECTION_SKILLS, list(TAT_DIRECTION_SKILLS = 2), 2) \
 )
 
+// The single-Starter build deliberately has no role/foundation gates on top of
+// this table (see get_trait_rule() in tat_directions.dm) — every trait is
+// purchasable regardless of archetype. Direction categorization and point
+// costs above still apply.
 GLOBAL_LIST_INIT(tat_direction_names, TAT_DIRECTION_NAMES)
 GLOBAL_LIST_INIT(tat_foundation_names, TAT_FOUNDATION_NAMES)
 GLOBAL_LIST_INIT(tat_foundation_role_choices, TAT_FOUNDATION_ROLE_CHOICES)
 GLOBAL_LIST_INIT(tat_role_choice_names, TAT_ROLE_CHOICE_NAMES)
-GLOBAL_LIST_INIT(tat_role_choice_effective_traits, TAT_ROLE_CHOICE_EFFECTIVE_TRAITS)
 GLOBAL_LIST_INIT(tat_direction_trait_rules, TAT_DIRECTION_TRAIT_RULES)
+
+

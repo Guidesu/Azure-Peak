@@ -63,88 +63,71 @@
 	qdel(src)
 	return
 
-//////////////////////
-///   TEN CURSES   ///
-//////////////////////
+//////////////////////////
+///   CONCORDAT CURSES  ///
+//////////////////////////
+// Astrata+Ravox merged into Auxentius; Noc+Eora merged into Miluse; Malum+Pestra merged into Handwerra;
+// Necra+Matthios merged into Morwenna (see Old Kin / Tribunal sections below for the rest).
 
-/datum/curse/astrata
-	name = "Curse of Astrata"
-	description = "I am forsaken by the Sun. I will find no rest under Her unwavering gaze."
-	trait = TRAIT_CURSE_ASTRATA
+/datum/curse/auxentius
+	name = "Curse of Auxentius"
+	description = "I am forsaken by the Sun and His Law. I will find no rest under His unwavering gaze, and my opponents will show me no clemency."
+	trait = TRAIT_CURSE_AUXENTIUS
 
-/datum/curse/noc
-	name = "Curse of Noc"
-	description = "I am forsaken by the Moon. I will find no salvation in His grace."
-	trait = TRAIT_CURSE_NOC
+/datum/curse/miluse
+	name = "Curse of Miluše"
+	description = "I am forsaken by the Moon. I will find no salvation in Her grace, and no beauty in this world."
+	trait = TRAIT_CURSE_MILUSE
 
-/datum/curse/dendor
-	name = "Curse of Dendor"
-	description = "I am forsaken by the Treefather. Reason and common sense abandon me."
-	trait = TRAIT_CURSE_DENDOR //Needs something unique but come up with it later:tm:
+/datum/curse/ignatius
+	name = "Curse of Ignatius"
+	description = "I am forsaken by the Restless One. Reason and common sense abandon me."
+	trait = TRAIT_CURSE_IGNATIUS //Needs something unique but come up with it later:tm:
 
-/datum/curse/abyssor
-	name = "Curse of Abyssor"
-	description = "I am forsaken by the Dreamer. His domain will surely become my grave."
-	trait = TRAIT_CURSE_ABYSSOR
+/datum/curse/wulfric
+	name = "Curse of Wulfric"
+	description = "I am forsaken by the Hearth-Warden. His domain will surely become my grave."
+	trait = TRAIT_CURSE_WULFRIC
 
-/datum/curse/ravox
-	name = "Curse of Ravox"
-	description = "I am forsaken by the Justicar. My opponents will show me no clemency."
-	trait = TRAIT_CURSE_RAVOX
+/datum/curse/morwenna
+	name = "Curse of Morwenna"
+	description = "I am forsaken by the Undermaiden. Even the lightest strike could send me into Her embrace, and greed will be my only salvation."
+	trait = TRAIT_CURSE_MORWENNA //Should be crit weakness still just flavour:tm:
 
-/datum/curse/necra
-	name = "Curse of Necra"
-	description = "I am forsaken by the Undermaiden. Even the lightest strike could send me into Her embrace."
-	trait = TRAIT_CURSE_NECRA //Should be crit weakness still just flavour:tm:
+/datum/curse/viator
+	name = "Curse of Viator"
+	description = "I am forsaken by the Wayfarer. Misfortune follows me on every step."
+	trait = TRAIT_CURSE_VIATOR
 
-/datum/curse/xylix
-	name = "Curse of Xylix"
-	description = "I am forsaken by the Trickster. Misfortune follows me on every step."
-	trait = TRAIT_CURSE_XYLIX
+/datum/curse/handwerra
+	name = "Curse of Handwerra"
+	description = "I am forsaken by the Maker. My hands tremble, fog overwhelms my mind, and sickness renders even the simplest of tasks a challenge."
+	trait = TRAIT_CURSE_HANDWERRA
 
-/datum/curse/pestra
-	name = "Curse of Pestra"
-	description = "I am forsaken by the Plaguemother. Sickness overwhelms my body rendering even simplest of tasks into a challenge."
-	trait = TRAIT_CURSE_PESTRA
+//////////////////////////
+///   OLD KIN CURSES    ///
+//////////////////////////
 
-/datum/curse/malum
-	name = "Curse of Malum"
-	description = "I am forsaken by the Maker. My hands tremble and fog overwhelms my mind."
-	trait = TRAIT_CURSE_MALUM
+/datum/curse/aurelian
+	name = "Curse of Aurelian"
+	description = "I am forsaken by the Unveiled Edge. Her grasp reaches for my heart."
+	trait = TRAIT_CURSE_AURELIAN
 
-/datum/curse/eora
-	name = "Curse of Eora"
-	description = "I am forsaken by the Lover. There is no beauty to be found for me in this world."
-	trait = TRAIT_CURSE_EORA
+/datum/curse/volkovoi
+	name = "Curse of Volkovoi"
+	description = "I am forsaken by the Winter-Father. Bloodlust is only thing I know for real."
+	trait = TRAIT_CURSE_VOLKOVOI
 
-////////////////////////////
-///   ASCENDANT CURSES   ///
-////////////////////////////
-/datum/curse/zizo
-	name = "Curse of Zizo"
-	description = "I am forsaken by the Architect. Her grasp reaches for my heart."
-	trait = TRAIT_CURSE_ZIZO
-
-/datum/curse/graggar
-	name = "Curse of Graggar"
-	description = "I am forsaken by the Warlord. Bloodlust is only thing I know for real."
-	trait = TRAIT_CURSE_GRAGGAR
-
-/datum/curse/matthios
-	name = "Curse of Matthios"
-	description = "I am forsaken by the Dragon. Greed will be my only salvation."
-	trait = TRAIT_CURSE_MATTHIOS
-
-/datum/curse/baotha
-	name = "Curse of Baotha"
-	description = "I am forsaken by the Heartbreaker. I am drowning in her promises."
-	trait = TRAIT_CURSE_BAOTHA
+/datum/curse/hausvette
+	name = "Curse of Hausvette"
+	description = "I am forsaken by the Hearth-Keeper. I am drowning in her promises."
+	trait = TRAIT_CURSE_HAUSVETTE
 
 //////////////////////
 ///	ON LIFE	 ///
 //////////////////////
 
-/datum/curse/astrata/on_life(mob/user)
+/datum/curse/auxentius/on_life(mob/user)
 	if(!user)
 		return
 	var/mob/living/carbon/human/H = user
@@ -161,7 +144,7 @@
 					if(T.get_lumcount() > 0.15)
 						H.fire_act(1,5)
 
-/datum/curse/noc/on_life(mob/user)
+/datum/curse/miluse/on_life(mob/user)
 	if(!user)
 		return
 	var/mob/living/carbon/human/H = user
@@ -183,43 +166,41 @@
 /// ON GAIN / LOSS ///
 //////////////////////
 
-//TENNITES//
-
-//ASTRATA//
-/datum/curse/astrata/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//AUXENTIUS// (Astrata's sleeplessness + Ravox's combat malus)
+/datum/curse/auxentius/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	if(curse_resist && prob(50))
 		return
 	ADD_TRAIT(owner, TRAIT_NOSLEEP, TRAIT_GENERIC)
 
-/datum/curse/astrata/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/auxentius/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_NOSLEEP, TRAIT_GENERIC)
 
-//NECRA//
-/datum/curse/necra/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//MORWENNA// (Necra's crit weakness/CON nuke)
+/datum/curse/morwenna/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STACON -= (10 * (1 - curse_resist))
 	if(curse_resist && prob(50))
 		return
 	ADD_TRAIT(owner, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 
-/datum/curse/necra/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/morwenna/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STACON += (10 * (1 - curse_resist))
 	REMOVE_TRAIT(owner, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 
-//XYLIX//
-/datum/curse/xylix/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//VIATOR// (Xylix's luck nuke)
+/datum/curse/viator/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STALUC -= (20 * (1 - curse_resist))
 
-/datum/curse/xylix/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/viator/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STALUC += (20 * (1 - curse_resist))
 
-//PESTRA//
-/datum/curse/pestra/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//HANDWERRA// (Pestra's stamina/no-run/missing nose)
+/datum/curse/handwerra/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STAWIL -= (10 * (1 - curse_resist))
 	if(curse_resist && prob(50))
@@ -227,14 +208,14 @@
 	ADD_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
 	ADD_TRAIT(owner, TRAIT_MISSING_NOSE, TRAIT_GENERIC)
 
-/datum/curse/pestra/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/handwerra/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STAWIL += (10 * (1 - curse_resist))
 	REMOVE_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_MISSING_NOSE, TRAIT_GENERIC)
 
-//EORA//
-/datum/curse/eora/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//MILUSE// (Eora's trait trio)
+/datum/curse/miluse/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	var/curse_chance = (100 * (1 - curse_resist))
 	if(prob(curse_chance))
@@ -244,51 +225,40 @@
 	if(prob(curse_chance))
 		ADD_TRAIT(owner, TRAIT_BAD_MOOD, TRAIT_GENERIC)
 
-/datum/curse/eora/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/miluse/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_UNSEEMLY, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_BAD_MOOD, TRAIT_GENERIC)
 
-//ASCENDANTS//
+//OLD KIN//
 
-//ZIZO//
-/datum/curse/zizo/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//AURELIAN//
+/datum/curse/aurelian/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STAINT -= (20 * (1 - curse_resist))
 	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, TRAIT_GENERIC)
 
-/datum/curse/zizo/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/aurelian/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STAINT += (20 * (1 - curse_resist))
 	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, TRAIT_GENERIC)
 
-//GRAGGAR//
-/datum/curse/graggar/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//VOLKOVOI//
+/datum/curse/volkovoi/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STASTR -= (14 * (1 - curse_resist))
 	ADD_TRAIT(owner, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	ADD_TRAIT(owner, TRAIT_INHUMEN_ANATOMY, TRAIT_GENERIC)
 
-/datum/curse/graggar/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/volkovoi/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	owner.STASTR += (14 * (1 - curse_resist))
 	REMOVE_TRAIT(owner, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_INHUMEN_ANATOMY, TRAIT_GENERIC)
 
-//MATTHIOS//
-/datum/curse/matthios/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
-	. = ..()
-	owner.STALUC -= (14 * (1 - curse_resist))
-	ADD_TRAIT(owner, TRAIT_CLUMSY, TRAIT_GENERIC)
-
-/datum/curse/matthios/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
-	. = ..()
-	owner.STALUC += (14 * (1 - curse_resist))
-	REMOVE_TRAIT(owner, TRAIT_CLUMSY, TRAIT_GENERIC)
-
-//BAOTHA//
-/datum/curse/baotha/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
+//HAUSVETTE//
+/datum/curse/hausvette/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	var/curse_chance = (100 * (1 - curse_resist))
 	if(prob(curse_chance))
@@ -298,7 +268,7 @@
 	if(prob(curse_chance))
 		ADD_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
 
-/datum/curse/baotha/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
+/datum/curse/hausvette/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_NUDIST, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_NUDE_SLEEPER, TRAIT_GENERIC)

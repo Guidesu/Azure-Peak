@@ -321,7 +321,7 @@
 			return TRUE
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon = target
-			if(carbon.patron?.type != /datum/patron/divine/abyssor)
+			if(carbon.patron?.type != /datum/patron/concordat/wulfric)
 				var/fatdrain = user.get_skill_level(associated_skill) * base_fatdrain
 				carbon.stamina_add(fatdrain)
 		target.Dizzy(10)

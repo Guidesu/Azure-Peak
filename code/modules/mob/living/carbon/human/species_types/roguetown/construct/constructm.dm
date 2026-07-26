@@ -4,7 +4,7 @@
 /datum/species/construct/metal
 	name = "Metal Construct"
 	id = "constructm"
-	origin_default = /datum/virtue/origin/naledi
+	origin_default = /datum/virtue/origin/auxentia
 	origin = "Naledi"
 	base_name = "Godtouched"
 	is_subrace = TRUE

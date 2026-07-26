@@ -1790,7 +1790,30 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		name = "[prefix] [name]"
 	if(initial(sellprice) > 0)
 		sellprice = max(1, round(sellprice * ITEM_QUALITY_MULT(tier)))
+	apply_quality_stats(tier)
 	return tier
+
+/// Scales combat/armor stats based on the given quality tier. Called from apply_quality() right after
+/// the tier is rolled and the price multiplier is applied. Only touches stat vars that are actually
+/// nonzero on the item, so this is safe to call on any /obj/item regardless of subtype (weapon, armor,
+/// tool, etc.) without accidentally creating stats on items that shouldn't have them.
+/obj/item/proc/apply_quality_stats(tier)
+	var/mult = ITEM_QUALITY_STAT_MULT(tier)
+	if(mult == ITEM_QUALITY_STAT_MULT_STANDARD)
+		return
+	if(isnum(force) && force > 0)
+		force = round(force * mult, 0.1)
+	if(isnum(throwforce) && throwforce > 0)
+		throwforce = round(throwforce * mult, 0.1)
+	if(isnum(max_integrity) && max_integrity > 0)
+		max_integrity = round(max_integrity * mult)
+		obj_integrity = max_integrity
+	if(isnum(wdefense) && wdefense > 0)
+		wdefense = round(wdefense * mult, 0.1)
+	if(istype(src, /obj/item/clothing))
+		var/obj/item/clothing/C = src
+		if(C.armor)
+			C.armor = C.armor.multiplymodifyAllRatings(mult)
 
 /obj/item/proc/mark_as_looted()
 	if(looted)

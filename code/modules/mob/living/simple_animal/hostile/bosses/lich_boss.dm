@@ -40,7 +40,7 @@
 	/obj/projectile/magic/arcane_barrage, 
 	/obj/projectile/magic/acidsplash,
 	/obj/projectile/magic/spitfire)
-	patron = /datum/patron/inhumen/zizo
+	patron = /datum/patron/unveiled/aurelian
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 

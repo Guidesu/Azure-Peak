@@ -1,26 +1,26 @@
 /proc/get_templar_patron_dagger(mob/living/carbon/human/H)
 	switch(H.patron?.type)
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/astrata
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/noc_twilight
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/necra_osteotome
-		if(/datum/patron/divine/ravox)
+		if(/datum/patron/concordat/auxentius)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/ravox
-		if(/datum/patron/divine/malum)
+		if(/datum/patron/concordat/handwerra)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/malum
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/dendor
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/abyssor
-		if(/datum/patron/divine/eora)
+		if(/datum/patron/concordat/miluse)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/eora_misericorde
-		if(/datum/patron/divine/pestra)
+		if(/datum/patron/concordat/handwerra)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			return /obj/item/rogueweapon/huntingknife/idagger/steel/undivided
 	return null
 

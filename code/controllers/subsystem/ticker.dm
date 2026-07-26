@@ -831,7 +831,7 @@ SUBSYSTEM_DEF(ticker)
 	addomen(OMEN_SUNSTEAL)
 	SSParticleWeather.run_weather(/datum/particle_weather/fog/blood, TRUE)
 	for(var/mob/living/carbon/human/astrater as anything in GLOB.human_list)
-		if(!istype(astrater.patron, /datum/patron/divine/astrata))
+		if(!istype(astrater.patron, /datum/patron/concordat/auxentius))
 			continue
 		to_chat(astrater, span_userdanger("You feel the pain of [astrater.patron]!"))
 		astrater.playsound_local(get_turf(astrater), 'sound/misc/astratascream.ogg', 60, FALSE, pressure_affected = FALSE) //Only Astratians can hear their godess scream in agony.
@@ -893,7 +893,7 @@ SUBSYSTEM_DEF(ticker)
 	priority_announce("WAVE OF AGONY. ASTRATA BLOTS AS AN IMPOSSIBLY-SHAPED NOOSPHERIC GLOME RADIATES BURNING FEAR-HEAT. SCORCHING RAY OF NOTHING; THE WORM SCREAMS DOWN UPON ME IN MALICE. DEADLY HEAT BEGINS TO CREEP INTO THE AIR.", "THE WORM AWAKENS, THE WORLD BURNS // EKPYROSIS - GOD O GOD WHERE'RT THOU?", 'sound/villain/ascendant_intro.ogg')
 	addomen(OMEN_SUNSCORCH)
 	for(var/mob/living/carbon/human/nocite as anything in GLOB.human_list)
-		if(!istype(nocite.patron, /datum/patron/divine/noc))
+		if(!istype(nocite.patron, /datum/patron/concordat/miluse))
 			continue
 		to_chat(nocite, span_userdanger("AGONY. I CAN NOT HEAR [nocite.patron]. THEY ARE LOST TO ME."))
 		nocite.emote("painscream", intentional = FALSE)
@@ -916,7 +916,7 @@ SUBSYSTEM_DEF(ticker)
 		CHECK_TICK
 
 	for(var/mob/living/carbon/human/human in GLOB.human_list)
-		if(istype(human.patron, /datum/patron/divine/astrata))
+		if(istype(human.patron, /datum/patron/concordat/auxentius))
 			continue
 
 		human.stress_freakout()

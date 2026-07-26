@@ -172,7 +172,7 @@
 			qdel(F)
 	if(isliving(AM) && !AM.throwing)
 		var/mob/living/L = AM
-		if(HAS_TRAIT(L, TRAIT_CURSE_ABYSSOR))
+		if(HAS_TRAIT(L, TRAIT_CURSE_WULFRIC))
 			L.freak_out()
 			L.visible_message(span_warning("[L] spasms violently upon touching the water!"), span_danger("The water... it burns me!"))
 			L.adjustFireLoss(25)

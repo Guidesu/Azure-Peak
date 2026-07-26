@@ -60,7 +60,7 @@
 /datum/crafting_recipe/roguetown/structure/psydon_cross
 	name = "wooden psydonic crucifix"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/psycrucifix
+	result = /obj/structure/fluff/psycross/praecursorcrucifix
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/grown/log/tree/stake = 3)
 	verbage_simple = "construct"
@@ -69,7 +69,7 @@
 /datum/crafting_recipe/roguetown/structure/psydon_cross_stone
 	name = "stone psydonic crucifix"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/psycrucifix/stone
+	result = /obj/structure/fluff/psycross/praecursorcrucifix/stone
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -77,7 +77,7 @@
 /datum/crafting_recipe/roguetown/structure/psydon_cross_silver
 	name = "silver psydonic crucifix"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/psycrucifix/silver
+	result = /obj/structure/fluff/psycross/praecursorcrucifix/silver
 	reqs = list(/obj/item/ingot/silverblessed = 1,
 				/obj/item/ingot/steel = 2)
 	verbage_simple = "construct"
@@ -88,7 +88,7 @@
 /datum/crafting_recipe/roguetown/structure/astrata_cross
 	name = "wooden astrata cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/astrata
+	result = /obj/structure/fluff/psycross/auxentius
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/grown/log/tree/stake = 3)
 	verbage_simple = "construct"
@@ -97,7 +97,7 @@
 /datum/crafting_recipe/roguetown/structure/astrata_cross_stone
 	name = "stone astrata cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/astrata/stone
+	result = /obj/structure/fluff/psycross/auxentius/stone
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -105,7 +105,7 @@
 /datum/crafting_recipe/roguetown/structure/astrata_cross_gold
 	name = "gilded astrata cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/astrata/golden
+	result = /obj/structure/fluff/psycross/auxentius/golden
 	reqs =	list(/obj/item/natural/stone = 3, /obj/item/rogueore/gold = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -133,12 +133,12 @@
 	category = "Misc"
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/grown/log/tree/stake = 3)
-	result = /obj/structure/fluff/psycross/zizocross
+	result = /obj/structure/fluff/psycross/aurelian
 
 /datum/crafting_recipe/roguetown/structure/zizo_cross_stone
 	name = "stone profane cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/zizocross/stone
+	result = /obj/structure/fluff/psycross/aurelian/stone
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -146,7 +146,7 @@
 /datum/crafting_recipe/roguetown/structure/zizo_cross_gold
 	name = "gilded profane cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/zizocross/golden
+	result = /obj/structure/fluff/psycross/aurelian/golden
 	reqs =	list(/obj/item/natural/stone = 3, /obj/item/rogueore/gold = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -154,7 +154,7 @@
 /datum/crafting_recipe/roguetown/structure/graggar_cross_stone
 	name = "stone vicious cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/graggar
+	result = /obj/structure/fluff/psycross/volkovoi
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -163,7 +163,7 @@
 /datum/crafting_recipe/roguetown/structure/graggar_cross_meat
 	name = "revered vicious cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/graggar/decorated
+	result = /obj/structure/fluff/psycross/volkovoi/decorated
 	reqs =	list(/obj/item/natural/stone = 3, /obj/item/reagent_containers/food/snacks/rogue/meat = 2)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -172,7 +172,7 @@
 /datum/crafting_recipe/roguetown/structure/matthios_cross_stone
 	name = "stone grinning cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/matthios
+	result = /obj/structure/fluff/psycross/morwenna
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -181,7 +181,7 @@
 /datum/crafting_recipe/roguetown/structure/matthios_cross_meat
 	name = "ornate grinning cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/matthios/decorated
+	result = /obj/structure/fluff/psycross/morwenna/decorated
 	reqs =	list(/obj/item/natural/stone = 3, /obj/item/roguecoin/gold = 4)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -190,7 +190,7 @@
 /datum/crafting_recipe/roguetown/structure/baotha_cross_stone
 	name = "stone spider cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/baotha
+	result = /obj/structure/fluff/psycross/hausvette
 	reqs =	list(/obj/item/natural/stone = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
@@ -199,7 +199,7 @@
 /datum/crafting_recipe/roguetown/structure/baotha_cross_meat
 	name = "webbed spider cross"
 	category = "Misc"
-	result = /obj/structure/fluff/psycross/baotha/decorated
+	result = /obj/structure/fluff/psycross/hausvette/decorated
 	reqs =	list(/obj/item/natural/stone = 3, /obj/item/natural/silk = 2)
 	verbage_simple = "construct"
 	verbage = "constructs"

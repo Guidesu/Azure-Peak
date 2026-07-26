@@ -18,12 +18,14 @@
 #define TAT_TRAIT_WARRIOR_MASTER_COMBAT_POINTS 4
 
 #define TAT_SKILL_DOMAIN_COMBAT "combat"
-#define TAT_SKILL_DOMAIN_PEACEFUL "peaceful"
-#define TAT_SKILL_DOMAIN_ADVENTURE "adventure"
+#define TAT_SKILL_DOMAIN_LABOUR "labour"
+#define TAT_SKILL_DOMAIN_MISC "misc"
 #define TAT_SKILL_DOMAIN_WANDERING "wandering"
 #define TAT_SKILL_DOMAIN_GATHERING "gathering"
 #define TAT_SKILL_DOMAIN_CRAFTING "crafting"
-#define TAT_SKILL_DOMAIN_MISC "misc"
+// TAT_SKILL_DOMAIN_MISC already defined above as "misc"; the old "misc" alias
+// for adventure is intentionally removed so the subdomain list names carry
+// the new parent domain identity.
 
 #define TAT_SKILLS_COMBAT list( \
 	/datum/skill/combat/knives, \
@@ -91,11 +93,13 @@
 #define TAT_SKILLS_ALL (TAT_SKILLS_COMBAT + TAT_SKILLS_WANDERING + TAT_SKILLS_GATHERING + TAT_SKILLS_CRAFTING + TAT_SKILLS_MISC)
 
 #define TAT_DEFAULT_SKILL_DOMAIN_POINTS list( \
-	TAT_SKILL_DOMAIN_COMBAT = 6, \
-	TAT_SKILL_DOMAIN_PEACEFUL = 6, \
-	TAT_SKILL_DOMAIN_ADVENTURE = 6 \
+	TAT_SKILL_DOMAIN_COMBAT = 8, \
+	TAT_SKILL_DOMAIN_LABOUR = 6, \
+	TAT_SKILL_DOMAIN_MISC = 6 \
 )
 
+// Virtue rules are preserved for reference but are not fed through the
+// active-virtue cache into TAT builds; see tat_ui.dm and tat_traits.dm.
 #define TAT_VIRTUE_CHOICE_SKILLED_BSMITH "Blacksmith Apprentice"
 #define TAT_VIRTUE_CHOICE_SKILLED_TAILOR "Tailor Apprentice"
 #define TAT_VIRTUE_CHOICE_SKILLED_HUNTER "Hunter Apprentice"
@@ -133,7 +137,7 @@
 	/datum/virtue/utility/intellectual = list(/datum/skill/misc/reading = 3), \
 	/datum/virtue/utility/performer = list(/datum/skill/misc/music = 4), \
 	/datum/virtue/utility/granary = list(/datum/skill/craft/cooking = 3, /datum/skill/labor/fishing = 2), \
-	/datum/virtue/utility/homesteader = list(/datum/skill/labor/farming = TAT_SKILL_BASIC_BOOST, /datum/skill/labor/mining = TAT_SKILL_BASIC_BOOST, /datum/skill/craft/cooking = TAT_SKILL_BASIC_BOOST, /datum/skill/labor/fishing = TAT_SKILL_BASIC_BOOST, /datum/skill/labor/butchering = TAT_SKILL_BASIC_BOOST, /datum/skill/labor/lumberjacking = TAT_SKILL_BASIC_BOOST, /datum/skill/craft/masonry = TAT_SKILL_BASIC_BOOST, /datum/skill/craft/ceramics = TAT_SKILL_BASIC_BOOST, /datum/skill/craft/sewing = TAT_SKILL_BASIC_BOOST, /datum/skill/craft/tanning = TAT_SKILL_BASIC_BOOST), \
+	/datum/virtue/utility/homesteader = list(/datum/skill/craft/cooking = 3, /datum/skill/misc/athletics = 2, /datum/skill/labor/farming = 3, /datum/skill/labor/fishing = 3, /datum/skill/labor/lumberjacking = 2, /datum/skill/combat/knives = 2), \
 	/datum/virtue/utility/tracker = list(/datum/skill/misc/tracking = 3), \
 	/datum/virtue/utility/bronzelimbs = list(/datum/skill/craft/engineering = 1), \
 	/datum/virtue/thief/drug_runner = list(/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN), \
@@ -148,6 +152,10 @@
 	/datum/virtue/utility/performer = list(/datum/skill/misc/music = 6) \
 )
 
+// combat_virtue, apprentice, and prowler choice skills are granted directly by their own
+// apply_to_human() overrides (adjust_skillrank/adjust_skillrank_up_to), which
+// apply_tat_virtue_packages() still calls. Listing them here too would double that bonus,
+// so only their skill-cap raises (in the CAP rules below) are mirrored into TAT.
 #define TAT_VIRTUE_CHOICE_SKILL_BONUS_RULES list( \
 	/datum/virtue/utility/skilled = list( \
 		TAT_VIRTUE_CHOICE_SKILLED_BSMITH = list(/datum/skill/craft/weaponsmithing = 2, /datum/skill/craft/armorsmithing = 2, /datum/skill/craft/blacksmithing = 2, /datum/skill/craft/smelting = 2), \
@@ -157,26 +165,6 @@
 		TAT_VIRTUE_CHOICE_SKILLED_FORESTER = list(/datum/skill/craft/cooking = 2, /datum/skill/misc/athletics = 2, /datum/skill/labor/farming = 2, /datum/skill/labor/fishing = 2, /datum/skill/labor/lumberjacking = 2), \
 		TAT_VIRTUE_CHOICE_SKILLED_ARTIF = list(/datum/skill/craft/carpentry = 2, /datum/skill/craft/masonry = 2, /datum/skill/craft/engineering = 2, /datum/skill/craft/smelting = 2, /datum/skill/craft/ceramics = 2), \
 		TAT_VIRTUE_CHOICE_SKILLED_ENCHANT = list(/datum/skill/craft/alchemy =2, /datum/skill/craft/blacksmithing = 2, /datum/skill/craft/engineering = 2, /datum/skill/craft/smelting = 2, /datum/skill/magic/arcane = 2) \
-	), \
-	/datum/virtue/combat/combat_virtue = list( \
-		TAT_VIRTUE_CHOICE_COMBAT_SWORDS = list(/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_SHIELDS = list(/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_DAGGERS = list(/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_UNARMED = list(/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_SLINGS = list(/datum/skill/combat/slings = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_AXES = list(/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_WHIPS = list(/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_MACES = list(/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_POLEARMS = list(/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_COMBAT_STAVES = list(/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN) \
-	), \
-	/datum/virtue/utility/apprentice = list( \
-		TAT_VIRTUE_CHOICE_APPRENTICE_MINING = list(/datum/skill/labor/mining = SKILL_LEVEL_JOURNEYMAN), \
-		TAT_VIRTUE_CHOICE_APPRENTICE_LUMBERJACKING = list(/datum/skill/labor/lumberjacking = SKILL_LEVEL_JOURNEYMAN) \
-	), \
-	/datum/virtue/utility/prowler = list( \
-		TAT_VIRTUE_CHOICE_PROWLER_SNEAKING = list(/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE), \
-		TAT_VIRTUE_CHOICE_PROWLER_LOCKPICKING = list(/datum/skill/misc/lockpicking = SKILL_LEVEL_JOURNEYMAN) \
 	) \
 )
 
@@ -208,11 +196,12 @@ GLOBAL_LIST_INIT(tat_virtue_choice_skill_cap_bonus_rules, TAT_VIRTUE_CHOICE_SKIL
 	if(skill_type in TAT_SKILLS_COMBAT)
 		return TAT_SKILL_DOMAIN_COMBAT
 	if(skill_type in TAT_SKILLS_WANDERING)
-		return TAT_SKILL_DOMAIN_ADVENTURE
+		return TAT_SKILL_DOMAIN_MISC
 	if(skill_type in TAT_SKILLS_GATHERING)
-		return TAT_SKILL_DOMAIN_PEACEFUL
+		return TAT_SKILL_DOMAIN_LABOUR
 	if(skill_type in TAT_SKILLS_CRAFTING)
-		return TAT_SKILL_DOMAIN_PEACEFUL
+		return TAT_SKILL_DOMAIN_LABOUR
 	if(skill_type in TAT_SKILLS_MISC)
-		return TAT_SKILL_DOMAIN_ADVENTURE
+		return TAT_SKILL_DOMAIN_MISC
 	return null
+

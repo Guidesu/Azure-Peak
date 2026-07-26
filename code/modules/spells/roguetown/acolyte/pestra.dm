@@ -593,7 +593,7 @@
 
 		var/obj/item/black_rose/rose = user.get_active_held_item()
 		// Check if the user is holding a black rose and the target follows Pestra.
-		if(istype(rose) && target.patron?.type == /datum/patron/divine/pestra)
+		if(istype(rose) && target.patron?.type == /datum/patron/concordat/handwerra)
 			// If the target is a Pestran and we are holding the rose, implant the component.
 			var/time_elapsed = STATION_TIME_PASSED() / (1 MINUTES)
 			if(time_elapsed < 45)

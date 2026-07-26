@@ -5,7 +5,7 @@
 	var/salwt_abyssal = list(/turf/open/water/ocean/abyssal)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
 	if(ishuman(fisherman))
-		if(fisherman.patron.type == /datum/patron/divine/abyssor)
+		if(fisherman.patron.type == /datum/patron/concordat/wulfric)
 			modlist["dangerFishingMod"] *= 1.10  // +10% danger
 			modlist["treasureFishingMod"] *= 0.90  // -10% treasure
 			modlist["rareFishingMod"] *= 1.25  // +25% rare
@@ -34,7 +34,7 @@
 
 /proc/upgradecagemodlist(var/mob/living/carbon/human/fisherman, var/list/modlist, var/skill_power = 1)
 	if(ishuman(fisherman))
-		if(fisherman.patron.type == /datum/patron/divine/abyssor)
+		if(fisherman.patron.type == /datum/patron/concordat/wulfric)
 			modlist["dangerFishingMod"] *= 1.10  // +10% danger
 			modlist["treasureFishingMod"] *= 0.90  // -10% treasure
 			modlist["rareFishingMod"] *= 1.25  // +25% rare

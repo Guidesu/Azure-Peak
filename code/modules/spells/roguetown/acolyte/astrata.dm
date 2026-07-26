@@ -19,7 +19,7 @@
 
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/astrata, /obj/item/clothing/neck/roguetown/psicross/silver/astrata, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, /obj/item/clothing/neck/roguetown/psicross/silver/auxentius, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 ///////////////////////////////////////////////////
 // T0 - Ignition - Ignite a target or an object. //
@@ -31,7 +31,7 @@
 	spell_color = GLOW_COLOR_ASTRATA
 	glow_intensity = GLOW_INTENSITY_LOW
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/astrata, /obj/item/clothing/neck/roguetown/psicross/silver/astrata, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, /obj/item/clothing/neck/roguetown/psicross/silver/auxentius, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // T1 - Astratan Gaze - Removes cone vision for a dynamic duration. Adds PERCEPTION based on holy skill and time of day. //
@@ -167,7 +167,7 @@
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
 
 	spell_flags = SPELL_PSYDON
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/astrata, /obj/item/clothing/neck/roguetown/psicross/silver/astrata, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, /obj/item/clothing/neck/roguetown/psicross/silver/auxentius, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /obj/projectile/magic/sacred_flame
 	name = "bolt of holy fire"
@@ -300,7 +300,7 @@
 			var/distance = get_dist(src, human)
 			if(distance > healing_range || HAS_TRAIT(human, TRAIT_IRONMAN))
 				continue
-			if(istype(human.patron, /datum/patron/divine))
+			if(istype(human.patron, /datum/patron/concordat))
 				if(!human.has_status_effect(/datum/status_effect/buff/pyre))
 					to_chat(human, span_info("Her warmth sutures my mangled body."))
 				human.apply_status_effect(/datum/status_effect/buff/pyre)
@@ -711,7 +711,7 @@
 
 	// Get caster properties
 	var/holy_skill = target.get_skill_level(associated_skill)
-	var/is_astrata = (istype(target.patron, /datum/patron/divine/astrata))
+	var/is_astrata = (istype(target.patron, /datum/patron/concordat/auxentius))
 
 	// Apply component
 	user.AddComponent(/datum/component/immolation, target, user, holy_skill, is_astrata)

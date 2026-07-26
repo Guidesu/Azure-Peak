@@ -38,7 +38,9 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	/datum/charflaw/noflaw::name = /datum/charflaw/noflaw,
 	/datum/charflaw/leprosy::name = /datum/charflaw/leprosy,
 	/datum/charflaw/wanted::name = /datum/charflaw/wanted,
-	/datum/charflaw/randflaw::name = /datum/charflaw/randflaw
+	/datum/charflaw/randflaw::name = /datum/charflaw/randflaw,
+	/datum/charflaw/gefheretic::name = /datum/charflaw/gefheretic,
+	/datum/charflaw/lawless::name = /datum/charflaw/lawless
 	))
 
 GLOBAL_LIST_INIT(averse_factions, list(
@@ -702,7 +704,7 @@ GLOBAL_LIST_INIT(averse_factions, list(
 	insane_fool.hallucination = INFINITY
 	ADD_TRAIT(insane_fool, TRAIT_PSYCHOSIS, TRAIT_GENERIC)
 	insane_fool.adjust_triumphs(3)
-	if(insane_fool.patron?.type == /datum/patron/divine/abyssor) 
+	if(insane_fool.patron?.type == /datum/patron/concordat/wulfric) 
 		insane_fool.grant_language(/datum/language/abyssal)
 
 /datum/charflaw/indebted

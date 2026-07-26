@@ -33,7 +33,7 @@
 	if(user.STAPER < 10)
 		chance2hit -= ((10 - user.STAPER) * 10)
 
-	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
+	if(HAS_TRAIT(user, TRAIT_CURSE_AUXENTIUS))
 		chance2hit -= 40
 
 	if(target.pulledby || target.pulling)

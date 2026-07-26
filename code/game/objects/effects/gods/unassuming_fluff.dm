@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron.type == /datum/patron/divine/abyssor)
+		if(H.patron.type == /datum/patron/concordat/wulfric)
 			. += span_danger("One of the greatest and eldest of the dreamfiends. It's said creatures of the dream take ages to grow in size... And this one is a true leviathan.")
 
 /datum/stressevent/dream_horror
@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 
 	if(!force)
 		var/effective_probability = probability
-		if(user.patron.type == /datum/patron/divine/abyssor)
+		if(user.patron.type == /datum/patron/concordat/wulfric)
 			effective_probability *= 5
 
 		// Look kids, if you want accurate probability, don't use fractional numbers. Pickweight is safer and more accurate than prob() here.

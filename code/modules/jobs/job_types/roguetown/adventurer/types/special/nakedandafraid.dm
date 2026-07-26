@@ -4,7 +4,7 @@
 	tutorial = "They say that the most devout of Dendor forgo clothing in order to weather their body to the natural elements. You happen to be one of them!"
 	allowed_sexes = list(MALE, FEMALE)
 	
-	allowed_patrons = list(/datum/patron/divine/dendor)
+	allowed_patrons = list(/datum/patron/severance/ignatius)
 	outfit = /datum/outfit/job/roguetown/adventurer/nudist
 	category_tags = list(CTAG_ADVENTURER, CTAG_LICKER_WRETCH)
 	townie_contract_gate_exempt = TRUE
@@ -34,4 +34,4 @@
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/rogueweapon/huntingknife/stoneknife
-	neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+	neck = /obj/item/clothing/neck/roguetown/psicross/ignatius

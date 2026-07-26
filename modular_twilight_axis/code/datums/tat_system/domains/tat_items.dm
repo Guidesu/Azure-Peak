@@ -2055,7 +2055,7 @@
 
 	// If the legacy preference-loadout block already placed donor items into
 	// mind.special_items, remove copies that the TAT loadout will spawn in bag or
-	// equipped slots. This keeps old integration order from duplicating Pliant gear.
+	// equipped slots. This keeps old integration order from duplicating Free Soul gear.
 	remove_consumed_preference_loadout_from_mind_stash(H)
 	spawn_assigned_loadout_items(H, FALSE)
 	grant_default_roundstart_bag(H)
@@ -2232,14 +2232,16 @@
 
 	return TRUE
 
-/proc/tat_role_text_matches_pliant(value)
+/proc/tat_role_text_matches_free_soul(value)
 	if(isnull(value))
 		return FALSE
 	var/text = lowertext("[value]")
+	if(findtext(text, "free soul"))
+		return TRUE
 	if(findtext(text, "pliant"))
 		return TRUE
 	// TAT roundstart roles may be stored as SQL buckets or job titles rather than
-	// literally containing "Pliant". Treat those as TAT-managed loadout roles too.
+	// literally containing "Free Soul". Treat those as TAT-managed loadout roles too.
 	if(text == lowertext(TAT_SQL_ROLE_TOWNER))
 		return TRUE
 	if(text == lowertext(TAT_SQL_ROLE_TRADER))
@@ -2254,7 +2256,7 @@
 		return TRUE
 	return FALSE
 
-/proc/tat_is_pliant_roundstart_character(mob/living/carbon/human/character)
+/proc/tat_is_free_soul_roundstart_character(mob/living/carbon/human/character)
 	if(!character)
 		return FALSE
 
@@ -2265,21 +2267,21 @@
 	// class equipment path has assigned advjob or applied the TAT build.
 	if(istype(character.mind?.picked_advclass, /datum/advclass/tat_class))
 		return TRUE
-	if(tat_role_text_matches_pliant(character.tat_pliant_title))
+	if(tat_role_text_matches_free_soul(character.tat_free_soul_title))
 		return TRUE
 
-	if(tat_role_text_matches_pliant(character.advjob))
+	if(tat_role_text_matches_free_soul(character.advjob))
 		return TRUE
 
 	var/assigned_role = character.mind?.assigned_role
-	if(tat_role_text_matches_pliant(assigned_role))
+	if(tat_role_text_matches_free_soul(assigned_role))
 		return TRUE
 
 	var/datum/job/assigned_job = SSjob.GetJob(assigned_role)
 	if(assigned_job)
-		if(tat_role_text_matches_pliant("[assigned_job.type]"))
+		if(tat_role_text_matches_free_soul("[assigned_job.type]"))
 			return TRUE
-		if(tat_role_text_matches_pliant(assigned_job.title))
+		if(tat_role_text_matches_free_soul(assigned_job.title))
 			return TRUE
 
 	return FALSE
@@ -2293,8 +2295,8 @@
 		return FALSE
 
 	// Preferred path: the actual TAT build application has marked the character.
-	// Fallback path: detect TAT/Pliant roundstart roles before the build flag exists.
-	if(!character.tat_handles_preference_loadout && !tat_is_pliant_roundstart_character(character))
+	// Fallback path: detect TAT/Free Soul roundstart roles before the build flag exists.
+	if(!character.tat_handles_preference_loadout && !tat_is_free_soul_roundstart_character(character))
 		return FALSE
 
 	var/datum/tat_build/build = player.prefs.tat_build
@@ -2326,7 +2328,7 @@
 			if(item.triumph_cost)
 				var/discounted_cost = max(0, item.triumph_cost - triumph_discount_remaining)
 				if(discounted_cost > 0 && character.get_triumphs() < discounted_cost)
-					to_chat(character, span_warning("Недостаточно триумфов для [item.name]."))
+					to_chat(character, span_warning("Not enough triumphs for [item.name]."))
 					continue
 
 				triumph_discount_remaining = max(0, triumph_discount_remaining - item.triumph_cost)
@@ -2335,3 +2337,5 @@
 
 			character.mind.special_items[item.name] = item.path
 	return TRUE
+
+

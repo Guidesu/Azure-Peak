@@ -22,7 +22,7 @@
 	if(locked_stat_array[key])
 		return locked_stat_array[key]
 
-	if(recipient.patron == GLOB.patronlist[/datum/patron/divine/xylix])
+	if(recipient.patron == GLOB.patronlist[/datum/patron/concordat/viator])
 		var/list/xylixian_array = stat_array.Copy()
 
 		// first, we need to determine how many non-fortune stats there are
@@ -56,7 +56,7 @@
 	locked_stat_array[key] = applied_stats.Copy()
 
 	var/list/messages = list("Fate has adjusted your statblock as such...")
-	if(recipient.patron == GLOB.patronlist[/datum/patron/divine/xylix])
+	if(recipient.patron == GLOB.patronlist[/datum/patron/concordat/viator])
 		messages += span_notice("Xylix smiles upon you, believer!")
 	messages += ""
 	for(var/stat_key in applied_stats)

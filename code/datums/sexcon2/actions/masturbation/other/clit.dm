@@ -2,6 +2,7 @@
 	name = "Stroke their clit"
 	check_same_tile = FALSE
 	debug_erp_panel_verb = FALSE
+	subtle_supported = TRUE // Stealth-mode extension
 
 /datum/sex_action/masturbate/other/clit/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -28,11 +29,11 @@
 
 /datum/sex_action/masturbate/other/clit/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts stroking [target]'s clit..."))
+	stealth_visible_message(user, target, span_warning("[user] starts stroking [target]'s clit..."))
 
 /datum/sex_action/masturbate/other/clit/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops stroking [target]'s clit."))
+	stealth_visible_message(user, target, span_warning("[user] stops stroking [target]'s clit."))
 
 /datum/sex_action/masturbate/other/clit/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_love("[user] cums over [target]'s hand!"))
@@ -44,7 +45,8 @@
 
 /datum/sex_action/masturbate/other/clit/on_perform_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] strokes [target]'s clit..."))
+	var/do_subtle = is_being_done_subtly(user, target)
+	stealth_visible_message(user, target, sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective(is_stealth = do_subtle)] strokes [target]'s clit..."))
 
 /datum/sex_action/masturbate/other/clit/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)

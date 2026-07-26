@@ -5,7 +5,7 @@
 	name = "Venardine"
 	id = "vulpkanin"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/grenzelhoft
+	origin_default = /datum/virtue/origin/auxentia
 	origin = "Grenzelhoft"
 	base_name = "Beastvolk"
 	desc_title = "Venardine"

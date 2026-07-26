@@ -322,7 +322,7 @@
 	name = "amulet of abyssor"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/abyssor
+	result = /obj/item/clothing/neck/roguetown/psicross/wulfric
 	reqs = list(
 		/obj/item/natural/fibers = 1,
 		/obj/item/pearl/blue = 1,
@@ -392,7 +392,7 @@
 	name = "wooden amulet of Ten"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/undivided/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/custodius/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -402,7 +402,7 @@
 	name = "wooden amulet of Astrata"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/astrata/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/auxentius/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -412,7 +412,7 @@
 	name = "wooden amulet of Noc"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/noc/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/miluse/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -422,7 +422,7 @@
 	name = "wooden amulet of Abyssor"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/abyssor/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/wulfric/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -432,7 +432,7 @@
 	name = "wooden amulet of Dendor"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/dendor/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/ignatius/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -442,7 +442,7 @@
 	name = "wooden amulet of Necra"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/necra/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/morwenna/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -452,7 +452,7 @@
 	name = "wooden amulet of Pestra"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/pestra/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/handwerra/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -462,7 +462,7 @@
 	name = "wooden amulet of Ravox"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/ravox/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -472,7 +472,7 @@
 	name = "wooden amulet of Malum"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/malum/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/handwerra/malum/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -482,7 +482,7 @@
 	name = "wooden amulet of Eora"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/eora/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/miluse/eora/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -492,7 +492,7 @@
 	name = "wooden amulet of Xylix"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/xylix/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/viator/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,

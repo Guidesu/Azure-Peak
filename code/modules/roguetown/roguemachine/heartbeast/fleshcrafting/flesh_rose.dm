@@ -10,5 +10,5 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type == /datum/patron/divine/pestra)
+		if(c.patron.type == /datum/patron/concordat/handwerra)
 			. += span_info(effect_desc)

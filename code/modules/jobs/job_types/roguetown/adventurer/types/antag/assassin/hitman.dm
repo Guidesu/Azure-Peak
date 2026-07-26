@@ -58,8 +58,8 @@
 	backl = /obj/item/rogueweapon/mace/cudgel
 	r_hand = /obj/item/clothing/gloves/roguetown/knuckles
 
-	if(!istype(H.patron, /datum/patron/inhumen/graggar))
+	if(!istype(H.patron, /datum/patron/oldkin/volkovoi))
 		var/inputty = input(H, "Would you like to change your patron to Graggar?", "The beast roars", "No") as anything in list("Yes", "No")
 		if(inputty == "Yes")
 			to_chat(H, span_warning("My former deity has abandoned me.. Graggar is my new master."))
-			H.set_patron(/datum/patron/inhumen/graggar)
+			H.set_patron(/datum/patron/oldkin/volkovoi)

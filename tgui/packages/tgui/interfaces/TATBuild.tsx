@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
+  Icon,
   Input,
   NoticeBox,
   Section,
@@ -124,8 +125,8 @@ type TatSlotEntry = {
 
 type SkillDomainKey =
   | 'combat'
-  | 'peaceful'
-  | 'adventure';
+  | 'labour'
+  | 'misc';
 
 type DirectionKey =
   | 'combat'
@@ -221,16 +222,6 @@ type Data = {
 type TabKey = 'control' | 'stats' | 'skills' | 'traits' | 'items' | 'loadout';
 type BackendAct = (action: string, payload?: Record<string, unknown>) => void;
 
-type NumericRowProps = {
-  title: string;
-  value: number;
-  onAdd: () => void;
-  onRemove: () => void;
-  disabledAdd?: boolean;
-  disabledRemove?: boolean;
-  extra?: ReactNode;
-};
-
 type HoverCardData = {
   name: string;
   desc?: string;
@@ -259,14 +250,14 @@ const MAX_RENDERED_ITEMS_PER_SLOT = 80;
 
 const SKILL_DOMAIN_TITLES: Record<SkillDomainKey, string> = {
   combat: 'Combat',
-  peaceful: 'Peaceful',
-  adventure: 'Adventure',
+  labour: 'Labour',
+  misc: 'Misc',
 };
 
 const SKILL_DOMAIN_ORDER: SkillDomainKey[] = [
   'combat',
-  'peaceful',
-  'adventure',
+  'labour',
+  'misc',
 ];
 
 const normalizeSearch = (value: unknown): string =>
@@ -419,15 +410,15 @@ const normalizeSkillDomain = (value?: string | null): SkillDomainKey => {
   const normalized = normalizeSearch(value);
   if (
     normalized === 'combat' ||
-    normalized === 'peaceful' ||
-    normalized === 'adventure'
+    normalized === 'labour' ||
+    normalized === 'misc'
   ) {
-    return normalized;
+    return normalized as SkillDomainKey;
   }
   if (normalized === 'gathering' || normalized === 'crafting') {
-    return 'peaceful';
+    return 'labour';
   }
-  return 'adventure';
+  return 'misc';
 };
 
 const formatSkillDisplayValue = (state?: SkillState) => {
@@ -685,55 +676,6 @@ const groupEntriesByCategoryAndSlot = <
 
       return [categoryKey, sortedSlots] as const;
     });
-};
-
-const NumericRow = ({
-  title,
-  value,
-  onAdd,
-  onRemove,
-  disabledAdd,
-  disabledRemove,
-  extra,
-}: NumericRowProps) => {
-  return (
-    <Stack
-      align="center"
-      justify="space-between"
-      style={{
-        padding: '6px 0',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      }}>
-      <Stack.Item grow>
-        <Box bold>{title}</Box>
-        {!!extra && (
-          <Box mt={0.5} style={{ opacity: 0.85 }}>
-            {extra}
-          </Box>
-        )}
-      </Stack.Item>
-
-      <Stack.Item>
-        <Stack align="center">
-          <Stack.Item>
-            <Button compact onClick={onRemove} disabled={disabledRemove}>
-              -
-            </Button>
-          </Stack.Item>
-          <Stack.Item>
-            <Box width="34px" textAlign="center" bold>
-              {value}
-            </Box>
-          </Stack.Item>
-          <Stack.Item>
-            <Button compact onClick={onAdd} disabled={disabledAdd}>
-              +
-            </Button>
-          </Stack.Item>
-        </Stack>
-      </Stack.Item>
-    </Stack>
-  );
 };
 
 const TileIcon = ({ icon, name }: { icon?: string | null; name: string }) => {
@@ -1266,23 +1208,32 @@ const StatsTab = ({ data, act, search }: { data: Data; act: BackendAct; search: 
       {!rows.length ? (
         <NoticeBox>No matches found.</NoticeBox>
       ) : (
-        <Stack vertical>
+        <div className="TATBuild__StatGrid">
           {rows.map(([statId, entry]) => {
             const value = data.stats?.[statId] ?? entry.base;
+            const disabledAdd = value >= entry.max || data.points_stats_remaining < entry.cost;
+            const disabledRemove = value <= 1;
             return (
-              <NumericRow
-                key={statId}
-                title={entry.name || statId}
-                value={value}
-                onAdd={() => act('add_stat', { id: statId, amount: 1 })}
-                onRemove={() => act('remove_stat', { id: statId, amount: 1 })}
-                disabledAdd={value >= entry.max || data.points_stats_remaining < entry.cost}
-                disabledRemove={value <= 1}
-                extra={<Box>Base: {entry.base} | Refund floor: {entry.min} | Max: {entry.max} | Cost per step: {entry.cost}</Box>}
-              />
+              <div key={statId} className="TATBuild__StatBox">
+                <div className="TATBuild__StatBox__Label">{entry.name || statId}</div>
+                <div className="TATBuild__StatBox__Value">{value}</div>
+                <div className="TATBuild__StatBox__Meta">
+                  Base {entry.base} · Floor {entry.min} · Max {entry.max}
+                  <br />
+                  Cost/step: {entry.cost}
+                </div>
+                <div className="TATBuild__StatBox__Controls">
+                  <Button compact onClick={() => act('remove_stat', { id: statId, amount: 1 })} disabled={disabledRemove}>
+                    -
+                  </Button>
+                  <Button compact onClick={() => act('add_stat', { id: statId, amount: 1 })} disabled={disabledAdd}>
+                    +
+                  </Button>
+                </div>
+              </div>
             );
           })}
-        </Stack>
+        </div>
       )}
     </Section>
   );
@@ -1382,7 +1333,10 @@ const SkillDomainTitle = ({
   return (
     <Stack align="center" justify="space-between">
       <Stack.Item>
-        <Box bold>{SKILL_DOMAIN_TITLES[domain]}</Box>
+        <Box bold>
+          <Icon name={SKILL_DOMAIN_ICONS[domain]} mr={1} />
+          {SKILL_DOMAIN_TITLES[domain]}
+        </Box>
       </Stack.Item>
       <Stack.Item>
         <Stack align="center">
@@ -1481,8 +1435,8 @@ const SkillsTab = ({
   const groups = useMemo(() => {
     const byDomain: Record<SkillDomainKey, Array<[string, SkillEntry]>> = {
       combat: [],
-      peaceful: [],
-      adventure: [],
+      labour: [],
+      misc: [],
     };
 
     Object.entries(data.available_skills || {}).forEach(([skillPath, entry]) => {
@@ -1600,6 +1554,32 @@ const DIRECTION_LABELS: Record<DirectionKey, string> = {
   ordinary: 'Ordinary',
 };
 
+const DIRECTION_ICONS: Record<DirectionKey, string> = {
+  combat: 'hand-fist',
+  ranged: 'crosshairs',
+  magic: 'wand-magic-sparkles',
+  miracles: 'hands-praying',
+  music: 'music',
+  skills: 'book',
+  survival: 'campground',
+  ordinary: 'scroll',
+};
+
+const TAB_ICONS: Record<string, string> = {
+  control: 'sliders',
+  stats: 'chart-simple',
+  skills: 'book-open',
+  traits: 'star',
+  items: 'boxes-stacked',
+  loadout: 'shirt',
+};
+
+const SKILL_DOMAIN_ICONS: Record<SkillDomainKey, string> = {
+  combat: 'hand-fist',
+  labour: 'hammer',
+  misc: 'scroll',
+};
+
 const getTraitRequirementText = (entry: TraitEntry) => {
   if (entry.direction_requirements) {
     return entry.direction_requirements;
@@ -1625,68 +1605,17 @@ const DirectionsPanel = ({
   const directions = data.directions;
   const order = directions?.direction_order?.length ? directions.direction_order : DIRECTION_ORDER;
   const hasOrdinaryDirection = order.includes('ordinary');
-  const foundation = directions?.foundation || 'settled';
-  const foundationNames = directions?.foundation_names || { settled: 'Shenanigans', wanderer: 'Wanderer' };
-  const roleChoice = directions?.role_choice || 'towner';
-  const roleChoices = directions?.foundation_role_choices?.[foundation] || [];
-  const roleChoiceNames = directions?.role_choice_names || {};
   const pointsRemaining = Number(directions?.points_remaining) || 0;
   const pointsSpent = Number(directions?.points_spent) || 0;
-  const pointsTotal = Number(directions?.points_total) || 8;
+  const pointsTotal = Number(directions?.points_total) || 20;
 
   return (
     <Section title={<SectionTitleWithMeta title="Directions" meta={`${pointsRemaining} / ${pointsTotal} free`} />}>
       <Stack vertical>
-        <Stack vertical align="center">
-          <Stack.Item>
-            <Box color="label" style={{ fontSize: '11px', textAlign: 'center' }}>
-              Основа выбирает группу архетипов и стартовую логику билда
-            </Box>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack wrap align="center" justify="center">
-              {Object.entries(foundationNames).map(([id, name]) => (
-                <Stack.Item key={id}>
-                  <Button
-                    compact
-                    selected={foundation === id}
-                    color={foundation === id ? 'good' : undefined}
-                    onClick={() => act('set_direction_foundation', { foundation: id })}>
-                    {name}
-                  </Button>
-                </Stack.Item>
-              ))}
-            </Stack>
-          </Stack.Item>
-        </Stack>
-
-        <Stack vertical align="center">
-          <Stack.Item>
-            <Box color="label" style={{ fontSize: '11px', textAlign: 'center' }}>
-              Архетип задает стартовые бонусы навыков и направлений
-            </Box>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack wrap align="center" justify="center">
-              {roleChoices.map((id) => (
-                <Stack.Item key={id}>
-                  <Button
-                    compact
-                    selected={roleChoice === id}
-                    color={roleChoice === id ? 'good' : undefined}
-                    onClick={() => act('set_direction_role_choice', { role_choice: id })}>
-                    {roleChoiceNames[id] || id}
-                  </Button>
-                </Stack.Item>
-              ))}
-            </Stack>
-          </Stack.Item>
-        </Stack>
-
         <Stack align="center" justify="center">
           <Stack.Item>
             <Box color="label" style={{ fontSize: '12px' }}>
-              Вложено: {pointsSpent}
+              Invested: {pointsSpent}
             </Box>
           </Stack.Item>
         </Stack>
@@ -1703,12 +1632,14 @@ const DirectionsPanel = ({
             return (
               <Stack.Item key={direction} basis="12%" grow>
                 <Box
-                  style={{
-                    border: selectedDirection === direction ? '1px solid rgba(145, 207, 104, 0.65)' : '1px solid rgba(255,255,255,0.12)',
-                    padding: '5px 6px',
-                    minHeight: '66px',
-                    textAlign: 'center',
-                  }}>
+                  className={
+                    selectedDirection === direction
+                      ? 'TATBuild__DirectionBox TATBuild__DirectionBox--selected'
+                      : 'TATBuild__DirectionBox'
+                  }>
+                  <Box className="TATBuild__DirectionBox__Icon">
+                    <Icon name={DIRECTION_ICONS[direction]} size={1.3} />
+                  </Box>
                   <Button
                     fluid
                     compact
@@ -1751,6 +1682,7 @@ const DirectionsPanel = ({
                 compact
                 selected={selectedDirection === 'ordinary'}
                 onClick={() => setSelectedDirection('ordinary')}>
+                <Icon name={DIRECTION_ICONS.ordinary} mr={1} />
                 Ordinary
               </Button>
             </Stack.Item>
@@ -2513,6 +2445,7 @@ export const TATBuild = () => {
   return (
     <Window title="TAT Build" width={1040} height={900}>
       <Window.Content scrollable>
+        <Box className="TATBuild">
         <Stack vertical>
           <Section title="Search">
             <Stack align="center">
@@ -2546,12 +2479,24 @@ export const TATBuild = () => {
             title="Build"
             buttons={<Box style={{ opacity: 0.8, fontSize: '12px' }}>Save writes current build into the active slot</Box>}>
             <Tabs fluid>
-              <Tabs.Tab selected={tab === 'control'} onClick={() => setTab('control')}>Control</Tabs.Tab>
-              <Tabs.Tab selected={tab === 'stats'} onClick={() => setTab('stats')}>Stats</Tabs.Tab>
-              <Tabs.Tab selected={tab === 'skills'} onClick={() => setTab('skills')}>Skills</Tabs.Tab>
-              <Tabs.Tab selected={tab === 'traits'} onClick={() => setTab('traits')}>Traits</Tabs.Tab>
-              <Tabs.Tab selected={tab === 'items'} onClick={() => setTab('items')}>Items</Tabs.Tab>
-              <Tabs.Tab selected={tab === 'loadout'} onClick={() => setTab('loadout')}>Loadout</Tabs.Tab>
+              <Tabs.Tab selected={tab === 'control'} onClick={() => setTab('control')}>
+                <Icon name={TAB_ICONS.control} mr={1} />Control
+              </Tabs.Tab>
+              <Tabs.Tab selected={tab === 'stats'} onClick={() => setTab('stats')}>
+                <Icon name={TAB_ICONS.stats} mr={1} />Stats
+              </Tabs.Tab>
+              <Tabs.Tab selected={tab === 'skills'} onClick={() => setTab('skills')}>
+                <Icon name={TAB_ICONS.skills} mr={1} />Skills
+              </Tabs.Tab>
+              <Tabs.Tab selected={tab === 'traits'} onClick={() => setTab('traits')}>
+                <Icon name={TAB_ICONS.traits} mr={1} />Traits
+              </Tabs.Tab>
+              <Tabs.Tab selected={tab === 'items'} onClick={() => setTab('items')}>
+                <Icon name={TAB_ICONS.items} mr={1} />Items
+              </Tabs.Tab>
+              <Tabs.Tab selected={tab === 'loadout'} onClick={() => setTab('loadout')}>
+                <Icon name={TAB_ICONS.loadout} mr={1} />Loadout
+              </Tabs.Tab>
             </Tabs>
           </Section>
 
@@ -2585,30 +2530,44 @@ export const TATBuild = () => {
             <Stack justify="space-between" wrap>
               <Stack.Item>
                 <Stack wrap>
-                  <Stack.Item><Button onClick={() => act('reset_stats')}>Reset Stats</Button></Stack.Item>
-                  <Stack.Item><Button onClick={() => act('reset_skills')}>Reset Skills</Button></Stack.Item>
-                  <Stack.Item><Button onClick={() => act('reset_directions')}>Reset Directions</Button></Stack.Item>
-                  <Stack.Item><Button onClick={() => act('reset_traits')}>Reset Traits</Button></Stack.Item>
-                  <Stack.Item><Button onClick={() => act('reset_items')}>Reset Items</Button></Stack.Item>
+                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_stats')}>Reset Stats</Button></Stack.Item>
+                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_skills')}>Reset Skills</Button></Stack.Item>
+                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_directions')}>Reset Direction Points</Button></Stack.Item>
+                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_traits')}>Reset Traits</Button></Stack.Item>
+                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_items')}>Reset Items</Button></Stack.Item>
                 </Stack>
               </Stack.Item>
 
               <Stack.Item>
                 <Stack>
                   <Stack.Item>
-                    <Button color="average" onClick={() => act('reset_all')}>Reset All</Button>
+                    <Button icon="arrows-rotate" color="average" onClick={() => act('reset_all')}>Reset All</Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button color="good" disabled={!data.can_save} onClick={() => act('save')}>Save Active Slot</Button>
+                    <Button
+                      className="TATBuild__SealButton"
+                      icon="floppy-disk"
+                      disabled={!data.can_save}
+                      onClick={() => act('save')}>
+                      Save Active Slot
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button color="good" bold disabled={!data.can_save} onClick={() => act('join')}>Save &amp; Join World</Button>
+                    <Button
+                      className="TATBuild__SealButton"
+                      icon="dungeon"
+                      bold
+                      disabled={!data.can_save}
+                      onClick={() => act('join')}>
+                      Save &amp; Join World
+                    </Button>
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
             </Stack>
           </Section>
         </Stack>
+        </Box>
 
         <HoverCard data={hoveredItem} />
       </Window.Content>
@@ -2617,3 +2576,4 @@ export const TATBuild = () => {
 };
 
 export default TATBuild;
+

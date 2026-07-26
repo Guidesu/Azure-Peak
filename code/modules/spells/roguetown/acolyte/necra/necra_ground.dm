@@ -125,7 +125,7 @@
 	for(var/mob/living/carbon/human/H in get_hearers_in_view(range, src, RECURSIVE_CONTENTS_CLIENT_MOBS))
 		if(!H.devotion)
 			continue
-		if(H.devotion && istype(H.patron, /datum/patron/divine/necra))
+		if(H.devotion && istype(H.patron, /datum/patron/concordat/morwenna))
 			if(!(H in affected_mobs))
 				var/datum/beam/newbeam = Beam(H, icon_state="necra_beam", time = 9999, maxdistance = range)
 				affected_mobs[H] = newbeam

@@ -21,68 +21,68 @@
 	name = "Astratan Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/astrata,
+					/obj/item/clothing/neck/roguetown/psicross/auxentius,
 				)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonmalum
 	name = "Malumite Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/malum,)
+					/obj/item/clothing/neck/roguetown/psicross/handwerra,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheoneora
 	name = "Eoran Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/eora,)
+					/obj/item/clothing/neck/roguetown/psicross/miluse,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonravox
 	name = "Ravox Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/ravox,)
+					/obj/item/clothing/neck/roguetown/psicross/auxentius,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonpestra
 	name = "Pestran Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/pestra,)
+					/obj/item/clothing/neck/roguetown/psicross/handwerra,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonnecra
 	name = "Necran Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/necra,)
+					/obj/item/clothing/neck/roguetown/psicross/morwenna,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheondendor
 	name = "Dendor Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/dendor,)
+					/obj/item/clothing/neck/roguetown/psicross/ignatius,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonabyssor
 	name = "Abyssor Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/abyssor,)
+					/obj/item/clothing/neck/roguetown/psicross/wulfric,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonnoc
 	name = "Noc Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/noc,)
+					/obj/item/clothing/neck/roguetown/psicross/miluse,)
 
 /datum/supply_pack/rogue/apparel/crosses/xylix
 	name = "Xylix Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/xylix,)
+					/obj/item/clothing/neck/roguetown/psicross/viator,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonten
 	name = "Undivided Amulet"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/undivided,)
+					/obj/item/clothing/neck/roguetown/psicross/custodius,)
 
 
 /datum/supply_pack/rogue/apparel/crosses/psicross

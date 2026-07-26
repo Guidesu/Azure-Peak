@@ -140,7 +140,7 @@
 			if(ishuman(M))
 				var/mob/living/carbon/human/H
 				var/type = H.patron?.type
-				if(istype(type, /datum/patron/inhumen))
+				if(istype(type, /datum/patron/unveiled))
 					H.electrocution_animation(20)
 
 //This gives a countdown to the user, it's pretty hacky
@@ -358,10 +358,10 @@
 		M.lightning_flashing = TRUE
 		M.update_sight()
 		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, reset_lightning)), 2)
-		if(istype(M.patron, /datum/patron/inhumen))
+		if(istype(M.patron, /datum/patron/unveiled))
 			var/turf/T = get_step(get_step(M, NORTH), NORTH)
 			T.Beam(M, icon_state="lightning[rand(1,12)]", time = 5)
-			M.visible_message(span_warning("[M] gets struck down by the Ten!"), span_warning("The Ten curse you! You stood too close to one of their devout!"))
+			M.visible_message(span_warning("[M] gets struck down by the Tribunal!"), span_warning("Custodius curses you! You stood too close to one of the Tribunal's devout!"))
 			M.electrocution_animation(20)
 			mob_ignite(M)
 			playsound(M, 'sound/magic/lightning.ogg', 100, FALSE)
@@ -491,12 +491,12 @@
 	flag = MARTYR
 	department_flag = CHURCHMEN
 	faction = "Station"
-	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the Tribunal's Word. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)
-	allowed_patrons = list(/datum/patron/divine/undivided)
+	allowed_patrons = list(/datum/patron/tribunal/custodius)
 	outfit = /datum/outfit/job/roguetown/martyr
-	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
+	min_pq = 10 //Cus it's a Martyr of the Tribunal. Get it.
 	max_pq = null
 	round_contrib_points = 4
 	total_positions = 1
@@ -521,7 +521,7 @@
 
 /datum/advclass/martyr
 	name = "Martyr"
-	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the Tribunal's Word. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	outfit = /datum/outfit/job/roguetown/martyr/basic
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	category_tags = list(CTAG_MARTYR)
@@ -552,7 +552,7 @@
 		/datum/skill/misc/sneaking = SKILL_LEVEL_NOVICE,
 	)
 	subclass_stashed_items = list(
-		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
+		"The Verses and Acts of the Tribunal" = /obj/item/book/rogue/bibble,
 	)
 
 /datum/outfit/job/roguetown/martyr
@@ -574,7 +574,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	pants = /obj/item/clothing/under/roguetown/platelegs/holysee
 	cloak = /obj/item/clothing/cloak/holysee
-	id = /obj/item/clothing/neck/roguetown/psicross/undivided
+	id = /obj/item/clothing/neck/roguetown/psicross/custodius
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/silver = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
@@ -603,7 +603,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/roguemartyr_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguemartyr_righthand.dmi'
 	name = "divine longsword"
-	desc = "A relic from the Holy See's own vaults; a blessed silver longsword, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver longsword, marked with Custodius's binding sigil. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
@@ -669,7 +669,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -711,7 +711,7 @@
 	icon = 'icons/roguetown/weapons/axes64.dmi'
 	item_state = "martyraxe"
 	name = "divine axe"
-	desc = "A relic from the Holy See's own vaults; a blessed silver axe, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver axe, marked with Custodius's binding sigil. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	minstr = 12
 	max_blade_int = 250
 	bigboy = 1
@@ -775,7 +775,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -806,7 +806,7 @@
 	icon = 'icons/roguetown/weapons/blunt64.dmi'
 	item_state = "martyrmace"
 	name = "divine mace"
-	desc = "A relic from the Holy See's own vaults; a blessed silver mace, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver mace, marked with Custodius's binding sigil. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	associated_skill = /datum/skill/combat/maces
@@ -864,7 +864,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -896,7 +896,7 @@
 	icon = 'icons/roguetown/weapons/polearms64.dmi'
 	item_state = "martyrtrident"
 	name = "divine trident"
-	desc = "A relic from the Holy See's own vaults; a blessed silver spear, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver spear, marked with Custodius's binding sigil. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	associated_skill = /datum/skill/combat/polearms
@@ -955,7 +955,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -979,7 +979,7 @@
 
 /obj/item/clothing/cloak/martyr
 	name = "martyr cloak"
-	desc = "An elegant cloak in the colors of Astrata. Looks like it can only fit Humen-sized people."
+	desc = "An elegant cloak in the colors of the Tribunal. Looks like it can only fit Humen-sized people."
 	color = null
 	icon_state = "martyrcloak"
 	item_state = "martyrcloak"
@@ -992,7 +992,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/holysee
 	name = "holy silver plate"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Tribunal."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverarmor"
 	item_state = "silverarmor"
@@ -1017,7 +1017,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -1035,7 +1035,7 @@
 
 /obj/item/clothing/gloves/roguetown/plate/holysee
 	name = "holy silver plate gauntlets"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Tribunal."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silvergloves"
 	item_state = "silvergloves"
@@ -1059,7 +1059,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -1077,7 +1077,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/holysee
 	name = "holy silver plated boots"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Tribunal."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverboots"
 	item_state = "silverboots"
@@ -1102,7 +1102,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -1144,7 +1144,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)
@@ -1190,7 +1190,7 @@
 	var/mob/living/carbon/human/H = user
 	if((H.job in GLOB.church_positions))
 		return ..()
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
 		to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
 		H.Stun(40)

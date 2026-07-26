@@ -51,6 +51,7 @@
 	magic_profile = list()
 	_cached_preference_loadout_key = null
 	_cached_owner_patron_type = null
+	invalidate_active_virtues_cache()
 	dirty = FALSE
 	invalidate_ui_data_cache()
 	return TRUE
@@ -89,10 +90,10 @@
 	return FALSE
 
 /datum/tat_build/proc/can_select_contractor_trait()
-	return is_owner_admin() //TRUE для фулланлока
+	return is_owner_admin() //TRUE for full lock
 
 /datum/tat_build/proc/has_dendor_patron()
-	return owner_preferences?.selected_patron?.type == /datum/patron/divine/dendor
+	return owner_preferences?.selected_patron?.type == /datum/patron/severance/ignatius
 
 /datum/tat_build/proc/can_select_druid_initiate_trait()
 	return has_dendor_patron()
@@ -138,6 +139,7 @@
 
 /datum/tat_build/proc/set_dirty(flag = TRUE)
 	dirty = !!flag
+	invalidate_active_virtues_cache()
 	invalidate_ui_data_cache()
 	return dirty
 
@@ -151,22 +153,18 @@
 	return TRUE
 
 /datum/tat_build/proc/get_active_virtues_cache_key(datum/preferences/P)
-	if(!P)
-		return null
-
+	// P is deliberately ignored. Legacy preference virtues are hidden and must
+	// never leak bonuses into a TAT build; this key is derived only from TAT.
 	var/list/parts = list()
-	var/list/virtues = list(P.virtue, P.virtuetwo)
-	for(var/virtue_entry in virtues)
-		var/datum/virtue/virtue = virtue_entry
-		if(!virtue || istype(virtue, /datum/virtue/none))
-			parts += "none"
+	traits?.ensure_virtue_trait_entries()
+	for(var/trait_id in traits?.selected)
+		var/list/entry = traits.get_entry(trait_id)
+		var/virtue_type = entry?["virtue_type"] || traits.get_trait_backed_virtue_type(trait_id)
+		if(!virtue_type)
 			continue
-
-		var/part = "[virtue.type]:[REF(virtue)]"
-		if(islist(virtue.picked_choices))
-			for(var/choice in virtue.picked_choices)
-				part += ":[choice]"
-		parts += part
+		var/choice = entry?["virtue_choice"]
+		parts += "[virtue_type]:[trait_id]:[choice]"
+	parts = sortList(parts)
 	return parts.Join("|")
 
 /datum/tat_build/proc/get_preference_loadout_cache_key(datum/preferences/P)
@@ -184,17 +182,15 @@
 	if(P.tat_build != src)
 		return FALSE
 
-	var/new_virtues_key = get_active_virtues_cache_key(P)
 	var/new_loadout_key = get_preference_loadout_cache_key(P)
 	var/new_patron_type = P.selected_patron?.type
 	var/preferences_changed = owner_preferences != P
-	var/virtues_changed = _cached_active_virtues_key != new_virtues_key
 	var/loadout_changed = _cached_preference_loadout_key != new_loadout_key
 	var/patron_changed = _cached_owner_patron_type != new_patron_type
 
 	owner_preferences = P
 
-	if(preferences_changed || virtues_changed || patron_changed)
+	if(preferences_changed || patron_changed)
 		_cached_active_virtues = null
 		_cached_active_virtues_key = null
 		_cached_owner_patron_type = new_patron_type
@@ -207,7 +203,7 @@
 		items?.sync_external_grants()
 		invalidate_ui_data_cache()
 
-	if(!preferences_changed && !virtues_changed && !loadout_changed && !patron_changed)
+	if(!preferences_changed && !loadout_changed && !patron_changed)
 		attach_preferences(P)
 
 	return TRUE
@@ -217,17 +213,24 @@
 	if(islist(_cached_active_virtues) && _cached_active_virtues_key == cache_key)
 		return _cached_active_virtues
 	var/list/result = list()
-	if(!owner_preferences)
-		_cached_active_virtues = result
-		_cached_active_virtues_key = cache_key
-		return result
+	var/list/by_type = list()
+	traits?.ensure_virtue_trait_entries()
+	for(var/trait_id in traits?.selected)
+		var/list/entry = traits.get_entry(trait_id)
+		var/virtue_type = entry?["virtue_type"] || traits.get_trait_backed_virtue_type(trait_id)
+		if(!ispath(virtue_type, /datum/virtue))
+			continue
+		var/datum/virtue/virtue = by_type[virtue_type]
+		if(!virtue)
+			virtue = new virtue_type
+			by_type[virtue_type] = virtue
+			result += virtue
+		var/choice = entry?["virtue_choice"]
+		if(istext(choice) && length(choice) && !(choice in virtue.picked_choices))
+			virtue.picked_choices += choice
 
-	if(owner_preferences.virtue && !istype(owner_preferences.virtue, /datum/virtue/none))
-		result += owner_preferences.virtue
-
-	if(owner_preferences.virtuetwo && !istype(owner_preferences.virtuetwo, /datum/virtue/none))
-		if(!(owner_preferences.virtuetwo in result))
-			result += owner_preferences.virtuetwo
+	for(var/datum/virtue/virtue in result)
+		virtue.on_load()
 
 	_cached_active_virtues = result
 	_cached_active_virtues_key = cache_key
@@ -236,6 +239,12 @@
 /datum/tat_build/proc/invalidate_active_virtues_cache()
 	_cached_active_virtues = null
 	_cached_active_virtues_key = null
+
+/datum/tat_build/proc/sync_virtues_from_traits()
+	// Compatibility hook for callers from the old TAT branch. TAT traits no
+	// longer write Preferences.virtue or Preferences.virtuetwo.
+	invalidate_active_virtues_cache()
+	return TRUE
 
 /datum/tat_build/proc/get_magic_value(key, default_value = null)
 	if(!istext(key) || !length(key))
@@ -264,7 +273,7 @@
 	return FALSE
 
 /datum/tat_build/proc/has_role_combat_training_unlock()
-	return (directions?.get_role_choice()) in list(TAT_ROLE_CHOICE_ADVENTURER, TAT_ROLE_CHOICE_WRETCH)
+	return FALSE
 
 /datum/tat_build/proc/get_trait_cost_display(trait_id)
 	return traits.get_display_cost(trait_id)
@@ -283,16 +292,12 @@
 
 /datum/tat_build/proc/get_bonus_stat_points()
 	var/total = traits.get_bonus_stat_points()
-	if(directions?.get_role_choice() == TAT_ROLE_CHOICE_ADVENTURER)
-		total += 3
-	if(directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-		total += TAT_BUILD_STAT_BONUS_WANTED
+	// Role-based stat bonuses removed in single-archetype build.
 	return total
 
 /datum/tat_build/proc/get_bonus_item_points()
 	var/total = traits.get_bonus_item_points()
-	if(directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-		total += TAT_BUILD_ITEM_BONUS_WANTED
+	// Role-based item bonuses removed in single-archetype build.
 	return total
 
 /datum/tat_build/proc/get_bonus_skill_domain_points(domain)
@@ -303,29 +308,11 @@
 /datum/tat_build/proc/get_role_skill_domain_points(domain)
 	var/total = 0
 	if(domain == TAT_SKILL_DOMAIN_COMBAT)
-		if((directions?.get_role_choice() in list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER)) && traits?.get_selected_trait_count(TAT_TRAIT_WEAPON_TRAINING) > 0)
-			total += 3
-		if(directions?.foundation == TAT_FOUNDATION_WANDERER)
-			total += 6
-		if(directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-			total += 6
-	switch(directions?.get_role_choice())
-		if(TAT_ROLE_CHOICE_ADVENTURER)
-			if(domain == TAT_SKILL_DOMAIN_ADVENTURE)
-				total += 6
-		if(TAT_ROLE_CHOICE_WRETCH)
-			if(domain == TAT_SKILL_DOMAIN_ADVENTURE)
-				total += 6
-		if(TAT_ROLE_CHOICE_TOWNER)
-			if(domain == TAT_SKILL_DOMAIN_COMBAT)
-				total -= 2
-			else if(domain == TAT_SKILL_DOMAIN_PEACEFUL)
-				total += 6
-		if(TAT_ROLE_CHOICE_TRADER)
-			if(domain == TAT_SKILL_DOMAIN_ADVENTURE)
-				total += 3
-			else if(domain == TAT_SKILL_DOMAIN_PEACEFUL)
-				total += 3
+		total += 6
+	if(domain == TAT_SKILL_DOMAIN_LABOUR)
+		total += 6
+	if(domain == TAT_SKILL_DOMAIN_MISC)
+		total += 6
 	return total
 
 /datum/tat_build/proc/get_bonus_skill_value(skill_type)
@@ -437,8 +424,8 @@
 		"Dropkick - Pushback + Extra Damage"
 	)
 	if(!H?.client)
-		return TAT_RESIDENT_PUGILIST_DEFAULT
-	return tgui_input_list(H, "Choose your resident pugilist style.", "Resident Pugilist", options) || TAT_RESIDENT_PUGILIST_DEFAULT
+		return "Dropkick - Pushback + Extra Damage"
+	return tgui_input_list(H, "Choose your resident pugilist style.", "Resident Pugilist", options) || "Dropkick - Pushback + Extra Damage"
 
 /datum/tat_build/proc/get_resident_pugilist_spell_type(choice)
 	switch(choice)
@@ -457,6 +444,7 @@
 	skills.sanitize()
 	items.sanitize()
 	dirty = FALSE
+	sync_virtues_from_traits()
 	invalidate_ui_data_cache()
 	return TRUE
 
@@ -729,6 +717,7 @@
 	traits.apply_deferred_to_human(H)
 	stats.apply_to_human(H)
 	skills.apply_to_human(H)
+	traits.apply_tat_virtue_packages(H)
 
 	return TRUE
 
@@ -941,19 +930,7 @@
 	return TRUE
 
 /datum/tat_build/proc/get_role_bucket()
-	if(directions)
-		return directions.get_role_choice()
-
-	if(traits?.has_trait(TAT_TRAIT_RESIDENT))
-		return TAT_ROLE_BUCKET_TOWNER
-
-	if(traits?.has_trait(TRAIT_OUTLANDER))
-		return TAT_ROLE_BUCKET_ADVENTURER
-
-	if(traits?.has_trait(TAT_TRAIT_WANTED))
-		return TAT_ROLE_BUCKET_WRETCH
-
-	return TAT_ROLE_BUCKET_TRADER
+	return TAT_ROLE_BUCKET_TOWNER
 
 /datum/tat_build/proc/trait_data_has_trait(list/trait_data, trait_id)
 	if(!islist(trait_data) || isnull(trait_id))
@@ -969,43 +946,10 @@
 	return (trait_id in trait_data)
 
 /datum/tat_build/proc/get_role_bucket_from_data(list/build_data)
-	var/list/trait_data = islist(build_data) ? build_data["traits"] : null
-	var/list/direction_data = islist(build_data) ? build_data["directions"] : null
-	var/foundation = islist(direction_data) ? direction_data["foundation"] : null
-	var/role_choice = islist(direction_data) ? direction_data["role_choice"] : null
-
-	if(role_choice in list(TAT_ROLE_BUCKET_TOWNER, TAT_ROLE_BUCKET_TRADER, TAT_ROLE_BUCKET_ADVENTURER, TAT_ROLE_BUCKET_WRETCH))
-		return role_choice
-
-	if(trait_data_has_trait(trait_data, TAT_TRAIT_RESIDENT))
-		return TAT_ROLE_BUCKET_TOWNER
-
-	if(trait_data_has_trait(trait_data, TAT_TRAIT_TRADER_LICENSE))
-		return TAT_ROLE_BUCKET_TRADER
-
-	if(trait_data_has_trait(trait_data, TRAIT_OUTLANDER))
-		return TAT_ROLE_BUCKET_ADVENTURER
-
-	if(trait_data_has_trait(trait_data, TAT_TRAIT_WANTED))
-		return TAT_ROLE_BUCKET_WRETCH
-
-	if(foundation == TAT_FOUNDATION_WANDERER)
-		return TAT_ROLE_BUCKET_ADVENTURER
-
-	return TAT_ROLE_BUCKET_TRADER
+	return TAT_ROLE_BUCKET_TOWNER
 
 /datum/tat_build/proc/get_tat_role_class_path(bucket)
-	switch(bucket)
-		if(TAT_ROLE_BUCKET_TOWNER)
-			return /datum/advclass/tat_class/towner
-		if(TAT_ROLE_BUCKET_TRADER)
-			return /datum/advclass/tat_class/trader
-		if(TAT_ROLE_BUCKET_ADVENTURER)
-			return /datum/advclass/tat_class/adventurer
-		if(TAT_ROLE_BUCKET_WRETCH)
-			return /datum/advclass/tat_class/wretch
-
-	return null
+	return /datum/advclass/tat_class
 
 /datum/tat_build/proc/get_tat_role_class_name(bucket)
 	var/class_path = get_tat_role_class_path(bucket)
@@ -1051,3 +995,5 @@
 		"pq_locked" = pq_locked,
 		"pq_lock_text" = pq_lock_text,
 	)
+
+

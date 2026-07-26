@@ -4,7 +4,7 @@
 /datum/species/tieberian
 	name = "Tiefling"
 	id = "tiefling"
-	origin_default = /datum/virtue/origin/etrusca
+	origin_default = /datum/virtue/origin/ostrovia
 	origin = "Etrusca"
 	base_name = "Godtouched"
 	is_subrace = TRUE

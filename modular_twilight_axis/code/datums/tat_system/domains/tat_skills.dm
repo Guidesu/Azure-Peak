@@ -41,23 +41,21 @@
 /datum/tat_skills/proc/normalize_skill_domain(domain)
 	if(domain == TAT_SKILL_DOMAIN_COMBAT)
 		return TAT_SKILL_DOMAIN_COMBAT
-	if(domain == TAT_SKILL_DOMAIN_PEACEFUL)
-		return TAT_SKILL_DOMAIN_PEACEFUL
-	if(domain == TAT_SKILL_DOMAIN_ADVENTURE)
-		return TAT_SKILL_DOMAIN_ADVENTURE
-	if(domain == TAT_SKILL_DOMAIN_WANDERING)
-		return TAT_SKILL_DOMAIN_ADVENTURE
-	if(domain == TAT_SKILL_DOMAIN_GATHERING)
-		return TAT_SKILL_DOMAIN_PEACEFUL
-	if(domain == TAT_SKILL_DOMAIN_CRAFTING)
-		return TAT_SKILL_DOMAIN_PEACEFUL
+	if(domain == TAT_SKILL_DOMAIN_LABOUR)
+		return TAT_SKILL_DOMAIN_LABOUR
 	if(domain == TAT_SKILL_DOMAIN_MISC)
-		return TAT_SKILL_DOMAIN_ADVENTURE
+		return TAT_SKILL_DOMAIN_MISC
+	if(domain == TAT_SKILL_DOMAIN_WANDERING)
+		return TAT_SKILL_DOMAIN_MISC
+	if(domain == TAT_SKILL_DOMAIN_GATHERING)
+		return TAT_SKILL_DOMAIN_LABOUR
+	if(domain == TAT_SKILL_DOMAIN_CRAFTING)
+		return TAT_SKILL_DOMAIN_LABOUR
 	return null
 
 /datum/tat_skills/proc/is_convertible_skill_domain(domain)
 	domain = normalize_skill_domain(domain)
-	return domain == TAT_SKILL_DOMAIN_PEACEFUL || domain == TAT_SKILL_DOMAIN_ADVENTURE
+	return domain == TAT_SKILL_DOMAIN_LABOUR || domain == TAT_SKILL_DOMAIN_MISC
 
 /datum/tat_skills/proc/can_convert_from_skill_domain(domain)
 	domain = normalize_skill_domain(domain)
@@ -133,7 +131,7 @@
 
 /datum/tat_skills/proc/build_skill_conversion_state()
 	var/list/result = list()
-	for(var/domain in list(TAT_SKILL_DOMAIN_COMBAT, TAT_SKILL_DOMAIN_PEACEFUL, TAT_SKILL_DOMAIN_ADVENTURE))
+	for(var/domain in list(TAT_SKILL_DOMAIN_COMBAT, TAT_SKILL_DOMAIN_LABOUR, TAT_SKILL_DOMAIN_MISC))
 		var/can_convert = can_convert_from_skill_domain(domain)
 		var/can_receive = can_receive_converted_skill_domain(domain)
 		var/give_text = can_receive ? "Move one converted skill point into this pool." : "This skill pool cannot receive converted points."
@@ -157,8 +155,8 @@
 
 	var/list/domains = list(
 		TAT_SKILL_DOMAIN_COMBAT,
-		TAT_SKILL_DOMAIN_PEACEFUL,
-		TAT_SKILL_DOMAIN_ADVENTURE
+		TAT_SKILL_DOMAIN_LABOUR,
+		TAT_SKILL_DOMAIN_MISC
 	)
 	var/list/default_domain_points = TAT_DEFAULT_SKILL_DOMAIN_POINTS
 
@@ -399,12 +397,8 @@
 	if(domain != TAT_SKILL_DOMAIN_COMBAT)
 		return get_role_domain_points(domain)
 
-	var/total = 0
-	if(owner_build.directions?.foundation == TAT_FOUNDATION_WANDERER)
-		total += 6
-	if(owner_build.directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-		total += 6
-	return max(0, total)
+	// Role/foundation-specific convertible combat points removed in single-archetype build.
+	return 0
 
 /datum/tat_skills/proc/get_converted_role_points(domain)
 	domain = normalize_skill_domain(domain)
@@ -769,8 +763,8 @@
 		if(master_invested_target >= 0 && get_raw_total_value(skill_type, master_invested_target) >= master_cap && !would_violate_combat_hardcaps(skill_type, master_invested_target))
 			cap = master_cap
 
-	if(has_pugilist && has_expert && is_pugilist_unarmed_skill && owner_build?.directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-		cap = max(cap, master_cap)
+	// Wretch role gate removed in single-archetype build.
+
 
 	var/cap_bonus = get_trait_cap_bonus(skill_type) + get_virtue_skill_cap_bonus(skill_type)
 	if(cap_bonus > 0)
@@ -790,8 +784,8 @@
 	if(skill_type == /datum/skill/magic/arcane)
 		if(owner_build?.has_trait(TAT_TRAIT_SPELLBLADE))
 			cap = 3
-			if(owner_build?.directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-				cap = SKILL_LEVEL_MASTER
+			// Wretch role gate removed.
+	
 		else
 			var/magic_points = owner_build?.directions?.get_points(TAT_DIRECTION_MAGIC) || 0
 			cap = magic_points
@@ -1146,3 +1140,5 @@
 	rebuild_bonus_values()
 	sanitize()
 	return TRUE
+
+

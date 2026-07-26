@@ -39,20 +39,20 @@
 		)
 
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
-		if(/datum/patron/inhumen/graggar)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/gronn
-		if(/datum/patron/inhumen/matthios)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gronn
-		if(/datum/patron/inhumen/baotha)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/baothagronn
-		if(/datum/patron/divine/abyssor)
-			id = /obj/item/clothing/neck/roguetown/psicross/abyssor/gronn
-		if(/datum/patron/divine/dendor)
-			id = /obj/item/clothing/neck/roguetown/psicross/dendor/gronn
+		if(/datum/patron/unveiled/aurelian)
+			id = /obj/item/clothing/neck/roguetown/psicross/aurelian/gronn
+		if(/datum/patron/oldkin/volkovoi)
+			id = /obj/item/clothing/neck/roguetown/psicross/volkovoi/gronn
+		if(/datum/patron/concordat/morwenna)
+			id = /obj/item/clothing/neck/roguetown/psicross/morwenna/gronn
+		if(/datum/patron/oldkin/hausvette)
+			id = /obj/item/clothing/neck/roguetown/psicross/hausvette/gronn
+		if(/datum/patron/concordat/wulfric)
+			id = /obj/item/clothing/neck/roguetown/psicross/wulfric/gronn
+		if(/datum/patron/severance/ignatius)
+			id = /obj/item/clothing/neck/roguetown/psicross/ignatius/gronn
 		else
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn/special //Failsafe. Gives a specially-fluffed version of Zizo's talisman, which can be reinterpreted as needed.
+			id = /obj/item/clothing/neck/roguetown/psicross/aurelian/gronn/special //Failsafe. Gives a specially-fluffed version of Zizo's talisman, which can be reinterpreted as needed.
 
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
@@ -184,20 +184,20 @@
 	beltr = /obj/item/flashlight/flare/torch/lantern
 
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
-		if(/datum/patron/inhumen/graggar)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/gronn
-		if(/datum/patron/inhumen/matthios)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gronn
-		if(/datum/patron/inhumen/baotha)
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/baothagronn
-		if(/datum/patron/divine/abyssor)
-			id = /obj/item/clothing/neck/roguetown/psicross/abyssor/gronn
-		if(/datum/patron/divine/dendor)
-			id = /obj/item/clothing/neck/roguetown/psicross/dendor/gronn
+		if(/datum/patron/unveiled/aurelian)
+			id = /obj/item/clothing/neck/roguetown/psicross/aurelian/gronn
+		if(/datum/patron/oldkin/volkovoi)
+			id = /obj/item/clothing/neck/roguetown/psicross/volkovoi/gronn
+		if(/datum/patron/concordat/morwenna)
+			id = /obj/item/clothing/neck/roguetown/psicross/morwenna/gronn
+		if(/datum/patron/oldkin/hausvette)
+			id = /obj/item/clothing/neck/roguetown/psicross/hausvette/gronn
+		if(/datum/patron/concordat/wulfric)
+			id = /obj/item/clothing/neck/roguetown/psicross/wulfric/gronn
+		if(/datum/patron/severance/ignatius)
+			id = /obj/item/clothing/neck/roguetown/psicross/ignatius/gronn
 		else
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn/special //Failsafe. Gives a specially-fluffed version of Zizo's talisman, which can be reinterpreted as needed.
+			id = /obj/item/clothing/neck/roguetown/psicross/aurelian/gronn/special //Failsafe. Gives a specially-fluffed version of Zizo's talisman, which can be reinterpreted as needed.
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary = 1,
 		/obj/item/rogueweapon/huntingknife = 1,

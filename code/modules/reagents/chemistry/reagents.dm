@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 				record_round_statistic(STATS_ALCOHOL_CONSUMED, metabolization_rate)
 			if(istype(src, /datum/reagent/water))
 				record_round_statistic(STATS_WATER_CONSUMED, metabolization_rate)
-		if(istype(src, /datum/reagent/consumable/ethanol) && has_world_trait(/datum/world_trait/baotha_revelry))
+		if(istype(src, /datum/reagent/consumable/ethanol) && has_world_trait(/datum/world_trait/hausvette_revelry))
 			adjusted_metabolization_rate = adjusted_metabolization_rate * 0.5
 		holder.remove_reagent(type, adjusted_metabolization_rate) //By default it slowly disappears.
 	return TRUE

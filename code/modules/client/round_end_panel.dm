@@ -879,7 +879,7 @@
 	if(mob)
 		if(isliving(mob))
 			var/mob/living/living_user_mob = mob
-			if(istype(living_user_mob.patron, /datum/patron/old_god))
+			if(istype(living_user_mob.patron, /datum/patron/tribunal/praecursor))
 				psydonite_user = TRUE
 
 	var/psydon_followers = GLOB.patron_follower_counts["Psydon"] || 0
@@ -932,38 +932,38 @@
 	data += "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 30px;'>"
 
 	// Astrata
-	data += god_ui_block("ASTRATA", "#e7a962", "#642705", /datum/storyteller/astrata, debug)
+	data += god_ui_block("ASTRATA", "#e7a962", "#642705", /datum/storyteller/auxentius, debug)
 
 	// Dendor
-	data += god_ui_block("DENDOR", "#412938", "#66745c", /datum/storyteller/dendor, debug)
+	data += god_ui_block("DENDOR", "#412938", "#66745c", /datum/storyteller/ignatius, debug)
 
 	// Ravox
-	data += god_ui_block("RAVOX", "#2c232d", "#710f0f", /datum/storyteller/ravox, debug)
+	data += god_ui_block("RAVOX", "#2c232d", "#710f0f", /datum/storyteller/auxentius, debug)
 
 	// Eora
-	data += god_ui_block("EORA", "#a95063", "#e7c3da", /datum/storyteller/eora, debug)
+	data += god_ui_block("EORA", "#a95063", "#e7c3da", /datum/storyteller/miluse, debug)
 
 	// Necra
-	data += god_ui_block("NECRA", "#2a2459", "#4c82a8", /datum/storyteller/necra, debug)
+	data += god_ui_block("NECRA", "#2a2459", "#4c82a8", /datum/storyteller/morwenna, debug)
 
 	data += "</div>"
 
 	data += "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>"
 
 	// Noc
-	data += god_ui_block("NOC", "#4e72a1", "#282137", /datum/storyteller/noc, debug)
+	data += god_ui_block("NOC", "#4e72a1", "#282137", /datum/storyteller/miluse, debug)
 
 	// Abyssor
-	data += god_ui_block("ABYSSOR", "#50090f", "#bbace0", /datum/storyteller/abyssor, debug)
+	data += god_ui_block("ABYSSOR", "#50090f", "#bbace0", /datum/storyteller/wulfric, debug)
 
 	// Malum
-	data += god_ui_block("MALUM", "#3d4139", "#955454", /datum/storyteller/malum, debug)
+	data += god_ui_block("MALUM", "#3d4139", "#955454", /datum/storyteller/handwerra, debug)
 
 	// Xylix
-	data += god_ui_block("XYLIX", "#7e632c", "#f6feff", /datum/storyteller/xylix, debug)
+	data += god_ui_block("XYLIX", "#7e632c", "#f6feff", /datum/storyteller/viator, debug)
 
 	// Pestra
-	data += god_ui_block("PESTRA", "#517b27", "#1b2a2a", /datum/storyteller/pestra, debug)
+	data += god_ui_block("PESTRA", "#517b27", "#1b2a2a", /datum/storyteller/handwerra, debug)
 
 	data += "</div></div>"
 
@@ -976,16 +976,16 @@
 	data += "<div style='display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 20px; margin-bottom: 20px;'>"
 
 	// Matthios
-	data += god_ui_block("MATTHIOS", "#20202e", "#99b2b1", /datum/storyteller/matthios, debug)
+	data += god_ui_block("MATTHIOS", "#20202e", "#99b2b1", /datum/storyteller/morwenna, debug)
 
 	// Baotha
-	data += god_ui_block("BAOTHA", "#46254a", "#e2abee", /datum/storyteller/baotha, debug)
+	data += god_ui_block("BAOTHA", "#46254a", "#e2abee", /datum/storyteller/hausvette, debug)
 
 	// Graggar
-	data += god_ui_block("GRAGGAR", "#3b5e51", "#99bbc7", /datum/storyteller/graggar, debug)
+	data += god_ui_block("GRAGGAR", "#3b5e51", "#99bbc7", /datum/storyteller/volkovoi, debug)
 
 	// Zizo
-	data += god_ui_block("ZIZO", "#661239", "#ed9da3", /datum/storyteller/zizo, debug)
+	data += god_ui_block("ZIZO", "#661239", "#ed9da3", /datum/storyteller/aurelian, debug)
 
 	data += "</div></div>"
 

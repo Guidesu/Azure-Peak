@@ -41,7 +41,7 @@
 	..()
 
 	// Add druidic skill for Dendor followers
-	if(istype(H.patron, /datum/patron/divine/dendor))
+	if(istype(H.patron, /datum/patron/severance/ignatius))
 		H.adjust_skillrank(/datum/skill/magic/druidic, SKILL_LEVEL_JOURNEYMAN, TRUE)
 		to_chat(H, span_notice("As a follower of Dendor, you have innate knowledge of druidic magic."))
 
@@ -105,33 +105,33 @@
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide TRAIT_DODGEEXPERT
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			cloak = /obj/item/clothing/cloak/tabard/psydontabard/black
 			mask = /obj/item/clothing/head/roguetown/roguehood/psydon/black
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			mask = /obj/item/clothing/head/roguetown/roguehood/astrata
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			mask =  /obj/item/clothing/head/roguetown/roguehood/nochood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/noc
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			mask = /obj/item/clothing/head/roguetown/roguehood/abyssor
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			mask = /obj/item/clothing/head/roguetown/dendormask
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			mask = /obj/item/clothing/head/roguetown/necrahood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/necra
-		if (/datum/patron/divine/malum)
+		if (/datum/patron/concordat/handwerra)
 			mask = /obj/item/clothing/head/roguetown/roguehood //placeholder
 			cloak = /obj/item/clothing/cloak/tabard/devotee/malum
-		if (/datum/patron/divine/eora)
+		if (/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora
 			mask = /obj/item/clothing/head/roguetown/eoramask
-		if (/datum/patron/divine/xylix)
+		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
-		if (/datum/patron/divine/undivided)
+		if (/datum/patron/tribunal/custodius)
 			mask = /obj/item/clothing/head/roguetown/roguehood/undividedcleric
 			if(H.mind)
 				var/cloaks = list("Cloak", "Tabard", "Robes")
@@ -147,50 +147,50 @@
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 			mask = /obj/item/clothing/head/roguetown/roguehood
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 
@@ -262,7 +262,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			cloak = /obj/item/clothing/cloak/tabard/psydontabard/black
 			if(H.mind)
 				helmets += list("Psydonic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
@@ -275,37 +275,37 @@
 						armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 					if("Cuirass")
 						armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			helmets += list("Old Astratan Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm)
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/noc
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/abyssor
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/dendor
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/necra
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			helmets += list("Old Necran Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm)
-		if (/datum/patron/divine/malum)
+		if (/datum/patron/concordat/handwerra)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/malum
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if (/datum/patron/divine/eora)
+		if (/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/eora
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			helmets += list("Old Eoran Sallet" = /obj/item/clothing/head/roguetown/helmet/sallet/eoran)
-		if (/datum/patron/divine/ravox)
+		if (/datum/patron/concordat/auxentius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if (/datum/patron/divine/xylix)
+		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-		if (/datum/patron/divine/pestra)
+		if (/datum/patron/concordat/handwerra)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/pestra
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		else
@@ -371,9 +371,9 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE) 
 				beltl = /obj/item/rogueweapon/sword/long/cleric //Essentially, a silver longsword without the ability to sunder antagonists. Should it deal lesser sunder to mindless unholy foes, later? Perhaps.
 				switch(H.patron?.type)
-					if(/datum/patron/old_god)
+					if(/datum/patron/tribunal/praecursor)
 						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t
-					if(/datum/patron/divine/astrata)
+					if(/datum/patron/concordat/auxentius)
 						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t/astrata
 					else
 						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t/undivided
@@ -382,50 +382,50 @@
 
 	H.set_blindness(0)
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			wrists = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 
@@ -490,29 +490,29 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			cloak = /obj/item/clothing/cloak/absolutionistrobe/black //Formerly /obj/item/clothing/cloak/tabard/devotee/psydon.
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/noc
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/abyssor
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/dendor
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/necra
-		if (/datum/patron/divine/malum)
+		if (/datum/patron/concordat/handwerra)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/malum
-		if (/datum/patron/divine/eora)
+		if (/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/eora
-		if (/datum/patron/divine/ravox)
+		if (/datum/patron/concordat/auxentius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
-		if (/datum/patron/divine/xylix)
+		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
-		if (/datum/patron/divine/pestra)
+		if (/datum/patron/concordat/handwerra)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/pestra
-		if (/datum/patron/divine/undivided)
+		if (/datum/patron/tribunal/custodius)
 			if(H.mind)
 				var/cloaks = list("Cloak", "Tabard")
 				var/cloakchoice = input(H,"Choose your covering", "TAKE UP FASHION") as anything in cloaks
@@ -551,50 +551,50 @@
 			if("Shamisen")
 				backr = /obj/item/rogue/instrument/shamisen
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 
@@ -644,10 +644,10 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			cloak = /obj/item/clothing/cloak/absolutionistrobe/black
 			head = /obj/item/clothing/head/roguetown/roguehood/psydon/black
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			head = /obj/item/clothing/head/roguetown/roguehood/undividedcleric
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/undividedcleric //Only exclusion cause it looks bad without the cloak over it
 			if(H.mind)
@@ -660,12 +660,12 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/cloak/templar/undividedcleric, SLOT_CLOAK, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-		if(/datum/patron/divine/astrata)
+		if(/datum/patron/concordat/auxentius)
 			head = /obj/item/clothing/head/roguetown/roguehood/astrata
 			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
 			H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			head =  /obj/item/clothing/head/roguetown/roguehood/nochood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/noc
 			H.adjust_skillrank(/datum/skill/misc/reading, SKILL_LEVEL_JOURNEYMAN, TRUE) // Really good at reading... does this really do anything? No. BUT it's soulful.
@@ -675,14 +675,14 @@
 			if(H.mind)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/touch/prestidigitation)
 			ADD_TRAIT(H, TRAIT_ARCYNE, TRAIT_GENERIC) // So that they can take arcyne potential and not break.
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			head = /obj/item/clothing/head/roguetown/roguehood/abyssor
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
 			H.adjust_skillrank(/datum/skill/labor/fishing, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			head = /obj/item/clothing/head/roguetown/dendormask
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
 			H.adjust_skillrank(/datum/skill/labor/farming, SKILL_LEVEL_APPRENTICE, TRUE)
@@ -690,7 +690,7 @@
 			ADD_TRAIT(H, TRAIT_EXPERT_HUNTER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_WOODWALKER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			head = /obj/item/clothing/head/roguetown/necrahood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/necra
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
@@ -705,7 +705,7 @@
 				if("Scythe") // o lawd we farmin
 					backr = /obj/item/rogueweapon/scabbard/gwstrap
 					l_hand = /obj/item/rogueweapon/scythe
-		if (/datum/patron/divine/malum)
+		if (/datum/patron/concordat/handwerra)
 			head = /obj/item/clothing/head/roguetown/roguehood //placeholder
 			cloak = /obj/item/clothing/cloak/tabard/devotee/malum
 			ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
@@ -714,7 +714,7 @@
 			H.adjust_skillrank(/datum/skill/craft/weaponsmithing, SKILL_LEVEL_APPRENTICE, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/smelting, SKILL_LEVEL_APPRENTICE, TRUE)
 			H.adjust_skillrank(/datum/skill/labor/lumberjacking, SKILL_LEVEL_APPRENTICE, TRUE)
-		if (/datum/patron/divine/eora)
+		if (/datum/patron/concordat/miluse)
 			head = /obj/item/clothing/head/roguetown/eoramask
 			backpack_contents[/obj/item/reagent_containers/eoran_seed] = 1
 			r_hand = /obj/item/rogueweapon/huntingknife/scissors
@@ -732,7 +732,7 @@
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora
 				if("Exposed")
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora/alt
-		if (/datum/patron/divine/xylix)
+		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
 			H.adjust_skillrank(/datum/skill/misc/climbing, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, SKILL_LEVEL_NOVICE, TRUE)
@@ -767,17 +767,17 @@
 						l_hand = /obj/item/rogue/instrument/drum
 					if("Shamisen")
 						l_hand = /obj/item/rogue/instrument/shamisen
-		if (/datum/patron/divine/pestra)
+		if (/datum/patron/concordat/handwerra)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/pestra
 			H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-		if (/datum/patron/divine/ravox)
+		if (/datum/patron/concordat/auxentius)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
 			H.adjust_skillrank(/datum/skill/misc/athletics, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/staves, SKILL_LEVEL_NOVICE, TRUE) //On par with an Adventuring Monk. Seems quite fitting.
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
 			head = /obj/item/clothing/head/roguetown/roguehood
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/minion_order)
@@ -796,57 +796,57 @@
 			if("Quarterstaff")
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-	if(istype(H.patron, /datum/patron/divine))
+	if(istype(H.patron, /datum/patron/concordat))
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
-	if(istype(H.patron, /datum/patron/inhumen))
+	if(istype(H.patron, /datum/patron/unveiled))
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
-	if(istype(H.patron, /datum/patron/old_god))
+	if(istype(H.patron, /datum/patron/tribunal/praecursor))
 		H.mind?.AddSpell(new /datum/action/cooldown/spell/psydon/enduring_blast) //99% rock chance, 1% boulder, hilarious.
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			H.grant_language (/datum/language/beast)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'

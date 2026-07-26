@@ -6,7 +6,7 @@
 	total_positions = 1 // THE ONE.
 	spawn_positions = 1
 	forbidden_races = list(RACES_OOZE)
-	allowed_patrons = list(/datum/patron/old_god) //Requires the character to be a practicing Psydonite.
+	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires the character to be a practicing Psydonite.
 	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
 	selection_color = JCOLOR_INQUISITION
 	outfit = /datum/outfit/job/roguetown/absolver
@@ -115,7 +115,7 @@
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
-	change_origin(H, /datum/virtue/origin/otava, "Holy order")
+	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")
 
 /obj/effect/proc_holder/spell/invoked/convert_psydon
 	name = "REDEEM"
@@ -140,12 +140,12 @@
 		revert_cast()
 		return FALSE
 
-	if(istype(target.patron, /datum/patron/old_god))
+	if(istype(target.patron, /datum/patron/tribunal/praecursor))
 		to_chat(user, span_warning("[target] is already faithful to Psydon!"))
 		revert_cast()
 		return FALSE
 
-	if(istype(target.patron, /datum/patron/vheslyn)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
+	if(istype(target.patron, /datum/patron/oldkin/klokner)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
 		to_chat(user, span_userdanger("[target] is UNFORGIVABLE, my attempt to convert them to PSYDON, violently sunders my lux!"))
 		if(!HAS_TRAIT(user, TRAIT_NOPAIN))
 			user.emote("agony")

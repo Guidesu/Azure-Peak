@@ -94,7 +94,7 @@
 		/obj/item/chalk = 1,
 		)
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 	if(H.mind)
 		backr = choose_implement(H, "lesser")
@@ -152,7 +152,7 @@
 		/obj/item/chalk = 1,
 		)
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 	if(H.mind)
 		backr = choose_implement(H, "lesser")
@@ -200,7 +200,7 @@
 		/obj/item/chalk = 1,
 		)
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 	if(H.mind)
 		backr = choose_implement(H, "lesser")

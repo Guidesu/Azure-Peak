@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(goblin_pyromancer_aggro, list(
 		amt2add = ((world.time - last_process)/10) * amt2add
 	last_process = world.time
 	amount += amt2add
-	if(has_world_trait(/datum/world_trait/pestra_mercy))
+	if(has_world_trait(/datum/world_trait/handwerra_mercy))
 		amount -= 5 * time_elapsed
 	var/mob/living/carbon/C = parent
 	if(!C)
@@ -545,7 +545,7 @@ GLOBAL_LIST_INIT(goblin_pyromancer_aggro, list(
 	N.key = user.key
 	N.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/simple/claw) //As intended from seige goblins, so it is here.
 	N.update_a_intents()
-	N.set_patron(/datum/patron/inhumen/graggar)
+	N.set_patron(/datum/patron/oldkin/volkovoi)
 	N.cmode_music = 'sound/music/combat_shaman2.ogg' //GRAGGAR. GRAGGAR. GRAGGAR. (Different to Gnolls/Heretics, you're just a barbaric goblin shocktrooper)
 	N.choose_name_popup("Goblin") //This is so dumb but funny
 	if(N.mind)

@@ -1,0 +1,92 @@
+// CharacterOriginMap — clickable region map for picking a character's
+// origin, replacing a plain text dropdown with an actual map of Vaeltis.
+// Same carved-medieval shell language as CharacterSheet.scss, but the map
+// pane itself commits to a parchment/ink cartography look (matches the
+// world-map artifact's palette) rather than the dark leather theme.
+
+.CharacterOriginMap {
+  min-height: 100%;
+  padding: 4px;
+  font-family: 'Lora', Georgia, serif;
+  color: #d9c9a3;
+
+  &__mapSection {
+    background: #e9dfc2;
+  }
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+
+  &__sea {
+    fill: #a9c6c4;
+  }
+
+  &__land {
+    stroke: #5a4a2f;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+
+    &--main {
+      fill: #cdbf8d;
+    }
+
+    &--west {
+      fill: #cbb896;
+    }
+
+    &--south {
+      fill: #c2b98f;
+    }
+
+    &--isle {
+      fill: #cdbf8d;
+      stroke-width: 1;
+    }
+  }
+
+  &__hotspot {
+    cursor: pointer;
+  }
+
+  &__hotspotRect {
+    fill: rgba(212, 175, 55, 0.12);
+    stroke: #6b5325;
+    stroke-width: 1.5;
+    transition:
+      fill 0.12s ease,
+      stroke 0.12s ease;
+  }
+
+  &__hotspot:hover &__hotspotRect,
+  &__hotspot--active &__hotspotRect {
+    fill: rgba(212, 175, 55, 0.32);
+    stroke: #d4af37;
+    stroke-width: 2;
+  }
+
+  &__hotspot--selected &__hotspotRect {
+    fill: rgba(122, 20, 20, 0.22);
+    stroke: #7a1414;
+    stroke-width: 2;
+  }
+
+  &__hotspotLabel {
+    font-family: 'MedievalSharp', Georgia, serif;
+    font-size: 13px;
+    fill: #2a2013;
+    pointer-events: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  &__hotspotCheck {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 9px;
+    fill: #7a1414;
+    pointer-events: none;
+    font-weight: bold;
+  }
+}

@@ -39,7 +39,7 @@
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/silver
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
+	wrists = /obj/item/clothing/neck/roguetown/psicross/auxentius
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
 	belt = /obj/item/storage/belt/rogue/leather/steel/tasset
 	pants = /obj/item/clothing/under/roguetown/platelegs/iron
@@ -55,8 +55,8 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg' // this is probably awful implementation. too bad!
 	switch(H.patron?.type)
-		if(/datum/patron/divine/undivided)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
+		if(/datum/patron/tribunal/custodius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/custodius
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/undivided_alt
 			if(H.mind)
 				var/cloaks = list("Cloak", "Tabard")
@@ -66,49 +66,49 @@
 						cloak = /obj/item/clothing/cloak/undivided
 					if("Tabard")
 						cloak = /obj/item/clothing/cloak/templar/undivided_alt
-		if(/datum/patron/divine/astrata)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/concordat/auxentius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
 			cloak = /obj/item/clothing/cloak/templar/astratan
-		if(/datum/patron/divine/abyssor)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/wulfric)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 			cloak = /obj/item/clothing/cloak/tabard/abyssorite
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/templar/xylixian
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
-		if(/datum/patron/divine/dendor)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
 			cloak = /obj/item/clothing/cloak/tabard/crusader/dendor
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
-		if(/datum/patron/divine/necra)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/necran
 			cloak = /obj/item/clothing/cloak/templar/necran
-		if(/datum/patron/divine/pestra)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/concordat/handwerra)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/handwerra
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/pestran
 			cloak = /obj/item/clothing/cloak/templar/pestran
-		if(/datum/patron/divine/eora) //Eora content from stonekeep
-			wrists = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/miluse) //Eora content from stonekeep
+			wrists = /obj/item/clothing/neck/roguetown/psicross/miluse
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/eoran
 			cloak = /obj/item/clothing/cloak/templar/eoran
-		if(/datum/patron/divine/noc)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/concordat/miluse)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/miluse
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 			cloak = /obj/item/clothing/cloak/tabard/devotee/noc
-		if(/datum/patron/divine/ravox)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/concordat/auxentius)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
 			cloak = /obj/item/clothing/cloak/templar/ravox
 			mask = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
-		if(/datum/patron/divine/malum)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
+		if(/datum/patron/concordat/handwerra)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/handwerra
 			cloak = /obj/item/clothing/cloak/templar/malumite
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/malum
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
 	// Patron dagger in satchel
@@ -126,34 +126,34 @@
 	. = ..()
 	var/weapons = list("Longsword","Flail","Mace","Battle Axe","Spear")
 	switch(H.patron?.type)
-		if(/datum/patron/divine/astrata) //Unique patron weapons, more can be added here if wanted.
+		if(/datum/patron/concordat/auxentius) //Unique patron weapons, more can be added here if wanted.
 			weapons += "Solar Judgement"
 			weapons += "Absolutio"
 			weapons += "Sunburst"
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			weapons += "Decablade"
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			weapons += "Moonlight Khopesh"
 			weapons += "Moonlight Kriegmesser"
-		if(/datum/patron/divine/necra)
+		if(/datum/patron/concordat/morwenna)
 			weapons += "Swift End"
-		if(/datum/patron/divine/pestra)
+		if(/datum/patron/concordat/handwerra)
 			weapons += "Plaguebringer Sickles"
 			weapons += "Lance of Boils"
 			weapons += "Cleansing Edge"
-		if(/datum/patron/divine/malum)
+		if(/datum/patron/concordat/handwerra)
 			weapons += "Forgefiend"
 			weapons += "Kargrund Maul"
-		if(/datum/patron/divine/dendor)
+		if(/datum/patron/severance/ignatius)
 			weapons += "Summer Scythe"
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			weapons += "Cackle Lash"
-		if(/datum/patron/divine/ravox)
+		if(/datum/patron/concordat/auxentius)
 			weapons += "Duel Settler"
 			weapons += "Censure"
-		if(/datum/patron/divine/eora)
+		if(/datum/patron/concordat/miluse)
 			weapons += "The Heartstring"
-		if(/datum/patron/divine/abyssor)
+		if(/datum/patron/concordat/wulfric)
 			weapons += "Tidecleaver"
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP YOUR GOD'S ARMS") as anything in weapons
 	switch(weapon_choice)
@@ -243,46 +243,46 @@
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT, TRUE)
 
 	// -- Start of section for god specific bonuses --
-	if(H.patron?.type == /datum/patron/divine/undivided)
+	if(H.patron?.type == /datum/patron/tribunal/custodius)
 		H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
-	if(H.patron?.type == /datum/patron/divine/astrata)
+	if(H.patron?.type == /datum/patron/concordat/auxentius)
 		H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 		H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-	if(H.patron?.type == /datum/patron/divine/dendor)
+	if(H.patron?.type == /datum/patron/severance/ignatius)
 		H.adjust_skillrank(/datum/skill/labor/farming, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/climbing, SKILL_LEVEL_NOVICE, TRUE)
-	if(H.patron?.type == /datum/patron/divine/noc)
+	if(H.patron?.type == /datum/patron/concordat/miluse)
 		H.adjust_skillrank(/datum/skill/misc/reading, SKILL_LEVEL_JOURNEYMAN, TRUE) // Really good at reading... does this really do anything? No. BUT it's soulful.
 		H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/magic/arcane, SKILL_LEVEL_NOVICE, TRUE)
 		ADD_TRAIT(H, TRAIT_ALCHEMY_EXPERT, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/abyssor)
+	if(H.patron?.type == /datum/patron/concordat/wulfric)
 		H.adjust_skillrank(/datum/skill/labor/fishing, SKILL_LEVEL_APPRENTICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/swimming, SKILL_LEVEL_NOVICE, TRUE)
 		ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 		H.grant_language(/datum/language/abyssal)
-	if(H.patron?.type == /datum/patron/divine/necra)
+	if(H.patron?.type == /datum/patron/concordat/morwenna)
 		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-	if(H.patron?.type == /datum/patron/divine/pestra)
+	if(H.patron?.type == /datum/patron/concordat/handwerra)
 		H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 		ADD_TRAIT(H, TRAIT_ALCHEMY_EXPERT, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/eora)
+	if(H.patron?.type == /datum/patron/concordat/miluse)
 		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-	if(H.patron?.type == /datum/patron/divine/malum)
+	if(H.patron?.type == /datum/patron/concordat/handwerra)
 		H.adjust_skillrank(/datum/skill/craft/blacksmithing, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/armorsmithing, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/smelting, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/labor/lumberjacking, SKILL_LEVEL_APPRENTICE, TRUE)
-	if(H.patron?.type == /datum/patron/divine/ravox)
+	if(H.patron?.type == /datum/patron/concordat/auxentius)
 		H.adjust_skillrank(/datum/skill/misc/athletics, SKILL_LEVEL_NOVICE, TRUE)
-	if(H.patron?.type == /datum/patron/divine/xylix)
+	if(H.patron?.type == /datum/patron/concordat/viator)
 		H.adjust_skillrank(/datum/skill/misc/climbing, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/music, SKILL_LEVEL_NOVICE, TRUE)

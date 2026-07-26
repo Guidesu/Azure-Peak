@@ -37,7 +37,7 @@
 /datum/outfit/job/roguetown/heartfelt/retinue/physician/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+	neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/belt/rogue/surgery_bag/full/physician
 	beltr = /obj/item/rogueweapon/huntingknife

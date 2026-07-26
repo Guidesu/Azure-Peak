@@ -14,7 +14,7 @@
 	show_in_credits = TRUE
 	min_pq = 10
 	max_pq = null
-	allowed_patrons = list(/datum/patron/inhumen/graggar)
+	allowed_patrons = list(/datum/patron/oldkin/volkovoi)
 
 	obsfuscated_job = TRUE
 

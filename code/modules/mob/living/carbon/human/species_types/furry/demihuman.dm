@@ -5,7 +5,7 @@
 	name = "Half-Kin"
 	id = "demihuman"
 	is_subrace = TRUE
-	origin_default = /datum/virtue/origin/grenzelhoft
+	origin_default = /datum/virtue/origin/auxentia
 	origin = "Grenzelhoft"
 	base_name = "Humen"
 	desc_title = "Half-Kin"

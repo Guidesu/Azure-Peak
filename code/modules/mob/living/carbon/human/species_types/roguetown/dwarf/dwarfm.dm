@@ -5,7 +5,7 @@
 	name = "Dwarf"
 	id = "dwarfm"
 	psydonic = TRUE
-	origin_default = /datum/virtue/origin/hammerhold
+	origin_default = /datum/virtue/origin/vergenmark
 	origin = "Hammerhold"
 	sub_name = "Mountain Dwarf"
 	clothes_id = "dwarf"

@@ -19,7 +19,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!istype(H) || H.stat == DEAD || !H.client)
 			continue
-		if(!H.patron || !istype(H.patron, /datum/patron/divine/dendor))
+		if(!H.patron || !istype(H.patron, /datum/patron/severance/ignatius))
 			continue
 		if(locate(/obj/effect/proc_holder/spell/invoked/transform_tree) in H.mind.spell_list)
 			continue
@@ -33,7 +33,7 @@
 	for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
 		if(!istype(human_mob) || human_mob.stat == DEAD || !human_mob.client)
 			continue
-		if(!human_mob.patron || !istype(human_mob.patron, /datum/patron/divine/dendor))
+		if(!human_mob.patron || !istype(human_mob.patron, /datum/patron/severance/ignatius))
 			continue
 		if(locate(/obj/effect/proc_holder/spell/invoked/transform_tree) in human_mob.mind.spell_list)
 			continue

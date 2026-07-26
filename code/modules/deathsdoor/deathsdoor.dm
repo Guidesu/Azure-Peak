@@ -60,7 +60,7 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 		dests[GLOB.deaths_door_exit] = "Necra's Shrine"
 	// Warn Necra followers without sight
 	if(!user.mind?.has_spell(/obj/effect/proc_holder/spell/invoked/necras_sight))
-		if(user.patron == /datum/patron/divine/necra)
+		if(user.patron == /datum/patron/concordat/morwenna)
 			to_chat(user, span_warning("Necra's paths blur before you. You lack the sight to choose."))
 
 	if(!length(dests))

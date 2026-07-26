@@ -697,6 +697,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		werewolf_headshot_link = null
 
 	S["qsr"] 			>> qsr_pref
+	S["have_manor"]			>> have_manor
+	S["manor_name"]			>> manor_name
+	S["manor_type"]			>> manor_type
 	S["flavortext"]			>> flavortext
 	S["ooc_notes"]			>> ooc_notes
 	S["ooc_extra"]			>> ooc_extra
@@ -941,6 +944,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["preset_bounty_severity_b_key"] , preset_bounty_severity_b_key)
 	WRITE_FILE(S["preset_bounty_severity_v_key"] , preset_bounty_severity_v_key)
 	WRITE_FILE(S["preset_bounty_crime"] , preset_bounty_crime)
+	WRITE_FILE(S["have_manor"] , have_manor)
+	WRITE_FILE(S["manor_name"] , manor_name)
+	WRITE_FILE(S["manor_type"] , manor_type)
 	WRITE_FILE(S["flavortext"] , html_decode(flavortext))
 	WRITE_FILE(S["ooc_notes"] , html_decode(ooc_notes))
 	WRITE_FILE(S["ooc_extra"] ,	ooc_extra)

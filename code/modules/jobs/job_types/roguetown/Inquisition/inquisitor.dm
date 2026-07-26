@@ -7,7 +7,7 @@
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)		//Would you trust a machine to handle a role that requires non-logical intuition and commanding? Maybe. Could undo this if the community likes it. Purpose-built supermachines sound cool, too.
-	allowed_patrons = list(/datum/patron/old_god) //Requires your character's patron to be Psydon. This role is explicitly designed to be played by Psydonites, only, and almost everything they have - down to the equipment and statblock - is rooted in Psydonism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
+	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires your character's patron to be Psydon. This role is explicitly designed to be played by Psydonites, only, and almost everything they have - down to the equipment and statblock - is rooted in Psydonism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
 	tutorial = "You are a puritan of unmatched aptitude, adherent to the Psydonic doctrine and entrusted with the authority to lead a local sect. Otava - the \
 	largest Psydonic kingdom left on this world - has seen it fit to treat you like a silver-tipped olive branch, gifted to Azuria to ward off the encroaching \
 	darkness. Tread carefully when pursuing your missives, lest the faithless strap you to the pyre as well."
@@ -32,7 +32,7 @@
 	name = "Inquisitor"
 	jobtype = /datum/job/roguetown/inquisitor
 	job_bitflag = BITFLAG_HOLY_WARRIOR	//Counts as church.
-	allowed_patrons = list(/datum/patron/old_god)
+	allowed_patrons = list(/datum/patron/tribunal/praecursor)
 
 //// The Inquisitor. Jack of all trades, master of none. Respectable assortment of skills, stats, and equipment; good at both subterfuge and combat. Functions very well on their own, and even better with a full sect.
 
@@ -118,7 +118,7 @@
 		/obj/item/rogueweapon/scabbard/sheath/noble = 1
 		)
 
-	change_origin(H, /datum/virtue/origin/otava, "Holy order")
+	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")
 
 /datum/outfit/job/roguetown/inquisitor/inspector/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -250,7 +250,7 @@
 		/obj/item/clothing/ring/signet/psy = 1
 		)
 	
-	change_origin(H, /datum/virtue/origin/otava, "Holy order")
+	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")
 
 /datum/outfit/job/roguetown/inquisitor/ordinator/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

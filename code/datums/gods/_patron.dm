@@ -29,8 +29,13 @@ GLOBAL_LIST_EMPTY(prayers)
 	var/list/mob_traits
 	/// Assoc list of miracles it grants. Type = Cleric_Tier
 	var/list/miracles = list()
-	/// List of words that this god considers profane. (Master for all faiths. Inhumen have their own list.)
-	var/list/profane_words = list("zizo","matthios","graggar","baotha","cock","dick","fuck","shit","pussy","cuck","cunt","asshole","pintle","vheslyn")
+	/// List of words that this god considers profane. (Master for all faiths. Old Kin and the Unveiled have their own list.)
+	/// NOTE: previously hardcoded the Inhumen (zizo, matthios, graggar, baotha) and the archdevil (vheslyn) as profanity from
+	/// on high. Under the new pantheon system, Aurelian (Unveiled) and the Old Kin folk-figures (Volkovoi, Trnava, Klokner,
+	/// Hausvette) are the equivalent "looked down upon by high orthodoxy" names - Klokner in particular used to be Vheslyn,
+	/// an unplayable archdevil whose very name was forbidden. He is now a legitimate (if barely-a-god) Old Kin figure, so his
+	/// name is no longer blasphemous by default - see profane_words override note on /datum/patron/oldkin.
+	var/list/profane_words = list("aurelian","volkovoi","trnava","klokner","hausvette","cock","dick","fuck","shit","pussy","cuck","cunt","asshole","pintle")
 
 	/// List of traits associated with rank. Trait = Cleric_Tier
 	var/list/traits_tier = list()

@@ -63,11 +63,11 @@
 				H.playsound_local(H, 'sound/misc/adrenaline_rush.ogg', 30, TRUE)
 				status_effect = /datum/status_effect/zuranus // special dreams... perhaps.
 				switch(H.patron?.type)
-					if(/datum/patron/divine/noc)
+					if(/datum/patron/concordat/miluse)
 						picked_message = span_userdanger("Zuranus' shadowy presence gazes at me with eternal malice...")
 						// bad stress
 						stress_event = /datum/stressevent/see_zuranus
-					if(/datum/patron/inhumen/zizo)
+					if(/datum/patron/unveiled/aurelian)
 						picked_message = span_rose("I see the celestial form of Our Lady... how beautiful!")
 						// good stress
 						stress_event = /datum/stressevent/see_zuranus/zizoite
@@ -104,11 +104,11 @@
 				if(0) // damn you xylix
 					picked_message = span_info("It's too cloudy out to see anything! NO!!")
 					switch(H.patron?.type)
-						if(/datum/patron/divine/noc)
+						if(/datum/patron/concordat/miluse)
 							picked_message = span_danger("Something is wrong-- I SEE A STAR WHERE IT SHOULDN'T BE IN THE HALF-SWORD CONSTELLATION!")
 							stress_event = /datum/stressevent/xylix_star
 							H.playsound_local(H, 'sound/magic/decoylaugh.ogg', 30, TRUE)
-						if(/datum/patron/divine/xylix)
+						if(/datum/patron/concordat/viator)
 							picked_message = span_info("I see the Tricksters nocturnal machinations! Hehe!")
 							stress_event = /datum/stressevent/xylix_star/xylixian
 							H.playsound_local(H, 'sound/magic/decoylaugh.ogg', 30, TRUE)
@@ -145,10 +145,10 @@
 					picked_message = span_warning("Jove's bleeding vortex marrs its width with a crimson trail... ")
 					H.playsound_local(H, 'sound/magic/psydonbleeds.ogg', 40, TRUE) // HE IS COMING.
 					switch(H.patron?.type) // fucks w/ ravoxites and noccites.
-						if(/datum/patron/divine/noc, /datum/patron/divine/ravox)
+						if(/datum/patron/concordat/miluse, /datum/patron/concordat/auxentius)
 							stress_event = /datum/stressevent/something_stirs/telescope
 							picked_message += span_warning("Jove used to represent justice, before it turned blue.") // pim turns green
-						if(/datum/patron/inhumen/graggar)
+						if(/datum/patron/oldkin/volkovoi)
 							stress_event = /datum/stressevent/see_zuranus/graggarite
 							picked_message += span_warning("The Goresworn often speak of Graggar's dominance over Jove! They say he ate it whole-- turned it blue!")
 		// give out our message

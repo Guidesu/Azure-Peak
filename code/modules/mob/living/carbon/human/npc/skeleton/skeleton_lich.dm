@@ -38,7 +38,7 @@
 	H.adjust_skillrank_up_to(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 2, TRUE)
 
-	H.set_patron(/datum/patron/inhumen/zizo)
+	H.set_patron(/datum/patron/unveiled/aurelian)
 	if(prob(50))
 		r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
 	else

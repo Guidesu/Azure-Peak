@@ -34,7 +34,7 @@
 	extra_context = "This subclass is race-limited to: Drakian, Zardman, and Kobold. This subclass locks you to Matthios or Astrata-worship."
 
 /datum/outfit/job/roguetown/mercenary/lirvanmerc
-	allowed_patrons = list(/datum/patron/divine/astrata, /datum/patron/inhumen/matthios)
+	allowed_patrons = list(/datum/patron/concordat/auxentius, /datum/patron/concordat/morwenna)
 
 /datum/outfit/job/roguetown/mercenary/lirvanmerc/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -82,14 +82,14 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/lirvan_talon)
 
 	if(H.mind)
-		var/list/patron_choices = list("The ORDER and MONARCHY of Astrata", "The WEALTH and POWER of Matthios")
-		var/patron_choice = input(H, "What do you worship?", "Choose a Patron", "The WEALTH and POWER of Matthios") as anything in patron_choices
+		var/list/patron_choices = list("The ORDER and KINGSHIP of Auxentius", "The DEBT and INHERITANCE of Morwenna")
+		var/patron_choice = input(H, "What do you worship?", "Choose a Patron", "The DEBT and INHERITANCE of Morwenna") as anything in patron_choices
 		switch(patron_choice)
-			if("The ORDER and MONARCHY of Astrata")
-				H.set_patron(/datum/patron/divine/astrata)
-				H.adjust_skillrank_up_to(/datum/skill/misc/reading, SKILL_LEVEL_EXPERT, TRUE) //idfk what astratans do man
-			if("The WEALTH and POWER of Matthios")
-				H.set_patron(/datum/patron/inhumen/matthios)
+			if("The ORDER and KINGSHIP of Auxentius")
+				H.set_patron(/datum/patron/concordat/auxentius)
+				H.adjust_skillrank_up_to(/datum/skill/misc/reading, SKILL_LEVEL_EXPERT, TRUE) //idfk what auxentians do man
+			if("The DEBT and INHERITANCE of Morwenna")
+				H.set_patron(/datum/patron/concordat/morwenna)
 				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_JOURNEYMAN, TRUE)
 
 /*                            ,---.

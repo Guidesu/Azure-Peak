@@ -1,0 +1,341 @@
+// CharacterSheet — Vanderlin-inspired character-creation sheet: a dense grid
+// of squarish carved tiles (Hub/Identity/Heritage/Voice/Body/Faith/Estate/
+// Vices/Other/Flavor) plus a portrait column, rather than a single tall
+// scrolling list of rows. Carving is done with layered border+outline+
+// box-shadow (see VampireClanSelection.scss for the same "bespoke, not
+// generic-theme" ambition level) — no bitmap textures required.
+
+.CharacterSheet {
+  min-height: 100%;
+  padding: 8px;
+  font-family: 'Lora', Georgia, serif;
+  color: #d9c9a3;
+  background-color: #17120d;
+  background-image:
+    radial-gradient(
+      ellipse at 50% 0%,
+      hsl(30, 22%, 14%) 0%,
+      hsl(24, 26%, 9%) 45%,
+      hsl(20, 30%, 5%) 100%
+    );
+
+  // ── Shell: portrait column + tile grid ────────────────────────
+  &__Shell {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__PortraitCol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 190px;
+    flex-shrink: 0;
+  }
+
+  &__Grid {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: start;
+
+    // Free-form drag/resize canvas: tiles are absolutely positioned inside
+    // this relative container instead of following grid auto-flow. Sized
+    // generously so dragged/resized tiles have room; the Window.Content
+    // (scrollable) handles overflow beyond the visible viewport.
+    &--free {
+      display: block;
+      position: relative;
+      min-height: 1050px;
+    }
+  }
+
+  // ── Tiles: chunky carved-stone/wood boxes ─────────────────────
+  &__Tile {
+    min-width: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(42, 33, 24, 0.92) 0%,
+      rgba(22, 17, 12, 0.95) 100%
+    );
+    border: 2px solid #6b5325;
+    outline: 1px solid rgba(0, 0, 0, 0.7);
+    outline-offset: -4px;
+    box-shadow:
+      inset 0 0 0 1px rgba(212, 175, 55, 0.08),
+      inset 0 0 20px rgba(0, 0, 0, 0.6),
+      0 3px 8px rgba(0, 0, 0, 0.55);
+    border-radius: 2px;
+
+    &--wide {
+      grid-column: span 2;
+    }
+
+    &--portrait {
+      width: 100%;
+    }
+
+    &--callout {
+      border-color: #d4af37;
+      box-shadow:
+        inset 0 0 0 1px rgba(212, 175, 55, 0.18),
+        inset 0 0 20px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(212, 175, 55, 0.2),
+        0 3px 8px rgba(0, 0, 0, 0.55);
+    }
+
+    // Free-form draggable/resizable tile (see DraggableTile.tsx). Positioned
+    // absolutely by inline style; this just adds overflow handling and a
+    // slightly stronger shadow so dragged tiles read as "lifted" above others.
+    &--floating {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(212, 175, 55, 0.08),
+        inset 0 0 20px rgba(0, 0, 0, 0.6),
+        0 6px 14px rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  &__TileHeader {
+    font-family: 'MedievalSharp', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #f2d472;
+    padding: 5px 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    border-bottom: 2px solid #6b5325;
+    background: linear-gradient(
+      180deg,
+      rgba(120, 90, 30, 0.45) 0%,
+      rgba(80, 60, 20, 0.15) 100%
+    );
+
+    &--draggable {
+      cursor: grab;
+      user-select: none;
+      flex-shrink: 0;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+
+  &__TileBody {
+    min-width: 0;
+    padding: 7px 9px 9px;
+
+    &--portrait {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: stretch;
+    }
+
+    &--floating {
+      flex: 1;
+      overflow: auto;
+    }
+  }
+
+  // Bottom-right resize grip for floating tiles.
+  &__TileResizeHandle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 45%,
+      rgba(212, 175, 55, 0.5) 45%,
+      rgba(212, 175, 55, 0.5) 55%,
+      transparent 55%,
+      transparent 100%
+    );
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(212, 175, 55, 0.85) 40%,
+        rgba(212, 175, 55, 0.85) 60%,
+        transparent 60%,
+        transparent 100%
+      );
+    }
+  }
+
+  // ── Portrait frame ─────────────────────────────────────────────
+  &__PortraitFrame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(10, 8, 6, 0.7);
+    border: 2px solid #6b5325;
+    outline: 1px solid rgba(212, 175, 55, 0.15);
+    outline-offset: -4px;
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.7);
+    border-radius: 2px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+  }
+
+  // ── Field rows (compact, for a square tile footprint) ─────────
+  &__FieldLabel {
+    font-family: 'MedievalSharp', Georgia, serif;
+    letter-spacing: 0.3px;
+    color: #d4af37;
+    font-size: 11px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  }
+
+  &__ColorSwatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #6b5325;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+  }
+
+  // ── Carved-inlay text inputs ────────────────────────────────
+  .Input {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 12px;
+    background-color: rgba(10, 8, 6, 0.6);
+    border: 1px solid #6b5325;
+    outline: 1px solid rgba(212, 175, 55, 0.12);
+    outline-offset: -3px;
+    color: #e8d4b8;
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.6);
+
+    &:focus-within {
+      border-color: #d4af37;
+    }
+  }
+
+  // ── Dropdowns ──────────────────────────────────────────────
+  .Dropdown__control {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 12px;
+    background: linear-gradient(
+      180deg,
+      rgba(70, 54, 24, 0.6) 0%,
+      rgba(30, 23, 15, 0.6) 100%
+    ) !important;
+    border: 1px solid #6b5325 !important;
+    color: #d9c9a3 !important;
+
+    &:hover {
+      border-color: #d4af37 !important;
+      color: #f2d472 !important;
+    }
+  }
+
+  .Dropdown__menu--wrapper {
+    background-color: #1c1611 !important;
+    color: #d9c9a3 !important;
+    border: 1px solid #6b5325 !important;
+  }
+
+  .Dropdown__menu--entry {
+    font-family: 'Lora', Georgia, serif;
+
+    &.selected {
+      background-color: rgba(212, 175, 55, 0.28) !important;
+      color: #f2d472 !important;
+    }
+
+    &:not(.selected):hover {
+      background-color: rgba(212, 175, 55, 0.14) !important;
+    }
+  }
+
+  // ── Buttons ───────────────────────────────────────────────
+  .Button {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 12px;
+    border: 1px solid #6b5325;
+    background: linear-gradient(
+      180deg,
+      rgba(70, 54, 24, 0.6) 0%,
+      rgba(30, 23, 15, 0.6) 100%
+    );
+    color: #d9c9a3;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+
+    &:hover:not(.Button--disabled) {
+      border-color: #d4af37;
+      background: linear-gradient(
+        180deg,
+        rgba(100, 78, 32, 0.7) 0%,
+        rgba(40, 31, 18, 0.7) 100%
+      );
+      color: #f2d472;
+    }
+
+    &:active:not(.Button--disabled) {
+      background: linear-gradient(
+        180deg,
+        rgba(30, 23, 15, 0.7) 0%,
+        rgba(70, 54, 24, 0.7) 100%
+      );
+    }
+  }
+
+  .Icon {
+    color: #d4af37;
+  }
+
+  .Button .Icon {
+    color: inherit;
+  }
+
+  // Gold-medallion "join the world" call to action — matches TATBuild's own
+  // seal-button treatment for its Save & Join World button, so the two
+  // screens visually agree on what a "commit" action looks like.
+  &__SealButton {
+    font-family: 'Lora', Georgia, serif !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #2a1c06 !important;
+    background-color: #d4af37 !important;
+    background-image: linear-gradient(
+      180deg,
+      hsl(46, 75%, 68%) 0%,
+      hsl(42, 70%, 48%) 50%,
+      hsl(38, 65%, 38%) 100%
+    ) !important;
+    border: 1px solid #7a5c1e !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.6) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+
+    &:hover:not(.Button--disabled) {
+      background-image: linear-gradient(
+        180deg,
+        hsl(46, 80%, 74%) 0%,
+        hsl(42, 75%, 54%) 50%,
+        hsl(38, 70%, 42%) 100%
+      ) !important;
+    }
+
+    .Icon {
+      color: #2a1c06 !important;
+    }
+  }
+}

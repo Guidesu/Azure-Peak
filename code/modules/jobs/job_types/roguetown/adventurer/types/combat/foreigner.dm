@@ -222,7 +222,7 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 		if("Seminary Dropout (Hierophant)")
-			H.set_patron(/datum/patron/old_god)
+			H.set_patron(/datum/patron/tribunal/praecursor)
 			to_chat(H, span_warning("A promising Magos in the study halls, until envy turned to accusation. Branded Djinn-touched by your peers, you fled Naledi before the deepest secrets of the Hierophants were yours, left with only incomplete theories."))
 			r_hand = /obj/item/rogueweapon/woodstaff/implement
 			head = /obj/item/clothing/head/roguetown/roguehood/hierophant
@@ -251,7 +251,7 @@
 				H.mind.AddSpell(new /datum/action/cooldown/spell/ley_lines)
 
 		if("Wandering Yogi (Vizier)")
-			H.set_patron(/datum/patron/old_god)
+			H.set_patron(/datum/patron/tribunal/praecursor)
 			to_chat(H, span_warning("A Vizier healer in training, you practiced Origin Magyck to restore body and spirit in Psydon’s name. Your work drew suspicion, and you were cast out before completing your vows, now wandering in exile with only fragments of the art."))
 			r_hand = /obj/item/rogueweapon/woodstaff/implement
 			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
@@ -679,16 +679,16 @@
 		)
 	H.set_blindness(0)
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			id = /obj/item/clothing/neck/roguetown/psicross/bronze
-		if(/datum/patron/divine/ravox)
-			id = /obj/item/clothing/neck/roguetown/psicross/ravox/bronze
-		if(/datum/patron/divine/astrata)
-			id = /obj/item/clothing/neck/roguetown/psicross/astrata/bronze
-		if(/datum/patron/divine/malum)
-			id = /obj/item/clothing/neck/roguetown/psicross/malum/bronze
-		if(/datum/patron/divine/noc)
-			id = /obj/item/clothing/neck/roguetown/psicross/noc/bronze
+		if(/datum/patron/concordat/auxentius)
+			id = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze
+		if(/datum/patron/concordat/auxentius)
+			id = /obj/item/clothing/neck/roguetown/psicross/auxentius/bronze
+		if(/datum/patron/concordat/handwerra)
+			id = /obj/item/clothing/neck/roguetown/psicross/handwerra/malum/bronze
+		if(/datum/patron/concordat/miluse)
+			id = /obj/item/clothing/neck/roguetown/psicross/miluse/bronze
 		else
 			id = /obj/item/clothing/ring/bronze
 

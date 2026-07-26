@@ -904,7 +904,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/indoors/lich_start/lich_lair)
 "gQ" = (
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /obj/structure/fluff/wallclock/vampire,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/lich_start/lich_lair)
@@ -1328,7 +1328,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/lich_start/lich_lair)
 "po" = (
-/obj/structure/fluff/psycross/zizocross/stone,
+/obj/structure/fluff/psycross/aurelian/stone,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/lich_start/lich_lair)
 "pr" = (
@@ -1726,7 +1726,7 @@
 /turf/closed,
 /area/rogue/outdoors)
 "xe" = (
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /obj/effect/decal/cleanable/dirt/cobweb{
 	icon_state = "cobweb2"
 	},
@@ -3186,7 +3186,7 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/indoors/lich_start/lich_lair)
 "XM" = (
-/obj/structure/fluff/psycross/zizocross/golden,
+/obj/structure/fluff/psycross/aurelian/golden,
 /obj/structure/fluff/walldeco/bigpainting{
 	pixel_x = 2
 	},

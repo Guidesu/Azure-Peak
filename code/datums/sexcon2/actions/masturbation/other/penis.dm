@@ -2,6 +2,7 @@
 	name = "Jerk their pintle off"
 	check_same_tile = FALSE
 	debug_erp_panel_verb = FALSE
+	subtle_supported = TRUE // Stealth-mode extension
 
 /datum/sex_action/masturbate/other/penis/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -30,11 +31,11 @@
 
 /datum/sex_action/masturbate/other/penis/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts jerking [target]'s pintle off..."))
+	stealth_visible_message(user, target, span_warning("[user] starts jerking [target]'s pintle off..."))
 
 /datum/sex_action/masturbate/other/penis/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops jerking [target] off."))
+	stealth_visible_message(user, target, span_warning("[user] stops jerking [target] off."))
 
 /datum/sex_action/masturbate/other/penis/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_love("[user] cums over [target]'s hand!"))
@@ -46,7 +47,8 @@
 
 /datum/sex_action/masturbate/other/penis/on_perform_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] jerks [target]'s pintle off..."))
+	var/do_subtle = is_being_done_subtly(user, target)
+	stealth_visible_message(user, target, sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective(is_stealth = do_subtle)] jerks [target]'s pintle off..."))
 
 /datum/sex_action/masturbate/other/penis/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)

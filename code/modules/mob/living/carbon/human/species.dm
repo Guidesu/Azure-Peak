@@ -22,8 +22,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/base_name
 	var/sub_name
 	var/psydonic = FALSE
-	var/origin = "Azuria"
-	var/origin_default = /datum/virtue/origin/azuria
+	var/origin = "Auxentia"
+	var/origin_default = /datum/virtue/origin/auxentia
 	var/max_age = 75
 	var/is_subrace = FALSE
 	var/list/offset_features = list(OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0),\
@@ -170,6 +170,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	/// List all of body markings that the player can choose from in customization. Body markings from sets get added to here
 	var/list/body_markings
 	var/list/languages = list(/datum/language/common)
+
+	/// Species that fight with natural claws can offer a purely cosmetic
+	/// reskin of the unarmed punch intent, chosen once via a chargen-style
+	/// verb (see cosmetic_claws.dm). Maps display name -> /datum/intent/unarmed/punch/cosmetic_claw subtype.
+	var/list/cosmetic_claw_types
 
 	var/list/restricted_virtues
 
@@ -513,10 +518,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	for(var/language_type in languages)
 		C.grant_language(language_type)
 
+	if(length(cosmetic_claw_types) && ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(!H.cosmetic_claws_configured && (INTENT_HARM in H.base_intents))
+			add_verb(H, /mob/living/carbon/human/verb/choose_cosmetic_claws)
+
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
 
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	remove_verb(C, /mob/living/carbon/human/verb/choose_cosmetic_claws)
+	C.cosmetic_claw_intent = null
 	if(C.dna.species.exotic_bloodtype)
 		C.dna.blood_type = random_blood_type()
 	if(DIGITIGRADE in species_traits)

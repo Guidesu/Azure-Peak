@@ -114,7 +114,7 @@
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				id = /obj/item/clothing/ring/blacksteel //Most Grenzelhoftian ass ring you can get
-				neck = /obj/item/clothing/neck/roguetown/psicross/undivided //The Ten Undivided!
+				neck = /obj/item/clothing/neck/roguetown/psicross/custodius //The Ten Undivided!
 				H.cmode_music = 'sound/music/combat_grenzelhoft.ogg'
 				H.grant_language(/datum/language/grenzelhoftian) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
@@ -188,18 +188,18 @@
 				H.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/female/warrior]
 				backl = /obj/item/storage/backpack/rogue/satchel
 				switch(H.patron?.type) //If you are in the gronnic pantheon, you get a lucky charm.
-					if(/datum/patron/inhumen/zizo)
-						neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
-					if(/datum/patron/inhumen/graggar)
-						neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/gronn
-					if(/datum/patron/inhumen/matthios)
-						neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gronn
-					if(/datum/patron/inhumen/baotha)
-						neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/baothagronn
-					if(/datum/patron/divine/abyssor)
-						neck = /obj/item/clothing/neck/roguetown/psicross/abyssor/gronn
-					if(/datum/patron/divine/dendor)
-						neck = /obj/item/clothing/neck/roguetown/psicross/dendor/gronn
+					if(/datum/patron/unveiled/aurelian)
+						neck = /obj/item/clothing/neck/roguetown/psicross/aurelian/gronn
+					if(/datum/patron/oldkin/volkovoi)
+						neck = /obj/item/clothing/neck/roguetown/psicross/volkovoi/gronn
+					if(/datum/patron/concordat/morwenna)
+						neck = /obj/item/clothing/neck/roguetown/psicross/morwenna/gronn
+					if(/datum/patron/oldkin/hausvette)
+						neck = /obj/item/clothing/neck/roguetown/psicross/hausvette/gronn
+					if(/datum/patron/concordat/wulfric)
+						neck = /obj/item/clothing/neck/roguetown/psicross/wulfric/gronn
+					if(/datum/patron/severance/ignatius)
+						neck = /obj/item/clothing/neck/roguetown/psicross/ignatius/gronn
 					else
 						neck = null //fallback is nothing, heretic
 			if("Etrusca") //Somewhat placeholdery

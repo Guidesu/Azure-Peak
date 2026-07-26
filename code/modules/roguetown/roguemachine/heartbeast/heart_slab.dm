@@ -124,7 +124,7 @@
 
 	var/medical_skill = H.get_skill_level(/datum/skill/misc/medicine)
 	var/holy_skill = H.get_skill_level(/datum/skill/magic/holy)
-	var/is_pestra = istype(H.patron, /datum/patron/divine/pestra)
+	var/is_pestra = istype(H.patron, /datum/patron/concordat/handwerra)
 
 	// Base is medicine (0-6). If Pestra, they get a +2 bonus.
 	var/effectiveness = max(holy_skill, medical_skill)

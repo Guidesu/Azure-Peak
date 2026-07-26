@@ -176,7 +176,7 @@
 
 
 		
-		if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
+		if(HAS_TRAIT(user, TRAIT_CURSE_AUXENTIUS))
 			prob2defend -= 40
 			ignore_DE_bonus = TRUE
 

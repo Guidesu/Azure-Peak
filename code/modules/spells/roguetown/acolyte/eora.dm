@@ -109,7 +109,7 @@
 	bitesize_mod = 1 / F.bitesize
 	patron = patron_init
 	F.faretype = clamp(skill, 1, 5)
-	if(skill < 5 || patron.type != /datum/patron/divine/eora)
+	if(skill < 5 || patron.type != /datum/patron/concordat/miluse)
 		F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
 	else
 		F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#f0b000", "size" = 1))
@@ -122,7 +122,7 @@
 		return
 
 	eater.apply_status_effect(/datum/status_effect/buff/healing, (quality + (skill / 5)) * bitesize_mod)
-	if(skill > 4 && patron.type == /datum/patron/divine/eora)
+	if(skill > 4 && patron.type == /datum/patron/concordat/miluse)
 		eater.apply_status_effect(/datum/status_effect/buff/attune_haste, 15 SECONDS)
 
 /obj/effect/proc_holder/spell/invoked/bless_food
@@ -193,7 +193,7 @@
 	. = ..()
 	if(slot == SLOT_HEAD || slot == SLOT_WEAR_MASK)
 		ADD_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
-		if(user.patron.type != /datum/patron/divine/eora)
+		if(user.patron.type != /datum/patron/concordat/miluse)
 			user.AddComponent(/datum/component/peaceflower_tracker, src)
 
 /obj/item/clothing/head/peaceflower/dropped(mob/living/carbon/human/user)
@@ -208,7 +208,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		// Eorans can just take these off. It's their god!
-		if(C.patron.type == /datum/patron/divine/eora && do_after(user, 4 SECONDS, src))
+		if(C.patron.type == /datum/patron/concordat/miluse && do_after(user, 4 SECONDS, src))
 			return FALSE
 		if(src == C.head || src == C.wear_mask)
 			to_chat(user, "<span class='warning'>I feel at peace. <b style='color:pink'>Why would I want anything else?</b></span>")
@@ -615,7 +615,7 @@
 	if(istype(I, /obj/item/ash))
 		if(iscarbon(user))
 			var/mob/living/carbon/c = user
-			if(c.patron.type != /datum/patron/divine/eora)
+			if(c.patron.type != /datum/patron/concordat/miluse)
 				to_chat(user, span_warning("The tree rejects your offering. Only followers of Eora may offer ash."))
 				return TRUE
 		if(ash_offered)
@@ -754,7 +754,7 @@
 		if(!was_destroyed && obj_destroyed)
 			if(iscarbon(user))
 				var/mob/living/carbon/c = user
-				if(c.patron.type == /datum/patron/divine/eora)
+				if(c.patron.type == /datum/patron/concordat/miluse)
 					c.apply_status_effect(/datum/status_effect/debuff/eoran_wilting)
 				else
 					to_chat(c, span_warning("A divine curse strikes you for destroying the sacred tree!"))
@@ -1003,7 +1003,7 @@
 		return FALSE
 
 	// Eoran alignment check
-	if(!(user.patron.type == /datum/patron/divine/eora) && !HAS_TRAIT(user, TRAIT_CHOSEN))
+	if(!(user.patron.type == /datum/patron/concordat/miluse) && !HAS_TRAIT(user, TRAIT_CHOSEN))
 		to_chat(user, span_warning("The fruit vanishes as you reach for it!"))
 		return FALSE
 

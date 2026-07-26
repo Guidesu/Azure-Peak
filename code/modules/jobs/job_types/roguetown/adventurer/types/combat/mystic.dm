@@ -58,7 +58,7 @@
 		H.mind.RemoveSpell(/datum/action/cooldown/spell/miracle/heal/undivided)
 
 	switch(H.patron?.type)
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			var/list/heal = list("Greater Miracle (Divine)", "Fortifying Vapors (Secular)")
 			var/highheal_options = input(H, "Choose your healing training.", "Experientia Medica") as anything in heal
 			switch(highheal_options)
@@ -67,7 +67,7 @@
 				if("Fortifying Vapors (Secular)")
 					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortifyingvapors)
 
-		if(/datum/patron/old_god) // ENDVRE LIKE THE MAN(or woman, or nonbinary) YOU ARE SUPPOSED TO BE, CHUD!
+		if(/datum/patron/tribunal/praecursor) // ENDVRE LIKE THE MAN(or woman, or nonbinary) YOU ARE SUPPOSED TO BE, CHUD!
 			to_chat(H, span_blue("No matter how much you pray, you weep, and you endure. HE does not answer... Your trial begins now."))
 			H.emote("cry")
 
@@ -100,50 +100,50 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/arcyne, SKILL_LEVEL_JOURNEYMAN, TRUE)
 
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 
@@ -206,7 +206,7 @@
 		H.mind.RemoveSpell(/datum/action/cooldown/spell/miracle/heal/undivided)
 
 	switch(H.patron?.type)
-		if(/datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/custodius)
 			var/list/heal = list("Greater Miracle (Miracle)", "Fortifying Vapors (Medical)")
 			var/highheal_options = input(H, "Choose your healing training.", "Experientia Medica") as anything in heal
 			switch(highheal_options)
@@ -215,7 +215,7 @@
 				if("Fortifying Vapors (Secular)")
 					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortifyingvapors)
 
-		if(/datum/patron/old_god) // ENDVRE LIKE THE MAN(or woman, or nonbinary) YOU ARE SUPPOSED TO BE, CHUD!
+		if(/datum/patron/tribunal/praecursor) // ENDVRE LIKE THE MAN(or woman, or nonbinary) YOU ARE SUPPOSED TO BE, CHUD!
 			to_chat(H, span_blue("No matter how much you pray, you weep, and you endure. HE does not answer... Your trial begins now."))
 			H.emote("cry")
 
@@ -242,50 +242,50 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/arcyne, SKILL_LEVEL_JOURNEYMAN, TRUE)
 
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			neck = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			neck = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			neck = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 
@@ -374,49 +374,49 @@
 		H.mind.RemoveSpell(/datum/action/cooldown/spell/miracle/bloodmiracle)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/selfbuff)
 	switch(H.patron?.type)
-		if(/datum/patron/old_god)
+		if(/datum/patron/tribunal/praecursor)
 			id = /obj/item/clothing/neck/roguetown/psicross
-		if(/datum/patron/divine/undivided)
-			id = /obj/item/clothing/neck/roguetown/psicross/undivided
-		if(/datum/patron/divine/astrata)
-			id = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/tribunal/custodius)
+			id = /obj/item/clothing/neck/roguetown/psicross/custodius
+		if(/datum/patron/concordat/auxentius)
+			id = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-		if(/datum/patron/divine/noc)
-			id = /obj/item/clothing/neck/roguetown/psicross/noc
-		if(/datum/patron/divine/abyssor)
-			id = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/concordat/miluse)
+			id = /obj/item/clothing/neck/roguetown/psicross/miluse
+		if(/datum/patron/concordat/wulfric)
+			id = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			H.grant_language(/datum/language/abyssal)
-		if(/datum/patron/divine/dendor)
-			id = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/severance/ignatius)
+			id = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
-		if(/datum/patron/divine/necra)
-			id = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/concordat/morwenna)
+			id = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-		if(/datum/patron/divine/pestra)
-			id = /obj/item/clothing/neck/roguetown/psicross/pestra
-		if(/datum/patron/divine/ravox)
-			id = /obj/item/clothing/neck/roguetown/psicross/ravox
-		if(/datum/patron/divine/malum)
-			id = /obj/item/clothing/neck/roguetown/psicross/malum
-		if(/datum/patron/divine/eora)
-			id = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/concordat/handwerra)
+			id = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/auxentius)
+			id = /obj/item/clothing/neck/roguetown/psicross/auxentius
+		if(/datum/patron/concordat/handwerra)
+			id = /obj/item/clothing/neck/roguetown/psicross/handwerra
+		if(/datum/patron/concordat/miluse)
+			id = /obj/item/clothing/neck/roguetown/psicross/miluse
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			id = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/morwenna)
 			id = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/graggar)
+		if(/datum/patron/oldkin/volkovoi)
 			id = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/inhumen/baotha)
+		if(/datum/patron/oldkin/hausvette)
 			id = /obj/item/clothing/neck/roguetown/psicross
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			id = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'

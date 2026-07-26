@@ -198,7 +198,7 @@
 	if(QDELETED(organ_inside) || !istype(organ_inside, /obj/item/organ/heart))
 		return
 
-	for(var/datum/culling_duel/D in GLOB.graggar_cullings)
+	for(var/datum/culling_duel/D in GLOB.volkovoi_cullings)
 		var/obj/item/organ/heart/d_challenger_heart = D.challenger_heart?.resolve()
 		var/obj/item/organ/heart/d_target_heart = D.target_heart?.resolve()
 		var/mob/living/carbon/human/challenger = D.challenger?.resolve()

@@ -65,7 +65,7 @@
 		H.ambushable = FALSE
 		H.faction |= list(FACTION_HAG)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/wildshape/hag_true_form)
-		H.set_patron(/datum/patron/mossmother)
+		H.set_patron(/datum/patron/oldkin/trnava)
 		H.AddComponent(/datum/component/hag_curio_tracker)
 		// --- Taught Recipes ---
 		H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/hag/varnish)

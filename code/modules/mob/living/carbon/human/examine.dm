@@ -439,7 +439,7 @@
 		else
 			if(isliving(user))
 				var/mob/living/M = user
-				if(M.patron.type == /datum/patron/inhumen/graggar)
+				if(M.patron.type == /datum/patron/oldkin/volkovoi)
 					msg += span_bloody("[m1] shedding lyfe's blood, exposing weakness!")
 				else
 					msg += span_bloody("[m1] letting out the red stuff!")
@@ -851,7 +851,7 @@
 		var/astratan_tooltip
 		if(HAS_TRAIT(user, TRAIT_ASTRATAN_AFFINITY) && get_dist(user, src) <= 2)
 			if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))	//Guarded virtue protects from this
-				if(issunelf(src) || patron?.type == /datum/patron/divine/astrata)
+				if(issunelf(src) || patron?.type == /datum/patron/concordat/auxentius)
 					astratan_symbol = icon2html('icons/misc/language.dmi', world, "celestial")
 					astratan_tooltip = SPAN_TOOLTIP("One of Astrata's [issunelf(src) ? "chosen" : "followers"]", astratan_symbol)
 		. += span_info("[pronoun] [wording] [origin]. [astratan_tooltip]")	//"He hails from [X / Nowhere]" || "His [word] originates from [X]" || "His [word] is implacable..."
@@ -929,14 +929,14 @@
 		if((HAS_TRAIT(user, TRAIT_BLACKOAK) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half-Elf")))
 			. += span_phobia("An invader...")
 
-		//For tennite schism god-event
-		if(length(GLOB.tennite_schisms))
-			var/datum/tennite_schism/S = GLOB.tennite_schisms[1]
-			var/user_side = (WEAKREF(user) in S.supporters_astrata) ? "astrata" : (WEAKREF(user) in S.supporters_challenger) ? "challenger" : null
-			var/mob_side = (WEAKREF(src) in S.supporters_astrata) ? "astrata" : (WEAKREF(src) in S.supporters_challenger) ? "challenger" : null
+		//For Concordat schism god-event
+		if(length(GLOB.concordat_schisms))
+			var/datum/concordat_schism/S = GLOB.concordat_schisms[1]
+			var/user_side = (WEAKREF(user) in S.supporters_auxentius) ? "auxentius" : (WEAKREF(user) in S.supporters_challenger) ? "challenger" : null
+			var/mob_side = (WEAKREF(src) in S.supporters_auxentius) ? "auxentius" : (WEAKREF(src) in S.supporters_challenger) ? "challenger" : null
 
 			if(user_side && mob_side)
-				var/datum/patron/their_god = (mob_side == "astrata") ? S.astrata_god.resolve() : S.challenger_god.resolve()
+				var/datum/patron/their_god = (mob_side == "auxentius") ? S.auxentius_god.resolve() : S.challenger_god.resolve()
 				if(their_god)
 					. += (user_side == mob_side) ? span_notice("Fellow [their_god.name] supporter!") : span_userdanger("Vile [their_god.name] supporter!")
 
@@ -954,11 +954,11 @@
 		if(name in GLOB.excommunicated_players)
 			var/mob/living/carbon/human/H = src
 			switch (H.patron)
-				if (istype(H.patron, /datum/patron/divine))
+				if (istype(H.patron, /datum/patron/concordat))
 					. += span_userdanger("EXCOMMUNICATED! SHAME!")
-				if (istype(H.patron, /datum/patron/inhumen))
+				if (istype(H.patron, /datum/patron/unveiled))
 					. += span_userdanger("HERETIC! SHAME!")
-				if (istype(H.patron, /datum/patron/old_god))
+				if (istype(H.patron, /datum/patron/tribunal/praecursor))
 					. += span_userdanger("HEATHEN! SHAME!")
 */
 		if(name in GLOB.outlawed_players)
@@ -1180,7 +1180,7 @@
 		var/mob/living/living_examiner = examiner
 		if(HAS_TRAIT(examiner, TRAIT_DUSTRUNNER))
 			heretic_text += "Fellow runner. The dust moves."
-		else if(living_examiner?.patron?.type == /datum/patron/inhumen/matthios)
+		else if(living_examiner?.patron?.type == /datum/patron/concordat/morwenna)
 			heretic_text += "A Guild runner, by the look of them."
 		else if(examiner.job in GLOB.bathhouse_positions)
 			heretic_text += "One of the Guild's runners. I know the signs."

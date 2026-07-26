@@ -3,19 +3,17 @@
 /datum/tat_build/proc/get_ui_skill_domain_key(domain)
 	if(domain == TAT_SKILL_DOMAIN_COMBAT)
 		return "combat"
-	if(domain == TAT_SKILL_DOMAIN_PEACEFUL)
-		return "peaceful"
-	if(domain == TAT_SKILL_DOMAIN_ADVENTURE)
-		return "adventure"
-	if(domain == TAT_SKILL_DOMAIN_WANDERING)
-		return "adventure"
-	if(domain == TAT_SKILL_DOMAIN_GATHERING)
-		return "peaceful"
-	if(domain == TAT_SKILL_DOMAIN_CRAFTING)
-		return "peaceful"
+	if(domain == TAT_SKILL_DOMAIN_LABOUR)
+		return "labour"
 	if(domain == TAT_SKILL_DOMAIN_MISC)
-		return "adventure"
-	return "adventure"
+		return "misc"
+	if(domain == TAT_SKILL_DOMAIN_WANDERING)
+		return "misc"
+	if(domain == TAT_SKILL_DOMAIN_GATHERING)
+		return "labour"
+	if(domain == TAT_SKILL_DOMAIN_CRAFTING)
+		return "labour"
+	return "misc"
 
 /datum/tat_build/proc/get_all_ui_skill_types()
 	var/list/result = list()
@@ -126,72 +124,72 @@
 /datum/tat_build/proc/build_ui_skill_points_by_domain()
 	var/list/result = list(
 		"combat" = 0,
-		"peaceful" = 0,
-		"adventure" = 0,
+		"labour" = 0,
+		"misc" = 0,
 	)
 
 	if(!skills)
 		return result
 
 	result["combat"] = skills.get_total_maximum(TAT_SKILL_DOMAIN_COMBAT)
-	result["peaceful"] = skills.get_total_maximum(TAT_SKILL_DOMAIN_PEACEFUL)
-	result["adventure"] = skills.get_total_maximum(TAT_SKILL_DOMAIN_ADVENTURE)
+	result["labour"] = skills.get_total_maximum(TAT_SKILL_DOMAIN_LABOUR)
+	result["misc"] = skills.get_total_maximum(TAT_SKILL_DOMAIN_MISC)
 
 	return result
 
 /datum/tat_build/proc/build_ui_skill_points_remaining_by_domain()
 	var/list/result = list(
 		"combat" = 0,
-		"peaceful" = 0,
-		"adventure" = 0,
+		"labour" = 0,
+		"misc" = 0,
 	)
 
 	if(!skills)
 		return result
 
 	result["combat"] = skills.get_remaining_points(TAT_SKILL_DOMAIN_COMBAT)
-	result["peaceful"] = skills.get_remaining_points(TAT_SKILL_DOMAIN_PEACEFUL)
-	result["adventure"] = skills.get_remaining_points(TAT_SKILL_DOMAIN_ADVENTURE)
+	result["labour"] = skills.get_remaining_points(TAT_SKILL_DOMAIN_LABOUR)
+	result["misc"] = skills.get_remaining_points(TAT_SKILL_DOMAIN_MISC)
 
 	return result
 
 /datum/tat_build/proc/build_ui_skill_free_points_by_domain()
 	var/list/result = list(
 		"combat" = 0,
-		"peaceful" = 0,
-		"adventure" = 0,
+		"labour" = 0,
+		"misc" = 0,
 	)
 
 	if(!skills)
 		return result
 
 	result["combat"] = skills.get_free_domain_points(TAT_SKILL_DOMAIN_COMBAT)
-	result["peaceful"] = skills.get_free_domain_points(TAT_SKILL_DOMAIN_PEACEFUL)
-	result["adventure"] = skills.get_free_domain_points(TAT_SKILL_DOMAIN_ADVENTURE)
+	result["labour"] = skills.get_free_domain_points(TAT_SKILL_DOMAIN_LABOUR)
+	result["misc"] = skills.get_free_domain_points(TAT_SKILL_DOMAIN_MISC)
 
 	return result
 
 /datum/tat_build/proc/build_ui_skill_trait_points_by_domain()
 	var/list/result = list(
 		"combat" = 0,
-		"peaceful" = 0,
-		"adventure" = 0,
+		"labour" = 0,
+		"misc" = 0,
 	)
 
 	if(!skills)
 		return result
 
 	result["combat"] = skills.get_trait_domain_points(TAT_SKILL_DOMAIN_COMBAT)
-	result["peaceful"] = skills.get_trait_domain_points(TAT_SKILL_DOMAIN_PEACEFUL)
-	result["adventure"] = skills.get_trait_domain_points(TAT_SKILL_DOMAIN_ADVENTURE)
+	result["labour"] = skills.get_trait_domain_points(TAT_SKILL_DOMAIN_LABOUR)
+	result["misc"] = skills.get_trait_domain_points(TAT_SKILL_DOMAIN_MISC)
 
 	return result
 
 /datum/tat_build/proc/build_ui_skill_point_breakdown_by_domain()
 	var/list/result = list(
 		"combat" = list("base" = 0, "trait" = 0, "expert" = 0, "master" = 0, "converted" = 0),
-		"peaceful" = list("base" = 0, "trait" = 0, "converted" = 0),
-		"adventure" = list("base" = 0, "trait" = 0, "converted" = 0),
+		"labour" = list("base" = 0, "trait" = 0, "converted" = 0),
+		"misc" = list("base" = 0, "trait" = 0, "converted" = 0),
 	)
 
 	if(!skills)
@@ -568,12 +566,6 @@
 	for(var/trait_id in GLOB.tat_available_traits)
 		if(trait_id == TAT_TRAIT_CONTRACTOR_ENTITY && get_owner_ckey() != "mrix")
 			continue
-		if(trait_id == TAT_TRAIT_WEAPON_TRAINING && !((directions?.get_role_choice()) in list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER)))
-			continue
-		if(traits?.is_resident_only_hunter_trait(trait_id) && directions?.get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-			continue
-		if(trait_id == TAT_TRAIT_BONUS_STAT_POOL && traits?.is_wanderer_role_choice(directions?.get_role_choice()))
-			continue
 		if(directions?.is_role_trait(trait_id))
 			continue
 		var/list/entry = get_trait_entry(trait_id)
@@ -590,10 +582,6 @@
 				lock_reason = "Contractor may only select skill traits."
 			else if(trait_id == TAT_TRAIT_DRUID_INITIATE && !can_select_druid_initiate_trait())
 				lock_reason = "Requires Dendor as patron."
-			else if(trait_id == TAT_TRAIT_BONUS_STAT_POOL && directions?.foundation != TAT_FOUNDATION_SETTLED)
-				lock_reason = "Requires Shenanigans foundation."
-			else if(trait_id == TAT_TRAIT_TRADER_LICENSE && directions?.get_role_choice() != TAT_ROLE_CHOICE_TRADER)
-				lock_reason = "Requires Trader role."
 			else if(traits?.is_pq_locked_trait(trait_id))
 				lock_reason = "Requires [traits.get_pq_lock_minimum(trait_id)] player quality."
 		result[trait_id] = list(
@@ -981,3 +969,4 @@
 		return FALSE
 
 	return TRUE
+

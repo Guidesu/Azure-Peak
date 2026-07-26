@@ -23,7 +23,7 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type == /datum/patron/divine/pestra)
+		if(c.patron.type == /datum/patron/concordat/handwerra)
 			. += span_info("The divine beast of Pestra. For untold ages, these beasts remained behind locked doors, allowing the sect of Pestra to lengthen their lifespan.")
 			. += span_infection("Yet the others grew restless, desiring pure lux for their own...")
 			. += span_info("Now, they are employed in most regions of the world where the light of the ten shines. Decreasing suffering.")

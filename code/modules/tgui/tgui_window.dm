@@ -131,8 +131,15 @@
 	client << browse(html, "window=[id];[options]")
 	// Detect whether the control is a browser
 	is_browser = winexists(client, id) == "BROWSER"
-	// Instruct the client to signal UI when the window is closed.
-	if(!is_browser && client)
+	// Instruct the client to signal UI when the window is closed. This is
+	// wired up for BOTH browser and non-browser controls: for non-browser
+	// controls it's the only close signal available, but for browser
+	// controls it also acts as a safety net for forceful closes (Alt+F4,
+	// killing the embedded control) that never run the page's own JS
+	// (suspendStart -> 'suspend' topic). Without this, a forcefully-closed
+	// pooled window's lock is never released, permanently eating a slot
+	// out of the window pool and preventing that UI from ever reopening.
+	if(client)
 		winset(client, id, "on-close=\"uiclose [id]\"")
 
 /**

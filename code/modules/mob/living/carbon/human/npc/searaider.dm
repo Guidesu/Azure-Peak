@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	if(prob(50))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor //We don't want anything that dips below waist, looks bad w/kilt
 	if(prob(20))
-		id = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar //SHATTER MY BINDS
+		id = /obj/item/clothing/neck/roguetown/psicross/volkovoi //SHATTER MY BINDS
 	var/armor_choice = rand(1, 4)
 	switch(armor_choice)
 		if(1)

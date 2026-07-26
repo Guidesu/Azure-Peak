@@ -53,7 +53,7 @@
 		H.dna?.species?.custom_base_icon = "[pelt_choice]"
 		H.regenerate_icons()
 		H.AddSpell(new /obj/effect/proc_holder/spell/self/claws/gnoll)
-		H.set_patron(/datum/patron/inhumen/graggar)
+		H.set_patron(/datum/patron/oldkin/volkovoi)
 
 		to_chat(H, span_bignotice("Born out of echoes of violence, I am no true champion of graggar. But whoever summoned me is, even if they don't heed his call. They've bested his mightiests gnolls, ready to provide a worthy challenge. As long as they don't deny any honorful duels, I shall serve them."))
 		spawn(50)

@@ -7,7 +7,7 @@
 	None can stand against you. Protect the Church, its myriad acolytes, and further the pursuit of enlightenment, knowledge and mastery"
 	outfit = /datum/outfit/job/roguetown/templar/noc_spellblade
 	category_tags = list(CTAG_TEMPLAR)
-	allowed_patrons = list(/datum/patron/divine/noc)
+	allowed_patrons = list(/datum/patron/concordat/miluse)
 	maximum_possible_slots = 2 // The Special Snowflake And Their Friend
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_ARCYNE)
@@ -46,7 +46,7 @@
 	..()
 
 	// Equipment — medium armor templar with Noc theming
-	wrists = /obj/item/clothing/neck/roguetown/psicross/noc
+	wrists = /obj/item/clothing/neck/roguetown/psicross/miluse
 	cloak = /obj/item/clothing/cloak/tabard/devotee/noc
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/holysee
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy

@@ -41,7 +41,7 @@
 	if(HAS_TRAIT(user, TRAIT_ROTMAN) || (user.mob_biotypes & MOB_UNDEAD))
 		return TRUE
 	// Zizite followers can invoke — Zizo is their goddess
-	if(istype(user.patron, /datum/patron/inhumen/zizo))
+	if(istype(user.patron, /datum/patron/unveiled/aurelian))
 		return TRUE
 	// Living need arcyne training
 	if(HAS_TRAIT(user, TRAIT_ARCYNE))
@@ -166,7 +166,7 @@
 /datum/usurpation_rite/progressive_dominion/proc/is_qualified_voice(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_ARCYNE))
 		return TRUE
-	if(istype(user.patron, /datum/patron/inhumen/zizo))
+	if(istype(user.patron, /datum/patron/unveiled/aurelian))
 		return TRUE
 	if(HAS_TRAIT(user, TRAIT_ROTMAN) || (user.mob_biotypes & MOB_UNDEAD))
 		return TRUE

@@ -34,7 +34,7 @@
 	STALUC = 14
 	projectiletype = /obj/projectile/bullet/reusable/deepone
 	projectilesound = 'sound/combat/wooshes/punch/punchwoosh (1).ogg'
-	patron = /datum/patron/divine/abyssor
+	patron = /datum/patron/concordat/wulfric
 	stat_attack = SOFT_CRIT
 	var/minions_to_spawn = 8
 	var/next_summon = 0

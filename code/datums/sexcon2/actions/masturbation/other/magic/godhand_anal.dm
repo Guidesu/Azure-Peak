@@ -43,56 +43,56 @@
 
 /datum/sex_action/masturbate/other/godjob_anal/proc/get_patron_data(patron_type)
 	switch(patron_type)
-		if(/datum/patron/old_god, /datum/patron/divine/undivided)
+		if(/datum/patron/tribunal/praecursor, /datum/patron/tribunal/custodius)
 			return list(
 				"message" = "but nothing happens...",
 				"arousal_mult" = 0,
 				"pain" = 0
 			)
 
-		if(/datum/patron/divine/astrata, /datum/patron/divine/malum, /datum/patron/inhumen/matthios)
+		if(/datum/patron/concordat/auxentius, /datum/patron/concordat/handwerra, /datum/patron/concordat/morwenna)
 			return list(
 				"message" = "the glow looks painful...",
 				"arousal_mult" = 2,
 				"pain" = 5
 			)
 
-		if(/datum/patron/divine/eora, /datum/patron/inhumen/baotha)
+		if(/datum/patron/concordat/miluse, /datum/patron/oldkin/hausvette)
 			return list(
 				"message" = "the air grows sweet with indulgence...",
 				"arousal_mult" = 15,
 				"pain" = 0
 			)
 
-		if(/datum/patron/divine/ravox, /datum/patron/inhumen/graggar)
+		if(/datum/patron/concordat/auxentius, /datum/patron/oldkin/volkovoi)
 			return list(
 				"message" = "that looks painful...",
 				"arousal_mult" = 2,
 				"pain" = 15
 			)
 
-		if(/datum/patron/divine/noc)
+		if(/datum/patron/concordat/miluse)
 			return list(
 				"message" = "an ominous veil enveloping it...",
 				"arousal_mult" = 1,
 				"pain" = 0
 			)
 
-		if(/datum/patron/divine/abyssor, /datum/patron/divine/dendor)
+		if(/datum/patron/concordat/wulfric, /datum/patron/severance/ignatius)
 			return list(
 				"message" = "with primal force...",
 				"arousal_mult" = 6,
 				"pain" = 10
 			)
 
-		if(/datum/patron/divine/necra, /datum/patron/inhumen/zizo)
+		if(/datum/patron/concordat/morwenna, /datum/patron/unveiled/aurelian)
 			return list(
 				"message" = "a cold aura enveloping it...",
 				"arousal_mult" = 4,
 				"pain" = 5
 			)
 
-		if(/datum/patron/divine/xylix)
+		if(/datum/patron/concordat/viator)
 			return list(
 				"message" = "where is that jingle coming from?",
 				"arousal_mult" = 4,
@@ -100,7 +100,7 @@
 				"jingle" = TRUE
 			)
 
-		if(/datum/patron/mossmother)
+		if(/datum/patron/oldkin/trnava)
 			return list(
 				"message" = "with a primordial energy that seems to take root...",
 				"arousal_mult" = 3,

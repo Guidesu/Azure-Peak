@@ -5,20 +5,20 @@
 	var/mob/living/target = M
 
 	var/list/curse_choices = list(
-		"Curse of Astrata" = /datum/curse/astrata,
-		"Curse of Noc" = /datum/curse/noc,
-		"Curse of Dendor" = /datum/curse/dendor,
-		"Curse of Abyssor" = /datum/curse/abyssor,
-		"Curse of Ravox" = /datum/curse/ravox,
-		"Curse of Necra" = /datum/curse/necra,
-		"Curse of Xylix" = /datum/curse/xylix,
-		"Curse of Pestra" = /datum/curse/pestra,
-		"Curse of Malum" = /datum/curse/malum,
-		"Curse of Eora" = /datum/curse/eora,
-		"Curse of Zizo" = /datum/curse/zizo,
-		"Curse of Graggar" = /datum/curse/graggar,
-		"Curse of Matthios" = /datum/curse/matthios,
-		"Curse of Baotha" = /datum/curse/baotha,
+		"Curse of Astrata" = /datum/curse/auxentius,
+		"Curse of Noc" = /datum/curse/miluse,
+		"Curse of Dendor" = /datum/curse/ignatius,
+		"Curse of Abyssor" = /datum/curse/wulfric,
+		"Curse of Ravox" = /datum/curse/auxentius,
+		"Curse of Necra" = /datum/curse/morwenna,
+		"Curse of Xylix" = /datum/curse/viator,
+		"Curse of Pestra" = /datum/curse/handwerra,
+		"Curse of Malum" = /datum/curse/handwerra,
+		"Curse of Eora" = /datum/curse/miluse,
+		"Curse of Zizo" = /datum/curse/aurelian,
+		"Curse of Graggar" = /datum/curse/volkovoi,
+		"Curse of Matthios" = /datum/curse/morwenna,
+		"Curse of Baotha" = /datum/curse/hausvette,
 		)
 
 	if(!isliving(target))

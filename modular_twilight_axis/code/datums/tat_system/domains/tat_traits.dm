@@ -1,5 +1,5 @@
 /mob/living/carbon/human
-	var/tat_pliant_title
+	var/tat_free_soul_title
 	var/tat_handles_preference_loadout = FALSE
 
 /datum/tat_traits
@@ -9,19 +9,192 @@
 /datum/tat_traits/New(datum/tat_build/B)
 	. = ..()
 	owner_build = B
+	ensure_virtue_trait_entries()
 
 /datum/tat_traits/proc/reset()
 	selected = list()
 	return TRUE
 
 /datum/tat_traits/proc/get_entry(trait_id)
+	ensure_virtue_trait_entries()
 	return GLOB.tat_available_traits[trait_id]
 
-/datum/tat_traits/proc/is_resident_only_hunter_trait(trait_id)
-	return trait_id in list(TAT_TRAIT_HUNTER_BEATER, TAT_TRAIT_HUNTER_SHOOTER)
+/// The old virtue datums remain the single source of truth for their bespoke
+/// gameplay effects. TAT owns the selection and save data; this adapter only
+/// exposes non-origin, player-facing virtues as ordinary TAT traits.
+/datum/tat_traits/proc/get_virtue_trait_id(virtue_type)
+	if(!ispath(virtue_type, /datum/virtue))
+		return null
+	var/id = lowertext("[virtue_type]")
+	id = replacetext(id, "/datum/virtue/", "")
+	id = replacetext(id, "/", "_")
+	return "[TAT_TRAIT_VIRTUE_PREFIX][id]"
 
-/datum/tat_traits/proc/is_wanderer_role_choice(role_choice)
-	return role_choice == TAT_ROLE_CHOICE_ADVENTURER || role_choice == TAT_ROLE_CHOICE_WRETCH
+/datum/tat_traits/proc/get_virtue_choice_trait_id(virtue_type, choice_index)
+	var/parent_id = get_virtue_trait_id(virtue_type)
+	if(!parent_id || !isnum(choice_index) || choice_index < 1)
+		return null
+	return "[parent_id]_choice_[round(choice_index)]"
+
+/datum/tat_traits/proc/get_trait_backed_virtue_type(trait_id)
+	switch(trait_id)
+		if(TRAIT_ARCYNE, TAT_TRAIT_MAGE_INITIATE)
+			return /datum/virtue/combat/magical_potential
+		if(TAT_TRAIT_DIVINE_INITIATE)
+			return /datum/virtue/combat/devotee
+		if(TAT_TRAIT_WEAPON_TRAINING)
+			return /datum/virtue/combat/combat_virtue
+		if(TAT_TRAIT_SADDLEBORN)
+			return /datum/virtue/utility/riding
+		if(TRAIT_OUTDOORSMAN)
+			return /datum/virtue/utility/woodwalker
+	return null
+
+/datum/tat_traits/proc/is_virtue_represented_by_static_trait(virtue_type)
+	return virtue_type in list(
+		/datum/virtue/combat/magical_potential,
+		/datum/virtue/combat/devotee,
+		/datum/virtue/combat/combat_virtue,
+		/datum/virtue/utility/riding,
+		/datum/virtue/utility/woodwalker,
+	)
+
+/datum/tat_traits/proc/get_static_trait_for_virtue(virtue_type)
+	switch(virtue_type)
+		if(/datum/virtue/combat/magical_potential)
+			return TRAIT_ARCYNE
+		if(/datum/virtue/combat/devotee)
+			return TAT_TRAIT_DIVINE_INITIATE
+		if(/datum/virtue/combat/combat_virtue)
+			return TAT_TRAIT_WEAPON_TRAINING
+		if(/datum/virtue/utility/riding)
+			return TAT_TRAIT_SADDLEBORN
+		if(/datum/virtue/utility/woodwalker)
+			return TRAIT_OUTDOORSMAN
+	return null
+
+/datum/tat_traits/proc/is_tat_selectable_virtue(datum/virtue/virtue)
+	if(!virtue || istype(virtue, /datum/virtue/none) || istype(virtue, /datum/virtue/origin))
+		return FALSE
+	// subtypesof(/datum/virtue) walks the whole type tree, including implicit
+	// category nodes (e.g. /datum/virtue/combat) that are never given their own
+	// name. The classic virtue picker in preferences.dm already skips these
+	// (`if (!V.name) continue`); the TAT adapter needs the same guard or those
+	// nameless nodes surface as garbage traits (id text standing in for a name).
+	if(!virtue.name)
+		return FALSE
+	if(virtue.unlisted)
+		return FALSE
+	return TRUE
+
+/datum/tat_traits/proc/get_virtue_trait_cost(datum/virtue/virtue)
+	if(!virtue)
+		return 0
+	// Virtues used to be selected outside TAT, often for no build cost. A
+	// modest TAT cost makes their full packages explicit without spending TRI.
+	return max(1, min(4, round(virtue.triumph_cost || 1)))
+
+/// Which direction tab a dynamically-adapted virtue trait should file under.
+/// The 5 virtues backed by a pre-existing static trait (see
+/// get_static_trait_for_virtue) already inherit that trait's real direction
+/// entry from TAT_DIRECTION_TRAIT_RULES and never reach this proc. Everything
+/// else used to have no entry in that compile-time table at all, so it fell
+/// back to a generic "Ordinary, 0 cost to unlock" categorization regardless of
+/// theme — correct for genuine flavor/oddity virtues, but it buried real
+/// combat/skill/ranged virtues where nobody would think to look for them.
+/// Only the clearly-themed ones are called out below; anything not listed
+/// keeps the old Ordinary fallback, which is the right place for pure
+/// body/background flavor virtues anyway.
+/datum/tat_traits/proc/get_virtue_trait_direction(datum/virtue/virtue)
+	if(!virtue)
+		return TAT_DIRECTION_ORDINARY
+	switch(virtue.type)
+		if(/datum/virtue/combat/bowman, /datum/virtue/combat/crossbowman)
+			return TAT_DIRECTION_RANGED
+		if(/datum/virtue/combat/guarded, /datum/virtue/combat/dualwielder, /datum/virtue/combat/sharp, /datum/virtue/combat/combat_aware)
+			return TAT_DIRECTION_COMBAT
+		if(/datum/virtue/combat/second_chance, /datum/virtue/movement/acrobatic)
+			return TAT_DIRECTION_SURVIVAL
+		if(/datum/virtue/utility/performer)
+			return TAT_DIRECTION_MUSIC
+		if(/datum/virtue/utility/failed_squire, /datum/virtue/utility/intellectual, /datum/virtue/utility/prowler, \
+			/datum/virtue/utility/granary, /datum/virtue/utility/homesteader, /datum/virtue/utility/keenears, \
+			/datum/virtue/utility/tracker, /datum/virtue/utility/bronzelimbs, /datum/virtue/utility/skilled, \
+			/datum/virtue/utility/apprentice, /datum/virtue/thief/drug_runner)
+			return TAT_DIRECTION_SKILLS
+	return TAT_DIRECTION_ORDINARY
+
+/datum/tat_traits/proc/ensure_virtue_trait_entries()
+	if(!length(GLOB.virtues))
+		return FALSE
+
+	for(var/virtue_type in GLOB.virtues)
+		var/datum/virtue/virtue = GLOB.virtues[virtue_type]
+		if(!is_tat_selectable_virtue(virtue))
+			continue
+		var/trait_id = get_static_trait_for_virtue(virtue.type) || get_virtue_trait_id(virtue.type)
+		if(!trait_id)
+			continue
+		if(!islist(GLOB.tat_available_traits[trait_id]))
+			var/list/entry = TAT_TRAIT_ENTRY(virtue.name, get_virtue_trait_cost(virtue), virtue.desc)
+			entry["virtue_type"] = virtue.type
+			GLOB.tat_available_traits[trait_id] = entry
+		else
+			var/list/existing_entry = GLOB.tat_available_traits[trait_id]
+			existing_entry["virtue_type"] = virtue.type
+
+		// Statically-backed virtues (get_static_trait_for_virtue) reuse a real
+		// TAT trait id that already has its own compile-time entry in
+		// TAT_DIRECTION_TRAIT_RULES — never clobber that. Every other virtue
+		// trait id only exists at runtime, so it has no compile-time entry;
+		// give it one now instead of leaving it to the generic Ordinary/0
+		// fallback in get_trait_rule(), which is what buried these out of
+		// their proper direction tabs in the first place.
+		if(!islist(GLOB.tat_direction_trait_rules[trait_id]))
+			GLOB.tat_direction_trait_rules[trait_id] = TAT_DIRECTION_ENTRY(get_virtue_trait_direction(virtue), list(), 0)
+
+		for(var/choice_index in 1 to length(virtue.extra_choices))
+			var/choice_name = virtue.extra_choices[choice_index]
+			if(!istext(choice_name) || !length(choice_name))
+				continue
+			var/choice_trait_id = get_virtue_choice_trait_id(virtue.type, choice_index)
+			if(!islist(GLOB.tat_direction_trait_rules[choice_trait_id]))
+				GLOB.tat_direction_trait_rules[choice_trait_id] = TAT_DIRECTION_ENTRY(get_virtue_trait_direction(virtue), list(), 0)
+			if(islist(GLOB.tat_available_traits[choice_trait_id]))
+				continue
+			var/choice_cost = max(0, round(virtue.choice_costs[choice_index] || 0))
+			var/choice_desc = virtue.choice_tooltips[choice_name] || "A selected bonus for [virtue.name]."
+			var/list/choice_entry = TAT_TRAIT_ENTRY("[virtue.name]: [choice_name]", choice_cost, choice_desc)
+			choice_entry["virtue_type"] = virtue.type
+			choice_entry["virtue_choice"] = choice_name
+			choice_entry["virtue_parent"] = trait_id
+			choice_entry["virtue_choice_index"] = choice_index
+			GLOB.tat_available_traits[choice_trait_id] = choice_entry
+	return TRUE
+
+/datum/tat_traits/proc/get_virtue_choice_parent(trait_id)
+	var/list/entry = get_entry(trait_id)
+	return entry?["virtue_parent"]
+
+/datum/tat_traits/proc/get_selected_virtue_choice_count(parent_trait_id)
+	var/total = 0
+	for(var/trait_id in selected)
+		if(get_virtue_choice_parent(trait_id) == parent_trait_id)
+			total += get_selected_trait_count(trait_id)
+	return total
+
+/datum/tat_traits/proc/can_select_virtue_choice(trait_id)
+	var/list/entry = get_entry(trait_id)
+	var/parent_trait_id = entry?["virtue_parent"]
+	if(!parent_trait_id)
+		return TRUE
+	if(!has_trait(parent_trait_id))
+		return FALSE
+	var/virtue_type = entry["virtue_type"]
+	var/datum/virtue/virtue = GLOB.virtues[virtue_type]
+	if(!virtue)
+		return FALSE
+	return get_selected_virtue_choice_count(parent_trait_id) < virtue.max_choices
 
 /datum/tat_traits/proc/is_contractor_skill_trait(trait_id)
 	if(trait_id in list(TRAIT_ARCYNE, TRAIT_JACKOFALLTRADES, TAT_TRAIT_MASTER_OF_WANDERING))
@@ -43,10 +216,7 @@
 /datum/tat_traits/proc/get_trait_count(trait_id)
 	if(owner_build?.directions?.get_effective_role_trait() == trait_id)
 		return 1
-	if(is_resident_only_hunter_trait(trait_id) && owner_build?.directions?.get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-		return 0
-	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && !((owner_build?.directions?.get_role_choice()) in list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER)))
-		return 0
+	// Role-gated traits are now available to the single archetype.
 	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && owner_build?.has_built_in_weapon_training())
 		return 1
 	return get_selected_trait_count(trait_id)
@@ -61,51 +231,9 @@
 	return get_trait_count(trait_id) > 0
 
 /datum/tat_traits/proc/get_external_traits()
-	var/list/result = list()
-	var/list/virtues = owner_build?.get_active_virtues()
-	if(!length(virtues))
-		return result
-
-	for(var/virtue_entry in virtues)
-		if(!istype(virtue_entry, /datum/virtue))
-			continue
-
-		var/datum/virtue/virtue = virtue_entry
-		if(!("added_traits" in virtue.vars))
-			continue
-
-		var/list/added_traits = virtue.vars["added_traits"]
-		if(!islist(added_traits))
-			continue
-
-		for(var/trait_id in added_traits)
-			if(!check_trait(trait_id))
-				continue
-			result[trait_id] = TRUE
-
-		var/list/choice_rules = GLOB.tat_virtue_choice_trait_rules
-		if(!islist(choice_rules) || !LAZYLEN(virtue.picked_choices))
-			continue
-
-		for(var/virtue_rule in choice_rules)
-			if(!owner_build?.skills?.virtue_matches_rule(virtue, virtue_rule))
-				continue
-
-			var/list/choice_trait_map = choice_rules[virtue_rule]
-			if(!islist(choice_trait_map))
-				continue
-
-			for(var/choice in virtue.picked_choices)
-				var/list/choice_traits = choice_trait_map[choice]
-				if(!islist(choice_traits))
-					continue
-
-				for(var/trait_id in choice_traits)
-					if(!check_trait(trait_id))
-						continue
-					result[trait_id] = TRUE
-
-	return result
+	// Preferences.virtue and preferences.virtuetwo are retained only for old
+	// saves and backend compatibility. They no longer grant TAT traits.
+	return list()
 
 /datum/tat_traits/proc/get_external_trait_count(trait_id)
 	var/list/external_traits = get_external_traits()
@@ -176,9 +304,7 @@
 	return min(4, max(1, -cost))
 
 /datum/tat_traits/proc/get_ordinary_trait_group(trait_id)
-	if(get_oddity_direction_point_bonus(trait_id) > 0)
-		return "negative"
-	return "neutral"
+	return "ordinary"
 
 /datum/tat_traits/proc/get_negative_oddity_direction_points()
 	var/total = 0
@@ -284,10 +410,9 @@
 /datum/tat_traits/proc/can_select_trait(trait_id)
 	if(!check_trait(trait_id))
 		return FALSE
-	if(is_resident_only_hunter_trait(trait_id) && owner_build?.directions?.get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
+	if(!can_select_virtue_choice(trait_id))
 		return FALSE
-	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && !((owner_build?.directions?.get_role_choice()) in list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER)))
-		return FALSE
+	// Role-gated traits are now selectable in the single archetype.
 	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && owner_build?.has_built_in_weapon_training_foundation())
 		return FALSE
 	if(owner_build?.directions?.is_role_trait(trait_id))
@@ -300,10 +425,7 @@
 		return FALSE
 	if(trait_id == TAT_TRAIT_DRUID_INITIATE && !owner_build?.can_select_druid_initiate_trait())
 		return FALSE
-	if(trait_id == TAT_TRAIT_BONUS_STAT_POOL && (owner_build?.directions?.foundation != TAT_FOUNDATION_SETTLED || is_wanderer_role_choice(owner_build?.directions?.get_role_choice())))
-		return FALSE
-	if(trait_id == TAT_TRAIT_TRADER_LICENSE && owner_build?.directions?.get_role_choice() != TAT_ROLE_CHOICE_TRADER)
-		return FALSE
+	// Foundation/role-gated traits disabled in single-archetype build.
 	if(owner_build?.directions && !owner_build.directions.can_select_trait(trait_id))
 		return FALSE
 	var/list/requirements = get_trait_requirement_map()
@@ -448,14 +570,12 @@
 	if(!ispath(skill_type, /datum/skill) || target_level <= 0)
 		return 0
 
-	if(has_trait(TAT_TRAIT_RESIDENT) && (ispath(skill_type, /datum/skill/misc) || ispath(skill_type, /datum/skill/labor) || ispath(skill_type, /datum/skill/craft)))
-		return 1
+	// Role discounts removed in single archetype.
+	// if(has_trait(null) && (ispath(skill_type, /datum/skill/misc) || ispath(skill_type, /datum/skill/labor) || ispath(skill_type, /datum/skill/craft)))
+	// 	return 1
 
-	if(has_trait(TAT_TRAIT_MASTER_OF_WANDERING) && ispath(skill_type, /datum/skill/misc))
-		var/role_choice = owner_build?.directions?.get_role_choice()
-		if(role_choice == TAT_ROLE_CHOICE_ADVENTURER || role_choice == TAT_ROLE_CHOICE_WRETCH)
-			return 2
-		return 1
+	// if(has_trait(TAT_TRAIT_MASTER_OF_WANDERING) && ispath(skill_type, /datum/skill/misc))
+	// 	return 1
 
 	if(has_trait(TRAIT_SELF_SUSTENANCE) && (ispath(skill_type, /datum/skill/craft) || ispath(skill_type, /datum/skill/labor)))
 		return 1
@@ -511,11 +631,11 @@
 	if(length(GLOB.tat_trait_conflict_map))
 		return GLOB.tat_trait_conflict_map
 	GLOB.tat_trait_conflict_map = list(
-		TAT_TRAIT_RESIDENT = list(TRAIT_NOPAINSTUN, TRAIT_OUTLANDER, TAT_TRAIT_WANTED, TAT_TRAIT_MASTER_OF_WANDERING, TRAIT_STRONGBITE, TAT_TRAIT_TRADER_LICENSE, TAT_TRAIT_WARRIOR_EXPERT, TAT_TRAIT_DIVINE_BOON_3, TAT_TRAIT_SOUNDBREAKER, TAT_TRAIT_RONIN, TAT_TRAIT_SPELLBLADE, TAT_TRAIT_SPELLFIST, TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR, TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_SAVAGE_RAGE, TAT_TRAIT_BERSERKER_RAGE, TRAIT_RITUALIST, TRAIT_CIVILIZEDBARBARIAN, TRAIT_CRITICAL_RESISTANCE),
-		TAT_TRAIT_TRADER_LICENSE = list(TAT_TRAIT_RESIDENT),
+		null = list(TRAIT_NOPAINSTUN, TRAIT_OUTLANDER, TAT_TRAIT_WANTED, TAT_TRAIT_MASTER_OF_WANDERING, TRAIT_STRONGBITE, null, TAT_TRAIT_WARRIOR_EXPERT, TAT_TRAIT_DIVINE_BOON_3, TAT_TRAIT_SOUNDBREAKER, TAT_TRAIT_RONIN, TAT_TRAIT_SPELLBLADE, TAT_TRAIT_SPELLFIST, TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR, TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_SAVAGE_RAGE, TAT_TRAIT_BERSERKER_RAGE, TRAIT_RITUALIST, TRAIT_CIVILIZEDBARBARIAN, TRAIT_CRITICAL_RESISTANCE),
+		null = list(null),
 		TRAIT_OUTLANDER = list(TAT_TRAIT_WANTED, TRAIT_RITUALIST),
-		TAT_TRAIT_WANTED = list(TRAIT_OUTLANDER, TAT_TRAIT_RESIDENT, TRAIT_TECHNOPHOBE),
-		TAT_TRAIT_CONTRACTOR = list(TRAIT_OUTLANDER, TAT_TRAIT_WANTED, TAT_TRAIT_HERETIC, TAT_TRAIT_RESIDENT, TAT_TRAIT_TRADER_LICENSE, TAT_TRAIT_WARRIOR_EXPERT, TRAIT_PARRYEXPERT, TRAIT_DODGEEXPERT, TRAIT_CRITICAL_RESISTANCE, TRAIT_MEDIUMARMOR, TRAIT_HEAVYARMOR, TRAIT_CIVILIZEDBARBARIAN),
+		TAT_TRAIT_WANTED = list(TRAIT_OUTLANDER, null, TRAIT_TECHNOPHOBE),
+		TAT_TRAIT_CONTRACTOR = list(TRAIT_OUTLANDER, TAT_TRAIT_WANTED, TAT_TRAIT_HERETIC, null, null, TAT_TRAIT_WARRIOR_EXPERT, TRAIT_PARRYEXPERT, TRAIT_DODGEEXPERT, TRAIT_CRITICAL_RESISTANCE, TRAIT_MEDIUMARMOR, TRAIT_HEAVYARMOR, TRAIT_CIVILIZEDBARBARIAN),
 		TRAIT_DODGEEXPERT = list(TRAIT_PARRYEXPERT, TAT_TRAIT_MAGE_MINOR_SLOT_2, TAT_TRAIT_MAGE_MAJOR_SLOT),
 		TRAIT_HEAVYARMOR = list(TRAIT_CRITICAL_RESISTANCE, TAT_TRAIT_DIVINE_BOON_1, TAT_TRAIT_MAGE_INITIATE, TRAIT_DODGEEXPERT, TRAIT_PARRYEXPERT),
 		TRAIT_MEDIUMARMOR = list(TRAIT_CRITICAL_RESISTANCE, TAT_TRAIT_DIVINE_BOON_2, TAT_TRAIT_MAGE_MAJOR_SLOT, TRAIT_DODGEEXPERT, TRAIT_PARRYEXPERT),
@@ -557,15 +677,15 @@
 	if(length(GLOB.tat_trait_requirement_map))
 		return GLOB.tat_trait_requirement_map
 	GLOB.tat_trait_requirement_map = list(
-		TAT_TRAIT_WEAPON_TRAINING = list("role_choices" = list(TAT_ROLE_CHOICE_TOWNER, TAT_ROLE_CHOICE_TRADER), "message" = "\"[get_trait_display_name(TAT_TRAIT_WEAPON_TRAINING)]\" requires Resident or Trader role."),
-		TAT_TRAIT_WARRIOR_EXPERT = list("all_by_role_choice" = list(TAT_ROLE_CHOICE_TOWNER = list(TAT_TRAIT_WEAPON_TRAINING), TAT_ROLE_CHOICE_TRADER = list(TAT_TRAIT_WEAPON_TRAINING)), "message" = "\"[get_trait_display_name(TAT_TRAIT_WARRIOR_EXPERT)]\" requires \"[get_trait_display_name(TAT_TRAIT_WEAPON_TRAINING)]\" for Resident and Trader roles."),
+		TAT_TRAIT_WEAPON_TRAINING = list("message" = "\"[get_trait_display_name(TAT_TRAIT_WEAPON_TRAINING)]\""),
+		TAT_TRAIT_WARRIOR_EXPERT = list("all" = list(TAT_TRAIT_WEAPON_TRAINING), "message" = "\"[get_trait_display_name(TAT_TRAIT_WARRIOR_EXPERT)]\" requires \"[get_trait_display_name(TAT_TRAIT_WEAPON_TRAINING)]\"."),
 		TAT_TRAIT_WARRIOR_MASTER = list("all" = list(TAT_TRAIT_WARRIOR_EXPERT), "message" = "\"[get_trait_display_name(TAT_TRAIT_WARRIOR_MASTER)]\" requires \"[get_trait_display_name(TAT_TRAIT_WARRIOR_EXPERT)]\"."),
 		TAT_TRAIT_BARDIC_INSPIRATION_T2 = list("all" = list(TAT_TRAIT_BARDIC_INSPIRATION_T1), "message" = "\"[get_trait_display_name(TAT_TRAIT_BARDIC_INSPIRATION_T2)]\" requires \"[get_trait_display_name(TAT_TRAIT_BARDIC_INSPIRATION_T1)]\"."),
 		TAT_TRAIT_SPELLBLADE = list("all" = list(TAT_TRAIT_MAGE_INITIATE, TRAIT_ARCYNE), "message" = "\"[get_trait_display_name(TAT_TRAIT_SPELLBLADE)]\" requires \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\" and \"[get_trait_display_name(TRAIT_ARCYNE)]\"."),
 		TAT_TRAIT_SPELLFIST = list("all" = list(TRAIT_CIVILIZEDBARBARIAN, TAT_TRAIT_MAGE_INITIATE), "message" = "\"[get_trait_display_name(TAT_TRAIT_SPELLFIST)]\" requires \"[get_trait_display_name(TRAIT_CIVILIZEDBARBARIAN)]\" and \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\"."),
 		TAT_TRAIT_EXPERT_ARMAMENT = list("any" = list(TRAIT_ARCYNE, TAT_TRAIT_MAGE_INITIATE), "message" = "\"[get_trait_display_name(TAT_TRAIT_EXPERT_ARMAMENT)]\" requires \"[get_trait_display_name(TRAIT_ARCYNE)]\" or \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\"."),
-		TAT_TRAIT_HANDICRAFT_APPRENTICE = list("role_choices" = list(TAT_ROLE_CHOICE_ADVENTURER, TAT_ROLE_CHOICE_WRETCH), "message" = "\"[get_trait_display_name(TAT_TRAIT_HANDICRAFT_APPRENTICE)]\" requires Adventurer or Wretch role."),
-		TAT_TRAIT_STRAYING_SOUL_APPRENTICE = list("role_choices" = list(TAT_ROLE_CHOICE_ADVENTURER, TAT_ROLE_CHOICE_WRETCH), "message" = "\"[get_trait_display_name(TAT_TRAIT_STRAYING_SOUL_APPRENTICE)]\" requires Adventurer or Wretch role."),
+		TAT_TRAIT_HANDICRAFT_APPRENTICE = list("message" = "\"[get_trait_display_name(TAT_TRAIT_HANDICRAFT_APPRENTICE)]\""),
+		TAT_TRAIT_STRAYING_SOUL_APPRENTICE = list("message" = "\"[get_trait_display_name(TAT_TRAIT_STRAYING_SOUL_APPRENTICE)]\""),
 		TAT_TRAIT_MAGE_MINOR_SLOT_1 = list("all" = list(TAT_TRAIT_MAGE_INITIATE), "message" = "\"[get_trait_display_name(TAT_TRAIT_MAGE_MINOR_SLOT_1)]\" requires \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\"."),
 		TAT_TRAIT_MAGE_MINOR_SLOT_2 = list("all" = list(TAT_TRAIT_MAGE_MINOR_SLOT_1), "message" = "\"[get_trait_display_name(TAT_TRAIT_MAGE_MINOR_SLOT_2)]\" requires \"[get_trait_display_name(TAT_TRAIT_MAGE_MINOR_SLOT_1)]\"."),
 		TAT_TRAIT_MAGE_MAJOR_SLOT = list("all" = list(TAT_TRAIT_MAGE_INITIATE), "message" = "\"[get_trait_display_name(TAT_TRAIT_MAGE_MAJOR_SLOT)]\" requires \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\"."),
@@ -578,28 +698,29 @@
 		TAT_TRAIT_ARTIFACTS_SUPPLIER = list("all" = list(TAT_TRAIT_PARTY_LEADER), "message" = "\"[get_trait_display_name(TAT_TRAIT_ARTIFACTS_SUPPLIER)]\" requires \"[get_trait_display_name(TAT_TRAIT_PARTY_LEADER)]\"."),
 		TAT_TRAIT_SILVER_SUPPLIER = list("all" = list(TRAIT_PURITAN_ADVENTURER), "message" = "\"[get_trait_display_name(TAT_TRAIT_SILVER_SUPPLIER)]\" requires \"[get_trait_display_name(TRAIT_PURITAN_ADVENTURER)]\"."),
 		TAT_TRAIT_SAVAGE_SKIN = list("all" = list(TRAIT_NOPAINSTUN), "message" = "\"[get_trait_display_name(TAT_TRAIT_SAVAGE_SKIN)]\" requires \"[get_trait_display_name(TRAIT_NOPAINSTUN)]\"."),
-		TAT_TRAIT_BODYBUILDER_SKIN = list("role_choice" = TAT_ROLE_CHOICE_TOWNER, "message" = "\"[get_trait_display_name(TAT_TRAIT_BODYBUILDER_SKIN)]\" requires Resident."),
+		TAT_TRAIT_BODYBUILDER_SKIN = list("message" = "\"[get_trait_display_name(TAT_TRAIT_BODYBUILDER_SKIN)]\""),
 		TRAIT_STRONGBITE = list("all" = list(TAT_TRAIT_SAVAGE_SKIN), "message" = "\"[get_trait_display_name(TRAIT_STRONGBITE)]\" requires \"[get_trait_display_name(TAT_TRAIT_SAVAGE_SKIN)]\"."),
 		TAT_TRAIT_SAVAGE_RAGE = list("all" = list(TAT_TRAIT_SAVAGE_SKIN), "message" = "\"[get_trait_display_name(TAT_TRAIT_SAVAGE_RAGE)]\" requires \"[get_trait_display_name(TAT_TRAIT_SAVAGE_SKIN)]\"."),
 		TAT_TRAIT_BERSERKER_RAGE = list("all" = list(TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_HERETIC), "message" = "\"[get_trait_display_name(TAT_TRAIT_BERSERKER_RAGE)]\" requires savage skin and heretic."),
-		TAT_TRAIT_HUNTER_BEATER = list("all" = list(TRAIT_OUTDOORSMAN), "role_choice" = TAT_ROLE_CHOICE_TOWNER, "message" = "\"[get_trait_display_name(TAT_TRAIT_HUNTER_BEATER)]\" requires Resident and \"[get_trait_display_name(TRAIT_OUTDOORSMAN)]\"."),
-		TAT_TRAIT_HUNTER_SHOOTER = list("all" = list(TRAIT_OUTDOORSMAN), "role_choice" = TAT_ROLE_CHOICE_TOWNER, "message" = "\"[get_trait_display_name(TAT_TRAIT_HUNTER_SHOOTER)]\" requires Resident and \"[get_trait_display_name(TRAIT_OUTDOORSMAN)]\"."),
-		TAT_TRAIT_LOOTRAT_2 = list("all" = list(TAT_TRAIT_TRADER_LICENSE, TAT_TRAIT_LOOTRAT), "foundation" = TAT_FOUNDATION_SETTLED, "role_choice" = TAT_ROLE_CHOICE_TRADER, "message" = "\"[get_trait_display_name(TAT_TRAIT_LOOTRAT_2)]\" requires \"[get_trait_display_name(TAT_TRAIT_TRADER_LICENSE)]\", \"[get_trait_display_name(TAT_TRAIT_LOOTRAT)]\", and Trader role."),
+		TAT_TRAIT_HUNTER_BEATER = list("all" = list(TRAIT_OUTDOORSMAN), "message" = "\"[get_trait_display_name(TAT_TRAIT_HUNTER_BEATER)]\" requires \"[get_trait_display_name(TRAIT_OUTDOORSMAN)]\"."),
+		TAT_TRAIT_HUNTER_SHOOTER = list("all" = list(TRAIT_OUTDOORSMAN), "message" = "\"[get_trait_display_name(TAT_TRAIT_HUNTER_SHOOTER)]\" requires \"[get_trait_display_name(TRAIT_OUTDOORSMAN)]\"."),
+		TAT_TRAIT_LOOTRAT_2 = list("all" = list(null, TAT_TRAIT_LOOTRAT), "message" = "\"[get_trait_display_name(TAT_TRAIT_LOOTRAT_2)]\" requires \"[get_trait_display_name(null)]\" and \"[get_trait_display_name(TAT_TRAIT_LOOTRAT)]\"."),
 	)
 	return GLOB.tat_trait_requirement_map
 
 /datum/tat_traits/proc/trait_requirement_is_met(list/rule)
 	if(!islist(rule))
 		return TRUE
-	var/required_foundation = rule["foundation"]
-	if(required_foundation && owner_build?.directions?.foundation != required_foundation)
-		return FALSE
-	var/required_role_choice = rule["role_choice"]
-	if(required_role_choice && owner_build?.directions?.get_role_choice() != required_role_choice)
-		return FALSE
-	var/list/required_role_choices = rule["role_choices"]
-	if(islist(required_role_choices) && !((owner_build?.directions?.get_role_choice()) in required_role_choices))
-		return FALSE
+	// Foundation/role requirements are ignored in single-archetype builds.
+	// var/required_foundation = rule["foundation"]
+	// if(required_foundation && owner_build?.directions?.foundation != required_foundation)
+	// 	return FALSE
+	// var/required_role_choice = rule["role_choice"]
+	// if(required_role_choice && owner_build?.directions?.get_role_choice() != required_role_choice)
+	// 	return FALSE
+	// var/list/required_role_choices = rule["role_choices"]
+	// if(islist(required_role_choices) && !((owner_build?.directions?.get_role_choice()) in required_role_choices))
+	// 	return FALSE
 	var/list/all_requirements = rule["all"]
 	if(islist(all_requirements))
 		for(var/required_trait in all_requirements)
@@ -614,13 +735,14 @@
 				break
 		if(!has_any_requirement)
 			return FALSE
-	var/list/all_by_role_choice = rule["all_by_role_choice"]
-	if(islist(all_by_role_choice))
-		var/list/role_requirements = all_by_role_choice[owner_build?.directions?.get_role_choice()]
-		if(islist(role_requirements))
-			for(var/required_trait in role_requirements)
-				if(!has_trait(required_trait))
-					return FALSE
+	// Role-choice-dependent requirement groups are ignored in single-archetype builds.
+	// var/list/all_by_role_choice = rule["all_by_role_choice"]
+	// if(islist(all_by_role_choice))
+	// 	var/list/role_requirements = all_by_role_choice[owner_build?.directions?.get_role_choice()]
+	// 	if(islist(role_requirements))
+	// 		for(var/required_trait in role_requirements)
+	// 			if(!has_trait(required_trait))
+	// 				return FALSE
 	return TRUE
 
 /datum/tat_traits/proc/get_trait_requirement_block_reason(trait_id)
@@ -644,7 +766,7 @@
 	return FALSE
 
 /datum/tat_traits/proc/has_full_heretic_unlock()
-	return has_trait(TAT_TRAIT_HERETIC) && !has_trait(TAT_TRAIT_RESIDENT)
+	return has_trait(TAT_TRAIT_HERETIC)
 
 /datum/tat_traits/proc/are_traits_mutually_exclusive(trait_a, trait_b)
 	if(!trait_a || !trait_b || trait_a == trait_b)
@@ -653,18 +775,7 @@
 	if(has_trait(TAT_TRAIT_WANTED))
 		if((trait_a == TRAIT_NOPAINSTUN && (trait_b == TAT_TRAIT_MAGE_INITIATE || trait_b == TAT_TRAIT_DIVINE_BOON_2)) || (trait_b == TRAIT_NOPAINSTUN && (trait_a == TAT_TRAIT_MAGE_INITIATE || trait_a == TAT_TRAIT_DIVINE_BOON_2)))
 			return null
-	if(owner_build?.directions?.get_role_choice() == TAT_ROLE_CHOICE_WRETCH)
-		if((trait_a == TAT_TRAIT_SPELLBLADE && trait_b == TAT_TRAIT_DIVINE_BOON_1) || (trait_b == TAT_TRAIT_SPELLBLADE && trait_a == TAT_TRAIT_DIVINE_BOON_1))
-			return null
-		if((trait_a == TAT_TRAIT_WARRIOR_EXPERT && trait_b == TAT_TRAIT_MAGE_MINOR_SLOT_1) || (trait_b == TAT_TRAIT_WARRIOR_EXPERT && trait_a == TAT_TRAIT_MAGE_MINOR_SLOT_1))
-			return null
-		if((trait_a == TAT_TRAIT_WARRIOR_EXPERT && trait_b == TRAIT_HEAVYARMOR) || (trait_b == TAT_TRAIT_WARRIOR_EXPERT && trait_a == TRAIT_HEAVYARMOR))
-			return null
-		if((trait_a == TRAIT_MEDIUMARMOR && trait_b == TAT_TRAIT_DIVINE_BOON_2) || (trait_b == TRAIT_MEDIUMARMOR && trait_a == TAT_TRAIT_DIVINE_BOON_2))
-			return null
-		if((trait_a == TAT_TRAIT_MAGE_MAJOR_SLOT && trait_b == TAT_TRAIT_DIVINE_BOON_2) || (trait_b == TAT_TRAIT_MAGE_MAJOR_SLOT && trait_a == TAT_TRAIT_DIVINE_BOON_2))
-			return null
-
+	// Wretch-specific exclusions removed in single-archetype build.
 	var/list/conflicts = get_trait_conflict_map()
 	var/list/a_conflicts = conflicts[trait_a]
 	if(islist(a_conflicts) && (trait_b in a_conflicts))
@@ -716,7 +827,7 @@
 	return CLERIC_REGEN_WITCH
 
 /datum/tat_traits/proc/get_divine_devotion_limit_for_tier(cleric_tier)
-	var/cap_offset = has_trait(TAT_TRAIT_RESIDENT) ? 10 : 20
+	var/cap_offset = has_trait(null) ? 10 : 20
 	switch(cleric_tier)
 		if(CLERIC_T4)
 			return max(CLERIC_REQ_3, CLERIC_REQ_4 - cap_offset)
@@ -805,13 +916,13 @@
 	var/datum/devotion/D = new /datum/devotion(H, H.patron)
 	D.grant_miracles(H, cleric_tier = cleric_tier, passive_gain = passive_gain, devotion_limit = devotion_limit)
 	H.adjust_skillrank_up_to(/datum/skill/magic/holy, max(1, owner_build?.get_skill_value(/datum/skill/magic/holy) || 1), TRUE)
-	if(H.patron?.type == /datum/patron/inhumen/zizo && cleric_tier >= CLERIC_T2)
+	if(H.patron?.type == /datum/patron/unveiled/aurelian && cleric_tier >= CLERIC_T2)
 		owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/minion_order)
 		owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/gravemark)
 	if(has_trait(TAT_TRAIT_DIVINE_BLAST))
-		if(istype(H.patron, /datum/patron/divine))
+		if(istype(H.patron, /datum/patron/concordat))
 			owner_build?.grant_mind_spell_if_missing(H, /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
-		else if(istype(H.patron, /datum/patron/inhumen))
+		else if(istype(H.patron, /datum/patron/unveiled))
 			owner_build?.grant_mind_spell_if_missing(H, /obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
 
 /datum/tat_traits/proc/apply_mage_package(mob/living/carbon/human/H)
@@ -827,7 +938,7 @@
 	if(!H || !has_trait(TAT_TRAIT_DRUID_INITIATE))
 		return
 	if(owner_build?.get_magic_value("druid_force_dendor", TRUE))
-		H.set_patron(/datum/patron/divine/dendor)
+		H.set_patron(/datum/patron/severance/ignatius)
 	if(owner_build?.get_magic_value("druid_alert", TRUE))
 		H.AddComponent(/datum/component/wise_tree_alert)
 	H.AddSpell(new /obj/effect/proc_holder/spell/targeted/create_seed)
@@ -851,8 +962,7 @@
 	var/list/paths = list()
 	if(!has_trait(TAT_TRAIT_WITCH_INITIATE))
 		return paths
-	if(owner_build?.directions?.get_role_choice() != TAT_ROLE_CHOICE_TOWNER)
-		return paths
+	// Role-gated witch paths are now available based on direction points only.
 	var/magic_points = owner_build?.directions?.get_points(TAT_DIRECTION_MAGIC) || 0
 	var/miracle_points = owner_build?.directions?.get_points(TAT_DIRECTION_MIRACLES) || 0
 	if(magic_points >= 2)
@@ -1009,47 +1119,47 @@
 	if(momentum)
 		momentum.set_chant("unarmed")
 
-/datum/tat_traits/proc/get_pliant_rename_prefix()
-	if(!has_trait(TRAIT_OUTLANDER) && !has_trait(TAT_TRAIT_RESIDENT))
-		return "Straying Pliant"
+/datum/tat_traits/proc/get_free_soul_rename_prefix()
+	if(!has_trait(TRAIT_OUTLANDER) && !has_trait(null))
+		return "Straying Free Soul"
 	if(has_trait(TRAIT_OUTLANDER))
-		return "Wandering Pliant"
-	if(has_trait(TAT_TRAIT_RESIDENT))
-		return "Local Pliant"
-	return "Pliant"
+		return "Wandering Free Soul"
+	if(has_trait(null))
+		return "Local Free Soul"
+	return "Free Soul"
 
-/datum/tat_traits/proc/get_pliant_default_class_name()
+/datum/tat_traits/proc/get_free_soul_default_class_name()
 	return "Towner"
 
-/datum/tat_traits/proc/get_pliant_current_class_name(mob/living/carbon/human/H)
+/datum/tat_traits/proc/get_free_soul_current_class_name(mob/living/carbon/human/H)
 	// Automatic, silent base title generation.
-	// Used by Pliant Rename as the "current/selected class" option.
+	// Used by Free Soul Rename as the "current/selected class" option.
 	// Do not open choice dialogs here.
-	var/class_name = get_pliant_best_role_title()
+	var/class_name = get_free_soul_best_role_title()
 	if(!length(class_name))
 		class_name = trim("[H?.advjob]")
 	if(!length(class_name))
-		class_name = get_pliant_default_class_name()
-	return get_pliant_safe_class_name(class_name)
+		class_name = get_free_soul_default_class_name()
+	return get_free_soul_safe_class_name(class_name)
 
-/datum/tat_traits/proc/get_pliant_slot_class_name(fallback = null)
+/datum/tat_traits/proc/get_free_soul_slot_class_name(fallback = null)
 	var/slot_name = trim("[owner_build?.get_active_tat_slot_name()]")
 	if(!length(slot_name))
 		if(length("[fallback]"))
-			return get_pliant_safe_class_name(fallback)
-		return get_pliant_default_class_name()
-	return get_pliant_safe_class_name(slot_name)
+			return get_free_soul_safe_class_name(fallback)
+		return get_free_soul_default_class_name()
+	return get_free_soul_safe_class_name(slot_name)
 
-/datum/tat_traits/proc/get_pliant_safe_class_name(class_name, fallback = null)
+/datum/tat_traits/proc/get_free_soul_safe_class_name(class_name, fallback = null)
 	class_name = trim("[class_name]")
 	if(!length(class_name))
 		if(length("[fallback]"))
 			class_name = fallback
 		else
-			class_name = get_pliant_default_class_name()
+			class_name = get_free_soul_default_class_name()
 	return copytext(class_name, 1, 50)
 
-/datum/tat_traits/proc/get_pliant_skill_role_rules()
+/datum/tat_traits/proc/get_free_soul_skill_role_rules()
 	return list(
 		list("title" = "Sellsword", "minimum" = 3, "skills" = list(/datum/skill/combat/swords, /datum/skill/combat/knives, /datum/skill/combat/maces, /datum/skill/combat/axes, /datum/skill/combat/polearms, /datum/skill/combat/whipsflails, /datum/skill/combat/staves, /datum/skill/combat/shields)),
 		list("title" = "Archer", "minimum" = 3, "skills" = list(/datum/skill/combat/bows, /datum/skill/combat/crossbows, /datum/skill/combat/slings)),
@@ -1076,7 +1186,7 @@
 		list("title" = "Druid", "minimum" = 1, "skills" = list(/datum/skill/magic/druidic))
 	)
 
-/datum/tat_traits/proc/get_pliant_trait_role_scores()
+/datum/tat_traits/proc/get_free_soul_trait_role_scores()
 	var/list/roles = list()
 	if(has_trait(TAT_TRAIT_WITCH_INITIATE))
 		roles["Witch"] = 1000000
@@ -1088,7 +1198,7 @@
 		roles["Minstrel"] = 600000
 	return roles
 
-/datum/tat_traits/proc/get_pliant_skill_role_score(list/rule)
+/datum/tat_traits/proc/get_free_soul_skill_role_score(list/rule)
 	if(!owner_build || !islist(rule))
 		return 0
 
@@ -1111,32 +1221,32 @@
 
 	return total_skill
 
-/datum/tat_traits/proc/get_pliant_skill_role_title_score(title)
+/datum/tat_traits/proc/get_free_soul_skill_role_title_score(title)
 	if(!istext(title) || !length(title))
 		return 0
-	for(var/rule_entry in get_pliant_skill_role_rules())
+	for(var/rule_entry in get_free_soul_skill_role_rules())
 		var/list/rule = rule_entry
 		if(!islist(rule))
 			continue
-		var/rule_title = get_pliant_safe_class_name(rule["title"])
+		var/rule_title = get_free_soul_safe_class_name(rule["title"])
 		if(lowertext(rule_title) != lowertext(title))
 			continue
-		return get_pliant_skill_role_score(rule)
+		return get_free_soul_skill_role_score(rule)
 	return 0
 
-/datum/tat_traits/proc/get_pliant_role_title_score(title)
+/datum/tat_traits/proc/get_free_soul_role_title_score(title)
 	if(!istext(title) || !length(title))
 		return 0
-	var/list/trait_roles = get_pliant_trait_role_scores()
+	var/list/trait_roles = get_free_soul_trait_role_scores()
 	if(title in trait_roles)
 		return round(trait_roles[title] || 0)
-	return get_pliant_skill_role_title_score(title)
+	return get_free_soul_skill_role_title_score(title)
 
-/datum/tat_traits/proc/get_pliant_best_role_title()
+/datum/tat_traits/proc/get_free_soul_best_role_title()
 	var/best_title = null
 	var/best_score = 0
 
-	var/list/trait_roles = get_pliant_trait_role_scores()
+	var/list/trait_roles = get_free_soul_trait_role_scores()
 	for(var/title in trait_roles)
 		var/score = round(trait_roles[title] || 0)
 		if(score <= best_score)
@@ -1144,12 +1254,12 @@
 		best_score = score
 		best_title = title
 
-	for(var/rule_entry in get_pliant_skill_role_rules())
+	for(var/rule_entry in get_free_soul_skill_role_rules())
 		var/list/rule = rule_entry
 		if(!islist(rule))
 			continue
-		var/title = get_pliant_safe_class_name(rule["title"])
-		var/score = get_pliant_skill_role_score(rule)
+		var/title = get_free_soul_safe_class_name(rule["title"])
+		var/score = get_free_soul_skill_role_score(rule)
 		if(score <= best_score)
 			continue
 		best_score = score
@@ -1157,7 +1267,7 @@
 
 	return best_title
 
-/datum/tat_traits/proc/add_pliant_role_choice(list/display_to_title, title, score, source_label = null, excluded_title = null)
+/datum/tat_traits/proc/add_free_soul_role_choice(list/display_to_title, title, score, source_label = null, excluded_title = null)
 	if(!islist(display_to_title) || !istext(title) || !length(title))
 		return FALSE
 	if(istext(excluded_title) && length(excluded_title) && lowertext(title) == lowertext(excluded_title))
@@ -1169,62 +1279,62 @@
 	display_to_title[display] = title
 	return TRUE
 
-/datum/tat_traits/proc/build_pliant_role_title_choices(excluded_title = null)
+/datum/tat_traits/proc/build_free_soul_role_title_choices(excluded_title = null)
 	var/list/display_to_title = list()
 
-	var/list/trait_roles = get_pliant_trait_role_scores()
+	var/list/trait_roles = get_free_soul_trait_role_scores()
 	for(var/title in trait_roles)
-		add_pliant_role_choice(display_to_title, title, trait_roles[title], "trait", excluded_title)
+		add_free_soul_role_choice(display_to_title, title, trait_roles[title], "trait", excluded_title)
 
-	for(var/rule_entry in get_pliant_skill_role_rules())
+	for(var/rule_entry in get_free_soul_skill_role_rules())
 		var/list/rule = rule_entry
 		if(!islist(rule))
 			continue
-		var/title = get_pliant_safe_class_name(rule["title"])
-		var/score = get_pliant_skill_role_score(rule)
+		var/title = get_free_soul_safe_class_name(rule["title"])
+		var/score = get_free_soul_skill_role_score(rule)
 		if(score <= 0 || !length(title))
 			continue
-		add_pliant_role_choice(display_to_title, title, score, null, excluded_title)
+		add_free_soul_role_choice(display_to_title, title, score, null, excluded_title)
 
 	return display_to_title
 
-/datum/tat_traits/proc/build_pliant_skill_role_choices(current_class_name)
-	return build_pliant_role_title_choices(current_class_name)
+/datum/tat_traits/proc/build_free_soul_skill_role_choices(current_class_name)
+	return build_free_soul_role_title_choices(current_class_name)
 
-/datum/tat_traits/proc/get_single_pliant_role_choice(list/display_to_title)
+/datum/tat_traits/proc/get_single_free_soul_role_choice(list/display_to_title)
 	if(!islist(display_to_title) || length(display_to_title) != 1)
 		return null
 	for(var/display in display_to_title)
 		return display_to_title[display]
 	return null
 
-/datum/tat_traits/proc/get_pliant_base_class_title(mob/living/carbon/human/H)
-	// Pliant Rename uses this silently. The actual dialog for rename must only ask
+/datum/tat_traits/proc/get_free_soul_base_class_title(mob/living/carbon/human/H)
+	// Free Soul Rename uses this silently. The actual dialog for rename must only ask
 	// between current/slot/custom, not open a separate role picker first.
-	return get_pliant_current_class_name(H)
+	return get_free_soul_current_class_name(H)
 
-/datum/tat_traits/proc/get_pliant_plain_class_title(mob/living/carbon/human/H)
-	var/fallback = get_pliant_current_class_name(H)
-	var/list/display_to_title = build_pliant_role_title_choices()
+/datum/tat_traits/proc/get_free_soul_plain_class_title(mob/living/carbon/human/H)
+	var/fallback = get_free_soul_current_class_name(H)
+	var/list/display_to_title = build_free_soul_role_title_choices()
 	if(!length(display_to_title))
 		return fallback
 
-	var/single_title = get_single_pliant_role_choice(display_to_title)
+	var/single_title = get_single_free_soul_role_choice(display_to_title)
 	if(single_title)
-		return get_pliant_safe_class_name(single_title, fallback)
+		return get_free_soul_safe_class_name(single_title, fallback)
 
 	var/list/options = list()
 	for(var/display in display_to_title)
 		options += display
 
-	var/choice = H.client ? tgui_input_list(H, "Choose which class title should be used for your Pliant identity.", "CHOOSE YOUR CLASS", options) : null
+	var/choice = H.client ? tgui_input_list(H, "Choose which class title should be used for your Free Soul identity.", "CHOOSE YOUR CLASS", options) : null
 	if(choice && display_to_title[choice])
-		return get_pliant_safe_class_name(display_to_title[choice], fallback)
+		return get_free_soul_safe_class_name(display_to_title[choice], fallback)
 	return fallback
 
-/datum/tat_traits/proc/get_pliant_rename_title(mob/living/carbon/human/H)
-	var/base_class_name = get_pliant_base_class_title(H)
-	var/slot_name = get_pliant_slot_class_name(base_class_name)
+/datum/tat_traits/proc/get_free_soul_rename_title(mob/living/carbon/human/H)
+	var/base_class_name = get_free_soul_base_class_title(H)
+	var/slot_name = get_free_soul_slot_class_name(base_class_name)
 
 	var/current_choice = "Use selected class ([base_class_name])"
 	var/slot_choice = "Use active TAT slot ([slot_name])"
@@ -1249,37 +1359,37 @@
 	else if(choice && display_to_title[choice])
 		class_name = display_to_title[choice]
 
-	class_name = get_pliant_safe_class_name(class_name, base_class_name)
-	return "[get_pliant_rename_prefix()] [class_name]"
+	class_name = get_free_soul_safe_class_name(class_name, base_class_name)
+	return "[get_free_soul_rename_prefix()] [class_name]"
 
-/datum/tat_traits/proc/get_pliant_default_title(mob/living/carbon/human/H)
-	var/class_name = get_pliant_plain_class_title(H)
-	class_name = get_pliant_safe_class_name(class_name)
-	return "[get_pliant_rename_prefix()] [class_name]"
+/datum/tat_traits/proc/get_free_soul_default_title(mob/living/carbon/human/H)
+	var/class_name = get_free_soul_plain_class_title(H)
+	class_name = get_free_soul_safe_class_name(class_name)
+	return "[get_free_soul_rename_prefix()] [class_name]"
 
-/datum/tat_traits/proc/apply_pliant_title(mob/living/carbon/human/H)
+/datum/tat_traits/proc/apply_free_soul_title(mob/living/carbon/human/H)
 	if(!H)
 		return FALSE
 
 	var/class_name = null
 	var/new_title = null
-	if(has_trait(TAT_TRAIT_PLIANT_RENAME))
-		new_title = get_pliant_rename_title(H)
-		class_name = copytext(new_title, length(get_pliant_rename_prefix()) + 2)
-	else if(has_trait(TAT_TRAIT_RESIDENT))
-		class_name = get_pliant_plain_class_title(H)
-		new_title = "[get_pliant_rename_prefix()] [get_pliant_safe_class_name(class_name)]"
+	if(has_trait(TAT_TRAIT_FREE_SOUL_RENAME))
+		new_title = get_free_soul_rename_title(H)
+		class_name = copytext(new_title, length(get_free_soul_rename_prefix()) + 2)
+	else if(has_trait(null))
+		class_name = get_free_soul_plain_class_title(H)
+		new_title = "[get_free_soul_rename_prefix()] [get_free_soul_safe_class_name(class_name)]"
 
 	if(!length(new_title))
 		return FALSE
 
-	H.tat_pliant_title = new_title
+	H.tat_free_soul_title = new_title
 	if(length(class_name))
-		owner_build?.set_magic_value("pliant_selected_role_title", get_pliant_safe_class_name(class_name))
+		owner_build?.set_magic_value("free_soul_selected_role_title", get_free_soul_safe_class_name(class_name))
 	return TRUE
 
-/datum/tat_traits/proc/apply_pliant_rename(mob/living/carbon/human/H)
-	return apply_pliant_title(H)
+/datum/tat_traits/proc/apply_free_soul_rename(mob/living/carbon/human/H)
+	return apply_free_soul_title(H)
 
 /datum/tat_traits/proc/apply_savage_skin_package(mob/living/carbon/human/H)
 	if(!H || !has_trait(TAT_TRAIT_SAVAGE_SKIN))
@@ -1381,7 +1491,7 @@
 		if(is_repeatable_trait(trait_id))
 			continue
 		switch(trait_id)
-			if(TAT_TRAIT_WARRIOR_EXPERT, TAT_TRAIT_WARRIOR_MASTER, TAT_TRAIT_WEAPON_TRAINING, TAT_TRAIT_SOUNDBREAKER, TAT_TRAIT_RONIN, TAT_TRAIT_RESIDENT, TAT_TRAIT_STEEL_SUPPLIER, TAT_TRAIT_SILVER_SUPPLIER, TAT_TRAIT_BRONZE_SUPPLIER, TAT_TRAIT_LEATHER_SUPPLIER, TAT_TRAIT_MAIL_SUPPLIER, TAT_TRAIT_PLATE_SUPPLIER, TAT_TRAIT_RANGED_SUPPLIER, TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS, TAT_TRAIT_HUNTER_BEATER, TAT_TRAIT_HUNTER_SHOOTER, TAT_TRAIT_SPELLBLADE, TAT_TRAIT_SPELLFIST, TAT_TRAIT_EXPERT_ARMAMENT, TAT_TRAIT_BARDIC_INSPIRATION_T1, TAT_TRAIT_BARDIC_INSPIRATION_T2, TAT_TRAIT_PARTY_LEADER, TAT_TRAIT_BONUS_STAT_POOL, TAT_TRAIT_WANTED, TAT_TRAIT_DIVINE_INITIATE, TAT_TRAIT_DIVINE_BLAST, TAT_TRAIT_MAGE_INITIATE, TAT_TRAIT_DRUID_INITIATE, TAT_TRAIT_WITCH_INITIATE, TAT_TRAIT_CONTRACTOR, TAT_TRAIT_ARTIFACTS_SUPPLIER, TAT_TRAIT_FIREARMS_SUPPLIER, TAT_TRAIT_TROPHY_BOUNTY, TAT_TRAIT_MASTER_OF_WANDERING, TAT_TRAIT_MASTER_OF_CRAFTING, TAT_TRAIT_STRAYING_SOUL, TAT_TRAIT_HANDICRAFT_APPRENTICE, TAT_TRAIT_STRAYING_SOUL_APPRENTICE, TAT_TRAIT_PLIANT_RENAME, TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_BODYBUILDER_SKIN, TAT_TRAIT_SAVAGE_RAGE, TAT_TRAIT_HERETIC, TAT_TRAIT_BERSERKER_RAGE, TAT_TRAIT_LOOTRAT, TRAIT_SHIRTLESS, TAT_TRAIT_LOOTRAT_2, TAT_TRAIT_ACCURSED, TAT_TRAIT_POLYGLOT)
+			if(TAT_TRAIT_WARRIOR_EXPERT, TAT_TRAIT_WARRIOR_MASTER, TAT_TRAIT_WEAPON_TRAINING, TAT_TRAIT_SOUNDBREAKER, TAT_TRAIT_RONIN, null, TAT_TRAIT_STEEL_SUPPLIER, TAT_TRAIT_SILVER_SUPPLIER, TAT_TRAIT_BRONZE_SUPPLIER, TAT_TRAIT_LEATHER_SUPPLIER, TAT_TRAIT_MAIL_SUPPLIER, TAT_TRAIT_PLATE_SUPPLIER, TAT_TRAIT_RANGED_SUPPLIER, TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS, TAT_TRAIT_HUNTER_BEATER, TAT_TRAIT_HUNTER_SHOOTER, TAT_TRAIT_SPELLBLADE, TAT_TRAIT_SPELLFIST, TAT_TRAIT_EXPERT_ARMAMENT, TAT_TRAIT_BARDIC_INSPIRATION_T1, TAT_TRAIT_BARDIC_INSPIRATION_T2, TAT_TRAIT_PARTY_LEADER, TAT_TRAIT_BONUS_STAT_POOL, TAT_TRAIT_WANTED, TAT_TRAIT_DIVINE_INITIATE, TAT_TRAIT_DIVINE_BLAST, TAT_TRAIT_MAGE_INITIATE, TAT_TRAIT_DRUID_INITIATE, TAT_TRAIT_WITCH_INITIATE, TAT_TRAIT_CONTRACTOR, TAT_TRAIT_ARTIFACTS_SUPPLIER, TAT_TRAIT_FIREARMS_SUPPLIER, TAT_TRAIT_TROPHY_BOUNTY, TAT_TRAIT_MASTER_OF_WANDERING, TAT_TRAIT_MASTER_OF_CRAFTING, TAT_TRAIT_STRAYING_SOUL, TAT_TRAIT_HANDICRAFT_APPRENTICE, TAT_TRAIT_STRAYING_SOUL_APPRENTICE, TAT_TRAIT_FREE_SOUL_RENAME, TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_BODYBUILDER_SKIN, TAT_TRAIT_SAVAGE_RAGE, TAT_TRAIT_HERETIC, TAT_TRAIT_BERSERKER_RAGE, TAT_TRAIT_LOOTRAT, TRAIT_SHIRTLESS, TAT_TRAIT_LOOTRAT_2, TAT_TRAIT_ACCURSED, TAT_TRAIT_POLYGLOT)
 				continue
 			else
 				ADD_TRAIT(H, trait_id, TAT_TRAIT_SOURCE)
@@ -1389,7 +1499,7 @@
 		H.LoadComponent(/datum/component/combo_core/ronin)
 	if(has_trait(TAT_TRAIT_SOUNDBREAKER))
 		H.LoadComponent(/datum/component/combo_core/soundbreaker)
-	if(has_trait(TAT_TRAIT_RESIDENT))
+	if(has_trait(null))
 		apply_resident_package(H)
 	if(has_trait(TAT_TRAIT_SPELLBLADE))
 		apply_spellblade_base_package(H)
@@ -1433,7 +1543,7 @@
 /datum/tat_traits/proc/apply_deferred_to_human(mob/living/carbon/human/H)
 	if(!H?.client)
 		return FALSE
-	if(has_trait(TAT_TRAIT_RESIDENT))
+	if(has_trait(null))
 		apply_resident_pugilist_package(H)
 	if(has_trait(TAT_TRAIT_SPELLBLADE))
 		apply_spellblade_specialization_package(H)
@@ -1447,10 +1557,29 @@
 		ADD_TRAIT(H, TRAIT_EQUESTRIAN, TAT_TRAIT_SOURCE)
 	apply_witch_path_package(H)
 	apply_witch_shapeshift_package(H)
-	apply_pliant_title(H)
+	apply_free_soul_title(H)
 	apply_polyglot_package(H)
-	if(has_trait(TAT_TRAIT_RESIDENT))
+	if(has_trait(null))
 		apply_resident_advjob(H)
+	return TRUE
+
+/// Apply the legacy virtue package only after TAT has finished its own stat and
+/// skill work. This keeps all bespoke virtue procs, items, languages and
+/// effects intact without reviving the old preference-driven selection UI.
+/datum/tat_traits/proc/apply_tat_virtue_packages(mob/living/carbon/human/H)
+	if(!H || !owner_build)
+		return FALSE
+	var/list/virtues = owner_build.get_active_virtues()
+	for(var/datum/virtue/virtue in virtues)
+		if(!is_tat_selectable_virtue(virtue))
+			continue
+		virtue.apply_to_human(H)
+		virtue.handle_traits(H)
+		// Skill floors/caps are already calculated from this TAT-owned virtue
+		// selection. Calling handle_skills here would apply those bonuses twice.
+		virtue.handle_stashed_items(H)
+		virtue.handle_added_languages(H)
+		virtue.handle_stats(H)
 	return TRUE
 
 /datum/tat_traits/proc/apply_to_human(mob/living/carbon/human/H)
@@ -1547,7 +1676,7 @@
 	)
 
 /datum/tat_traits/proc/apply_resident_skill_spells(mob/living/carbon/human/H)
-	if(!H || !H.mind || !has_trait(TAT_TRAIT_RESIDENT))
+	if(!H || !H.mind || !has_trait(null))
 		return FALSE
 
 	var/list/rules = get_resident_skill_spell_rules()
@@ -1630,10 +1759,10 @@
 	return null
 
 /datum/tat_traits/proc/get_tat_resident_role_choice_for_title(title)
-	if(!has_trait(TAT_TRAIT_RESIDENT) || !istext(title) || !length(title))
+	if(!has_trait(null) || !istext(title) || !length(title))
 		return null
 
-	title = get_pliant_safe_class_name(title)
+	title = get_free_soul_safe_class_name(title)
 	if(title == "Witch")
 		if(!has_trait(TAT_TRAIT_WITCH_INITIATE))
 			return null
@@ -1646,7 +1775,7 @@
 	if(is_tat_resident_special_role_title(title))
 		return null
 
-	var/score = get_pliant_skill_role_title_score(title)
+	var/score = get_free_soul_skill_role_title_score(title)
 	if(score <= 0)
 		return null
 
@@ -1657,10 +1786,10 @@
 	)
 
 /datum/tat_traits/proc/get_tat_resident_role_choice()
-	if(!has_trait(TAT_TRAIT_RESIDENT))
+	if(!has_trait(null))
 		return null
 
-	var/selected_title = owner_build?.get_magic_value("pliant_selected_role_title")
+	var/selected_title = owner_build?.get_magic_value("free_soul_selected_role_title")
 	var/list/selected_choice = get_tat_resident_role_choice_for_title(selected_title)
 	if(islist(selected_choice))
 		return selected_choice
@@ -1668,7 +1797,7 @@
 	if(has_trait(TAT_TRAIT_WITCH_INITIATE))
 		return get_tat_resident_role_choice_for_title("Witch")
 
-	var/list/rules = get_pliant_skill_role_rules()
+	var/list/rules = get_free_soul_skill_role_rules()
 	var/list/best_choice = null
 	var/best_score = 0
 
@@ -1677,11 +1806,11 @@
 		if(!islist(rule))
 			continue
 
-		var/title = get_pliant_safe_class_name(rule["title"])
+		var/title = get_free_soul_safe_class_name(rule["title"])
 		if(!length(title) || is_tat_resident_special_role_title(title))
 			continue
 
-		var/score = get_pliant_skill_role_score(rule)
+		var/score = get_free_soul_skill_role_score(rule)
 		if(score <= best_score)
 			continue
 
@@ -1701,30 +1830,32 @@
 	return choice["path"]
 
 /datum/tat_traits/proc/apply_resident_advjob(mob/living/carbon/human/H)
-	if(!H || !has_trait(TAT_TRAIT_RESIDENT))
+	if(!H || !has_trait(null))
 		return
 
 	var/list/choice = get_tat_resident_role_choice()
 	if(!islist(choice))
 		return
 
-	var/title = get_pliant_safe_class_name(choice["title"])
+	var/title = get_free_soul_safe_class_name(choice["title"])
 	var/resident_advjob_type = choice["path"]
 	var/applied_name = title
 
 	if(resident_advjob_type)
 		var/datum/advclass/advclass = get_tat_resident_advclass_datum(resident_advjob_type)
 		if(advclass)
-			applied_name = get_pliant_safe_class_name(advclass.name, title)
+			applied_name = get_free_soul_safe_class_name(advclass.name, title)
 			if(H.mind)
 				H.mind.picked_advclass = advclass
 		else
 			advclass = new resident_advjob_type
 			if(advclass)
-				applied_name = get_pliant_safe_class_name(advclass.name, title)
+				applied_name = get_free_soul_safe_class_name(advclass.name, title)
 				qdel(advclass)
 
 	if(!length(applied_name))
 		return
 
 	H.advjob = applied_name
+
+

@@ -20,7 +20,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!istype(H) || H.stat == DEAD || !H.client)
 			continue
-		if(!H.patron || !istype(H.patron, /datum/patron/divine/abyssor))
+		if(!H.patron || !istype(H.patron, /datum/patron/concordat/wulfric))
 			continue
 		if(H.get_skill_level(/datum/skill/labor/fishing) < 2)
 			continue
@@ -34,7 +34,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!istype(H) || H.stat == DEAD || !H.client)
 			continue
-		if(!H.patron || !istype(H.patron, /datum/patron/divine/abyssor))
+		if(!H.patron || !istype(H.patron, /datum/patron/concordat/wulfric))
 			continue
 		if(H.get_skill_level(/datum/skill/labor/fishing) < 2)
 			continue

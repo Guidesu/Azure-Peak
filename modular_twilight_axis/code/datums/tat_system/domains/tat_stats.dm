@@ -152,3 +152,4 @@
 
 /datum/tat_stats/proc/import_from_json_list(list/data)
 	return import_from_list(data)
+

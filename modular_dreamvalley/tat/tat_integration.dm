@@ -18,19 +18,10 @@
 	build.ui_interact(user)
 
 /proc/dreamvalley_tat_character_sheet_link()
-	return "<a href='?_src_=prefs;preference=dreamvalley_tat;task=input'><b>Build &amp; Join</b></a>"
+	return "<a href='?_src_=prefs;preference=dreamvalley_tat;task=input'><b>Open Character Sheet</b></a>"
 
 /proc/dreamvalley_tat_rank_for_bucket(bucket)
-	switch(bucket)
-		if(TAT_ROLE_BUCKET_TOWNER)
-			return "Towner"
-		if(TAT_ROLE_BUCKET_TRADER)
-			return "Trader"
-		if(TAT_ROLE_BUCKET_ADVENTURER)
-			return "Adventurer"
-		if(TAT_ROLE_BUCKET_WRETCH)
-			return "Wretch"
-	return null
+	return "Towner"
 
 /proc/dreamvalley_open_tat_join(mob/dead/new_player/player)
 	if(!player?.client?.prefs)

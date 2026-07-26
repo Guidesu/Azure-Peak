@@ -154,6 +154,18 @@
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
 	try_do_pain_effect(pain_amt, giving)
 
+	// Ratwood chastity_collar port, Stage 1: notify any worn intimate-accessory reaction components
+	// (chastity devices, future piercings, etc.) that a sex action's effects were just applied to us.
+	// See /datum/sex_action/proc/get_acted_sex_part() in code/datums/sexcon2/actions/_base_action.dm for
+	// why this needs its own SEX_PART_* mapping rather than reusing a BODY_ZONE_PRECISE_* constant.
+	if(ishuman(user))
+		var/list/receive_sessions = return_sessions_with_user(user)
+		var/datum/sex_session/receive_session = return_highest_priority_action(receive_sessions, user)
+		var/datum/sex_action/receive_action = receive_session ? SEX_ACTION(receive_session.current_action) : null
+		var/mob/living/carbon/human/acting_mob = receive_session ? (receive_session.user == user ? receive_session.target : receive_session.user) : null
+		var/acted_sex_part = receive_action ? receive_action.get_acted_sex_part() : NONE
+		SEND_SIGNAL(user, COMSIG_CARBON_SEX_ACTION_RECEIVED, acting_mob, receive_action, acted_sex_part, giving, arousal_amt, pain_amt, applied_force, applied_speed)
+
 /datum/component/arousal/proc/update_arousal_effects()
 	update_pink_screen()
 	update_blueballs()
@@ -353,6 +365,10 @@
 
 /datum/component/arousal/proc/try_do_moan(arousal_amt, pain_amt, applied_force, giving)
 	var/mob/user = parent
+	// Stealth-mode extension: if any active sex session involving us wants to stay quiet, suppress the moan entirely.
+	for(var/datum/sex_session/session in return_sessions_with_user(user))
+		if(session.suppress_moan)
+			return
 	if(arousal_amt < 1.5)
 		return
 	if(user.stat != CONSCIOUS)

@@ -19,7 +19,7 @@
 	. = ..()
 	if(user.mind && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(!H.patron || !istype(H.patron, /datum/patron/inhumen/baotha))
+		if(!H.patron || !istype(H.patron, /datum/patron/oldkin/hausvette))
 			return
 		if(is_infinite)
 			. += span_notice("It's been touched by the Lady... it won't run dry, for now.")

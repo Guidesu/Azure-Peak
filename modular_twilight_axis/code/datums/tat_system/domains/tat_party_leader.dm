@@ -167,3 +167,4 @@
 /datum/emote/living/pat/adjacentaction(mob/user, mob/target)
 	. = ..()
 	tat_try_fellowship_headpat_mood(user, target)
+

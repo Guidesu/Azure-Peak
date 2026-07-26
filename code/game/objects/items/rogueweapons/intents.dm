@@ -602,7 +602,7 @@
 			var/mob/living/L = user
 			var/taunticon = "taunt" // Regular fist
 			var/custom_offset = 21
-			if(istype(L.patron, /datum/patron/inhumen/graggar) || L.get_stress_amount() > 10 || L.get_flaw(/datum/charflaw/addiction/paranoid))
+			if(istype(L.patron, /datum/patron/oldkin/volkovoi) || L.get_stress_amount() > 10 || L.get_flaw(/datum/charflaw/addiction/paranoid))
 				taunticon = "midfinger" // Very rude, but we're also a Rude Person (or stressed)
 				custom_offset = 23
 
@@ -611,7 +611,7 @@
 				if(AV.check_aversion(L, M))
 					taunticon = "midfinger"	// We hate this person in particular
 
-			if(istype(L.patron, /datum/patron/divine/eora) || HAS_TRAIT(L, TRAIT_PACIFISM))
+			if(istype(L.patron, /datum/patron/concordat/miluse) || HAS_TRAIT(L, TRAIT_PACIFISM))
 				taunticon = "thumbsdown"
 				custom_offset = 24
 
@@ -621,6 +621,35 @@
 		else
 			M.taunted(user)
 	return
+
+/// A punch with claw visual only. All damage, armor, wound, timing, stamina, and parry behavior remains inherited from punch.
+/datum/intent/unarmed/punch/cosmetic_claw
+	name = "cosmetic claw (punch)"
+	desc = "A punch delivered with natural claws. Its presentation changes, but it behaves exactly like PUNCH."
+	animname = ATTACK_EFFECT_CLAW
+	hitsound = "bluntwooshmed"
+	miss_text = "throw a clawed punch at the air"
+	miss_sound = "bluntwooshmed"
+
+/datum/intent/unarmed/punch/cosmetic_claw/retractable
+	attack_verb = list("swipes", "rakes", "grazes")
+	miss_text = "swipe retractable claws through the air"
+
+/datum/intent/unarmed/punch/cosmetic_claw/hooked
+	attack_verb = list("gouges", "hooks", "rakes")
+	miss_text = "swipe hooked claws through the air"
+
+/datum/intent/unarmed/punch/cosmetic_claw/heavy
+	attack_verb = list("swipes", "buffets", "rakes")
+	miss_text = "swing heavy claws through the air"
+
+/datum/intent/unarmed/punch/cosmetic_claw/talons
+	attack_verb = list("gouges", "rakes", "scores")
+	miss_text = "lash sharp talons through the air"
+
+/datum/intent/unarmed/punch/cosmetic_claw/chitinous
+	attack_verb = list("scrapes", "scythes", "rakes")
+	miss_text = "scrape chitinous claws through the air"
 
 /datum/intent/unarmed/claw
 	name = "claw"

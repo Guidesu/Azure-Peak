@@ -35,7 +35,7 @@
 				return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/hammer/attack_hand(mob/living/user)
-	if(HAS_TRAIT(user, TRAIT_CURSE_MALUM))
+	if(HAS_TRAIT(user, TRAIT_CURSE_HANDWERRA))
 		to_chat(user, span_warning("Your cursed hands burn at the touch of the hammer!"))
 		user.freak_out()
 		return

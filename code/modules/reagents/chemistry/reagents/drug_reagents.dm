@@ -714,7 +714,7 @@
 	name = "Abyss"
 	description = "Extract from the jacksberries. Produces a causes sore throat and mild relaxation."
 	reagent_state = LIQUID
-	color = "#5С0120"
+	color = "#50120"
 	addiction_threshold = 999
 	taste_description = "jacksberries"
 	trippy = FALSE

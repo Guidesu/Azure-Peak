@@ -56,7 +56,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 
 /datum/advclass/mage/spellblade
@@ -225,7 +225,7 @@
 
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 
 /datum/advclass/mage/spellsinger
@@ -278,7 +278,7 @@
 
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 
 /datum/advclass/mage/spellfist

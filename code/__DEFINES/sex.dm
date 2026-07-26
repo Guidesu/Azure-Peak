@@ -29,6 +29,39 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 /// Sends a signal whenever the user thrusts, or gets thrusted at
 #define COMSIG_SEX_JOSTLE "sex_jostle"
 
+// Intimate accessory (chastity, piercings, etc.) reaction/guard signals — ratwood chastity_collar port, Stage 1.
+/// Minimal organ bitmask scoped to feeding COMSIG_CARBON_SEX_ACTION_RECEIVED/VALIDATE. Ratwood's old sexcon had
+/// an equivalent SEX_PART_* bitmask baked into every sex_action; sexcon2 has no such concept (see
+/// /datum/sex_action/proc/get_acted_sex_part() in code/datums/sexcon2/actions/_base_action.dm for the mapping).
+#define SEX_PART_COCK (1<<0)
+#define SEX_PART_CUNT (1<<1)
+#define SEX_PART_ANUS (1<<2)
+
+/// Fired on the RECEIVING mob after receive_sex_action() on /datum/component/arousal has applied arousal/pain for
+/// an incoming sex action, so worn accessories (chastity devices, piercings) can react with flavor text, sounds, etc.
+/// Args: (mob/living/carbon/human/acting_mob, datum/sex_action/action, acted_sex_part, giving, arousal_amt, pain_amt, applied_force, applied_speed)
+#define COMSIG_CARBON_SEX_ACTION_RECEIVED "carbon_sex_action_received"
+/// Fired on the TARGET before a sex action is allowed to proceed (from can_perform()/shows_on_menu() on /datum/sex_action),
+/// letting components veto or hide the action (e.g. chastity blocking penetration of a locked organ).
+/// Return COMPONENT_SEX_ACTION_BLOCK to veto the action / hide it from the menu.
+/// Args: (mob/living/carbon/human/user, datum/sex_action/action, acted_sex_part, menu_check)
+#define COMSIG_CARBON_SEX_ACTION_VALIDATE "carbon_sex_action_validate"
+	/// Return value for COMSIG_CARBON_SEX_ACTION_VALIDATE: vetoes/hides the action.
+	#define COMPONENT_SEX_ACTION_BLOCK 1
+
+/// Fired on a chastity-device wearer whenever a tool attempts to interact with the device's lock (lockpick,
+/// hammer & chisel, forced removal). Return COMPONENT_CHASTITY_LOCK_INTERACT_BLOCK to silently block the attempt.
+/// Args: (mob/user, obj/item/interaction_item, new_locked_state, method)
+#define COMSIG_CARBON_CHASTITY_LOCK_INTERACT "carbon_chastity_lock_interact"
+	/// Return value for COMSIG_CARBON_CHASTITY_LOCK_INTERACT: silently blocks the lock interaction.
+	#define COMPONENT_CHASTITY_LOCK_INTERACT_BLOCK 1
+/// Fired on a chastity-device wearer whenever the device's lock state actually changes (locked/unlocked).
+/// Args: (mob/user, obj/item/interaction_item, new_locked_state, interaction_source)
+#define COMSIG_CARBON_CHASTITY_LOCK_CHANGED "carbon_chastity_lock_changed"
+/// Fired on a chastity-device wearer whenever chastity-related traits/mode change and mood/visuals need refreshing.
+/// Args: (obj/item/chastity/device, reason)
+#define COMSIG_CARBON_CHASTITY_STATE_CHANGED "carbon_chastity_state_changed"
+
 #define SEX_SPEED_LOW 1
 #define SEX_SPEED_MID 2
 #define SEX_SPEED_HIGH 3

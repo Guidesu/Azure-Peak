@@ -77,7 +77,7 @@
 /datum/outfit/job/roguetown/druid
 	name = "Druid"
 	jobtype = /datum/job/roguetown/druid
-	allowed_patrons = list(/datum/patron/divine/dendor)
+	allowed_patrons = list(/datum/patron/severance/ignatius)
 	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/druid/basic/pre_equip(mob/living/carbon/human/H)
@@ -89,7 +89,7 @@
 	beltl = /obj/item/rogueweapon/whip //The whip itself is not often associated to many jobs. Druids feel like a thematic choice to have a self-defense whip
 	backl = /obj/item/storage/backpack/rogue/satchel
 	head = /obj/item/clothing/head/roguetown/dendormask
-	wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
+	wrists = /obj/item/clothing/neck/roguetown/psicross/ignatius
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
 	backpack_contents = list(/obj/item/ritechalk, /obj/item/storage/keyring/acolyte)
 	H.ambushable = FALSE

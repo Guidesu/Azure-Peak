@@ -31,7 +31,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!istype(H) || H.stat == DEAD || !H.client)
 			continue
-		if(H.patron && istype(H.patron, /datum/patron/divine/eora))
+		if(H.patron && istype(H.patron, /datum/patron/concordat/miluse))
 			return TRUE
 
 	return FALSE
@@ -44,7 +44,7 @@
 			continue
 		if(!H.client.prefs || H.client.prefs?.no_storyteller_events)
 			continue
-		if(H.patron && istype(H.patron, /datum/patron/divine/eora))
+		if(H.patron && istype(H.patron, /datum/patron/concordat/miluse))
 			valid_targets += H
 
 	if(!length(valid_targets))

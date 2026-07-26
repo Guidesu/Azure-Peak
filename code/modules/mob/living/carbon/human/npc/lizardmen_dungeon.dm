@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(psyvault_aggro, world.file2list("strings/rt/psyvaultaggrolines.
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/lizardfolk/psy_vault_guard)
-	patron = /datum/patron/old_god
+	patron = /datum/patron/tribunal/praecursor
 	update_hair()
 	update_body()
 	update_overlays()

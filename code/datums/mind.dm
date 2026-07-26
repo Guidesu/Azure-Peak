@@ -655,7 +655,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 // Graggar culling event - tells people where the other is.
 /datum/mind/proc/recall_culling(mob/recipient, window=1)
 	var/output = "<B>[recipient.real_name]'s Rival:</B><br>"
-	for(var/datum/culling_duel/D in GLOB.graggar_cullings)
+	for(var/datum/culling_duel/D in GLOB.volkovoi_cullings)
 		var/mob/living/carbon/human/challenger = D.challenger.resolve()
 		var/mob/living/carbon/human/target = D.target.resolve()
 		var/obj/item/organ/heart/target_heart = D.target_heart.resolve()

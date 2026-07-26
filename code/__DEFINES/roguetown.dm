@@ -387,27 +387,27 @@ To avoid TOO much conflicts w/random char parts, consider a proc that checks if 
 	/datum/species/dwarf/gnome\
 )
 
-#define OLD_GOD_PATRON list(/datum/patron/old_god)
+#define OLD_GOD_PATRON list(/datum/patron/tribunal/praecursor)
 
-#define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/undivided) // Currently unused.
+#define ALL_CLERIC_PATRONS list(/datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/severance/ignatius, /datum/patron/concordat/morwenna, /datum/patron/concordat/handwerra, /datum/patron/concordat/auxentius, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse, /datum/patron/tribunal/custodius) // Currently unused.
 
-#define ALL_PALADIN_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god) // Currently unused.
+#define ALL_PALADIN_PATRONS list(/datum/patron/tribunal/custodius, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/concordat/wulfric, /datum/patron/severance/ignatius, /datum/patron/concordat/morwenna, /datum/patron/concordat/handwerra, /datum/patron/concordat/auxentius, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse, /datum/patron/concordat/viator, /datum/patron/tribunal/praecursor) // Currently unused.
 
-#define ALL_ACOLYTE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum) // Currently unused.
+#define ALL_ACOLYTE_PATRONS list(/datum/patron/tribunal/custodius, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/severance/ignatius, /datum/patron/concordat/handwerra, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/concordat/viator, /datum/patron/concordat/morwenna, /datum/patron/concordat/wulfric, /datum/patron/concordat/handwerra) // Currently unused.
 
-#define ALL_DIVINE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora)
+#define ALL_DIVINE_PATRONS list(/datum/patron/tribunal/custodius, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/severance/ignatius, /datum/patron/concordat/wulfric, /datum/patron/concordat/auxentius, /datum/patron/concordat/morwenna, /datum/patron/concordat/viator, /datum/patron/concordat/handwerra, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse)
 
-#define ALL_GRONNIC_PATRONS list(/datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha, /datum/patron/divine/abyssor, /datum/patron/divine/dendor)
+#define ALL_GRONNIC_PATRONS list(/datum/patron/unveiled/aurelian, /datum/patron/oldkin/volkovoi, /datum/patron/concordat/morwenna, /datum/patron/oldkin/hausvette, /datum/patron/concordat/wulfric, /datum/patron/severance/ignatius)
 
-#define ALL_INHUMEN_PATRONS list(/datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
+#define ALL_INHUMEN_PATRONS list(/datum/patron/unveiled/aurelian, /datum/patron/oldkin/volkovoi, /datum/patron/concordat/morwenna, /datum/patron/oldkin/hausvette)
 
-#define NON_PSYDON_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)	//For lord/heir usage
+#define NON_PSYDON_PATRONS list(/datum/patron/tribunal/custodius, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/severance/ignatius, /datum/patron/concordat/wulfric, /datum/patron/concordat/auxentius, /datum/patron/concordat/morwenna, /datum/patron/concordat/viator, /datum/patron/concordat/handwerra, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse, /datum/patron/unveiled/aurelian, /datum/patron/oldkin/volkovoi, /datum/patron/concordat/morwenna, /datum/patron/oldkin/hausvette)	//For lord/heir usage
 
-#define ALL_PATRONS  list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/old_god, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
+#define ALL_PATRONS  list(/datum/patron/tribunal/custodius, /datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/severance/ignatius, /datum/patron/concordat/wulfric, /datum/patron/concordat/auxentius, /datum/patron/concordat/morwenna, /datum/patron/concordat/viator, /datum/patron/concordat/handwerra, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse, /datum/patron/tribunal/praecursor, /datum/patron/unveiled/aurelian, /datum/patron/oldkin/volkovoi, /datum/patron/concordat/morwenna, /datum/patron/oldkin/hausvette)
 
-#define ALL_SLAYER_PATRONS list(/datum/patron/divine/malum, /datum/patron/divine/ravox)
+#define ALL_SLAYER_PATRONS list(/datum/patron/concordat/handwerra, /datum/patron/concordat/auxentius)
 
-#define ALL_KAZENGUN_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha) //the twelve + saidon
+#define ALL_KAZENGUN_PATRONS list(/datum/patron/concordat/auxentius, /datum/patron/concordat/miluse, /datum/patron/concordat/wulfric, /datum/patron/severance/ignatius, /datum/patron/concordat/morwenna, /datum/patron/concordat/handwerra, /datum/patron/concordat/auxentius, /datum/patron/concordat/handwerra, /datum/patron/concordat/miluse, /datum/patron/concordat/viator, /datum/patron/tribunal/praecursor, /datum/patron/concordat/morwenna, /datum/patron/oldkin/hausvette) //the twelve + saidon
 
 #define PLATEHIT "plate"
 #define CHAINHIT "chain"

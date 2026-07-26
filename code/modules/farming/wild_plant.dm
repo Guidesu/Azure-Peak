@@ -76,7 +76,7 @@
 		feedback = "I harvest the produce well."
 		modifier += 1
 
-	if(has_world_trait(/datum/world_trait/dendor_fertility))
+	if(has_world_trait(/datum/world_trait/ignatius_fertility))
 		feedback = "Praise Dendor for our harvest is bountiful."
 		modifier += 3
 

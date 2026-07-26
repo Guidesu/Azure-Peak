@@ -20,7 +20,7 @@
 		if(istype(cf, /datum/charflaw/hunted) || istype(cf, /datum/charflaw/targeted))
 			H.charflaws.Remove(cf)
 			QDEL_NULL(cf)
-	H.set_patron(/datum/patron/inhumen/zizo)
+	H.set_patron(/datum/patron/unveiled/aurelian)
 	H.cmode_music = 'sound/music/combat_heretic.ogg'
 	H.faction = list(FACTION_UNDEAD)
 	to_chat(owner, span_danger("I'm a servant to the ALMIGHTY. They call it the UNSPEAKABLE. I SHALL WRECK HAVOK and SURVIVE."))

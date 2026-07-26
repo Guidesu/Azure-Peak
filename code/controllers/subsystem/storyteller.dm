@@ -1986,7 +1986,7 @@ SUBSYSTEM_DEF(gamemode)
 			best_count = count
 			new_god = god_type
 	if(!new_god)
-		new_god = /datum/storyteller/astrata
+		new_god = /datum/storyteller/auxentius
 	if(new_god == ruling_god)
 		return
 	ruling_god = new_god

@@ -7,7 +7,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	allowed_ages = ALL_AGES_LIST
-	allowed_patrons = list(/datum/patron/divine/pestra)
+	allowed_patrons = list(/datum/patron/concordat/handwerra)
 	forbidden_races = list(RACES_DESPISED)
 	outfit = /datum/outfit/job/roguetown/keeper
 	display_order = JDO_KEEPER
@@ -62,7 +62,7 @@
 
 /datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
 	..()
-	neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+	neck = /obj/item/clothing/neck/roguetown/psicross/handwerra
 	cloak = /obj/item/clothing/cloak/templar/pestran
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/pestran/keeper

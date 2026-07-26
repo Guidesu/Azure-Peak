@@ -4,7 +4,7 @@
 /datum/species/halforc
 	name = "Half Orc"
 	id = "halforc"
-	origin_default = /datum/virtue/origin/avar
+	origin_default = /datum/virtue/origin/ognica
 	origin = "Aavnr"
 	base_name = "Humen"
 	is_subrace = TRUE
