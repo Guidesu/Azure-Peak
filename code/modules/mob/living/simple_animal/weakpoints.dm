@@ -3,6 +3,8 @@
 	var/list/part_damage
 	var/list/broken_parts
 	var/no_reanimate = FALSE
+	var/last_damage_stage = 0
+	var/last_hit_part
 
 /mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon)
 	return
@@ -25,6 +27,9 @@
 		if(named)
 			return named
 	return ..()
+
+/mob/living/simple_animal/hit_zone_name(hit_zone)
+	return simple_limb_hit(hit_zone)
 
 /mob/living/simple_animal/proc/weakpoint_damage_mod(zone)
 	var/datum/anatomy/profile = get_anatomy()
@@ -80,6 +85,7 @@
 	var/break_path = hit_zone.break_wound
 	var/datum/wound/cripple/new_break = new break_path()
 	new_break.crippled_zone = norm_zone
+	new_break.struck_by = user
 	if(simple_add_wound(new_break, crit_message = TRUE))
 		LAZYADD(broken_parts, norm_zone)
 
@@ -90,3 +96,32 @@
 
 /mob/living/simple_animal/proc/is_toppled()
 	return has_wound(/datum/wound/cripple/limb/topple)
+
+/mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
+	if(def_zone)
+		last_hit_part = def_zone
+	return ..()
+
+/mob/living/simple_animal/proc/show_damage_stage()
+	if(maxHealth < 200 || stat == DEAD)
+		return
+	var/ratio = health / maxHealth
+	var/stage = 0
+	if(ratio < 0.75)
+		stage = 1
+	if(ratio < 0.5)
+		stage = 2
+	if(ratio < 0.25)
+		stage = 3
+	if(stage > last_damage_stage)
+		var/part = last_hit_part || "body"
+		var/word
+		switch(stage)
+			if(1)
+				word = "[part] <br><font color='#c77b7b'>bloodied</font>"
+			if(2)
+				word = "[part] <br><font color='#bd4b4b'>mangled</font>"
+			if(3)
+				word = "[part] <br><font color='#7a1e1e'>savaged</font>"
+		balloon_alert_to_viewers(word)
+	last_damage_stage = stage

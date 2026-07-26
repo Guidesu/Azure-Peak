@@ -13,6 +13,7 @@
 	critical = TRUE
 	var/crippled_zone
 	var/break_alert
+	var/mob/struck_by
 
 /datum/wound/cripple/on_mob_gain(mob/living/affected)
 	. = ..()
@@ -172,8 +173,12 @@
 		animal.no_reanimate = TRUE
 		if(animal.head_butcher)
 			var/head_type = animal.head_butcher
-			new head_type(affected.drop_location())
+			var/obj/item/severed_head = new head_type(affected.drop_location())
 			animal.head_butcher = null
+			if(struck_by)
+				var/turf/head_dest = get_ranged_target_turf(affected, get_dir(struck_by, affected), 5)
+				if(head_dest)
+					severed_head.throw_at(head_dest, 5, 3)
 	affected.visible_message(span_userdanger("[affected]'s head is torn from its shoulders!"))
 	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
 	affected.death()
@@ -208,3 +213,8 @@
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.Knockdown(20)
+	animate(affected, transform = turn(affected.transform, 90), time = 2)
+
+/datum/wound/cripple/limb/topple/on_mob_loss(mob/living/affected)
+	. = ..()
+	animate(affected, transform = turn(affected.transform, -90), time = 2)

@@ -398,6 +398,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 /mob/living/simple_animal/updatehealth()
 	..()
 	update_damage_overlays()
+	show_damage_stage()
 
 /mob/living/simple_animal/hostile
 	var/retreating

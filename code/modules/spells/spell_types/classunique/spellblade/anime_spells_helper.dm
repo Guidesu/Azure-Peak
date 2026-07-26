@@ -37,11 +37,14 @@ without going through the click pipeline, so spells can deliver weapon-style str
 	// Below 10 penalizes instead. A class-intended spellblade (PER ~12, INT ~12) gets ~100 base accuracy.
 	// This feeds into bullet_hit_accuracy_check which caps ultra-precise at 50%, precise at 75%, face at 30%.
 	// exact_zone bypasses the roll entirely, striking precisely where the caster aimed.
+	var/aimed_zone = def_zone
+	var/list/roll_out = list()
 	if(!exact_zone && def_zone != BODY_ZONE_CHEST && isliving(target))
 		var/base_accuracy = 60
 		base_accuracy += (user.STAPER - 10) * 10
 		base_accuracy += (user.STAINT - 10) * 10
-		def_zone = target.bullet_hit_accuracy_check(base_accuracy, def_zone)
+		aimed_zone = def_zone
+		def_zone = target.bullet_hit_accuracy_check(base_accuracy, def_zone, roll_out)
 
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
@@ -132,6 +135,10 @@ without going through the click pipeline, so spells can deliver weapon-style str
 			span_danger("[user] [attack_verb] \the [target] with [weapon_name] in the [parse_zone(def_zone)]![armor_msg]"),
 			span_danger("[user] [attack_verb] me in the [span_userdanger(parse_zone(def_zone))]![armor_msg]"),
 			null, COMBAT_MESSAGE_RANGE)
+
+	if(isliving(target))
+		var/mob/living/L = target
+		L.show_ranged_accuracy_fail(user, aimed_zone, def_zone, roll_out)
 
 	log_combat(user, target, "spell-struck ([spell_name])")
 	return max(0, damage - armor_block)

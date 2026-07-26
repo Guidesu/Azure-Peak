@@ -1,5 +1,5 @@
 /mob/living/simple_animal/proc/resolve_melee_zone(mob/living/user, obj/item/I, datum/intent/attack_intent)
-	if(!user)
+	if(!user || user.zone_selected == BODY_ZONE_CHEST)
 		return BODY_ZONE_CHEST
 	var/skill = I ? I.associated_skill : /datum/skill/combat/unarmed
 	return melee_accuracy_check(user.zone_selected, user, src, skill, attack_intent || user.used_intent, I) || BODY_ZONE_CHEST
@@ -237,14 +237,16 @@
 	. = ..()
 	if(.)
 		next_attack_msg.Cut()
-		var/hitlim = simple_limb_hit(M.zone_selected)
+		var/selzone = resolve_melee_zone(M, null, M.a_intent)
+		var/hitlim = simple_limb_hit(selzone)
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		var/haha = M.d_type
 		var/armor = run_armor_check(null, haha, armor_penetration = M.armor_penetration, damage = damage)
 		if(armor > 0)
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
+		damage *= weakpoint_damage_mod(selzone)
 		attack_threshold_check(damage, hitlim, M.melee_damage_type, armor)
-		simple_woundcritroll(M.a_intent.blade_class, damage, M, M.zone_selected)
+		simple_woundcritroll(M.a_intent.blade_class, damage, M, selzone)
 		visible_message(span_danger("\The [M] [pick(M.a_intent.attack_verb)] [src]![next_attack_msg.Join()]"), \
 					span_danger("\The [M] [pick(M.a_intent.attack_verb)] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 		next_attack_msg.Cut()

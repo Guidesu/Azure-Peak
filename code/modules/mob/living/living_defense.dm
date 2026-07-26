@@ -245,7 +245,9 @@
 /mob/living/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_ATOM_BLOCK_BULLET)
 		return
-	def_zone = bullet_hit_accuracy_check(P.accuracy + P.bonus_accuracy, def_zone)
+	var/aimed_zone = def_zone
+	var/list/roll_out = list()
+	def_zone = bullet_hit_accuracy_check(P.accuracy + P.bonus_accuracy, def_zone, roll_out)
 	var/armor = run_armor_check(def_zone, P.flag, "", "",armor_penetration = P.armor_penetration, damage = P.damage, intdamfactor = P.intdamfactor, used_weapon = P)
 
 	next_attack_msg.Cut()
@@ -292,15 +294,16 @@
 			P.handle_drop()
 
 	var/organ_hit_text = ""
-	var/limb_hit = check_limb_hit(def_zone)//to get the correct message info.
+	var/limb_hit = hit_zone_name(def_zone)//to get the correct message info.
 	if(limb_hit)
-		organ_hit_text = " in \the [parse_zone(limb_hit)]"
+		organ_hit_text = " in \the [limb_hit]"
 	if(P.hitsound && !nodmg)
 		var/volume = P.vol_by_damage()
 		playsound(loc, pick(P.hitsound), volume, TRUE, -1)
 	visible_message(span_danger("[src] is hit by \a [P][organ_hit_text]![next_attack_msg.Join()]"), \
 			span_danger("I'm hit by \a [P][organ_hit_text]![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 	next_attack_msg.Cut()
+	show_ranged_accuracy_fail(P.firer, aimed_zone, def_zone, roll_out)
 
 
 	return on_hit_state ? BULLET_ACT_HIT : BULLET_ACT_BLOCK

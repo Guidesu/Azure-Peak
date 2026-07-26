@@ -140,8 +140,13 @@
 
 	return NO_PENALTY_ZONE // Groin, Stomach and Chest are OK and Center of Mass.
 
+/mob/living/proc/show_ranged_accuracy_fail(mob/living/user, aimed_zone, landed_zone, list/roll_out)
+	if(aimed_zone == landed_zone || !isliving(user) || !user.client?.prefs.showrolls)
+		return
+	to_chat(user, span_warning("Accuracy fail! [roll_out?["chance"]]% - hit the [hit_zone_name(landed_zone)] instead."))
+
 // Based on the remaining accuracy of the projectile and the aimed zone, return the zone, precise zone or chest
-/mob/living/proc/bullet_hit_accuracy_check(final_accuracy, def_zone = BODY_ZONE_CHEST)
+/mob/living/proc/bullet_hit_accuracy_check(final_accuracy, def_zone = BODY_ZONE_CHEST, list/roll_out)
 	// No matter what, 5% chance to hit the zone. No benefit from overaccuracy (unlikely)
 	var/zone_type = ranged_zone_difficulty(def_zone)
 	var/chance2hit = final_accuracy + get_zone_ranged_hit_bonus(def_zone)
@@ -163,6 +168,9 @@
 		if(PRECISE_FACE_ZONE)
 			chance2hit += (RANGED_ULTRA_PRECISE_HIT_PENALTY + RANGED_PRECISE_HIT_PENALTY)
 			chance2hit = CLAMP(chance2hit, 5, RANGED_MAX_FACE_HIT_CHANCE)
+
+	if(roll_out)
+		roll_out["chance"] = chance2hit
 
 	if(prob(chance2hit))
 		return def_zone

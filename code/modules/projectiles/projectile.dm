@@ -216,6 +216,9 @@
 	//when a limb is missing the damage is actually passed to the chest
 	return BODY_ZONE_CHEST
 
+/mob/living/proc/hit_zone_name(hit_zone)
+	return parse_zone(check_limb_hit(hit_zone))
+
 /obj/projectile/proc/prehit(atom/target)
 	return TRUE
 
