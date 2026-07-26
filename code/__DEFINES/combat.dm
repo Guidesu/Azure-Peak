@@ -66,6 +66,7 @@
 #define RANGED_STAT_SOFTCAP 15	//PER value past which ranged damage scaling has diminishing returns.
 #define RANGED_STAT_MULT 0.1	//PER multiplier per point up to the softcap. 0.1 = 10% per point.
 #define RANGED_STAT_CAPPEDMULT 0.03	//PER multiplier per point past the softcap. 0.03 = 3% per point.
+#define RANGED_SPREAD_JITTER 1.4 // Add jitter to a shot's spread to get the final angle
 //Actual combat defines
 
 //click cooldowns, in tenths of a second, used for various combat actions

@@ -162,7 +162,8 @@
 #define ARCHER_NPC_MIN_CROSSBOW_CHARGETIME  3 SECONDS // crossbows are slower to fire
 #define ARCHER_NPC_MIN_BOW_CHARGETIME        2.0 SECONDS
 #define ARCHER_NPC_MIN_SLING_CHARGETIME     2.0 SECONDS
-#define ARCHER_NPC_SPREAD_PER_POINT     7     // spread per PER point below 15
+#define ARCHER_NPC_PER_BASELINE         15    // PER at which an NPC stops scattering
+#define ARCHER_NPC_SPREAD_PER_POINT     7     // spread per PER point below the baseline
 #define ARCHER_NPC_ARC_SPREAD_PENALTY   20    // extra spread when arcing over allies
 
 // Keys used by one and only one behavior

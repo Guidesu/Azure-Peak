@@ -308,7 +308,7 @@
 			if(should_arc)
 				break
 	bow.npc_force_arc = should_arc
-	var/bonus_spread = ARCHER_NPC_BASE_SPREAD + max(0, 15 - pawn.STAPER) * ARCHER_NPC_SPREAD_PER_POINT
+	var/bonus_spread = ARCHER_NPC_BASE_SPREAD + max(0, ARCHER_NPC_PER_BASELINE - pawn.STAPER) * ARCHER_NPC_SPREAD_PER_POINT
 	if(should_arc)
 		bonus_spread += ARCHER_NPC_ARC_SPREAD_PENALTY
 	bow.process_fire(target, pawn, TRUE, null, "", bonus_spread)

@@ -488,14 +488,28 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 
+/mob/living/simple_animal/hostile/proc/get_ranged_spread()
+	var/spread = max(0, ARCHER_NPC_PER_BASELINE - STAPER) * ARCHER_NPC_SPREAD_PER_POINT
+	if(spread <= 0)
+		return 0
+	return round((rand() - 0.5) * RANGED_SPREAD_JITTER * rand(0, spread))
+
+/mob/living/simple_animal/hostile/proc/apply_ranged_accuracy(obj/projectile/P)
+	if(!P)
+		return
+	P.accuracy += (STAPER - 9) * 4
+	P.bonus_accuracy += (STAPER - 8) * 3
+
 /mob/living/simple_animal/hostile/proc/Shoot(atom/targeted_atom)
 	if( QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from )
 		return
 	var/turf/startloc = get_turf(targets_from)
+	var/spread = get_ranged_spread()
 	if(casingtype)
 		var/obj/item/ammo_casing/casing = new casingtype(startloc)
 		playsound(src, projectilesound, 100, TRUE)
-		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), 0,  src)
+		apply_ranged_accuracy(casing.BB)
+		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), spread,  src)
 	else if(projectiletype)
 		var/obj/projectile/P = new projectiletype(startloc)
 		playsound(src, projectilesound, 100, TRUE)
@@ -505,7 +519,9 @@
 		P.yo = targeted_atom.y - startloc.y
 		P.xo = targeted_atom.x - startloc.x
 		P.original = targeted_atom
-		P.preparePixelProjectile(targeted_atom, src)
+		P.def_zone = ran_zone()
+		apply_ranged_accuracy(P)
+		P.preparePixelProjectile(targeted_atom, src, null, spread)
 		P.fire()
 		return P
 
