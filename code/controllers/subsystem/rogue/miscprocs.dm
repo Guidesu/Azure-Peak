@@ -46,6 +46,12 @@
 	. = ..()
 	if (patron.type == /datum/patron/unveiled/aurelian || patron.type == /datum/patron/concordat/morwenna)
 		REMOVE_TRAIT(holder, TRAIT_DEATHSIGHT, "devotion")
+
+	if(length(patron.traits_tier))
+		for(var/trait in patron.traits_tier)
+			var/required_tier = patron.traits_tier[trait]
+			if(required_tier <= level)
+				REMOVE_TRAIT(holder, trait, ROUNDSTART_TRAIT)
 	holder?.hud_used?.shutdown_bloodpool()
 	holder?.devotion = null
 	holder = null
