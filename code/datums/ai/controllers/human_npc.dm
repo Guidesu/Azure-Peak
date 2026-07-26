@@ -137,8 +137,8 @@
 		/datum/ai_planning_subtree/flee_target,
 		/datum/ai_planning_subtree/tree_climb,
 		/datum/ai_planning_subtree/archer_base, // Archer only
+		/datum/ai_planning_subtree/retrieve_arrows, // Archer only
 		/datum/ai_planning_subtree/ranged_attack_subtree, // Archer only
-		/datum/ai_planning_subtree/retrieve_arrows,
 		/datum/ai_planning_subtree/aggro_find_target,
 		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/leap_attack,

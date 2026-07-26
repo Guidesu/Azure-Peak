@@ -90,7 +90,9 @@
 
 	pawn.face_atom(target)
 
-	if(bow.chambered && world.time >= controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] && can_see(pawn, target, ARCHER_NPC_SHOOT_RANGE))
+	var/has_lane = _archer_has_firing_lane(get_turf(pawn), target)
+
+	if(has_lane && bow.chambered && world.time >= controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] && can_see(pawn, target, ARCHER_NPC_SHOOT_RANGE))
 		var/release_at = controller.blackboard[BB_ARCHER_NPC_AIM_RELEASE]
 		if(!release_at)
 			controller.set_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF, get_turf(target))
@@ -109,10 +111,19 @@
 				controller.set_blackboard_key(BB_ARCHER_NPC_REPOSITION_UNTIL, world.time + ARCHER_NPC_REPOSITION_TIME)
 
 	var/draw_slow = _bow_draw_slowdown(bow)
-	if(draw_slow && world.time < controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT])
+	var/hold_until = max(controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT], controller.blackboard[BB_ARCHER_NPC_AIM_RELEASE])
+	if(draw_slow && world.time < hold_until)
 		pawn.add_movespeed_modifier(MOVESPEED_ID_CHARGING, update = TRUE, priority = 100, override = TRUE, multiplicative_slowdown = draw_slow, movetypes = GROUND)
 	else
 		pawn.remove_movespeed_modifier(MOVESPEED_ID_CHARGING)
+
+	if(!has_lane)
+		controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF)
+		controller.clear_blackboard_key(BB_ARCHER_NPC_AIM_RELEASE)
+		var/turf/lane = _archer_firing_lane_turf(pawn, target)
+		if(lane)
+			set_movement_target(controller, lane)
+			return
 
 	if(dist > ARCHER_NPC_SHOOT_RANGE)
 		set_movement_target(controller, target)
@@ -162,6 +173,31 @@
 			continue
 		if(get_dist(step, target) >= cur_dist)
 			return step
+	return null
+
+/proc/_archer_has_firing_lane(turf/from, atom/target)
+	var/turf/tt = get_turf(target)
+	if(!isturf(from) || !tt)
+		return FALSE
+	for(var/turf/T in getline(from, tt))
+		if(T == from || T == tt)
+			continue
+		if(T.is_blocked_turf(exclude_mobs = TRUE))
+			return FALSE
+	return TRUE
+
+/proc/_archer_firing_lane_turf(mob/living/carbon/human/pawn, atom/target)
+	var/list/dirs = GLOB.alldirs.Copy()
+	shuffle_inplace(dirs)
+	for(var/dir in dirs)
+		var/turf/probe = get_turf(pawn)
+		for(var/i in 1 to ARCHER_NPC_LANE_SEARCH)
+			var/turf/next = get_step(probe, dir)
+			if(!next || next.is_blocked_turf(exclude_mobs = TRUE))
+				break
+			probe = next
+			if(_archer_has_firing_lane(probe, target))
+				return probe
 	return null
 
 /proc/_archer_reposition_turf(mob/living/carbon/human/pawn, atom/target)
