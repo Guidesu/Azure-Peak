@@ -3,12 +3,43 @@
 /* Trash quadruped, wounds are not really core to fighting these animals, and it is just 
  there to provide player a tangible sense of progress.
 */
+/datum/anatomy/quadruped
+	limb_names = list(
+		BODY_ZONE_HEAD = "head",
+		BODY_ZONE_PRECISE_R_EYE = "head",
+		BODY_ZONE_PRECISE_L_EYE = "head",
+		BODY_ZONE_PRECISE_SKULL = "head",
+		BODY_ZONE_PRECISE_EARS = "head",
+		BODY_ZONE_PRECISE_NOSE = "nose",
+		BODY_ZONE_PRECISE_MOUTH = "mouth",
+		BODY_ZONE_PRECISE_NECK = "neck",
+		BODY_ZONE_L_ARM = "foreleg",
+		BODY_ZONE_R_ARM = "foreleg",
+		BODY_ZONE_PRECISE_L_HAND = "foreleg",
+		BODY_ZONE_PRECISE_R_HAND = "foreleg",
+		BODY_ZONE_L_LEG = "hind leg",
+		BODY_ZONE_R_LEG = "hind leg",
+		BODY_ZONE_PRECISE_L_FOOT = "hind leg",
+		BODY_ZONE_PRECISE_R_FOOT = "hind leg",
+		BODY_ZONE_PRECISE_STOMACH = "stomach",
+		BODY_ZONE_PRECISE_GROIN = "tail",
+	)
+
 /datum/anatomy/quadruped/trash/build_zones()
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 30, break_wound = /datum/wound/cripple/maw, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
+
+/* Standard quadruped like direbear, mole that has an actual substantial HP pool. Crippling is a real mid fight tactic. Forelegs lower offensive output, hind legs lower movement. Part health being lower means that a fight would involve 2 - 3 parts instead of just 1 into death.
+*/
+/datum/anatomy/quadruped/standard/build_zones()
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 45, break_wound = /datum/wound/cripple/maw, hint = "head")
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/foreleg, hint = "forelegs")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/foreleg, hint = "forelegs")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
 
 /datum/anatomy/biped/build_zones()
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/skull, hint = "head")

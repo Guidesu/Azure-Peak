@@ -12,6 +12,12 @@
 	sleep_healing = 0
 	critical = TRUE
 	var/crippled_zone
+	var/break_alert
+
+/datum/wound/cripple/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(break_alert)
+		affected.balloon_alert_to_viewers("<font color='#ff3b3b'>[break_alert]</font>")
 
 /datum/wound/cripple/on_mob_loss(mob/living/affected)
 	. = ..()
@@ -26,6 +32,7 @@
 		"The limb buckles and folds!",
 		"The joint is smashed apart!",
 	)
+	break_alert = "leg crippled!"
 	var/slowdown = 1
 	var/move_penalty = 0.15 SECONDS
 	var/applied_penalty = 0
@@ -38,7 +45,6 @@
 		if(animal.ai_controller)
 			applied_penalty = move_penalty
 			animal.ai_controller.movement_delay += applied_penalty
-	affected.balloon_alert_to_viewers("<font color='#ff3b3b'>leg crippled!</font>")
 
 /datum/wound/cripple/limb/on_mob_loss(mob/living/affected)
 	. = ..()
@@ -56,6 +62,7 @@
 		"The maw is torn asunder!",
 		"The fangs are broken loose!",
 	)
+	break_alert = "jaw shattered!"
 	var/damage_penalty = 0.5
 	var/removed_lower = 0
 	var/removed_upper = 0
@@ -69,7 +76,6 @@
 		animal.melee_damage_lower = max(0, animal.melee_damage_lower - removed_lower)
 		animal.melee_damage_upper = max(0, animal.melee_damage_upper - removed_upper)
 	ADD_TRAIT(affected, TRAIT_NO_BITE, "[type]")
-	affected.balloon_alert_to_viewers("<font color='#ff3b3b'>jaw shattered!</font>")
 
 /datum/wound/cripple/maw/on_mob_loss(mob/living/affected)
 	. = ..()
@@ -86,6 +92,7 @@
 		"The shoulder is wrenched apart!",
 		"The arm is left hanging useless!",
 	)
+	break_alert = "arm mangled!"
 	var/damage_penalty = 0.35
 	var/removed_lower = 0
 	var/removed_upper = 0
@@ -98,7 +105,6 @@
 		removed_upper = round(animal.melee_damage_upper * damage_penalty, 1)
 		animal.melee_damage_lower = max(0, animal.melee_damage_lower - removed_lower)
 		animal.melee_damage_upper = max(0, animal.melee_damage_upper - removed_upper)
-	affected.balloon_alert_to_viewers("<font color='#ff3b3b'>arm mangled!</font>")
 
 /datum/wound/cripple/arm/on_mob_loss(mob/living/affected)
 	. = ..()
@@ -107,6 +113,15 @@
 		animal.melee_damage_lower += removed_lower
 		animal.melee_damage_upper += removed_upper
 
+/datum/wound/cripple/arm/foreleg
+	name = "mangled foreleg"
+	crit_message = list(
+		"The foreleg buckles!",
+		"The foreleg is torn apart!",
+		"The paw is crushed!",
+	)
+	break_alert = "foreleg maimed!"
+
 /datum/wound/cripple/skull
 	name = "caved skull"
 	crit_message = list(
@@ -114,6 +129,7 @@
 		"The head is caved in!",
 		"The skull is battered inward!",
 	)
+	break_alert = "skull caved!"
 	whp = 85
 	var/vision_penalty = 3
 	var/removed_vision = 0
@@ -131,7 +147,6 @@
 	affected.Knockdown(10)
 	if(mortal_break)
 		ADD_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS, "[type]")
-	affected.balloon_alert_to_viewers("<font color='#ff3b3b'>skull caved!</font>")
 
 /datum/wound/cripple/skull/on_mob_loss(mob/living/affected)
 	. = ..()

@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 
 /datum/anatomy
 	var/list/zones
+	var/list/limb_names
 
 /datum/anatomy/New()
 	. = ..()

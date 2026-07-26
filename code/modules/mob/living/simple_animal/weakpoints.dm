@@ -11,6 +11,14 @@
 		return null
 	return GLOB.anatomy_profiles[anatomy_type]
 
+/mob/living/simple_animal/simple_limb_hit(zone)
+	var/datum/anatomy/profile = get_anatomy()
+	if(profile?.limb_names)
+		var/named = profile.limb_names[zone] || profile.limb_names[check_zone(zone)]
+		if(named)
+			return named
+	return ..()
+
 /mob/living/simple_animal/proc/weakpoint_damage_mod(zone)
 	var/datum/anatomy/profile = get_anatomy()
 	if(!profile)
