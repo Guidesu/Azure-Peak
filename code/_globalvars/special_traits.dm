@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 			if(!LI)
 				continue
 			character.mind.special_items[LI.name] = LI.path
+		character.mind.special_items_metadata[LI.name] = player.prefs.gear_list[item_name]
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
 	if(assigned_job)
 		assigned_job.clamp_stats(character)

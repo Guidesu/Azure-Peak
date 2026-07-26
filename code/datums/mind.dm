@@ -110,6 +110,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/list/learned_recipes
 
 	var/list/special_items = list()
+	var/list/special_items_metadata = list()
 
 	var/list/areas_entered = list()
 
@@ -1426,7 +1427,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 							I.special_item = TRUE
 							I.smeltresult = /obj/item/ash
 							I.salvage_result = /obj/item/ash
-						var/list/metadata = user.client?.prefs?.gear_list?[base_name]
+						var/list/metadata = user.mind.special_items_metadata[base_name]
 						if(islist(metadata))
 							if(metadata["color"])
 								I.add_atom_colour(metadata["color"], FIXED_COLOUR_PRIORITY)
