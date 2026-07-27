@@ -102,8 +102,9 @@
 	pawn.face_atom(target)
 
 	var/has_lane = _archer_has_firing_lane(get_turf(pawn), target)
+	var/has_los = can_see(pawn, target, ARCHER_NPC_SHOOT_RANGE)
 
-	if(has_lane && bow.chambered && world.time >= controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] && can_see(pawn, target, ARCHER_NPC_SHOOT_RANGE))
+	if(has_lane && bow.chambered && world.time >= controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] && has_los)
 		var/release_at = controller.blackboard[BB_ARCHER_NPC_AIM_RELEASE]
 		if(!release_at)
 			controller.set_blackboard_key(BB_ARCHER_NPC_AIM_LOCK_TURF, get_turf(target))
