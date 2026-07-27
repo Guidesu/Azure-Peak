@@ -372,7 +372,7 @@
 			nodmg = TRUE
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		else
-			SEND_SIGNAL(M, COMSIG_MOB_AFTERATTACK_SUCCESS, src)
+			SEND_SIGNAL(M, COMSIG_MOB_AFTERATTACK_SUCCESS, src, affecting)
 			affecting.bodypart_attacked_by(M.a_intent.blade_class, damage - armor, M, dam_zone, crit_message = TRUE)
 		var/attack_verb = pick(M.a_intent.attack_verb)
 		var/hit_area = parse_zone(affecting.body_zone, affecting)
