@@ -26,7 +26,7 @@
 	var/intdamage = damage
 	// Exposed/Vulnerable are melee set-ups; a ranged hit (including a caster's own fire/frost) shouldn't burn the proc it just set up. Full armor penetration also clears this below.
 	var/consume_debuff = !istype(used_weapon, /obj/projectile)
-	
+
 	if(HAS_TRAIT(src, TRAIT_IRONMAN)) // free clongo noise when hit
 		playsound(loc, get_armor_sound(PLATEHIT, blade_dulling), 100) // SOVLNUKE!!!
 
