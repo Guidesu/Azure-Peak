@@ -32,7 +32,7 @@
 	accuracy = 50
 	guard_deflectable = TRUE
 	expose_caster_on_deflect = TRUE
-	intdamfactor = SPELL_BLUNT_INT_DAMAGEFACTOR.3
+	intdamfactor = SPELL_BLUNT_INT_DAMAGEFACTOR
 	object_damage_multiplier = 2
 	hitsound = 'sound/combat/hits/onstone/wallhit.ogg'
 	ricochets_max = 2
