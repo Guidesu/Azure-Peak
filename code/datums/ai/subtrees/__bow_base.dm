@@ -10,22 +10,17 @@
 
 	_clear_equipment_cache(controller)
 
-	var/datum/component/ai_inventory_manager/inv = controller.get_inventory()
-
-	// Note: bow variable typed as /grenadelauncher (base) - matches bows, crossbows, and slings
+	// Locate the bow and quiver directly from hands/worn slots. The AI inventory manager only
+	// classifies gear it saw equipped after it was created, so items spawned onto the mob (bow,
+	// quiver) are often never registered - trust the mob's own inventory instead.
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/bow = _find_archer_bow(living_pawn)
 	if(!bow)
-		bow = inv?.get_item(AI_ITEM_GUN)
-	if(!bow)
+		AI_THINK(living_pawn, "BOW-VALIDATE: no bow in hands or worn")
 		return FALSE
 
-	var/obj/item/quiver/quiver = null
-	for(var/obj/item/quiver/worn in living_pawn.get_equipped_items())
-		quiver = worn
-		break
+	var/obj/item/quiver/quiver = _find_archer_quiver(living_pawn)
 	if(!quiver)
-		quiver = inv?.get_item(AI_ITEM_QUIVER)
-	if(!quiver)
+		AI_THINK(living_pawn, "BOW-VALIDATE: no quiver worn")
 		return FALSE
 
 	controller.set_blackboard_key(BB_ARCHER_NPC_BOW, bow)

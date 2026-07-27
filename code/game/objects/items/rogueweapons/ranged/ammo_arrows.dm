@@ -130,7 +130,7 @@
 /obj/projectile/bullet/reusable/arrow/iron
 	name = "broadhead arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron
-	damage = 50
+	damage = 55
 	armor_penetration = PEN_LIGHT
 	flag = "piercing"
 	embedchance = 30
@@ -140,7 +140,7 @@
 	name = "decrepit broadhead arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
 	icon_state = "ancientarrow_proj"
-	damage = 50
+	damage = 55
 	armor_penetration = PEN_LIGHT
 	flag = "piercing"
 
@@ -151,7 +151,7 @@
 	name = "bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel
 	accuracy = 75
-	damage = 25
+	damage = 30
 	armor_penetration = PEN_HEAVY
 	embedchance = 80 // Easy embeds!
 
@@ -161,7 +161,7 @@
 	name = "ancient bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	icon_state = "ancientarrow_proj"
-	damage = 30
+	damage = 35
 	armor_penetration = PEN_HEAVY
 	embedchance = 60
 
@@ -223,7 +223,7 @@
 	damage = 60 //The rarest, but most powerful arrow subtype. Intended to be incredibly scarce, in practice - a 'silver bullet', to the most literal extent.
 	armor_penetration = PEN_HEAVY
 	embedchance = 100
-	is_silver_proj = TRUE 
+	is_silver_proj = TRUE
 
 /obj/item/ammo_casing/caseless/rogue/arrow/getonmobprop(tag)
 	. = ..()
@@ -275,15 +275,20 @@
 /obj/projectile/bullet/arrow/elemental/fire
 	name = "fire arrow"
 	icon_state = "arrowpyro_proj"
+	damage = 50
+	woundclass = BCLASS_BURN
+	damage_type = BURN
 
-/obj/projectile/bullet/arrow/elemental/fire/on_hit(atom/target)
+/obj/projectile/bullet/arrow/elemental/fire/on_hit(atom/target, blocked = FALSE)
 	..()
-	if(!ismob(target))
+	var/turf/epicenter = get_turf(target)
+	if(epicenter)
+		new /obj/effect/temp_visual/explosion(epicenter)
+		playsound(epicenter, pick('sound/misc/explode/incendiary (1).ogg', 'sound/misc/explode/incendiary (2).ogg'), 100, TRUE, 4)
+	if(!ismob(target) || blocked >= 100)
 		return
 	var/mob/living/M = target
-	M.adjust_fire_stacks(2)
-	M.adjustFireLoss(5)
-	M.ignite_mob()
+	apply_scorch_stack(M, 3, def_zone)
 
 // --- FROST --- (Pending PR #6406 frost stack system - should apply 2 frost stacks)
 /*

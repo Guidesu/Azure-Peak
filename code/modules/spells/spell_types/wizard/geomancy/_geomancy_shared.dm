@@ -31,7 +31,8 @@
 	speed = MAGE_PROJ_SLOW
 	accuracy = 50
 	guard_deflectable = TRUE
-	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
+	expose_caster_on_deflect = TRUE
+	intdamfactor = SPELL_BLUNT_INT_DAMAGEFACTOR.3
 	object_damage_multiplier = 2
 	hitsound = 'sound/combat/hits/onstone/wallhit.ogg'
 	ricochets_max = 2

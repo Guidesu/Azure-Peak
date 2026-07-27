@@ -61,7 +61,8 @@
 	speed = MAGE_PROJ_FAST
 	accuracy = 60
 	guard_deflectable = TRUE
-	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
+	expose_caster_on_deflect = TRUE
+	intdamfactor = 1
 	hitsound = 'sound/combat/hits/blunt/shovel_hit2.ogg'
 	ricochets_max = 2
 	ricochet_chance = 100

@@ -24,6 +24,7 @@
 
 	charge_required = TRUE
 	weapon_cast_penalized = TRUE
+	charge_swingdelay_type = SWINGDELAY_PENALTY
 	charge_time = CHARGETIME_HEAVY
 	hold_drain = 1
 	charge_slowdown = CHARGING_SLOWDOWN_MEDIUM
@@ -137,8 +138,8 @@
 	speed = 3
 	accuracy = 60
 	guard_deflectable = TRUE
-	intdamfactor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
-	movement_type = UNSTOPPABLE
+	expose_caster_on_deflect = TRUE
+	intdamfactor = 1
 	ricochets_max = 5
 	ricochet_chance = 100
 	ricochet_auto_aim_angle = 40

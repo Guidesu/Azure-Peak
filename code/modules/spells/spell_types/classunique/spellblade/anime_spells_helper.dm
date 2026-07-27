@@ -23,6 +23,9 @@ without going through the click pipeline, so spells can deliver weapon-style str
 		if(BCLASS_STAB, BCLASS_PICK)
 			blade_class = BCLASS_STAB
 			attack_flag = "stab"
+		if(BCLASS_PIERCE)
+			blade_class = BCLASS_PIERCE
+			attack_flag = "piercing"
 		if(BCLASS_BURN)
 			attack_flag = "fire"
 		else

@@ -13,16 +13,20 @@
 	var/obj/item/quiver/Q = controller.blackboard[BB_ARCHER_NPC_QUIVER]
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/bow = controller.blackboard[BB_ARCHER_NPC_BOW]
 	if(!length(Q?.arrows) && !bow?.chambered)
+		AI_THINK(pawn, "BOW: out of arrows - falling back to melee")
 		_restore_stashed_weapon(controller, pawn)
 		return
 
 	if(get_dist(pawn, target) <= ARCHER_NPC_KITE_FLOOR && !_archer_retreat_turf(pawn, target))
+		AI_THINK(pawn, "BOW: boxed in at dist [get_dist(pawn, target)], no retreat turf - drawing steel")
 		_restore_stashed_weapon(controller, pawn)
 		return
 
 	controller.queue_behavior(/datum/ai_behavior/ranged_attack_bow, BB_BASIC_MOB_CURRENT_TARGET)
 	if(LAZYACCESS(controller.current_behaviors, GET_AI_BEHAVIOR(/datum/ai_behavior/ranged_attack_bow)))
 		return SUBTREE_RETURN_FINISH_PLANNING
+	AI_THINK(pawn, "BOW: ranged_attack_bow setup FAILED - could not enter bow stance")
+	_restore_stashed_weapon(controller, pawn)
 
 // A skirmisher, not a turret. The archer is always backpedalling away from its mark - before,
 // during and after every shot - so it never roots in place. It fires on the move whenever a shot
@@ -44,21 +48,28 @@
 
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/bow = _find_archer_bow(pawn)
 	if(!bow)
+		AI_THINK(pawn, "BOW-STANCE: _find_archer_bow found nothing (bow not in hands/worn)")
 		return FALSE
 
 	if(pawn.get_active_held_item() != bow)
 		_enter_bow_stance(controller, pawn, bow)
-		if(pawn.get_active_held_item() != bow)
+		var/obj/item/blocker = pawn.get_active_held_item()
+		if(blocker != bow)
+			AI_THINK(pawn, "BOW-STANCE: could not draw bow, active hand blocked by [blocker || "nothing"][blocker && HAS_TRAIT(blocker, TRAIT_NODROP) ? " (NODROP)" : ""]")
 			return FALSE
 
-	var/turf/retreat = _archer_retreat_turf(pawn, target)
+	var/turf/retreat
+	if(get_dist(pawn, target) <= ARCHER_NPC_KITE_RANGE)
+		retreat = _archer_retreat_turf(pawn, target)
 	set_movement_target(controller, retreat || get_turf(pawn))
 	SEND_SIGNAL(controller.pawn, COMSIG_COMBAT_TARGET_SET, TRUE)
 	if(istype(bow, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow))
 		controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time)
 	else
-		_chamber_from_quiver(pawn, bow)
-		controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time + bow.get_npc_chargetime(pawn))
+		if(!_chamber_from_quiver(pawn, bow))
+			return FALSE
+		if(controller.blackboard[BB_ARCHER_NPC_NEXT_SHOT] < world.time) // a future stamp is a draw already in progress - replanning must not restart it
+			controller.set_blackboard_key(BB_ARCHER_NPC_NEXT_SHOT, world.time + bow.get_npc_chargetime(pawn))
 	return TRUE
 
 /datum/ai_behavior/ranged_attack_bow/perform(delta_time, datum/ai_controller/controller, target_key)
@@ -134,7 +145,11 @@
 		return
 	controller.clear_blackboard_key(BB_ARCHER_NPC_REPOSITION_TURF)
 	if(dist > ARCHER_NPC_KITE_RANGE)
-		controller.ai_movement.stop_moving_towards(controller) // in the pocket (kite < dist <= shoot) - hold and loose
+		if(has_los)
+			controller.ai_movement.stop_moving_towards(controller) // in the pocket (kite < dist <= shoot) - hold and loose
+			return
+		var/turf/vantage = _archer_los_turf(pawn, target)
+		set_movement_target(controller, vantage || target) // sight blocked - sidestep for an angle, or push in until one opens
 		return
 	var/turf/retreat = _archer_retreat_turf(pawn, target)
 	if(retreat)
@@ -158,6 +173,8 @@
 	for(var/i in 1 to ARCHER_NPC_RETREAT_PROJECT)
 		var/turf/next = get_step(probe, away)
 		if(!next || next.is_blocked_turf(exclude_mobs = TRUE))
+			break
+		if(get_dist(next, target) > ARCHER_NPC_KITE_RANGE + 2)
 			break
 		best = next
 		probe = next
@@ -204,6 +221,7 @@
 	var/cur_dist = get_dist(pawn, target)
 	var/list/dirs = GLOB.alldirs.Copy()
 	dirs -= get_dir(pawn, target)
+	dirs -= get_dir(target, pawn)
 	shuffle_inplace(dirs)
 	for(var/dir in dirs)
 		var/turf/best = null
@@ -214,8 +232,26 @@
 				break
 			best = next
 			probe = next
-		if(best && get_dist(best, target) >= cur_dist)
+		if(best && get_dist(best, target) >= cur_dist && get_dist(best, target) <= ARCHER_NPC_SHOOT_RANGE)
 			return best
+	return null
+
+/proc/_archer_los_turf(mob/living/carbon/human/pawn, atom/target)
+	var/list/dirs = GLOB.alldirs.Copy()
+	dirs -= get_dir(pawn, target)
+	dirs -= get_dir(target, pawn)
+	shuffle_inplace(dirs)
+	for(var/dir in dirs)
+		var/turf/probe = get_turf(pawn)
+		for(var/i in 1 to 3)
+			var/turf/next = get_step(probe, dir)
+			if(!next || next.is_blocked_turf(exclude_mobs = TRUE))
+				break
+			probe = next
+			if(get_dist(probe, target) > ARCHER_NPC_SHOOT_RANGE)
+				break
+			if(can_see(probe, target, ARCHER_NPC_SHOOT_RANGE))
+				return probe
 	return null
 
 /proc/_bow_draw_slowdown(obj/item/gun/ballistic/revolver/grenadelauncher/bow)
@@ -238,6 +274,14 @@
 		if(istype(worn, /obj/item/gun/ballistic/revolver/grenadelauncher))
 			return worn
 	return null
+
+/proc/_find_archer_quiver(mob/living/carbon/human/pawn)
+	var/obj/item/quiver/fallback = null
+	for(var/obj/item/quiver/Q in pawn.get_equipped_items())
+		if(length(Q.arrows))
+			return Q
+		fallback ||= Q
+	return fallback
 
 /proc/_draw_into_hand(mob/living/carbon/human/pawn, obj/item/it, active = TRUE)
 	var/was_worn = (it.loc == pawn)

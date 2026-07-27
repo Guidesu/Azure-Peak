@@ -43,10 +43,8 @@
 	if(all_slot_flags)
 		return
 	all_slot_flags = alist()
-	for(var/i in 0 to SLOTS_AMT - 1)
-		var/flag = (1 << i)
-		if(flag & AI_INVENTORY_WATCHED_SLOTS)
-			all_slot_flags += flag
+	for(var/slot_id in AI_INVENTORY_WATCHED_SLOTS)
+		all_slot_flags += slot_id
 
 /datum/component/ai_inventory_manager/proc/full_reappraise()
 	var/mob/living/carbon/human/H = parent
@@ -108,7 +106,7 @@
 
 /datum/component/ai_inventory_manager/proc/on_equip(datum/source, obj/item/equipment, slot)
 	SIGNAL_HANDLER
-	if(!(slot & AI_INVENTORY_WATCHED_SLOTS))
+	if(!(slot in all_slot_flags))
 		return
 	// Partial rescan: just this slot
 	_purge_slot(slot)
@@ -128,6 +126,7 @@
 
 /datum/component/ai_inventory_manager/proc/on_unequip(datum/source, obj/item/equipment)
 	SIGNAL_HANDLER
+	// The unequip signal's third arg is `force`, not a slot, so work off the item itself.
 	for(var/slot_flag in container_refs)
 		if(container_refs[slot_flag] != equipment)
 			continue
