@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mirespider
+	attack_aim = MOB_AIM_LOW
 	icon = 'icons/mob/mirespider_small.dmi'
 	desc = "Said to have originated from the decapitated heads of fallen legionnaires from eons past, grown legs and a voracious appetite, mire crawlers are common pests in many a wetland. Occasionally hunted for their silk."
 	name = "mire crawler"
@@ -149,6 +150,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/rogue/mirespider_lurker
+	attack_aim = MOB_AIM_HIGH // BIG spidah with tall sprite
 	icon = 'icons/mob/mirespider_big.dmi'
 	desc = "An unusually large and dangerous mire crawler, these lumbering creatures tend to find smaller specimens gravitating to them for safety - or perhaps simply to hunt more efficiently."
 	name = "mire lurker"
@@ -274,6 +276,7 @@
 	followers.Cut()
 
 /mob/living/simple_animal/hostile/rogue/mirespider_paralytic
+	attack_aim = MOB_AIM_HIGH // BIG spidah with tall sprite
 	icon = 'icons/mob/mirespider_small.dmi'
 	name = "aragn"
 	desc = "A gigantic species of spider accompanied always by a strong sulphuric stench. Its fangs carry \

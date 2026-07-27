@@ -390,6 +390,37 @@
 
 	take_overall_damage(brute_loss,burn_loss)
 
+/mob/living/simple_animal/proc/get_attack_zone()
+	if(length(attack_zone_weights))
+		return pickweight(attack_zone_weights)
+	switch(attack_aim)
+		if(MOB_AIM_LOW)
+			return pickweight(list(
+				BODY_ZONE_CHEST = 30,
+				BODY_ZONE_L_LEG = 20,
+				BODY_ZONE_R_LEG = 20,
+				BODY_ZONE_L_ARM = 12,
+				BODY_ZONE_R_ARM = 12,
+				BODY_ZONE_HEAD = 6,
+			))
+		if(MOB_AIM_HIGH)
+			return pickweight(list(
+				BODY_ZONE_CHEST = 32,
+				BODY_ZONE_HEAD = 20,
+				BODY_ZONE_L_ARM = 16,
+				BODY_ZONE_R_ARM = 16,
+				BODY_ZONE_L_LEG = 8,
+				BODY_ZONE_R_LEG = 8,
+			))
+	return pickweight(list(
+		BODY_ZONE_CHEST = 28,
+		BODY_ZONE_L_ARM = 16,
+		BODY_ZONE_R_ARM = 16,
+		BODY_ZONE_HEAD = 14,
+		BODY_ZONE_L_LEG = 13,
+		BODY_ZONE_R_LEG = 13,
+	))
+
 /mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent = null, simplified = TRUE)
 	if(!no_effect && !visual_effect_icon && melee_damage_upper)
 		if(melee_damage_upper < 10)

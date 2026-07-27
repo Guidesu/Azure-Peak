@@ -159,6 +159,11 @@
 #define ATTACK_EFFECT_MECHTOXIN	"mech_toxin"
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
 
+// Tell us where a mob tends to aim with their attacks
+#define MOB_AIM_LOW		"low"
+#define MOB_AIM_LEVEL	"level"
+#define MOB_AIM_HIGH	"high"
+
 //hurrrddurrrr
 #define QINTENT_BITE		 1
 #define QINTENT_JUMP		 2

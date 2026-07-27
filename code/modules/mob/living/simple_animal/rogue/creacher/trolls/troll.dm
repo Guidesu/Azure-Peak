@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll
+	attack_aim = MOB_AIM_HIGH
 	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/roguetown/mob/monster/trolls/trolls.dmi'
 	name = "troll"

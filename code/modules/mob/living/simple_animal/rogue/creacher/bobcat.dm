@@ -1,5 +1,6 @@
 //Bobcats are a faster, still hostile, predator — stronger than raccoons but weaker than volfs.
 /mob/living/simple_animal/hostile/retaliate/rogue/bobcat
+	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/bobcat.dmi'
 	name = "lynx"

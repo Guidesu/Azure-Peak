@@ -1,6 +1,7 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf
+	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/volf.dmi'
 	name = "volf"

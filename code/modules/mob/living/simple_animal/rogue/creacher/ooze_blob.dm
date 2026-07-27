@@ -1,6 +1,7 @@
 //Sprites contributed by VelSlime
 
 /mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob
+	attack_aim = MOB_AIM_LOW
 	name = "ooze"
 	desc = "A strange, amorphous animated blob of ooze."
 	icon_state = "ooze"

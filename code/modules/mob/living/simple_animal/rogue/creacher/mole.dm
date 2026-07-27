@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mole
+	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/standard
 	icon = 'icons/roguetown/mob/monster/mole.dmi'
 	name = "mole"

@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon
+	attack_aim = MOB_AIM_HIGH
 	icon = 'modular/icons/mob/96x96/ratwood_dragon.dmi'
 	name = "half-drakkyn"
 	desc = "Descendent of descendent of descendent of greatness; degenerated to mortality through diluta of power, blood, and wealth."

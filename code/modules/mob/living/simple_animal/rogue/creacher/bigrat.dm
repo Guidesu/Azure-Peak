@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat
+	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/bigrat.dmi'
 	name = "rous"

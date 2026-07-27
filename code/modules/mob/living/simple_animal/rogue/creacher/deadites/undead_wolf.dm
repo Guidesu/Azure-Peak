@@ -1,6 +1,7 @@
 //I'm not calling this undead_volf I want code to be searchable kthx
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead
+	attack_aim = MOB_AIM_LOW
 //I'm not inhereting base wolf either because it uses cursed elements and AI.
 	icon = 'icons/roguetown/mob/monster/deadites/wolf_undead.dmi'
 	name = "deadite volf"

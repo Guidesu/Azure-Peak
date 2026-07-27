@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur
+	attack_aim = MOB_AIM_HIGH
 	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/mob/newminotaur.dmi'
 	name = "Minotaur"

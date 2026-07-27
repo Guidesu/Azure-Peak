@@ -1,5 +1,6 @@
 //Raccoons are a faster, still hostile, but weakest small predator.
 /mob/living/simple_animal/hostile/retaliate/rogue/raccoon
+	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/raccoon.dmi'
 	name = "rakun"
