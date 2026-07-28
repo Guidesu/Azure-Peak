@@ -354,7 +354,7 @@
 /obj/item/clothing/shoes/roguetown/boots/armor/iron
 	name = "iron plated boots"
 	desc = "Antiquated sabatons, fitted to leather boots that've been reinforced with layers of iron maille. While it has largely fallen \
-	out of favor with Psydonia's knights since the advent of custom-fitted steel sabatons, it nevertheless remains an excellent choice \
+	out of favor with Vaeltis's knights since the advent of custom-fitted steel sabatons, it nevertheless remains an excellent choice \
 	for those who'd rather not catch an career-ending arrow to the knee."
 	body_parts_covered = FEET
 	icon_state = "iplateboots"
@@ -394,7 +394,7 @@
 /obj/item/clothing/shoes/roguetown/boots/maille/iron
 	name = "iron maille boots"
 	desc = "A pair of leather boots, reinforced with smaller iron plates along the feet and ankles. A thick layer of chainmail has been woven across \
-	the cuffs of each boot, and tastefully riveted into place. Colloquially known as 'soldier's boots', due to its widespread usage amongst Psydonia's \
+	the cuffs of each boot, and tastefully riveted into place. Colloquially known as 'soldier's boots', due to its widespread usage amongst Vaeltis's \
 	oft-conscripted levies."
 	icon_state = "soldierboots"
 	item_state = "soldierboots"
@@ -696,7 +696,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/blacksteel
 	name = "ancient blacksteel plate boots"
-	desc = "Antiquated sabatons, forged from segmented plates of blacksteel. Am I the cancer that is killing this world? Is it my hate, my spite, my lust - that, which poisons the ones around me, and siphons away the hope of Man and God alike? When the last hearth is quenched and Psydonia is nothing more than a shriveled husk, will I still blame the corpses for what I had done? </br>‎  </br>Let go of your hate. Your lyfe is yours, and yours alone to arbitrate."
+	desc = "Antiquated sabatons, forged from segmented plates of blacksteel. Am I the cancer that is killing this world? Is it my hate, my spite, my lust - that, which poisons the ones around me, and siphons away the hope of Man and God alike? When the last hearth is quenched and Vaeltis is nothing more than a shriveled husk, will I still blame the corpses for what I had done? </br>‎  </br>Let go of your hate. Your lyfe is yours, and yours alone to arbitrate."
 	icon_state = "bkboots"
 	item_state = "bkboots"
 	max_integrity = ARMOR_INT_SIDE_BLACKSTEEL

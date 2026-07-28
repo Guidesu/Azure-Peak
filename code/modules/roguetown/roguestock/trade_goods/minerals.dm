@@ -49,7 +49,7 @@
 	category = TRADE_CATEGORY_BASIC_MINERAL
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_CLAY
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/natural/clay
 
 /datum/trade_good/cinnabar

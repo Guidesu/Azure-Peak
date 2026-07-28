@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(psyvault_aggro, world.file2list("strings/rt/psyvaultaggrolines.
 	H.STAPER = 12
 	H.STAINT = 10
 	H.STALUC = 13
-	H.grant_language(/datum/language/otavan)
+	H.grant_language(/datum/language/medullan)
 	//skill Stuff
 	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE) //NPCs do not get these skills unless a mind takes them over, hopefully in the future someone can fix
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)

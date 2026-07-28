@@ -91,4 +91,4 @@
 			beltl = /obj/item/rogueweapon/huntingknife
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson //Can upgrade this via sewing/theft, balances out with the robes also having armor + head armor with this choice.
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/unholy/enchanted
-			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/bronze //It ain't gold, it ain't decrepit, but its certainly fitting for YOU.
+			id = /obj/item/clothing/neck/roguetown/psicross/aurelian/bronze //It ain't gold, it ain't decrepit, but its certainly fitting for YOU.

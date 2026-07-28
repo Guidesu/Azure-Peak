@@ -1,6 +1,6 @@
 /obj/structure/bed/rogue/eora
 	name = "flower bed"
-	desc = "A bed of flower petals that looks soft enough to sleep on! Said to spare the dying from Necra's domain."
+	desc = "A bed of flower petals that looks soft enough to sleep on! Said to spare the dying from Morwenna's domain."
 	sleepy = 4
 	debris = null
 	max_integrity = 50
@@ -80,7 +80,7 @@
 	outline_colour = "#d04ae2"
 
 /atom/movable/screen/alert/status_effect/buff/healing/eora_bed
-	name = "Eora's reprieve"
+	name = "Miluše's reprieve"
 	desc = "The warmth of the petals soothes my breathing and heals my ails."
 	icon_state = "eorabed"
 
@@ -102,8 +102,8 @@
 		owner.adjustOxyLoss(-healing_on_tick, 0)
 
 /datum/action/cooldown/spell/summon_bed
-	name = "Eora's Rest"
-	desc = "Summon a sacred Eoran bed to provide sanctuary and soothe the wounded. \
+	name = "Miluše's Rest"
+	desc = "Summon a sacred miluvane bed to provide sanctuary and soothe the wounded. \
 	You may only maintain a limited amount of beds at a time depending on miracle skill. Summoning a new one will cause the oldest one to vanish."
 	button_icon = 'icons/mob/actions/eoramiracles.dmi'
 	button_icon_state = "eorabed" // Replace with your icon state
@@ -113,7 +113,7 @@
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_STAT_BUFF
 
-	invocations = list("Eora, grant us respite!")
+	invocations = list("Miluše, grant us respite!")
 	invocation_type = INVOCATION_SHOUT
 	charge_required = TRUE
 	charge_time = 1 SECONDS
@@ -157,7 +157,7 @@
 
 	var/obj/structure/bed/rogue/eora/new_bed = new(T)
 	bed_refs += WEAKREF(new_bed)
-	user.visible_message(span_notice("[user] conjures a beautiful bed of Eoran petals!"), \
+	user.visible_message(span_notice("[user] conjures a beautiful bed of miluvane petals!"), \
 						 span_notice("You summon a sanctuary for the weary."))
 
 	return TRUE

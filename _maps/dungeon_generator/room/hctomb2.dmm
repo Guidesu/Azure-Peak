@@ -443,7 +443,7 @@
 /obj/item/clothing/under/roguetown/trou/leather/mourning,
 /obj/item/clothing/suit/roguetown/shirt/robe/necra,
 /obj/item/burial_shroud,
-/obj/item/clothing/neck/roguetown/psicross/necra,
+/obj/item/clothing/neck/roguetown/psicross/morwenna,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "IB" = (

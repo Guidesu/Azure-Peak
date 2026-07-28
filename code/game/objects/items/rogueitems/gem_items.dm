@@ -347,7 +347,7 @@
 
 /obj/item/carvedgem/jade/wyrm
 	name = "jade wyrm"
-	desc = "A large sculpture of a wyrm made out of jade. Few wyrms remain in Psydonia, but their legacies continue to live on in the art of humens."
+	desc = "A large sculpture of a wyrm made out of jade. Few wyrms remain in Vaeltis, but their legacies continue to live on in the art of humens."
 	icon_state = "dragon_jade"
 	grid_height = 64
 	grid_width = 32
@@ -824,7 +824,7 @@
 /obj/item/rogueweapon/sword/amber
 	name = "amber kaskara"
 	desc = "A resplendant kaskara carved out of amber, intended for ceremonies over combat. It's believed that each piece of amber contains \
-	a sliver of Astrata's divine warmth; something that once made it invaluable to decorating the reigns of Psydonia's earliest kings."
+	a sliver of Astrata's divine warmth; something that once made it invaluable to decorating the reigns of Vaeltis's earliest kings."
 	icon = 'icons/roguetown/gems/gem_amber.dmi'
 	icon_state = "kaskara_amber"
 	max_integrity = 75

@@ -70,7 +70,7 @@
 
 /obj/item/rogueweapon/thresher/bronze
 	name = "bronze thresher"
-	desc = "Threshed stalks beget grains to eat, and stricken grains beget seeds to grow. This cycle, humble as it is, is the sole reason why Psydonia's many inhabitants still lyve todae."
+	desc = "Threshed stalks beget grains to eat, and stricken grains beget seeds to grow. This cycle, humble as it is, is the sole reason why Vaeltis's many inhabitants still lyve todae."
 	force = 15
 	force_wielded = 20
 	icon_state = "bronzethresh"
@@ -396,7 +396,7 @@
 	force = 20
 	force_wielded = 25
 	name = "blacksteel pitchfork"
-	desc = "You're either the richest peasant in all of Psydonia, or the poorest noble."
+	desc = "You're either the richest peasant in all of Vaeltis, or the poorest noble."
 	icon_state = "blacksteelpitchfork"
 	smeltresult = /obj/item/ingot/blacksteel
 	max_integrity = 500

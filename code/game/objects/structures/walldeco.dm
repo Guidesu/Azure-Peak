@@ -246,7 +246,7 @@
 	icon_state = "astratabanner_purple"
 	desc = "The six-pronged cross of Astrata, embroidered upon fine fabric. It is Her will that \
 	suspends the heavens and the earth, and it is Her light that maintains life upon the abandoned \
-	surface of Psydonia. An image associated with the nobility of all lands, and with the \
+	surface of Vaeltis. An image associated with the nobility of all lands, and with the \
 	highest echelons of church leadership."
 
 /obj/structure/fluff/walldeco/psybanner/astrata/red

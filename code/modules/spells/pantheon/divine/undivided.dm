@@ -47,12 +47,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 // T0 - Recuperation - Restore ENERGY to a target and provide restoration buff. //
 //////////////////////////////////////////////////////////////////////////////////
-//Malum + Pestra
-
 /datum/action/cooldown/spell/undivided/recuperation
 	name = "Recuperation"
 	desc = "Restores the targets Energy and provides brief regeneration to it. Twice as effective on target other than yourself."
-	fluff_desc = "Behind every great work is a hard-working master, dilligent and patient yet not immune from intricacies of lyfe. Even Malum has once fallen to such after losing His hammer, exhausted and weak he was nursed back to health by Pestra so that even he may continue on. Now Their shared gift fuels the forges of Psydonia for no great work shall go unfinished so long as They maintain vigil."
+	fluff_desc = "Behind every enforced law is a tireless magistrate, diligent and patient yet not immune from the intricacies of lyfe. Even Custodius's bound hands grow weary from the endless work of correction - but His vigil does not end, and so His faithful are granted the strength to see their own duties through to completion."
 	button_icon_state = "calming_respite"
 	sound = 'sound/magic/undivided_recuperation.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -144,19 +142,17 @@
 	name = "Greater Miracle"
 	desc = "Blesses the target with minor health regeneration. If casted in conjunction with the 'Fortify' blessing, its healing power is greatly \
 	increased. Most healing Miracles cannot affect devoted Psydonians."
-	fluff_desc = "Within Their realm disease and ailments hold no sway over the devout, even the deepest wound shall soon come apart in Their light."
+	fluff_desc = "Under Custodius's correction, disease and ailments hold no sway over the devout, even the deepest wound shall soon come apart in His light."
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // T1 - Twinned Gaze - Removes vision cone for duration as well grants night vision on high enough level. //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Astrata + Noc
-
 /datum/action/cooldown/spell/undivided/twinned_gaze
 	name = "Twinned Gaze"
 	desc = "Removes the limit on your vision, letting you see behind you for a time, as well varying degrees of night vision. Duration & Darksight scales off holy skill and time of dae."
-	fluff_desc = "Astrata's gift altered by Noc's meddling piercing through dae and nite with ease, rival siblings sharing Their powers to lowly mortals in hopes that they succeed in their duty."
+	fluff_desc = "The Bound Hand sees by dae and by nite alike, piercing through both with ease - a gift lent to lowly mortals so that no wrongdoing may hide from Custodius's correction, whatever the hour."
 	button_icon_state = "twinned_gaze"
 	sound = 'sound/magic/undivided_bless.ogg'
 	glow_intensity = 0
@@ -239,12 +235,10 @@
 ////////////////////////////////////////////////////////////
 // T2 - Perseverance- Seal wounds and calm down a person. //
 ////////////////////////////////////////////////////////////
-//Ravox + Eora
-
 /datum/action/cooldown/spell/undivided/perseverance
 	name = "Perseverance"
 	desc = "Slows down bleed rate of living beings as well calming them down."
-	fluff_desc = "Born of an union between compassion of Eora and persistance of Ravox, the couple heeds pleas of dying warriors as well the innocents lost to ravages of war offering them but a mote of respite and chance at lyfe."
+	fluff_desc = "Custodius's correction is not cruelty alone - the oath that binds also shelters. He heeds the pleas of dying warriors and the innocents lost to the ravages of war alike, offering them but a mote of respite and a chance at lyfe, that they might live to see their own oaths kept."
 	button_icon_state = "perseverance"
 	sound = 'sound/magic/undivided_perserverance.ogg'
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -316,7 +310,7 @@
 /datum/action/cooldown/spell/undivided/undivided_spellpack
 	name = "Divine Inspiration"
 	desc = "Allows you to pick out miracles from three different sets - Generalist (3 choices) Acolyte (2 choices) Templar (2 choices)."
-	fluff_desc = "They protect against the enroaching darkness, when He abandoned us we wept a thousand tears in His name. They liberated us from the sorrow, gave us a path to absolution denied to us - for this we will be grateful and obedient to Their machinations."
+	fluff_desc = "He protects against the encroaching darkness; when Praecursor fell silent we wept a thousand tears in His name. Custodius liberated us from that sorrow, gave us a path to correction denied to us in the Word's absence - for this we are grateful and obedient to His machinations."
 	button_icon_state = "inspiration"
 	sound = 'sound/magic/undivided_bless.ogg'
 	glow_intensity = 0
@@ -404,12 +398,10 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // T3 - Gallows Humor - Moodnuke a target with any negative stress being double for quite a while. //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-//Necra + Xylix
-
 /datum/action/cooldown/spell/undivided/gallow_humor
 	name = "Gallows Humor"
 	desc = "Share a terrible secret of lyfe with your target, reducing their Fortune and stressing them out."
-	fluff_desc = "Psydonia is a place of many joys but underneath the facade lies true terror, lying in wait for another to stumble upon it. During his antics in the underworld Xylix stumbled upon one such horror, deep within realm of Necra laid great archive from times of Psydon filled to the brim with knowledge not meant for the eyes of mortals. Ignoring warnings given by Noc he bestowed such a gift towards his followers in hopes they use it well, for one only underestimates the poet once."
+	fluff_desc = "Vaeltis is a place of many joys but underneath the facade lies true terror, lying in wait for another to stumble upon it. Deep within Morwenna's realm lies a great archive from the age before the Word fell silent, filled to the brim with knowledge not meant for the eyes of mortals. Custodius, undeterred by warnings, claimed a measure of that knowledge and bestows it upon His faithful in hopes they use it well - for one only underestimates the enforcer once."
 	button_icon_state = "gallows"
 	sound = 'sound/magic/undivided_gallows.ogg'
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -512,9 +504,9 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 /datum/action/cooldown/spell/undivided/undivided_battlecry
-	name = "Ten United"
-	desc = "Rally the faithful to fight by your side, providing a buff (CONSTITUTION 2, WILLPOWER 2, FORTUNE 4) to Divine worshippers. Inhumen and Psydonites are left out, deadites suffer Daze (PERCEPTION -1, INTELLIGENCE -2, SPEED -1) within the radius."
-	fluff_desc = "From one whole they were created, molded by eachother into the beings they are now, alone they would wither away and die by enroaching darkness."
+	name = "Oathbound United"
+	desc = "Rally the faithful to fight by your side, providing a buff (CONSTITUTION 2, WILLPOWER 2, FORTUNE 4) to Concordat worshippers. Old Kin and Psydonites are left out, deadites suffer Daze (PERCEPTION -1, INTELLIGENCE -2, SPEED -1) within the radius."
+	fluff_desc = "One law, one oath, one correction shared by all who swear it - alone, the faithful would wither away and die by the encroaching darkness. Bound together under Custodius's hand, they endure."
 	button_icon_state = "united"
 	sound = 'sound/magic/battle_cry_undivided.ogg'
 	glow_intensity = GLOW_INTENSITY_VERY_HIGH

@@ -215,6 +215,13 @@
 		issues += "round_trip_shadow_create_failed"
 		return issues
 	shadow.invisibility = INVISIBILITY_MAXIMUM
+	// restore_character_core() yields (sleep(0) during species assignment), and
+	// this mob is otherwise indistinguishable from a live one to SSmobs. A
+	// Life() tick in that window would clot wounds and nudge blood_volume on
+	// any character with prior injuries, failing the strict comparison below
+	// on real characters while a fresh test mob (no wounds, capped blood)
+	// never shows the drift. Pull it out of processing before it can tick.
+	GLOB.mob_living_list -= shadow
 	var/datum/mind/shadow_mind = new /datum/mind()
 	shadow.mind = shadow_mind
 	shadow_mind.current = shadow

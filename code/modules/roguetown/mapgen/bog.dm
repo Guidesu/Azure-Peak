@@ -16,15 +16,24 @@
 	allowed_turfs = list(/turf/open/floor/rogue/dirt)
 	excluded_turfs = list(/turf/open/floor/rogue/dirt/road)
 	spawnableAtoms = list(/obj/structure/flora/newtree = 30,
+							/obj/structure/flora/roguetree/evil = 2,
+							/obj/structure/flora/tree/dead = 4,
 							/obj/structure/flora/roguegrass/bush = 10,
 							/obj/structure/flora/roguegrass = 26,
 							/obj/structure/flora/roguegrass/maneater = 13,
+							/obj/structure/flora/roguegrass/water/reeds = 8,
+							/obj/structure/flora/roguegrass/thorn_bush = 5,
+							/obj/structure/glowshroom = 6,
+							/obj/structure/flora/mushroomcluster = 3,
+							/obj/structure/flora/tinymushrooms = 4,
 							/obj/item/natural/stone = 23,
 							/obj/item/natural/rock = 6,
 							/obj/item/magic/artifact = 4,
+							/obj/item/magic/manacrystal = 1,
 							/obj/structure/leyline/powerful = 1,
 							/obj/structure/voidstoneobelisk = 1,
 							/obj/structure/flora/roguegrass/herb/manabloom = 4,
+							/obj/structure/flora/roguegrass/herb/random = 5,
 							/obj/item/grown/log/tree/stick = 16,
 							/obj/structure/flora/roguetree/stump/log = 3,
 							/obj/structure/flora/roguetree/stump = 4,
@@ -32,7 +41,9 @@
 							/obj/structure/flora/roguegrass/swampweed = 10,
 							/obj/structure/flora/roguegrass/bush/westleach = 10,
 							/obj/structure/flora/roguegrass/maneater/real = 3,
-							/obj/effect/hunting_track = 3)
+							/obj/structure/zizo_bane = 1,
+							/obj/effect/hunting_track = 4,
+							/obj/effect/decal/remains/human = 0.3)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=2,
 						/turf/open/water/swamp=1)
 	allowed_areas = list(/area/rogue/outdoors/bog)
@@ -62,12 +73,19 @@
 							/obj/structure/flora/roguegrass/maneater = 15,
 							/obj/structure/flora/roguegrass/maneater/real = 10,
 							/obj/structure/flora/roguegrass/pumpkin = 2,
+							/obj/structure/flora/roguegrass/thorn_bush = 6,
+							/obj/structure/flora/mushroomcluster = 5,
+							/obj/structure/flora/mushroomcluster/cute = 2,
+							/obj/structure/flora/tinymushrooms = 6,
+							/obj/structure/flora/tinymushrooms/cute = 2,
 							/obj/item/natural/stone = 6,
 							/obj/item/natural/rock = 1,
 							/obj/item/grown/log/tree/stick = 3,
 							/obj/structure/flora/roguetree/stump/log = 3,
 							/obj/structure/flora/roguetree/evil = 5,
-							/obj/effect/hunting_track = 3)
+							/obj/structure/flora/roguegrass/herb/manabloom = 1,
+							/obj/structure/zizo_bane = 1.5,
+							/obj/effect/hunting_track = 4)
 
 /datum/mapGeneratorModule/bogwater
 	clusterCheckFlags = CLUSTER_CHECK_NONE
@@ -75,5 +93,8 @@
 	excluded_turfs = list()
 	allowed_areas = list(/area/rogue/outdoors/bog)
 	spawnableAtoms = list(/obj/structure/glowshroom = 44,
+							/obj/structure/flora/mushroomcluster = 6,
+							/obj/structure/flora/roguegrass/water/reeds = 20,
 							/obj/item/restraints/legcuffs/beartrap/armed = 10,
-							/obj/structure/flora/roguetree/stump/log = 3)
+							/obj/structure/flora/roguetree/stump/log = 3,
+							/obj/structure/zizo_bane = 2)

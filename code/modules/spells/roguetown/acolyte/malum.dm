@@ -147,7 +147,7 @@
 /datum/action/cooldown/spell/malum/vigorousexchange
 	name = "Vigorous Exchange"
 	desc = "Restores the target's Energy, twice as effective on someone else."
-	fluff_desc = "Behind every great work is a hard-working master, dilligent and patient yet not immune from intricacies of lyfe. Even Malum has once fallen to such after losing His hammer, exhausted and weak he was nursed back to health by Pestra so that even he may continue on. Now Their shared gift fuels the forges of Psydonia for no great work shall go unfinished so long as They maintain vigil."
+	fluff_desc = "Behind every great work is a hard-working master, dilligent and patient yet not immune from intricacies of lyfe. Even Handwerra has once fallen to such after losing her hammer, exhausted and weak she nursed herself back to health with the same steady hands that mend the sick, so that even she may continue on. Now that gift fuels the forges of Vaeltis, for no great work shall go unfinished so long as she maintains vigil."
 	button_icon_state = "vigorousexchange"
 	sound = 'sound/magic/undivided_recuperation.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -160,7 +160,7 @@
 
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
-	//invocations = list("Through flame and ash, let vigor rise, by Malum’s hand, let strength reprise!")
+	//invocations = list("Through flame and ash, let vigor rise, by Handwerra's hand, let strength reprise!")
 	invocation_type = INVOCATION_NONE
 
 	charge_required = TRUE
@@ -225,7 +225,7 @@
 	secondary_resource_type = SPELL_COST_STAMINA
 	secondary_resource_cost = SPELLCOST_MIRACLE//Dunno it's not properly inhereting for some reason.
 
-	invocations = list("By molten might and hammer's weight, in Malum’s flame, the earth shall quake!")
+	invocations = list("By molten might and hammer's weight, in Handwerra's flame, the earth shall quake!")
 	invocation_type = INVOCATION_SHOUT
 
 	cooldown_time = 45 SECONDS
@@ -323,7 +323,7 @@
 
 	secondary_resource_cost = SPELLCOST_MIRACLE
 
-	invocations = list("With heat I wield, with flame I claim, Let metal serve in Malum's name!")
+	invocations = list("With heat I wield, with flame I claim, Let metal serve in Handwerra's name!")
 	invocation_type = INVOCATION_SHOUT //It has seperate message ON USE
 
 	charge_required = TRUE

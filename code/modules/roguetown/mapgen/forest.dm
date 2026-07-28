@@ -16,21 +16,29 @@
 	allowed_turfs = list(/turf/open/floor/rogue/dirt)
 	excluded_turfs = list(/turf/open/floor/rogue/dirt/road)
 	spawnableAtoms = list(/obj/structure/flora/newtree = 30,
+							/obj/structure/flora/roguetree/pine = 6,
+							/obj/structure/flora/tree/dead = 3,
 							/obj/structure/flora/roguegrass/bush = 25,
 							/obj/structure/flora/roguegrass = 200,
-							/obj/structure/flora/roguegrass/herb/random = 7,
+							/obj/structure/flora/roguegrass/herb/random = 9,
 							/obj/structure/flora/roguegrass/bush/westleach = 7,
 							/obj/structure/flora/roguegrass/maneater = 13,
 							/obj/structure/flora/roguegrass/pyroclasticflowers = 3,
+							/obj/structure/flora/roguegrass/thorn_bush = 4,
+							/obj/structure/flora/rogueshroom = 3,
+							/obj/structure/flora/rock = 3,
 							/obj/item/natural/stone = 23,
 							/obj/item/natural/rock = 6,
 							/obj/item/grown/log/tree/stick = 16,
 							/obj/structure/flora/roguetree/stump/log = 3,
 							/obj/structure/flora/roguetree/stump = 4,
+							/obj/structure/flora/roguetree/stump/pine = 1.5,
 							/obj/structure/leyline/normal/grove = 1,
 							/obj/structure/closet/dirthole/closed/loot=3,
 							/obj/structure/flora/roguegrass/maneater/real=3,
-							/obj/effect/hunting_track = 3)
+							/obj/effect/hunting_track = 4,
+							/obj/effect/decal/remains/bear = 0.4,
+							/obj/effect/decal/remains/human = 0.2)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=2,
 						/turf/open/water/swamp=1)
 	allowed_areas = list(/area/rogue/outdoors/woods)
@@ -49,21 +57,26 @@
 
 /datum/mapGeneratorModule/forestgrass
 	clusterCheckFlags =  CLUSTER_CHECK_SAME_ATOMS
-	allowed_turfs = list(/turf/open/floor/rogue/grass, /turf/open/floor/rogue/grassred, /turf/open/floor/rogue/grassyel, /turf/open/floor/rogue/grasscold)
+	allowed_turfs = list(/turf/open/floor/rogue/grass, /turf/open/floor/rogue/grassred, /turf/open/floor/rogue/grassyel, /turf/open/floor/rogue/grasscold, /turf/open/floor/rogue/snow, /turf/open/floor/rogue/snowpatchy, /turf/open/floor/rogue/snowrough)
 	excluded_turfs = list()
 	allowed_areas = list(/area/rogue/outdoors/woods)
 	spawnableAtoms = list(/obj/structure/flora/roguetree = 30,
 							/obj/structure/flora/roguetree/wise=1,
+							/obj/structure/flora/roguetree/pine = 4,
 							/obj/structure/flora/roguegrass/bush = 25,
 							/obj/structure/flora/roguegrass = 200,
 							/obj/structure/flora/roguegrass/pumpkin = 4,
-							/obj/structure/flora/roguegrass/herb/random = 7,
+							/obj/structure/flora/roguegrass/herb/random = 9,
 							/obj/structure/flora/roguegrass/bush/westleach = 7,
 							/obj/structure/flora/roguegrass/maneater = 13,
 							/obj/structure/flora/roguegrass/maneater/real=2,
+							/obj/structure/flora/roguegrass/thorn_bush = 3,
+							/obj/structure/flora/rogueshroom = 2,
 							/obj/item/natural/stone = 6,
 							/obj/item/natural/rock = 1,
 							/obj/item/grown/log/tree/stick = 3,
 							/obj/structure/leyline/normal/grove = 0.25,
 							/obj/structure/flora/roguetree/stump/log = 3,
-							/obj/effect/hunting_track = 2)
+							/obj/structure/flora/roguetree/stump = 2,
+							/obj/effect/hunting_track = 3,
+							/obj/effect/decal/remains/bear = 0.2)

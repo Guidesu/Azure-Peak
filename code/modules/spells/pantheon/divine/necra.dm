@@ -607,7 +607,7 @@ var/global/mob/_corpse_sort_ref = null
 		var/list/symbols = list("!","$","@","#","%","&","*")
 
 		var/list/noise_words = list(
-			"back","forward","run","stop","turn","leave","return","flee","sacrifice","Psydon",
+			"back","forward","run","stop","turn","leave","return","flee","sacrifice","Praecursor",
 			"heretic","heresy","blasphemy","profane","unworthy","defile","desecrate","ren",
 			"fool","insolent","wretch","cur","vermin","filth","failure","disgrace","fortune",
 			"die","rot","decay","wither","suffer","bleed","break","choke","drown","song",
@@ -616,9 +616,9 @@ var/global/mob/_corpse_sort_ref = null
 			"wrong","error","mistake","false","misguided","deceived","doomed","sapphire",
 			"liar","traitor","betrayer","coward","weakling","pretender","lych","ansari",
 			"where","here","there","nowhere","gone","vanished","deadite","unlyfe","free",
-			"watch","seen","marked","judged","condemned","claimed","Noc","devourer","ryon",
-			"endure","weep","mourn","grieve","scream","beg","Dendor","Necra","Souls","see you",
-			"Xylix","Pestra","Eora","Malum","Astrata","Ravox","Abyssor","Ferryman","spirits","watching"
+			"watch","seen","marked","judged","condemned","claimed","Miluše","devourer","ryon",
+			"endure","weep","mourn","grieve","scream","beg","Ignatius","Morwenna","Souls","see you",
+			"Viator","Handwerra","Auxentius","Wulfric","Ferryman","spirits","watching"
 		)
 
 		var/list/cardinals_pool = list("north","south","east","west","northeast","southeast","northwest","southwest")

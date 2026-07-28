@@ -1,0 +1,41 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/rogue/herringbone,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/template_noop)
+"c" = (
+/obj/machinery/light/rogue/candle,
+/turf/open/floor/rogue/herringbone,
+/area/template_noop)
+"d" = (
+/obj/effect/building_node/tannery,
+/obj/effect/workspot,
+/turf/open/floor/rogue/herringbone,
+/area/template_noop)
+"e" = (
+/obj/structure/closet/crate/chest/old_crate,
+/turf/open/floor/rogue/herringbone,
+/area/template_noop)
+
+(1,1,1) = {"
+b
+b
+b
+"}
+(2,1,1) = {"
+a
+d
+a
+"}
+(3,1,1) = {"
+c
+a
+e
+"}
+(4,1,1) = {"
+b
+b
+b
+"}

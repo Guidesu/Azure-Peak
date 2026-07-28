@@ -7,14 +7,14 @@
 	id = TRADE_GOOD_CALENDULA
 	name = "Calendula"
 	base_price = SELLPRICE_CALENDULA
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 	item_type = /obj/item/alch/calendula
 
 /datum/trade_good/vegetable/poppy
 	id = TRADE_GOOD_POPPY
 	name = "Poppy"
 	base_price = SELLPRICE_POPPY
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 	item_type = /obj/item/reagent_containers/food/snacks/grown/rogue/poppy
 
 /datum/trade_good/vegetable/cabbage
@@ -96,12 +96,12 @@
 	id = TRADE_GOOD_COFFEE
 	name = "Coffee Beans"
 	base_price = SELLPRICE_COFFEE
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 	item_type = /obj/item/reagent_containers/food/snacks/grown/coffeebeans
 
 /datum/trade_good/vegetable_organic/tea
 	id = TRADE_GOOD_TEA
 	name = "Dried Tea Leaves"
 	base_price = SELLPRICE_TEA
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 	item_type = /obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry

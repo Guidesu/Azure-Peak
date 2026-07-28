@@ -14,7 +14,7 @@
 		/obj/item/clothing/head/roguetown/roguehood/hierophant,
 		/obj/item/clothing/cloak/hierophant,
 		/obj/item/clothing/mask/rogue/lordmask/naledi,
-		/obj/item/clothing/neck/roguetown/psicross/naledi,
+		/obj/item/clothing/neck/roguetown/psicross/auxentia,
 		/obj/item/clothing/shoes/roguetown/sandals,
 		/obj/item/rogueweapon/woodstaff/implement/grand/naledi,
 	)
@@ -24,7 +24,7 @@
 /datum/supply_pack/rogue/naledi/psicross
 	name = "Naledi Psicross"
 	cost = 80
-	contains = list(/obj/item/clothing/neck/roguetown/psicross/naledi)
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/auxentia)
 	ship_qty_min = 1
 	ship_qty_max = 2
 

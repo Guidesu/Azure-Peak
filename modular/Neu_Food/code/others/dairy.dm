@@ -91,7 +91,7 @@
 	icon = 'modular/Neu_Food/icons/others/dairy.dmi'
 	icon_state = "butter_slice"
 	name = "butter"
-	desc = "A portion of milky paradise. Kneading it into dough is necessary to prepare many of Psydonia's pastries, though the more humble-hearted prefer to simply doll up a slice of toast with it."
+	desc = "A portion of milky paradise. Kneading it into dough is necessary to prepare many of Vaeltis's pastries, though the more humble-hearted prefer to simply doll up a slice of toast with it."
 	faretype = FARE_IMPOVERISHED
 	foodtype = DAIRY
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)

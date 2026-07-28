@@ -22,7 +22,7 @@
 	category = TRADE_CATEGORY_CLOTH
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_SILK
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/natural/silk
 
 /datum/trade_good/hide

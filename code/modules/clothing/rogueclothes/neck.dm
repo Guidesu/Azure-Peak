@@ -126,7 +126,7 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif
 	name = "chain coif"
-	desc = "A maille-hood, fashioned from interlinked steel rings - a favorite amongst Psydonia's more noble-hearted errants. It offers superior coverage to gorgets and bevors, though it sacrifices some protection in return."
+	desc = "A maille-hood, fashioned from interlinked steel rings - a favorite amongst Vaeltis's more noble-hearted errants. It offers superior coverage to gorgets and bevors, though it sacrifices some protection in return."
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
@@ -469,7 +469,7 @@
 
 /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
 	name = "kazengunite gorget"
-	desc = "A series of interlocking rings of metal set around the throat. Used by the kouken of Kazengun for precisely the same reason as the knights of Psydonia."
+	desc = "A series of interlocking rings of metal set around the throat. Used by the kouken of Kazengun for precisely the same reason as the knights of Vaeltis."
 	icon_state = "kazengunneckguard"
 
 /obj/item/clothing/neck/roguetown/gorget/paalloy
@@ -588,9 +588,9 @@
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/silver/naledi
+/obj/item/clothing/neck/roguetown/psicross/silver/auxentia
 	name = "golden psycross"
-	desc = "'Purity afloat, for paradise awaits!' </br>The surface is meticulously lined with Naledian glyphs, said to ward off the possessive allure of djinns."
+	desc = "'Purity afloat, for paradise awaits!' </br>The surface is meticulously lined with Auxentian glyphs, said to ward off the possessive allure of djinns."
 	icon_state = "psycross_g"
 	item_state = "psycross_g"
 	//dropshrink = 0.75
@@ -612,7 +612,7 @@
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
+/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy
 	name = "decrepit zcross"
 	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
@@ -621,10 +621,10 @@
 	material_category = ARMOR_MAT_PLATE
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy
+/obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy
 	name = "ancient zcross"
 	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
@@ -632,10 +632,10 @@
 	material_category = ARMOR_MAT_PLATE
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/wood
+/obj/item/clothing/neck/roguetown/psicross/aurelian/wood
 	name = "wooden inverted psycross"
 	desc = "'The greatest lie ever told is that our fates are set in stone.'"
 	icon_state = "zcross_w"
@@ -644,37 +644,37 @@
 	salvage_result = /obj/item/grown/log/tree/stick
 	salvage_amount = 1
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/wood/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/wood/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+/obj/item/clothing/neck/roguetown/psicross/aurelian/iron
 	name = "inverted psycross"
 	desc = "A symbol of progress from an era that had reason to believe in it."
 	icon_state = "zcross_iron"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/iron/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/iron/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/bronze
+/obj/item/clothing/neck/roguetown/psicross/aurelian/bronze
 	name = "bronze inverted psycross"
 	desc = "'Look upon mine works, thee-mighty, and despair!'"
 	icon_state = "zcross_b"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/bronze/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/bronze/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/g
+/obj/item/clothing/neck/roguetown/psicross/aurelian/g
 	name = "golden inverted psycross"
 	desc = "'Doth thee wish to live deliciously? Mortality is but a shackle; and if you wish to break free from its steely grasp, all you need to do.. is put thine faith in me.'"
 	icon_state = "zcross_g"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/g/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/aurelian/g/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_ZIZO_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/morwenna
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios
 	name = "amulet of Matthios"
 	desc = "He was but one flame in the dark. Together, His flock shall outblaze the Tyrant-Sun."
 	icon_state = "matthios"
@@ -682,10 +682,10 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING
 	smeltresult = null
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_MATTHIOS_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/wood
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/wood
 	name = "wooden amulet of Matthios"
 	desc = "Is a man not entitled to the sweat of their brow?"
 	icon_state = "matthios_w"
@@ -694,7 +694,7 @@
 	salvage_result = /obj/item/grown/log/tree/stick
 	salvage_amount = 1
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/g
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/g
 	name = "golden amulet of Matthios"
 	desc = "He was but one flame in the dark. Together, His flock shall outblaze the Tyrant-Sun, and shall live deliciously atop the highest throne."
 	icon_state = "matthios"
@@ -707,15 +707,15 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING
 	smeltresult = null
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/volkovoi/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_GRAGGAR_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/g
+/obj/item/clothing/neck/roguetown/psicross/volkovoi/g
 	name = "golden amulet of Graggar"
 	desc = "Might makes right."
 	icon_state = "graggar_g"
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/wood
+/obj/item/clothing/neck/roguetown/psicross/volkovoi/wood
 	name = "wooden amulet of Graggar"
 	desc = "When all you have is a hammer, every problem tends to look like a nail."
 	icon_state = "graggar_w"
@@ -732,15 +732,15 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING
 	smeltresult = null
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/get_examine_highlight_status()
+/obj/item/clothing/neck/roguetown/psicross/hausvette/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_BAOTHA_ICON)
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/g
+/obj/item/clothing/neck/roguetown/psicross/hausvette/g
 	name = "golden amulet of Baotha"
 	desc = "A hollow promise, rendered in gold and glistening with value. It weighs heavy with the memory of sweet wine turned to poison, and the comfort of a sorrow that refuses to fade."
 	icon_state = "baotha"
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/wood
+/obj/item/clothing/neck/roguetown/psicross/hausvette/wood
 	name = "wooden amulet of Baotha"
 	desc = "Drown in the past, live in the present, and forget the future."
 	icon_state = "baotha_w"
@@ -1247,9 +1247,9 @@
 	resistance_flags = FIRE_PROOF
 	anvilrepair = /datum/skill/craft/armorsmithing
 
-/obj/item/clothing/neck/roguetown/psicross/naledi
-	name = "naledian psy-bracelet"
-	desc = "A peculiar icon of worship from a foreign land. Forming the three-pronged Psydonite cross in a circular ring, this bracelet embodies the Naledian belief of Psydon's eternity."
+/obj/item/clothing/neck/roguetown/psicross/auxentia
+	name = "auxentian psy-bracelet"
+	desc = "A peculiar icon of worship from a foreign land. Forming the three-pronged Psydonite cross in a circular ring, this bracelet embodies the Auxentian belief of Praecursor's eternity."
 	icon_state = "psybracelet"
 	item_state = null
 
@@ -1540,7 +1540,7 @@
 			to_chat(user, span_warning("The [src] feels heavy around my neck. But it's no albatross of mine. It does nothing to me."))
 			return
 		active_item = TRUE
-		to_chat(user, span_red("As you don the psicross, the chains tighten like a vice around your neck!  </br>  </br>You're overcome with a sense of terrible anguish - all of humenity's suffering, thrust upon your very spirit!  </br>  </br>Your chest grows cold, yet your blood boils hotter than magma! Psydonia's villains may be brutal and merciless, but you will be WORSE!  </br>  </br>You've gone BERSERK!"))
+		to_chat(user, span_red("As you don the psicross, the chains tighten like a vice around your neck!  </br>  </br>You're overcome with a sense of terrible anguish - all of humenity's suffering, thrust upon your very spirit!  </br>  </br>Your chest grows cold, yet your blood boils hotter than magma! Vaeltis's villains may be brutal and merciless, but you will be WORSE!  </br>  </br>You've gone BERSERK!"))
 		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, 3)

@@ -3,8 +3,8 @@
 /////////////////////////
 
 /obj/effect/proc_holder/spell/invoked/eora_blessing
-	name = "Eora's Blessing"
-	desc = "Bestow a person with Eora's calm, if only for a little while. Restores their mood, as well as a tinge of hunger and thirst."
+	name = "Miluše's Blessing"
+	desc = "Bestow a person with Miluše's calm, if only for a little while. Restores their mood, as well as a tinge of hunger and thirst."
 	sound = 'sound/magic/eora_bless.ogg'
 	devotion_cost = 80
 	recharge_time = 5 MINUTES
@@ -70,7 +70,7 @@
 	. = ..()
 
 	// Add trait
-	ADD_TRAIT(owner, TRAIT_EORAN_SERENE, TRAIT_GENERIC)  //Generic origin so other Eorans do not have their innate traits overridden (they use TRAIT_MIRACLE)
+	ADD_TRAIT(owner, TRAIT_EORAN_SERENE, TRAIT_GENERIC)  //Generic origin so other followers of Miluše do not have their innate traits overridden (they use TRAIT_MIRACLE)
 
 /datum/status_effect/eora_blessing/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_EORAN_SERENE, TRAIT_GENERIC)
@@ -78,7 +78,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/buff/eora_blessing
-	name = "Eora's Calm"
+	name = "Miluše's Calm"
 	desc = "A refreshing calm. All your troubles have washed away. Why can't it always be like this?"
 	icon_state = "eora_bless"
 
@@ -127,8 +127,8 @@
 
 /obj/effect/proc_holder/spell/invoked/bless_food
 	name = "Bless Food"
-	invocations = list("Eora, nourish this offering!")
-	desc = "Bless a food item. Items that take longer to eat heal slower. Skilled clergy can bless food more often. Finer food heals more. Eoran masters can make food a golden hue."
+	invocations = list("Miluše, nourish this offering!")
+	desc = "Bless a food item. Items that take longer to eat heal slower. Skilled clergy can bless food more often. Finer food heals more. Miluše's masters can make food a golden hue."
 	sound = 'sound/magic/magnet.ogg'
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	devotion_cost = 25
@@ -150,7 +150,7 @@
 	if(ishuman(H))
 		patron = user.patron
 	target.AddComponent(/datum/component/blessed_food, user, holy_skill, patron)
-	to_chat(user, span_notice("You bless [target] with Eora's love!"))
+	to_chat(user, span_notice("You bless [target] with Miluše's love!"))
 	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/bless_food/start_recharge()
@@ -170,8 +170,8 @@
 
 
 /obj/item/clothing/head/peaceflower//Eora content from Stonekeep
-	name = "eoran bud"
-	desc = "A flower of gentle petals, associated with Eora or Necra. Usually adorned as a headress or laid at graves as a symbol of love or peace."
+	name = "miluvane bud"
+	desc = "A flower of gentle petals, associated with Miluše or Morwenna. Usually adorned as a headress or laid at graves as a symbol of love or peace."
 	icon = 'icons/roguetown/items/produce.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
 	icon_state = "peaceflower"
@@ -207,7 +207,7 @@
 	// return true if we should be unequippable, return false if not
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		// Eorans can just take these off. It's their god!
+		// Followers of Miluše can just take these off. It's their god!
 		if(C.patron.type == /datum/patron/concordat/miluse && do_after(user, 4 SECONDS, src))
 			return FALSE
 		if(src == C.head || src == C.wear_mask)
@@ -224,8 +224,8 @@
 		return ..()
 
 /obj/effect/proc_holder/spell/invoked/bud
-	name = "Eoran Bloom"
-	desc = "Tries to grow an Eoran bud on the target tile or on the targets head, forcing their thoughts away from violence until removed."
+	name = "Miluvane Bloom"
+	desc = "Tries to grow a bud blessed by Miluše on the target tile or on the targets head, forcing their thoughts away from violence until removed."
 	clothes_req = FALSE
 	range = 3
 	overlay_state = "love"
@@ -251,7 +251,7 @@
 				return FALSE
 			var/obj/item/clothing/head/peaceflower/F = new(get_turf(C))
 			C.equip_to_slot_if_possible(F, SLOT_HEAD, TRUE, TRUE)
-			to_chat(C, "<span class='info'>A flower of Eora blooms on my head. <b style='color:pink'> I feel at peace. </b></span>")
+			to_chat(C, "<span class='info'>A flower of Miluše blooms on my head. <b style='color:pink'> I feel at peace. </b></span>")
 			return TRUE
 		else if(!C.get_item_by_slot(SLOT_WEAR_MASK))
 			if(!do_after_mob(user, target, 10 SECONDS))
@@ -260,22 +260,22 @@
 				return FALSE
 			var/obj/item/clothing/head/peaceflower/F = new(get_turf(C))
 			C.equip_to_slot_if_possible(F, SLOT_WEAR_MASK, TRUE, TRUE)
-			to_chat(C, "<span class='info'>A flower of Eora blooms on my head. <b style='color:pink'> I feel at peace. </b></span>")
+			to_chat(C, "<span class='info'>A flower of Miluše blooms on my head. <b style='color:pink'> I feel at peace. </b></span>")
 			return TRUE
 		else
-			to_chat(user, "<span class='warning'>The target's head and face are covered. The flowers of Eora need an open space to bloom.</span>")
+			to_chat(user, "<span class='warning'>The target's head and face are covered. The flowers of Miluše need an open space to bloom.</span>")
 			revert_cast()
 			return FALSE
 	var/turf/T = get_turf(targets[1])
 	if(!isclosedturf(T))
 		new /obj/item/clothing/head/peaceflower(T)
 		return TRUE
-	to_chat(user, "<span class='warning'>The targeted location is blocked. The flowers of Eora refuse to grow.</span>")
+	to_chat(user, "<span class='warning'>The targeted location is blocked. The flowers of Miluše refuse to grow.</span>")
 	revert_cast()
 	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/eoracurse
-	name = "Eora's Curse"
+	name = "Miluše's Curse"
 	desc = "Makes the target both high and drunk."
 	overlay_state = "curse2"
 	releasedrain = 50
@@ -434,7 +434,7 @@
 	overlay_state = "bliss"
 	range = 1
 	chargetime = 0.5 SECONDS
-	invocations = list("By Eora's grace, let our fates intertwine!")
+	invocations = list("By Miluše's grace, let our fates intertwine!")
 	sound = 'sound/magic/magnet.ogg'
 	recharge_time = 60 SECONDS
 	miracle = TRUE
@@ -489,7 +489,7 @@
 	var/outline_colour = "#FF69B4"
 
 /atom/movable/screen/alert/status_effect/eora_bond
-	name = "Eora's Bond"
+	name = "Miluše's Bond"
 	desc = "Your life force is linked to another soul."
 
 /datum/status_effect/eora_bond/on_apply()
@@ -503,7 +503,7 @@
 
 /obj/effect/proc_holder/spell/invoked/pomegranate
 	name = "Amaranth Sanctuary"
-	invocations = list("Eora, provide sanctuary for your beauty!")
+	invocations = list("Miluše, provide sanctuary for your beauty!")
 	desc = "Grow a pomegrenate tree that when tended to grows Aurils with variety of effects. Additionally heals beatiful people and HEAVILY debuffs both STR and PER for everyone in visible range."
 	sound = 'sound/magic/magnet.ogg'
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
@@ -521,13 +521,13 @@
 		my_little_tree = null
 
 	if(my_little_tree)
-		to_chat(user, span_warning("I cannot maintain more than a single tree for Eora. I must get rid of the other first, however painful."))
+		to_chat(user, span_warning("I cannot maintain more than a single tree for Miluše. I must get rid of the other first, however painful."))
 		revert_cast()
 		return FALSE
 
 	var/turf/T = get_turf(targets[1])
 	if(!isopenturf(T))
-		to_chat(user, span_warning("The targeted location is blocked. Eora's seed cannot sprout here."))
+		to_chat(user, span_warning("The targeted location is blocked. Miluše's seed cannot sprout here."))
 		revert_cast()
 		return FALSE
 	if(!(istype(T, /turf/open/floor/rogue/grass) || istype(T, /turf/open/floor/rogue/dirt)))
@@ -535,7 +535,7 @@
 		revert_cast()
 		return FALSE
 
-	to_chat(user, span_notice("I begin growing Eora's sacred tree here. I should stop and reconsider if I don't want my only tree here."))
+	to_chat(user, span_notice("I begin growing Miluše's sacred tree here. I should stop and reconsider if I don't want my only tree here."))
 	if(do_after(user, 30 SECONDS, FALSE))
 		var/obj/structure/eoran_pomegranate_tree/tree = new /obj/structure/eoran_pomegranate_tree(T)
 		my_little_tree = tree
@@ -548,7 +548,7 @@
 
 /obj/structure/eoran_pomegranate_tree
 	name = "pomegranate tree"
-	desc = "A mystical tree blessed by Eora."
+	desc = "A mystical tree blessed by Miluše."
 	icon = 'icons/obj/items/eora_tree.dmi'
 	icon_state = "sprout"
 	anchored = TRUE
@@ -616,7 +616,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/c = user
 			if(c.patron.type != /datum/patron/concordat/miluse)
-				to_chat(user, span_warning("The tree rejects your offering. Only followers of Eora may offer ash."))
+				to_chat(user, span_warning("The tree rejects your offering. Only followers of Miluše may offer ash."))
 				return TRUE
 		if(ash_offered)
 			to_chat(user, span_warning("Covering the tree in additional ash seems to anger it, leaves flare out and the ash flutters to the floor. The aura is renewed."))
@@ -1002,7 +1002,7 @@
 		to_chat(user, span_warning("The fruit isn't ripe yet!"))
 		return FALSE
 
-	// Eoran alignment check
+	// Follower-of-Miluše alignment check
 	if(!(user.patron.type == /datum/patron/concordat/miluse) && !HAS_TRAIT(user, TRAIT_CHOSEN))
 		to_chat(user, span_warning("The fruit vanishes as you reach for it!"))
 		return FALSE

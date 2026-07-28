@@ -76,7 +76,7 @@
 /obj/item/clothing/suit/roguetown/shirt/robe/undivided
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
 	name = "undivided robe"
-	desc = "Undivided, we stand - a Pantheon of Ten, shepherding Psydonia's flock towards providence."
+	desc = "Undivided, we stand - a Pantheon of Ten, shepherding Vaeltis's flock towards providence."
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	icon_state = "undividedrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
@@ -90,7 +90,7 @@
 /obj/item/clothing/suit/roguetown/shirt/robe/undividedcleric
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
 	name = "undivided clerical robe"
-	desc = "Undivided, we walk - a Pantheon of Ten, guiding Psydonia's wanderers towards providence."
+	desc = "Undivided, we walk - a Pantheon of Ten, guiding Vaeltis's wanderers towards providence."
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	icon_state = "tenclericrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'

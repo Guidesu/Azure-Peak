@@ -194,7 +194,7 @@
 /obj/structure/flora/roguegrass/herb/hypericum
 	name = "hypericum"
 	desc = "Said by some folk healers to treat low mood and macabre thoughts, these occur throughout almost \
-	the entire known world and are widely derided as weeds by gardeners across Psydonia. Known less learnedly \
+	the entire known world and are widely derided as weeds by gardeners across Vaeltis. Known less learnedly \
 	as 'goatweed'."
 	icon_state = "hypericum"
 

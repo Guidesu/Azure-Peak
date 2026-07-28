@@ -116,7 +116,7 @@
 				id = /obj/item/clothing/ring/blacksteel //Most Grenzelhoftian ass ring you can get
 				neck = /obj/item/clothing/neck/roguetown/psicross/custodius //The Ten Undivided!
 				H.cmode_music = 'sound/music/combat_grenzelhoft.ogg'
-				H.grant_language(/datum/language/grenzelhoftian) //Duh
+				H.grant_language(/datum/language/vergenmarkian) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
 			if("Otava") //Shoulder-Cloak or Silk Coat
 				if(should_wear_masc_clothes(H))
@@ -133,7 +133,7 @@
 				id = /obj/item/clothing/ring/signet
 				wrists = /obj/item/clothing/neck/roguetown/psicross //Purity afloat!
 				H.cmode_music = 'sound/music/combat_inqcommander.ogg' //ENDVRE
-				H.grant_language(/datum/language/otavan) //Duh
+				H.grant_language(/datum/language/medullan) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/otavan
 			if("Aavnr") //Gender Neutral Fit Mostly
 				cloak = /obj/item/clothing/cloak/raincloak/furcloak
@@ -148,7 +148,7 @@
 				id = /obj/item/clothing/ring/silver
 				neck = /obj/item/clothing/neck/roguetown/psicross/reform //God is dead but I still follow his word!
 				H.cmode_music = 'sound/music/frei_lancer.ogg'
-				H.grant_language(/datum/language/aavnic) //Duh
+				H.grant_language(/datum/language/dvojezemi) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
 			if("Ranesheni") //Gender Neutral Fit Mostly (To avoid excessive mechanical differences)
 				if(should_wear_masc_clothes(H))
@@ -165,7 +165,7 @@
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				//No ring cause its the best fit for armor - unintended but w/e
 				H.cmode_music = 'sound/music/combat_desertrider.ogg'
-				H.grant_language(/datum/language/raneshi) //Duh
+				H.grant_language(/datum/language/ostrovian) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
 			if("Gronn") //Noble dress or rugged cloak and hat, nordic-esc nobility
 				if(should_wear_masc_clothes(H))
@@ -183,7 +183,7 @@
 				pants = /obj/item/clothing/under/roguetown/trou/leather/gronn
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				H.cmode_music = 'sound/music/combat_vagarian.ogg'
-				H.grant_language(/datum/language/gronnic) //Duh
+				H.grant_language(/datum/language/dvojezemi) //Duh
 				H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/warrior] //Barbaric nobles
 				H.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/female/warrior]
 				backl = /obj/item/storage/backpack/rogue/satchel
@@ -218,7 +218,7 @@
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				id = /obj/item/clothing/ring/gold
 				H.cmode_music = 'sound/music/frei_lancer.ogg'
-				H.grant_language(/datum/language/etruscan) //Duh
+				H.grant_language(/datum/language/medullan) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
 			if("Naledi") //100% Gender neutral fit, just like the warscholars and refugees
 				var/list/hmm = list("I left for a reason... (Default)", "The Djinn could be anywhere! (Naledi Complex)")
@@ -230,7 +230,7 @@
 				head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/black
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
 				beltr = /obj/item/flashlight/flare/torch/lantern
-				wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+				wrists = /obj/item/clothing/neck/roguetown/psicross/auxentia
 				neck = /obj/item/clothing/neck/roguetown/psicross/g //Not warded or anything, just raw psydonic status vs ring
 				H.cmode_music = 'sound/music/warscholar.ogg'
 				H.grant_language(/datum/language/celestial) //Yes
@@ -252,7 +252,7 @@
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				id = /obj/item/clothing/ring/gold
 				H.cmode_music = 'sound/music/combat_Kazengun_Runaway_Chariot.ogg'
-				H.grant_language(/datum/language/kazengunese) //Duh
+				H.grant_language(/datum/language/ostrovian) //Duh
 				backl = /obj/item/storage/backpack/rogue/satchel/black
 
 		var/proficiencies = list("Decorated Sabre + Maille Training + 1 WIL", "Decorated Rapier + Maille Training + 1 WIL", "Decorated Arming Sword + Maille Training + 1 WIL", "Decorated Dagger + Maille Training + 1 WIL", "Recurve Bow + Hunting Skill/Masterful Hunter Trait + Boar Maps + 1 PER", "Extra Coin + Expert Appraiser + Intellectual", "Inbred Noble - +5 LCK + Stat 8 baseline + Crit Weakness + No Run + Maille Training", "Survival Skills + Expert Hunter + Outdoorsman + Less Starting Coin + 1 PER", "Thieves Jargon + Expert Climbing + Journeyman Sneaking + Keen Ears + Cicerone + Deceiving Meakness + 1 PER")

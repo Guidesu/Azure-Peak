@@ -28,7 +28,7 @@
 	desc = "Red that keeps men alive."
 	item_type = /obj/structure/closet/crate/chest/steward/redpotion
 	base_cost = 100
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 
 /obj/structure/closet/crate/chest/steward/redpotion/Initialize()
 	. = ..()
@@ -43,7 +43,7 @@
 	desc = "A sought-after crate of rare potions of rot-curing."
 	item_type = /obj/structure/closet/crate/chest/steward/rotpotion
 	base_cost = 400		//Expensive, 200 each roughly. Four uses total, as only 5u needed to reverse rot. Each bottle is 10u.
-	source_region_id = TRADE_REGION_ROCKHILL
+	source_region_id = TRADE_REGION_KINGSFIELD
 
 /obj/structure/closet/crate/chest/steward/rotpotion/Initialize()
 	. = ..()

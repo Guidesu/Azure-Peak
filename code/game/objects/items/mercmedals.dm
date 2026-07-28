@@ -55,7 +55,7 @@
 
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/grenzelhoft
 	name = "imperial gryphon"
-	desc = "A parody of the brass medal issued to Grenzelhoftian soldiers of great honor and renown. Frequently adopted as medals by other, younger guilds among the mercenaries of PSYDONIA, with slight adjustment."
+	desc = "A parody of the brass medal issued to Grenzelhoftian soldiers of great honor and renown. Frequently adopted as medals by other, younger guilds among the mercenaries of VAELTIS, with slight adjustment."
 
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/blackoak
 	name = "guardian's seedpouch"

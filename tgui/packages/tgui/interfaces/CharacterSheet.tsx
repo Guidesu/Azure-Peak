@@ -542,7 +542,18 @@ export const CharacterSheet = () => {
                 defaultRect={{ x: 490, y: 270, w: 340, h: 160 }}
               >
                   <SelectField label="Faith" value={data.faith} options={data.faith_options} act={act} action="set_faith" />
-                  <SelectField label="Patron" value={data.patron} options={data.patron_options} act={act} action="set_patron" />
+                  <SelectField
+                    label="Patron"
+                    value={data.patron}
+                    options={data.patron_options}
+                    act={act}
+                    action="set_patron"
+                    extra={
+                      <Button icon="book" onClick={() => act('open_patron_lore')}>
+                        Lore
+                      </Button>
+                    }
+                  />
               </DraggableTile>
 
               <DraggableTile

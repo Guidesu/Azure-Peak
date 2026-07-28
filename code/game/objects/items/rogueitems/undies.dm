@@ -69,7 +69,7 @@
 
 /obj/item/undies/braies
 	name = "braies"
-	desc = "A pair of linen underpants; Psydonia's most common."
+	desc = "A pair of linen underpants; Vaeltis's most common."
 	icon_state = "braies"
 	sprite_acc = /datum/sprite_accessory/underwear/braies
 

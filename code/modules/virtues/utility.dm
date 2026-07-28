@@ -15,7 +15,7 @@
 		"Silver Scabbard" = /obj/item/rogueweapon/scabbard/sword/noble,                            //Decorated Scabbard, Silver
 		"Silver Sheath" = /obj/item/rogueweapon/scabbard/sheath/noble,                             //Decorated Sheath, Silver
 		"Golden Psycross" = /obj/item/clothing/neck/roguetown/psicross/g/triumph,                  //Golden Psycross, Ornate
-		"Golden Astratan Psycross" = /obj/item/clothing/neck/roguetown/psicross/astrata/g/triumph, //Golden Astratan Amulet, Ornate
+		"Golden Astratan Psycross" = /obj/item/clothing/neck/roguetown/psicross/auxentius/g/triumph, //Golden Astratan Amulet, Ornate
 		"Golden Signet Ring" = /obj/item/clothing/ring/signet/triumph,                             //Golden Signet Ring, Ornate
 		"Gilded Dress Shirt" = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince,         //Gilded Dress Shirt
 		"Pristine Dress" = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess,           //Pristine Dress
@@ -168,15 +168,15 @@
 		"Infernal" = /datum/language/hellspeak,
 		"Draconic" = /datum/language/draconic,
 		"Celestial" = /datum/language/celestial,
-		"Ranesheni" = /datum/language/raneshi,
-		"Grenzelhoftian" = /datum/language/grenzelhoftian,
-		"Kazengunese" = /datum/language/kazengunese,
-		"Lingyuese" = /datum/language/lingyuese,
+		"Ranesheni" = /datum/language/ostrovian,
+		"Grenzelhoftian" = /datum/language/vergenmarkian,
+		"Kazengunese" = /datum/language/ostrovian,
+		"Lingyuese" = /datum/language/ostrovian,
 		"Undercommon" = /datum/language/undercommon,
-		"Otavan" = /datum/language/otavan,
-		"Etruscan" = /datum/language/etruscan,
-		"Gronnic" = /datum/language/gronnic,
-		"Aavnic" = /datum/language/aavnic
+		"Otavan" = /datum/language/medullan,
+		"Etruscan" = /datum/language/medullan,
+		"Gronnic" = /datum/language/dvojezemi,
+		"Aavnic" = /datum/language/dvojezemi
 	)
 
 /datum/virtue/utility/intellectual/apply_to_human(mob/living/carbon/human/recipient)

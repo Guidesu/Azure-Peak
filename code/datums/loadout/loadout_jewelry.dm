@@ -12,9 +12,9 @@
 	name = "Reformist Psydonian Cross"
 	path = /obj/item/clothing/neck/roguetown/psicross/reform
 
-/datum/loadout_item/psicross/naledi
-	name = "Naledian Psy-Bracelet"
-	path = /obj/item/clothing/neck/roguetown/psicross/naledi
+/datum/loadout_item/psicross/auxentia
+	name = "Auxentian Psy-Bracelet"
+	path = /obj/item/clothing/neck/roguetown/psicross/auxentia
 
 /datum/loadout_item/psicross/astrata
 	name = "Amulet of Astrata"
@@ -73,17 +73,17 @@
 
 /datum/loadout_item/psicross/zizo
 	name = "Decrepit Zcross"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy
 	sort_category = "Jewelry"
 
 /datum/loadout_item/zcross_iron
 	name = "Iron Zcross"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+	path = /obj/item/clothing/neck/roguetown/psicross/aurelian/iron
 	sort_category = "Jewelry"
 
 /datum/loadout_item/psicross/matthios
 	name = "Amulet of Matthios"
-	path = /obj/item/clothing/neck/roguetown/psicross/morwenna
+	path = /obj/item/clothing/neck/roguetown/psicross/morwenna/matthios
 	sort_category = "Jewelry"
 
 /datum/loadout_item/psicross/graggar

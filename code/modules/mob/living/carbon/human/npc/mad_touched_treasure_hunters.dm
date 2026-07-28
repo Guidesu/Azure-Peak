@@ -71,7 +71,7 @@
 		var/amulet_choice = rand(1, 4)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)

@@ -80,7 +80,7 @@
 			r_hand = /obj/item/rogueweapon/sword/cutlass
 			mask = /obj/item/clothing/mask/rogue/facemask/steel
 			backpack_contents = list(/obj/item/twilight_powderflask = 1, /obj/item/bomb = 2, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1)
-			H.grant_language(/datum/language/grenzelhoftian)
+			H.grant_language(/datum/language/auxentian)
 			switch(crimeschoice)
 				if("I'm nobody")
 					backr = /obj/item/gun/ballistic/twilight_firearm/flintgonne
@@ -105,7 +105,7 @@
 			beltr = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backpack_contents = list(/obj/item/bomb/smoke = 2, /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun = 1, /obj/item/twilight_powderflask = 1, /obj/item/rope/chain = 1)
-			H.grant_language(/datum/language/kazengunese)
+			H.grant_language(/datum/language/medullan)
 			switch(crimeschoice)
 				if("I'm nobody")
 					return

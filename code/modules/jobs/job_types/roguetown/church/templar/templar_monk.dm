@@ -4,7 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/templar/monk
 
 	category_tags = list(CTAG_TEMPLAR)
-	subclass_languages = list(/datum/language/grenzelhoftian)
+	subclass_languages = list(/datum/language/vergenmarkian)
 	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN)
 	subclass_stats = list(
 		STATKEY_STR = 2,

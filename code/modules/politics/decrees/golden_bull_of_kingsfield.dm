@@ -2,8 +2,8 @@
 	id = DECREE_GOLDEN_BULL
 	name = "The Golden Bull of Kingsfield"
 	category = DECREE_CATEGORY_ANCIENT
-	mechanical_text = "Burghers and residents are capped at 25% balance-rate on taxes/fines, with daily fine ceiling 50m and a poll-tax cap."
-	flavor_text = {"This Golden Bull of Kingsfield, sealed under Astrata's Sun and with Ravox as witness, witnesseth the ancient compact between the Crown of Azuria and the makers of her wealth.
+	mechanical_text = "Burghers and residents are capped at 25% balance-rate on taxes/fines, with daily fine ceiling 50m."
+	flavor_text = {"This Golden Bull of Kingsfield, sealed under Auxentius's Sun and with his Law as witness, witnesseth the ancient compact between the Crown of Azuria and the makers of her wealth.
 
 It is attested, by name of the Grand Duke of Azuria, and by the Councils of the Notables and Burghers of Azure Peak duly assembled to set this seal, that the said Councils do hereby assent, in this yil and in perpetuity, that the Crown shall levy upon the Burghers no greater portion than one quarter part of their meister account, and shall exact in fine no more than fifty mammon by the day, nor poll-tax beyond twenty mammon by the day; such being the limits deemed meet in time of peace, of war, and of necessite alike. Beyond these bounds no Burgher shall be taxed, nor deprived of their wealth, save by the law of the land.
 
@@ -29,12 +29,6 @@ Yeven under the seal of the Crown."}
 	if(!is_protected_by_bull(payer))
 		return current_remaining
 	return min(current_remaining, GOLDEN_BULL_DAILY_FINE_CAP)
-
-/// Cap the Burgher poll-tax daily charge at GOLDEN_BULL_POLL_CAP.
-/datum/decree/golden_bull/apply_poll_tax_cap(mob/living/payer, poll_category, current_rate)
-	if(poll_category != POLL_TAX_CAT_BURGHER)
-		return current_rate
-	return min(current_rate, GOLDEN_BULL_POLL_CAP)
 
 /// Returns TRUE if the payer is currently shielded by the Golden Bull.
 /datum/decree/golden_bull/proc/is_protected_by_bull(mob/living/payer)

@@ -23,7 +23,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/bronze
 	name = "bronze barbute"
 	desc = "A greathelm of bronze, who's nasalguard and mandibles leave the wearer's face cloaked in darkness. The heroes of yore have long since \
-	passed, yet their blood still courses through the veins of Psydonia's children; you are no different. Quiff a feather to its skullcap to bear \
+	passed, yet their blood still courses through the veins of Vaeltis's children; you are no different. Quiff a feather to its skullcap to bear \
 	your allegience with pride."
 	body_parts_covered = FULL_HEAD
 	icon_state = "bronzebarbute"
@@ -102,7 +102,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/barbute
 	name = "barbute"
 	desc = "A steel helmet that provides excellent coverage, while uniquely keeping its wearer's field-of-view almost entirely unrestricted. The cruciformic visor is \
-	an inherited design, borne from the earliest daes of Psydonia. Mounted on the back is a unique couplet, fit for adopting feathered greatplumes."
+	an inherited design, borne from the earliest daes of Vaeltis. Mounted on the back is a unique couplet, fit for adopting feathered greatplumes."
 	icon_state = "barbute"
 	item_state = "barbute"
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
@@ -170,7 +170,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/barbute/great
 	name = "great barbute"
 	desc = "A steel greathelm of inordinate thickness, whose design seems to've been inspired by both a tournament's froggemund and a kingdom's sugarloaf. It is far from elegant, but it will \
-	thwart killing blows again-and-again without compromise. Never forget that a champion of Psydonia needn't nobility nor wealth to become eternal; they need only the courage to be free. \
+	thwart killing blows again-and-again without compromise. Never forget that a champion of Vaeltis needn't nobility nor wealth to become eternal; they need only the courage to be free. \
 	</br>'In their legends, there were no gods - only heroes.'"
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
 	icon_state = "barbutedunk"
@@ -1637,7 +1637,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/barbute/iron
 	name = "iron barbute"
 	desc = "A steel helmet that provides excellent coverage, while uniquely keeping its wearer's field-of-view almost entirely unrestricted. The cruciformic visor is \
-	an inherited design, borne from the earliest daes of Psydonia. Mounted on the back is a unique couplet, fit for adopting feathered greatplumes."
+	an inherited design, borne from the earliest daes of Vaeltis. Mounted on the back is a unique couplet, fit for adopting feathered greatplumes."
 	icon_state = "ibarbute"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_HEAVY_IRON - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY

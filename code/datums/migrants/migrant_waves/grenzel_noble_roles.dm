@@ -64,7 +64,7 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 2,
 		)
 	H.cmode_music = 'sound/music/combat_grenzelhoft.ogg'
-	H.grant_language(/datum/language/grenzelhoftian)
+	H.grant_language(/datum/language/vergenmarkian)
 
 /datum/migrant_role/grenzel/bodyguard
 	name = "Leibwachter"
@@ -123,7 +123,7 @@
 		/obj/item/natural/bundle/cloth/bandage/full = 1,
 		)
 	H.cmode_music = 'sound/music/combat_grenzelhoft.ogg'
-	H.grant_language(/datum/language/grenzelhoftian)
+	H.grant_language(/datum/language/vergenmarkian)
 
 	var/weapons = list("Zweihander","Kriegmesser & Buckler","Halberd","Partizan")
 	var/weapon_choice
@@ -203,7 +203,7 @@
 	)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)
-	H.grant_language(/datum/language/grenzelhoftian)
+	H.grant_language(/datum/language/vergenmarkian)
 
 #undef CTAG_GRENZEL_ENVOY
 #undef CTAG_GRENZEL_GUARD

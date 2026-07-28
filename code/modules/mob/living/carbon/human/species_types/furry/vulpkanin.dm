@@ -13,7 +13,7 @@
 	They are usually shorter and meeker, but in turn more perceptive than their Volf-like brethren. \
 	Their name is quite obvious, coming from the Venards they closely resemble. \
 	Venardines are often much more solitary than Lupians, lacking the fervent pack mentality of their parent race. \
-	To this dae, their origin is heavily disputed by few archivists across Psydonia - though the rest, perhaps for sanity's sake, consider them to be just Lupians."
+	To this dae, their origin is heavily disputed by few archivists across Vaeltis - though the rest, perhaps for sanity's sake, consider them to be just Lupians."
 	default_color = "444"
 	species_traits = list(
 		MUTCOLORS,

@@ -810,7 +810,7 @@
 /obj/item/rogueweapon/donator_longsword
 	name = "elegant longsword"
 	desc = "A lethal and perfectly balanced weapon, endowed with regional flair. The longsword is the protagonist of endless tales and myths \
-	all across Psydonia, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
+	all across Vaeltis, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
 	It has great cultural significance in the empires of Grenzelhoft and Etrusca, where legendary swordsmen \
 	have created and perfected many fighting techniques of todae."
 	icon_state = "longswordalt"
@@ -1023,7 +1023,7 @@
 /obj/item/rogueweapon/donator_imbuedlongsword
 	name = "imbued longsword"
 	desc = "A lethal and perfectly balanced weapon, imbued with decorative flair. The longsword is the protagonist of endless tales and myths \
-	all across Psydonia, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
+	all across Vaeltis, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
 	It has great cultural significance in the empires of Grenzelhoft and Etrusca, where legendary swordsmen \
 	have created and perfected many fighting techniques of todae."
 	icon_state = "longswordaltred"
@@ -1384,9 +1384,9 @@
 		var/mob/living/carbon/H = user
 		H.update_inv_head()
 
-/obj/item/clothing/neck/roguetown/psicross/astrata/dasfox
-	name = "defiled Astratan periapt"
-	desc = "This golden-lashed eye atop a blade was once a periapt of Astrata, \
+/obj/item/clothing/neck/roguetown/psicross/auxentius/dasfox
+	name = "defiled Auxentian periapt"
+	desc = "This golden-lashed eye atop a blade was once a periapt of Auxentius, \
 	used in prayer and reverence of Her Tyrannical Light. This one has been damaged heavily, \
 	and near-shattered- and is bound together by cloth and silver wires. \
 	In lieu of its former nature, it now serves as amulet or attachment to armor due to the braided wire to be \

@@ -6,7 +6,7 @@
 	
 	outfit = /datum/outfit/job/roguetown/psydoniantemplar
 	category_tags = list(CTAG_ORTHODOXIST)
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	cmode_music = 'sound/music/templarofpsydonia.ogg'
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_INQUISITION)
 	subclass_stats = list(

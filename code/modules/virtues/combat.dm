@@ -73,7 +73,7 @@
 		if(/datum/patron/oldkin/hausvette)
 			recipient.mind?.special_items["Amulet of Baotha"] = /obj/item/clothing/neck/roguetown/psicross/hausvette
 		if(/datum/patron/unveiled/aurelian)
-			recipient.mind?.special_items["Inverted Psycross"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+			recipient.mind?.special_items["Inverted Psycross"] = /obj/item/clothing/neck/roguetown/psicross/aurelian/iron
 
 /datum/virtue/combat/devotee/astratan_affinity
 	name = "Astratan Affinity (Racial, Sun Elves)"

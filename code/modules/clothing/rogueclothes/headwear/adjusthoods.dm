@@ -319,7 +319,7 @@
 
 /obj/item/clothing/head/roguetown/roguehood/undividedcleric
 	name = "undivided clerical hood"
-	desc = "A hood of those devoted to guiding those with deca-divinity across Psydonia."
+	desc = "A hood of those devoted to guiding those with deca-divinity across Vaeltis."
 	color = "#999999"
 	icon_state = "monkhood"
 	item_state = "monkhood"

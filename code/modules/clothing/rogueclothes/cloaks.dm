@@ -254,7 +254,7 @@
 			item_state = "blackpsydontabardalt"
 			open_wear = TRUE
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN!
-			to_chat(usr, span_warning("You pull back the threaded burlap, baring your heart to Psydonia's eyes."))
+			to_chat(usr, span_warning("You pull back the threaded burlap, baring your heart to Vaeltis's eyes."))
 		if(TRUE)
 			name = "blessed tabard"
 			desc = "A tabard worn by the worshippers of Psydon. A funeral shroud for the paradise that could've been, and a solemn vow to continue the struggle towards salvation."
@@ -263,7 +263,7 @@
 			item_state = "blackpsydontabard"
 			flags_inv = HIDECROTCH|HIDEBOOB
 			open_wear = FALSE
-			to_chat(usr, span_warning("You cloak yourself in the threaded burlap, veiling your heart from Psydonia's eyes."))
+			to_chat(usr, span_warning("You cloak yourself in the threaded burlap, veiling your heart from Vaeltis's eyes."))
 	update_icon()
 	if(user)
 		if(ishuman(user))
@@ -273,7 +273,7 @@
 
 /obj/item/clothing/cloak/tabard/toga
 	name = "toga"
-	desc = "The ancestral predecessor to Psydonia's many tabards, worn by the heroes and villains of antiquity."
+	desc = "The ancestral predecessor to Vaeltis's many tabards, worn by the heroes and villains of antiquity."
 	icon_state = "whitepsydontabard"
 	item_state = "whitepsydontabard"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -287,7 +287,7 @@
 
 /obj/item/clothing/cloak/tabard/toga/alt
 	name = "opened toga"
-	desc = "The ancestral predecessor to Psydonia's many tabards, parted to reveal what lies beneath its cloth."
+	desc = "The ancestral predecessor to Vaeltis's many tabards, parted to reveal what lies beneath its cloth."
 	body_parts_covered = GROIN
 	icon_state = "whitepsydontabardalt"
 	item_state = "whitepsydontabardalt"
@@ -302,22 +302,22 @@
 	switch(open_wear)
 		if(FALSE)
 			name = "opened toga"
-			desc = "The ancestral predecessor to Psydonia's many tabards, parted to reveal what lies beneath its cloth."
+			desc = "The ancestral predecessor to Vaeltis's many tabards, parted to reveal what lies beneath its cloth."
 			body_parts_covered = GROIN
 			icon_state = "whitepsydontabardalt"
 			item_state = "whitepsydontabardalt"
 			open_wear = TRUE
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN!
-			to_chat(usr, span_warning("You pull back the threaded cloth, baring your heart to Psydonia's eyes."))
+			to_chat(usr, span_warning("You pull back the threaded cloth, baring your heart to Vaeltis's eyes."))
 		if(TRUE)
 			name = "toga"
-			desc = "The ancestral predecessor to Psydonia's many tabards, worn by the heroes and villains of antiquity."
+			desc = "The ancestral predecessor to Vaeltis's many tabards, worn by the heroes and villains of antiquity."
 			body_parts_covered = CHEST|GROIN
 			icon_state = "whitepsydontabard"
 			item_state = "whitekpsydontabard"
 			flags_inv = HIDECROTCH|HIDEBOOB
 			open_wear = FALSE
-			to_chat(usr, span_warning("You cloak yourself in the threaded cloth, veiling your heart from Psydonia's eyes."))
+			to_chat(usr, span_warning("You cloak yourself in the threaded cloth, veiling your heart from Vaeltis's eyes."))
 	update_icon()
 	if(user)
 		if(ishuman(user))
@@ -1111,7 +1111,7 @@
 /obj/item/clothing/cloak/cape/inquisitorgold
 	name = "golden order cloak"
 	desc = "A time honored cloak inlined with golden threading, the stitchwork tethers it to the Golden Orders; a catch-all term for the various faith-militances that \
-	ward Psydonia from heathens, cultists, and the ever-looming threat of another calamity."
+	ward Vaeltis from heathens, cultists, and the ever-looming threat of another calamity."
 	icon_state = "inquisitor_cloak"
 	icon = 'icons/roguetown/clothing/cloaks.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -1121,7 +1121,7 @@
 /obj/item/clothing/cloak/cape/inquisitorsilver
 	name = "silver order cloak"
 	desc = "A time honored cloak inlined with silver threading, the stitchwork tethers it to the Silver Orders; a catch-all term for the various faith-militances that \
-	ward Psydonia from monsters, creechers, and the ever-looming threat of the Archdevil's return."
+	ward Vaeltis from monsters, creechers, and the ever-looming threat of the Archdevil's return."
 	icon_state = "sinquisitor_cloak"
 	icon = 'icons/roguetown/clothing/cloaks.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -1440,7 +1440,7 @@
 
 /obj/item/clothing/neck/roguetown/blkknight
 	name = "dragonscale necklace" //Who the hell put a NECKLACE in the CLOAKS file?
-	desc = "A blacksteel chain, laced through a dozen of the Hoardmaster's golden teeth. Atuned to the beating heart of Psydonia's financial systems, its true strength can only be harnessed by those who covet wealth above all else."
+	desc = "A blacksteel chain, laced through a dozen of the Hoardmaster's golden teeth. Atuned to the beating heart of Vaeltis's financial systems, its true strength can only be harnessed by those who covet wealth above all else."
 	icon_state = "dragonnecklace"
 	max_integrity = ARMOR_INT_SIDE_IRON //Iron gorget now.
 	armor = ARMOR_PLATE

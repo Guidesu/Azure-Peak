@@ -7,7 +7,7 @@
 	class_select_category = CLASS_CAT_GRONN
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_vagarian.ogg'
-	subclass_languages = list(/datum/language/gronnic)
+	subclass_languages = list(/datum/language/dvojezemi)
 	extra_context = "This subclass has 2 loadouts with various stats, skills & equipment."
 	subclass_skills = list(
 	//Universal skills
@@ -137,7 +137,7 @@
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	cmode_music = 'sound/music/combat_vagarian.ogg'
-	subclass_languages = list(/datum/language/gronnic)
+	subclass_languages = list(/datum/language/dvojezemi)
 	subclass_stats = list(
 		STATKEY_WIL = 3, //People see big numbers and start shitting their pants, but their weighted stats are 7 and it's limited to one, singular slot. This is fine. 
 		STATKEY_STR = 3, //TO WIELD THE MAUL. THEY CAN'T USE ANY OTHER WEAPON TYPE BUT MACES ANYWAY.

@@ -41,7 +41,7 @@
 	tutorial = "Investigators and diplomats, oft-selected from Confessors who've shown their aptitude in a variety of skills. A precise \
 	strike is all that's needed to forward the Orthodoxy's missive; whether it's struck with a diplomat's charm or a rapier's tip, however, is up to you."
 	outfit = /datum/outfit/job/roguetown/inquisitor/inspector
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	category_tags = list(CTAG_INQUSITOR)
 	traits_applied = list(
 		TRAIT_STEELHEARTED,
@@ -182,7 +182,7 @@
 	to the lethargy imposed by their blessed plate armor, these holy knights have forsaken every other pursuit for \
 	a singular purpose: to break the inhumen against their knee."
 	outfit = /datum/outfit/job/roguetown/inquisitor/ordinator
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	cmode_music = 'sound/music/combat_inqordinator.ogg'
 
 	category_tags = list(CTAG_INQUSITOR)

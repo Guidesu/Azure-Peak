@@ -64,31 +64,19 @@ type Dashboard = {
   avg_balance: number;
   held_accounts: number;
   under_50m: number;
-  in_advance: number;
-  in_arrears: number;
   debtor_count: number;
   loans_outstanding: number;
   loan_exposure: number;
   rural_tax_total: number;
   expected_rural_revenue: number;
-  expected_wage_outlay: number;
   noble_income_total: number;
   tax_rates: Record<string, number>;
-  poll_tax_rates: Record<string, number>;
 };
 
 type PlayerRow = {
   ref: string;
   name: string;
   job: string;
-  category: string | null;
-  category_name: string;
-  rate: number;
-  raw_rate: number;
-  exempt: BooleanLike;
-  advance: number;
-  owed: number;
-  overdue: number;
   balance: number;
   on_person: number;
   has_loan: BooleanLike;
@@ -96,13 +84,11 @@ type PlayerRow = {
 };
 
 type Filter = {
-  category: string;
   status: string;
   search: string;
 };
 
 type FilterOptions = {
-  categories: string[];
   statuses: string[];
 };
 
@@ -218,26 +204,8 @@ type Data = {
 
 const STATUS_LABELS: Record<string, string> = {
   all: 'All',
-  arrears: 'In Arrears',
-  advance: 'In Advance',
   debtor: 'Debtor',
   low_balance: 'Low Balance (<50m)',
-  exempt: 'Charter-Exempt',
-};
-
-const CATEGORY_LABELS: Record<string, string> = {
-  all: 'All Categories',
-  poll_noble: 'Noble',
-  poll_clergy: 'Clergy',
-  poll_inquisition: 'Inquisition',
-  poll_courtier: 'Courtier',
-  poll_garrison: 'Garrison',
-  poll_guilds: 'Guilds',
-  poll_merchant: 'Merchant',
-  poll_burgher: 'Burgher',
-  poll_adventurer: 'Adventurer',
-  poll_mercenary: 'Mercenary',
-  poll_peasant: 'Peasant',
 };
 
 export const EconomicPanel = () => {
@@ -357,8 +325,6 @@ export const EconomicPanel = () => {
   const [mintAmount, setMintAmount] = useState(100);
   const [burnAmount, setBurnAmount] = useState(100);
   const [favorAmount, setFavorAmount] = useState(500);
-  const [bulkAdvanceDays, setBulkAdvanceDays] = useState(1);
-  const [playerAdvanceDays, setPlayerAdvanceDays] = useState(1);
   const [playerMintAmount, setPlayerMintAmount] = useState(50);
   const [simPop, setSimPop] = useState(simulated_player_scalar);
   const [assemblyTradeCap, setAssemblyTradeCap] = useState(300);
@@ -366,7 +332,6 @@ export const EconomicPanel = () => {
 
   const applyFilter = (overrides: Partial<Filter> = {}) => {
     act('set_filter', {
-      category: overrides.category ?? filter.category,
       status: overrides.status ?? filter.status,
       search: overrides.search ?? searchDraft,
     });
@@ -647,12 +612,6 @@ export const EconomicPanel = () => {
                   </Stack.Item>
                   <Stack.Item grow>
                     <LabeledList>
-                      <LabeledList.Item label="In Advance">
-                        {dashboard.in_advance}
-                      </LabeledList.Item>
-                      <LabeledList.Item label="In Arrears">
-                        {dashboard.in_arrears}
-                      </LabeledList.Item>
                       <LabeledList.Item label="Debtors">
                         {dashboard.debtor_count}
                       </LabeledList.Item>
@@ -662,9 +621,6 @@ export const EconomicPanel = () => {
                       </LabeledList.Item>
                       <LabeledList.Item label="Expected Rural Revenue">
                         {dashboard.expected_rural_revenue}m / day
-                      </LabeledList.Item>
-                      <LabeledList.Item label="Expected Wage Outlay">
-                        {dashboard.expected_wage_outlay}m / day
                       </LabeledList.Item>
                       <LabeledList.Item label="Rural Tax YTD">
                         {dashboard.rural_tax_total}m
@@ -891,11 +847,6 @@ export const EconomicPanel = () => {
                   <Stack.Item>
                     <Button.Confirm onClick={() => act('fire_rural_tick')}>
                       Fire Rural Tick
-                    </Button.Confirm>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button.Confirm onClick={() => act('fire_poll_tick')}>
-                      Fire Poll Tick
                     </Button.Confirm>
                   </Stack.Item>
                   <Stack.Item>
@@ -1315,19 +1266,6 @@ export const EconomicPanel = () => {
             <Stack.Item>
               <Section title="Filter">
                 <Stack align="center" wrap>
-                  <Stack.Item>Category:</Stack.Item>
-                  {filter_options.categories.map((cat) => (
-                    <Stack.Item key={cat}>
-                      <Button
-                        selected={filter.category === cat}
-                        onClick={() => applyFilter({ category: cat })}
-                      >
-                        {CATEGORY_LABELS[cat] || cat}
-                      </Button>
-                    </Stack.Item>
-                  ))}
-                </Stack>
-                <Stack align="center" mt={1} wrap>
                   <Stack.Item>Status:</Stack.Item>
                   {filter_options.statuses.map((s) => (
                     <Stack.Item key={s}>
@@ -1362,7 +1300,6 @@ export const EconomicPanel = () => {
                       onClick={() => {
                         setSearchDraft('');
                         act('set_filter', {
-                          category: 'all',
                           status: 'all',
                           search: '',
                         });
@@ -1382,95 +1319,50 @@ export const EconomicPanel = () => {
                 {players.length === 0 ? (
                   <Box italic color="gray">
                     No players match the current filter. Widen the filter or
-                    select a category/status above.
+                    select a status above.
                   </Box>
                 ) : (
-                  <>
-                    <Table>
-                      <Table.Row header>
-                        <Table.Cell>Name</Table.Cell>
-                        <Table.Cell>Job</Table.Cell>
-                        <Table.Cell>Category</Table.Cell>
-                        <Table.Cell>Rate</Table.Cell>
-                        <Table.Cell>Balance</Table.Cell>
-                        <Table.Cell>Advance</Table.Cell>
-                        <Table.Cell>Owed</Table.Cell>
-                        <Table.Cell>Overdue</Table.Cell>
-                        <Table.Cell>Flags</Table.Cell>
-                        <Table.Cell>&nbsp;</Table.Cell>
-                      </Table.Row>
-                      {players.map((p) => {
-                        const isSelected = selected && selected.ref === p.ref;
-                        return (
-                          <Table.Row key={p.ref}>
-                            <Table.Cell>
-                              {isSelected ? (
-                                <b>
-                                  {'> '}
-                                  {p.name}
-                                </b>
-                              ) : (
-                                p.name
-                              )}
-                            </Table.Cell>
-                            <Table.Cell>{p.job}</Table.Cell>
-                            <Table.Cell>{p.category_name}</Table.Cell>
-                            <Table.Cell>
-                              {p.rate}m
-                              {p.raw_rate !== p.rate
-                                ? ` (raw ${p.raw_rate}m)`
-                                : ''}
-                            </Table.Cell>
-                            <Table.Cell>{p.balance}m</Table.Cell>
-                            <Table.Cell>{p.advance}</Table.Cell>
-                            <Table.Cell>{p.owed}m</Table.Cell>
-                            <Table.Cell>{p.overdue}</Table.Cell>
-                            <Table.Cell>
-                              {p.exempt ? 'E ' : ''}
-                              {p.is_debtor ? 'D ' : ''}
-                              {p.has_loan ? 'L ' : ''}
-                            </Table.Cell>
-                            <Table.Cell>
-                              <Button
-                                onClick={() => act('select', { ref: p.ref })}
-                              >
-                                Select
-                              </Button>
-                            </Table.Cell>
-                          </Table.Row>
-                        );
-                      })}
-                    </Table>
-
-                    <Stack mt={1} wrap>
-                      <Stack.Item>
-                        <Button.Confirm
-                          color="bad"
-                          onClick={() => act('bulk_clear_debt')}
-                        >
-                          Bulk: Clear debt for all {players.length} filtered
-                        </Button.Confirm>
-                      </Stack.Item>
-                      <Stack.Item>
-                        <NumberInput
-                          step={1}
-                          minValue={1}
-                          maxValue={30}
-                          value={bulkAdvanceDays}
-                          onChange={(v: number) => setBulkAdvanceDays(v)}
-                        />
-                      </Stack.Item>
-                      <Stack.Item>
-                        <Button.Confirm
-                          onClick={() =>
-                            act('bulk_add_advance', { days: bulkAdvanceDays })
-                          }
-                        >
-                          Bulk: +{bulkAdvanceDays} advance days to all filtered
-                        </Button.Confirm>
-                      </Stack.Item>
-                    </Stack>
-                  </>
+                  <Table>
+                    <Table.Row header>
+                      <Table.Cell>Name</Table.Cell>
+                      <Table.Cell>Job</Table.Cell>
+                      <Table.Cell>Balance</Table.Cell>
+                      <Table.Cell>On Person</Table.Cell>
+                      <Table.Cell>Flags</Table.Cell>
+                      <Table.Cell>&nbsp;</Table.Cell>
+                    </Table.Row>
+                    {players.map((p) => {
+                      const isSelected = selected && selected.ref === p.ref;
+                      return (
+                        <Table.Row key={p.ref}>
+                          <Table.Cell>
+                            {isSelected ? (
+                              <b>
+                                {'> '}
+                                {p.name}
+                              </b>
+                            ) : (
+                              p.name
+                            )}
+                          </Table.Cell>
+                          <Table.Cell>{p.job}</Table.Cell>
+                          <Table.Cell>{p.balance}m</Table.Cell>
+                          <Table.Cell>{p.on_person}m</Table.Cell>
+                          <Table.Cell>
+                            {p.is_debtor ? 'D ' : ''}
+                            {p.has_loan ? 'L ' : ''}
+                          </Table.Cell>
+                          <Table.Cell>
+                            <Button
+                              onClick={() => act('select', { ref: p.ref })}
+                            >
+                              Select
+                            </Button>
+                          </Table.Cell>
+                        </Table.Row>
+                      );
+                    })}
+                  </Table>
                 )}
               </Section>
             </Stack.Item>
@@ -1485,29 +1377,11 @@ export const EconomicPanel = () => {
                 }
               >
                 <LabeledList>
-                  <LabeledList.Item label="Category">
-                    {selected.category_name}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Effective Rate">
-                    {selected.rate}m / day
-                    {selected.raw_rate !== selected.rate
-                      ? ` (raw ${selected.raw_rate}m, modified by charter/cap)`
-                      : ''}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Charter-Exempt">
-                    {selected.exempt ? 'Yes' : 'No'}
-                  </LabeledList.Item>
                   <LabeledList.Item label="Account Balance">
                     {selected.balance}m
                   </LabeledList.Item>
                   <LabeledList.Item label="On-Person Coin">
                     {selected.on_person}m
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Advance Days">
-                    {selected.advance}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Arrears">
-                    {selected.owed}m over {selected.overdue} day(s)
                   </LabeledList.Item>
                   <LabeledList.Item label="Debtor Flag">
                     {selected.is_debtor ? 'YES' : 'no'}
@@ -1518,15 +1392,6 @@ export const EconomicPanel = () => {
                 </LabeledList>
 
                 <Stack mt={1} wrap>
-                  <Stack.Item>
-                    <Button.Confirm
-                      onClick={() =>
-                        act('player_clear_debt', { ref: selected.ref })
-                      }
-                    >
-                      Clear poll-tax arrears
-                    </Button.Confirm>
-                  </Stack.Item>
                   <Stack.Item>
                     <Button.Confirm
                       onClick={() =>
@@ -1565,43 +1430,6 @@ export const EconomicPanel = () => {
                       }
                     >
                       Clear Censure
-                    </Button.Confirm>
-                  </Stack.Item>
-                </Stack>
-
-                <Stack mt={1} align="center">
-                  <Stack.Item>Advance days:</Stack.Item>
-                  <Stack.Item>
-                    <NumberInput
-                      step={1}
-                      minValue={1}
-                      maxValue={999}
-                      value={playerAdvanceDays}
-                      onChange={(v: number) => setPlayerAdvanceDays(v)}
-                    />
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button.Confirm
-                      onClick={() =>
-                        act('player_add_advance', {
-                          ref: selected.ref,
-                          days: playerAdvanceDays,
-                        })
-                      }
-                    >
-                      Add
-                    </Button.Confirm>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button.Confirm
-                      onClick={() =>
-                        act('player_remove_advance', {
-                          ref: selected.ref,
-                          days: playerAdvanceDays,
-                        })
-                      }
-                    >
-                      Remove
                     </Button.Confirm>
                   </Stack.Item>
                 </Stack>

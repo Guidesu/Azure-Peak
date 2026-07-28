@@ -31,7 +31,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/iron
 	name = "iron half-plate"
 	desc = "A padded iron cuirass, bottomed with segmented tassets. It is inexpensive yet robust; a desirable combination, which \
-	has long-since led to its proliferation amongst most of Psydonia's standing garrisons."
+	has long-since led to its proliferation amongst most of Vaeltis's standing garrisons."
 	body_parts_covered = CHEST | VITALS | LEGS //Reflects the sprite, which lacks pauldrons.
 	icon_state = "ihalfplate"
 	item_state = "ihalfplate"
@@ -68,7 +68,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/bronze
 	name = "bronze cuirass"
 	desc = "A chiseled breastplate of bronze, further padded with hide to comfort its championing bod. The plates have been carefully \
-	forged to mimic the statuesque physiques of Psydonia's ancient heroes. Wearing it bolsters you with determination."
+	forged to mimic the statuesque physiques of Vaeltis's ancient heroes. Wearing it bolsters you with determination."
 	body_parts_covered = CHEST | VITALS | LEGS 
 	icon_state = "bronzecuirass"
 	armor = ARMOR_BRONZE
@@ -93,7 +93,7 @@
 	name = "bronze panoplic armor"
 	desc = "What can only be described as an 'armored robe'; thick bronze plates, layered atop one-another and interlinked with strappings \
 	to form an assembly of segmented plate armor. While overwhelmingly heavy and cumbersome, it is certain to weather any storm poised its way. \
-	</br>Scholars oft-describe this suit as a 'panoply', purpose-made for the physiques of Psydonia's earliest Aasimari."
+	</br>Scholars oft-describe this suit as a 'panoply', purpose-made for the physiques of Vaeltis's earliest Aasimari."
 	icon_state = "bronzeplate"
 	item_state = "bronzeplate"
 	armor = ARMOR_BRONZE
@@ -279,7 +279,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/fluted
 	name = "fluted half-plate"
 	desc = "An ornate steel cuirass, fitted with tassets and pauldrons for additional coverage. This lightweight deviation of 'plate \
-	armor' is favored by cuirassiers all across Psydonia, alongside fledging barons who've - up until now - waged their fiercest \
+	armor' is favored by cuirassiers all across Vaeltis, alongside fledging barons who've - up until now - waged their fiercest \
 	battles upon a chamberpot." 
 	icon_state = "ornatehalfplate"
 
@@ -359,7 +359,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/full
 	name = "plate armor"
 	desc = "A pristine set of steel plate armor, fitted with tassets and bracers for additional coverage. To the Knights \
-	of Psydonia, these sets are a symbolic manifestation of their oath; to serve thine kingdom without hesitation, and to \
+	of Vaeltis, these sets are a symbolic manifestation of their oath; to serve thine kingdom without hesitation, and to \
 	rebuke all the villains who'd dare to defile it. </br>‎  </br>'Slow to don-and-doff, without a trusted Squire's aid..'"
 	icon_state = "plate"
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
@@ -394,7 +394,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa
 	name = "samsibsa scaleplate"
 	desc = "A heavy set of armour worn by the kouken of distant Kazengun. As opposed to the plate armour utilized by most of \
-	Psydonia and the West, samsiba-cheolpan is made of thirty-four rows of composite scales, each an ultra-thin sheet of \
+	Vaeltis and the West, samsiba-cheolpan is made of thirty-four rows of composite scales, each an ultra-thin sheet of \
 	blacksteel gilded over steel. </br> It is an extremely common practice to engrave characters onto individual plates - such \
 	as LUCK, HONOR, or HEAVEN."
 	icon_state = "kazengunheavy"
@@ -465,7 +465,7 @@
 	. = ..()
 	. += span_info("With more blessed silver and an armorsmith's hammer, this armor can be further upgraded.")
 	. += span_info("If a character has the 'Maille Training' trait and has Psydon as their selected patron, they can comfortably wear Psydonic plate armor without suffering any downsides.")
-	. += span_hypnophrase("'..the refusal of despair, and the resolve to defend Psydonia in its darkest hour..'")
+	. += span_hypnophrase("'..the refusal of despair, and the resolve to defend Vaeltis in its darkest hour..'")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/shadowplate
 	name = "scourge breastplate"
@@ -827,7 +827,7 @@
 	name = "golden heroic cuirass"
 	icon_state = "heroiccuirass"
 	desc = "A resplendant cuirass of pure gold, fitted with tassets for additional coverage. It has been meticulously waxed-and-assembled \
-	from dozens of smaller golden plates, in order to replicate the statuesque physique of Psydonia's legendary heroes."
+	from dozens of smaller golden plates, in order to replicate the statuesque physique of Vaeltis's legendary heroes."
 	unenchantable = TRUE
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/gold/king

@@ -20,9 +20,9 @@ const WRAP_NOTES = [
   'Huh. Could have sworn this was the same yil.',
   'The pages turn, and the yil does not.',
   'Surely the wheel must move, and yet the yil remains still.',
-  'In the yil 1514 AP. There is a Grand Duchy built on-',
-  'In the yil 1514 AP. In the yil 1514 AP. In the yil 1514 AP.',
-  'Psydon? Where art thee, Psydon? The yil remains the same, but the world is not as it was.',
+  'In the yil 1514 AC. There is a Compact sworn upon a river-plain-',
+  'In the yil 1514 AC. In the yil 1514 AC. In the yil 1514 AC.',
+  'Praecursor? Where art thee, Praecursor? The yil remains the same, but the world is not as it was.',
   "Haven't we been here before? So many familiar sights, familiar faces, heart broken and mended, men killed and resurrected. The yil is the same?",
   'What',
   'Time has folded back upon itself once more.',
@@ -84,8 +84,8 @@ export const Calendar = () => {
     <Window width={620} height={680} title="Calendar" theme="parchment">
       <Window.Content scrollable>
         <div style={pageStyle}>
-          <div style={titleStyle}>The Azurian Calendar</div>
-          <div style={subtitleStyle}>Year {view_year} AP</div>
+          <div style={titleStyle}>The Vaeltic Calendar</div>
+          <div style={subtitleStyle}>Year {view_year} AC</div>
           <hr style={rulerStyle} />
 
           <Nav

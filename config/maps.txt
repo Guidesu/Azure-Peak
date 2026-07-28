@@ -23,3 +23,7 @@ map dun_world
 	default
 	votable
 endmap
+
+map byos
+	votable
+endmap

@@ -2775,7 +2775,7 @@
 /area/rogue/underworld/dream)
 "OZ" = (
 /obj/structure/table/vtable/v2,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/g{
+/obj/item/clothing/neck/roguetown/psicross/aurelian/g{
 	pixel_y = 8
 	},
 /turf/open/floor/rogue/churchbrick,

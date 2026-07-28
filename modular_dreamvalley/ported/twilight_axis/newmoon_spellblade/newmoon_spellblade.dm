@@ -21,7 +21,7 @@
 		for your faithful service and mastery of the arcane, you've been given access to arcane weaponry. Miracles are closed to you, but in exchange you've gained access to the arcane, and no matter what weapon Noc's light might conjure for you, you are an expert with it."
 	outfit = /datum/outfit/job/roguetown/spellblade
 	category_tags = list(CTAG_TEMPLAR)
-	subclass_languages = list(/datum/language/raneshi)
+	subclass_languages = list(/datum/language/dvojezemi)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_NIGHT_OWL, TRAIT_ARCYNE, TRAIT_NOC_LIGHT_BLESSING)
 	subclass_mage_aspects = list("mastery" = FALSE, "major" = FALSE, "minor" = 2, "utilities" = 6)
 	maximum_possible_slots = 1

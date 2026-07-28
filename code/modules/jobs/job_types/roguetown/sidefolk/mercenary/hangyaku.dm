@@ -1,10 +1,10 @@
 /datum/advclass/mercenary/hangyaku
 	name = "Hangyaku-Kounen"
-	tutorial = "Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Psydonia, seeking a fresh start... or fresh coin, at least."
+	tutorial = "Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Vaeltis, seeking a fresh start... or fresh coin, at least."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED) //do they have constructs in kazengun?
 	outfit = /datum/outfit/job/roguetown/mercenary/hangyaku
-	subclass_languages = list(/datum/language/kazengunese)
+	subclass_languages = list(/datum/language/ostrovian)
 	class_select_category = CLASS_CAT_KAZENGUN
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_NOBLE) //i hate nobles but it's thematic
@@ -39,7 +39,7 @@
 	..()
 	H.adjust_blindness(-3)
 	has_loadout = TRUE
-	to_chat(H, span_warning("Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Psydonia, seeking a fresh start... or fresh coin, at least."))
+	to_chat(H, span_warning("Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Vaeltis, seeking a fresh start... or fresh coin, at least."))
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 	belt = /obj/item/storage/belt/rogue/leather/cloth/upgraded
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
@@ -106,7 +106,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT)//do they have constructs in kazengun?
 	outfit = /datum/outfit/job/roguetown/mercenary/chonin
-	subclass_languages = list(/datum/language/kazengunese)
+	subclass_languages = list(/datum/language/ostrovian)
 	class_select_category = CLASS_CAT_KAZENGUN
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_MEDIUMARMOR) //peasant levy turned mercenary. the underdog.

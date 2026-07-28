@@ -1,13 +1,13 @@
 //Dummy fluid for effect
 /datum/reagent/medicine/revival_fluid
-	name = "Eoran Balm"
+	name = "Miluvane Balm"
 	description = "A miraculous fluid that slowly heals the dead, bringing them back to life when their wounds are mended."
 	color = "#cd2be2"
 	metabolization_rate = REAGENTS_METABOLISM
 	taste_description = "cold hope"
 
 /obj/item/reagent_containers/glass/bottle/revival
-	name = "vial of Eoran Balm"
+	name = "vial of Miluvane Balm"
 	desc = "An ominous violet fluid that seems to pulse with faint light. It's made out of strange shimmering glass. Looks fragile."
 	list_reagents = list(/datum/reagent/medicine/revival_fluid = 48)
 

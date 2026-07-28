@@ -96,7 +96,7 @@
 /obj/item/clothing/under/roguetown/platelegs/zizo
 	name = "avantyne vestments"
 	desc = "The fossilization of a memory, damned to be forgotten by all but the divine - Her lux, crystallized into a veil impenetratable by all but the sharpest \
-	blades. If the legends are to be believed, She had worn these very garments long ago during Psydonia's darkest hour; when the Ascendants were but-two, when the \
+	blades. If the legends are to be believed, She had worn these very garments long ago during Vaeltis's darkest hour; when the Ascendants were but-two, when the \
 	Sinistar blotted out Astrata's glare, and when the ashes of Her empire were still smoldering. </br>..and to think, it was all a war without reason."
 	icon_state = "zizoplatelegs_med"
 	max_integrity = ARMOR_INT_LEG_STEEL_PLATE

@@ -1,7 +1,7 @@
 //sword objs ฅ^•ﻌ•^ฅ
 /obj/item/rogueweapon/sword
 	name = "arming sword"
-	desc = "A long steel blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations."
+	desc = "A long steel blade attached to a hilt, separated by a crossguard. The arming sword has been Vaeltis's implement of war by excellence for generations."
 	alt_grips = null
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	force = 22
@@ -53,7 +53,7 @@
 
 /obj/item/rogueweapon/sword/iron
 	name = "iron arming sword"
-	desc = "A long iron blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations, \
+	desc = "A long iron blade attached to a hilt, separated by a crossguard. The arming sword has been Vaeltis's implement of war by excellence for generations, \
 	this one is cheaper than its steel brother."
 	icon_state = "isword"
 	minstr = 6
@@ -63,7 +63,7 @@
 
 /obj/item/rogueweapon/sword/bronze
 	name = "bronze arming sword"
-	desc = "A long bronze blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for \
+	desc = "A long bronze blade attached to a hilt, separated by a crossguard. The arming sword has been Vaeltis's implement of war by excellence for \
 	generations - and this implement is the grandfather of them all. Though it lacks the gladii's girth, this arming sword still feels well-balanced for \
 	one-handed use."
 	icon_state = "bronzesword"
@@ -185,7 +185,7 @@
 /obj/item/rogueweapon/sword/long
 	name = "longsword"
 	desc = "A lethal and perfectly balanced weapon. The longsword is the protagonist of endless tales and myths \
-	all across Psydonia, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
+	all across Vaeltis, seen in the hands of noblemen and an ever-decreasing quantity of master duelists. \
 	It has great cultural significance in the empires of Grenzelhoft and Etrusca, where legendary swordsmen \
 	have created and perfected many fighting techniques of todae."
 	force = 25
@@ -233,7 +233,7 @@
 	name = "blacksteel longsword"
 	desc = "A sleek blade of a dark, and burnished hue. \
 			A handle carved from a rosawood branch. A pairing that shall sing as it parts the air. \
-			With it, one can write a song across all of Psydonia."
+			With it, one can write a song across all of Vaeltis."
 	force = 27
 	force_wielded = 33
 	icon_state = "bslongsword"
@@ -313,7 +313,7 @@
 /obj/item/rogueweapon/sword/long/broadsword
 	name = "broadsword"
 	desc = "A lethal and well-balanced weapon. The broadsword - better known as a 'hand-and-a-halfer' - has dutifully served the \
-	swordsmen of Psydonia in their clashes against man-and-monster alike since time immemmorial. It is one of Rockhill's greatest \
+	swordsmen of Vaeltis in their clashes against man-and-monster alike since time immemmorial. It is one of Rockhill's greatest \
 	cultural hallmarks, just behind the concepts of 'zenny-a-mug' happy hours and 'killing people over minor disagreements.'"
 	icon_state = "broadsword"
 	sheathe_icon = "broadsword"
@@ -340,7 +340,7 @@
 /obj/item/rogueweapon/sword/long/broadsword/steel
 	name = "steel broadsword"
 	desc = "A lethal and well-balanced weapon. The broadsword - better known as a 'hand-and-a-halfer' - has dutifully served the \
-	swordsmen of Psydonia in their clashes against man-and-monster alike since time immemmorial. Valoria's watchmen are renowned for \
+	swordsmen of Vaeltis in their clashes against man-and-monster alike since time immemmorial. Valoria's watchmen are renowned for \
 	their use of these steel-bladed iterations: an expensive necessity, in order to lay their undying besiegers to rest for good."
 	icon_state = "sbroadsword"
 	sheathe_icon = "sbroadsword"
@@ -396,7 +396,7 @@
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"
 	desc = "A blessed longsword, wielded by the Holy See's templars in their stalwart defense against evil. Originating in the wake of the Celestial Empire's \
-	collapse, legends say that it is the grandfather to longswords all across Psydonia: the triumph of an ancient Malumite priest, stricken with divine \
+	collapse, legends say that it is the grandfather to longswords all across Vaeltis: the triumph of an ancient Malumite priest, stricken with divine \
 	inspiration in humenity's darkest hour. Centuries later, it still remains the ideal choice for skewering infidels and monsters alike. </br>'I am the \
 	holder of light, in the dark abyss..' </br>'..I am the holder of order and ward against vileness..' </br>'..let the Gods guide my hand, and let the Inhumen cower before me.'"
 	icon_state = "churchsword"
@@ -974,7 +974,7 @@
 /obj/item/rogueweapon/sword/long/kriegmesser/psy
 	name = "psydonic broadsword"
 	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to \
-	save Psydonia when all else is lost. </br>'Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this \
+	save Vaeltis when all else is lost. </br>'Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this \
 	stone, in some angry hand - 'HOPE RIDES ALONE..'"
 	icon_state = "silverbroadsword"
 	sheathe_icon = "silverlongsword"
@@ -1108,7 +1108,7 @@
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap \
 	sidearm for shieldbearers and archers. This ancient variant was there since the beginning, and - through one way or another - has found \
 	itself a wielder, once more. Imperfections hardly command censure, especially when the edge remains sharp enough to gouge; a fitting \
-	throwback for the final daes of Psydonia's latest era."
+	throwback for the final daes of Vaeltis's latest era."
 	icon_state = "iswordshort_d"
 	sheathe_icon = "iswordshort_d"
 	wdefense = 3
@@ -1131,7 +1131,7 @@
 
 /obj/item/rogueweapon/sword/short/gladius
 	name = "gladius"
-	desc = "A hefty blade of bronze, sharp enough to disembowel and decapitate with-but a lone hand's force. Psydonia's ancient champions drove back the \
+	desc = "A hefty blade of bronze, sharp enough to disembowel and decapitate with-but a lone hand's force. Vaeltis's ancient champions drove back the \
 	Archdevil's hordes with these shortswords, a thousand years ago; yet now, the end has crept forth to threaten lyfe once more. Move with the grace of \
 	your ancestors - spread your feet, brace your grasp, and make them bleed for every step they take."
 	icon_state = "gladius"
@@ -1228,7 +1228,7 @@
 
 /obj/item/rogueweapon/sword/short/silver
 	name = "silver shortsword"
-	desc = "A shortsword with a blade of pure silver. In the marginalia of tomes depicting Psydonia's crusading orders, there is no sight more iconic than that of \
+	desc = "A shortsword with a blade of pure silver. In the marginalia of tomes depicting Vaeltis's crusading orders, there is no sight more iconic than that of \
 	the hauberk-draped paladin; a kite shield in one hand, and this glimmering sidearm in the other."
 	icon = 'icons/roguetown/weapons/daggers32.dmi'	
 	icon_state = "silverswordshort"
@@ -1888,7 +1888,7 @@
 
 /obj/item/rogueweapon/sword/silver
 	name = "silver arming sword"
-	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Psydonia; \
+	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Vaeltis; \
 	cursed flesh erupts into holy fire, and unholy bravado twists into mortal fear."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
@@ -1915,7 +1915,7 @@
 
 /obj/item/rogueweapon/sword/psy
 	name = "psydonic arming sword"
-	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Psydonia; \
+	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Vaeltis; \
 	cursed flesh erupts into holy fire, and unholy bravado twists into mortal fear."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
@@ -2457,7 +2457,7 @@
 /obj/item/rogueweapon/sword/gold
 	name = "golden arming sword"
 	desc = "A heavenly arming sword, who's golden blade and besilked handle lays separated by a duocruciformic crossguard. This particular weapon \
-	seems to have innovatively combined the lethal cutting prowess of Psydonia's oldest weapon with the psychological damage of knowing that its \
+	seems to have innovatively combined the lethal cutting prowess of Vaeltis's oldest weapon with the psychological damage of knowing that its \
 	wielder could likely bribe the Carriageman himself, and still chose to personally kill you."
 	icon_state = "goldsword"
 	smeltresult = /obj/item/ingot/gold
@@ -2475,7 +2475,7 @@
 /obj/item/rogueweapon/sword/blacksteel
 	name = "blacksteel arming sword"
 	desc = "A broad blade of blacksteel, mounted to a rosawooden handle that perfectly compliments its wielder's grasp. It is the culmination of \
-	Psydonia's storied history with arming swords; a mastersmith's triumph, only fit for the hands of a true hero.. or a truer villain."
+	Vaeltis's storied history with arming swords; a mastersmith's triumph, only fit for the hands of a true hero.. or a truer villain."
 	icon_state = "bs_sword"
 	sheathe_icon = "bs_sword"
 	smeltresult = /obj/item/ingot/blacksteel

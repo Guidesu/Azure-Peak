@@ -629,7 +629,7 @@
 /area/rogue/under/tomb/indoors/church)
 "xM" = (
 /obj/structure/closet/crate/chest/crate,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "yc" = (
@@ -846,8 +846,8 @@
 /obj/item/clothing/cloak/templar/astratan,
 /obj/item/clothing/cloak/tabard/devotee/astrata,
 /obj/item/clothing/cloak/tabard/devotee/astrata,
-/obj/item/clothing/neck/roguetown/psicross/astrata,
-/obj/item/clothing/neck/roguetown/psicross/astrata,
+/obj/item/clothing/neck/roguetown/psicross/auxentius,
+/obj/item/clothing/neck/roguetown/psicross/auxentius,
 /obj/item/clothing/suit/roguetown/shirt/robe/astrata,
 /obj/item/clothing/suit/roguetown/shirt/robe/astrata,
 /obj/item/clothing/head/roguetown/helmet/heavy/astratan,
@@ -1042,8 +1042,8 @@
 /area/rogue/under/tomb/indoors/church)
 "OD" = (
 /obj/structure/closet/crate/chest/crate,
-/obj/item/clothing/neck/roguetown/psicross/necra,
-/obj/item/clothing/neck/roguetown/psicross/astrata,
+/obj/item/clothing/neck/roguetown/psicross/morwenna,
+/obj/item/clothing/neck/roguetown/psicross/auxentius,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "OM" = (

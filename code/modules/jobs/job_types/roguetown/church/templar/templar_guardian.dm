@@ -3,7 +3,7 @@
 	tutorial = "You are heavily armoured temple guardian clad in plate. A holy knight maintaining order wherever he might be."
 	outfit = /datum/outfit/job/roguetown/templar/guardian
 	category_tags = list(CTAG_TEMPLAR)
-	subclass_languages = list(/datum/language/grenzelhoftian)
+	subclass_languages = list(/datum/language/vergenmarkian)
 	maximum_possible_slots = 1
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(

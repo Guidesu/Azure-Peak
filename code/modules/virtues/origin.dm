@@ -10,6 +10,7 @@
 /datum/virtue/origin/auxentia
 	name = "Auxentian"
 	origin_name = "Auxentia"
+	added_languages = list(/datum/language/auxentian)
 	desc = "I originate from the settled heartland of Auxentia, seat of the Vaeltis Compact and home to the Court of Six Seats. Famed for its river-trade, its craft-guilds, and the old stones of the Weeping Idols upon its northern border, Auxentia sits at the center of most worldly affairs - both past and present.<br>"
 	restricted = FALSE
 	origin_desc = "Auxentia is the broad river-plain heartland bound together under the Vaeltis Compact, the covenant by which the Concordat's Court of Six Seats \
@@ -23,6 +24,7 @@
 /datum/virtue/origin/vergenmark
 	name = "Vergenmarker"
 	origin_name = "Vergenmark"
+	added_languages = list(/datum/language/vergenmarkian)
 	desc = "I originate from Vergenmark, the craggy mountain enclave north of Auxentia proper, where the Ordo Iusta once ruled outright before its schism and long retreat. Its people are known for hard doctrine, harder winters, and a memory that does not forgive easily.<br>"
 	origin_desc = "Vergenmark crowns Auxentia's northern border, a knot of craggy peaks and terraced mountain holds that was once the seat of the Ordo Iusta's \
 	rule entire, before a war and schism folded most of Auxentia under the Concordat's Court of Six Seats instead. What remains is a doctrinal enclave still bound \
@@ -36,6 +38,7 @@
 /datum/virtue/origin/ognica
 	name = "Ognican"
 	origin_name = "Ognica"
+	added_languages = list(/datum/language/dvojezemi)
 	desc = "I originate from Ognica, the volcanic western half of Dvojezem, the Severance made land - young, restless, given to Ignatius above all. My people build in ash and rebuild after, and count that a virtue rather than a curse.<br>"
 	origin_desc = "Ognica is the volcanic, ash-black half of Dvojezem, the realm the Severance split from one being into two: Ignatius, god of growth, change, \
 	risk, and fire, and Kamenka, god of stillness, preservation, duty, and stone, once one god before something - no two accounts agree what - tore them apart. \
@@ -49,6 +52,7 @@
 /datum/virtue/origin/kamenrad
 	name = "Kamenradi"
 	origin_name = "Kamenrad"
+	added_languages = list(/datum/language/dvojezemi)
 	desc = "I originate from Kamenrad, the terraced highland half of Dvojezem, the Severance's stiller inheritance - Kamenka's stone rather than Ignatius's fire. My people build to last, and measure a life well-lived by what it leaves standing.<br>"
 	origin_desc = "Kamenrad is the terraced highland peninsula south of volcanic Ognica, the two together making up Dvojezem - one people, split since the \
 	Severance between Ignatius's fire and Kamenka's stone. Kamenrad keeps to stillness: preservation, duty, and the slow, exact work of building terraces that \
@@ -61,6 +65,7 @@
 /datum/virtue/origin/viamedulla
 	name = "Medullan"
 	origin_name = "Via Medulla"
+	added_languages = list(/datum/language/medullan)
 	desc = "I originate from the Marrow Roads of Via Medulla, a fragmented patchwork of free cities bound by trade rather than any single crown. No god's law here goes unquestioned - the Unveiled's heresy runs freer in Via Medulla than anywhere else in Vaeltis, and at least one city has gone fully tithe-free.<br>"
 	origin_desc = "Via Medulla - the Marrow Roads - is not a nation so much as a corridor: a scatter of free cities strung along the trade route between \
 	Auxentia, the sundered lands of Dvojezem, and the sea beyond, none of them answering to a single crown or a single seat of the Concordat. What holds it \
@@ -74,6 +79,7 @@
 /datum/virtue/origin/ostrovia
 	name = "Ostrovian"
 	origin_name = "Ostrovia"
+	added_languages = list(/datum/language/ostrovian)
 	desc = "I originate from Ostrovia, the Tidesworn Isles - an island port-confederation southeast of Auxentia that lives and dies by open sea-lanes. My people keep Viator's roads and Miluše's tides both, and trust the sea long before they trust a crown.<br>"
 	origin_desc = "Ostrovia - the Tidesworn Isles - is a confederation of island ports scattered southeast of Auxentia's coast, bound together less by any \
 	single government than by shared dependence on open sea-lanes and fair trade. No land in Vaeltis is more alarmed by instability elsewhere, since a war on the \

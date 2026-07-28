@@ -4,7 +4,7 @@
 
 /datum/advclass/ranger/twilight_hunter
 	name = "Blackpowder Hunter"
-	tutorial = "As gunpowder becomes more widespread accross Psydonia, so do the Gunslingers - those who earn their living through their skill with those advanced weapons. But you are not one of 'em, you are just a wanderer with the weapon of new times. You are too young or too old to learn properly how to use effectively"
+	tutorial = "As gunpowder becomes more widespread accross Vaeltis, so do the Gunslingers - those who earn their living through their skill with those advanced weapons. But you are not one of 'em, you are just a wanderer with the weapon of new times. You are too young or too old to learn properly how to use effectively"
 	outfit = /datum/outfit/job/roguetown/adventurer/twilight_hunter
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_blackpowderhunter.ogg'
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)

@@ -18,7 +18,7 @@
 	point_cost = 0
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross)
 
-	spell_flags = SPELL_PSYDON //He does not discriminate
+	spell_flags = SPELL_PSYDON //She does not discriminate
 
 //////////////////////////
 // T0 - Freeman's Tools //
@@ -34,7 +34,7 @@
 	button_icon = 'icons/mob/actions/matthiosmiracles.dmi'
 	button_icon_state = "lockpick"
 	name = "Freeman's Tools"
-	desc = "A simple prayer to the Free-God Matthios, for tools of liberation or transaction.<br><br>His will manifests in three forms: gutter-born tricks of want, gilded tools of blessed liberation, or by granting the bases of Malchem, a form of primordial alchemy so impossible it is oft mistaken for sorcery."
+	desc = "A simple prayer to Morwenna in Matthios's old inheritance, for tools of liberation or transaction.<br><br>Her will manifests in three forms: gutter-born tricks of want, gilded tools of blessed liberation, or by granting the bases of Malchem, a form of primordial alchemy so impossible it is oft mistaken for sorcery."
 	associated_skill = /datum/skill/magic/holy
 	click_to_activate = FALSE
 	self_cast_possible = TRUE
@@ -114,16 +114,16 @@
 			m_devotion = 200,
 			m_rank = SKILL_LEVEL_JOURNEYMAN,
 			category = "Gilded Tools",
-			lines = list("Matthios! Chains for the tyrants!", "Matthios! Transact me thy chains!", "Lord of Freedom, chains for the unworthy!")
+			lines = list("Matthios! Chains for the tyrants!", "Matthios! Transact me thy chains!", "Morwenna, chains for the unworthy!")
 		),
 		//enables thieves' cant when worn on neck
 		"Gilded Amulet of Matthios" = list(
-			path = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded,
+			path = /obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded,
 			m_cooldown = 30 MINUTES,
 			m_devotion = 50,
 			m_rank = SKILL_LEVEL_NONE,
 			category = "Gilded Tools",
-			lines = list("#Matthios, let thine will be done.", "#Lord of Exchange, my soul is yours.", "#God of the Stolen Fyre, thou will be done.")
+			lines = list("#Matthios, let thine will be done.", "#Lady of Ledgers, my soul is yours.", "#Lady of the Stolen Fyre, thou will be done.")
 		),
 		//miralchemy mode on
 		"Vial of Firstlaw" = list(
@@ -132,7 +132,7 @@
 			m_devotion = 75,
 			m_rank = SKILL_LEVEL_NOVICE,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 		//turns 10 organic items into 1 rich food of choice (that will often be burned mess or bread if you're not starving to death)
 		"Vial of Kingsfeast Base" = list(
@@ -141,7 +141,7 @@
 			m_devotion = 25,
 			m_rank = SKILL_LEVEL_NOVICE,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 		//basically turns water or fruits into wine, if used with blood or lux instead, becomes Kingsblood
 		"Vial of Kingswine Base" = list(
@@ -150,7 +150,7 @@
 			m_devotion = 25,
 			m_rank = SKILL_LEVEL_NOVICE,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 		//makes you honk shoo mimimi, while restoring energy over time
 		"Vial of Goodnite Base" = list(
@@ -159,7 +159,7 @@
 			m_devotion = 50,
 			m_rank = SKILL_LEVEL_APPRENTICE,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 		//a 4 use vial of mending
 		"Vial of Warsmith Base" = list(
@@ -168,7 +168,7 @@
 			m_devotion = 50,
 			m_rank = SKILL_LEVEL_JOURNEYMAN,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 		// a spicy, explosive, very, very difficult-to-make revive vial, uses all herbs in the world and 1 of any lux type
 		"Vial of Lyfestruth Base" = list(
@@ -177,7 +177,7 @@
 			m_devotion = 100,
 			m_rank = SKILL_LEVEL_EXPERT,
 			category = "Malchem Vials",
-			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lord of Exchange, I shall finish thy work!")
+			lines = list("#Matthios, provide the base, I shall complete thy work!", "#Matthios! Deliver unto me the truth of alchemy!", "#Lady of Ledgers, I shall finish thy work!")
 		),
 	)
 
@@ -274,7 +274,7 @@
 	if(devotion_cost > 0)
 		src.devotion_cost = devotion_cost
 		if(!H.devotion?.check_devotion(src))
-			to_chat(H, span_warning("Your connection to the Free God is faint. Don't ask favors you cannot pay for."))
+			to_chat(H, span_warning("Your connection to the Veiled Ledger is faint. Don't ask favors you cannot pay for."))
 			return FALSE
 
 	// SPAWN ITEM
@@ -309,7 +309,7 @@
 /datum/action/cooldown/spell/matthios/mammonite
 	name = "Mammonite"
 	desc = "Invoke Matthios's name and invest 10 to 200 mammon from your possessions and treasury into your next strike (based on your intent, min. 'Weak', max. 'Strong'). The attack penetrates armor equal to 75% of the mammon spent and grows stronger with the value of the offering. Offering over 80 mammon in one strike has a chance to obliterate the mindless."
-	fluff_desc = "The faithful tell of a merchant cornered by death, bereft of allies, steel, and hope. With nothing left but his fortune and his faith in Matthios, he offered both in desperate prayer. The coins vanished, and in their place came strength enough to fell those who would have slain him. Thus Mammonite serves as a reminder that wealth is never truly powerless in the hands of the devoted. Through greed, you proliferate His ambition, His name."
+	fluff_desc = "The faithful tell of a merchant cornered by death, bereft of allies, steel, and hope. With nothing left but his fortune, he offered it up in desperate prayer to Morwenna, who never truly forgives a ledger unpaid. The coins vanished, and in their place came strength enough to fell those who would have slain him. Thus Mammonite serves as a reminder that wealth is never truly powerless in the hands of the devoted - only ever borrowed against a debt that comes due eventually."
 
 	button_icon_state = "mammonite"
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -343,7 +343,7 @@
 		return FALSE
 
 	if(H.has_status_effect(/datum/status_effect/buff/mammonite))
-		to_chat(H, span_warning("Matthios' truth already lays claim to my next strike."))
+		to_chat(H, span_warning("Morwenna's ledger already lays claim to my next strike."))
 		return FALSE
 
 	var/bank = 0
@@ -358,7 +358,7 @@
 	var/max_invest = range[2]
 
 	if(total < min_invest)
-		to_chat(H, span_warning("I lack the wealth to invoke Matthios' favor... ([min_invest] mammon needed for [H.rmb_intent.name] stance.)"))
+		to_chat(H, span_warning("I lack the wealth to invoke Morwenna's favor... ([min_invest] mammon needed for [H.rmb_intent.name] stance.)"))
 		return FALSE
 
 	var/mammon_used = rand(min_invest, max_invest)
@@ -493,7 +493,7 @@
 
 /datum/action/cooldown/spell/matthios/barter
 	name = "Barter"
-	desc = "Offer the targeted item to your patron, in exchange for a sum of mammon, scaling with my expertise in holy skill. The capricious nature of Matthios makes this a poor value exchange, all in all."
+	desc = "Offer the targeted item to your patron, in exchange for a sum of mammon, scaling with my expertise in holy skill. The capricious nature of Morwenna's ledger makes this a poor value exchange, all in all."
 	button_icon_state = "barter"
 	sound = null
 
@@ -838,7 +838,7 @@
 		if(HAS_TRAIT(target, TRAIT_NOBLE))
 			totalvalue += 101 // We're ALWAYS going to do a medium level smite minimum to nobles.
 		if(HAS_TRAIT(target, TRAIT_FREEMAN))
-			totalvalue -= 50 // We do little bit less damage to other Matthiosites
+			totalvalue -= 50 // We do little bit less damage to other Freemen
 		switch(totalvalue)
 			if(0 to 10)
 				to_chat(owner, "<font color='yellow'>[target] one has no wealth to hold against them.</font>")
@@ -860,7 +860,7 @@
 				target.Stun(20)
 				playsound(owner, 'sound/magic/churn.ogg', 100, TRUE)
 			if(101 to 200)
-				owner.say("The Free-God rebukes!")
+				owner.say("The Veiled Ledger rebukes!")
 				target.visible_message(span_danger("[target] is burned by holy light!"), span_userdanger("I feel the weight of my wealth tearing at my soul!"))
 				target.adjustFireLoss(100)
 				target.adjust_fire_stacks(7, /datum/status_effect/fire_handler/fire_stacks/divine)
@@ -868,7 +868,7 @@
 				target.ignite_mob()
 				playsound(owner, 'sound/magic/churn.ogg', 100, TRUE)
 			if(201 to 500)
-				owner.say("The Free-God rebukes!")
+				owner.say("The Veiled Ledger rebukes!")
 				target.visible_message(span_danger("[target] is burned by holy light!"), span_userdanger("I feel the weight of my wealth tearing at my soul!"))
 				target.adjustFireLoss(120)
 				target.adjust_fire_stacks(9, /datum/status_effect/fire_handler/fire_stacks/divine)
@@ -877,7 +877,7 @@
 				playsound(owner, 'sound/magic/churn.ogg', 100, TRUE)
 			if(500 to 2500)
 				target.visible_message(span_danger("[target] is smited with holy light!"), span_userdanger("I feel the weight of my wealth rend my soul apart!"))
-				owner.say("Your final transaction! The Free-God rebukes!!")
+				owner.say("Your final transaction! The Veiled Ledger rebukes!!")
 				target.Stun(60)
 				target.emote("agony")
 				target.adjustFireLoss(140)
@@ -978,7 +978,7 @@
 /datum/action/cooldown/spell/matthios/raze // Shamelessly steals Wither's cool code / Originally from Racial Perk PR for drakians
 	name = "Raze"
 	desc = "Exhale a cone of stolen fyre before you, scorching enemies and igniting the ground. Damage increases with Holy Skill. These flames are also strong enough to turn unworthy corpses into ashes and dust."
-	fluff_desc = "Some legends claim Matthios to be the origin of dragonkind itself. Whether innate gift or Malchem synthesis, most worshippers of the Free God can naturally give voice to His stolen fyre. A gentle puff of a whisper to some, a roaring inferno to others."
+	fluff_desc = "Some legends claim Matthios, in the age before his memory was folded into Morwenna's ledger, to be the origin of dragonkind itself. Whether innate gift or Malchem synthesis, most worshippers of the Veiled Ledger can naturally give voice to that stolen fyre. A gentle puff of a whisper to some, a roaring inferno to others."
 	button_icon_state = "breath"
 	sound = 'sound/misc/bamf.ogg'
 	charge_sound = 'sound/magic/charging_fire.ogg'

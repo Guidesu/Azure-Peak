@@ -135,16 +135,16 @@
 		/datum/language/hellspeak,
 		/datum/language/draconic,
 		/datum/language/celestial,
-		/datum/language/raneshi,
-		/datum/language/grenzelhoftian,
-		/datum/language/kazengunese,
-		/datum/language/lingyuese,
-		/datum/language/etruscan,
-		/datum/language/gronnic,
-		/datum/language/otavan,
-		/datum/language/aavnic,
+		/datum/language/ostrovian,
+		/datum/language/vergenmarkian,
+		/datum/language/ostrovian,
+		/datum/language/ostrovian,
+		/datum/language/medullan,
+		/datum/language/dvojezemi,
+		/datum/language/medullan,
+		/datum/language/dvojezemi,
 		/datum/language/undercommon,
-		/datum/language/oldazurian,
+		/datum/language/auxentian,
 		/datum/language/abyssal,
 		/datum/language/beast,
 		/datum/language/undead,
@@ -482,7 +482,7 @@
 	if(HAS_TRAIT(user, TRAIT_CLERGY))
 		ret.Insert(3, span_notice("Vile Archdevil-spawn! Binding such things is forbidden! Brook not daemonbinders!"))
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))
-		ret.Insert(3, span_notice("Summoning daemons to kill is one thing. Bringing one to Psydonia in full is blatant disrespect of His sacrifice! Brook not daemonbinders!"))
+		ret.Insert(3, span_notice("Summoning daemons to kill is one thing. Bringing one to Vaeltis in full is blatant disrespect of His sacrifice! Brook not daemonbinders!"))
 	return ret
 
 /mob/living/simple_animal/pet/familiar/infernal/Life()

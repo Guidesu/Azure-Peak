@@ -145,7 +145,7 @@
 	name = "caramel"
 	icon = 'modular/Neu_Food/icons/others/sweet.dmi'
 	icon_state = "caramel3"
-	desc = "Glassy droppings of tallow-fried sugar, oft-divvied out amongst the youth by Psydonia's wisest and kindliest elders."
+	desc = "Glassy droppings of tallow-fried sugar, oft-divvied out amongst the youth by Vaeltis's wisest and kindliest elders."
 	faretype = FARE_FINE
 	fried_type = null
 	bitesize = 3
@@ -169,7 +169,7 @@
 	icon = 'modular/Neu_Food/icons/others/sweet.dmi'
 	icon_state = "dragee3"
 	desc = "Glassy droppings of tallow-fried rocknuts, coated in sugary shells and laced with herbal medicine. Such candies are popular \
-	amongst Psydonia's youth - both as a reward to Otavan children for remembering their scripture, and as a remedy to childhood ailments."
+	amongst Vaeltis's youth - both as a reward to Otavan children for remembering their scripture, and as a remedy to childhood ailments."
 	faretype = FARE_LAVISH
 	fried_type = null
 	bitesize = 3

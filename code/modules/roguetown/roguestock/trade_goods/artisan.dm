@@ -13,7 +13,7 @@
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_DENDOR_ESSENCE
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/natural/cured/essence
 
 /datum/trade_good/viscera
@@ -22,7 +22,7 @@
 	category = TRADE_CATEGORY_ANIMAL
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_VISCERA
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/viscera
 
 /datum/trade_good/sinew
@@ -31,7 +31,7 @@
 	category = TRADE_CATEGORY_ANIMAL
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_SINEW
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/sinew
 
 /datum/trade_good/trollhorn
@@ -40,7 +40,7 @@
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_DENDOR_ESSENCE
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/horn
 
 /datum/trade_good/tailbone
@@ -49,5 +49,5 @@
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
 	base_price = SELLPRICE_DENDOR_ESSENCE
-	source_region_id = TRADE_REGION_BLACKHOLT
+	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/bone

@@ -35,21 +35,18 @@
 	increased. Most healing Miracles cannot affect devoted Psydonians.\
 	<br><br><b>Patron Conditions:</b>\
 	<ul>\
-	<li><b>Abyssor:</b> +60% healing when the target is standing in water.</li>\
-	<li><b>Astrata:</b> +80% healing during daytime. Up to +100% if the target has the Noble trait (does not stack with daytime).</li>\
-	<li><b>Dendor:</b> Up to +80% from nearby natural objects (grass, trees, mushrooms, soil). Each wise tree grants an additional +60%.</li>\
-	<li><b>Eora:</b> +100% if the target is a pacifist. +60% if the caster is also a pacifist. Up to +160% total.</li>\
-	<li><b>Malum:</b> Up to +100% scaling with nearby fire sources (torches, campfires, hearths, candles, forges).</li>\
-	<li><b>Necra:</b> +100% when the target is below 25% health. +50% if the caster has Necran Mists active. Up to +150% total.</li>\
-	<li><b>Noc:</b> +40% healing during nighttime.</li>\
-	<li><b>Pestra:</b> +40% when the target is laying down (not buckled). Also restores blood and heals toxin damage.</li>\
-	<li><b>Ravox:</b> +40% if the target is using a strong attack intent. +20% if holding a weapon. +80% with blood restoration if cast on self while at low blood (30s cooldown). Up to +140% total.</li>\
-	<li><b>Xylix:</b> 50% chance of a random +40% to +100% bonus.</li>\
-	<li><b>Undivided:</b> Always +80% with no conditions.</li>\
-	<li><b>Baotha:</b> +20% if the target is drunk or on drugs. +20% if experiencing withdrawal. Up to +80% additional from wound pain and bleeding. Up to +120% total.</li>\
-	<li><b>Graggar:</b> Up to +100% scaling with nearby blood decals.</li>\
-	<li><b>Matthios:</b> +100% if the target has the Freeman trait.</li>\
-	<li><b>Zizo:</b> Up to +200% scaling with nearby bones and bone bundles.</li>\
+	<li><b>Auxentius:</b> +80% healing during daytime. Up to +100% if the target has the Noble trait (does not stack with daytime). +40% if the target is using a strong attack intent. +20% if holding a weapon. +80% with blood restoration if cast on self while at low blood (30s cooldown).</li>\
+	<li><b>Miluše:</b> +40% healing during nighttime. +100% if the target is a pacifist. +60% if the caster is also a pacifist. Additional bonus from worn flower crowns.</li>\
+	<li><b>Wulfric:</b> +60% healing when the target is standing in water.</li>\
+	<li><b>Morwenna:</b> +100% when the target is below 25% health. +50% if the caster has Necran Mists active. +100% if the target has the Freeman trait.</li>\
+	<li><b>Viator:</b> 50% chance of a random +40% to +100% bonus.</li>\
+	<li><b>Handwerra:</b> Up to +100% scaling with nearby fire sources (torches, campfires, hearths, candles, forges). +40% when the target is laying down (not buckled). Also restores blood and heals toxin damage.</li>\
+	<li><b>Ignatius:</b> Up to +80% from nearby natural objects (grass, trees, mushrooms, soil). Each wise tree grants an additional +60%.</li>\
+	<li><b>Volkovoi:</b> Up to +100% scaling with nearby blood decals.</li>\
+	<li><b>Hausvette:</b> +20% if the target is drunk or on drugs. +20% if experiencing withdrawal. Up to +80% additional from wound pain and bleeding.</li>\
+	<li><b>Praecursor:</b> Governed by the ENDURE/PRAYER/RESPITE/PERSIST rites rather than this Miracle.</li>\
+	<li><b>Custodius:</b> Always +80% with no conditions.</li>\
+	<li><b>Aurelian:</b> Up to +200% scaling with nearby bones and bone bundles.</li>\
 	</ul>"
 	fluff_desc = "The lyfeline of any devotee, channeling restorative energies of their worshipped diety within mortal realm."
 	button_icon_state = "heal"
@@ -328,7 +325,7 @@
 	name = "Lyfeblood Transfer"
 	desc = "Transfers blood from the caster to the chosen target at a steady rate, staving off the lethal effects of blood loss. The amount of \
 	blood transfered with each heartbeat scales with the caster's Holy skill. </br>Most healing Miracles cannot affect devoted Psydonians."
-	fluff_desc = "Manipulation of lyfeblood is often seen as heretical and taboo thanks to its association with Lyckers & Liches. Due to its usefulness however this technique is one of the few sanctioned to be taught across Psydonia."
+	fluff_desc = "Manipulation of lyfeblood is often seen as heretical and taboo thanks to its association with Lyckers & Liches. Due to its usefulness however this technique is one of the few sanctioned to be taught across Vaeltis."
 	button_icon_state = "bloodheal"
 	sound = 'sound/magic/bloodheal.ogg'
 
@@ -425,7 +422,7 @@
 /datum/action/cooldown/spell/miracle/ignition
 	name = "Ignition"
 	desc = "Ignites target, living or object."
-	fluff_desc = "The first gift to men, a sliver of Her radiance at fingertips of those devoted to Her wae of lyfe. Some sae it was Matthios who forced Astrata's hand in relinquishing such force to lowly mortals."
+	fluff_desc = "The first gift to men, a sliver of His radiance at fingertips of those devoted to His wae of lyfe. Some sae it was a debt owed to Morwenna's ledger that forced Auxentius's hand in relinquishing such force to lowly mortals."
 	button_icon_state = "ignite"
 	sound = 'sound/items/firelight.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW

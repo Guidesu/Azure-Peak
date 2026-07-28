@@ -583,7 +583,7 @@
 	var/is_lethal = TRUE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/priest
-	desc = "Burn out the rot by Astratas will."
+	desc = "Burn out the rot by Auxentius's will."
 	is_lethal = FALSE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/cast(list/targets, mob/living/user)

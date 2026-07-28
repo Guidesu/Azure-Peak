@@ -424,7 +424,7 @@
 
 /obj/item/rogueweapon/huntingknife/combat/silver
 	name = "silver hunting knife"
-	desc = "A rare descendant of the Grenzelhoftian seax, gifted a silvered edge that is destined to stake the foulest unbeating hearts that Psydonia's yet \
+	desc = "A rare descendant of the Grenzelhoftian seax, gifted a silvered edge that is destined to stake the foulest unbeating hearts that Vaeltis's yet \
 	to witness. </br>''Come,' he said, 'come, we must see and act. Devils or no devils, or all the devils at once, it matters not; we fight them all the same.'"
 	force = 15
 	icon_state = "silverseax"

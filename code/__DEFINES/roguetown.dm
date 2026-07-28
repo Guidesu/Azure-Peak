@@ -586,14 +586,14 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CLASS_CAT_BATTLEMAGE "Battlemage"
 
 //Mercenary categories
-#define CLASS_CAT_ETRUSCA "Etrusca"
-#define CLASS_CAT_GRENZELHOFT "Grenzelhoft"
-#define CLASS_CAT_NALEDI "Naledi"
-#define CLASS_CAT_RANESHENI "Ranesheni"
-#define CLASS_CAT_AAVNR "Aavnr"
-#define CLASS_CAT_GRONN "Gronn"
-#define CLASS_CAT_OTAVA "Otava"
-#define CLASS_CAT_KAZENGUN "Kazengun"
+#define CLASS_CAT_ETRUSCA "Via Medulla"
+#define CLASS_CAT_GRENZELHOFT "Vergenmark"
+#define CLASS_CAT_NALEDI "Via Medulla"
+#define CLASS_CAT_RANESHENI "Ostrovia"
+#define CLASS_CAT_AAVNR "Kamenrad"
+#define CLASS_CAT_GRONN "Ognica"
+#define CLASS_CAT_OTAVA "Via Medulla"
+#define CLASS_CAT_KAZENGUN "Ostrovia"
 #define CLASS_CAT_RACIAL "Race Exclusive" //Used for black oaks, grudgebearer dwarves, etc.
 
 //Migrant categories

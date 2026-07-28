@@ -66,7 +66,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/auxentia
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/flashlight/flare/torch
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -186,7 +186,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
 	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
 	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/auxentia
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/flashlight/flare/torch
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -268,7 +268,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/auxentia
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/flashlight/flare/torch
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor

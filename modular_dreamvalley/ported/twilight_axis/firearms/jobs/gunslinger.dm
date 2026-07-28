@@ -5,7 +5,7 @@
 
 /datum/advclass/mercenary/twilight_gunslinger
 	name = "Gunslinger"
-	tutorial = "As gunpowder becomes more widespread accross Psydonia, so do the Gunslingers - those who earn their living through their skill with those advanced weapons. Excelling both with your pistol and your trusty saber, you count yourself as one of these fine gentlemen, travelling the land with but a gun in your hand."
+	tutorial = "As gunpowder becomes more widespread accross Vaeltis, so do the Gunslingers - those who earn their living through their skill with those advanced weapons. Excelling both with your pistol and your trusty saber, you count yourself as one of these fine gentlemen, travelling the land with but a gun in your hand."
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/mercenary/twilight_gunslinger
 	maximum_possible_slots = 2
@@ -77,7 +77,7 @@
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 			backpack_contents = list(/obj/item/roguekey/mercenary = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 			H.merctype = 10
-			H.grant_language(/datum/language/otavan)
+			H.grant_language(/datum/language/vergenmarkian)
 
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt

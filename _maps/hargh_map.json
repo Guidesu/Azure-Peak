@@ -1,0 +1,13 @@
+{
+    "map_name": "Hargh",
+    "map_path": "map_files/gen_1",
+    "map_file": ["hargh_map.dmm"],
+    "traits": [{"Name": "Hargh", "Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}],
+    "space_empty_levels": 0,
+    "space_ruin_levels": 0,
+    "shuttles": {
+        "cargo": "cargo_rogue",
+        "whiteship": "whiteship_box",
+        "emergency": "emergency_rogue"
+    }
+}

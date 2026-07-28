@@ -1,7 +1,7 @@
 
 /obj/item/reagent_containers/food/snacks/eoran_aril
-	name = "eoran aril"
-	desc = "A glowing seed from the fruit of Eora. It pulses with divine energy."
+	name = "miluvane aril"
+	desc = "A glowing seed from the fruit of Miluše. It pulses with divine energy."
 	icon = 'icons/obj/items/eora_pom.dmi'
 	dropshrink = 0.7
 	icon_state = "auric"
@@ -15,7 +15,7 @@
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/attack(mob/living/M, mob/living/user, def_zone)
 	if(M != user && !altruistic)
-		to_chat(user, span_info("The seed glows hot with Eora's rage as you try to forcefully feed her gift to another."))
+		to_chat(user, span_info("The seed glows hot with Miluše's rage as you try to forcefully feed her gift to another."))
 		return
 	. = ..()
 
@@ -121,7 +121,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/eora_grace
 
 /atom/movable/screen/alert/status_effect/eora_grace
-	name = "Eora's grace"
+	name = "Miluše's grace"
 	desc = "You feel beautiful."
 
 /datum/status_effect/buff/eora_grace/on_apply()
@@ -172,7 +172,7 @@
 	name = "fractal aril"
 	desc = "A geometrically perfect seed that hurts to look at."
 	icon_state = "fractal"
-	effect_desc = "At a cost to constitution, Eora's mercy will melt unsightfulness away..."
+	effect_desc = "At a cost to constitution, Miluše's mercy will melt unsightfulness away..."
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/fractal/apply_effects(mob/living/eater)
 	if(ishuman(eater))
@@ -200,7 +200,7 @@
 		var/mob/living/carbon/human/H = eater
 
 		if(H.patron.type == /datum/patron/concordat/miluse)
-			// Eora does not appreciate her followers ignoring her most sacred wishes.
+			// Miluše does not appreciate her followers ignoring her most sacred wishes.
 			H.apply_status_effect(/datum/status_effect/debuff/eoran_wilting)
 		else
 			var/datum/status_effect/buff/ashen_aril/existing_effect = H.has_status_effect(/datum/status_effect/buff/ashen_aril)
@@ -218,7 +218,7 @@
 	name = "ochre aril"
 	desc = "A blood-red seed that seems to pulse menacingly."
 	icon_state = "ochre"
-	effect_desc = "Return two nearby corpses in view from necra's embrace, at the cost of your own life."
+	effect_desc = "Return two nearby corpses in view from Morwenna's embrace, at the cost of your own life."
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/ochre/apply_effects(mob/living/carbon/eater)
 	if(ishuman(eater))
@@ -302,7 +302,7 @@
 		target.visible_message(span_warning("The magic falters, and nothing happens."))
 		return FALSE
 
-//For now this is just artifical lux. But this may make the user/receiver indebted to eora eventually.
+//For now this is just artifical lux. But this may make the user/receiver indebted to Miluše eventually.
 //This is meant to be given guaranteed with T4 pommes for priests but given we don't have eoran priests yet I will implement this when we do.
 /obj/item/reagent_containers/lux/eoran_aril
 	name = "incandescent aril"
@@ -324,7 +324,7 @@
 
 /obj/item/reagent_containers/eoran_seed
 	name = "Satin aril"
-	desc = "A silky soft seed from Eora's sacred tree. It can be used to propagate her gift in fertile soil."
+	desc = "A silky soft seed from Miluše's sacred tree. It can be used to propagate her gift in fertile soil."
 	icon = 'icons/obj/items/eora_pom.dmi'
 	icon_state = "roseate"
 

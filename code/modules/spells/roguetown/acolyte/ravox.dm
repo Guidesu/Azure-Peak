@@ -123,7 +123,7 @@
 	secondary_resource_cost = SPELLCOST_CANTRIP
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("By Ravox, stand and face me!")
+	invocations = list("By Auxentius, stand and face me!")
 
 	charge_required = TRUE
 	charge_time = 1 SECONDS
@@ -157,7 +157,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/ravox_provocation
 	name = "Provocation"
-	desc = "All hostile creatures are targeting me! For Ravox!"
+	desc = "All hostile creatures are targeting me! For Auxentius!"
 	icon_state = "provocation"
 
 /datum/status_effect/buff/ravox_provocation
@@ -178,7 +178,7 @@
 	. = ..()
 
 /datum/status_effect/buff/ravox_prv/on_apply(assocskill)
-	to_chat(owner, span_info("For Ravox!"))
+	to_chat(owner, span_info("For Auxentius!"))
 	. = ..()
 
 
@@ -189,7 +189,7 @@
 /datum/action/cooldown/spell/ravox/strikeoraegis
 	name = "Tools of Justice"
 	desc = "Choose between Justicar's Judgement (Divine Strike) or Justicar's Aegis (Shield)."
-	fluff_desc = "The first gift to men, a sliver of Her radiance at fingertips of those devoted to Her wae of lyfe. Some sae it was Matthios who forced Astrata's hand in relinquishing such force to lowly mortals."
+	fluff_desc = "The first gift to men, a sliver of His radiance at fingertips of those devoted to His wae of lyfe. Some sae it was Morwenna who forced Auxentius's hand in relinquishing such force to lowly mortals."
 	button_icon_state = "judgement_aegis"
 
 	click_to_activate = FALSE
@@ -251,7 +251,7 @@
 	secondary_resource_cost = SPELLCOST_CANTRIP
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("By Ravox, face judgement!")
+	invocations = list("By Auxentius, face judgement!")
 
 	charge_required = FALSE
 	cooldown_time = 1 MINUTES
@@ -322,7 +322,7 @@
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/debuff/judgement
-	name = "Ravox's Burden"
+	name = "Auxentius's Burden"
 	desc = "My arms and legs are restrained by divine chains!"
 	icon_state = "restrained"
 
@@ -363,7 +363,7 @@
 
 	secondary_resource_cost = SPELLCOST_CONJURE
 
-	invocations = list("Ravox, grant me your bulwark!")
+	invocations = list("Auxentius, grant me your bulwark!")
 	invocation_type = INVOCATION_SHOUT
 
 	charge_required = TRUE
@@ -456,7 +456,7 @@
 	secondary_resource_cost = SPELLCOST_CANTRIP
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("I stand, by Ravox!")
+	invocations = list("I stand, by Auxentius!")
 
 	charge_required = FALSE
 	cooldown_time = 1 MINUTES
@@ -488,7 +488,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/withstand
 	name = "Withstand"
-	desc = "I hold fast for Ravox."
+	desc = "I hold fast for Auxentius."
 	icon_state = "withstand"
 
 /datum/status_effect/withstand
@@ -503,7 +503,7 @@
 
 /datum/action/cooldown/spell/ravox/challenge
 	name = "Challenge"
-	desc = "Bring an opponent with you to Ravoxian Trial. Engage in 3 minute combat."
+	desc = "Bring an opponent with you to Auxentian Trial. Engage in 3 minute combat."
 	button_icon_state = "ravoxchallenge"
 	sound = 'sound/magic/battletrance.ogg'
 
@@ -516,7 +516,7 @@
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("By Ravox, I challenge you!!")
+	invocations = list("By Auxentius, I challenge you!!")
 
 	charge_required = TRUE
 	charge_time = 3 SECONDS
@@ -584,13 +584,13 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 	do_teleport(target, challengedspawnpoint)
 	GLOB.arenafolks += user
 	GLOB.arenafolks += target
-	storedchallengerturf.visible_message((span_cult("[user] calls upon the Ravoxian rite of Trial! [target] and [user] are brought to Trial!")))
+	storedchallengerturf.visible_message((span_cult("[user] calls upon the Auxentian rite of Trial! [target] and [user] are brought to Trial!")))
 
 	new /obj/structure/fluff/ravox/challenger/recall(storedchallengerturf)
 	new /obj/structure/fluff/ravox/challenged/recall(storedchallengedturf)
 
 	to_chat(user, span_userdanger("THE TRIAL IS CALLED, IMPRESS US, PROSECUTOR!!"))
-	to_chat(target, span_userdanger("A TRIAL OF RAVOX BEGINS. IMPRESS US, DEFENDANT!!"))
+	to_chat(target, span_userdanger("A TRIAL OF AUXENTIUS BEGINS. IMPRESS US, DEFENDANT!!"))
 
 	user.cmode_change('sound/music/ravoxarena.ogg')
 	target.cmode_change('sound/music/ravoxarena.ogg')
@@ -648,13 +648,13 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 				var/mob/living/M = AM
 				M.Paralyze(10)
 				M.adjustBruteLoss(20)
-				to_chat(M, "<span class='danger'>You're slammed into the floor by Ravox's strength!!</span>")
+				to_chat(M, "<span class='danger'>You're slammed into the floor by Auxentius's strength!!</span>")
 		else
 			new sparkle_path(get_turf(AM), get_dir(src, AM)) //created sparkles will disappear on their own
 			if(isliving(AM))
 				var/mob/living/M = AM
 				M.Paralyze(5)
-				to_chat(M, "<span class='danger'>You're thrown back by Ravox's strength!!</span>")
+				to_chat(M, "<span class='danger'>You're thrown back by Auxentius's strength!!</span>")
 			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromflag - 2, 0, distfromflag))), 3, maxthrow))), 1,null, force = repulse_force)
 
 
@@ -698,7 +698,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("Ravox deems your persistence worthy!")
+	invocations = list("Auxentius deems your persistence worthy!")
 
 	charge_required = FALSE
 	cooldown_time = 30 SECONDS
@@ -717,7 +717,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		var/mob/living/target = cast_on
 		if(target.mob_biotypes & MOB_UNDEAD)
 			if(spell_guard_check(target, TRUE))
-				target.visible_message(span_warning("[target] resists Ravox's judgment!"))
+				target.visible_message(span_warning("[target] resists Auxentius's judgment!"))
 				return TRUE
 			if(ishuman(target)) //BLEED AND PAIN
 				var/mob/living/carbon/human/human_target = target
@@ -725,7 +725,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 				phy.bleed_mod *= 1.5
 				phy.pain_mod *= 1.5
 				addtimer(CALLBACK(src, PROC_REF(restore_modifiers), phy), 19 SECONDS)
-				human_target.visible_message(span_danger("[target]'s wounds become inflamed as their vitality is sapped away!"), span_userdanger("Ravox inflames my wounds and weakens my body!"))
+				human_target.visible_message(span_danger("[target]'s wounds become inflamed as their vitality is sapped away!"), span_userdanger("Auxentius inflames my wounds and weakens my body!"))
 				return TRUE
 			return FALSE
 
@@ -734,7 +734,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		for(var/obj/effect/decal/cleanable/blood/O in oview(5, target))
 			situational_bonus = min(situational_bonus + 0.015, 1)
 		if(situational_bonus > 0.25)
-			to_chat(owner, "Channeling Ravox's power is easier in these conditions!")
+			to_chat(owner, "Channeling Auxentius's power is easier in these conditions!")
 
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
@@ -768,7 +768,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 /datum/action/cooldown/spell/ravox/battlecry
 	name = "Call to Arms"
 	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution while taking away willpower and constitution from ascendant worshippers."
-	fluff_desc = "A yell rings out across the battlefield! Your sergeant bellows a final order before they're claimed by Necra's grasp - leave none standing before the might of Ravox! So long as you draw breath, there shall be no defeat."
+	fluff_desc = "A yell rings out across the battlefield! Your sergeant bellows a final order before they're claimed by Morwenna's grasp - leave none standing before the might of Auxentius! So long as you draw breath, there shall be no defeat."
 	button_icon_state = "call_to_arms"
 	sound = 'sound/magic/battle_cry.ogg'
 
@@ -780,7 +780,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
 	invocation_type = INVOCATION_SHOUT
-	invocations = list("By Ravox, stand and fight!")
+	invocations = list("By Auxentius, stand and fight!")
 
 	charge_required = FALSE
 	cooldown_time = 5 MINUTES
@@ -798,7 +798,7 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
 			continue
 		if(istype(target.patron, /datum/patron/tribunal/praecursor))
-			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
+			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Praecursor's faithful!
 			continue
 		if(istype(target.patron, /datum/patron/oldkin/klokner))
 			to_chat(target, span_danger("You feel... nothing..")) //No effect on Vheslynites, fear them.
@@ -828,6 +828,6 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 	duration = 3 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/call_to_arms
-	name = "Ravox's Call to Arms"
+	name = "Auxentius's Call to Arms"
 	desc = "His voice keeps ringing in your ears, rocking your soul.."
 	icon_state = "call_to_arms_negative"

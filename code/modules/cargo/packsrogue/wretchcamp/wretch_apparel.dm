@@ -9,21 +9,21 @@
 	name = "Decrepid Inverted Psicross"
 	cost = 10 //ZIZO. ZIZO. ZIZO.
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
+					/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy,
 				)
 
 /datum/supply_pack/rogue/apparel_inhumen/crosses/inhumenpantheonzizo
 	name = "Inverted Psicross"
 	cost = 15
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/inhumen/iron,
+					/obj/item/clothing/neck/roguetown/psicross/aurelian/iron,
 				)
 
 /datum/supply_pack/rogue/apparel_inhumen/crosses/inhumenpantheonmatthios
 	name = "Matthiosian Amulet"
 	cost = 20 //Solid gold
 	contains = list(
-					/obj/item/clothing/neck/roguetown/psicross/morwenna,
+					/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios,
 				)
 
 /datum/supply_pack/rogue/apparel_inhumen/crosses/inhumenpantheongraggar

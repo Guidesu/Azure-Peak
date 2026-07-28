@@ -30,7 +30,7 @@
 		if(3)
 			beltl = /obj/item/storage/belt/rogue/pouch/alchemy
 		if(4)
-			beltl = /obj/item/clothing/neck/roguetown/psicross/inhumen/g
+			beltl = /obj/item/clothing/neck/roguetown/psicross/aurelian/g
 		if(5)
 			beltl = /obj/item/book/rogue/arcyne
 		if(6)
@@ -46,7 +46,7 @@
 		if(3)
 			beltr = /obj/item/storage/belt/rogue/pouch/alchemy
 		if(4)
-			beltr = /obj/item/clothing/neck/roguetown/psicross/inhumen/g
+			beltr = /obj/item/clothing/neck/roguetown/psicross/aurelian/g
 		if(5)
 			beltr = /obj/item/book/rogue/knowledge1
 		if(6)
@@ -145,7 +145,7 @@
 	//Head Gear
 	head = /obj/item/clothing/head/roguetown/roguehood/shroudwhite/evil_ah_ah
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
-	neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
+	neck = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy
 	//wrist Gear
 	wrists = /obj/item/clothing/wrists/roguetown/allwrappings/scarlet
 	gloves = /obj/item/clothing/gloves/roguetown/leather

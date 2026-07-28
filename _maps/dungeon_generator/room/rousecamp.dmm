@@ -116,7 +116,7 @@
 /area/rogue/under/tomb/indoors)
 "nJ" = (
 /obj/structure/table/church/m,
-/obj/item/clothing/neck/roguetown/psicross/ravox,
+/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/cave/lava)
 "nR" = (

@@ -4,7 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_SMALL)
 	outfit = /datum/outfit/job/roguetown/mercenary/routier
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	class_select_category = CLASS_CAT_OTAVA
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_NOBLE)

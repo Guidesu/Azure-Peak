@@ -290,7 +290,7 @@
 		/obj/item/clothing/ring/aalloy = 30, //Valuables
 		/obj/item/clothing/ring/bronze = 20,
 		/obj/item/clothing/neck/roguetown/psicross/bronze = 10,
-		/obj/item/clothing/neck/roguetown/psicross/inhumen/bronze = 10,
+		/obj/item/clothing/neck/roguetown/psicross/aurelian/bronze = 10,
 		/obj/item/clothing/neck/roguetown/psicross/volkovoi/bronze = 10,
 		/obj/item/clothing/neck/roguetown/psicross/handwerra/malum/bronze = 10,
 		/obj/item/clothing/neck/roguetown/psicross/auxentius/bronze = 10,

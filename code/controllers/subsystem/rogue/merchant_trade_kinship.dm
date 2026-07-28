@@ -2,30 +2,18 @@
 	if(!origin_name)
 		return null
 	switch(origin_name)
-		if("Avar")
-			return REALM_AAVNR
-		if("Raneshen")
-			return REALM_RANESHEN
-		if("Grenzelhoft")
-			return REALM_GRENZELHOFT
-		if("Otava")
-			return REALM_OTAVA
-		if("Kazengun")
-			return REALM_KAZENGUN
-		if("Hammerhold")
-			return REALM_HAMMERHOLD
-		if("Etrusca")
-			return REALM_ETRUSCA
-		if("Gronn")
-			return REALM_GRONN
-		if("Lirvas")
-			return REALM_LIRVAS
-		if("Lingyue")
-			return REALM_LINGYUE
-		if("Naledi")
-			return REALM_NALEDI
-		if("Azuria")
-			return REALM_AZURIA
+		if("Auxentia")
+			return REALM_AUXENTIA
+		if("Vergenmark")
+			return REALM_VERGENMARK
+		if("Ognica")
+			return REALM_OGNICA
+		if("Kamenrad")
+			return REALM_KAMENRAD
+		if("Via Medulla")
+			return REALM_VIAMEDULLA
+		if("Ostrovia")
+			return REALM_OSTROVIA
 		if("the Underdark")
 			return REALM_UNDERDARK
 	return null

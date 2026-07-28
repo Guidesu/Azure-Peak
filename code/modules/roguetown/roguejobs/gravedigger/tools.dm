@@ -353,7 +353,7 @@
 /obj/item/rogueweapon/shovel/silver
 	force = 25
 	name = "silver shovel"
-	desc = "The only trait that distinguishes a man from a beast is their empathy. To mutilate the dead, regardless of what they've done in lyfe, is to invoke divine wrath. See them buried beneath crossed soil; ferry their spirit to the world beyond Psydonia, and towards their final judgement."
+	desc = "The only trait that distinguishes a man from a beast is their empathy. To mutilate the dead, regardless of what they've done in lyfe, is to invoke divine wrath. See them buried beneath crossed soil; ferry their spirit to the world beyond Vaeltis, and towards their final judgement."
 	icon_state = "silvershovel"
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	is_silver = TRUE

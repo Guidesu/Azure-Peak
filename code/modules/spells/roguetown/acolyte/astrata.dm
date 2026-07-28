@@ -34,13 +34,13 @@
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, /obj/item/clothing/neck/roguetown/psicross/silver/auxentius, /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// T1 - Astratan Gaze - Removes cone vision for a dynamic duration. Adds PERCEPTION based on holy skill and time of day. //
+// T1 - Auxentian Gaze - Removes cone vision for a dynamic duration. Adds PERCEPTION based on holy skill and time of day. //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/action/cooldown/spell/astrata/astrata_gaze
-	name = "Astratan Gaze"
+	name = "Auxentian Gaze"
 	desc = "Removes the limit on your vision, letting you see behind you for a time, lasts longer during the dae and gives a perception bonus to those skilled and holy arts."
-	fluff_desc = "The second gift to men, Her ability to discern evyl hiding in plain sight. Astrata's tireless gaze - a true boon in hands of mortals as well Her misbegotten children."
+	fluff_desc = "The second gift to men, His ability to discern evyl hiding in plain sight. Auxentius's tireless gaze - a true boon in hands of mortals as well His sworn faithful."
 	button_icon_state = "gaze"
 	sound = 'sound/magic/astrata_choir.ogg'
 	glow_intensity = 0
@@ -51,7 +51,7 @@
 
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
-	invocations = list("Astrata show me true.")
+	invocations = list("Auxentius show me true.")
 	invocation_type = INVOCATION_WHISPER
 
 	charge_required = FALSE
@@ -67,8 +67,8 @@
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/astrata_gaze
-	name = "Astratan's Gaze"
-	desc = "She shines through me, illuminating all injustice."
+	name = "Auxentian Gaze"
+	desc = "He shines through me, illuminating all injustice."
 	icon_state = "astrata_gaze"
 
 /datum/status_effect/buff/astrata_gaze
@@ -108,7 +108,7 @@
 		H.hide_cone()
 		H.update_cone_show()
 
-	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
+	to_chat(owner, span_info("He shines through me! I can perceive all clear as dae!"))
 
 	return ..()
 
@@ -129,7 +129,7 @@
 	desc = "Emit a bolt of holy fire that sunders a target, setting them on fire and slowing them down for 6 seconds. \
 	Damage is increased by 100% versus simple-minded creechurs. \
 	The CC effects cannot be reapplied to the same target within 15 seconds."
-	fluff_desc = "The fourth gift to men, sliver of Astrata's fury against the horrors of Psydonia, bringing evyl to its knees at hands of Her devoted."
+	fluff_desc = "The fourth gift to men, sliver of Auxentius's fury against the horrors of Vaeltis, bringing evyl to its knees at hands of His devoted."
 	background_icon = 'icons/mob/actions/astratamiracles.dmi'
 	button_icon = 'icons/mob/actions/astratamiracles.dmi'
 	button_icon_state = "bolt"
@@ -181,7 +181,7 @@
 	damage = 50
 	npc_simple_damage_mult = 2
 	damage_type = BURN
-	accuracy = 50 //Astrata show me true or something?
+	accuracy = 50 //Auxentius show me true or something?
 	nodamage = FALSE
 	speed = 0.3
 	flag = "fire"
@@ -215,7 +215,7 @@
 	qdel(src)
 
 ///////////////////////////
-// T2 - Astratan Fortify //
+// T2 - Auxentian Fortify //
 ///////////////////////////
 
 /datum/action/cooldown/spell/miracle/fortify/astrata
@@ -228,7 +228,7 @@
 
 /datum/action/cooldown/spell/astrata/miracle_pyre
 	name = "Solar Pyre"
-	desc = "Creates a pyre dedicated to Astrata, lasts 30 minutes."
+	desc = "Creates a pyre dedicated to Auxentius, lasts 30 minutes."
 	button_icon_state = "pyre"
 	sound = 'sound/magic/astrata_choir.ogg'
 	spell_color = GLOW_COLOR_ASTRATA
@@ -241,7 +241,7 @@
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR
 	secondary_resource_cost = SPELLCOST_MIRACLE_MAJOR
 
-	invocations = list("Let Her radiance guide us forward.")
+	invocations = list("Let His radiance guide us forward.")
 	invocation_type = INVOCATION_SHOUT
 
 	charge_required = TRUE
@@ -273,7 +273,7 @@
 	return TRUE
 
 /obj/machinery/light/rogue/campfire/miracle_pyre
-	name = "astrata's pyre"
+	name = "auxentius's pyre"
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "pyre_astrata1"
 	base_state = "pyre_astrata"
@@ -302,7 +302,7 @@
 				continue
 			if(istype(human.patron, /datum/patron/concordat))
 				if(!human.has_status_effect(/datum/status_effect/buff/pyre))
-					to_chat(human, span_info("Her warmth sutures my mangled body."))
+					to_chat(human, span_info("His warmth sutures my mangled body."))
 				human.apply_status_effect(/datum/status_effect/buff/pyre)
 				human.add_stress(/datum/stressevent/astrata_pyre)
 
@@ -319,7 +319,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/healing/pyre
 	name = "Radiant Pyre"
-	desc = "I can rest under Her watchful gaze."
+	desc = "I can rest under His watchful gaze."
 	icon_state = "astrata_pyre"
 
 /datum/status_effect/buff/pyre
@@ -358,7 +358,7 @@
 /datum/action/cooldown/spell/astrata/firecloak
 	name = "Asbestine Cloak"
 	desc = "Cover yourself and adjacent targets in fire-resistant cloak."
-	fluff_desc = "The third gift to men, for the devout are granted the right to witness Her glorious radiance with their own eyes without burning up into pile of ash."
+	fluff_desc = "The third gift to men, for the devout are granted the right to witness His glorious radiance with their own eyes without burning up into pile of ash."
 	button_icon_state = "cloak"
 	sound = 'sound/magic/haste.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -369,7 +369,7 @@
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_STAT_BUFF
 
-	invocations = list("Bask in Her radiance.")
+	invocations = list("Bask in His radiance.")
 	invocation_type = INVOCATION_WHISPER
 
 	charge_required = TRUE
@@ -404,7 +404,7 @@
 
 /obj/effect/proc_holder/spell/invoked/revive
 	name = "Anastasis"
-	desc = "Focus Astratas energy through a stationary psycross, reviving the target from death."
+	desc = "Focus Auxentius's energy through a stationary psycross, reviving the target from death."
 	action_icon = 'icons/mob/actions/astratamiracles.dmi'
 	overlay_icon = 'icons/mob/actions/astratamiracles.dmi'
 	overlay_state = "revive"
@@ -672,7 +672,7 @@
 // =====================
 /obj/effect/proc_holder/spell/invoked/immolation
 	name = "Immolation"
-	desc = "Ignite a target in holy flames, burning those that surround them. The fire burns brighter within devout Astratans."
+	desc = "Ignite a target in holy flames, burning those that surround them. The fire burns brighter within devout Auxentians."
 	action_icon = 'icons/mob/actions/astratamiracles.dmi'
 	overlay_icon = 'icons/mob/actions/astratamiracles.dmi'
 	overlay_state = "immolation"
@@ -705,7 +705,7 @@
 	// Channeling requirement
 	user.visible_message(span_danger("[user] begins lighting [target] ablaze with strange, divine fire!"))
 	if(!do_after(user, 1 SECONDS, target = target))
-		to_chat(user, span_warning("Astratan might requires unwavering focus to channel!"))
+		to_chat(user, span_warning("Auxentian might requires unwavering focus to channel!"))
 		revert_cast()
 		return FALSE
 

@@ -91,9 +91,9 @@
 /datum/anvil_recipe/valuables/gold_zcross
 	name = "Golden Inverted Psycross (+1 Inverted Psycross)"
 	req_bar = /obj/item/ingot/gold
-	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/inhumen)
+	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/aurelian)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/aurelian/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_astrata
@@ -101,7 +101,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/astrata/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/auxentius/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_noc
@@ -109,7 +109,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/miluse)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/noc/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/miluse/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_abyssor
@@ -117,7 +117,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/wulfric)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/abyssor/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/wulfric/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_dendor
@@ -125,7 +125,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/ignatius)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/dendor/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/ignatius/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_necra
@@ -133,7 +133,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/morwenna)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/necra/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/morwenna/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_pestra
@@ -141,7 +141,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/handwerra)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/pestra/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/handwerra/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_ravox
@@ -149,7 +149,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/ravox/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_malum
@@ -165,7 +165,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/miluse)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/eora/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/miluse/eora/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_xylix
@@ -173,7 +173,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/viator)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/xylix/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/viator/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_graggar
@@ -181,7 +181,7 @@
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/volkovoi)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/volkovoi/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 //
@@ -201,14 +201,14 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/valuables/psycrossaalloy
-	name = "Amulet of Psydonia, Decrepit"
+	name = "Amulet of Vaeltis, Decrepit"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/clothing/neck/roguetown/psicross/aalloy
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 3
 
 /datum/anvil_recipe/valuables/psycrosspaalloy
-	name = "Amulet of Psydonia, Ancient"
+	name = "Amulet of Vaeltis, Ancient"
 	req_bar = /obj/item/ingot/purifiedaalloy
 	created_item = /obj/item/clothing/neck/roguetown/psicross/paalloy
 	display_category = ITEM_CAT_VALUABLES_HOLY
@@ -217,14 +217,14 @@
 /datum/anvil_recipe/valuables/zcrossaalloy
 	name = "Amulet of Ascension, Decrepit"
 	req_bar = /obj/item/ingot/aalloy
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
+	created_item = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 3
 
 /datum/anvil_recipe/valuables/zcrosspaalloy
 	name = "Amulet of Ascension, Ancient"
 	req_bar = /obj/item/ingot/purifiedaalloy
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy
+	created_item = /obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 3
 
@@ -250,14 +250,14 @@
 /datum/anvil_recipe/valuables/zcross_iron
 	name = "Inverted Psycross"
 	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+	created_item = /obj/item/clothing/neck/roguetown/psicross/aurelian/iron
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 1
 
 /datum/anvil_recipe/valuables/matthios
 	name = "Amulets of Matthios (x2)"
 	req_bar = /obj/item/ingot/gold
-	created_item = /obj/item/clothing/neck/roguetown/psicross/morwenna
+	created_item = /obj/item/clothing/neck/roguetown/psicross/morwenna/matthios
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 3
 	createditem_num = 2
@@ -265,7 +265,7 @@
 /datum/anvil_recipe/valuables/gold_cross_matthios
 	name = "Golden Amulet of Matthios"
 	req_bar = /obj/item/ingot/gold
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 4
 
@@ -280,7 +280,7 @@
 /datum/anvil_recipe/valuables/gold_cross_baotha
 	name = "Golden Amulet of Baotha"
 	req_bar = /obj/item/ingot/gold
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/g
+	created_item = /obj/item/clothing/neck/roguetown/psicross/hausvette/g
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 4
 
@@ -315,7 +315,7 @@
 	createditem_num = 2
 
 /datum/anvil_recipe/valuables/psicrossbronze
-	name = "Amulet of Psydonia, Bronze"
+	name = "Amulet of Vaeltis, Bronze"
 	req_bar = /obj/item/ingot/bronze
 	created_item = /obj/item/clothing/neck/roguetown/psicross/bronze
 	display_category = ITEM_CAT_VALUABLES_HOLY
@@ -324,7 +324,7 @@
 /datum/anvil_recipe/valuables/zcrossbronze
 	name = "Amulet of Ascension, Bronze"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/bronze
+	created_item = /obj/item/clothing/neck/roguetown/psicross/aurelian/bronze
 	display_category = ITEM_CAT_VALUABLES_HOLY
 	craftdiff = 2
 

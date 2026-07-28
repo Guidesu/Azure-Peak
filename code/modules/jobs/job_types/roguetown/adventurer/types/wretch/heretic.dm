@@ -158,7 +158,7 @@
 	switch(H.patron?.type)
 		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
-			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, SLOT_RING, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, SLOT_RING, TRUE)
 			H.change_stat(STATKEY_CON, 1)
 			H.change_stat(STATKEY_STR, 1)
 			H.change_stat(STATKEY_PER, 1)
@@ -420,7 +420,7 @@
 	switch(H.patron?.type)
 		if(/datum/patron/unveiled/aurelian)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
-			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, SLOT_RING, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, SLOT_RING, TRUE)
 		if(/datum/patron/concordat/morwenna)
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/morwenna, SLOT_RING, TRUE)
@@ -505,7 +505,7 @@
 	if (!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
 		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy))
+	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy))
 		to_chat(src, span_warning("I need to be holding a zcross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/aurelian/N in oview(5, src))

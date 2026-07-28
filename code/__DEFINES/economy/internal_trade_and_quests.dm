@@ -24,14 +24,8 @@
 
 #define TRADE_REGION_KINGSFIELD "kingsfield"
 #define TRADE_REGION_ROSAWOOD "rosawood"
-#define TRADE_REGION_ROCKHILL "rockhill"
 #define TRADE_REGION_DAFTSMARCH "daftsmarch"
-#define TRADE_REGION_BLACKHOLT "blackholt"
 #define TRADE_REGION_SALTWICK "saltwick"
-#define TRADE_REGION_BLEAKCOAST "bleakcoast"
-#define TRADE_REGION_NORTHFORT "northfort"
-#define TRADE_REGION_HEARTFELT "heartfelt"
-#define TRADE_REGION_HAGENWALD "hagenwald"
 
 #define STANDING_ORDER_DURATION 2
 #define URGENT_ORDER_DURATION 1

@@ -47,13 +47,13 @@
 	..()
 
 /obj/structure/fluff/walldeco/painting/queen
-	desc = "It's Queen Samantha I of Psydonia. Her late husband would be so proud of what she has accomplished in his realm."
+	desc = "It's Queen Samantha I of Vaeltis. Her late husband would be so proud of what she has accomplished in his realm."
 	icon_state = "queenpainting_deployed"
 	stolen_painting = /obj/item/rogue/painting/queen
 
 /obj/item/rogue/painting/queen
 	icon_state = "queenpainting"
-	desc = "It's Queen Samantha I of Psydonia. Her late husband would be so proud of what she has accomplished in his realm."
+	desc = "It's Queen Samantha I of Vaeltis. Her late husband would be so proud of what she has accomplished in his realm."
 	dropshrink = 0.5
 	sellprice = 20
 	deployed_structure = /obj/structure/fluff/walldeco/painting/queen

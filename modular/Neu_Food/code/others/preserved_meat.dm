@@ -141,7 +141,7 @@
 // ------------ PEMMICAN - BROTHBRICK --------------
 /obj/item/reagent_containers/food/snacks/rogue/meat/brothbrique
 	name = "brothbrique"
-	desc = "A melding of dried meat, berries, and tallow that has fueled Psydonia's expeditioneers for centuries. It is \
+	desc = "A melding of dried meat, berries, and tallow that has fueled Vaeltis's expeditioneers for centuries. It is \
 	denser - and arguably less appetizing - than most foodstuffs, but consequently unrivaled in terms of sheer nutritional \
 	mirth. Traditionally sliced and dropped into boiling water, in order to make a quick-yet-robust broth."
 	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'

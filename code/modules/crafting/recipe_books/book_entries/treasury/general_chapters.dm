@@ -14,12 +14,9 @@
 
 		<ul>
 			<li><b>The Great Writ of Azuria</b> - Nobility pays no tax and levy, and cannot be fined.</li>
-			<li><b>The Zenitstadt Concordat</b> - The Church, and any declared benefactors of the Church (Whom the Bishop can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li>
-			<li><b>The Otavan Accords</b> - The Inquisition pays no tax and no levy.</li>
+			<li><b>The Zenitstadt Compact</b> - The Church, and any declared benefactors of the Church (Whom the Bishop can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li>
+			<li><b>The Vergenmark Accords</b> - Vergenmark's harsher fringe pays no tax and no levy.</li>
 			<li><b>The Golden Bull of Kingsfield</b> - burghers are capped at [GOLDEN_BULL_BURGHER_CAP * 100]% of balance per levy or fine, with a [GOLDEN_BULL_DAILY_FINE_CAP]-mammon ceiling on each fine.</li>
-			<li><b>The Covenant of Noc and Pestra</b> - University members, Apothecary and Head Physician are limited to the lightest poll tax of [NOC_PESTRA_POLL_CAP]m, and a minimum wage from the Crown's payroll.</li>
-			<li><b>The Guild Charter of Arms</b> - Guild mercenaries are capped at [GUILD_CHARTER_OF_ARMS_POLL_CAP]m of poll tax per day, and remit [GUILD_CHARTER_OF_ARMS_PLEDGE_BONUS]m daily to the Burgher's Pledge while in force.</li>
-			<li><b>The Indenture of War</b> - The Retinue and Garrison members are subject to a minimum salary floor while this is in effect.</li>
 		</ul>
 
 		<p>Each Charter has a [DECREE_COOLDOWN / 600]-minute cooldown after revision. No more than one suspension and one restoration may be proclaimed per day.</p>
@@ -33,7 +30,7 @@
 /datum/book_entry/treasury_general/levies/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p>Rates on Taxation and Levies are set by the Steward using the "Adjust Taxes" verb. This can be done even with a ruler / regent in place; any conflict from both parties trying to set rates is an IC issue to resolve. The ruler or regent may also adjust tax rates at the throne by saying "Set Taxes". Poll taxes / subsidies and Levies have an independent one-day cooldown - whoever sets first locks the other out until the next day.</p>
+		<p>Rates on Taxation and Levies are set by the Steward using the "Adjust Taxes" verb. This can be done even with a ruler / regent in place; any conflict from both parties trying to set rates is an IC issue to resolve. Rates have a one-day cooldown - once set, they lock until the next day.</p>
 		</div>
 
 		<h3>Transaction Levies</h3>
@@ -43,16 +40,6 @@
 			<li><b>Import Tariff</b> - on goods bought from merchant vendors including SILVERFACE, GOLDFACE.</li>
 			<li><b>Export Duty</b> - on goods dispatched by the Merchant via the Navigator's balloon.</li>
 		</ul>
-
-		<h3>Poll Tax</h3>
-		<p>Poll tax is the one of the most powerful - and most hated tools in the Crown's arsenal to raise revenue. It is a daily tax levied on each subject with a bank account, draining from their balance automatically every day. Rates are set by the Steward or the Throne. Charters may exempt or cap certain categories of subject while they are in force. Poll taxes are hardcapped at [POLL_TAX_MAX_RATE]m/day, but can be set as low as a subsidy of -[POLL_TAX_MAX_SUBSIDY]m/day.</p>
-
-		<p>Unpaid poll tax accumulates arrears. After [POLL_TAX_DEBT_DAYS_TO_DEBTOR] day(s) of arrears, the subject is marked <b>destitute</b>. Poll tax arrears do not authorise kill-on-sight or attack-on-sight, and they do not override ERP protection rules - poll tax is unilaterally imposed by the Crown, so the subject has not consented to being attacked or killed over it. Treat arrears as a roleplay opportunity to recover or forgive the debt.</p>
-
-		<h3>Subsidy</h3>
-		<p>A category's rate may be set as far as <b>-[POLL_TAX_MAX_SUBSIDY]m/day</b>. A negative rate is a <b>Crown subsidy</b>: each tick, the Crown's Purse pays that mammon to every subject of the category, reaching even charter-protected classes.</p>
-
-		<p>The tax setter shows a projected per tick income or subsidy cost, and net flow based on current heads, so the Steward can see the budget impact before committing. The projection ignores balance and advance state - it is the gross rate × eligible head count. It also ignores that some people will not in fact, pay or be able to pay.</p>
 
 		<p>Meister deposits are not taxed.</p>
 		</div>
@@ -149,7 +136,7 @@
 		<div>
 		<p>Both legal and illegal ways to dodge taxes exist.</p>
 
-		<p><b>Legal Evasion</b>: Subjects without a bank account are inherently immune to poll taxes. Avoiding Contract Levy requires membership in a tax-exempt class - nobles, church members, or holders of Church Benefactor status (granted by the Bishop). Note that the Church itself is not expected to adventure without IC reason, so Benefactor status is the practical channel. Tax immunity does not apply to indirect taxes like import tariffs or export duties.</p>
+		<p><b>Legal Evasion</b>: Avoiding Contract Levy requires membership in a tax-exempt class - nobles, church members, or holders of Church Benefactor status (granted by the Bishop). Note that the Church itself is not expected to adventure without IC reason, so Benefactor status is the practical channel. Tax immunity does not apply to indirect taxes like import tariffs or export duties.</p>
 
 		<p><b>Illegal Evasion</b>: The Merchant can stop paying taxes by toggling the navigator's tax setting and refusing to pay on Goldface sales. The risk of being caught and penalised by the Crown falls on the Merchant. The machines tally dodged amounts, but only the Shophand and the Merchant themselves can view the exact tally - the Crown can only guess and accuse, with or without proof.</p>
 		</div>

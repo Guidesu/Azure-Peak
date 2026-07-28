@@ -9,7 +9,7 @@
 	category_tags = list(CTAG_TEMPLAR)
 	allowed_patrons = list(/datum/patron/concordat/miluse)
 	maximum_possible_slots = 2 // The Special Snowflake And Their Friend
-	subclass_languages = list(/datum/language/grenzelhoftian)
+	subclass_languages = list(/datum/language/vergenmarkian)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_ARCYNE)
 	tempo_capable = FALSE
 	subclass_stats = list(

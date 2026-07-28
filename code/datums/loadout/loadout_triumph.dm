@@ -14,19 +14,19 @@
 // Above all else? Have fun! If you have any questions, let me know.
 
 // -1 TRI
-/datum/loadout_item/psicross/noc/bronze
+/datum/loadout_item/psicross/miluse/bronze
 	name = "Bronze Amulet of Noc"
 	path = /obj/item/clothing/neck/roguetown/psicross/miluse/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/ravox/bronze
+/datum/loadout_item/psicross/auxentius/ravox/bronze
 	name = "Bronze Amulet of Ravox"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/astrata/bronze
+/datum/loadout_item/psicross/auxentius/bronze
 	name = "Bronze Amulet of Astrata"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/bronze
 	triumph_cost = 1
@@ -50,9 +50,9 @@
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/inhumen/bronze
+/datum/loadout_item/psicross/aurelian/bronze
 	name = "Bronze Inverted Psycross"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/bronze
+	path = /obj/item/clothing/neck/roguetown/psicross/aurelian/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
@@ -62,13 +62,13 @@
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/inhumen/paalloy
+/datum/loadout_item/psicross/aurelian/paalloy
 	name = "Ancient Inverted Psycross"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
-/datum/loadout_item/psicross/noc/paalloy
+/datum/loadout_item/psicross/miluse/paalloy
 	name = "Ancient Amulet of Noc"
 	path = /obj/item/clothing/neck/roguetown/psicross/miluse/paalloy
 	triumph_cost = 1
@@ -192,13 +192,13 @@
 
 /datum/loadout_item/triumph_zcross
 	name = "Golden Zizote Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/aurelian/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_astcross
 	name = "Golden Astratan Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/astrata/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
@@ -210,37 +210,37 @@
 
 /datum/loadout_item/triumph_noccross
 	name = "Golden Noccian Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/noc/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/miluse/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_abyssorcross
 	name = "Golden Abyssorian Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/abyssor/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/wulfric/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_dendorcross
 	name = "Golden Dendorian Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/dendor/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/ignatius/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_necracross
 	name = "Golden Necran Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/necra/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/morwenna/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_pestracross
 	name = "Golden Pestran Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/pestra/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/handwerra/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_ravoxcross
 	name = "Golden Ravoxian Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/ravox/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
@@ -252,19 +252,19 @@
 
 /datum/loadout_item/triumph_eoracross
 	name = "Golden Eoran Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/eora/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/miluse/eora/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_xylixcross
 	name = "Golden Xylixian Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/xylix/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/viator/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_graggarcross
 	name = "Golden Graggarite Amulet, Ornate"
-	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/g/triumph
+	path = /obj/item/clothing/neck/roguetown/psicross/volkovoi/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
 

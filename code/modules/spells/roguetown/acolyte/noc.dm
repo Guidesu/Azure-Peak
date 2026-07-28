@@ -28,7 +28,7 @@
 /datum/action/cooldown/spell/noc/nitevision
 	name = "Nitevision"
 	desc = "Enhance the night vision of yourself and everyone around you for 15 minutes."
-	fluff_desc = "When the first men walked the world, they were not gifted with sight at night. They were preys to monsters and animals in the dark. Noc, in his infinite wisdom, bestowed upon humenity the gift of noc vision. And soon, the Magi followed suit and replicated it with magyck, as is His vision."
+	fluff_desc = "When the first men walked the world, they were not gifted with sight at night. They were preys to monsters and animals in the dark. Miluše, in her infinite wisdom, bestowed upon humenity the gift of nite vision. And soon, the Magi followed suit and replicated it with magyck, as is Her vision."
 	button_icon_state = "noc_sight"
 	sound = 'sound/magic/haste.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -40,7 +40,7 @@
 
 	secondary_resource_cost = SPELLCOST_STAT_BUFF
 
-	invocations = list("Noc guide my gaze.")
+	invocations = list("Miluše guide my gaze.")
 	invocation_type = INVOCATION_WHISPER
 
 	charge_required = TRUE
@@ -350,7 +350,7 @@
 	var/choice = chosen_bundle
 	if(!chosen_bundle)
 		choosing_bundle = TRUE
-		choice = alert(owner, "What type of spells has Noc blessed you with?", "CHOOSE PATH", "Magister", "Enchanter", "Seer")
+		choice = alert(owner, "What type of spells has Miluše blessed you with?", "CHOOSE PATH", "Magister", "Enchanter", "Seer")
 		chosen_bundle = choice
 		choosing_bundle = FALSE
 
@@ -459,7 +459,7 @@
 /datum/action/cooldown/spell/noc/moonlight
 	name = "Eclipse"
 	desc = "Bathe adjacent allies in moonlight, granting them protection against magic. Lasts one minute on the caster."
-	fluff_desc = "The wisdom of the night - a blessing that offers those most devout to the Moon a sliver of its power. As Noc reflects Astrata's light, so too can his champions reflect magicks away from themselves and their allies."
+	fluff_desc = "The wisdom of the night - a blessing that offers those most devout to the Moon a sliver of its power. As Miluše reflects Auxentius's light, so too can her champions reflect magicks away from themselves and their allies."
 	button_icon_state = "noc"
 	sound = 'sound/magic/nocbell.ogg'
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -515,7 +515,7 @@
 
 /atom/movable/screen/alert/status_effect/moonlight
 	name = "Moonlight"
-	desc = "I am protected by His moonlight, shielded from magick both miraculous and arcyne."
+	desc = "I am protected by Her moonlight, shielded from magick both miraculous and arcyne."
 	icon_state = "moonlight"
 
 /datum/status_effect/moonlight

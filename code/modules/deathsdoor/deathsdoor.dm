@@ -3,7 +3,7 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 
 /obj/structure/deaths_door_shrine
 	name = "A Way Out"
-	desc = "An end to the calm cold of the precipice, spirits without paid passage flock around it, gaining fleeting glances of Psydonia. Necrans who can peer through graves may be able to make sense of the twisting mists through them." 
+	desc = "An end to the calm cold of the precipice, spirits without paid passage flock around it, gaining fleeting glances of Vaeltis. Necrans who can peer through graves may be able to make sense of the twisting mists through them." 
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
 	icon_state = "doorway"
 	opacity = FALSE

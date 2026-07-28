@@ -18,18 +18,18 @@
 
 	if(choice == "Set Custom Date")
 		var/month_names = list(
-			"1 - Psyrise (March)",
-			"2 - Eora (April)",
-			"3 - Dendor (May)",
-			"4 - Astrata (June)",
-			"5 - Xylix (July)",
-			"6 - Malum (August)",
-			"7 - Syonfall (September)",
-			"8 - Pestra (October)",
-			"9 - Necra (November)",
-			"10 - Noc (December)",
-			"11 - Abyssor (January)",
-			"12 - Ravox (February)"
+			"1 - Praecurse (March)",
+			"2 - Miluvane (April)",
+			"3 - Ignis (May)",
+			"4 - Auxentian (June)",
+			"5 - Viatis (July)",
+			"6 - Handwerran (August)",
+			"7 - Syonsfall (September)",
+			"8 - Trnavan (October)",
+			"9 - Morwenne (November)",
+			"10 - Miluna (December)",
+			"11 - Wulfrite (January)",
+			"12 - Custodian (February)"
 		)
 
 		var/month_choice = input(src, "Select the month:", "Set IC Date - Month") as null|anything in month_names

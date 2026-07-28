@@ -4,7 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/mercenary/atgervi
-	subclass_languages = list(/datum/language/gronnic)
+	subclass_languages = list(/datum/language/dvojezemi)
 	cmode_music = 'sound/music/combat_vagarian.ogg'
 	class_select_category = CLASS_CAT_GRONN
 	category_tags = list(CTAG_MERCENARY)
@@ -85,7 +85,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/mercenary/atgervi_shaman
-	subclass_languages = list(/datum/language/gronnic)
+	subclass_languages = list(/datum/language/dvojezemi)
 	cmode_music = 'sound/music/combat_shaman2.ogg'
 	class_select_category = CLASS_CAT_GRONN
 	category_tags = list(CTAG_MERCENARY)

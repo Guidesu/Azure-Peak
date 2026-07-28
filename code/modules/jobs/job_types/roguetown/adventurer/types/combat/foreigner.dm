@@ -9,7 +9,7 @@
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	townie_contract_gate_exempt = TRUE
 	townie_contract_gate_hide_in_list = TRUE
-	subclass_languages = list(/datum/language/kazengunese)
+	subclass_languages = list(/datum/language/ostrovian)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -67,7 +67,7 @@
 	for combat in the tight confines of castles and back alleys."
 	forbidden_races = list(RACES_SMALL) //Clothing has no dwarf sprites.
 	outfit = /datum/outfit/job/roguetown/adventurer/yoruku
-	subclass_languages = list(/datum/language/kazengunese)
+	subclass_languages = list(/datum/language/ostrovian)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
 	subclass_stats = list(
@@ -134,7 +134,7 @@
 	You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."
 	
 	outfit = /datum/outfit/job/roguetown/adventurer/repentant
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	forbidden_races = list()
@@ -199,7 +199,7 @@
 /datum/outfit/job/roguetown/adventurer/refugee/pre_equip(mob/living/carbon/human/H)
 	..()
 	backl = /obj/item/storage/backpack/rogue/satchel
-	id = /obj/item/clothing/neck/roguetown/psicross/naledi
+	id = /obj/item/clothing/neck/roguetown/psicross/auxentia
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
 	shoes = /obj/item/clothing/shoes/roguetown/footwraps/padded
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/civilian
@@ -289,11 +289,11 @@
 
 /datum/advclass/foreigner/slaver
 	name = "Ranesheni Slaver"
-	tutorial = "In parts of Psydonia, the practice of slavery is still a common sight. \
+	tutorial = "In parts of Vaeltis, the practice of slavery is still a common sight. \
 	You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."
 	
 	outfit = /datum/outfit/job/roguetown/adventurer/slaver
-	subclass_languages = list(/datum/language/raneshi)
+	subclass_languages = list(/datum/language/ostrovian)
 	forbidden_races = list()
 	cmode_music = 'sound/music/combat_desertrider.ogg'
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR)
@@ -316,7 +316,7 @@
 
 /datum/outfit/job/roguetown/adventurer/slaver/pre_equip(mob/living/carbon/human/H)
 	..()
-	to_chat(H, span_warning("In parts of Psydonia, the practice of slavery is still a common sight. \
+	to_chat(H, span_warning("In parts of Vaeltis, the practice of slavery is still a common sight. \
 	You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."))
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/purple
@@ -345,7 +345,7 @@
 	extra_context = "This class is for experienced adventurers with a solid grasp on footwork and stamina management. Your weapon has special intents you can juggle through to make fights easier... Sometimes."
 	allowed_sexes = list(MALE, FEMALE)
 	
-	subclass_languages = list(/datum/language/aavnic)
+	subclass_languages = list(/datum/language/dvojezemi)
 	forbidden_races = list()
 	outfit = /datum/outfit/job/roguetown/adventurer/freishepherd
 	traits_applied = list()
@@ -396,7 +396,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/adventurer/fencerguy
-	subclass_languages = list(/datum/language/grenzelhoftian)
+	subclass_languages = list(/datum/language/vergenmarkian)
 	forbidden_races = list()
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 	traits_applied = list(TRAIT_INTELLECTUAL, TRAIT_FENCERDEXTERITY)
@@ -470,7 +470,7 @@
 /datum/advclass/foreigner/bronzeclad
 	name = "Thespian-Errant"
 	tutorial = "Gladiators from the arenas of Raneshen and Lirvas, reenactors from the curtain-dazzled courts of Otava and Grenzelhoft, and \
-	shieldbearers from the outermost reaches of Psydonia itself; all are unified in their subconscious pursuit of entertaining something greater \
+	shieldbearers from the outermost reaches of Vaeltis itself; all are unified in their subconscious pursuit of entertaining something greater \
 	than themselves. You are a skilled combatant from beyond Azuria, who - for one reason or another - is intimately familiar with fighting in ancient equipment."
 	
 	outfit = /datum/outfit/job/roguetown/adventurer/bronzeclad
@@ -704,7 +704,7 @@
 	forbidden_races = list(RACES_BLACKOAK)
 	traits_applied = list(TRAIT_OUTDOORSMAN, TRAIT_BLACKOAK, TRAIT_DODGEEXPERT, TRAIT_WOODWALKER)
 	outfit = /datum/outfit/job/roguetown/adventurer/lesserblackoak
-	subclass_languages = list(/datum/language/oldazurian)
+	subclass_languages = list(/datum/language/auxentian)
 	cmode_music = 'sound/music/combat_blackoak.ogg'
 	maximum_possible_slots = 3 //A little stronger than a traditional Nomad or Adventurer. The slot limit is more-so intended to keep them a limited presence within Azuria, and to account for their potentially antagonistic nature.
 	subclass_stats = list(

@@ -9,7 +9,7 @@
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_blackoak.ogg'
 	extra_context = "This class is restricted to the Elf, Half-Elf, and Dark Elf species."
-	subclass_languages = list(/datum/language/oldazurian)
+	subclass_languages = list(/datum/language/auxentian)
 	traits_applied = list(TRAIT_AZURENATIVE, TRAIT_OUTDOORSMAN, TRAIT_BLACKOAK, TRAIT_MEDIUMARMOR)
 	subclass_stats = list(
 		STATKEY_STR = 3,

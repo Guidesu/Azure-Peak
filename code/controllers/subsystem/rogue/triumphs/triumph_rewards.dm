@@ -46,13 +46,13 @@
 	desc = "'It does not matter, whether He is lyving or gone. His greatest creation still persists; the very world that our feet tread 'pon, now. That, alone, makes everything worth fighting for.'"
 	sellprice = 55
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/aurelian/g/triumph
 	name = "ornate inverted psycross"
-	desc = "'Meet your lord, and know your place. Let progress be my chariot, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Psydonia's carcass not spell the death of Man, but the birth of Gods.'"
+	desc = "'Meet your lord, and know your place. Let progress be my chariot, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Vaeltis's carcass not spell the death of Man, but the birth of Gods.'"
 	sellprice = 66
 
-/obj/item/clothing/neck/roguetown/psicross/astrata/g/triumph
-	name = "ornate amulet of Astrata"
+/obj/item/clothing/neck/roguetown/psicross/auxentius/g/triumph
+	name = "ornate amulet of Auxentius"
 	desc = "Her command is absolute, and Her tyranny is unmarrable. Reclaim this world, child of mine, from those who'd seek to destroy it."
 	icon_state = "astrata_g"
 	sellprice = 77
@@ -61,27 +61,27 @@
 	name = "ornate reformist psycross"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/noc/g/triumph
-	name = "ornate amulet of Noc"
+/obj/item/clothing/neck/roguetown/psicross/miluse/g/triumph
+	name = "ornate amulet of Miluše"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/abyssor/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/wulfric/g/triumph
 	name = "ornate amulet of Abyssor"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/dendor/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/ignatius/g/triumph
 	name = "ornate amulet of Dendor"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/necra/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/morwenna/g/triumph
 	name = "ornate amulet of Necra"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/pestra/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/handwerra/g/triumph
 	name = "ornate amulet of Pestra"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/ravox/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/g/triumph
 	name = "ornate amulet of Ravox"
 	sellprice = 77
 
@@ -89,15 +89,15 @@
 	name = "ornate amulet of Malum"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/eora/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/miluse/eora/g/triumph
 	name = "ornate amulet of Eora"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/xylix/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/viator/g/triumph
 	name = "ornate amulet of Xylix"
 	sellprice = 77
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/g/triumph
+/obj/item/clothing/neck/roguetown/psicross/volkovoi/g/triumph
 	name = "ornate amulet of Graggar"
 	sellprice = 77
 

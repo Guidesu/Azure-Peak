@@ -118,7 +118,7 @@
 						span_info("You see a star!"),
 						span_info("The stars smile upon you!"),
 						span_info("Bands of starlight bedazzle the sky!"),
-						span_info("Psydonia's worldly horizon stretches out as far as the telescope can see...")
+						span_info("Vaeltis's worldly horizon stretches out as far as the telescope can see...")
 					)
 					var/star_audio = pick(star_sounds)
 					picked_message = pick(wonders_of_the_stars)

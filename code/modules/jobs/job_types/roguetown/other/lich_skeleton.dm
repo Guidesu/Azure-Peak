@@ -838,7 +838,7 @@ LICH SKELETONS
 			item_state = "whitepsydontabardalt"
 			open_wear = TRUE
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN! Not urm, you have one, you're a fucking skeleton sire.
-			to_chat(usr, span_warning("You pull back the roughspun fabric, baring what remains to Psydonia's eyes."))
+			to_chat(usr, span_warning("You pull back the roughspun fabric, baring what remains to Vaeltis's eyes."))
 		if(TRUE)
 			name = "decrepit toga"
 			desc = "Roughspun fabrics from beyond your lyfetime, donned by those who fight a war without reason.."
@@ -847,7 +847,7 @@ LICH SKELETONS
 			item_state = "whitekpsydontabard"
 			flags_inv = HIDECROTCH|HIDEBOOB
 			open_wear = FALSE
-			to_chat(usr, span_warning("You cloak yourself in the roughspun fabric, veiling what remains from Psydonia's eyes."))
+			to_chat(usr, span_warning("You cloak yourself in the roughspun fabric, veiling what remains from Vaeltis's eyes."))
 	update_icon()
 	if(user)
 		if(ishuman(user))
@@ -868,7 +868,7 @@ LICH SKELETONS
 
 /obj/item/rogueweapon/greatsword/grenz/flamberge/aalloy
 	name = "decrepit flamberge"
-	desc = "Tarnished bronze and decaying bogleather, meticulously woven together to fashion a flame-bladed swan song for Psydonia's final descendants. </br>'Oh, how valiant His sacrifice was! But now He lies, sleeping and witless to the world-anew.' </br>'And now, He sleeps. And now, He weeps.'"
+	desc = "Tarnished bronze and decaying bogleather, meticulously woven together to fashion a flame-bladed swan song for Vaeltis's final descendants. </br>'Oh, how valiant His sacrifice was! But now He lies, sleeping and witless to the world-anew.' </br>'And now, He sleeps. And now, He weeps.'"
 	icon_state = "ancientflamb"
 	smeltresult = /obj/item/ingot/aaslag
 	max_integrity = 150

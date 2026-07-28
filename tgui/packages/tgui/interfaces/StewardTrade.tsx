@@ -67,20 +67,10 @@ export const StewardTrade = () => {
             }}
           >
             At dawn:{' '}
-            <span style={{ color: SEAL_AMBER }}>
+            <span style={{ color: SEAL_AMBER, fontWeight: 'bold' }}>
               +{data.expected_rural_revenue}m
             </span>{' '}
-            rural tax &middot;{' '}
-            <span style={{ color: SEAL_AMBER }}>
-              -{data.expected_wage_outlay}m
-            </span>{' '}
-            wages &middot; Net{' '}
-            <span style={{ color: SEAL_AMBER, fontWeight: 'bold' }}>
-              {data.expected_rural_revenue - data.expected_wage_outlay >= 0
-                ? '+'
-                : ''}
-              {data.expected_rural_revenue - data.expected_wage_outlay}m
-            </span>
+            rural tax
           </div>
           <hr style={rulerStyle} />
 

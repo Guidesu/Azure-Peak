@@ -109,7 +109,7 @@
 	else
 		found_thing = new /obj/item/roguecoin/copper(T)
 
-	to_chat(H, span_info("A coin in my boot? Psydon smiles upon me!"))
+	to_chat(H, span_info("A coin in my boot? Praecursor smiles upon me!"))
 	if(!H.put_in_hands(found_thing, FALSE))
 		found_thing.forceMove(T)
 
@@ -167,7 +167,7 @@
 		else
 			H.visible_message(span_blue("[H] quietly recites an orison, invoking the warmth of a dying light."))
 
-		if(H.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD)) // YOU ARE NO LONGER MORTAL. NO LONGER OF HIM. PSYDON WEEPS.
+		if(H.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD)) // YOU ARE NO LONGER MORTAL. NO LONGER OF HIM. PRAECURSOR WEEPS.
 			// We do nothing to avoid meta checking for undead
 			target.visible_message(span_info("A strange stirring feeling pours from [target]!"), span_info("Sentimental thoughts drive away my pain..."))		
 			return TRUE
@@ -183,7 +183,7 @@
 
 		// Bonuses! Flavour! SOVL!
 		for(var/obj/item/clothing/neck/current_item in target.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
+			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
 				pp += 1
 				if(pp >= 12 & target == owner) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
 					target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
@@ -214,7 +214,7 @@
 						psicross_bonus = 0.5
 					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
 						psicross_bonus = 0.7
-					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
+					if(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy)
 						zcross_trigger = TRUE	
 
 		if(damtotal >= 300) // ARE THEY ENDURING MUCH, IN ONE WAY OR ANOTHER?
@@ -292,7 +292,7 @@
 		var/psicross_bonus = 0
 
 		for(var/obj/item/clothing/neck/current_item in H.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
+			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
 				switch(current_item.type) // Worn Psicross Piety bonus. For fun.
 					if(/obj/item/clothing/neck/roguetown/psicross/wood)
 						psicross_bonus = -1
@@ -306,7 +306,7 @@
 						psicross_bonus = -7
 					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
 						psicross_bonus = -9
-					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
+					if(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy)
 						zcross_trigger = TRUE
 		if(zcross_trigger)
 			owner.visible_message(span_warning("[owner] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
@@ -402,7 +402,7 @@
 		var/psicross_bonus = 0
 
 		for(var/obj/item/clothing/neck/current_item in H.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
+			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
 				switch(current_item.type) // Worn Psicross Piety bonus. For fun.
 					if(/obj/item/clothing/neck/roguetown/psicross/wood)
 						psicross_bonus = -2
@@ -416,7 +416,7 @@
 						psicross_bonus = -9
 					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
 						psicross_bonus = -11
-					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
+					if(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy)
 						zcross_trigger = TRUE
 		if(zcross_trigger)
 			user.visible_message(span_warning("[user] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
@@ -512,7 +512,7 @@
 		var/psicross_bonus = 0
 
 		for(var/obj/item/clothing/neck/current_item in H.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
+			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
 				switch(current_item.type) // Worn Psicross Piety bonus. For fun.
 					if(/obj/item/clothing/neck/roguetown/psicross/wood)
 						psicross_bonus = -2
@@ -526,7 +526,7 @@
 						psicross_bonus = -9
 					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
 						psicross_bonus = -11
-					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
+					if(/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy)
 						zcross_trigger = TRUE
 		if(zcross_trigger)
 			user.visible_message(span_warning("[user] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
@@ -659,7 +659,7 @@
 		if(HAS_TRAIT(user, TRAIT_IRONMAN))
 			user.electrocute_act(10, user)
 	else
-		user.say(pick("Psydon endures, so we must!","May your wounds weep no more!","Psydon provides respite for thy wounds!","I shall endure for you!","Allfather, let me bleed in their stead!"))
+		user.say(pick("Praecursor endures, so we must!","May your wounds weep no more!","Praecursor provides respite for thy wounds!","I shall endure for you!","Allfather, let me bleed in their stead!"))
 		if(HAS_TRAIT(user, TRAIT_IRONMAN))
 			user.adjustFireLoss(25)
 
@@ -1041,4 +1041,4 @@
 // UNUSED DIALOGUE: PRAYER, RESPITE, PERSIST
 // ("#..our father above, hallowed be thy name..","#..thy kingdom come, thy will be done..","#..I fear no evil, for thou art with me..")
 // ("#..with every broken bone, I swore I lyved..","#..thou shalt ward me within the valleys o' evil..","#..the fires of Syon, everburning with thine vigor..")
-// ("#..in Psydon's glory, all malaises shall melt away..","#..thine holy spirit lies within all our hearts, weeping forevermore..","#..thou shalt know all, for enduring begets enlightenment..")
+// ("#..in Praecursor's glory, all malaises shall melt away..","#..thine holy spirit lies within all our hearts, weeping forevermore..","#..thou shalt know all, for enduring begets enlightenment..")

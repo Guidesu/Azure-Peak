@@ -8,7 +8,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/sojourner
-	subclass_languages = list(/datum/language/otavan, /datum/language/celestial)
+	subclass_languages = list(/datum/language/medullan, /datum/language/celestial)
 	category_tags = list(CTAG_ORTHODOXIST)
 	traits_applied = list(
 		TRAIT_CIVILIZEDBARBARIAN,
@@ -88,7 +88,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	neck = /obj/item/clothing/neck/roguetown/psicross/silver/naledi
+	neck = /obj/item/clothing/neck/roguetown/psicross/silver/auxentia
 	id = /obj/item/clothing/ring/signet/psy/g
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded/dark
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid

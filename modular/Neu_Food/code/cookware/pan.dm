@@ -52,14 +52,14 @@
 
 /obj/item/cooking/pan/bronze
 	name = "bronze pan"
-	desc = "Psydonia's greatest mystery isn't the meaning of lyfe, but how these pans are able to perfectly fry a nite's meal without needing even a single drop of oil."
+	desc = "Vaeltis's greatest mystery isn't the meaning of lyfe, but how these pans are able to perfectly fry a nite's meal without needing even a single drop of oil."
 	icon_state = "bronzepan"
 	throwforce = 30 //We both know why.
 	max_integrity = 200
 
 /obj/item/cooking/pan/stone
 	name = "hotrock"
-	desc = "Chiseled flat to fry flesh atop a hearth, these stones were the first to shepherd finer tastes to Psydonia's ur-civilizations."
+	desc = "Chiseled flat to fry flesh atop a hearth, these stones were the first to shepherd finer tastes to Vaeltis's ur-civilizations."
 	icon_state = "stonepan"
 	throwforce = 20
 	w_class = WEIGHT_CLASS_HUGE

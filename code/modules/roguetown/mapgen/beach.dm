@@ -17,12 +17,18 @@
 							/obj/structure/flora/roguegrass/bush = 8,
 							/obj/structure/flora/roguegrass = 20,
 							/obj/structure/flora/roguegrass/maneater = 16,
+							/obj/structure/flora/roguegrass/water/reeds = 6,
+							/obj/structure/flora/ausbushes/reedbush = 4,
+							/obj/structure/flora/roguegrass/herb/random = 4,
 							/obj/item/natural/stone = 18,
 							/obj/item/natural/rock = 2,
 							/obj/item/grown/log/tree/stick = 3,
 							/obj/structure/leyline/normal/coast = 2,
 						/obj/structure/closet/dirthole/closed/loot=3,
 							/obj/structure/flora/roguetree/burnt = 3,
+							/obj/structure/flora/roguetree/stump/log = 2,
+							/obj/structure/flora/rock = 3,
+							/obj/effect/decal/remains/bear = 0.2,
 							/obj/effect/hunting_track = 4)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=5)
 	allowed_areas = list(/area/rogue/outdoors/beach/forest)
@@ -33,6 +39,9 @@
 	spawnableAtoms = list(/obj/structure/flora/roguegrass/bush = 5,
 							/obj/structure/flora/roguegrass = 35,
 							/obj/structure/flora/roguegrass/maneater = 4,
+							/obj/structure/flora/roguegrass/herb/random = 3,
+							/obj/structure/flora/ausbushes/sparsegrass = 4,
+							/obj/structure/flora/ausbushes/fullgrass = 2,
 							/obj/item/natural/stone = 8,
 							/obj/item/natural/rock = 2,
 							/obj/item/grown/log/tree/stick = 10,
@@ -49,11 +58,19 @@
 /datum/mapGeneratorModule/beachcoast
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/water/ocean)
-	spawnableAtoms = list(/obj/structure/roguerock=20, /obj/structure/glowshroom = 3)
+	spawnableAtoms = list(/obj/structure/roguerock=20,
+							/obj/structure/glowshroom = 3,
+							/obj/structure/flora/roguegrass/water/reeds = 8,
+							/obj/structure/flora/rock = 4)
 	allowed_areas = list(/area/rogue/outdoors/beach)
 
 /datum/mapGeneratorModule/beachsand
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/AzureSand)
-	spawnableAtoms = list(/obj/item/natural/stone = 15, /obj/item/grown/log/tree/stick = 20)
+	spawnableAtoms = list(/obj/item/natural/stone = 15,
+							/obj/item/grown/log/tree/stick = 20,
+							/obj/structure/flora/rock = 5,
+							/obj/structure/roguerock = 4,
+							/obj/structure/flora/roguetree/stump/log = 2,
+							/obj/effect/hunting_track = 2)
 	allowed_areas = list(/area/rogue/outdoors/beach)

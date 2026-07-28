@@ -42,22 +42,22 @@
 	The power to dictate how the future generations will look back on these coming days."
 	outfit = /datum/outfit/job/roguetown/archivist/basic
 	subclass_languages = list(
-		/datum/language/oldazurian,//YOU LIVE HERE
+		/datum/language/auxentian,//YOU LIVE HERE
 		/datum/language/elvish,
 		/datum/language/dwarvish,
 		/datum/language/celestial,
-		/datum/language/raneshi,
+		/datum/language/ostrovian,
 		/datum/language/hellspeak,
 		/datum/language/orcish,
-		/datum/language/grenzelhoftian,
-		/datum/language/otavan,
-		/datum/language/etruscan,
-		/datum/language/gronnic,
-		/datum/language/kazengunese,
-		/datum/language/lingyuese,
+		/datum/language/vergenmarkian,
+		/datum/language/medullan,
+		/datum/language/medullan,
+		/datum/language/dvojezemi,
+		/datum/language/ostrovian,
+		/datum/language/ostrovian,
 		/datum/language/draconic,
 		/datum/language/undercommon,
-		/datum/language/aavnic, // All but beast, which is associated with werewolves.
+		/datum/language/dvojezemi, // All but beast, which is associated with werewolves.
 	)
 	category_tags = list(CTAG_ARCHIVIST)
 	subclass_stats = list(

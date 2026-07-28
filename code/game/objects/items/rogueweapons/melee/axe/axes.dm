@@ -258,7 +258,7 @@
 
 /obj/item/rogueweapon/stoneaxe/handaxe/silver
 	name = "silver tomahawk"
-	desc = "Once, a ceremonial rendition of the handaxes that Psydonia's ancestors built the first civilizations \
+	desc = "Once, a ceremonial rendition of the handaxes that Vaeltis's ancestors built the first civilizations \
 	with. Now, an uncommon - but very much lethal - alternative to the tossblade, well-weighted for slashing and throwing."
 	armor_penetration = PEN_BSTEEL //Refers to throwing armor penetration. Heavier than silver tossblades; you get one throw.
 	icon_state = "tomahawk_silver"
@@ -323,7 +323,7 @@
 /obj/item/rogueweapon/stoneaxe/woodcut/bronze
 	name = "bronze axe"
 	icon_state = "bronzeaxe"
-	desc = "An antiquital handstaff, fitted with a bronze axhead. Such a tool once allowed humenity to carve civilization out of Psydonia's wildernesses; now, it's a rare \
+	desc = "An antiquital handstaff, fitted with a bronze axhead. Such a tool once allowed humenity to carve civilization out of Vaeltis's wildernesses; now, it's a rare \
 	sight beyond the Deadland's nomadic barbarian-tribes."
 	force = 23 //Basic balance idea. Damage's between iron and steel, but with a sharper edge than steel. Probably not historically accurate, but we're here to have fun.
 	force_wielded = 27

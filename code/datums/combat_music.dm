@@ -536,7 +536,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 
 /datum/combat_music/freilancer
 	name = "Freifechter, Lancer"
-	desc = "Etruscan pike companies are some of Psydonia's most sought-after mercenaries - but you're not one of those. You're a master."
+	desc = "Etruscan pike companies are some of Vaeltis's most sought-after mercenaries - but you're not one of those. You're a master."
 	shortname = "Lancer"
 	credits = "Lucas Gitano - The Mask of Zorro (Fingerstyle Acoustic Cover)"
 	musicpath = list('sound/music/frei_lancer.ogg')

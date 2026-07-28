@@ -52,7 +52,7 @@
 		"today_week" = today_week,
 		"view_month" = view_month,
 		"view_year" = view_year,
-		"weekday_names" = list("Moon's", "Truce's", "Wedding's", "Thunder's", "Feast's", "Psydon's", "Sun's"),
+		"weekday_names" = list("Moon's", "Truce's", "Wedding's", "Thunder's", "Feast's", "Praecursor's", "Sun's"),
 		"days_in_month" = CALENDAR_DAYS_IN_MONTH,
 		"days_in_week" = CALENDAR_DAYS_IN_WEEK,
 		"months" = months_meta,

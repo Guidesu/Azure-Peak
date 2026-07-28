@@ -23,7 +23,7 @@
 	min_pq = 25 // All perks are currently unlocked starting at 25.
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_conquistador.ogg'
 	class_select_category = CLASS_CAT_ETRUSCA
-	subclass_languages = list(/datum/language/etruscan)
+	subclass_languages = list(/datum/language/ostrovian)
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_NOBLE)
 	classes = list("Tercio" = "Fate placed you in the vanguard, alongside your trusty halberd.",

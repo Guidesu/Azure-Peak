@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/orchard_locusts
 	name = "Orchard Locusts"
-	description = "A swarm has stripped the Rockhill orchards bare. What little remains is sold at ransom."
+	description = "A swarm has stripped the Kingsfield orchards bare. What little remains is sold at ransom."
 	announcement = "<font color='#c44'>ORCHARD LOCUSTS: The orchards stripped bare. Apples, pears, and berries grow costly.</font>"
 	affected_goods = list(TRADE_GOOD_APPLE, TRADE_GOOD_PEAR, TRADE_GOOD_JACKSBERRY)
 	price_mod = ECON_SHORTAGE_MAJOR
@@ -278,16 +278,16 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/silk_moth_collapse
 	name = "Silk Moth Collapse"
-	description = "Blackholt's spider-silk harvest has collapsed. Arachnological misfortune, the conclave says."
-	announcement = "<font color='#c44'>SILK MOTH COLLAPSE: Blackholt's silk harvest fails. Tailors grind their teeth.</font>"
+	description = "Rosawood's spider-silk harvest has collapsed. Arachnological misfortune, the locals say."
+	announcement = "<font color='#c44'>SILK MOTH COLLAPSE: Rosawood's silk harvest fails. Tailors grind their teeth.</font>"
 	affected_goods = list(TRADE_GOOD_SILK)
 	price_mod = ECON_SHORTAGE_CRISIS
 	event_type = ECON_EVENT_SHORTAGE
 
 /datum/economic_event/clay_pit_collapse
 	name = "CLAY PIT COLLAPSE"
-	description = "The Blackholt clay pits have caved in, swallowing wagons and diggers alike. Potters are turned away empty-handed."
-	announcement = "<font color='#c44'>CLAY PIT COLLAPSE: Blackholt's clay pits cave in. Potters and brickmakers cry out for stock.</font>"
+	description = "The Rosawood clay pits have caved in, swallowing wagons and diggers alike. Potters are turned away empty-handed."
+	announcement = "<font color='#c44'>CLAY PIT COLLAPSE: Rosawood's clay pits cave in. Potters and brickmakers cry out for stock.</font>"
 	affected_goods = list(TRADE_GOOD_CLAY)
 	price_mod = ECON_SHORTAGE_MINOR
 	event_type = ECON_EVENT_SHORTAGE
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/cidering_season
 	name = "Cidering Season"
-	description = "The Rockhill presses groan under a glut of fruit. Vendors dump the excess at any price."
+	description = "The Kingsfield presses groan under a glut of fruit. Vendors dump the excess at any price."
 	announcement = "<font color='#5cb85c'>CIDERING SEASON: Fruit piles outside the presses. Orchard goods go cheap.</font>"
 	affected_goods = list(TRADE_GOOD_APPLE, TRADE_GOOD_PEAR, TRADE_GOOD_JACKSBERRY)
 	price_mod = ECON_OVERSUPPLY_SEVERE

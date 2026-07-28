@@ -770,7 +770,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/inhumen)
 "di" = (
-/obj/item/clothing/neck/roguetown/psicross/undivided{
+/obj/item/clothing/neck/roguetown/psicross/custodius{
 	pixel_y = 30
 	},
 /obj/structure/ritualcircle/undivided,
@@ -1060,8 +1060,8 @@
 /area/rogue/under/cave/inhumen)
 "ex" = (
 /obj/structure/closet/crate/chest/old_crate,
-/obj/item/clothing/neck/roguetown/psicross/noc,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/inhumen)
 "ez" = (
@@ -1405,7 +1405,7 @@
 /area/rogue/indoors/vampire_manor)
 "fS" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/ravox,
+/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "fT" = (
@@ -1565,9 +1565,9 @@
 /area/rogue/outdoors/woods/wretch_lair)
 "gz" = (
 /obj/structure/closet/crate/chest,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar,
+/obj/item/clothing/neck/roguetown/psicross/volkovoi,
+/obj/item/clothing/neck/roguetown/psicross/volkovoi,
+/obj/item/clothing/neck/roguetown/psicross/volkovoi,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "gA" = (
@@ -2589,9 +2589,9 @@
 /area/rogue/under/cave/inhumen)
 "kQ" = (
 /obj/structure/closet/crate/chest,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios,
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios,
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios,
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "kR" = (
@@ -4045,7 +4045,7 @@
 /area/rogue/indoors/vampire_manor)
 "qZ" = (
 /obj/structure/table/church/m,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy,
+/obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/cave/inhumen)
 "ra" = (
@@ -4207,7 +4207,7 @@
 /obj/effect/decal/cleanable/blood{
 	icon_state = "floor4-old"
 	},
-/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/bronze,
+/obj/item/clothing/neck/roguetown/psicross/volkovoi/bronze,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "rP" = (
@@ -5024,7 +5024,7 @@
 /turf/open/floor/rogue/dirt/ambush,
 /area/rogue/outdoors/woods/vampire_lair)
 "uO" = (
-/obj/item/clothing/neck/roguetown/psicross/noc/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/miluse/aalloy,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/vampire_manor)
 "uP" = (
@@ -5214,7 +5214,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/under/cave/inhumen)
 "vO" = (
-/obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy,
+/obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy,
 /obj/structure/table/vtable,
 /obj/machinery/light/rogue/candle/floorcandle,
 /turf/open/floor/rogue/churchbrick,
@@ -5694,7 +5694,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "xO" = (
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "xQ" = (
@@ -6004,7 +6004,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/vampire_manor)
 "zo" = (
-/obj/item/clothing/neck/roguetown/psicross/noc/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/miluse/aalloy,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods/vampire_lair)
 "zq" = (
@@ -6334,7 +6334,7 @@
 /area/rogue/outdoors/banditcamp)
 "AC" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/necra,
+/obj/item/clothing/neck/roguetown/psicross/morwenna,
 /obj/effect/decal/cobbleedge{
 	dir = 6
 	},
@@ -6499,7 +6499,7 @@
 /area/rogue/outdoors/woods/vampire_lair)
 "Bd" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/clothing/neck/roguetown/psicross/astrata,
+/obj/item/clothing/neck/roguetown/psicross/auxentius,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "Be" = (
@@ -6577,7 +6577,7 @@
 /area/rogue/under/cave/inhumen)
 "Bs" = (
 /obj/structure/fluff/walldeco/chains,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "Bv" = (
@@ -7293,7 +7293,7 @@
 	pixel_y = 8
 	},
 /obj/item/clothing/neck/roguetown/psicross/wood,
-/obj/item/clothing/neck/roguetown/psicross/xylix,
+/obj/item/clothing/neck/roguetown/psicross/viator,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/inhumen)
 "EA" = (
@@ -7592,7 +7592,7 @@
 "FZ" = (
 /obj/item/roguecoin/aalloy/pile,
 /obj/structure/closet/crate/chest/neu_iron,
-/obj/item/clothing/neck/roguetown/psicross/noc/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/miluse/aalloy,
 /obj/item/rogueweapon/thresher/aalloy,
 /turf/open/floor/rogue/AzureSand,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -8384,7 +8384,7 @@
 /area/rogue/indoors/vampire_manor)
 "JH" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/malum,
+/obj/item/clothing/neck/roguetown/psicross/handwerra/malum,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "JI" = (
@@ -9315,7 +9315,7 @@
 /area/rogue/indoors/vampire_manor)
 "Nc" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/inhumen)
 "Nd" = (
@@ -9709,7 +9709,7 @@
 /area/rogue/indoors/vampire_manor)
 "OM" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/eora,
+/obj/item/clothing/neck/roguetown/psicross/miluse/eora,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "OP" = (
@@ -9766,7 +9766,7 @@
 "Pb" = (
 /obj/item/roguecoin/aalloy/pile,
 /obj/structure/closet/crate/chest/neu_iron,
-/obj/item/clothing/neck/roguetown/psicross/noc/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/miluse/aalloy,
 /obj/item/roguestatue/aalloy,
 /turf/open/floor/rogue/AzureSand,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -9824,7 +9824,7 @@
 	pixel_y = 8
 	},
 /obj/item/flowercrown/salvia,
-/obj/item/clothing/neck/roguetown/psicross/dendor{
+/obj/item/clothing/neck/roguetown/psicross/ignatius{
 	pixel_y = 5
 	},
 /turf/open/floor/rogue/cobble/mossy,
@@ -10061,7 +10061,7 @@
 /area/rogue/indoors/vampire_manor)
 "QE" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/abyssor,
+/obj/item/clothing/neck/roguetown/psicross/wulfric,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/inhumen)
 "QG" = (
@@ -10131,7 +10131,7 @@
 /area/rogue/outdoors/banditcamp)
 "Ra" = (
 /obj/structure/bed/rogue/shit,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "Rb" = (
@@ -10466,9 +10466,9 @@
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/vampire_manor)
 "SF" = (
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/baotha,
+/obj/item/clothing/neck/roguetown/psicross/hausvette,
+/obj/item/clothing/neck/roguetown/psicross/hausvette,
+/obj/item/clothing/neck/roguetown/psicross/hausvette,
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
@@ -10624,7 +10624,7 @@
 /area/rogue/outdoors/woods/wretch_lair)
 "Tv" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/pestra,
+/obj/item/clothing/neck/roguetown/psicross/handwerra,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "Ty" = (
@@ -10684,7 +10684,7 @@
 "TH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/item/clothing/neck/roguetown/psicross/noc,
+/obj/item/clothing/neck/roguetown/psicross/miluse,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/cave/inhumen)
 "TI" = (
@@ -11247,9 +11247,9 @@
 /area/rogue/under/cave/inhumen)
 "Wc" = (
 /obj/structure/closet/crate/chest,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy,
+/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/cave/inhumen)
 "Wd" = (
@@ -11264,7 +11264,7 @@
 /obj/structure/table/church{
 	icon_state = "churchtable_end"
 	},
-/obj/item/clothing/neck/roguetown/psicross/abyssor{
+/obj/item/clothing/neck/roguetown/psicross/wulfric{
 	pixel_x = 6;
 	pixel_y = 7
 	},
@@ -11495,7 +11495,7 @@
 /area/rogue/indoors/vampire_manor)
 "Xf" = (
 /obj/structure/table/finestone,
-/obj/item/clothing/neck/roguetown/psicross/astrata,
+/obj/item/clothing/neck/roguetown/psicross/auxentius,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "Xg" = (

@@ -29,7 +29,7 @@
 	tutorial = "In the Blackpowder Order, every fourth soldier is a sharpshooter, armed with advanced Otavan firearms. These Legionnaires are the very essence of the everchanging face of warfare, and when the Final War begins, it is with their power that the evil will be driven back."
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/blackpowder_legionnaire
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/vergenmarkian)
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_blackpowder.ogg'
 	category_tags = list(CTAG_ORTHODOXIST)
 	traits_applied = list(TRAIT_PSYDONITE, TRAIT_ARTILLERY_EXPERT)

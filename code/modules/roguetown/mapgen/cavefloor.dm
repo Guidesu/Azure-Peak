@@ -12,7 +12,16 @@
 /datum/mapGeneratorModule/cave
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/dirt/road,/turf/open/water,/turf/open/floor/rogue/volcanic)
-	spawnableAtoms = list(/obj/item/natural/stone = 19,/obj/structure/roguerock=5,/obj/item/natural/rock = 3, /obj/structure/glowshroom = 4)
+	spawnableAtoms = list(/obj/item/natural/stone = 19,
+							/obj/structure/roguerock=5,
+							/obj/item/natural/rock = 3,
+							/obj/item/natural/rock/iron = 0.6,
+							/obj/item/natural/rock/tin = 0.6,
+							/obj/item/natural/rock/copper = 0.6,
+							/obj/item/natural/rock/coal = 0.8,
+							/obj/structure/glowshroom = 4,
+							/obj/structure/flora/mushroomcluster = 2,
+							/obj/structure/flora/tinymushrooms = 2)
 	allowed_areas = list(/area/rogue/under/cave/spider,/area/rogue/indoors/cave,/area/rogue/under/cavewet,/area/rogue/under/cave,/area/rogue/under/cavelava)
 
 /datum/mapGeneratorModule/cavedirt
@@ -22,8 +31,17 @@
 						  /obj/structure/roguerock=20,
 						  /obj/structure/flora/roguegrass = 14,
 						  /obj/structure/closet/dirthole/closed/loot=6,
-						  /obj/item/natural/stone = 24,/obj/item/natural/rock = 8, 
+						  /obj/item/natural/stone = 24,/obj/item/natural/rock = 8,
 						  /obj/structure/glowshroom = 3,
+						  /obj/structure/glowshroom/dendorite = 0.5,
+						  /obj/structure/flora/mushroomcluster = 5,
+						  /obj/structure/flora/mushroomcluster/cute = 2,
+						  /obj/structure/flora/tinymushrooms = 6,
+						  /obj/structure/flora/tinymushrooms/cute = 2,
+						  /obj/structure/flora/rock = 5,
+						  /obj/structure/flora/rock/pile = 2,
+						  /obj/item/natural/rock/gem = 0.15,
+						  /obj/item/natural/rock/salt = 0.3,
 						  /obj/effect/hunting_track = 5)
 	allowed_areas = list(/area/rogue/under/cave/spider,/area/rogue/indoors/cave,/area/rogue/under/cavewet,/area/rogue/under/cave,/area/rogue/under/cavelava)
 
@@ -56,5 +74,8 @@
 /datum/mapGeneratorModule/cavespider
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/dirt)
-	spawnableAtoms = list(/obj/structure/spider/stickyweb=10)
+	spawnableAtoms = list(/obj/structure/spider/stickyweb=10,
+							/obj/structure/flora/rogueshroom = 4,
+							/obj/structure/flora/mushroomcluster = 3,
+							/obj/effect/decal/remains/bigrat = 0.3)
 	allowed_areas = list(/area/rogue/under/cave/spider)

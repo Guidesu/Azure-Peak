@@ -93,7 +93,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_spiced
 	name = "spiced tea leaves"
-	desc = "A blend of coarsely-ground tea leaves and pumpkin spice, perfect for brewing the most relaxing drinks in all of Psydonia."
+	desc = "A blend of coarsely-ground tea leaves and pumpkin spice, perfect for brewing the most relaxing drinks in all of Vaeltis."
 	icon = 'modular/Neu_Food/icons/drinks.dmi'
 	icon_state = "teaground_spiced"
 	tastes = list("bitterness" = 1, "a mouthful of cough-inducing powderiness" = 1)

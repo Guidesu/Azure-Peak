@@ -138,7 +138,6 @@
 	data["treasury"] = SStreasury?.discretionary_fund?.balance || 0
 	data["day"] = GLOB.dayspassed
 	data["expected_rural_revenue"] = SStreasury?.get_rural_tax_amount() || 0
-	data["expected_wage_outlay"] = SStreasury?.get_expected_wage_outlay() || 0
 	data["royal_custom_unlocked"] = SStreasury?.royal_custom_unlocked ? TRUE : FALSE
 	data["royal_custom_margin"] = SStreasury?.royal_custom_margin
 	data["royal_custom_threshold"] = SStreasury?.royal_custom_threshold

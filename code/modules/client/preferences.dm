@@ -1480,7 +1480,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							if (AGE_MIDDLEAGED)
 								to_chat(user, "Muscles ache and joints begin to slow as Aeon's grasp begins to settle upon your shoulders. (-1 SPD, +1 WIL +1 FOR)")
 							if (AGE_OLD)
-								to_chat(user, "In a place as lethal as PSYDONIA, the elderly are all but marvels... or beneficiaries of the habitually privileged. (-1 STR, -2 SPE, -1 PER, -2 CON, +2 INT, +1 FOR)")
+								to_chat(user, "In a place as lethal as VAELTIS, the elderly are all but marvels... or beneficiaries of the habitually privileged. (-1 STR, -2 SPE, -1 PER, -2 CON, +2 INT, +1 FOR)")
 						// LETHALSTONE EDIT END
 						ResetJobs()
 						to_chat(user, "<font color='red'>Classes reset.</font>")
@@ -1651,14 +1651,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						/datum/language/hellspeak,
 						/datum/language/draconic,
 						/datum/language/celestial,
-						/datum/language/raneshi,
-						/datum/language/grenzelhoftian,
-						/datum/language/kazengunese,
-						/datum/language/lingyuese,
-						/datum/language/etruscan,
-						/datum/language/gronnic,
-						/datum/language/otavan,
-						/datum/language/aavnic,
+						/datum/language/ostrovian,
+						/datum/language/vergenmarkian,
+						/datum/language/ostrovian,
+						/datum/language/ostrovian,
+						/datum/language/medullan,
+						/datum/language/dvojezemi,
+						/datum/language/medullan,
+						/datum/language/dvojezemi,
 					)
 					var/list/choices = list("None")
 					for(var/language in selectable_languages)

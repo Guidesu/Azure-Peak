@@ -5,7 +5,7 @@
 	forbidden_races = list(RACES_CONSTRUCT RACES_OOZE) //i wonder if i will regret letting them be revs
 	allowed_patrons = ALL_KAZENGUN_PATRONS //guardian of the twelve... and saidon but no undivided
 	outfit = /datum/outfit/job/roguetown/wretch/mistwalker
-	subclass_languages = list(/datum/language/kazengunese)
+	subclass_languages = list(/datum/language/ostrovian)
 	class_select_category = CLASS_CAT_WARRIOR
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_NOPAINSTUN, TRAIT_BLOOD_RESISTANCE, TRAIT_JOURNEYS_END) //no armour, literally made to bleed

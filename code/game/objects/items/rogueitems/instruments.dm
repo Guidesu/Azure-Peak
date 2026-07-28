@@ -377,7 +377,7 @@
 	"Disciples Tower" = 'sound/music/instruments/psyaltery (1).ogg',
 	"Green Sleeves" = 'sound/music/instruments/psyaltery (2).ogg',
 	"Midyear Melancholy" = 'sound/music/instruments/psyaltery (3).ogg',
-	"Santa Psydonia" = 'sound/music/instruments/psyaltery (4).ogg',
+	"Santa Vaeltis" = 'sound/music/instruments/psyaltery (4).ogg',
 	"Le Venardine" = 'sound/music/instruments/psyaltery (5).ogg',
 	"Azurea Fair" = 'sound/music/instruments/psyaltery (6).ogg',
 	"Amoroso" = 'sound/music/instruments/psyaltery (7).ogg',

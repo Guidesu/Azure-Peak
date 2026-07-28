@@ -66,7 +66,7 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 2,
 		)
 	H.cmode_music = 'sound/music/combat_desertrider.ogg'
-	H.grant_language(/datum/language/raneshi)
+	H.grant_language(/datum/language/ostrovian)
 
 /datum/migrant_role/ranesheni/amirah
 	name = "Amirah"
@@ -125,7 +125,7 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
 	)
 	H.cmode_music = 'sound/music/combat_desertrider.ogg'
-	H.grant_language(/datum/language/raneshi)
+	H.grant_language(/datum/language/ostrovian)
 
 /datum/migrant_role/ranesheni/janissary
 	name = "Janissary"
@@ -188,7 +188,7 @@
 		/obj/item/natural/bundle/cloth/bandage/full = 1,
 		)
 	H.cmode_music = 'sound/music/combat_desertrider.ogg'
-	H.grant_language(/datum/language/raneshi)
+	H.grant_language(/datum/language/ostrovian)
 	var/weapons = list("Mace","Spear")
 	if(H.mind)
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -259,7 +259,7 @@
 		/obj/item/storage/belt/rogue/pouch/coins/veryrich = 1,
 		)
 	H.cmode_music = 'sound/music/combat_desertrider.ogg'
-	H.grant_language(/datum/language/raneshi)
+	H.grant_language(/datum/language/ostrovian)
 
 #undef CTAG_RANESHENI_EMIR
 #undef CTAG_RANESHENI_AMIRAH

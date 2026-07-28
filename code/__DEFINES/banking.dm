@@ -33,6 +33,10 @@
 #define TREASURY_BANKRUPTCY 2
 #define TREASURY_ARREARS_LOAN 1000
 
+/// Trigger floor for the daily solvency check: if the shared purse drops below this, the
+/// outpost enters arrears (then sequestration on a second consecutive failure).
+#define TREASURY_SOLVENCY_FLOOR 500
+
 #define BANKRUPTCY_OPERATING_FLOOR 2500
 #define BANKRUPTCY_DEBT_FLAT 5000
 #define BANKRUPTCY_AUTOEXPORT_PERCENTAGE 0.25
@@ -40,10 +44,7 @@
 #define BANKRUPTCY_RECOVERY_RESET 1500
 
 #define BANKRUPTCY_SUSPENDED_DECREES list( \
-	DECREE_NOC_PESTRA_COVENANT, \
 	DECREE_GREAT_WRIT, \
-	DECREE_GUILD_CHARTER_OF_ARMS, \
-	DECREE_INDENTURE_OF_WAR, \
 	DECREE_MAGNA_CARTA, \
 	DECREE_OTAVAN_ACCORDS, \
 	DECREE_ZENITSTADT_CONCORDAT, \
@@ -74,19 +75,6 @@
 	"Knight", \
 )
 
-// Poll Tax categories - flat per-head daily levy by civic class.
-#define POLL_TAX_CAT_NOBLE "poll_noble"
-#define POLL_TAX_CAT_CLERGY "poll_clergy"
-#define POLL_TAX_CAT_INQUISITION "poll_inquisition"
-#define POLL_TAX_CAT_COURTIER "poll_courtier"
-#define POLL_TAX_CAT_GARRISON "poll_garrison"
-#define POLL_TAX_CAT_GUILDS "poll_guilds"
-#define POLL_TAX_CAT_MERCHANT "poll_merchant"
-#define POLL_TAX_CAT_BURGHER "poll_burgher"
-#define POLL_TAX_CAT_ADVENTURER "poll_adventurer"
-#define POLL_TAX_CAT_MERCENARY "poll_mercenary"
-#define POLL_TAX_CAT_PEASANT "poll_peasant"
-
 // Minus principal in circulation (They are meant to issue loans at roundstart)
 #define CHURCH_RESERVE_FLOOR 1000
 
@@ -113,14 +101,3 @@
 
 #define PATRONAGE_WRIT_COOLDOWN (30 SECONDS)
 
-#define POLL_TAX_MAX_RATE 40
-#define POLL_TAX_MAX_SUBSIDY 60
-#define POLL_TAX_DEBT_DAYS_TO_DEBTOR 2
-
-#define GOLDEN_BULL_POLL_CAP 20
-#define NOC_PESTRA_POLL_CAP 10
-#define GUILD_CHARTER_OF_ARMS_POLL_CAP 15
-#define GUILD_CHARTER_OF_ARMS_PLEDGE_BONUS 100
-#define POLL_TAX_ADVANCE_LOCKOUT (10 MINUTES)
-#define POLL_TAX_MAX_ADVANCE_DAYS 7
-#define POLL_TAX_ADVANCE_FALLBACK_RATE 10

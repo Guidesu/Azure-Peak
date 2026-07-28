@@ -9,7 +9,7 @@
 	category_tags = list(CTAG_BANDIT)
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_corsair.ogg'
 	maximum_possible_slots = 2
-	subclass_languages = list(/datum/language/grenzelhoftian)
+	subclass_languages = list(/datum/language/auxentian)
 	traits_applied = list(TRAIT_FIREARMS_MARKSMAN, TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
 	classes = list("Jäger Deserter" = "Ex-soldier with handgonne, excellent survival skills and axe to chop some wood and heads", "Veteran" = "Long ago you were a soldier...or pretend to be. Now you are a man from the road with your trusty pistol and dagger")
 	subclass_stats = list(

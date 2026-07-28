@@ -92,7 +92,7 @@
 		var/amulet_choice = rand(1, 3)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
@@ -161,7 +161,7 @@
 		var/amulet_choice = rand(1, 3)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
@@ -216,7 +216,7 @@
 		var/amulet_choice = rand(1, 6)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
@@ -271,7 +271,7 @@
 		var/amulet_choice = rand(1, 3)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)
@@ -351,7 +351,7 @@
 		var/amulet_choice = rand(1, 2) //Cultist look so, no Psydon choice
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/miluse/aalloy
 		if(prob(60))
@@ -445,7 +445,7 @@
 		var/amulet_choice = rand(1, 3)
 		switch(amulet_choice)
 			if(1)
-				id = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy //ZIZO. ZIZO. ZIZO.
+				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.
 			if(2)
 				id = /obj/item/clothing/neck/roguetown/psicross/aalloy
 			if(3)

@@ -105,7 +105,7 @@
 	tutorial = "Some never considered alchemy a true arcyne art, but simply a foundation. Like a quill is to \
 	poetry. During your studies, however, you have taken to the passion of alchemy, the transmutation of \
 	elements and the creation of something concrete. Lyfeblood, elixirs, coal dust, moondust, ozium, and \
-	bottle bombs! All under Psydonia is yours to create! Just don't set the University on fire. Or do, \
+	bottle bombs! All under Vaeltis is yours to create! Just don't set the University on fire. Or do, \
 	but don't get caught."
 	outfit = /datum/outfit/job/roguetown/wapprentice/alchemist
 

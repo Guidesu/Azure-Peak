@@ -15,7 +15,7 @@
 /*	.................   Hardtack   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
 	name = "hardtack"
-	desc = "Brittle and hard, like chewing on a rock. These salted biscuits will never expire, however: and for those who travel across Psydonia, that fact alone earns it a space in their packs."
+	desc = "Brittle and hard, like chewing on a rock. These salted biscuits will never expire, however: and for those who travel across Vaeltis, that fact alone earns it a space in their packs."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "tack6"
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_HALF_MEAL)
@@ -42,7 +42,7 @@
 /*	.................   Bread   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/bread
 	name = "bread loaf"
-	desc = "One of Psydonia's staple foodstuffs, made from leavened dough. From the pauper to the papal, none can deny the simplistic beauty of a freshly-baked loaf."
+	desc = "One of Vaeltis's staple foodstuffs, made from leavened dough. From the pauper to the papal, none can deny the simplistic beauty of a freshly-baked loaf."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf6"
 	slices_num = 6
@@ -113,7 +113,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast/jamtallowed_slice
 	tastes = list("crunchy, sweetly-sour jamminess" = 1, "a wonderful start to the dae" = 1)
 	name = "jamtallowed toast"
-	desc = "A blackberried jam, smeared across a slice of toast. It is favored as a delicacy by Psydonia's peasantry and yeomen, and is usually reserved to crown the start of a particularly special dae."
+	desc = "A blackberried jam, smeared across a slice of toast. It is favored as a delicacy by Vaeltis's peasantry and yeomen, and is usually reserved to crown the start of a particularly special dae."
 	faretype = FARE_FINE
 	icon_state = "toast_jamtallow"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -268,7 +268,7 @@
 /* 	.................   Crossbuns   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/crossbun
 	name = "crossbun"
-	desc = "Traditionally eaten for breakfast amongst Psydonia's abbeys. Astratans in particular have made it a \
+	desc = "Traditionally eaten for breakfast amongst Vaeltis's abbeys. Astratans in particular have made it a \
 	practice to add a slice of marmalade to their crossbuns, in reverance of Her golden authority."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun"
@@ -700,7 +700,7 @@
 	name = "pearacotta tomatoplate"
 	desc = "A curious spin on an Azurian classic, attributed to the hands of Vanderlin's most esteemed culinarians. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and sweet pears; a melody of flavors \
-	that has helped to embolden the creativity of Psydonia's artists for centuries-hence, and - hopefully - centuries-more."
+	that has helped to embolden the creativity of Vaeltis's artists for centuries-hence, and - hopefully - centuries-more."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "pear_pizza"
 	slices_num = 6

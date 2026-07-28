@@ -7,7 +7,7 @@
 	class_select_category = CLASS_CAT_RANESHENI
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_desertrider.ogg'
-	subclass_languages = list(/datum/language/raneshi)
+	subclass_languages = list(/datum/language/ostrovian)
 	traits_applied = list(TRAIT_ARCYNE, TRAIT_MEDIUMARMOR)
 	subclass_stats = list(
 		STATKEY_SPD = 1, // Weighted 7. Swap str for spd

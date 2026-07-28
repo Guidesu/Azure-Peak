@@ -15,7 +15,6 @@ import { InstitutionalTab } from './MeisterPanel/InstitutionalTab';
 import { LedgerTab } from './MeisterPanel/LedgerTab';
 import { PatronageTab } from './MeisterPanel/PatronageTab';
 import { PersonalTab } from './MeisterPanel/PersonalTab';
-import { PollTaxTab } from './MeisterPanel/PollTaxTab';
 import type { Data, TabKey } from './MeisterPanel/types';
 
 export const MeisterPanel = () => {
@@ -66,12 +65,6 @@ export const MeisterPanel = () => {
               </div>
             )}
             <div
-              style={tabStyle(tab === 'polltax')}
-              onClick={() => setTab('polltax')}
-            >
-              Poll Tax
-            </div>
-            <div
               style={tabStyle(tab === 'ledger')}
               onClick={() => setTab('ledger')}
             >
@@ -86,7 +79,6 @@ export const MeisterPanel = () => {
           {tab === 'patronage' && accessiblePatronage && (
             <PatronageTab data={data} act={act} />
           )}
-          {tab === 'polltax' && <PollTaxTab data={data} act={act} />}
           {tab === 'ledger' && <LedgerTab data={data} act={act} />}
         </div>
       </Window.Content>

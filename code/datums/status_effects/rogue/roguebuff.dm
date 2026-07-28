@@ -2236,7 +2236,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/ravox_vow
 	name = "Ravox vow"
-	desc = "I vowed to Ravox. I shall bring justice to Psydonia."
+	desc = "I vowed to Ravox. I shall bring justice to Vaeltis."
 
 #define JOYBRINGER_FILTER "joybringer"
 

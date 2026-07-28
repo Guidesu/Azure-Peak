@@ -272,6 +272,6 @@
 
 /obj/machinery/anvil/bronze
 	name = "bronze anvil"
-	desc = "Elevating humenity from its primordial stupor since the earliest daes of Psydonia."
+	desc = "Elevating humenity from its primordial stupor since the earliest daes of Vaeltis."
 	icon_state = "broanvil"
 	max_integrity = 400

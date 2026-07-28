@@ -220,14 +220,11 @@
 		/datum/language/hellspeak,
 		/datum/language/draconic,
 		/datum/language/celestial,
-		/datum/language/raneshi,
-		/datum/language/grenzelhoftian,
-		/datum/language/kazengunese,
-		/datum/language/lingyuese,
-		/datum/language/etruscan,
-		/datum/language/gronnic,
-		/datum/language/otavan,
-		/datum/language/aavnic,
+		/datum/language/dvojezemi,
+		/datum/language/auxentian,
+		/datum/language/medullan,
+		/datum/language/ostrovian,
+		/datum/language/vergenmarkian,
 	)
 	var/list/result = list("None" = "None")
 	for(var/language_path in selectable_languages)
@@ -518,7 +515,7 @@
 				if(AGE_MIDDLEAGED)
 					to_chat(user, "Muscles ache and joints begin to slow as Aeon's grasp begins to settle upon your shoulders. (-1 SPD, +1 WIL +1 FOR)")
 				if(AGE_OLD)
-					to_chat(user, "In a place as lethal as PSYDONIA, the elderly are all but marvels... or beneficiaries of the habitually privileged. (-1 STR, -2 SPE, -1 PER, -2 CON, +2 INT, +1 FOR)")
+					to_chat(user, "In a place as lethal as VAELTIS, the elderly are all but marvels... or beneficiaries of the habitually privileged. (-1 STR, -2 SPE, -1 PER, -2 CON, +2 INT, +1 FOR)")
 			P.ResetJobs()
 			to_chat(user, span_warning("Classes reset."))
 			return TRUE
@@ -560,6 +557,22 @@
 			dat += "<b>Origin Description:</b><br>"
 			dat += "[P.virtue_origin.origin_desc]"
 			var/datum/browser/popup = new(user, "Race Help", nwidth = 600, nheight = 450)
+			popup.set_content(dat.Join())
+			popup.open(FALSE)
+			return TRUE
+
+		if("open_patron_lore")
+			if(!P.selected_patron)
+				return TRUE
+			var/datum/faith/patron_faith = GLOB.faithlist[P.selected_patron.associated_faith]
+			var/list/dat = list()
+			dat += "<b>[P.selected_patron.name] — [P.selected_patron.domain]</b><br>"
+			if(patron_faith?.name)
+				dat += "<i>Faith: [patron_faith.name]</i><br><br>"
+			dat += "[P.selected_patron.desc]<br><br>"
+			if(P.selected_patron.worshippers)
+				dat += "<b>Worshippers:</b> [P.selected_patron.worshippers]"
+			var/datum/browser/popup = new(user, "Patron Help", nwidth = 600, nheight = 450)
 			popup.set_content(dat.Join())
 			popup.open(FALSE)
 			return TRUE

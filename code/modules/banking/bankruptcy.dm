@@ -1,5 +1,5 @@
 // Treasury solvency state machine: NORMAL -> IN_ARREARS -> BANKRUPTCY (and back).
-// All transitions go through these helpers. distribute_daily_payments and the debt-skim
+// All transitions go through these helpers. daily_treasury_tick and the debt-skim
 // path read treasury_state but never mutate it.
 
 /datum/controller/subsystem/treasury/proc/is_in_receivership()
@@ -8,10 +8,10 @@
 /datum/controller/subsystem/treasury/proc/is_in_arrears_or_worse()
 	return treasury_state != TREASURY_NORMAL
 
-/datum/controller/subsystem/treasury/proc/enter_arrears(projected_total)
+/datum/controller/subsystem/treasury/proc/enter_arrears()
 	if(treasury_state != TREASURY_NORMAL)
 		return FALSE
-	var/shortfall = max(0, projected_total - discretionary_fund.balance)
+	var/shortfall = max(0, TREASURY_SOLVENCY_FLOOR - discretionary_fund.balance)
 	var/loan_amount = max(TREASURY_ARREARS_LOAN, shortfall)
 	treasury_state = TREASURY_IN_ARREARS
 	treasury_debt += loan_amount
@@ -21,8 +21,8 @@
 	discretionary_fund.balance += loan_amount
 	log_fund_entry(new /datum/treasury_entry("mint", null, discretionary_fund, loan_amount, "Arrears advance from the Azurian Trading Company"))
 	priority_announce(
-		"The Crown's coffers ran dry at payroll. The Burghers of Azuria, by their standing pledge, advance [loan_amount]m at no interest to cover the day's wages. Should the Crown fail again on the morrow, the realm enters sequestration.",
-		"THE BURGHERS LEND",
+		"The outpost's coffers ran dry. The Azurian Trading Company, by their standing pledge, advance [loan_amount]m at no interest to keep the ledger afloat. Should the purse run dry again on the morrow, the outpost enters sequestration.",
+		"THE COMPANY LENDS",
 		'sound/misc/royal_decree2.ogg',
 		"Captain",
 	)
@@ -54,40 +54,14 @@
 
 	suspend_charters_for_bankruptcy()
 	override_trade_for_bankruptcy()
-	suspend_wages_for_bankruptcy()
 
 	priority_announce(
-		"Following seizure of [atc_seizure_blurb()] against the Crown's outstanding obligations, the Azurian Trading Company - most blessed, most devout servant of Malum the Worker and Abyssor the Dreamer - has graciously advanced an interest-free reserve of [BANKRUPTCY_OPERATING_FLOOR]m in exchange for a debt of [new_debt]m to the Company. Until the debt is repaid in full, the Company holds the sequestered revenues of the realm and farms the customs and salt tolls in perpetuity; the stockpile and trade-engine pass to its hand, that the orderly operation of commerce may be assured for the common weal. Salaries stand suspended; all Charters but the Golden Bull are dissolved.",
+		"Following seizure of [atc_seizure_blurb()] against the outpost's outstanding obligations, the Azurian Trading Company has graciously advanced an interest-free reserve of [BANKRUPTCY_OPERATING_FLOOR]m in exchange for a debt of [new_debt]m to the Company. Until the debt is repaid in full, the Company holds the sequestered revenues and farms the customs and salt tolls in perpetuity; the stockpile and trade-engine pass to its hand, that the orderly operation of commerce may be assured. All Charters but the Golden Bull are dissolved.",
 		"SEQUESTRATION DECLARED",
 		'sound/misc/royal_decree.ogg',
 		"Captain",
 	)
 	return TRUE
-
-/datum/controller/subsystem/treasury/proc/suspend_wages_for_bankruptcy()
-	if(!steward_machine || !steward_machine.daily_payments)
-		return
-	var/list/payments = steward_machine.daily_payments
-	for(var/mob/living/owner as anything in bank_accounts)
-		if(!owner || !(payments[owner.job] > 0))
-			continue
-		var/datum/fund/account = bank_accounts[owner]
-		if(!account || account.wages_suspended)
-			continue
-		account.wages_suspended = TRUE
-		to_chat(owner, span_danger("My wages have been suspended after the Crown's sequestration. They will resume when the realm recovers."))
-
-/datum/controller/subsystem/treasury/proc/resume_wages_after_bankruptcy()
-	var/list/payments = steward_machine?.daily_payments
-	for(var/mob/living/owner as anything in bank_accounts)
-		if(!owner)
-			continue
-		var/datum/fund/account = bank_accounts[owner]
-		if(!account || !account.wages_suspended)
-			continue
-		account.wages_suspended = FALSE
-		if(payments && payments[owner.job] > 0)
-			to_chat(owner, span_notice("My wages have been reinstated as the Crown's sequestration lifts."))
 
 /datum/controller/subsystem/treasury/proc/clear_treasury_debt_state()
 	switch(treasury_state)
@@ -129,14 +103,13 @@
 		discretionary_fund.balance = BANKRUPTCY_RECOVERY_RESET
 		log_fund_entry(new /datum/treasury_entry("mint", null, discretionary_fund, topup, "Sequestration lifted: working capital"))
 
-	resume_wages_after_bankruptcy()
 	// Trade configuration intentionally NOT restored - re-tuning it is part of the cost of failure.
 	bankruptcy_concession_picks = BANKRUPTCY_CONCESSION_PICKS
 	atc_loan_arrears_consumed = FALSE
 	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = 0
 
 	priority_announce(
-		"The Azurian Trading Company releases the Crown's commerce. Wages resume on the morrow. The Lord may, by ancient prerogative, restore up to [BANKRUPTCY_CONCESSION_PICKS] of the suspended Charters at once; all others must wait the customary span between proclamations.",
+		"The Azurian Trading Company releases the outpost's commerce. The settlement's leader may restore up to [BANKRUPTCY_CONCESSION_PICKS] of the suspended Charters at once; all others must wait the customary span between proclamations.",
 		"SEQUESTRATION LIFTED",
 		'sound/misc/royal_decree.ogg',
 		"Captain",
@@ -156,7 +129,6 @@
 			D.on_revoke()
 		D.bankruptcy_suspended = TRUE
 		bankruptcy_suspended_decree_ids += decree_id
-	steward_machine?.enforce_wage_floors()
 
 /// Force every importable good onto standing import and pin auto-export at the sequestration
 /// ratio. Not snapshotted - the Steward must re-tune by hand on recovery.
@@ -186,7 +158,6 @@
 	D.broadcast_state_change()
 	bankruptcy_concession_picks -= 1
 	bankruptcy_suspended_decree_ids -= decree_id
-	steward_machine?.enforce_wage_floors()
 	return TRUE
 
 /// Called from set_decree_active before any state change. Golden Bull cannot be revoked

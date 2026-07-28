@@ -121,7 +121,7 @@
 "Y" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/effect/landmark/chest_or_mimic,
-/obj/item/clothing/neck/roguetown/psicross/malum,
+/obj/item/clothing/neck/roguetown/psicross/handwerra/malum,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave)
 "Z" = (

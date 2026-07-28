@@ -1,6 +1,7 @@
 /*
 	Helper for the CALENDAR System. This will be where I document the design decisions.
-	Azure Peak's canonical calendar system, known as the Azurian Calendar ICly, is a solar calendar. It is based on the "Grenzelhoftian Calendar", a tennite calendar system. 
+	Vaeltis's canonical calendar system, known as the Vaeltic Calendar ICly, is a solar calendar. It is based on the "Compact Calendar", the
+	reckoning adopted across Auxentia after the Vaeltis Compact bound the Court of Six Seats together, and later spread with the Concordat's reach.
 	But actually, because we're in a fictional video game, it is a perfect calendar with no leap years or irregularities.
 	It consists of 12 months, each with exactly 28 days dividing into 4 weeks. And it starts from Monday and ends on Sunday with a 7 days week.
 	Each week = 1 round IC (regardless of how much time actually passed in game)
@@ -40,16 +41,16 @@
 	var/month_name = get_month_number_to_text(month_number)
 	var/season = get_season_from_month(month_number)
 	var/season_phase = get_season_phase(month_number)
-	return "[day_of_month] [month_name] [year_number] AP (Month [month_number] [season_phase] [season]), Cycle [current_cycle]"
+	return "[day_of_month] [month_name] [year_number] AC (Month [month_number] [season_phase] [season]), Cycle [current_cycle]"
 
-/// Compact IC date - what players say in-character. e.g. "3 Eora 1513 AP".
+/// Compact IC date - what players say in-character. e.g. "3 Miluvane 1513 AC".
 /proc/get_ic_date_short_as_string(day_number)
 	var/list/parts = resolve_ic_date_parts(day_number)
-	return "[parts[1]] [get_month_number_to_text(parts[2])] [parts[3]] AP"
+	return "[parts[1]] [get_month_number_to_text(parts[2])] [parts[3]] AC"
 
 // Returns the current IC time as a string in the format [DAYS] ᛉ HH:MM ([Time Of Day])
 /proc/get_current_ic_time_as_string()
-	// Credit to Zydras for Syon's Dae for Saturday
+	// Credit to Zydras for the original "Syon's Dae for Saturday" naming convention this list still follows
 	// These are the day names that can be referred to sensically ICly
 	// By using secular names rather than IRL deity like Thule, Saturn, Tiw (Tyr), it avoids us having to explain a non-existent
 	// Norse deity while remaining phonetically close to the original English name
@@ -60,38 +61,38 @@
 /proc/get_month_number_to_text(month_number)
 	switch(month_number)
 		if(1)
-			return "Psyrise" // March - The first month of a year is dedicated to the original god that created the world
+			return "Praecurse" // March - The first month of the year commemorates the First Word: Praecursor speaking the law that set order against the formless dark
 		if(2)
-			return "Eora" // April
+			return "Miluvane" // April - Courting and wedding season, given to Miluše's hearth-and-heart half
 		if(3)
-			return "Dendor" // May
+			return "Ignis" // May - Planting season, given to Ignatius, god of growth, change, and risk
 		if(4)
 		// June, the hottest month is the month of the god of the SUN, because this is when they come into prominence
-		// Historically, the winter solstice was celebrated as the rebirth of the sun / sun god, so it makes sense for the hottest month to be dedicated to the night god
-			return "Astrata" // June  
+		// Historically, the winter solstice was celebrated as the rebirth of the sun / sun god, so it makes sense for the hottest month to be dedicated to the moon goddess
+			return "Auxentian" // June
 		if(5)
-			return "Xylix" // July
+			return "Viatis" // July - High summer, the fairest season for travel, given to Viator, god of trade, travel, and the luck of the road
 		if(6)
-			return "Malum" // August
+			return "Handwerran" // August - Given to Handwerra, goddess of craft, invention, and the maker's hands
 		if(7)
-			// This neatly split the year into two half of rise and fall of Psydon.
+			// This neatly splits the year into two halves: before and after the First Word fell silent.
 			// It also happens to be the start of "Fall" / Autumn.
-			// And it matches the "Psydonia is a minecraft world" joke quite well with Psydon going back to school
-			return "Syonfall"
+			// Commemorates the Comet Syon's fall, the moment Praecursor spent Himself binding the Unmaker and fell silent - the Word's own "going back to school"
+			return "Syonsfall"
 		if(8)
-			// Middle / End of harvesting seasons for some crops. It make sense that the goddess of rot / decay follows
-			// And after Syonfall comes the gradual move to winter
-			return "Pestra" // October
+			// Middle / End of harvesting seasons for some crops. It makes sense that the forest mother of poison-and-cure follows
+			// And after Syonsfall comes the gradual move to winter
+			return "Trnavan" // October - Given to Trnava, goddess of forests, poison-and-cure, and fierce motherhood
 		if(9)
-			// A month dedicated to the goddess of death, before the sun's rebirth and after the goddess of rot
-			return "Necra" // November
+			// A month dedicated to the goddess of death and debt, before the moon's dominion and after the forest mother
+			return "Morwenne" // November - Given to Morwenna, goddess of death, memory, debt, and inheritance
 		if(10)
-			// And on winter solstice and the longest night of the year, we have the month dedicated to the god of night 
-			return "Noc" // December
+			// And on winter solstice and the longest night of the year, we have the month dedicated to the goddess of the moon
+			return "Miluna" // December - Given to Miluše's moon-and-tide half
 		if(11)
-			return "Abyssor" // January
+			return "Wulfrite" // January - Deep winter, given to Wulfric, god of war-as-protection, sacrifice, and the hearth
 		if(12)
-			return "Ravox" // February
+			return "Custodian" // February - Year's end reckoning, given to Custodius, god of enforcement, oathbinding, and correction
 		else
 			return "Unknown Month ([month_number])"
 
@@ -190,17 +191,17 @@ GLOBAL_LIST_INIT(event_day_ordinals, list(
 
 	switch(day_of_week)
 		if(1)
-			return "Moon's Dae"
+			return "Moon's Dae" // Miluše, who now holds the moon and tide
 		if(2)
-			return "Truce's Dae"
+			return "Truce's Dae" // Viator, patron of borders and the bargains struck at them
 		if(3)
-			return "Wedding's Dae"
+			return "Wedding's Dae" // Miluše, whose hearth-and-heart half presides over courting and marriage
 		if(4)
-			return "Thunder's Dae"
+			return "Thunder's Dae" // Wulfric, whose fury is said to flood whole fiefs
 		if(5)
-			return "Feast's Dae"
+			return "Feast's Dae" // Hausvette, hearth-luck and the harvest owed to one's neighbors
 		if(6)
-			return "Psydon's Dae"
+			return "Praecursor's Dae" // The Word that fell silent but may yet still speak again
 		if(7)
-			return "Sun's Dae"
+			return "Sun's Dae" // Auxentius, the Sun's Law made flesh
 	return "Unknown Dae"

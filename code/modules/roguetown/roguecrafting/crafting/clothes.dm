@@ -352,7 +352,7 @@
 	name = "wooden inverted psycross"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/inhumen/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/aurelian/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -362,7 +362,7 @@
 	name = "wooden amulet of Matthios"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -372,7 +372,7 @@
 	name = "wooden amulet of Graggar"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/volkovoi/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,
@@ -382,7 +382,7 @@
 	name = "wooden amulet of Baotha"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/wood
+	result = /obj/item/clothing/neck/roguetown/psicross/hausvette/wood
 	reqs = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/grown/log/tree/stick = 2,

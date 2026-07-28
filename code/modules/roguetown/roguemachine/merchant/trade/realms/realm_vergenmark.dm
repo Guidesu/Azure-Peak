@@ -1,0 +1,176 @@
+/datum/foreign_realm/vergenmark
+	id = REALM_VERGENMARK
+	name = "Vergenmark"
+	roll_weight = TRADE_REALM_WEIGHT_NEIGHBOR
+	demanded_categories = list(NAVIGATOR_BUCKET_POTIONS_REAGENTS, NAVIGATOR_BUCKET_SEAFOOD, NAVIGATOR_BUCKET_CARVED, NAVIGATOR_BUCKET_POTTERY, NAVIGATOR_BUCKET_GARMENT_COMMON, NAVIGATOR_BUCKET_ARMOR_HEAVY, NAVIGATOR_BUCKET_MISCELLANEOUS)
+	ship_name_words = list(
+		"Eisernen", "Sturm", "Adler", "Wolf", "Drache",
+		"Schwert", "Bruder", "Krone", "Burg", "Wappen",
+		"Hammer", "Nordlicht", "Falken", "Reiter", "Greif",
+		"Æthel", "Beorht", "Anvil", "Grim", "Stan",
+	)
+	captain_first_names = list(
+		"Heinrich", "Konrad", "Dietrich", "Ulrich", "Gerhard",
+		"Hartmann", "Albrecht", "Reinhart", "Hermann", "Sigmund",
+		"Adelheid", "Mechthild", "Hedwig", "Irmgard", "Kunigunde",
+		"Wulfstan", "Godric", "Leofric", "Beorn", "Cuthwine",
+	)
+	captain_last_names = list(
+		"Faber", "Krummhorn", "Wolfsbein", "Hartwald", "von Apfelweinheim",
+		"Eisenberg", "Falkenried", "Sturmwacht", "von Zenitstadt", "von Hochburg",
+		"Hammerson", "Stanforge", "Grimaxe", "Coldhammer", "Ironbeard",
+	)
+	ship_types = list(
+		list("name" = "Coaster", "tonnage" = 30, "weight" = 15),
+		list("name" = "Cog", "tonnage" = 120, "weight" = 50),
+		list("name" = "Hulk", "tonnage" = 250, "weight" = 25),
+		list("name" = "Carrack", "tonnage" = 500, "weight" = 10),
+	)
+	name_prefixes = list(
+		list("text" = "Eorl ", "chance" = 4),
+		list("text" = "Cyne ", "chance" = 3),
+	)
+	city_tags = list(
+		"Apfelweinheim", "Zenitstadt", "Eisenhafen", "Silbergrund",
+		"Hochburg", "Sterneberg", "Sankt Averial", "Norwardine",
+		"Quicksilver Hold", "Granite Fort", "Walnut Grove", "the Bán", "the Mountainhomes",
+	)
+	city_tag_chance = 35
+	cultural_goods = list()
+	bulk_supply_pool_base = list(
+		list("good" = TRADE_GOOD_GRAIN, "qty_min" = BULK_QTY_HUGE_MIN, "qty_max" = BULK_QTY_HUGE_MAX, "price_mod" = BULK_PRICE_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_IRON_INGOT, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_STEEL_INGOT, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_FAIR, "always" = TRUE),
+		list("good" = TRADE_GOOD_CHEESE, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_DEEP_DISCOUNT),
+		list("good" = TRADE_GOOD_BUTTER, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_COAL, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_FAIR, "always" = TRUE),
+		list("good" = TRADE_GOOD_CURED_LEATHER, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_DISCOUNT),
+		list("good" = TRADE_GOOD_OATS, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_DISCOUNT),
+		list("good" = TRADE_GOOD_COPPER_ORE, "qty_min" = BULK_QTY_HUGE_MIN, "qty_max" = BULK_QTY_HUGE_MAX, "price_mod" = BULK_PRICE_DEEP_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_COPPER_INGOT, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_STONE, "qty_min" = BULK_QTY_HUGE_MIN, "qty_max" = BULK_QTY_HUGE_MAX, "price_mod" = BULK_PRICE_DEEP_DISCOUNT, "always" = TRUE),
+		list("good" = TRADE_GOOD_GEMERALD, "qty_min" = BULK_QTY_TINY_MIN, "qty_max" = BULK_QTY_TINY_MAX, "price_mod" = BULK_PRICE_DISCOUNT),
+		list("good" = TRADE_GOOD_SALT, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_FAIR),
+	)
+	bulk_demand_pool_base = list(
+		list("good" = TRADE_GOOD_GOLD_INGOT, "qty_min" = BULK_QTY_SMALL_MIN, "qty_max" = BULK_QTY_SMALL_MAX, "price_mod" = BULK_PRICE_DESPERATE, "always" = TRUE),
+		list("good" = TRADE_GOOD_CLAY, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_SILK, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_EAGER_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_TEA, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_EAGER_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_PAPER, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_SUGAR, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_PREMIUM),
+		list("good" = TRADE_GOOD_SAFFIRA, "qty_min" = BULK_QTY_TINY_MIN, "qty_max" = BULK_QTY_TINY_MAX, "price_mod" = BULK_PRICE_EAGER_PREMIUM),
+		list("good" = TRADE_GOOD_TANGERINE, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_PREMIUM),
+		list("good" = TRADE_GOOD_LEMON, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_FAIR),
+		list("good" = TRADE_GOOD_COFFEE, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_PREMIUM),
+		list("good" = TRADE_GOOD_CLOTH, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_STAPLE_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_TALLOW, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_STAPLE_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_HIDE, "qty_min" = BULK_QTY_LARGE_MIN, "qty_max" = BULK_QTY_LARGE_MAX, "price_mod" = BULK_PRICE_PREMIUM, "always" = TRUE),
+		list("good" = TRADE_GOOD_SALUMOI, "qty_min" = BULK_QTY_SMALL_MIN, "qty_max" = BULK_QTY_SMALL_MAX, "price_mod" = BULK_PRICE_PREMIUM),
+	)
+	victualling_fresh_pool = list(
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/bun_grenz, "qty_min" = VICTUALLING_QTY_LARGE_MIN, "qty_max" = VICTUALLING_QTY_LARGE_MAX, "price" = VICTUALLING_PRICE_FISH),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/cheesebun, "qty_min" = VICTUALLING_QTY_MEDIUM_MIN, "qty_max" = VICTUALLING_QTY_MEDIUM_MAX, "price" = VICTUALLING_PRICE_SIMPLE),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/sandwich/salami, "qty_min" = VICTUALLING_QTY_MEDIUM_MIN, "qty_max" = VICTUALLING_QTY_MEDIUM_MAX, "price" = VICTUALLING_PRICE_FISH),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/sandwich/cheese, "qty_min" = VICTUALLING_QTY_MEDIUM_MIN, "qty_max" = VICTUALLING_QTY_MEDIUM_MAX, "price" = VICTUALLING_PRICE_FISH),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/friedegg/hammerhold, "qty_min" = VICTUALLING_QTY_SMALL_MIN, "qty_max" = VICTUALLING_QTY_SMALL_MAX, "price" = VICTUALLING_PRICE_LUXURY),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/wienerpotatonions, "qty_min" = VICTUALLING_QTY_MEDIUM_MIN, "qty_max" = VICTUALLING_QTY_MEDIUM_MAX, "price" = VICTUALLING_PRICE_STEAK),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/meat/fatty/roast, "qty_min" = VICTUALLING_QTY_SMALL_MIN, "qty_max" = VICTUALLING_QTY_SMALL_MAX, "price" = VICTUALLING_PRICE_LUXURY),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/raisinbread, "qty_min" = VICTUALLING_QTY_MEDIUM_MIN, "qty_max" = VICTUALLING_QTY_MEDIUM_MAX, "price" = VICTUALLING_PRICE_FISH),
+	)
+	victualling_preserved_pool = list(
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/crackerscooked, "qty_min" = VICTUALLING_QTY_HUGE_MIN, "qty_max" = VICTUALLING_QTY_HUGE_MAX, "price" = VICTUALLING_PRICE_HARDTACK),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked, "qty_min" = VICTUALLING_QTY_LARGE_MIN, "qty_max" = VICTUALLING_QTY_LARGE_MAX, "price" = VICTUALLING_PRICE_SIMPLE),
+		list("typepath" = /obj/item/reagent_containers/food/snacks/rogue/bread, "qty_min" = VICTUALLING_QTY_LARGE_MIN, "qty_max" = VICTUALLING_QTY_LARGE_MAX, "price" = VICTUALLING_PRICE_BREAD),
+	)
+	victualling_drinks_pool = list(
+		list("recipe" = /datum/brewing_recipe/beer),
+		list("recipe" = /datum/brewing_recipe/jack_wine),
+		list("recipe" = /datum/brewing_recipe/cider),
+		list("recipe" = /datum/brewing_recipe/aqua_vitae),
+		list("recipe" = /datum/brewing_recipe/beer/oat),
+		list("recipe" = /datum/brewing_recipe/mead),
+		list("recipe" = /datum/brewing_recipe/voddena),
+	)
+	cultural_stock_pool = list(
+		/datum/supply_pack/rogue/merc_weapons/grenzelstaff,
+		/datum/supply_pack/rogue/grenzelhoft/zweihander,
+		/datum/supply_pack/rogue/grenzelhoft/kriegmesser,
+		/datum/supply_pack/rogue/grenzelhoft/halberd,
+		/datum/supply_pack/rogue/grenzelhoft/partizan,
+		/datum/supply_pack/rogue/grenzelhoft/seax,
+		/datum/supply_pack/rogue/grenzelhoft/kampfmesser,
+		/datum/supply_pack/rogue/grenzelhoft/blacksteel_cuirass,
+		/datum/supply_pack/rogue/grenzelhoft/heavy_gambeson,
+		/datum/supply_pack/rogue/grenzelhoft/plumed_hat,
+		/datum/supply_pack/rogue/grenzelhoft/boots,
+		/datum/supply_pack/rogue/grenzelhoft/gloves,
+		/datum/supply_pack/rogue/grenzelhoft/pants,
+		/datum/supply_pack/rogue/grenzelhoft/merc_tabard,
+		/datum/supply_pack/rogue/grenzelhoft/magos_mantle,
+		/datum/supply_pack/rogue/grenzelhoft/siegebow,
+		/datum/supply_pack/rogue/grenzelhoft/heavy_bolts,
+		/datum/supply_pack/rogue/grenzelhoft/almain_rivet,
+		/datum/supply_pack/rogue/grenzelhoft/coppiette,
+		/datum/supply_pack/rogue/grenzelhoft/salami,
+		/datum/supply_pack/rogue/grenzelhoft/hardybread,
+		/datum/supply_pack/rogue/hammerhold/dwarven_maul,
+		/datum/supply_pack/rogue/hammerhold/spiked_maul,
+		/datum/supply_pack/rogue/hammerhold/longbow,
+		/datum/supply_pack/rogue/hammerhold/iron_fullplate,
+		/datum/supply_pack/rogue/hammerhold/snow_cloak,
+		/datum/supply_pack/rogue/hammerhold/ironclad_kit,
+		/datum/supply_pack/rogue/hammerhold/smoked_sausage,
+		/datum/supply_pack/rogue/hammerhold/bacon,
+		/datum/supply_pack/rogue/hammerhold/slayer_axe,
+		/datum/supply_pack/rogue/hammerhold/slayer_greataxe,
+		/datum/supply_pack/rogue/hammerhold/slayer_belt,
+		/datum/supply_pack/rogue/hammerhold/dwarven_warpick,
+		/datum/supply_pack/rogue/hammerhold/grudgebearer_smith_kit,
+		/datum/supply_pack/rogue/hammerhold/grudgebearer_soldier_kit,
+		/datum/supply_pack/rogue/alcohol/grenzelbeer,
+		/datum/supply_pack/rogue/alcohol/winegrenzel,
+		/datum/supply_pack/rogue/alcohol/apfelweinheim,
+		/datum/supply_pack/rogue/alcohol/jagdtrunk,
+		/datum/supply_pack/rogue/alcohol/beer,
+		/datum/supply_pack/rogue/alcohol/blackgoat,
+		/datum/supply_pack/rogue/alcohol/zagul,
+		/datum/supply_pack/rogue/alcohol/onin,
+		/datum/supply_pack/rogue/alcohol/voddena,
+		/datum/supply_pack/rogue/alcohol/sazdistal,
+		/datum/supply_pack/rogue/alcohol/nred,
+		/datum/supply_pack/rogue/alcohol/butterhair,
+		/datum/supply_pack/rogue/alcohol/stonebeard,
+	)
+	hail_lines = list(
+		"Factor! Have my dues counted in silver, not promises. I sail at the first ebb whether you are ready or not.",
+		"Grain from Apfelweinheim, ingots from the foundries of the Vergenmark terraces. Bring buyers, not browsers.",
+		"By the Tribunal's own hand, my ledgers are honest. See that yours match - the Ordo Iusta takes a dim view of cheats, and so do I.",
+		"My crew has held vigil on every sunsdae of the crossing. We are devout, well-fed, and patient. Two of these three I have brought with me. The third I do not promise.",
+		"I want clay, silk, and tangerines. Send anyone who has them to the gangway. Send no one else.",
+		"The Crown's tariff is a thief in Auxentius's clothing, but I have paid worse. Stamp my papers and let us be done.",
+		"A registered magos of the Zenitstadt Academy travels in my aft cabin. His papers are in order, his stipend is paid. Do not detain him; the Tribunal takes it personally.",
+		"My zweihanders fetch good coin south. I do not care which lord buys them so long as he is not from the Fjall or the Bán. Verify the purse and verify the flag.",
+		"I hold a condotta for three mercenary companies bound for service abroad. Their pay is sealed under wax. Do not break the seal; the chaplain watches.",
+		"A burgher of Zenitstadt rode with us this voyage and would not stop weeping and vomiting at the masthead. He has paid his fare. I make no apology for him.",
+		"You will find my prices fair and my temper short. Do not test the second to bargain the first.",
+		"I sailed with one captive raider of the ash-coast in chains below decks for the crossing. He is delivered to your magistrate, alive, as the compact requires. Now my real cargo - grain.",
+		"Give me smoked eels by the barrel. Unjellied, please, that thing is an abomination upon humenity. I've heard the Academy's students have gotten tired of eating salmon everydaes. So eels from your river would be a nice change of pace.",
+		"Hail, factor. Copper from the Mountainhomes, stone from the Bán. Bring grain, bring cloth, bring cheese - or do not waste my tide.",
+		"Six months out from Norwardine. Six months, factor. Spare me your haggling and I will spare you my temper.",
+		"You would not believe what the river-lock collectors charge on the Eisenhafen now. Highway robbery, if rivers had highways. We rounded the cape instead - it was cheaper, and that is no exaggeration.",
+		"My salt is two months past brined. My crew is three weeks past patient. Trade kindly.",
+		"The hammers of Quicksilver Hold sound from this voyage's keel - hold and humen, working as one. Treat her gently at the pier.",
+		"I am told your tariff men weigh light and tax heavy. We shall see.",
+		"My helmsman is a thane's heir-apparent, finishing his yil and his ten raids before he may inherit. Do not provoke him - the Atgervi do not start fights, but they do finish them.",
+		"By Praecursor who slumbers and stirs, the wind held all the way past the southern capes. I will pay my chaplain a bonus and you will pay a fair price. Let it be a good day.",
+		"I bear word from a warden of the Granite Fort: the dwarf-kings honor the old pact, the underdeep is quiet this season. Trade with us as your fathers traded with them.",
+		"Look at the gilbronze fittings of my hold and tell me my craftsmen lie. Norwardine guild work, every plate. Worth the long crossing to bring them south.",
+		"My grandfather sailed this run before the harbor was dredged. He lost two teeth to your magistrate. I have come for the rest of his coin.",
+		"A pilgrim of the Bán rides with us. He has not spoken since Walnut Grove. The forest there has a way with quiet men - do not ask after him.",
+		"There is a tale on the Mountainhomes road - a man in old plate, fighting alone, walking out of his own grave. The crew thinks it nonsense. I am less certain. Pay quickly and let me sail before I must think on it longer.",
+		"Three of my deckhands are bull-marked beneath the eyes - pardoned in the Hearth's tradition. They lift cargo, not coin. Mind your stevedores.",
+		"My factor at Norwardine warned me the southern markets had soured. I came anyway. Let us see who was right.",
+		"My ship carries an old Atgervi veteran, his last voyage before the abbey takes his sword. For three zennies he will sit with you and tell the true account of the Brazen Bull, the Greycoat war, and the night the gates of Granite Fort first opened to humen. He drinks more than he eats. Pay him and listen well - in Norwardine the songs live in the men who sing them, and there are not many old men left who remember the early daes.",
+		"Factor! Give me the biggest barrel of sturgeon and caviar I have ever seen! I shall trade the finest armor of gilbranze and steel! True dwarven crafts from the Mountainhomes. It will even take three siegebolts to the chest for your trouble. It is marked and proofed, you can even see the dent and a seal of the craftsman on the inside. And for your troubles, I shall give you four bottles of our finest voddena and ingots. My Hold hungers for the finest southern delicacies. Please deliver them unto me with haste. I'd like a taste before we set sail."
+	)

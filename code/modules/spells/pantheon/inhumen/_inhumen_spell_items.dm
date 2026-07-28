@@ -427,7 +427,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 
 	var/choice
 	if(target.client)
-		choice = alert(target, "You feel divine warmth offering you freedom from the shackles of Necra...", "Revival", "I need to wake up! Freedom!", "I'd rather be dead than free.")
+		choice = alert(target, "You feel divine warmth offering you freedom from the shackles of Morwenna...", "Revival", "I need to wake up! Freedom!", "I'd rather be dead than free.")
 	else
 		choice = "I'd rather be dead than free."
 
@@ -1554,7 +1554,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 	return TRUE
 
 //EQUIPPABLES
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded
 	name = "ornate amulet of Matthios"
 	desc = "He was ever the one to make you ask questions: Why are we still here? Just to suffer? Nae. We are here to make a change. And a change we shall make, together."
 	icon_state = "matthios"
@@ -1566,14 +1566,14 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 	var/active_item = FALSE
 	var/stolen_fyre = FALSE
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded/examine(mob/user)
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_FREEMAN) && stolen_fyre)
-		. += span_notice("<i>As coin begets coin, so too does Her pride beget ruin. She believes Her will absolute, yet She stands as anything but. The theft of Her fyre was merely the first proof. The future belongs to the free. To humenkind. Not to the rule of a weak tyrant and their blood-bound puppets.</i>")
+		. += span_notice("<i>As coin begets coin, so too does His pride beget ruin. He believes His will absolute, yet He stands as anything but. The theft of His fyre was merely the first proof. The future belongs to the free. To humenkind. Not to the rule of a weak tyrant and their blood-bound puppets.</i>")
 	if(HAS_TRAIT(user, TRAIT_FREEMAN))
 		. += span_warning("This amulet can be swapped into another form by using it on your hand.")
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded/attack_self(mob/user)
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded/attack_self(mob/user)
 	if(!HAS_TRAIT(user, TRAIT_FREEMAN))
 		return
 	if(!do_after(user, 1 SECONDS))
@@ -1581,10 +1581,10 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 	stolen_fyre = !stolen_fyre
 
 	if(stolen_fyre)
-		name = "ornate amulet of Astrata"
-		desc = "Her command is absolute, and Her tyranny is unmarrable. Reclaim this world, child of mine, from those who'd seek to destroy it."
+		name = "ornate amulet of Auxentius"
+		desc = "His command is absolute, and His tyranny is unmarrable. Reclaim this world, child of mine, from those who'd seek to destroy it."
 		icon_state = "astrata_g"
-		to_chat(user, span_warning("The gilded amulet transmutates to a different form. You feel a smile, as you profane Her fyre the same way as He did."))
+		to_chat(user, span_warning("The gilded amulet transmutates to a different form. You feel a smile, as you profane His fyre the same way as He did."))
 		playsound(user.loc, 'sound/magic/swap.ogg', 25, TRUE, -2)
 	else
 		name = "ornate amulet of Matthios"
@@ -1595,7 +1595,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 
 	update_icon()
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(obj_broken || active_item)
 		return
@@ -1608,7 +1608,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 		else
 			to_chat(user, span_info("You already know Thieves' Cant, but praise be Matthios anyway!"))
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded/dropped(mob/living/carbon/human/user)
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(!active_item)
 		return
@@ -1618,8 +1618,8 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 		user.remove_language(/datum/language/thievescant)
 		grant_chant = FALSE
 
-/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gilded/get_examine_highlight_status()
-	// If we have stolen fyre, it looks like an ornate Astratan amulet. Disguised...
+/obj/item/clothing/neck/roguetown/psicross/morwenna/matthios/gilded/get_examine_highlight_status()
+	// If we have stolen fyre, it looks like an ornate Auxentian amulet. Disguised...
 	if(stolen_fyre)
 		return null
 	// Otherwise, it's an undisguised and GAUDY Matthiosian amulet. Very obvious.
@@ -1727,7 +1727,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 	if(prob(halluc_chance))
 		if(C.hallucination < 400)
 			C.hallucination = min(400, C.hallucination + rand(5, 15))
-			to_chat(C, span_warning(pick("This sight was not made for me.","I can feel my thoughts peeling apart.","The world looks wrong.","I should remove this.","My mind recoils from what it sees.","Too much truth presses inward.","Matthios, is this true?!","Matthios, is this TRVE?!","I regret everything.","Something broke.","DAFUQ?","What is that?!","What is this?!","Where am I??","I see it clearly now.","The truth is fine. Everything is fine.","I'm fine... I'm fine... I'm fine...","I can see Matthios. He is grinning.","I can see Astrata. She is furious.","Is this right?","What is wrong?","Behind me.","Behind you.","Free is watching you.","Grand Liege...?","La li lu le lo?","There are too many angles here.","Why does the floor have veins?","I can hear colors.","The walls know my name.","This was hidden for a reason.","I understand less each second.","The shadows are explaining things.","Who moved the horizon?","The stars are too close.","My teeth feel observant.","Why is the silence screaming?","I looked too far.","Everything has a second face.","The room blinked.","Truth tastes metallic.","I can smell geometry.","Someone is standing inside my reflection.","I should not know this.","The corners are whispering.","I remember tomorrow.","My heartbeat is counting backwards.","Why are there footprints on the ceiling?","The light is lying.","There is another sky above this one.","Numbers keep crawling away.","The door was never a door.","I have too many hands.","Did the world always breathe?","I can see where prayers go.","Something old just noticed me.","The dust is watching.","My bones disagree.","Reality feels temporary.","I found the seam.","Don't turn around.","Too late.","I was always behind me.")))
+			to_chat(C, span_warning(pick("This sight was not made for me.","I can feel my thoughts peeling apart.","The world looks wrong.","I should remove this.","My mind recoils from what it sees.","Too much truth presses inward.","Matthios, is this true?!","Matthios, is this TRVE?!","I regret everything.","Something broke.","DAFUQ?","What is that?!","What is this?!","Where am I??","I see it clearly now.","The truth is fine. Everything is fine.","I'm fine... I'm fine... I'm fine...","I can see Matthios. He is grinning.","I can see Auxentius. He is furious.","Is this right?","What is wrong?","Behind me.","Behind you.","Free is watching you.","Grand Liege...?","La li lu le lo?","There are too many angles here.","Why does the floor have veins?","I can hear colors.","The walls know my name.","This was hidden for a reason.","I understand less each second.","The shadows are explaining things.","Who moved the horizon?","The stars are too close.","My teeth feel observant.","Why is the silence screaming?","I looked too far.","Everything has a second face.","The room blinked.","Truth tastes metallic.","I can smell geometry.","Someone is standing inside my reflection.","I should not know this.","The corners are whispering.","I remember tomorrow.","My heartbeat is counting backwards.","Why are there footprints on the ceiling?","The light is lying.","There is another sky above this one.","Numbers keep crawling away.","The door was never a door.","I have too many hands.","Did the world always breathe?","I can see where prayers go.","Something old just noticed me.","The dust is watching.","My bones disagree.","Reality feels temporary.","I found the seam.","Don't turn around.","Too late.","I was always behind me.")))
 			C.Jitter(5)
 
 	if(holyLV < SKILL_LEVEL_JOURNEYMAN)
@@ -1769,7 +1769,7 @@ var/global/list/da_bubbles = list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 //THROWABLES
 /obj/item/impact_grenade/truthsnuke/lesser
 	name = "Incomplete TRUTHSNUKE"
-	desc = "A fragile canister, filled with an explosive surprise. Shards of flint line its thin sleeve, aching to ignite at the slightest disturbance. The fire of Astrata does not seem to be imbuing it, but..."
+	desc = "A fragile canister, filled with an explosive surprise. Shards of flint line its thin sleeve, aching to ignite at the slightest disturbance. The fire of Auxentius does not seem to be imbuing it, but..."
 
 /obj/item/impact_grenade/truthsnuke/lesser/explodes()
 	STOP_PROCESSING(SSfastprocess, src)

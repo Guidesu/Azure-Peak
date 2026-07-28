@@ -25,7 +25,6 @@ type StewardData = {
   pledge_refill_per_player: number;
   pledge_active_players: number;
   pledge_available: number | boolean;
-  pledge_guild_bonus: number;
   pledge_golden_active: number | boolean;
   crown_purse_balance: number;
   defense_costs: Record<string, number>;
@@ -614,11 +613,9 @@ export const StewardDefensePanel = () => {
   const { data } = useBackend<StewardData>();
   const [subTab, setSubTab] = useState<SubTab>('compose');
 
-  const guildBonus = data.pledge_guild_bonus || 0;
-  const baseDailyRefill =
+  const dailyRefill =
     data.pledge_refill_base +
     data.pledge_refill_per_player * data.pledge_active_players;
-  const dailyRefill = baseDailyRefill + guildBonus;
 
   return (
     <div className="ContractLedger__Innkeeper">
@@ -632,10 +629,7 @@ export const StewardDefensePanel = () => {
             {' '}
             (+{coin(data.pledge_refill_base)} base, +
             {coin(data.pledge_refill_per_player)}/player &times;{' '}
-            {data.pledge_active_players}
-            {guildBonus > 0
-              ? `, +${coin(guildBonus)} Guild of Arms tribute`
-              : ''}{' '}
+            {data.pledge_active_players}{' '}
             = {coin(dailyRefill)}/day, cap {coin(2 * dailyRefill)})
           </span>
         </div>

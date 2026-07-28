@@ -13,11 +13,11 @@
 	Supposedly formed from the blood spilled by the savage War God Graggar’s conquest, \
 	the prehistory of the Goblin race is spent in mindless servitude to the Conqueror God. \
 	With Graggar’s defeat, Goblins were at last able to exercise free will, \
-	with those farthest from the mindless hordes of fodder creating various tribes and villages across the face of Psydonia \
+	with those farthest from the mindless hordes of fodder creating various tribes and villages across the face of Vaeltis \
 	while keeping themselves mostly isolated due to the persecution from other mortal races. \
 	Only recently in the past few centuries have sapient Goblins been moving out of their isolated villages and tribes \
 	and seeking their future in civilised society, \
-	despite the discrimination and persecution from Church, State, and People almost universally across Psydonia. \
+	despite the discrimination and persecution from Church, State, and People almost universally across Vaeltis. \
 	Having been formed to be fodder for the War God’s armies, Goblins were blessed with extremely rapid adaptability, \
 	with each generation of Goblins being more adapted to its environment than the last. \
 	Most goblins appear as green skinned, but many tribes have adapted to different environments, \

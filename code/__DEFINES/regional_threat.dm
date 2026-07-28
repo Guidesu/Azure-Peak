@@ -11,6 +11,8 @@
 #define THREAT_REGION_MOUNT_DECAP "Mount Decapitation"
 #define THREAT_REGION_TERRORBOG "Terrorbog"
 #define THREAT_REGION_UNDERDARK "Underdark"
+#define THREAT_REGION_JUNGLE "Dread Jungle"
+#define THREAT_REGION_ISLAND "New Kingsfield Isle"
 
 #define LOWPOP_THRESHOLD 30 // When do we give highpop tick?
 

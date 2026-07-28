@@ -212,7 +212,7 @@
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/structure/vine
 	name = "weepvine"
-	desc = "Bane of gardeners across Psydonia, these invasive weeds are famously irritating to kill."
+	desc = "Bane of gardeners across Vaeltis, these invasive weeds are famously irritating to kill."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
 	anchored = TRUE

@@ -4,7 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/psyaltrist
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_EMPATH, TRAIT_STEELHEARTED, TRAIT_INQUISITION)
 	category_tags = list(CTAG_ORTHODOXIST)
-	subclass_languages = list(/datum/language/otavan)
+	subclass_languages = list(/datum/language/medullan)
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_WIL = 1,

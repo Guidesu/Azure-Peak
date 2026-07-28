@@ -680,7 +680,7 @@
 
 /obj/item/rogueweapon/shield/iron/graggar
 	name = "vicious targe"
-	desc = "A decorated targe, splattered and sanctified with the trophies of Psydonia's most dangerous hunters. No matter the icy rains, \
+	desc = "A decorated targe, splattered and sanctified with the trophies of Vaeltis's most dangerous hunters. No matter the icy rains, \
 	no matter the scorching heat – no matter the wrath of their enemies, Graggar never faltered in His arms. When Ravox broke their oath and \
 	rescinded their claim to Godhood, grief could not describe what He had felt."
 	icon_state = "graggarshield"

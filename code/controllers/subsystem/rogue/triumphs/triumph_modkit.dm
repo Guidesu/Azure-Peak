@@ -376,14 +376,14 @@
 	name = "valorian broadsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and well-balanced weapon. The broadsword - better known as a 'hand-and-a-halfer' - has dutifully served the \
-	swordsmen of Psydonia in their clashes against man-and-monster alike since time immemmorial. The edge glimmers with purpose."
+	swordsmen of Vaeltis in their clashes against man-and-monster alike since time immemmorial. The edge glimmers with purpose."
 	icon_state = "longsword_rockhillalt"
 	bigboy = TRUE
 
 /obj/item/rogueweapon/example/valorian_greatsword
 	name = "valorian claymore"
 	icon = 'icons/roguetown/weapons/64.dmi'
-	desc = "A massive two-handed sword, wieldable by only the strongest of Psydonia's children. One swing could surely cleave \
+	desc = "A massive two-handed sword, wieldable by only the strongest of Vaeltis's children. One swing could surely cleave \
 	even the mightiest foes in twain - not even a horde's might could hope to stop you, now!"
 	icon_state = "longsword_rockhillg"
 	bigboy = TRUE
@@ -391,7 +391,7 @@
 /obj/item/rogueweapon/example/kaskara
 	name = "kaskara"
 	icon = 'icons/roguetown/weapons/swords32.dmi'
-	desc = "A heavier arming sword that's popular amongst the southern reaches of Psydonia. The Lakkarians were the first to lovingly assemble \
+	desc = "A heavier arming sword that's popular amongst the southern reaches of Vaeltis. The Lakkarians were the first to lovingly assemble \
 	its design, the Naledians were the first to bristle their armies with its blade, and the Ranesheni were the first to make a killing off its exports."
 	icon_state = "kaskara"
 	sheathe_icon = "sbroadsword"
@@ -407,7 +407,7 @@
 /obj/item/rogueweapon/example/hwi
 	name = "hwi"
 	icon = 'icons/roguetown/weapons/swords32.dmi'
-	desc = "A cleaving sword with a wide crossguard, curled to protect the wielder's knuckles against harm. Like many weapons hailing from Psydonia's southern \
+	desc = "A cleaving sword with a wide crossguard, curled to protect the wielder's knuckles against harm. Like many weapons hailing from Vaeltis's southern \
 	reaches, so too does this one incorporate a sense of ornamentality into the blade. Pieces of metal have been meticulously punched out of the inner spine's \
 	curve, in order to mimic the guise of a gazing saiga."
 	icon_state = "hwi"
@@ -456,7 +456,7 @@
 /obj/item/rogueweapon/sword/long/triumph
 	name = "valorian longsword"
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This particular variant has a stouter crossguard and wider blade; a prevaling design \
+	all across Vaeltis. This particular variant has a stouter crossguard and wider blade; a prevaling design \
 	from the preceding century, oft-mantled in the homes of now-retired adventurers."
 	icon = 'icons/roguetown/weapons/64.dmi'  //Framework for Triumph-purchasable longswords.
 	icon_state = "longsword_triumph"
@@ -476,7 +476,7 @@
 
 /obj/item/rogueweapon/sword/long/triumph/rockhill
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This particular variant has a narrow crossguard and lengthened blade; the proportions \
+	all across Vaeltis. This particular variant has a narrow crossguard and lengthened blade; the proportions \
 	of an ancient hero's claymore, resurrected through modern smithing techniques."
 	icon_state = "longsword_rockhill"
 	sheathe_icon = "gensword"
@@ -485,7 +485,7 @@
 	name = "valorian claymore"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This sharp-edged variant has a narrow crossguard and lengthened blade; the proportions \
+	all across Vaeltis. This sharp-edged variant has a narrow crossguard and lengthened blade; the proportions \
 	of an ancient hero's claymore, resurrected through modern smithing techniques."
 	icon_state = "longsword_rockhill"
 
@@ -504,7 +504,7 @@
 
 /obj/item/rogueweapon/sword/long/triumph/sabreguard
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This particular variant has a curved crossguard and stouter blade; hallmarks of nobility, \
+	all across Vaeltis. This particular variant has a curved crossguard and stouter blade; hallmarks of nobility, \
 	whether professed atop a saiga or against a villain's edge."
 	icon_state = "longsword_sabreguard"
 	sheathe_icon = "cutlass"
@@ -513,7 +513,7 @@
 	name = "valorian greatsabre"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This broad-edged variant has a curved crossguard and stouter blade; hallmarks of nobility, \
+	all across Vaeltis. This broad-edged variant has a curved crossguard and stouter blade; hallmarks of nobility, \
 	whether professed atop a saiga or against a villain's edge."
 	icon_state = "longsword_sabreguard"
 	sheathe_icon = "cutlass"
@@ -533,7 +533,7 @@
 
 /obj/item/rogueweapon/sword/long/triumph/wideguard
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This particular variant has a widened crossguard, adored by lightly-armored mercenaries \
+	all across Vaeltis. This particular variant has a widened crossguard, adored by lightly-armored mercenaries \
 	who cannot afford to leave a single riposte without interception."
 	icon_state = "longsword_wideguard"
 	sheathe_icon = "opsysword"
@@ -542,7 +542,7 @@
 	name = "valorian greatrapier"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This well-honed variant has a widened crossguard, adored by lightly-armored mercenaries \
+	all across Vaeltis. This well-honed variant has a widened crossguard, adored by lightly-armored mercenaries \
 	who cannot afford to leave a single riposte without interception."
 	icon_state = "longsword_wideguard"
 	sheathe_icon = "opsysword"
@@ -563,7 +563,7 @@
 /obj/item/rogueweapon/sword/long/triumph/psycrucifix
 	name = "valorian psycrucific longsword"
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This particular variant has a psycruciformed crossguard; a masterwork, held in silent \
+	all across Vaeltis. This particular variant has a psycruciformed crossguard; a masterwork, held in silent \
 	reverance by those who've vowed to never forget the ultimate sacrifice."
 	icon_state = "longsword_psycrucifix"
 	sheathe_icon = "opsysword"
@@ -572,7 +572,7 @@
 	name = "valorian silver longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This silvered variant has a psycruciformed crossguard; a masterwork, held in silent \
+	all across Vaeltis. This silvered variant has a psycruciformed crossguard; a masterwork, held in silent \
 	reverance by those who've vowed to never forget the ultimate sacrifice."
 	icon_state = "longsword_psycrucifix"
 	sheathe_icon = "opsysword"
@@ -594,7 +594,7 @@
 	name = "valorian psycrucific longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
-	all across Psydonia. This silvered variant has a psycruciformed crossguard; a masterwork, held in silent \
+	all across Vaeltis. This silvered variant has a psycruciformed crossguard; a masterwork, held in silent \
 	reverance by those who've vowed to never forget the ultimate sacrifice."
 	icon_state = "longsword_psycrucifix"
 	sheathe_icon = "opsysword"
@@ -646,18 +646,18 @@
 
 /obj/item/rogueweapon/mace/steel/rungu
 	name = "steel rungu"
-	desc = "A steel craning mace from the southern reaches of Psydonia, following an ancient design that has survived for \
+	desc = "A steel craning mace from the southern reaches of Vaeltis, following an ancient design that has survived for \
 	centuries-hence. Many-a-fool have been humbled by a fact it professes the most: steel does not discriminate."
 	icon_state = "rungu"
 
 /obj/item/rogueweapon/mace/rungu
 	name = "rungu"
-	desc = "A craning mace from the southern reaches of Psydonia, following an ancient design that has survived for centuries-hence."
+	desc = "A craning mace from the southern reaches of Vaeltis, following an ancient design that has survived for centuries-hence."
 	icon_state = "irungu"
 
 /obj/item/rogueweapon/mace/steel/silver/rungu
 	name = "silver rungu"
-	desc = "A silver craning mace from the southern reaches of Psydonia, following an ancient design that has survived \
+	desc = "A silver craning mace from the southern reaches of Vaeltis, following an ancient design that has survived \
 	for centuries-hence. It is cherished by the clerics of Lakkari, Naledi, and Ranenshen."
 	icon_state = "silverrungu"
 

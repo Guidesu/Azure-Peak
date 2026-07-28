@@ -54,7 +54,7 @@ export const DayDetail = (props: DayDetailProps) => {
       ) : (
         <>
           <div style={dashedHeaderStyle}>
-            {monthName} {selectedDay}, {year} AP
+            {monthName} {selectedDay}, {year} AC
           </div>
           {events.length === 0 ? (
             <div style={emptyHintStyle}>No events on this date.</div>
