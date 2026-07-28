@@ -507,7 +507,7 @@
 	for(var/list/entry as anything in SSmerchant_trade.merchant_fund_log)
 		fund_log += list(entry.Copy())
 	return list(
-		"merchant_fund_balance" = SStreasury.merchant_fund ? SStreasury.merchant_fund.balance : 0,
+		"merchant_fund_balance" = SStreasury.discretionary_fund ? SStreasury.discretionary_fund.balance : 0,
 		"levy_collected" = SSmerchant_trade.merchant_levy_collected,
 		"levy_taxed" = SSmerchant_trade.merchant_levy_taxed,
 		"gnome_margin_collected" = SSmerchant_trade.gnome_margin_collected,
@@ -744,7 +744,7 @@
 			if(is_public && SSmerchant_trade?.gnome_automation_unlocked)
 				var/margin = round(PA.cost * get_effective_fee())
 				if(margin > 0)
-					SStreasury.mint(SStreasury.merchant_fund, margin, "Company Gnomes margin ([src.name])")
+					SStreasury.mint(SStreasury.discretionary_fund, margin, "Company Gnomes margin ([src.name])")
 					SSmerchant_trade.gnome_margin_collected += margin
 					SSmerchant_trade.log_fund_movement("Gnomes margin ([src.name])", margin)
 			if(cost > 0 && SSmerchant_trade)

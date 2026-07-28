@@ -440,7 +440,7 @@
 			record_round_statistic(STATS_TAXES_EVADED, total_duty)
 			duty_evaded_here += total_duty
 	if(merchant_net > 0)
-		SStreasury.mint(SStreasury.merchant_fund, merchant_net, "Merchant's levy ([src.name])")
+		SStreasury.mint(SStreasury.discretionary_fund, merchant_net, "Merchant's levy ([src.name])")
 		levy_collected_here += merchant_net
 		if(SSmerchant_trade)
 			SSmerchant_trade.merchant_levy_collected += merchant_net

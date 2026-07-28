@@ -98,12 +98,18 @@
 "vr" = (
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/woods)
+"xi" = (
+/turf/closed/wall/mineral/rogue/pipe,
+/area/rogue/outdoors/woods)
 "yu" = (
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/under/cavelava)
 "zv" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/under/cavelava)
+"zB" = (
+/turf/open/floor/rogue/church,
+/area/rogue/outdoors/woods)
 "BT" = (
 /turf/open/floor/rogue/underworld/space,
 /area/rogue/under/cave)
@@ -159,6 +165,10 @@
 /obj/structure/roguemachine/noticeboard,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
+"NN" = (
+/obj/structure/boatbell,
+/turf/closed/wall/mineral/rogue/wooddark,
+/area/rogue/outdoors/woods)
 "OG" = (
 /turf/closed/wall/mineral/rogue/pipe/line,
 /area/rogue/outdoors/woods)
@@ -174,12 +184,11 @@
 /turf/closed/wall/mineral/rogue/pipe/joint/eight,
 /area/rogue/outdoors/woods)
 "Tf" = (
-/obj/structure/boatbell,
 /turf/closed/wall/mineral/rogue/pipe/corners/four,
 /area/rogue/outdoors/woods)
 "Tu" = (
-/obj/structure/fluff/grindwheel,
-/turf/open/floor/rogue/cobblerock,
+/obj/structure/roguemachine/stockpile,
+/turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/woods)
 "TS" = (
 /turf/closed/wall/mineral/rogue/desert_sandstone,
@@ -91559,8 +91568,8 @@ Hw
 vr
 Nc
 Ut
-Nc
-Nc
+vr
+vr
 Nc
 Vh
 Vh
@@ -91757,11 +91766,11 @@ EG
 Nc
 Nc
 Nc
-Hw
-vr
-vr
-Nc
-Nc
+QK
+OG
+OG
+xi
+Tu
 Ut
 Nc
 vr
@@ -91963,8 +91972,8 @@ Hw
 vr
 vr
 vr
+Vh
 vr
-Ut
 Ut
 Ut
 vr
@@ -92162,7 +92171,7 @@ Nc
 rT
 Ut
 Hw
-vr
+zB
 fN
 cw
 Vh
@@ -92365,8 +92374,8 @@ QK
 OG
 sE
 OG
-fN
-Tu
+NN
+Vh
 Vh
 Vh
 vr

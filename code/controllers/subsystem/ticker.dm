@@ -71,12 +71,14 @@ SUBSYSTEM_DEF(ticker)
 
 	/// Realm name, the location name of the current map
 	var/realm_name = "Azure Peak"
-	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic"). Changed by usurpation rites.
-	var/realm_type = "Grand Duchy"
-	/// Short form for casual references (e.g. "Duchy", "Republic"). Changed by usurpation rites.
-	var/realm_type_short = "Duchy"
-	/// Reports the current ruler's display name
-	var/rulertype = "Grand Duke"
+	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic").
+	var/realm_type = "Outpost"
+	/// Short form for casual references (e.g. "Duchy", "Republic").
+	var/realm_type_short = "Outpost"
+	/// Reports the current settlement-leader's display name
+	var/rulertype = "Settlement Leader"
+	/// Admin-settable faction/company name for the outpost, shown alongside realm_name in trade/UI flavor.
+	var/faction_name = "the Stewardry"
 	/// The current ruling mob
 	var/rulermob = null
 	/// Current regent mob

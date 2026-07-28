@@ -25,16 +25,8 @@
 
 /datum/controller/subsystem/treasury/proc/resolve_fund_by_id(fund_id)
 	switch(fund_id)
-		if("crown")
+		if("crown", "church", "merchant", "bathhouse", "innkeeper")
 			return discretionary_fund
-		if("church")
-			return church_fund
-		if("merchant")
-			return merchant_fund
-		if("bathhouse")
-			return bathhouse_fund
-		if("innkeeper")
-			return innkeeper_fund
 	return null
 
 /datum/controller/subsystem/treasury/proc/find_jawbank_for_fund_id(fund_id)
@@ -58,12 +50,6 @@
 	priority_announce(msg, "Writ of Indenture", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
 
 /datum/controller/subsystem/treasury/proc/indenture_grace_phrase(datum/fund/F)
-	if(istype(F, /datum/fund/church))
-		return "By grace of Astrata"
-	if(istype(F, /datum/fund/merchant))
-		return "By grace of Malum"
-	if(istype(F, /datum/fund/bathhouse))
-		return "By grace of Eora"
 	return "By grace of the Crown"
 
 /datum/controller/subsystem/treasury/proc/skim_for_banditry_debt(datum/fund/to_fund, amount)
@@ -224,29 +210,17 @@
 			record_round_statistic(STATS_REVENUE_EXPORT_DUTY, due)
 	return due
 
+// The Concordat tithe and the Bathhouse ordinance tithe both used to skim from the Crown's
+// Purse into a separate Church fund. With one shared purse, that transfer is a no-op, but the
+// running totals (round_bathhouse_tithe_total) still feed UI/statistics, so compute_bathhouse_tithe
+// keeps tallying without moving any mammon.
 /datum/controller/subsystem/treasury/proc/apply_concordat_tithe(base_amount, tax_category, reason)
-	if(base_amount <= 0)
-		return
-	if(tax_category == TAX_CATEGORY_FINE)
-		return
-	var/datum/decree/concordat = get_decree(DECREE_ZENITSTADT_CONCORDAT)
-	if(!concordat?.active)
-		return
-	if(!church_fund || !discretionary_fund)
-		return
-	concordat_tithe_debt += base_amount * CONCORDAT_TITHE_RATE
-	var/skim = FLOOR(concordat_tithe_debt, 1)
-	if(skim <= 0)
-		return
-	if(transfer(discretionary_fund, church_fund, skim, "Concordat tithe ([tax_category])"))
-		concordat_tithe_debt -= skim
+	return
 
 /datum/controller/subsystem/treasury/proc/compute_bathhouse_tithe(base_amount, rate)
 	if(base_amount <= 0 || rate <= 0)
 		return 0
 	if(!bathhouse_ordinance_active)
-		return 0
-	if(!church_fund)
 		return 0
 	bathhouse_tithe_debt += base_amount * rate
 	var/skim = FLOOR(bathhouse_tithe_debt, 1)

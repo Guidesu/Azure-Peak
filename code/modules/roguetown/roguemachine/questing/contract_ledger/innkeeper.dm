@@ -103,7 +103,7 @@
 /obj/structure/roguemachine/contractledger/proc/pay_innkeeper_referral_fees(datum/fund/user_account, datum/quest/completed_quest, gross_reward)
 	if(gross_reward <= 0)
 		return 0
-	var/datum/fund/tavern_fund = SStreasury.innkeeper_fund
+	var/datum/fund/tavern_fund = SStreasury.discretionary_fund
 	var/guild_paid = 0
 	if(completed_quest.source != QUEST_SOURCE_DEFENSE && !completed_quest.guild_cut_exempt)
 		var/guild_fee = round(gross_reward * GUILD_REFERRAL_FEE_PCT)

@@ -34,12 +34,7 @@ SUBSYSTEM_DEF(treasury)
 	var/list/bank_accounts = list()
 	var/datum/fund/discretionary_fund
 	var/datum/fund/burgher_pledge_fund
-	var/datum/fund/church/church_fund
-	var/datum/fund/merchant/merchant_fund
-	var/datum/fund/bathhouse/bathhouse_fund
-	var/datum/fund/innkeeper/innkeeper_fund
 	var/list/jawbanks_by_fund_id = list()
-	var/concordat_tithe_debt = 0
 	var/bathhouse_tithe_debt = 0
 	var/bathhouse_ordinance_active = TRUE
 	var/bathhouse_ordinance_next_toggle_time = 0
@@ -104,12 +99,8 @@ SUBSYSTEM_DEF(treasury)
 	var/roundstart_pop = get_active_player_count()
 	var/seed = STOCKPILE_CROWN_PURCHASE_FLOOR_DEFAULT + rand(500, 1500) + (roundstart_pop * CROWN_PURSE_SEED_PER_PLAYER)
 	royal_custom_threshold = ROYAL_CUSTOM_VOLUME_BASE + (roundstart_pop * ROYAL_CUSTOM_VOLUME_PER_POP)
-	discretionary_fund = new("Crown's Purse", null, seed, CURRENCY_MAMMON)
+	discretionary_fund = new("Outpost Treasury", null, seed + CHURCH_FUND_SEED + MERCHANT_FUND_SEED + BATHHOUSE_FUND_SEED + INNKEEPER_FUND_SEED, CURRENCY_MAMMON)
 	burgher_pledge_fund = new("Burgher Pledge", null, BURGHER_PLEDGE_BASE_REFILL * BURGHER_PLEDGE_ROUNDSTART_MULTIPLIER, CURRENCY_BURGHER_PLEDGE)
-	church_fund = new("Church Fund", null, CHURCH_FUND_SEED, CURRENCY_MAMMON)
-	merchant_fund = new("Merchant Fund", null, MERCHANT_FUND_SEED, CURRENCY_MAMMON)
-	bathhouse_fund = new("Bathhouse Fund", null, BATHHOUSE_FUND_SEED, CURRENCY_MAMMON)
-	innkeeper_fund = new("Tavern Earnings", null, INNKEEPER_FUND_SEED, CURRENCY_MAMMON)
 	force_set_round_statistic(STATS_STARTING_TREASURY, discretionary_fund.balance)
 	record_round_statistic(STATS_PLEDGE_GENERATED, burgher_pledge_fund.balance)
 	record_round_statistic(STATS_RUMOR_POINTS_GENERATED, rumor_points)

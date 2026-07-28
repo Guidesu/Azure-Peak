@@ -33,12 +33,6 @@
 	total_due = compute_total_due()
 
 /datum/loan/proc/get_faction_debtor_trait()
-	if(istype(source_fund, /datum/fund/church))
-		return TRAIT_DEBTOR_CHURCH
-	if(istype(source_fund, /datum/fund/merchant))
-		return TRAIT_DEBTOR_MERCHANT
-	if(istype(source_fund, /datum/fund/bathhouse))
-		return TRAIT_DEBTOR_BATHHOUSE
 	return TRAIT_DEBTOR_CROWN
 
 /datum/loan/proc/compute_total_due()
@@ -200,24 +194,8 @@
 	if(!source || !target)
 		return
 	var/target_label = indenture_faction_label(target)
-	var/msg
-	if(istype(source, /datum/fund/church))
-		msg = "The Church of Azuria has called its loan to [target_label] and finds the coffers wanting. The faithful's alms has been squandered by the faithless. Astrata's generosity has been squandered. [seized]m forfeit, [still_owed]m unsettled."
-	else if(istype(source, /datum/fund/merchant))
-		msg = "The Azurian Trading Company has called its loan to [target_label] and finds the coffers wanting. The Burghers are outraged. There is no wealth without trust, and no realm without wealth. [seized]m forfeit, [still_owed]m unsettled."
-	else if(istype(source, /datum/fund/bathhouse))
-		msg = "The Bathhouse has called its loan to [target_label] and finds the coffers wanting. Her generosity abused! Her love disgraced! To lend from the bathhouse is one shame, to not pay back, a greater one. [seized]m forfeit, [still_owed]m unsettled."
-	else
-		msg = "The Stewardry has called its loan to [target_label] and finds the coffers wanting. The Crown is owed its due, and shall make known its perogative. [seized]m forfeit, [still_owed]m unsettled."
+	var/msg = "The Stewardry has called its loan to [target_label] and finds the coffers wanting. The Crown is owed its due, and shall make known its perogative. [seized]m forfeit, [still_owed]m unsettled."
 	priority_announce(msg, "Indenture Defaulted", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
 
 /datum/controller/subsystem/treasury/proc/indenture_faction_label(datum/fund/F)
-	if(istype(F, /datum/fund/church))
-		return "the Church of Azuria"
-	if(istype(F, /datum/fund/merchant))
-		return "the Azurian Trading Company"
-	if(istype(F, /datum/fund/bathhouse))
-		return "the Bathhouse"
-	if(istype(F, /datum/fund/innkeeper))
-		return "the Tavern"
 	return "the Stewardry"

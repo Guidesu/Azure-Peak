@@ -309,7 +309,7 @@
 	if(SStreasury.bathhouse_ordinance_active)
 		var/bathhouse_tithe = SStreasury.compute_bathhouse_tithe(cost, BATHHOUSE_BRASSFACE_TITHE_RATE)
 		if(bathhouse_tithe > 0)
-			SStreasury.mint(SStreasury.church_fund, bathhouse_tithe, "Ordinance of the Baths tithe ([src.name])")
+			SStreasury.mint(SStreasury.discretionary_fund, bathhouse_tithe, "Ordinance of the Baths tithe ([src.name])")
 			church_tithe_collected_here += bathhouse_tithe
 		return
 	SStreasury.mint(SStreasury.discretionary_fund, tax_amt, "[TAX_CATEGORY_IMPORT_TARIFF] ([src.name])")
@@ -388,8 +388,8 @@
 	recent_payments = 0
 	last_payout = world.time
 	if(amt > 0)
-		SStreasury.mint(SStreasury.bathhouse_fund, amt, "PURITY margin")
-	send_ooc_note("<b>Income from PURITY (deposited to Bathhouse Fund):</b> [amt]", job = "Bathmaster")
+		SStreasury.mint(SStreasury.discretionary_fund, amt, "PURITY margin")
+	send_ooc_note("<b>Income from PURITY (deposited to the Treasury):</b> [amt]", job = "Bathmaster")
 
 /obj/structure/roguemachine/bathvend/public/obj_break(damage_flag)
 	..()
@@ -455,11 +455,10 @@ SUBSYSTEM_DEF(BMtreasury)
 
 	amt_to_generate = round(amt_to_generate, 1)
 	var/tithe = SStreasury.compute_bathhouse_tithe(amt_to_generate, BATHHOUSE_VAULT_TITHE_RATE)
-	if(tithe > 0 && SStreasury.church_fund)
+	if(tithe > 0)
 		amt_to_generate -= tithe
-		SStreasury.church_fund.balance += tithe
-	if(SStreasury.bathhouse_fund)
-		SStreasury.bathhouse_fund.balance += amt_to_generate
-	send_ooc_note("Regular income to the Bathhouse Fund: +[amt_to_generate][tithe > 0 ? " (after [tithe]m tithe to the Church)" : ""]", job = "Bathmaster")
+	if(SStreasury.discretionary_fund)
+		SStreasury.discretionary_fund.balance += amt_to_generate + tithe
+	send_ooc_note("Regular income to the Treasury: +[amt_to_generate + tithe]", job = "Bathmaster")
 	record_round_statistic(STATS_BATHMATRON_VAULT_TOTAL_REVENUE, amt_to_generate)
 	return amt_to_generate

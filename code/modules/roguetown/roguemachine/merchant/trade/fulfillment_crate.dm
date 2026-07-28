@@ -387,7 +387,7 @@
 				SSmerchant_trade.merchant_levy_taxed += levy_tax_remitted
 	var/merchant_net_float = levy_float - (duty_suspended ? 0 : duty_on_levy_float)
 	if(merchant_net_float > 0)
-		levy_remitted = SStreasury.mint_fractional(SStreasury.merchant_fund, merchant_net_float, "Merchant's levy: [qty] [good_name] -> [ship.ship_name]")
+		levy_remitted = SStreasury.mint_fractional(SStreasury.discretionary_fund, merchant_net_float, "Merchant's levy: [qty] [good_name] -> [ship.ship_name]")
 		if(SSmerchant_trade)
 			SSmerchant_trade.merchant_levy_collected += levy_remitted
 			SSmerchant_trade.log_fund_movement("Fulfillment levy ([ship.ship_name])", levy_remitted)
