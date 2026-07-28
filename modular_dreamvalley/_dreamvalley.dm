@@ -6,6 +6,7 @@
 #include "persistence\contracts.dm"
 #include "persistence\object_graph.dm"
 #include "campaign\campaign_manager.dm"
+#include "campaign\campaign_save_verb.dm"
 #include "campaign\campaign_transport.dm"
 #include "campaign\character_graph.dm"
 #include "campaign\character_records.dm"
