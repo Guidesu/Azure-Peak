@@ -193,9 +193,10 @@
 
 /obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock/loadout
 	name = "aesthetic custom-fit silk shirt"
-	armor_class = ARMOR_CLASS_NONE
-	armor = ARMOR_CLOTHING
-	max_integrity = ARMOR_INT_CHEST_CIVILIAN
+
+/obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock/loadout/Initialize()
+	. = ..()
+	loadoutize()
 
 /obj/item/clothing/suit/roguetown/shirt/apothshirt
 	name = "apothecary shirt"
