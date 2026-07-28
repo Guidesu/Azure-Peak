@@ -56,6 +56,7 @@
 	quality = DRINK_VERYGOOD
 
 /datum/reagent/consumable/soup/porridge/frostedpudding
+	cuisine = CUISINE_NORTHERN
 	name = "frosted porridge-pudding"
 	description = "Fitting for a nobleman."
 	taste_description = "spongey-sweet doughiness and velvety frosting"
@@ -66,6 +67,7 @@
 	quality = DRINK_GOOD
 
 /datum/reagent/consumable/soup/porridge/thickfrostedpudding
+	cuisine = CUISINE_NORTHERN
 	name = "thick frosted porridge-pudding"
 	description = "Fitting for a king."
 	taste_description = "spongey-sweet doughiness, velvety frosting, and a hint of fruitiness"
@@ -76,6 +78,7 @@
 	quality = DRINK_VERYGOOD
 
 /datum/reagent/consumable/soup/porridge/poisonfrostedpudding //Evil variant for poisoned jackberry treats.
+	cuisine = CUISINE_NORTHERN
 	name = "frosted porridge-pudding"
 	description = "Fitting for a nobleman."
 	taste_description = "spongey-sweet doughiness and bitter-tasting frosting"
@@ -86,6 +89,7 @@
 	quality = DRINK_GOOD
 
 /datum/reagent/consumable/soup/porridge/thickpoisonfrostedpudding //Ditto.
+	cuisine = CUISINE_NORTHERN
 	name = "thick frosted porridge-pudding"
 	description = "Fitting for a king."
 	taste_description = "spongey-sweet doughiness, bitter-tasting frosting, and a hint of burning"
@@ -96,6 +100,7 @@
 	quality = DRINK_VERYGOOD
 
 /datum/reagent/consumable/soup/porridge/fudgepudding
+	cuisine = CUISINE_NORTHERN
 	name = "chocolate porridge-pudding"
 	description = "Fitting for a nobleman."
 	taste_description = "spongey-sweet doughiness and creamy fudge"
@@ -106,6 +111,7 @@
 	quality = DRINK_GOOD
 
 /datum/reagent/consumable/soup/porridge/thickfudgepudding
+	cuisine = CUISINE_NORTHERN
 	name = "thick chocolate porridge-pudding"
 	description = "Fitting for a king."
 	taste_description = "spongey-sweet doughiness, creamy fudge, and a hint of herbiness"
@@ -142,6 +148,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/veggie/thickfrypotato
+	cuisine = CUISINE_NORTHERN
 	name = "roasted potato soup"
 	color = "#968563"
 	taste_description = "deliciously creamy potatoes within a thick, buttery broth"
@@ -164,6 +171,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/veggie/thickfryonion
+	cuisine = CUISINE_NORTHERN
 	name = "roasted onion soup"
 	color = "#B29252"
 	taste_description = "deliciously soft onions within a rich, light broth"
@@ -186,6 +194,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/veggie/thickfrycabbage
+	cuisine = CUISINE_NORTHERN
 	name = "roasted cabbage soup"
 	color = "#685D34"
 	taste_description = "deliciously rich cabbage within a savory broth"
@@ -317,6 +326,7 @@
 	metabolization_rate = 1.2 //A little quicker, for breakfast!
 
 /datum/reagent/consumable/soup/stew/thickfryegg
+	cuisine = CUISINE_RANESHENI
 	name = "scrambled cacklehash stew"
 	color = "#B78F71"
 	taste_description = "creamy eggs with chunks of crispy meat"
@@ -326,6 +336,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/lavishfryegg
+	cuisine = CUISINE_RANESHENI
 	name = "lavish cacklehash stew"
 	color = "#B5934A"
 	taste_description = "sumptuously creamy eggs, chunks of crispy meat, and cheesy goodness"
@@ -379,6 +390,7 @@
 	nutriment_factor = 30
 
 /datum/reagent/consumable/soup/stew/bakedchicken
+	cuisine = CUISINE_ETRUSCAN
 	name = "frybird stew"
 	color = "#A0781C"
 	taste_description = "savory chicken with flakes of crispy skin"
@@ -386,6 +398,7 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/stew/bakedthickchicken
+	cuisine = CUISINE_ETRUSCAN
 	name = "thick frybird stew"
 	color = "#8F6119"
 	taste_description = "tender chicken with flakes of crispy skin"
@@ -395,6 +408,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/veggiethickchicken
+	cuisine = CUISINE_ETRUSCAN
 	name = "frybird stew with vegetables"
 	color = "#8F6916"
 	taste_description = "savory chicken with slow-roasted vegetables, flakes of crispy skin, and a sense of lingering warmth"
@@ -413,6 +427,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/lavishchicken
+	cuisine = CUISINE_ETRUSCAN
 	name = "lavish frybird stew"
 	color = "#A0421C"
 	taste_description = "sumptuously tender chicken with flakes of crispy skin, buttery richness, and a hint of tongue-tickling spice"
@@ -427,6 +442,7 @@
 	taste_description = "meat"
 
 /datum/reagent/consumable/soup/stew/frymeat
+	cuisine = CUISINE_NORTHERN
 	name = "brisket stew"
 	color = "#7F3518"
 	taste_description = "slow-roasted meat"
@@ -435,6 +451,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/veggiefrymeat
+	cuisine = CUISINE_NORTHERN
 	name = "brisket stew with vegetables"
 	color = "#633012"
 	taste_description = "savory meat with slow-roasted vegetables, with a refreshingly rich aftertaste"
@@ -453,6 +470,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/lavishfrymeat
+	cuisine = CUISINE_NORTHERN
 	name = "lavish brisket stew"
 	color = "#722616"
 	taste_description = "sumptuously tender meat, a rich and savory broth, and a hint of tongue-tickling spice"
@@ -473,6 +491,7 @@
 	metabolization_rate = 0.8
 
 /datum/reagent/consumable/soup/stew/frypork
+	cuisine = CUISINE_NORTHERN
 	name = "crispy and fatty meaty stew"
 	color = "#633012"
 	taste_description = "savory pork with flakes of crispiness"
@@ -482,6 +501,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/thickfrypork
+	cuisine = CUISINE_NORTHERN
 	name = "crispy and fatty brisket stew"
 	color = "#892214"
 	taste_description = "tongue-meltingly soft pork with flakes of crispiness"
@@ -508,6 +528,7 @@
 	taste_description = "fish"
 
 /datum/reagent/consumable/soup/stew/fryfish
+	cuisine = CUISINE_ETRUSCAN
 	name = "roasted fish stew"
 	color = "#C6725D"
 	taste_description = "flaky fish in a gently creamy broth"
@@ -516,6 +537,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/veggiefryfish
+	cuisine = CUISINE_ETRUSCAN
 	name = "roasted fish stew with vegetables"
 	color = "#C67C78"
 	taste_description = "flaky fish and slow-roasted vegetables in a gently creamy broth"
@@ -532,6 +554,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/lavishfryfish
+	cuisine = CUISINE_ETRUSCAN
 	name = "lavish fish stew"
 	color = "#C17070"
 	taste_description = "sumptuously flaky fish in a rich, creamy broth with subtle notes of sweetness"
@@ -553,6 +576,7 @@
 	taste_description = "cabbit"
 
 /datum/reagent/consumable/soup/stew/fryrabbit
+	cuisine = CUISINE_RANESHENI
 	name = "roasted cabbit stew"
 	color = "#BC7A6F"
 	taste_description = "slow-roasted cabbit with a surprisingly pleasant aftertaste"
@@ -561,6 +585,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/veggiefryrabbit
+	cuisine = CUISINE_RANESHENI
 	name = "roasted cabbit stew with vegetables"
 	color = "#A35D46"
 	taste_description = "savory cabbit with caramelized vegetables, with a robust yet subdued aftertaste"
@@ -575,6 +600,7 @@
 	taste_description = "gamey meat"
 
 /datum/reagent/consumable/soup/stew/fryvolf
+	cuisine = CUISINE_RANESHENI
 	name = "vriskette stew"
 	color = "#7F3518"
 	taste_description = "slow-roasted and gamey meat"
@@ -583,6 +609,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/veggiefryvolf
+	cuisine = CUISINE_RANESHENI
 	name = "vriskette stew with vegetables"
 	color = "#633012"
 	taste_description = "savory and gamey meat with slow-roasted vegetables, and a pleasantly warm aftertaste"
@@ -592,6 +619,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/kingvolf
+	cuisine = CUISINE_NORTHERN
 	name = "king's stew"
 	color = "#892214"
 	taste_description = "deliciously soft and gamey meat, contrasted with crunchy vegetables and a hint of tongue-tickling spice"
@@ -699,6 +727,7 @@
 	taste_description = "overpoweringly strange-tasting, with a mildly tangy aftertaste"
 
 /datum/reagent/consumable/soup/stew/fryyucky
+	cuisine = CUISINE_NORTHERN
 	name = "strange brisket stew"
 	color = "#9E6D84"
 	taste_description = "a pleasantly implacable meat, somewhere between volf and chicken"
@@ -760,6 +789,7 @@
 	taste_description = "savory carrots"
 
 /datum/reagent/consumable/soup/stew/thickcarrot_stew
+	cuisine = CUISINE_NORTHERN
 	name = "roasted carrot stew"
 	color = "#f26818"
 	taste_description = "savory and caramelized carrots"
@@ -790,6 +820,7 @@
 	nutriment_factor = 15
 
 /datum/reagent/consumable/soup/stew/frysquash_soup
+	cuisine = CUISINE_NORTHERN
 	name = "roasted squash soup"
 	color = "#D3702E"
 	taste_description = "a hearth kindled within your chest, and a pleasantly savory aftertaste"
