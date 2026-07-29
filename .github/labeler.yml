@@ -46,3 +46,7 @@ TGS:
           - code/__DEFINES/tgs.config.dm
           - code/modules/discord/tgs_commands.dm
           - code/modules/tgs/**
+Donator:
+  - changed-files:
+    - any-glob-to-any-file:
+      - code\datums\loadout\loadout_donators.dm
