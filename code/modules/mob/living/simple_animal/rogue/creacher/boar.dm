@@ -77,6 +77,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/boar
+	var/charge_type = /datum/action/cooldown/mob_cooldown/boar_charge
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boar/Initialize()
 	. = ..()
@@ -86,6 +87,8 @@
 		gender = FEMALE
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
+	var/datum/action/cooldown/mob_cooldown/boar_charge/charge = new charge_type(src)
+	charge.Grant(src)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)
 	..()

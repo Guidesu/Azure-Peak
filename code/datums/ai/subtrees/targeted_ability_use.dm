@@ -27,3 +27,31 @@
 	
 /datum/ai_planning_subtree/targeted_mob_ability/continue_planning
 	finish_planning = FALSE
+
+/datum/ai_planning_subtree/targeted_mob_ability/any
+	ability_key = BB_CHOSEN_ACTION
+
+/datum/ai_planning_subtree/targeted_mob_ability/any/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	var/atom/target = controller.blackboard[target_key]
+	if(QDELETED(target))
+		return
+	var/mob/pawn = controller.pawn
+	if(!ismob(pawn) || !length(pawn.actions))
+		return
+
+	var/list/candidates = list()
+	for(var/datum/action/cooldown/mob_cooldown/special in pawn.actions)
+		if(!special.IsAvailable() || !special.can_use(target))
+			continue
+		if(!prob(special.npc_use_chance(target)))
+			continue
+		candidates += special
+	if(!length(candidates))
+		return
+
+	if(length(candidates) > 1)
+		candidates -= controller.blackboard[ability_key]
+	controller.set_blackboard_key(ability_key, pick(candidates))
+	controller.queue_behavior(use_ability_behaviour, ability_key, target_key)
+	if(finish_planning)
+		return SUBTREE_RETURN_FINISH_PLANNING

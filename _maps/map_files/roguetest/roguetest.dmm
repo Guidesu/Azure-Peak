@@ -189,6 +189,10 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bog/north)
+"fX" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "gP" = (
 /obj/structure/table/cooling,
 /obj/item/storage/roguebag,
@@ -3255,7 +3259,7 @@ CZ
 yK
 yK
 rT
-vq
+fX
 rT
 rT
 rT

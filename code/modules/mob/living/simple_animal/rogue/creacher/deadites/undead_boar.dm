@@ -8,6 +8,7 @@
 	health = BOAR_HEALTH_UNDEAD
 	maxHealth = BOAR_HEALTH_UNDEAD
 	ai_controller = /datum/ai_controller/boar/undead
+	charge_type = /datum/action/cooldown/mob_cooldown/boar_charge/undead
 
 	head_butcher = /obj/item/natural/head/boar/undead
 	botched_butcher_results = list(
