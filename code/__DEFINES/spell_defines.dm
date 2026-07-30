@@ -144,6 +144,13 @@
 #define SPELL_COOLDOWN_POKE 6 SECONDS
 #define SPELL_COOLDOWN_BIG_WHOOPER 18 SECONDS
 
+#define CANCEL_PENALTY_COST_PARTIAL 0.5 // Resource cost you take for canceling a partial charge
+#define CANCEL_PENALTY_COST_CHARGED 1 // Full charge = same cost as just tossing it out
+#define CANCEL_PENALTY_COOLDOWN 0.5
+#define CANCEL_PENALTY_COOLDOWN_MAX 10 SECONDS // We don't want high CD spell to penalize you too hard
+#define CANCEL_GRACE_FRACTION 0.3 // How many decisecond you have to cancel a spell quickly
+#define CANCEL_GRACE_MINIMUM 3
+
 // Spell impact visual intensity tiers
 #define SPELL_IMPACT_NONE   0  // No impact visual
 #define SPELL_IMPACT_LOW    1  // 2 wisps — minor pokes, utility
