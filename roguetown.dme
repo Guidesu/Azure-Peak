@@ -597,6 +597,7 @@
 #include "code\datums\actions\mobs\_mob_cooldown.dm"
 #include "code\datums\actions\mobs\bear_swipe.dm"
 #include "code\datums\actions\mobs\boar_charge.dm"
+#include "code\datums\actions\mobs\boulder_throw.dm"
 #include "code\datums\actions\mobs\dragon_leap.dm"
 #include "code\datums\actions\mobs\dragonbreath.dm"
 #include "code\datums\actions\mobs\stone_throw.dm"

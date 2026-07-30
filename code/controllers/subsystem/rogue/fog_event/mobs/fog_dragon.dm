@@ -56,9 +56,6 @@
 	var/datum/action/cooldown/mob_cooldown/dragon_leap/leap = new(src)
 	leap.Grant(src)
 
-	if(ai_controller)
-		ai_controller.set_blackboard_key(BB_TARGETED_ACTION, leap)
-
 /mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon/get_sound(input)
 	switch(input)
 		if("aggro")

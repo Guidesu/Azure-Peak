@@ -4,6 +4,7 @@
 	button_icon_state = "fireball"
 	desc = "Breathe a line of flames towards the target."
 	cooldown_time = 30 SECONDS
+	max_range = 15
 	/// The range of the fire
 	var/fire_range = 15
 	/// The sound played when you use this ability
@@ -13,10 +14,9 @@
 	var/cast_time = 2 SECONDS
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
 
-/datum/action/cooldown/mob_cooldown/fire_breath/Activate(atom/target_atom)
+/datum/action/cooldown/mob_cooldown/fire_breath/use_special(atom/target)
 	owner.visible_message(span_alert("[owner] inhales deeply, warmth emanating from their form."))
-	addtimer(CALLBACK(src, PROC_REF(attack_sequence), target_atom), cast_time)
-	StartCooldown()
+	addtimer(CALLBACK(src, PROC_REF(attack_sequence), target), cast_time)
 	return TRUE
 
 /// Apply our specific fire breathing shape, in proc form so we can override it in subtypes
@@ -86,7 +86,8 @@
 	button_icon_state = "light"
 	desc = "Breathe flames in all directions."
 	cooldown_time = 60.5 SECONDS
-	//click_to_activate = FALSE
+	min_range = 0
+	requires_los = FALSE
 	/// How many fire lines do we produce to turn a full circle?
 	var/sectors = 12
 	/// How long do we wait between each spin?
@@ -94,9 +95,8 @@
 	/// How many full circles do we perform?
 	var/total_spins = 3
 
-/datum/action/cooldown/mob_cooldown/fire_breath/mass_fire/Activate(atom/target_atom)
-	target_atom = get_step(owner, owner.dir) // Just shoot it forwards, we don't need to click on someone for this one
-	return ..()
+/datum/action/cooldown/mob_cooldown/fire_breath/mass_fire/use_special(atom/target)
+	return ..(get_step(owner, owner.dir))
 
 /datum/action/cooldown/mob_cooldown/fire_breath/mass_fire/attack_sequence(atom/target)
 	var/queued_spins = 0

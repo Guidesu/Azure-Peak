@@ -4,37 +4,35 @@
 	button_icon_state = "explosion"
 	desc = "Chucks a stone at someone"
 	cooldown_time = 20 SECONDS
+	min_range = 2
+	max_range = 7
+	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/cast_time	= 3 SECONDS
-	var/range = 8
 	var/def_zone = BODY_ZONE_CHEST
 	var/rock_damage = 40
 
-/datum/action/cooldown/mob_cooldown/stone_throw/Activate(atom/target)
-	if(!target || target == owner)
-		return FALSE
-	var/dist = get_dist(owner, target)
-	if(can_see(owner, target, range) && dist < range && dist > 1) //can see, in range and not adjacent
-		owner.visible_message(span_alert("[owner] reaches towards the ground, eyeing [target]."))
-		addtimer(CALLBACK(src, PROC_REF(prepare_stone), target), cast_time)
-		StartCooldown()
+/datum/action/cooldown/mob_cooldown/stone_throw/use_special(atom/target)
+	owner.visible_message(span_alert("[owner] reaches towards the ground, eyeing [target]."))
+	addtimer(CALLBACK(src, PROC_REF(prepare_stone), target), cast_time)
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/stone_throw/proc/prepare_stone(atom/target, mob/living/L)
-	if(!target || target == owner || QDELETED(target))
+/datum/action/cooldown/mob_cooldown/stone_throw/proc/prepare_stone(atom/target)
+	if(QDELETED(owner) || QDELETED(target))
 		return
 	owner.visible_message(span_alert("[owner] digs into the ground and grabs a massive rock!"))
 	playsound(owner, 'sound/items/dig_shovel.ogg', 100, TRUE)
 	sleep(20)
-	var/dist = get_dist(owner, target)
+	if(QDELETED(owner) || QDELETED(target))
+		return
 	var/obj/effect/temp_visual/stone_throw/stone = new(owner.loc)
 	var/original_target_loc = target.loc
 	var/dx = (target.x - owner.x) * 32
 	var/dy = (target.y - owner.y) * 32
-	if(can_see(owner, target, range) && dist < range && dist > 1)
+	if(can_use(target))
 		owner.visible_message(span_boldwarning("[owner] chucks a huge rock!"))
 		playsound(owner.loc, 'sound/combat/shieldraise.ogg', 100)
 		animate(stone, pixel_x = dx, pixel_y = dy, time = 4)
-		sleep(4) // Wait for the animation to complete
+		sleep(4)
 		if(target && target.loc == original_target_loc)
 			stone.loc = target.loc
 			stone.pixel_x = 0

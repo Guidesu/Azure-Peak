@@ -4,26 +4,21 @@
 	button_icon_state = "explosion"
 	desc = "Swipes at someone with a huge paw"
 	cooldown_time = 10 SECONDS
+	max_range = 1
+	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/cast_time = 1 SECONDS
 	var/def_zone = BODY_ZONE_CHEST
-	var/range = 2
 	var/swipe_damage = 40
 
-/datum/action/cooldown/mob_cooldown/bear_swipe/Activate(atom/target)
-	if(!target || target == owner)
-		return FALSE
-	var/dist = get_dist(owner, target)
-	if(can_see(owner, target, range) && dist < range && dist <= 1) //can see, in range and adjacent
-		owner.visible_message(span_boldwarning("[owner] rears up to swipe at [target]!"))
-		addtimer(CALLBACK(src, PROC_REF(do_swipe), target), cast_time)
-		StartCooldown()
+/datum/action/cooldown/mob_cooldown/bear_swipe/use_special(atom/target)
+	owner.visible_message(span_boldwarning("[owner] rears up to swipe at [target]!"))
+	addtimer(CALLBACK(src, PROC_REF(do_swipe), target), cast_time)
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/bear_swipe/proc/do_swipe(atom/target, mob/living/L)
-	if(!target || target == owner || QDELETED(target))
+/datum/action/cooldown/mob_cooldown/bear_swipe/proc/do_swipe(atom/target)
+	if(QDELETED(owner) || QDELETED(target))
 		return
-	var/dist = get_dist(owner, target)
-	if(can_see(owner, target, range) && dist < range && dist <= 1)
+	if(can_use(target))
 		playsound(owner.loc, 'sound/combat/shieldraise.ogg', 100)
 		if(ismob(target))
 			var/mob/living/victim = target
@@ -36,7 +31,6 @@
 			playsound(target, 'sound/combat/hits/punch/punch (1).ogg', 100, TRUE)
 	else
 		owner.visible_message(span_alert("[owner] roars in frustration as you distance yourself from its swipe."))
-	return
 
 /obj/effect/temp_visual/paw_swipe
 	icon = 'icons/effects/effects.dmi'
