@@ -14,14 +14,19 @@
 	var/crippled_zone
 	var/break_alert
 	var/mob/struck_by
+	var/attack_delay_mult = 1
 
 /datum/wound/cripple/on_mob_gain(mob/living/affected)
 	. = ..()
+	if(attack_delay_mult != 1)
+		affected.next_move_modifier *= attack_delay_mult
 	if(break_alert)
 		affected.balloon_alert_to_viewers("<font color='#ff3b3b'>[break_alert]</font>")
 
 /datum/wound/cripple/on_mob_loss(mob/living/affected)
 	. = ..()
+	if(attack_delay_mult != 1)
+		affected.next_move_modifier /= attack_delay_mult
 	if(crippled_zone && istype(affected, /mob/living/simple_animal))
 		var/mob/living/simple_animal/animal = affected
 		animal.clear_part_damage(crippled_zone)
@@ -64,6 +69,7 @@
 		"The fangs are broken loose!",
 	)
 	break_alert = "jaw shattered!"
+	attack_delay_mult = 1.2
 	var/damage_penalty = 0.5
 	var/removed_lower = 0
 	var/removed_upper = 0
@@ -94,6 +100,7 @@
 		"The arm is left hanging useless!",
 	)
 	break_alert = "arm mangled!"
+	attack_delay_mult = 1.2
 	var/damage_penalty = 0.35
 	var/removed_lower = 0
 	var/removed_upper = 0
@@ -165,6 +172,8 @@
 		"The skull bursts apart in a shower of gore!",
 	)
 	break_alert = "HEAD DESTROYED!"
+	// Don't leave it at 3
+	var/head_throw_range = 3
 
 /datum/wound/cripple/decapitate/on_mob_gain(mob/living/affected)
 	. = ..()
@@ -175,13 +184,18 @@
 			var/head_type = animal.head_butcher
 			var/obj/item/severed_head = new head_type(affected.drop_location())
 			animal.head_butcher = null
-			if(struck_by)
-				var/turf/head_dest = get_ranged_target_turf(affected, get_dir(struck_by, affected), 5)
-				if(head_dest)
-					severed_head.throw_at(head_dest, 5, 3)
+			var/throw_dir = struck_by ? get_dir(struck_by, affected) : pick(GLOB.cardinals)
+			if(!throw_dir)
+				throw_dir = pick(GLOB.cardinals)
+			var/turf/head_dest = get_ranged_target_turf(affected, throw_dir, head_throw_range)
+			if(head_dest && head_dest != get_turf(affected))
+				severed_head.throw_at(head_dest, head_throw_range, 3)
 	affected.visible_message(span_userdanger("[affected]'s head is torn from its shoulders!"))
 	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
 	affected.death()
+
+/datum/wound/cripple/decapitate/small
+	head_throw_range = 2
 
 /datum/wound/cripple/guts
 	name = "spilled guts"
@@ -218,3 +232,13 @@
 /datum/wound/cripple/limb/topple/on_mob_loss(mob/living/affected)
 	. = ..()
 	animate(affected, transform = turn(affected.transform, -90), time = 2)
+
+/datum/wound/cripple/limb/undead
+	name = "dragging leg"
+	crit_message = list(
+		"The leg snaps, and starts to drag behind it!",
+		"The rotten limb folds under its own weight!",
+		"The joint bursts apart in a spray of foul ichor!",
+	)
+	break_alert = "leg broken!"
+	attack_delay_mult = 1.25

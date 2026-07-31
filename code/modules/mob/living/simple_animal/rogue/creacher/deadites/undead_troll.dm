@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead
+	anatomy_type = /datum/anatomy/biped/tough/undead
 	// Icon credit openkeep troll, edited by Ketrai for undeath
 	icon = 'icons/roguetown/mob/monster/deadites/troll_undead.dmi'
 	name = "deadite troll"
@@ -40,26 +41,9 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
 	. = ..()
-	AddComponent(/datum/component/deadite, 15 MINUTES, 300, 200, "troll_downed", 0)
+	AddComponent(/datum/component/deadite, 15 MINUTES, "troll_downed", 0)
 	var/datum/action/cooldown/mob_cooldown/boulder_throw/boulder = new(src)
 	boulder.Grant(src)
 	var/datum/action/cooldown/mob_cooldown/troll_shove/shove = new(src)
 	shove.Grant(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/simple_limb_hit(zone)
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
-			return "r_leg"
-		if(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
-			return "l_leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-	return ..()

@@ -42,6 +42,17 @@
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "hind legs")
 
+/* Deadite quadruped. Legs cripple, dragging down both its stride and its swings. Destroying the
+head kills it where it stands and bars reanimation for good - half its health poured into a single
+zone, which is the payoff for aiming instead of flailing.
+*/
+/datum/anatomy/quadruped/undead/build_zones()
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 30, break_wound = /datum/wound/cripple/decapitate/small, hint = "head")
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "hind legs")
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "hind legs")
+
 /datum/anatomy/biped
 	limb_names = list(
 		BODY_ZONE_HEAD = "head",
@@ -79,6 +90,17 @@ Aiming legs should be nearly guaranteed due to their profile
 /datum/anatomy/biped/tough/build_zones()
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_LONG, melee_hit_bonus = -10, ranged_hit_bonus = -15) // Better build up that PER chudling
 	add_zone(BODY_ZONE_PRECISE_STOMACH, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 150, break_wound = /datum/wound/cripple/guts, hint = "gut")
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
+
+/* Deadite tough biped. Mirrors the living profile - a reach-gated head that kills and bars
+reanimation, legs that topple, arms that weaken - minus the guts: an undead has nothing left to
+spill that would stop it.
+*/
+/datum/anatomy/biped/tough/undead/build_zones()
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_LONG, melee_hit_bonus = -10, ranged_hit_bonus = -15)
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)

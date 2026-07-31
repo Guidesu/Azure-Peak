@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead
+	anatomy_type = /datum/anatomy/quadruped/undead
 	ai_controller = /datum/ai_controller/undead/cabbit
 	faction = list(FACTION_UNDEAD)
 
@@ -33,28 +34,10 @@
 							/obj/item/natural/rabbitsfoot = 1,
 							/obj/item/alch/viscera = 2)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/simple_limb_hit(zone)
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
-			return "r_leg"
-		if(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
-			return "l_leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-	return ..()
-
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
-	AddComponent(/datum/component/deadite, 15 MINUTES, 30, 30, "cabbit_downed", 1)
+	AddComponent(/datum/component/deadite, 15 MINUTES, "cabbit_downed", 1)
 
 /datum/intent/simple/claw/cabbit_undead
 	clickcd = CABBIT_UNDEAD_ATTACK_SPEED

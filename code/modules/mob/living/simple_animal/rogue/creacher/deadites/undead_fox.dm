@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/fox/undead
+	anatomy_type = /datum/anatomy/quadruped/undead
 	icon = 'icons/roguetown/mob/monster/deadites/fox_undead.dmi'
 	name = "deadite venard"
 	desc = "Once majestic, its gait is nowhere near as springy. At least, until it notices a piece of fresh meat."
@@ -25,24 +26,6 @@
 						/obj/item/natural/fur/fox = 1,
 						/obj/item/natural/bone = 4)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead/simple_limb_hit(zone)
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
-			return "r_leg"
-		if(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
-			return "l_leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-	return ..()
-
 /mob/living/simple_animal/hostile/retaliate/rogue/fox/undead/Initialize()
 	. = ..()
-	AddComponent(/datum/component/deadite, 15 MINUTES, 50, 50, "fox_downed")
+	AddComponent(/datum/component/deadite, 15 MINUTES, "fox_downed")

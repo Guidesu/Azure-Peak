@@ -69,7 +69,7 @@
 	var/datum/anatomy_zone/hit_zone = profile.get_zone(zone)
 	if(!hit_zone || !hit_zone.break_wound)
 		return
-	if(hit_zone.min_wlength && !is_toppled())
+	if(hit_zone.min_wlength && !is_prone())
 		var/wlength = weapon?.wlength || WLENGTH_NORMAL
 		if(wlength < hit_zone.min_wlength)
 			return
@@ -94,8 +94,14 @@
 		part_damage[zone] = 0
 	LAZYREMOVE(broken_parts, zone)
 
-/mob/living/simple_animal/proc/is_toppled()
-	return has_wound(/datum/wound/cripple/limb/topple)
+/mob/living/simple_animal/proc/reset_part_damage()
+	for(var/datum/wound/cripple/crippled in simple_wounds?.Copy())
+		simple_remove_wound(crippled)
+	part_damage = null
+	broken_parts = null
+
+/mob/living/simple_animal/proc/is_prone()
+	return resting || has_wound(/datum/wound/cripple/limb/topple)
 
 /mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
 	if(def_zone)
