@@ -95,14 +95,24 @@
 	UnregisterSignal(parent, pre_use_check_with_feedback_comsig)
 	UnregisterSignal(parent, post_use_comsig)
 
+// Every proc below that reaches a /datum/callback/proc/Invoke() is called from a SIGNAL_HANDLER
+// (which sets SpacemanDMM_should_not_sleep). Invoke() has exactly one blocking path in it: when
+// the callback datum itself has been var-edited by an admin it detours through
+// WrapAdminProcCall(), whose UNTIL(!GLOB.AdminProcCaller) spins on stoplag() (see
+// code/modules/admin/callproc/callproc.dm). DreamChecker can't see that this is an
+// admin-var-edit-only branch, so it propagates "calls blocking proc /proc/stoplag" up into the
+// handlers. These handlers must stay synchronous - the pre-cast one has to return the
+// SPELL_CANCEL_CAST bitflag to actually block the cast, so it cannot be made async - hence UNLINT
+// at each Invoke() site rather than at the handlers.
+
 /// Returns the mob/atom whose mana should be checked - i.e. the caster/user.
 /datum/component/uses_mana/proc/get_parent_user()
-	return get_user_callback?.Invoke()
+	return UNLINT(get_user_callback?.Invoke())
 
 /// Resolves the (possibly dynamic) mana cost for this use.
 /datum/component/uses_mana/proc/get_mana_required(atom/caster, ...)
 	if(!isnull(get_mana_required_callback))
-		return get_mana_required_callback.Invoke(arglist(args))
+		return UNLINT(get_mana_required_callback.Invoke(arglist(args)))
 	return mana_required || 0
 
 /**
@@ -154,7 +164,7 @@
 	var/atom/movable/user = get_parent_user()
 	if(ismob(user))
 		to_chat(user, span_warning("I don't have enough mana!"))
-	return activate_check_failure_callback?.Invoke(arglist(args)) || NONE
+	return UNLINT(activate_check_failure_callback?.Invoke(arglist(args))) || NONE
 
 /**
  * Drains mana required for this use across all available sources (focus items first, then the
@@ -203,13 +213,16 @@
 	return ..()
 
 /// The pre-cast signal handler must return the SPELL_CANCEL_CAST bitflag (not just any truthy value) to actually stop the spell.
+// No SIGNAL_HANDLER here on purpose: the parent /datum/component/uses_mana/proc/can_activate_with_feedback
+// already declares it, and SpacemanDMM_should_not_sleep may only be set on a proc's initial
+// definition - repeating it on an override is a hard warning and changes nothing, since the
+// annotation is already inherited.
 /datum/component/uses_mana/spell/can_activate_with_feedback(...)
-	SIGNAL_HANDLER
 	if(can_activate(arglist(args.Copy())))
 		return NONE
 	var/atom/movable/user = get_parent_user()
 	if(ismob(user))
 		to_chat(user, span_warning("I don't have enough mana to cast this!"))
 	if(!isnull(activate_check_failure_callback))
-		return activate_check_failure_callback.Invoke(arglist(args))
+		return UNLINT(activate_check_failure_callback.Invoke(arglist(args)))
 	return SPELL_CANCEL_CAST

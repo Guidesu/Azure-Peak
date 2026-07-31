@@ -125,16 +125,20 @@
  * analysis can't prove that from the call site alone: browser.open() is a virtual proc, and
  * SOME override (/datum/browser/modal/open(), which waits on winexists() for a client
  * round-trip) does sleep, so any caller reachable through the base /datum/browser type gets
- * flagged regardless of which concrete subtype it's actually calling through. ui_close() is a
- * TGUI lifecycle callback - nothing waits on its return value or needs it to finish
- * synchronously - so `set waitfor = 0` here breaks the sleep-propagation chain at its actual
- * source instead of leaving the warning unresolved.
+ * flagged regardless of which concrete subtype it's actually calling through.
+ *
+ * The base /datum/proc/ui_close() is a SIGNAL_HANDLER (see code/modules/tgui/external.dm), so
+ * it carries SpacemanDMM_should_not_sleep - and that annotation propagates to every override,
+ * which `set waitfor = 0` does NOT clear. Handing the blocking work to INVOKE_ASYNC is the
+ * pattern the rest of the codebase already uses for exactly this in ui_close() (see
+ * /datum/vampire_clan_selection_menu/ui_close): the signal handler itself returns immediately
+ * and the popup is opened on its own stack, where sleeping is legal.
  */
 /datum/character_sheet_ui/ui_close(mob/user)
-	set waitfor = 0
 	. = ..()
 	var/datum/preferences/P = get_prefs()
-	P?.ShowChoices(user, 1)
+	if(P)
+		INVOKE_ASYNC(P, TYPE_PROC_REF(/datum/preferences, ShowChoices), user, 1)
 
 /datum/character_sheet_ui/ui_static_data(mob/user)
 	var/list/data = list()
@@ -396,7 +400,10 @@ GLOBAL_LIST_EMPTY(character_sheet_species_probes)
 	data["taur_options"] = build_taur_options(P)
 	data["taur_color"] = P.taur_color
 
-	data["faith"] = GLOB.faithlist[P.selected_patron?.associated_faith]?.name
+	// GLOB.faithlist is an untyped path -> /datum/faith assoc list, so it has to be read into a
+	// typed var before touching .name (same as code/modules/client/preferences.dm does).
+	var/datum/faith/selected_faith = GLOB.faithlist[P.selected_patron?.associated_faith]
+	data["faith"] = selected_faith?.name
 	data["faith_options"] = build_faith_options()
 
 	data["patron"] = P.selected_patron?.name
