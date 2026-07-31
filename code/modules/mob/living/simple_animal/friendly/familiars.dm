@@ -792,6 +792,24 @@
     summoning_emote = "A faint chime as a gem-encrusted mechanical beetle scuttles into view."
     speak_emote = "chimes"
 
+/mob/living/simple_animal/pet/familiar/infernal/armour
+	name = "Infernal Armour"
+	desc = "A suit of accursed armour, its host long swallowed by infernal flames yet the form remains, restless and ready to serve yet another master."
+	summoning_emote = "A loud thud rings across as long dormant armour flashes with unlyfe."
+	animal_species = "Infernal Armour"
+	icon_state = "infernal_armour"
+	icon_living = "infernal_armour"
+	speak_emote = list("crackles")
+
+/mob/living/simple_animal/pet/familiar/infernal/sword
+	name = "Infernal Blade"
+	desc = "A sword once belonging to a hero lost in pits of the underworld upon his demise. It is said to feed upon souls of those who touch it - willing or not."
+	summoning_emote = "A blade raises from the deepest pits, singing against the wind."
+	animal_species = "Infernal Blade"
+	icon_state = "infernal_blade"
+	icon_living = "infernal_blade"
+	speak_emote = list("sings")
+
 #undef FAMILIAR_SEE_IN_DARK
 #undef FAMILIAR_MIN_BODYTEMP
 #undef FAMILIAR_MAX_BODYTEMP
