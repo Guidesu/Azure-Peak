@@ -97,7 +97,7 @@
 		STATS_PEOPLE_SMITTEN = list("name" = "People smitten:", "points" = 4, "capacity" = 40),
 	),
 	"Set 4" = list(
-		STATS_ASTRATA_REVIVALS = list("name" = "Holy revivals:", "points" = 6, "capacity" = 75),
+		STATS_AUXENTIUS_REVIVALS = list("name" = "Holy revivals:", "points" = 6, "capacity" = 75),
 		STATS_PRAYERS_MADE = list("name" = "Prayers made:", "points" = 2.25, "capacity" = 65),
 	),
 	"Set 5" = list(

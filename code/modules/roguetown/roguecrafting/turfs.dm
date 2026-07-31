@@ -536,7 +536,7 @@
 	category = "Windows"
 
 /datum/crafting_recipe/roguetown/turfs/roguewindow/stone_psydon
-	name = "static psydonic church window"
+	name = "static vaeltic church window"
 	display_category = ITEM_CAT_ENG_CONSTRUCTION
 	result = /obj/structure/roguewindow/stained/silver
 	reqs = list(/obj/item/natural/stone = 2, /obj/item/natural/glass = 1)

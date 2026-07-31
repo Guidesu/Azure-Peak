@@ -283,7 +283,7 @@
 	)
 
 /obj/item/rogueweapon/stoneaxe/handaxe/psy
-	name = "psydonic tomahawk"
+	name = "vaeltic tomahawk"
 	desc = "'History prefers legends to men. It prefers nobility to brutality, soaring speeches to \
 	quiet deeds. History remembers the battle, but forgets the blood. However history remembers me, \
 	if it remembers me at all, shall only be a fraction of the truth.'"
@@ -302,7 +302,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -312,8 +312,8 @@
 /obj/item/rogueweapon/stoneaxe/handaxe/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -386,7 +386,7 @@
 /obj/item/rogueweapon/stoneaxe/woodcut/steel/decorated
 	name = "decorated axe"
 	icon_state = "nsapo"
-	desc = "Traditionally referred to as a 'nsapo', this beautifully decorated axe traces its roots back to the earliest daes of Psydonian \
+	desc = "Traditionally referred to as a 'nsapo', this beautifully decorated axe traces its roots back to the earliest daes of Vaeltian \
 	civilization. Such makes it a favorite amongst the nobility of both Naledi and Ranenshen."
 	max_integrity = 300
 	smeltresult = /obj/item/ingot/gold
@@ -478,7 +478,7 @@
 	)
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
-	name = "psydonic war axe"
+	name = "vaeltic war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. Even with a one-handed grasp, an efforted swing carries enough momentum to cleave through maille-and-flesh alike. </br>The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	force = 25
@@ -495,7 +495,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -505,8 +505,8 @@
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -702,9 +702,9 @@
 
 /obj/item/rogueweapon/greataxe/steel/knight/psy
 	force_wielded = 25
-	name = "psydonic poleaxe"
+	name = "vaeltic poleaxe"
 	desc = "A poleaxe, fitted with a reinforced shaft and a beaked axhead of alloyed silver. As the fragility of swords've \
-	become more apparent, the Psydonic Orders - following the disastrous Massacre of Blastenghyll - have shifted their focus \
+	become more apparent, the Vaeltic Orders - following the disastrous Massacre of Blastenghyll - have shifted their focus \
 	towards arming their paladins with longer-lasting greatweapons."
 	icon_state = "silverpolearm"
 	minstr = 11
@@ -716,7 +716,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -726,8 +726,8 @@
 /obj/item/rogueweapon/greataxe/steel/knight/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\

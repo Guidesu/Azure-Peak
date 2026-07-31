@@ -380,7 +380,7 @@
 			BP.add_wound(/datum/wound/bite/small)
 
 /datum/component/eora_bond/proc/on_heal(datum/source, healing_on_tick, healing_datum)
-	if( !isliving(parent) || source != parent || istype(healing_datum, /datum/status_effect/buff/healing/eora) || HAS_TRAIT(parent, TRAIT_PSYDONITE))
+	if( !isliving(parent) || source != parent || istype(healing_datum, /datum/status_effect/buff/healing/eora) || HAS_TRAIT(parent, TRAIT_VAELTITE))
 		return
 
 	healing_on_tick = healing_on_tick * heal_share

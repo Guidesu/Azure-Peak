@@ -25,6 +25,7 @@
 
 /datum/city_assembly_panel/ui_static_data(mob/user)
 	return list(
+		"realm_name" = SSticker.realm_name || "the Outpost",
 		"trade_brackets" = ASSEMBLY_TRADE_BRACKETS,
 		"defense_brackets" = ASSEMBLY_DEFENSE_BRACKETS,
 		"poll_brackets" = ASSEMBLY_POLL_BRACKETS,

@@ -81,7 +81,7 @@
 		if(/datum/patron/severance/ignatius)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
-			cloak = /obj/item/clothing/cloak/tabard/crusader/dendor
+			cloak = /obj/item/clothing/cloak/tabard/crusader/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 		if(/datum/patron/concordat/morwenna)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/morwenna
@@ -110,7 +110,7 @@
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/malum
 		if(/datum/patron/tribunal/praecursor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
-			cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
+			cloak = /obj/item/clothing/cloak/tabard/crusader/praecursor
 	// Patron dagger in satchel
 	var/patron_dagger = get_templar_patron_dagger(H)
 	if(patron_dagger)

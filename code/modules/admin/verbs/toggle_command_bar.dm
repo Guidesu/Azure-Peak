@@ -2,9 +2,6 @@
 	set name = "toggle-command-bar-button"
 	set hidden = TRUE
 
-	if(!holder)
-		return
-
 	var/current = winget(src, "outputwindow.input", "command")
 	if(current == "say")
 		set_command_bar_mode(FALSE)
@@ -22,8 +19,6 @@
 		to_chat(src, span_notice("Command bar set to <b>COMMAND</b> mode. Type verbs directly (e.g. say, adminhelp, ooc)."))
 
 /client/proc/show_command_bar_button()
-	if(!holder)
-		return
 	winset(src, "outputwindow.saybutton", "is-visible=true")
 	winset(src, "outputwindow.input", "anchor2=92,100")
 

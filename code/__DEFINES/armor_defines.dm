@@ -83,7 +83,7 @@
 #define ARMOR_INT_CHEST_PLATE_BRONZE 300
 #define ARMOR_INT_CHEST_PLATE_STEEL 500
 #define ARMOR_INT_CHEST_PLATE_STEELLIGHT 450
-#define ARMOR_INT_CHEST_PLATE_PSYDON 400 // You get free training, less int
+#define ARMOR_INT_CHEST_PLATE_PRAECURSOR 400 // You get free training, less int
 #define ARMOR_INT_CHEST_PLATE_IRON 375
 #define ARMOR_INT_CHEST_PLATE_BRIGANDINE 350
 #define ARMOR_INT_CHEST_PLATE_BRIGANDINE_WEIGHT_MODIFIER 50 //Light AC brigandine parts get -50, Heavy AC brigandine parts get +50.

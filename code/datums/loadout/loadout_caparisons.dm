@@ -6,13 +6,13 @@
 	sort_category = "Caparison"
 
 /datum/loadout_item/caparison/psy
-	name = "Psydonite Caparison"
+	name = "Vaeltite Caparison"
 	path = /obj/item/caparison/psy
 	sort_category = "Caparison"
 
-/datum/loadout_item/caparison/astrata
-	name = "Astratan Caparison"
-	path = /obj/item/caparison/astrata
+/datum/loadout_item/caparison/auxentius
+	name = "Auxentian Caparison"
+	path = /obj/item/caparison/auxentius
 	sort_category = "Caparison"
 
 /datum/loadout_item/caparison/eora

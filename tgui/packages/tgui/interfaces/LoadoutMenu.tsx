@@ -1,11 +1,17 @@
+// Grid/icon layout ported from Twilight-Axis's tgui/packages/tgui/interfaces/LoadoutPanel.tsx
+// (PR "Новое лодаут меню" / "New loadout menu"). All player-facing text translated from
+// Russian into English. Kept this repo's own backend contract (color/detail/altdetail tweaking,
+// custom name/desc, triumph-discount math via loadout_menu.dm) rather than adopting Twilight
+// Axis's simpler data shape - the visual grid was the actual improvement worth porting.
 import { useState } from 'react';
 import {
   Box,
   Button,
+  DmIcon,
   Input,
+  ProgressBar,
   Section,
   Stack,
-  Table,
   Tabs,
   TextArea,
 } from 'tgui-core/components';
@@ -20,6 +26,10 @@ type LoadoutItem = {
   cost: number;
   triumph_cost: number | null;
   color_channels: string[];
+  icon: string | null;
+  icon_state: string | null;
+  is_donator_item: boolean;
+  required_tier: number | null;
 };
 
 type SelectedItem = {
@@ -52,7 +62,7 @@ export const LoadoutMenu = () => {
 
   if (!data.categories || !data.items) {
     return (
-      <Window width={780} height={600}>
+      <Window width={1100} height={700}>
         <Window.Content>
           <Stack align="center" justify="center" fill>
             <Stack.Item fontSize={1.5}>Loading loadout data...</Stack.Item>
@@ -63,7 +73,7 @@ export const LoadoutMenu = () => {
   }
 
   return (
-    <Window width={780} height={600}>
+    <Window width={1100} height={700} title="Loadout">
       <Window.Content>
         <LoadoutDisplay />
       </Window.Content>
@@ -144,99 +154,135 @@ const ColorLink = (props: {
   );
 };
 
-/** Two-line tweak row for a selected item: colors on line 1, name/desc on line 2 */
-const TweakRow = (props: {
-  itemName: string;
+/** Detail/tweak panel for the currently-selected (clicked) item in the grid - colors, custom name/desc */
+const ItemDetailPanel = (props: {
+  item: LoadoutItem;
   meta: SelectedItem | undefined;
-  colorChannels: string[];
+  isSelected: boolean;
 }) => {
-  const { itemName, meta, colorChannels } = props;
+  const { item, meta, isSelected } = props;
   const { act } = useBackend<Data>();
 
   const [localName, setLocalName] = useState(meta?.custom_name || '');
   const [localDesc, setLocalDesc] = useState(meta?.custom_desc || '');
 
-  const commitName = (val: string) => {
-    act('set_custom_name', { name: itemName, custom_name: val });
-  };
-
-  const commitDesc = (val: string) => {
-    act('set_custom_desc', { name: itemName, custom_desc: val });
-  };
-
   return (
-    <Table.Row>
-      <Table.Cell colSpan={3}>
-        <Box
-          ml={1.2}
-          pl={0.75}
-          py={0.3}
-          style={{
-            background: 'rgba(255,255,255,0.04)',
-            borderLeft: '2px solid rgba(80,200,120,0.5)',
-          }}
-        >
-          {/* Line 1: Color channels */}
-          <Box mb={0.3}>
-            <ColorLink
-              label="Color"
-              currentColor={meta?.color || null}
-              action="set_color"
-              itemName={itemName}
+    <Section title={item.name} fill scrollable>
+      <Stack vertical>
+        <Stack.Item>
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <DmIcon
+              icon={item.icon}
+              icon_state={item.icon_state}
+              width={64}
+              height={64}
             />
-            {colorChannels.includes('detail') && (
-              <ColorLink
-                label="Detail"
-                currentColor={meta?.detail_color || null}
-                action="set_detail_color"
-                itemName={itemName}
-              />
-            )}
-            {colorChannels.includes('altdetail') && (
-              <ColorLink
-                label="Alt"
-                currentColor={meta?.altdetail_color || null}
-                action="set_altdetail_color"
-                itemName={itemName}
-              />
-            )}
+            <Box>
+              <Box bold fontSize={1.1}>
+                {item.name}
+              </Box>
+              <Box color="label" fontSize={0.9}>
+                {item.cost}pt
+                {item.triumph_cost ? ` + ${item.triumph_cost} triumphs` : ''}
+              </Box>
+              {item.is_donator_item && (
+                <Box color="gold" bold fontSize={0.85}>
+                  Donator tier {item.required_tier || 1}
+                </Box>
+              )}
+            </Box>
           </Box>
-          {/* Line 2: Custom name */}
-          <Box>
-            <Box inline mr={1}>
-              <Box inline color="label" mr={0.5}>
-                Name:
+        </Stack.Item>
+        <Stack.Item>
+          <Box color="label" fontSize={0.9}>
+            {item.desc}
+          </Box>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            fluid
+            icon={isSelected ? 'times' : 'check'}
+            color={isSelected ? 'bad' : 'good'}
+            onClick={() => act('toggle_item', { name: item.name })}
+          >
+            {isSelected ? 'Remove from loadout' : 'Add to loadout'}
+          </Button>
+        </Stack.Item>
+
+        {isSelected && (
+          <>
+            <Stack.Item>
+              <Box color="label" mb={0.3}>
+                Colors:
+              </Box>
+              <ColorLink
+                label="Color"
+                currentColor={meta?.color || null}
+                action="set_color"
+                itemName={item.name}
+              />
+              {item.color_channels.includes('detail') && (
+                <ColorLink
+                  label="Detail"
+                  currentColor={meta?.detail_color || null}
+                  action="set_detail_color"
+                  itemName={item.name}
+                />
+              )}
+              {item.color_channels.includes('altdetail') && (
+                <ColorLink
+                  label="Alt"
+                  currentColor={meta?.altdetail_color || null}
+                  action="set_altdetail_color"
+                  itemName={item.name}
+                />
+              )}
+            </Stack.Item>
+            <Stack.Item>
+              <Box color="label" mb={0.3}>
+                Custom name:
               </Box>
               <Input
-                width="200px"
+                fluid
                 maxLength={42}
                 placeholder="Custom name..."
                 value={localName}
                 onChange={(val) => setLocalName(val)}
-                onEnter={(val) => commitName(val)}
-                onBlur={(val) => commitName(val)}
+                onEnter={(val) =>
+                  act('set_custom_name', { name: item.name, custom_name: val })
+                }
+                onBlur={(val) =>
+                  act('set_custom_name', { name: item.name, custom_name: val })
+                }
               />
-            </Box>
-          </Box>
-          {/* Line 3: Custom desc (full width textarea) */}
-          <Box mt={0.3}>
-            <Box color="label" mb={0.3}>
-              Description (max 1024 chars):
-            </Box>
-            <TextArea
-              fluid
-              maxLength={1024}
-              height="60px"
-              placeholder="Custom description..."
-              value={localDesc}
-              onChange={(val) => setLocalDesc(val)}
-              onBlur={(val) => commitDesc(val)}
-              dontUseTabForIndent
-            />
-          </Box>
-        </Box>
-      </Table.Cell>
-    </Table.Row>
+            </Stack.Item>
+            <Stack.Item grow>
+              <Box color="label" mb={0.3}>
+                Custom description (max 1024 chars):
+              </Box>
+              <TextArea
+                fluid
+                maxLength={1024}
+                height="90px"
+                placeholder="Custom description..."
+                value={localDesc}
+                onChange={(val) => setLocalDesc(val)}
+                onBlur={(val) =>
+                  act('set_custom_desc', { name: item.name, custom_desc: val })
+                }
+                dontUseTabForIndent
+              />
+            </Stack.Item>
+          </>
+        )}
+      </Stack>
+    </Section>
   );
 };
 
@@ -252,11 +298,12 @@ const ClearAllButton = (props: { selectedCount: number }) => {
 
   if (confirming) {
     return (
-      <Box inline>
-        <Box inline color="bad" bold mr={1}>
+      <Box>
+        <Box color="bad" bold mb={0.5}>
           Are you sure?
         </Box>
         <Button
+          fluid
           icon="trash"
           color="bad"
           onClick={() => {
@@ -266,7 +313,7 @@ const ClearAllButton = (props: { selectedCount: number }) => {
         >
           Yes, clear all
         </Button>
-        <Button ml={0.5} onClick={() => setConfirming(false)}>
+        <Button fluid mt={0.5} onClick={() => setConfirming(false)}>
           Cancel
         </Button>
       </Box>
@@ -275,6 +322,7 @@ const ClearAllButton = (props: { selectedCount: number }) => {
 
   return (
     <Button
+      fluid
       icon="trash"
       color="bad"
       onClick={() => {
@@ -293,6 +341,7 @@ const ClearAllButton = (props: { selectedCount: number }) => {
 const LoadoutDisplay = () => {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('');
+  const [detailItem, setDetailItem] = useState<string | null>(null);
 
   const { act, data } = useBackend<Data>();
   const {
@@ -313,7 +362,6 @@ const LoadoutDisplay = () => {
 
   const selectedNames = new Set(selected.map((s) => s.name));
   const selectedMap = new Map(selected.map((s) => [s.name, s]));
-  const channelsMap = new Map(items.map((i) => [i.name, i.color_channels]));
 
   // Count selected items per category
   const categoryCounts: Record<string, number> = {};
@@ -332,157 +380,31 @@ const LoadoutDisplay = () => {
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const detailLoadoutItem = detailItem
+    ? items.find((i) => i.name === detailItem)
+    : null;
+
   return (
-    <Stack fill vertical>
-      {/* Category tabs */}
-      <Stack.Item>
-        <Tabs>
-          {categories.map((cat) => {
-            const count = categoryCounts[cat] || 0;
-            return (
-              <Tabs.Tab
-                key={cat}
-                selected={currentCategory === cat}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-                {count > 0 && ` (${count})`}
-              </Tabs.Tab>
-            );
-          })}
-        </Tabs>
-      </Stack.Item>
-      {/* Search bar */}
-      <Stack.Item>
-        <Input
-          fluid
-          placeholder="Search items..."
-          value={search}
-          onChange={(val) => setSearch(val)}
-        />
-      </Stack.Item>
-
-      {/* Items table */}
-      <Stack.Item grow>
-        <Section fill scrollable fitted>
-          {filteredItems.length === 0 ? (
-            <Box color="label" textAlign="center" mt={2}>
-              No items found.
-            </Box>
-          ) : (
-            <Table>
-              <Table.Row header>
-                <Table.Cell pl={2.5}>Name</Table.Cell>
-                <Table.Cell collapsing textAlign="center">
-                  Cost
-                </Table.Cell>
-                <Table.Cell>Description</Table.Cell>
-              </Table.Row>
-              {filteredItems.map((item) => {
-                const isSelected = selectedNames.has(item.name);
-                const meta = selectedMap.get(item.name);
-
-                return [
-                  <Table.Row
-                    key={item.name}
-                    className="candystripe"
-                    style={{
-                      cursor: 'pointer',
-                      verticalAlign: 'middle',
-                      borderBottom: '1px solid rgba(255,255,255,0.07)',
-                    }}
-                    onClick={() => act('toggle_item', { name: item.name })}
-                  >
-                    <Table.Cell py={0.4}>
-                      <Box style={{ display: 'flex', alignItems: 'baseline' }}>
-                        <Box
-                          inline
-                          width={1.2}
-                          textAlign="center"
-                          bold
-                          color={isSelected ? 'good' : 'label'}
-                          style={{ flexShrink: 0 }}
-                        >
-                          {isSelected ? '\u2713' : '\u25CB'}
-                        </Box>
-                        <Box bold={isSelected} fontSize={0.9} py={0.5}>
-                          {item.name}
-                          {isSelected &&
-                            (meta?.color ||
-                              meta?.detail_color ||
-                              meta?.altdetail_color) && (
-                              <Box inline ml={0.5}>
-                                {meta?.color && (
-                                  <ColorSwatch color={meta.color} />
-                                )}
-                                {meta?.detail_color && (
-                                  <ColorSwatch color={meta.detail_color} />
-                                )}
-                                {meta?.altdetail_color && (
-                                  <ColorSwatch color={meta.altdetail_color} />
-                                )}
-                              </Box>
-                            )}
-                        </Box>
-                      </Box>
-                    </Table.Cell>
-                    <Table.Cell collapsing color="label" textAlign="center">
-                      {item.cost}pt
-                      {item.triumph_cost ? (
-                        <Box color="gold" bold fontSize={0.85}>
-                          {item.triumph_cost} tri
-                        </Box>
-                      ) : null}
-                    </Table.Cell>
-                    <Table.Cell color="label" fontSize={0.9}>
-                      {item.desc}
-                    </Table.Cell>
-                  </Table.Row>,
-                  isSelected && (
-                    <TweakRow
-                      key={`${item.name}_tweak`}
-                      itemName={item.name}
-                      meta={meta}
-                      colorChannels={channelsMap.get(item.name) || ['primary']}
-                    />
-                  ),
-                ];
-              })}
-            </Table>
-          )}
-        </Section>
-      </Stack.Item>
-
-      {/* Footer: budget + confirm */}
-      <Stack.Item>
-        <Box px={1} py={0.25}>
-          <Stack align="center">
-            <Stack.Item>
-              <ClearAllButton selectedCount={selected.length} />
-            </Stack.Item>
-            <Stack.Item grow>
-              <Box
-                inline
-                bold
-                fontSize={0.95}
-                color={total_cost >= max_points ? 'bad' : undefined}
-                mr={1.5}
-              >
-                Budget: {total_cost}/{max_points}
+    <Stack fill>
+      {/* Left sidebar: budget, triumphs, selected items list */}
+      <Stack.Item width="260px">
+        <Stack vertical fill>
+          <Stack.Item>
+            <Section title="Budget">
+              <Box mb={0.5}>
+                Slots: {total_cost}/{max_points}
               </Box>
-              <Box
-                inline
-                bold
-                fontSize={0.95}
-                color={
-                  effective_triumph_cost > player_triumphs ? 'bad' : 'gold'
-                }
-                mr={1.5}
-              >
+              <ProgressBar
+                ranges={{
+                  bad: [0.9, Infinity],
+                  average: [0.6, 0.9],
+                  good: [-Infinity, 0.6],
+                }}
+                value={max_points ? total_cost / max_points : 0}
+              />
+              <Box mt={0.5}>
                 Triumphs:{' '}
-                {is_donator &&
-                triumph_discount > 0 &&
-                total_triumph_cost > 0 ? (
+                {is_donator && triumph_discount > 0 && total_triumph_cost > 0 ? (
                   <>
                     {total_triumph_cost}
                     <Box inline color="green" ml={0.5}>
@@ -498,30 +420,229 @@ const LoadoutDisplay = () => {
                 )}
               </Box>
               {!!is_donator && (
-                <Box inline bold fontSize={0.85} color="gold" mr={1.5}>
-                  <Box inline mr={0.5}>
-                    &#9733;
-                  </Box>
-                  Donator - +{donator_bonus} budget, {triumph_discount} TRI free
+                <Box color="gold" bold fontSize={0.85} mt={0.5}>
+                  &#9733; Donator - +{donator_bonus} budget, {triumph_discount}{' '}
+                  free triumphs
                 </Box>
               )}
-              <Box inline color="label" fontSize={0.85}>
-                Free loadout items cannot be sold, smelted, or salvaged. Triumph
-                items are exempt.
-              </Box>
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="check"
-                color="good"
-                fontSize={1.1}
-                onClick={() => act('confirm')}
-              >
-                Confirm
-              </Button>
-            </Stack.Item>
-          </Stack>
-        </Box>
+            </Section>
+          </Stack.Item>
+
+          <Stack.Item grow>
+            <Section title="Selected Items" fill scrollable>
+              {selected.length === 0 ? (
+                <Box color="label" textAlign="center" mt={1}>
+                  Nothing selected yet.
+                </Box>
+              ) : (
+                <Stack vertical>
+                  {selected.map((sel) => (
+                    <Stack.Item key={sel.name}>
+                      <Box
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          gap: '4px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => setDetailItem(sel.name)}
+                      >
+                        <Box
+                          style={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                          }}
+                          fontSize={0.9}
+                        >
+                          {sel.name}
+                        </Box>
+                        <Button
+                          icon="times"
+                          color="bad"
+                          onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation();
+                            act('toggle_item', { name: sel.name });
+                          }}
+                        />
+                      </Box>
+                    </Stack.Item>
+                  ))}
+                </Stack>
+              )}
+            </Section>
+          </Stack.Item>
+
+          <Stack.Item>
+            <ClearAllButton selectedCount={selected.length} />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              fluid
+              icon="check"
+              color="good"
+              fontSize={1.1}
+              onClick={() => act('confirm')}
+            >
+              Confirm
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Box color="label" fontSize={0.8}>
+              Free loadout items cannot be sold, smelted, or salvaged. Triumph
+              items are exempt.
+            </Box>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+
+      {/* Right side: tabs, search, item grid (or detail panel if an item is focused) */}
+      <Stack.Item grow>
+        <Stack vertical fill>
+          <Stack.Item>
+            <Tabs>
+              {categories.map((cat) => {
+                const count = categoryCounts[cat] || 0;
+                return (
+                  <Tabs.Tab
+                    key={cat}
+                    selected={!search && currentCategory === cat}
+                    onClick={() => {
+                      setSearch('');
+                      setActiveCategory(cat);
+                      setDetailItem(null);
+                    }}
+                  >
+                    {cat}
+                    {count > 0 && ` (${count})`}
+                  </Tabs.Tab>
+                );
+              })}
+            </Tabs>
+          </Stack.Item>
+          <Stack.Item>
+            <Input
+              fluid
+              placeholder="Search items..."
+              value={search}
+              onChange={(val) => {
+                setSearch(val);
+                setDetailItem(null);
+              }}
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            {detailLoadoutItem ? (
+              <Stack vertical fill>
+                <Stack.Item>
+                  <Button icon="arrow-left" onClick={() => setDetailItem(null)}>
+                    Back to grid
+                  </Button>
+                </Stack.Item>
+                <Stack.Item grow>
+                  <ItemDetailPanel
+                    item={detailLoadoutItem}
+                    meta={selectedMap.get(detailLoadoutItem.name)}
+                    isSelected={selectedNames.has(detailLoadoutItem.name)}
+                  />
+                </Stack.Item>
+              </Stack>
+            ) : (
+              <Section fill scrollable>
+                {filteredItems.length === 0 ? (
+                  <Box color="label" textAlign="center" mt={2}>
+                    No items found.
+                  </Box>
+                ) : (
+                  <Box
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns:
+                        'repeat(auto-fill, minmax(110px, 1fr))',
+                      gap: '8px',
+                    }}
+                  >
+                    {filteredItems.map((item) => {
+                      const isSelected = selectedNames.has(item.name);
+                      const meta = selectedMap.get(item.name);
+                      return (
+                        <Box
+                          key={item.name}
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            padding: '8px',
+                            cursor: 'pointer',
+                            borderRadius: '6px',
+                            border: `2px solid ${
+                              isSelected
+                                ? 'rgba(80,200,120,0.8)'
+                                : 'rgba(255,255,255,0.12)'
+                            }`,
+                            background: isSelected
+                              ? 'rgba(80,200,120,0.08)'
+                              : 'rgba(0,0,0,0.15)',
+                          }}
+                          onClick={() => setDetailItem(item.name)}
+                        >
+                          <DmIcon
+                            icon={item.icon}
+                            icon_state={item.icon_state}
+                            width={48}
+                            height={48}
+                          />
+                          {(meta?.color ||
+                            meta?.detail_color ||
+                            meta?.altdetail_color) && (
+                            <Box mt={0.2}>
+                              {meta?.color && <ColorSwatch color={meta.color} />}
+                              {meta?.detail_color && (
+                                <ColorSwatch color={meta.detail_color} />
+                              )}
+                              {meta?.altdetail_color && (
+                                <ColorSwatch color={meta.altdetail_color} />
+                              )}
+                            </Box>
+                          )}
+                          <Box
+                            textAlign="center"
+                            fontSize={0.8}
+                            bold={isSelected}
+                            mt={0.3}
+                            style={{
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                            }}
+                          >
+                            {item.name}
+                          </Box>
+                          <Box color="label" fontSize={0.75}>
+                            {item.cost}pt
+                          </Box>
+                          {item.triumph_cost ? (
+                            <Box color="gold" bold fontSize={0.75}>
+                              {item.triumph_cost} tri
+                            </Box>
+                          ) : null}
+                          {item.is_donator_item && (
+                            <Box color="gold" fontSize={0.7}>
+                              Donator {item.required_tier || 1}
+                            </Box>
+                          )}
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                )}
+              </Section>
+            )}
+          </Stack.Item>
+        </Stack>
       </Stack.Item>
     </Stack>
   );

@@ -56,13 +56,20 @@
 		if(LI.name == "Parent loadout datum")
 			continue
 
+		var/item_icon = ispath(LI.path, /obj/item) ? initial(target.icon) : null
+		var/item_icon_state = ispath(LI.path, /obj/item) ? initial(target.icon_state) : null
+
 		items += list(list(
 			"name" = LI.name,
 			"desc" = LI.desc,
 			"category" = cat,
 			"cost" = LI.cost,
 			"triumph_cost" = LI.triumph_cost,
-			"color_channels" = color_channels
+			"color_channels" = color_channels,
+			"icon" = item_icon,
+			"icon_state" = item_icon_state,
+			"is_donator_item" = LI.donoritem ? TRUE : FALSE,
+			"required_tier" = LI.donator_unlocked ? 1 : null
 		))
 
 	var/donator = is_donator(user.ckey)

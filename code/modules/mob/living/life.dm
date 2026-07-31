@@ -47,7 +47,7 @@
 		heal_wounds(1)
 
 	/// ENDVRE AS HE DOES.
-	if(!stat && (HAS_TRAIT(src, TRAIT_PSYDONITE) && !HAS_TRAIT(src, TRAIT_BLACKBLOOD) && !HAS_TRAIT(src, TRAIT_PARALYSIS)))
+	if(!stat && (HAS_TRAIT(src, TRAIT_VAELTITE) && !HAS_TRAIT(src, TRAIT_BLACKBLOOD) && !HAS_TRAIT(src, TRAIT_PARALYSIS)))
 		handle_wounds()
 		//passively heal wounds, when you're in trouble..
 		if(blood_volume > BLOOD_VOLUME_SURVIVE)
@@ -64,7 +64,7 @@
 		if(blood_volume > BLOOD_VOLUME_SURVIVE && nutrition > NUTRITION_LEVEL_STARVING && hydration > HYDRATION_LEVEL_DEHYDRATED) // starving is the minimal here, thirst also stops the regen now
 			for(var/datum/wound/wound as anything in get_wounds())
 				if(!istype(wound, /datum/wound/slash/incision))
-					wound.heal_wound(0.5) // roughly half of what psydonite can heal up, after some tests (the above is 0.4, because 0.6 is in life() and death())
+					wound.heal_wound(0.5) // roughly half of what vaeltite can heal up, after some tests (the above is 0.4, because 0.6 is in life() and death())
 					if(wound.bleed_rate > 0) // but we also slowly recover from bleeding now
 						var/bleed_heal = max(wound.bleed_rate * 0.1, 0.2)
 						wound.set_bleed_rate(max(wound.bleed_rate - bleed_heal, 0))
@@ -169,6 +169,8 @@
 	update_sneak_invis()
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
+	if(GLOB.cold_breath_overlay in overlays)
+		cut_overlay(GLOB.cold_breath_overlay)
 
 /mob/living/proc/handle_random_events()
 	//random painstun

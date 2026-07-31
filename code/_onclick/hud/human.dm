@@ -411,6 +411,9 @@
 	energy = new /atom/movable/screen/energy()
 	infodisplay += energy
 
+	temperature = new /atom/movable/screen/temperature()
+	infodisplay += temperature
+
 	feint_bar = new /atom/movable/screen/feint()
 	infodisplay += feint_bar
 

@@ -34,8 +34,8 @@
 #define SPELL_IGNORE_SPELLBLOCK (1 << 0)
 /// Is learnable via Rituos
 #define SPELL_RITUOS (1 << 1)
-/// Is a Psydon spell
-#define SPELL_PSYDON (1 << 2)
+/// Is a Praecursor spell
+#define SPELL_PRAECURSOR (1 << 2)
 
 // Bitflags for spell requirements
 /// Whether the spell requires wizard clothes to cast.

@@ -141,7 +141,7 @@
 /datum/action/cooldown/spell/miracle/heal/undivided
 	name = "Greater Miracle"
 	desc = "Blesses the target with minor health regeneration. If casted in conjunction with the 'Fortify' blessing, its healing power is greatly \
-	increased. Most healing Miracles cannot affect devoted Psydonians."
+	increased. Most healing Miracles cannot affect devoted Vaeltians."
 	fluff_desc = "Under Custodius's correction, disease and ailments hold no sway over the devout, even the deepest wound shall soon come apart in His light."
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
@@ -342,7 +342,7 @@
 	)
 	var/list/miracle_templar_bundle = list(
 		/obj/effect/proc_holder/spell/invoked/abyssor_undertow::name 		= /obj/effect/proc_holder/spell/invoked/abyssor_undertow,
-		/datum/action/cooldown/spell/ravox/withstand::name 					= /datum/action/cooldown/spell/ravox/withstand,
+		/datum/action/cooldown/spell/auxentius/battle/withstand::name 					= /datum/action/cooldown/spell/auxentius/battle/withstand,
 		/datum/action/cooldown/spell/mending/malum::name 					= /datum/action/cooldown/spell/mending/malum,
 		/datum/action/cooldown/spell/noc/enlightenment::name 				= /datum/action/cooldown/spell/noc/enlightenment,
 		/obj/effect/proc_holder/spell/invoked/vendetta::name 				= /obj/effect/proc_holder/spell/invoked/vendetta,
@@ -423,7 +423,7 @@
 	charge_sound = 'sound/magic/holycharging.ogg'
 	cooldown_time = 1 MINUTES
 
-	spell_flags = SPELL_PSYDON
+	spell_flags = SPELL_PRAECURSOR
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 
 /datum/action/cooldown/spell/undivided/gallow_humor/cast(atom/cast_on)
@@ -505,7 +505,7 @@
 
 /datum/action/cooldown/spell/undivided/undivided_battlecry
 	name = "Oathbound United"
-	desc = "Rally the faithful to fight by your side, providing a buff (CONSTITUTION 2, WILLPOWER 2, FORTUNE 4) to Concordat worshippers. Old Kin and Psydonites are left out, deadites suffer Daze (PERCEPTION -1, INTELLIGENCE -2, SPEED -1) within the radius."
+	desc = "Rally the faithful to fight by your side, providing a buff (CONSTITUTION 2, WILLPOWER 2, FORTUNE 4) to Concordat worshippers. Old Kin and Vaeltites are left out, deadites suffer Daze (PERCEPTION -1, INTELLIGENCE -2, SPEED -1) within the radius."
 	fluff_desc = "One law, one oath, one correction shared by all who swear it - alone, the faithful would wither away and die by the encroaching darkness. Bound together under Custodius's hand, they endure."
 	button_icon_state = "united"
 	sound = 'sound/magic/battle_cry_undivided.ogg'

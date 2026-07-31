@@ -167,7 +167,7 @@
 	name = "Inquisitorial Missive"
 	desc = "A letter from the Grand Cathedral in Otava. It reeks of zig smoke."
 	info = {"
-		<font face=\"Segoe Script\" color=#00000>Greetings to ye, distant missionaries in Azuria<br><br>This missive serves to inform of a breakthrough of alchemy. 
+		<font face=\"Segoe Script\" color=#00000>Greetings to ye, distant missionaries at the outpost<br><br>This missive serves to inform of a breakthrough of alchemy.
 		Enclosed is a substance, <b>Quicksilver</b>, that may be of keen use in the preservation of lyfe against those unholy creechers that are repelled by divine silver. 
 		We speak of the werevolf and the vampyre. Herein lies the method.<br><br>Gather an ore of silver, a vessel of blessed water- a bottle's worth shall suffice, and a 
 		simple strip of cloth to add structure to the poultice. Take the warm bud of a fyritius flower, and immerse it in the bleeding wound of an unholy creecher. The warmth 
@@ -177,7 +177,7 @@
 		silver- and shall be fortified against the fell turning of these unholy creechers.<br><br>Take heed! This act may also salvage the lyfe of unfortunate souls who have 
 		recently been turned to beast. Their body's accursed resistance excites the Quicksilver to fire- but complete the rite, and they too are saved. All, except the eldest 
 		of Vampyre and Werevolf- we ascertain even this method cannot save them, and it will be a waste! (Albeit humbling.)<br><br>Share of this missive with any agents or 
-		employs that need direction in this rite.<br><br><b>PSYDON ENDURES,</b><br><i>Holy Fellowship of Research, the Grand Cathedral, the Sovereignty of Otava.</i></font>
+		employs that need direction in this rite.<br><br><b>PRAECURSOR ENDURES,</b><br><i>Holy Fellowship of Research, the Grand Cathedral, the Sovereignty of Otava.</i></font>
 		"}
 
 //Pacifism callback, like adventurer spawn

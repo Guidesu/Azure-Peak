@@ -6,7 +6,7 @@
 		"azure_lane" = "Noccite",
 		"azure_purple" = "Raneshen",
 		"azure_gilbranze" = "Gilbranze",
-		"azure_psydonic" = "Psydonic",
+		"azure_vaeltic" = "Vaeltic",
 		"azure_lingyue" = "Lingyue",
 		"trey_liam" = "Trey Liam"
 	)

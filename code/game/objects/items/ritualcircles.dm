@@ -75,14 +75,14 @@
 			continue
 		ritual_item.AddComponent(/datum/component/kit_owner, target_ckey, slot_key)
 
-// This'll be our tutorial ritual for those who want to make more later, let's go into details in comments, mm? - Onutsio 
-/obj/structure/ritualcircle/astrata
+// This'll be our tutorial ritual for those who want to make more later, let's go into details in comments, mm? - Onutsio
+/obj/structure/ritualcircle/auxentius_sun
 	name = "Rune of the Sun" // defines name of the circle itself
-	icon_state = "astrata_chalky" // the icon state, so, the sprite the runes use on the floor. As of making, we have 6, each needs an active/inactive state. 
-	desc = "A holy rune of <font color='ffbe00'>Astrata.</font> </br> <i>Warmth irradiates from the rune.</i>" // description on examine
+	icon_state = "astrata_chalky" // the icon state, so, the sprite the runes use on the floor. As of making, we have 6, each needs an active/inactive state.
+	desc = "A holy rune of <font color='ffbe00'>Auxentius.</font> </br> <i>Warmth irradiates from the rune.</i>" // description on examine
 	var/solarrites = list("Guiding Light") // This is important - This is the var which stores every ritual option available to a ritualist - Ideally, we'd have like, 3 for each God. Right now, just 1.
 
-/obj/structure/ritualcircle/astrata/attack_hand(mob/living/user)
+/obj/structure/ritualcircle/auxentius_sun/attack_hand(mob/living/user)
 	if(!..())
 		return
 	if((user.patron?.type) != /datum/patron/concordat/auxentius)
@@ -106,10 +106,10 @@
 			if(!do_after(user, 5 SECONDS))
 				return
 			user.say("Place your gaze upon me, oh Radiant one!!")
-			to_chat(user,span_danger("You feel the eye of Astrata turned upon you. Her warmth dances upon your cheek. You feel yourself warming up...")) // A bunch of flavor stuff, slow incanting.
+			to_chat(user,span_danger("You feel the eye of Auxentius turned upon you. His warmth dances upon your cheek. You feel yourself warming up...")) // A bunch of flavor stuff, slow incanting.
 			icon_state = "astrata_active"
 			if(!HAS_TRAIT(user, TRAIT_CHOSEN)) //Priests don't burst into flames.
-				loc.visible_message(span_warning("[user]'s bursts to flames! Embraced by Her Warmth wholly!"))
+				loc.visible_message(span_warning("[user]'s bursts to flames! Embraced by His Warmth wholly!"))
 				playsound(loc, 'sound/combat/hits/burn (1).ogg', 100, FALSE, -1)
 				user.adjust_fire_stacks(10)
 				user.ignite_mob()
@@ -121,11 +121,11 @@
 			spawn(120)
 				icon_state = "astrata_chalky"
 
-/obj/structure/ritualcircle/astrata/proc/guidinglight(ritual_source)
+/obj/structure/ritualcircle/auxentius_sun/proc/guidinglight(ritual_source)
 	var/ritualtargets = view(7, loc) // Range of 7 from the source, which is the rune
 	for(var/mob/living/carbon/human/target in ritualtargets) // defines the target as every human in this range
 		target.apply_status_effect(/datum/status_effect/buff/guidinglight) // applies the status effect
-		to_chat(target,span_cultsmall("Astrata's light guides me forward, drawn to me by the Ritualist's pyre!"))
+		to_chat(target,span_cultsmall("Auxentius's light guides me forward, drawn to me by the Ritualist's pyre!"))
 // If you want to review a more complicated one, Undermaiden's Bargain is probs the most complicated of the starting set. - Have fun! - Onutsio 🏳️‍⚧️
 
 
@@ -195,7 +195,7 @@
 	var/trickstersrites = list("Stagehand's Silence")
 
 // this is just copied and pasted from noc, mostly. i dont know if there's a better way 2 do these now and the
-// ravox one looks weird.
+// auxentius one looks weird.
 /obj/structure/ritualcircle/xylix/attack_hand(mob/living/user)
 	if(!..())
 		return
@@ -230,13 +230,13 @@
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/stagehands_silence)
 
-/obj/structure/ritualcircle/ravox
+/obj/structure/ritualcircle/auxentius_justice
 	name = "Rune of Justice"
 	icon_state = "ravox_chalky"
-	desc = "A holy rune of <font color='a50d47'>Ravox.</font> </br> <i>You feel the command of a higher presence; to bring justice unto the wicked.</i>"
-	var/ravoxrites = list("Vow to Ravox")
+	desc = "A holy rune of <font color='a50d47'>Auxentius.</font> </br> <i>You feel the command of a higher presence; to bring justice unto the wicked.</i>"
+	var/ravoxrites = list("Vow to Auxentius")
 
-/obj/structure/ritualcircle/ravox/attack_hand(mob/living/user)
+/obj/structure/ritualcircle/auxentius_justice/attack_hand(mob/living/user)
 	if(!..())
 		return
 	if((user.patron?.type) != /datum/patron/concordat/auxentius)
@@ -249,8 +249,8 @@
 		to_chat(user,span_warning("I have performed enough rituals for the day... I must rest before communing more."))
 		return
 	var/riteselection = input(user, "Rituals of Justice", src) as null|anything in ravoxrites
-	switch(riteselection) 
-		if("Vow to Ravox") // Ideally stick to this style for rites. Early returns + negatives. Minimises the "pyramid" shape you can see in Astrata, which I've left untouched for now -- CODEATHON
+	switch(riteselection)
+		if("Vow to Auxentius") // Ideally stick to this style for rites. Early returns + negatives. Minimises the "pyramid" shape you can see in the Sun rune, which I've left untouched for now -- CODEATHON
 			var/target = user
 			if(!do_after(user, 5 SECONDS))
 				return
@@ -263,13 +263,13 @@
 			user.say("Let foes of justice face my might!")
 			if(!do_after(user, 3 SECONDS))
 				return
-			user.say("Ravox, guide my hand in righteous fight!")
+			user.say("Auxentius, guide my hand in righteous fight!")
 			playsound(loc, 'sound/magic/holyshield.ogg', 80, FALSE, -1)
 			ravoxvow(target)
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 
-/obj/structure/ritualcircle/ravox/proc/ravoxvow(mob/living/carbon/human/target)
-	target.apply_status_effect(/datum/status_effect/buff/ravox_vow)
+/obj/structure/ritualcircle/auxentius_justice/proc/ravoxvow(mob/living/carbon/human/target)
+	target.apply_status_effect(/datum/status_effect/buff/auxentius_vow)
 
 /obj/structure/ritualcircle/pestra
 	name = "Rune of Plague"
@@ -368,13 +368,13 @@
 		to_chat(target, span_boldred("My body is susceptible to CRITICAL STRIKES."))
 		ADD_TRAIT(target, TRAIT_CRITICAL_WEAKNESS, TRAIT_RITUAL)
 
-/obj/structure/ritualcircle/dendor
+/obj/structure/ritualcircle/ignatius
 	name = "Rune of Beasts"
 	icon_state = "dendor_chalky"
-	desc = "A holy rune of <font color='799c56'>Dendor.</font> </br> <i>To become one with nature is to connect with one's true instinct.</i>"
+	desc = "A holy rune of <font color='799c56'>Ignatius.</font> </br> <i>To become one with nature is to connect with one's true instinct.</i>"
 	var/dendorrites = list ("Rite of the Lesser Volf")
 
-/obj/structure/ritualcircle/dendor/attack_hand(mob/living/user)
+/obj/structure/ritualcircle/ignatius/attack_hand(mob/living/user)
 	if(!..())
 		return
 	if((user.patron?.type) != /datum/patron/severance/ignatius)
@@ -416,7 +416,7 @@
 			lesservolf(target) // starts proc
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 
-/obj/structure/ritualcircle/dendor/proc/lesservolf(mob/living/carbon/human/target) // IS proc
+/obj/structure/ritualcircle/ignatius/proc/lesservolf(mob/living/carbon/human/target) // IS proc
 	target.apply_status_effect(/datum/status_effect/buff/lesserwolf) // applies status effect
 
 /obj/structure/ritualcircle/malum
@@ -1624,7 +1624,7 @@
 				return
 			icon_state = "matthios_active"
 			if(defenestration())
-				to_chat(user, span_cultsmall("The ritual is complete, and the noble gift of Astrata has been taken!"))
+				to_chat(user, span_cultsmall("The ritual is complete, and the noble gift of Auxentius has been taken!"))
 				user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 			else
 				to_chat(user, span_cultsmall("The ritual fails. A noble must be in the center of the circle!"))
@@ -1683,14 +1683,14 @@
 	if(victim.mind?.assigned_role in GLOB.noble_positions) // Intentionally stacked with rulermob/regent/prince to get extra payout for royals
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
-	// Draining nobility from the duke or the heirs increases payout and causes CHAOS. Astrata weeps!
+	// Draining nobility from the duke or the heirs increases payout and causes CHAOS. Auxentius weeps!
 	if((victim == SSticker.rulermob) || (victim == SSticker.regentmob) || (victim.mind?.assigned_role in list ("Prince", "Princess")))
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
 		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
-		// Astrata loses her bearing due to this vile ritual
-		priority_announce("The noble gift of Astrata's birthright was tainted! The Sun, she is weeping!", "Bad Omen", 'sound/misc/evilevent.ogg')
+		// Auxentius loses his bearing due to this vile ritual
+		priority_announce("The noble gift of Auxentius's birthright was tainted! The Sun, he is weeping!", "Bad Omen", 'sound/misc/evilevent.ogg')
 		var/datum/round_event_control/lightsout/E = new()
 		E.req_omen = FALSE
 		E.earliest_start = 0
@@ -2086,7 +2086,7 @@
 	if(!H.mind.has_spell(/datum/action/cooldown/spell/miracle/intervention) && H.devotion.max_devotion == CLERIC_REQ_4)	// Devotion check to make sure we give it to the HWretch not some Guy
 		H.mind.AddSpell(new /datum/action/cooldown/spell/miracle/intervention)
 
-/obj/effect/decal/cleanable/roguerune/god/psydon
+/obj/effect/decal/cleanable/roguerune/god/praecursor
 	name = "Rune of Perseverance"
 	desc = "A holy rune of the Weeping God. </br> <i>It depicts His holy symbol, yet nothing stirs within you.</i>"
 	icon_state = "psydon_chalky"
@@ -2123,7 +2123,7 @@
 	loc.visible_message(span_cultsmall("[weapon] flares with a cold glimmer, having absorbed the sacrifice! [user] appears visibly drained and cold."))
 	playsound(loc, 'sound/magic/churn.ogg', 100, FALSE, -1)
 
-	comp.try_bless(BLESSING_PSYDONIAN)
+	comp.try_bless(BLESSING_VAELTIAN)
 	new /obj/effect/temp_visual/censer_dust(get_turf(loc))
 
 	user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)

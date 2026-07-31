@@ -476,7 +476,7 @@
 	max_integrity = 75
 
 /obj/item/rogueweapon/mace/cudgel/flanged/psy
-	name = "psydonic flanged mace"
+	name = "vaeltic flanged mace"
 	desc = "A flanged mace of blessed silver, wielded by His children. The rosewood handle's curved nature beckons your fingers to curl along its grooves, and to never let go; \
     no matter the weather nor odds. </br>'Please do not wait for me..' \ </br>'For though I depart, my magic will never die..' </br>'Listen to my laughter in the babbling brook..' \
 	</br>'Hear my song being sung by the bards..' </br>'Feel my warmth in the rays of the morning sun..' </br>'See my light in the twinkling stars at night..' \
@@ -494,7 +494,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -504,8 +504,8 @@
 /obj/item/rogueweapon/mace/cudgel/flanged/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -538,7 +538,7 @@
 //
 
 /obj/item/rogueweapon/mace/cudgel/psy
-	name = "psydonic handmace"
+	name = "vaeltic handmace"
 	desc = "A shorter variant of the flanged silver mace, rebalanced for one-handed usage. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop)
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop, /datum/intent/mace/smash, /datum/intent/effect/daze)
@@ -556,7 +556,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -566,8 +566,8 @@
 /obj/item/rogueweapon/mace/cudgel/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -741,7 +741,7 @@
 	max_integrity = 400 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
 
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonic mace"
+	name = "vaeltic mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Do not go quietly into the darkness; shatter your chains, roar with all your might, and bring the whole damndable temple down with you. </br>Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
 	force = 30
@@ -757,7 +757,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -767,8 +767,8 @@
 /obj/item/rogueweapon/mace/goden/psymace/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -789,7 +789,7 @@
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab/lesser)
 	gripped_intents = null //Warhammers are purpose-made to kill. Smaller maceheads lock them out from the 'Dislocate' intent and 'Smash' intent's full knockback. Still, their boon comes from being a 'jack of all trades'.
 	name = "warhammer"
-	desc = "A one-handed derivative of the mace, purpose-made to defeat armored opponents in battle. Paired nicely with a mug of Azuria's finest zenny-liqour and a heater shield."
+	desc = "A one-handed derivative of the mace, purpose-made to defeat armored opponents in battle. Paired nicely with a mug of Rosawood's finest zenny-liqour and a heater shield."
 	icon_state = "iwarhammer"
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
@@ -1009,9 +1009,9 @@
 	smelt_bar_num = 3 //Please don't...
 	max_integrity = 370
 
-//Psydonite maul. Intended for FUCKING SHIT UP.
+//Vaeltite maul. Intended for FUCKING SHIT UP.
 /obj/item/rogueweapon/mace/maul/grand/psy
-	name = "psydonic maul"
+	name = "vaeltic maul"
 	gripped_intents = list(/datum/intent/mace/strike/reach, /datum/intent/mace/sweep, /datum/intent/mace/demolish, /datum/intent/effect/hobble)
 	desc = "A rune-forged maul inspired by dwarven rock-hammers. Created as the faithful's answer to heretics hiding behind walls, it provides the impure with a sermon of exceptional concussive clarity. A good hit with this is guaranteed to give even the most peppy of heretics some deserved 'respite', and in best scenarios, send them to confess directly to HIM."
 	icon_state = "psyhammer"
@@ -1022,7 +1022,7 @@
 	max_integrity = 600 // need a lil more cause destroying walls takes a bit of this
 
 /obj/item/rogueweapon/mace/maul/grand/psy/pickup(mob/living/user)
-	if(HAS_TRAIT(user, TRAIT_PSYDONITE))
+	if(HAS_TRAIT(user, TRAIT_VAELTITE))
 		src.minstr = 8//-10, if you have the ability to use this.
 	else
 		src.minstr = 18
@@ -1032,7 +1032,7 @@
 	AddComponent(\
 	/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1042,8 +1042,8 @@
 /obj/item/rogueweapon/mace/maul/grand/psy/preblessed/ComponentInitialize()
 		AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\

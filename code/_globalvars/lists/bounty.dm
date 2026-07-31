@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(bounty_posters, list(
-	"AZURIA" = "The Justiciary of Azuria",
+	"OUTPOST" = "The Outpost Justiciary",
 	"GRENZELHOFT" = "The Grenzelhoftian Holy See",
 	"OTAVAN" = "The Otavan Orthodoxy"
 ))

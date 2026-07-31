@@ -3,7 +3,7 @@
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Depending on the patron, there might be supplementary requirements or caveats that \
 	come with resurrecting the chosen target. </br>Casting this on an undead or unholy target will smite them with explosive results. </br>Depending on how far gone \
 	the spirit is, the 'Anastasis' blessing might need to be casted multiple times before successfully resurrecting them. </br>Unlike a regular Healing miracle, this \
-	can affect - and resurrect - devout Psydonians as well."
+	can affect - and resurrect - devout Vaeltians as well."
 	overlay_state = "revive"
 	releasedrain = 90
 	chargedrain = 0
@@ -202,7 +202,7 @@
 	name = "Abyssal Rite of Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Unlike the 'Anastasis' blessing, this requires a certain type of fish to cast. Cast \
 	the blessing on yourself to check what's needed. </br>The resurrected target will not be brought back, alone; a fierce dreamfriend will be tethered to their spirit, \
-	stalking and sapping their strength. Slaying this dreamfiend will fully restore their strength. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Psydonians as well."
+	stalking and sapping their strength. Slaying this dreamfiend will fully restore their strength. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Vaeltians as well."
 	sound = 'sound/magic/whale.ogg'
 	//A medley of common ocean fish, totalling 6
 	required_items = list(
@@ -373,7 +373,7 @@
 	name = "Anastasis?"
 	desc = "Resurrects the chosen target, bringing them back from the dead. Side effects may include crippling weaknesses from other godly rites, ending up \
 	butt-naked in the middle of the kingdom's throne room, and much, much, more. </br>Unlike a regular Healing miracle, \
-	this can affect - and resurrect - devout Psydonians as well."
+	this can affect - and resurrect - devout Vaeltians as well."
 	debuff_type = /datum/status_effect/debuff/random_revival
 	alt_required_items = list(
 		/obj/item/clothing/neck/roguetown/psicross/wood = 1
@@ -405,8 +405,8 @@
 		/datum/status_effect/debuff/dreamfiend_curse,
 		/datum/status_effect/debuff/metabolic_acceleration,
 		/datum/status_effect/debuff/malum_revival,
-		/datum/status_effect/debuff/ravox_revival,
-		/datum/status_effect/debuff/dendor_revival,
+		/datum/status_effect/debuff/auxentius_revival,
+		/datum/status_effect/debuff/ignatius_revival,
 		/datum/status_effect/debuff/noc_revival,
 	)
 	var/debuff_type = pick(possible_debuffs)
@@ -460,7 +460,7 @@
 	name = "Strange Aftereffects"
 	desc = "The revival has left you with unexpected consequences.."
 
-//Dendor, Malum, Ravox, Noc
+//Ignatius, Malum, Auxentius, Noc
 //Fairly generic for now, I might give these more unique effects later!
 /datum/status_effect/debuff/malum_revival
 	id = "malum_revival"
@@ -479,37 +479,37 @@
 	desc = "Your body feels heavy and slow to recover.."
 	icon_state = "malum_burden"
 
-/datum/status_effect/debuff/ravox_revival
-	id = "ravox_revival"
+/datum/status_effect/debuff/auxentius_revival
+	id = "auxentius_revival"
 	duration = 15 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/ravox_revival
+	alert_type = /atom/movable/screen/alert/status_effect/auxentius_revival
 
-/datum/status_effect/debuff/ravox_revival/on_creation(mob/living/new_owner)
+/datum/status_effect/debuff/auxentius_revival/on_creation(mob/living/new_owner)
 	effectedstats = list(
 		STATKEY_STR = -5,
 		STATKEY_SPD = -2
 	)
 	return ..()
 
-/atom/movable/screen/alert/status_effect/ravox_revival
-	name = "Ravox's Weakness"
+/atom/movable/screen/alert/status_effect/auxentius_revival
+	name = "Auxentius's Weakness"
 	desc = "Your muscles feel feeble and your movements feel sluggish.."
 	icon_state = "ravox_weakness"
 
-/datum/status_effect/debuff/dendor_revival
-	id = "dendor_revival"
+/datum/status_effect/debuff/ignatius_revival
+	id = "ignatius_revival"
 	duration = 15 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/dendor_revival
+	alert_type = /atom/movable/screen/alert/status_effect/ignatius_revival
 
-/datum/status_effect/debuff/dendor_revival/on_creation(mob/living/new_owner)
+/datum/status_effect/debuff/ignatius_revival/on_creation(mob/living/new_owner)
 	effectedstats = list(
 		STATKEY_SPD = -5,
 		STATKEY_CON = -2
 	)
 	return ..()
 
-/atom/movable/screen/alert/status_effect/dendor_revival
-	name = "Dendor's Sluggishness"
+/atom/movable/screen/alert/status_effect/ignatius_revival
+	name = "Ignatius's Sluggishness"
 	desc = "Your movements are weighted by invisible roots and your body feels fragile.."
 	icon_state = "dendor_sluggish"
 
@@ -578,7 +578,7 @@
 	name = "Diligent Rite of Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Unlike the 'Anastasis' blessing, this requires a certain type of ingot to cast. Cast \
 	the blessing on yourself to check what's needed. </br>Successfully resurrected targets will suffer a strong malus to Strength and Willpower, for some time, before \
-	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Psydonians as well."
+	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Vaeltians as well."
 	required_items = list(
 		/obj/item/ingot/iron = 3
 	)
@@ -590,12 +590,12 @@
 	overlay_icon = 'icons/mob/actions/malummiracles.dmi'
 	action_icon = 'icons/mob/actions/malummiracles.dmi'
 
-/obj/effect/proc_holder/spell/invoked/resurrect/ravox
+/obj/effect/proc_holder/spell/invoked/resurrect/auxentius
 	name = "Just Rite of Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Unlike the 'Anastasis' blessing, this requires the bones of defeated creechers to cast. Cast \
 	the blessing on yourself to check what's needed. </br>Successfully resurrected targets will suffer a strong malus to Strength and Constitution for some time, before \
-	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Psydonians as well."
-	// The items here are somewhat hard to pick as it still has to be something a ravox acolyte would reasonably obtain.
+	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Vaeltians as well."
+	// The items here are somewhat hard to pick as it still has to be something an Auxentian acolyte would reasonably obtain.
 	// Bones insinuate that mayhaps, they went out there to delete some skeletons for justice?
 	required_items = list(
 		/obj/item/natural/bone = 10
@@ -603,16 +603,16 @@
 	alt_required_items = list(
 		/obj/item/natural/bone = 7
 	)
-	debuff_type = /datum/status_effect/debuff/ravox_revival
+	debuff_type = /datum/status_effect/debuff/auxentius_revival
 	action_icon = 'icons/mob/actions/ravoxmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/ravoxmiracles.dmi'
 	overlay_state = "revive"
 
-/obj/effect/proc_holder/spell/invoked/resurrect/dendor
+/obj/effect/proc_holder/spell/invoked/resurrect/ignatius
 	name = "Wild Rite of Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Unlike the 'Anastasis' blessing, this requires a certain type of herb, swampweed, and steak to cast. Cast \
 	the blessing on yourself to check what's needed. </br>Successfully resurrected targets will suffer a strong malus to Constitution and Speed, for some time, before \
-	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Psydonians as well."
+	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Vaeltians as well."
 	//Herbs that have to do with intelligence mostly. Easier to remember.
 	required_items = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
@@ -623,7 +623,7 @@
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
 		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 1
 	)
-	debuff_type = /datum/status_effect/debuff/dendor_revival
+	debuff_type = /datum/status_effect/debuff/ignatius_revival
 	required_structure = /obj/structure/flora/roguetree/wise
 	sound = 'sound/magic/birdsong.ogg'
 
@@ -631,7 +631,7 @@
 	name = "Moonlit Rite of Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. </br>Unlike the 'Anastasis' blessing, this requires a certain type of parchment to cast. Cast \
 	the blessing on yourself to check what's needed. </br>Successfully resurrected targets will suffer a strong malus to Intelligence, for some time, before \
-	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Psydonians as well."
+	fully recovering. </br>Unlike a regular Healing miracle, this can affect - and resurrect - devout Vaeltians as well."
 	required_items = list(
 		/obj/item/paper/scroll = 15
 	)
@@ -648,7 +648,7 @@
 	name = "Lesser Anastasis"
 	desc = "Resurrects the chosen target, bringing them back from the dead. Casting this on an undead or unholy target will smite them with explosive results. </br>Depending on how far gone \
 	the spirit is, the 'Anastasis' blessing might need to be casted multiple times before successfully resurrecting them. </br>Unlike a regular Healing miracle, this \
-	can affect - and resurrect - devout Psydonians as well."
+	can affect - and resurrect - devout Vaeltians as well."
 	recharge_time = 20 MINUTES //Double the cooldown, no more gold cost, it simply doesn't work with the new economy and transmutation changes.
 	required_items = list()
 	debuff_type = /datum/status_effect/debuff/revived

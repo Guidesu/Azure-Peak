@@ -269,14 +269,17 @@ GLOBAL_VAR_INIT(mobids, 1)
 					continue
 		if(!is_in_zweb(src.z,M.z))
 			continue
-		listening |= M
+		if(M in listening)
+			continue
+		var/mob/living/L = M
+		if(istype(L) && L.STAPER <= 8)
+			to_chat(L, span_warning("You hear something... somewhere!"))
+			continue
+		listening += M
 
 	for(var/mob/living/L in listening)
 		var/strz
 		var/strdir
-		if(L.STAPER <= 8 && !(L in viewers(world.view, src)))
-			to_chat(L, span_warning("You hear something... somewhere!"))
-			continue
 		if(L.z != src.z)
 			var/zdiff = abs(L.z - src.z)
 			if(L.z > src.z)
@@ -930,6 +933,8 @@ GLOBAL_VAR_INIT(mobids, 1)
  */
 /mob/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(M.buckled)
+		return 0
+	if(buckled == M) // mutual buckling makes every Move() recurse between the two of us until the server dies
 		return 0
 	var/turf/T = get_turf(src)
 	if(M.loc != T)

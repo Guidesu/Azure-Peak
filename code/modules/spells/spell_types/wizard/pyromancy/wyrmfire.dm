@@ -92,6 +92,9 @@
 	if(M)
 		apply_scorch_stack(M, 2, def_zone)
 		M.apply_status_effect(/datum/status_effect/debuff/vulnerable, WYRMFIRE_VULNERABLE_DURATION)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human_target = M
+			human_target.adjust_bodytemperature(22)
 
 	var/aoe_damage = arcyne_aoe_damage
 
@@ -122,6 +125,9 @@
 				apply_scorch_stack(L, 1)
 				L.apply_status_effect(/datum/status_effect/debuff/vulnerable, WYRMFIRE_VULNERABLE_DURATION)
 				L.Slowdown(1)
+				if(ishuman(L))
+					var/mob/living/carbon/human/human_splash_target = L
+					human_splash_target.adjust_bodytemperature(12)
 
 	if(arcyne_aoe_radius > 0)
 		var/struct_radius = structural_damage_radius ? structural_damage_radius : arcyne_aoe_radius
@@ -268,6 +274,9 @@
 				L.adjustFireLoss(damage)
 			apply_scorch_stack(L, 2)
 			L.apply_status_effect(/datum/status_effect/debuff/vulnerable, WYRMFIRE_VULNERABLE_DURATION)
+			if(ishuman(L))
+				var/mob/living/carbon/human/human_target = L
+				human_target.adjust_bodytemperature(20)
 
 /obj/projectile/magic/aoe/fireball/rogue/artillery
 	name = "artillery fireball"
@@ -397,7 +406,7 @@
 /datum/action/cooldown/spell/projectile/pyroclasm/proc/perform_chant(mob/living/carbon/human/caster, turf/epicenter, list/warnings)
 	var/static/list/chant = list(
 		"Ignis candens, omnium elementorum clarissime!!",
-		"Secundum leges PSYDONIS!!",
+		"Secundum leges VAELTIS!!",
 		"dissolve quae creavit!!",
 		"cinis in cinerem, creata eius redde in favillam!!",
 	)
@@ -472,6 +481,9 @@
 			else
 				L.adjustFireLoss(blast_damage)
 			apply_scorch_stack(L, 4)
+			if(ishuman(L))
+				var/mob/living/carbon/human/human_target = L
+				human_target.adjust_bodytemperature(30)
 		for(var/obj/structure/damaged in T)
 			if(!istype(damaged, /obj/structure/flora/newbranch))
 				damaged.take_damage(blast_structural, BRUTE, "blunt", TRUE)

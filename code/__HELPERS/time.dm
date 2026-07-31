@@ -48,52 +48,9 @@ GLOBAL_VAR_INIT(date_override_offset, 0)
 	if(GLOB.todoverride)
 		GLOB.tod = GLOB.todoverride
 	if((GLOB.tod != oldtod) && !GLOB.todoverride && (GLOB.dayspassed>1)) //weather check on tod changes
-		if(!GLOB.forecast)
-			switch(GLOB.tod)
-				if("dawn")
-					if(prob(25))
-						GLOB.forecast = PARTICLEWEATHER_RAIN
-					if(prob(20) && (SSgamemode.current_storyteller.name == "Eora"))
-						GLOB.forecast = PARTICLEWEATHER_SAKURA
-				if("day")
-					if(prob(20))
-						GLOB.forecast = PARTICLEWEATHER_RAIN
-					if(prob(30))
-						GLOB.forecast = PARTICLEWEATHER_LEAVES
-					if(prob(20) && (SSgamemode.current_storyteller.name == "Eora"))
-						GLOB.forecast = PARTICLEWEATHER_SAKURA
-				if("dusk")
-					if(prob(30))
-						GLOB.forecast = PARTICLEWEATHER_RAIN
-					if(prob(20))
-						GLOB.forecast = PARTICLEWEATHER_LEAVES
-				if("night")
-					if(prob(40))
-						GLOB.forecast = PARTICLEWEATHER_RAIN
-					if(prob(20))
-						GLOB.forecast = PARTICLEWEATHER_LEAVES
-					if(prob(40) && (SSgamemode.current_storyteller.name == "Zizo" || SSgamemode.current_storyteller.name == "Graggar"))
-						GLOB.forecast = PARTICLEWEATHER_BLOODRAIN
-			if(GLOB.forecast != SSParticleWeather?.runningWeather?.target_trait)
-				switch(GLOB.forecast)
-					if(PARTICLEWEATHER_RAIN)
-						SSParticleWeather?.run_weather(pick(/datum/particle_weather/rain_gentle, /datum/particle_weather/rain_storm,/datum/particle_weather/fog))
-					if(PARTICLEWEATHER_LEAVES)
-						SSParticleWeather?.run_weather(pick(/datum/particle_weather/leaves_gentle, /datum/particle_weather/leaves_storm))
-					if(PARTICLEWEATHER_BLOODRAIN)
-						SSParticleWeather?.run_weather(pick(/datum/particle_weather/blood_rain_gentle, /datum/particle_weather/blood_rain_storm))
-					if(PARTICLEWEATHER_SAKURA)
-						SSParticleWeather?.run_weather(pick(/datum/particle_weather/sakura_gentle, /datum/particle_weather/sakura_storm))
-
-		else
-			switch(GLOB.forecast) //end the weather now
-				if(PARTICLEWEATHER_RAIN)
-					if(GLOB.tod == "day")
-						GLOB.forecast = PARTICLEWEATHER_LEAVES
-					else
-						GLOB.forecast = null
-				if(PARTICLEWEATHER_LEAVES)
-					GLOB.forecast = null
+		// Weather is now driven by the per-map /datum/forecast system (code/datums/forecast/) instead of
+		// this hardcoded switch - see SSParticleWeather.check_forecast() and Initialize() for map selection.
+		SSParticleWeather?.check_forecast(GLOB.tod)
 
 	if(GLOB.tod != oldtod)
 		if(GLOB.tod == "dawn" && SSticker?.current_state == GAME_STATE_PLAYING)

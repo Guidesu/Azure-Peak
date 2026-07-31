@@ -258,8 +258,7 @@
 
 	if(!special)
 		for(var/obj/item/organ/organ as anything in was_owner.internal_organs) //internal organs inside the dismembered limb are dropped.
-			var/org_zone = check_zone(organ.zone)
-			if(org_zone != body_zone)
+			if(organ.zone_checked != body_zone)
 				continue
 			organ.transfer_to_limb(src, was_owner)
 
@@ -270,6 +269,8 @@
 	if(organ_slowdown)
 		was_owner.remove_movespeed_modifier("[src.type]_slow", update = TRUE)
 	was_owner.bodyparts -= src
+	if(was_owner.bodyparts_by_zone[body_zone] == src)
+		was_owner.bodyparts_by_zone -= body_zone
 	owner = null
 
 	update_icon_dropped()
@@ -476,6 +477,7 @@
 	moveToNullspace()
 	owner = C
 	C.bodyparts += src
+	C.bodyparts_by_zone[body_zone] = src
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)
 			C.hand_bodyparts.len = held_index

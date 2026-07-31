@@ -21,6 +21,9 @@
 	return target == knot.knotted_recipient
 
 /datum/sex_action/force/knot_grinding/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(user == target)
 		return FALSE
 	var/datum/component/knotting/knot = user.GetComponent(/datum/component/knotting)

@@ -199,6 +199,35 @@
 /atom/movable/screen/fullscreen/impaired
 	icon_state = "impairedoverlay"
 
+// Temperature wound overlays (Weather & Temperature Overhaul, Phase 1 port).
+// No bespoke art exists for these yet, so - same as the ported mana HUD bar reusing an existing
+// icon sheet - these reuse the closest-fitting existing vignettes with a colour tint rather than
+// inventing new sprites: oxydamageoverlay (already a blue vignette) for the cold-family wounds,
+// impairedoverlay (already a "you're not doing great" vignette) for the heat-family wounds.
+/atom/movable/screen/fullscreen/hypothermia
+	icon_state = "oxydamageoverlay1"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+	color = "#8fd3ff"
+
+/atom/movable/screen/fullscreen/frostbite
+	icon_state = "oxydamageoverlay3"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+	color = "#5fb8ff"
+
+/atom/movable/screen/fullscreen/heatexhaust
+	icon_state = "impairedoverlay"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+	color = "#ffb347"
+
+/atom/movable/screen/fullscreen/heatstroke
+	icon_state = "impairedoverlay"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+	color = "#ff6347"
+
 /atom/movable/screen/fullscreen/flash
 	icon = 'icons/mob/screen_gen.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"

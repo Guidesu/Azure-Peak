@@ -17,6 +17,10 @@
 
 	salvage_amount = 2
 	salvage_result = /obj/item/natural/cloth
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/get_mechanics_examine(mob/user)
 	. = ..()
@@ -75,6 +79,10 @@
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 	var/custom_design = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/tabard/update_icon()
 	cut_overlays()
@@ -174,9 +182,9 @@
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_cloaks.dmi'
 	sleevetype = "shirt"
 
-/obj/item/clothing/cloak/tabard/psydontabard
-	name = "psydonian tabard"
-	desc = "A tabard worn by the adherents of the Holy Psydonic Inquisition. Delicate stitchwork professes the psycross with pride."
+/obj/item/clothing/cloak/tabard/praecursortabard
+	name = "vaeltian tabard"
+	desc = "A tabard worn by the adherents of the Holy Vaeltic Inquisition. Delicate stitchwork professes the psycross with pride."
 	color = null
 	icon_state = "psydontabard"
 	item_state = "psydontabard"
@@ -184,29 +192,33 @@
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	custom_design = TRUE
 	var/open_wear = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
-/obj/item/clothing/cloak/tabard/psydontabard/get_mechanics_examine(mob/user)
+/obj/item/clothing/cloak/tabard/praecursortabard/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Right-clicking this cloak allows for it to be dynamically worn as a traditional tabard, or as a sleeveless robe that partially exposes the chest.")
 
-/obj/item/clothing/cloak/tabard/psydontabard/alt
-	name = "opened psydonian tabard"
-	desc = "A tabard worn by the adherents of the Holy Psydonic Inquisition, peeled back to reveal its enduring innards."
+/obj/item/clothing/cloak/tabard/praecursortabard/alt
+	name = "opened vaeltian tabard"
+	desc = "A tabard worn by the adherents of the Holy Vaeltic Inquisition, peeled back to reveal its enduring innards."
 	body_parts_covered = GROIN
 	icon_state = "psydontabardalt"
 	item_state = "psydontabardalt"
 	flags_inv = HIDECROTCH
 	open_wear = TRUE
 
-/obj/item/clothing/cloak/tabard/psydontabard/MiddleClick(mob/user)
+/obj/item/clothing/cloak/tabard/praecursortabard/MiddleClick(mob/user)
 	..()
 	user.update_inv_shirt()
 
-/obj/item/clothing/cloak/tabard/psydontabard/attack_right(mob/user)
+/obj/item/clothing/cloak/tabard/praecursortabard/attack_right(mob/user)
 	switch(open_wear)
 		if(FALSE)
-			name = "opened psydonian tabard"
-			desc = "A tabard worn by the adherents of the Holy Psydonic Inquisition, peeled back to reveal its enduring innards."
+			name = "opened vaeltian tabard"
+			desc = "A tabard worn by the adherents of the Holy Vaeltic Inquisition, peeled back to reveal its enduring innards."
 			body_parts_covered = GROIN
 			icon_state = "psydontabardalt"
 			item_state = "psydontabardalt"
@@ -214,8 +226,8 @@
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN!
 			to_chat(usr, span_warning("ENDURING, like the MARTYRS who'll guide the faithful-and-pious to PARADISE."))
 		if(TRUE)
-			name = "psydonian tabard"
-			desc = "A tabard worn by the adherents of the Holy Psydonic Inquisition. Delicate stitchwork professes the psycross with pride."
+			name = "vaeltian tabard"
+			desc = "A tabard worn by the adherents of the Holy Vaeltic Inquisition. Delicate stitchwork professes the psycross with pride."
 			body_parts_covered = CHEST|GROIN
 			icon_state = "psydontabard"
 			item_state = "psydontabard"
@@ -229,26 +241,26 @@
 			H.update_inv_cloak()
 			H.update_inv_armor()
 
-/obj/item/clothing/cloak/tabard/psydontabard/black
+/obj/item/clothing/cloak/tabard/praecursortabard/black
 	name = "blessed tabard"
-	desc = "A tabard worn by the worshippers of Psydon. A funeral shroud for the paradise that could've been, and a solemn vow to continue the struggle towards salvation."
+	desc = "A tabard worn by the worshippers of Praecursor. A funeral shroud for the paradise that could've been, and a solemn vow to continue the struggle towards salvation."
 	icon_state = "blackpsydontabard"
 	item_state = "blackpsydontabard"
 
-/obj/item/clothing/cloak/tabard/psydontabard/black/alt
+/obj/item/clothing/cloak/tabard/praecursortabard/black/alt
 	name = "opened blessed tabard"
-	desc = "A tabard worn by the worshippers of Psydon, peeled back to reveal its mourning innards."
+	desc = "A tabard worn by the worshippers of Praecursor, peeled back to reveal its mourning innards."
 	body_parts_covered = GROIN
 
-/obj/item/clothing/cloak/tabard/psydontabard/black/MiddleClick(mob/user)
+/obj/item/clothing/cloak/tabard/praecursortabard/black/MiddleClick(mob/user)
 	..()
 	user.update_inv_shirt()
 
-/obj/item/clothing/cloak/tabard/psydontabard/black/attack_right(mob/user)
+/obj/item/clothing/cloak/tabard/praecursortabard/black/attack_right(mob/user)
 	switch(open_wear)
 		if(FALSE)
 			name = "opened blessed tabard"
-			desc = "A tabard worn by the worshippers of Psydon, peeled back to reveal its mourning innards."
+			desc = "A tabard worn by the worshippers of Praecursor, peeled back to reveal its mourning innards."
 			body_parts_covered = GROIN
 			icon_state = "blackpsydontabardalt"
 			item_state = "blackpsydontabardalt"
@@ -257,7 +269,7 @@
 			to_chat(usr, span_warning("You pull back the threaded burlap, baring your heart to Vaeltis's eyes."))
 		if(TRUE)
 			name = "blessed tabard"
-			desc = "A tabard worn by the worshippers of Psydon. A funeral shroud for the paradise that could've been, and a solemn vow to continue the struggle towards salvation."
+			desc = "A tabard worn by the worshippers of Praecursor. A funeral shroud for the paradise that could've been, and a solemn vow to continue the struggle towards salvation."
 			body_parts_covered = CHEST|GROIN
 			icon_state = "blackpsydontabard"
 			item_state = "blackpsydontabard"
@@ -342,6 +354,10 @@
 	item_state = "abyssortabard"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	custom_design = TRUE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/templar/malumite
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -428,17 +444,17 @@
 	flags_inv = HIDECROTCH|HIDEBOOB
 	custom_design = TRUE
 
-/obj/item/clothing/cloak/tabard/devotee/psydon
-	name = "psydonic tabard"
-	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Psydon on it."
+/obj/item/clothing/cloak/tabard/devotee/praecursor
+	name = "vaeltic tabard"
+	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Praecursor on it."
 	icon_state = "tabard_weeping"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleevetype = "shirt"
 
-/obj/item/clothing/cloak/tabard/devotee/astrata
-	name = "astratan tabard"
-	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Astrata on it."
+/obj/item/clothing/cloak/tabard/devotee/auxentius
+	name = "auxentian tabard"
+	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Auxentius on it."
 	icon_state = "tabard_astrata_alt"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
@@ -452,9 +468,9 @@
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleevetype = "shirt"
 
-/obj/item/clothing/cloak/tabard/devotee/dendor
-	name = "dendor tabard"
-	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Dendor on it."
+/obj/item/clothing/cloak/tabard/devotee/ignatius
+	name = "ignatius tabard"
+	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Ignatius on it."
 	icon_state = "tabard_dendor"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
@@ -492,9 +508,9 @@
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleevetype = "shirt"
 
-/obj/item/clothing/cloak/tabard/devotee/ravox
-	name = "ravox tabard"
-	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Ravox on it."
+/obj/item/clothing/cloak/tabard/devotee/auxentius/battle
+	name = "auxentian battle tabard"
+	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Auxentius on it."
 	icon_state = "tabard_ravox"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
@@ -637,11 +653,11 @@
 		return
 	custom_design = TRUE
 
-/obj/item/clothing/cloak/tabard/crusader/astrata
+/obj/item/clothing/cloak/tabard/crusader/auxentius
 	color = "#9B7538"
 	detail_color = CLOTHING_WHITE
 
-/obj/item/clothing/cloak/tabard/crusader/ravox
+/obj/item/clothing/cloak/tabard/crusader/auxentius/battle
 	color = CLOTHING_RED
 	detail_color = CLOTHING_BLACK
 
@@ -653,7 +669,7 @@
 	color = "#373f69"
 	detail_color = "#974305"
 
-/obj/item/clothing/cloak/tabard/crusader/dendor
+/obj/item/clothing/cloak/tabard/crusader/ignatius
 	color = "#4B5637"
 	detail_color = "#3D1D1C"
 
@@ -669,7 +685,7 @@
 	color = "#2C2231"
 	detail_color = "#9AB0B0"
 
-/obj/item/clothing/cloak/tabard/crusader/psydon
+/obj/item/clothing/cloak/tabard/crusader/praecursor
 	color = CLOTHING_BLACK
 	detail_color = CLOTHING_WHITE
 
@@ -691,6 +707,10 @@
 	icon_state = "stabard"
 	boobed = TRUE
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/tabard/stabard/guard
 	name = "guard tabard"
@@ -842,6 +862,10 @@
 	inhand_mod = TRUE
 	detail_tag = "_det"
 	detail_color = CLOTHING_AZURE
+	cold_protection = CHEST | GROIN | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/lordcloak/update_icon()
 	cut_overlays()
@@ -884,7 +908,10 @@
 	inhand_mod = TRUE
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	salvage_result = /obj/item/natural/fur
-	cold_protection = 20
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/darkcloak/bear
 	name = "direbear cloak"
@@ -895,6 +922,10 @@
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 3
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/darkcloak/bear/light
 	name = "light direbear cloak"
@@ -927,6 +958,10 @@
 	boobed = TRUE
 	allowed_race = CLOTHED_RACES_TYPES
 	flags_inv = HIDECROTCH|HIDEBOOB
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/apron/blacksmith
 	name = "leather apron"
@@ -1021,6 +1056,10 @@
 	body_parts_covered = HEAD
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDETAIL
 	block2add = FOV_BEHIND
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/raincloak/furcloak
 	name = "fur cloak"
@@ -1030,6 +1069,10 @@
 	hoodtype = /obj/item/clothing/head/hooded/rainhood/furhood
 	salvage_result = /obj/item/natural/fur
 	salvage_amount = 1
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/raincloak/furcloak/crafted/Initialize()
 	. = ..()
@@ -1053,6 +1096,10 @@
 /obj/item/clothing/head/hooded/rainhood/furhood
 	icon_state = "fur_hood"
 	block2add = FOV_BEHIND
+	cold_protection = HEAD
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/cape
 	name = "cape"
@@ -1067,6 +1114,10 @@
 	nodismemsleeves = TRUE
 	inhand_mod = FALSE
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/cape/purple
 	color = CLOTHING_PURPLE
@@ -1167,6 +1218,10 @@
 	sleevetype = null
 	body_parts_covered = null
 	flags_inv = null
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/stole/red
 	icon_state = "stole_red"
@@ -1201,6 +1256,10 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	sellprice = 50
 	nodismemsleeves = TRUE
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/undivided
 	name = "undivided cloak"
@@ -1236,6 +1295,10 @@
 	allowed_sex = list(MALE, FEMALE)
 	flags_inv = null
 	var/flipped = FALSE
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 	salvage_amount = 1
 
 /obj/item/clothing/cloak/half/attack_right(mob/user)
@@ -1329,6 +1392,10 @@
 	flags_inv = HIDECROTCH|HIDEBOOB
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/wickercloak
 	name = "wicker cloak"
@@ -1343,6 +1410,10 @@
 	inhand_mod = TRUE
 	salvage_result = /obj/item/natural/fibers
 	salvage_amount = 2
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/wickercloak/ComponentInitialize()
 	. = ..()
@@ -1383,6 +1454,10 @@
 	nodismemsleeves = TRUE
 	detail_tag = "_detail"
 	detail_color = CLOTHING_BLACK
+	cold_protection = ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/matron
 	name = "matron cloak"
@@ -1397,6 +1472,10 @@
 	nodismemsleeves = TRUE
 	sleevetype = "shirt"
 	slot_flags = ITEM_SLOT_CLOAK
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/suspenders
 	name = "pouched suspenders"
@@ -1599,7 +1678,7 @@
 
 /obj/item/clothing/cloak/wardencloak
 	name = "warden's cloak"
-	desc = "A cloak of dense, thick wool worn by the Wardens of Azuria's Forests. Incredibly warm, \
+	desc = "A cloak of dense, thick wool worn by the wardens of the outpost's surrounding forests. Incredibly warm, \
 	and doubles as a blanket in a pinch."
 	icon_state = "wardencloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
@@ -1608,6 +1687,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/graggar
 	name = "vicious cloak"
@@ -1619,6 +1702,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/graggar/Initialize()
 	. = ..()
@@ -1638,7 +1725,7 @@
 
 /obj/item/clothing/cloak/forrestercloak
 	name = "forrester cloak"
-	desc = "A cloak worn by the Black Oaks of Azuria."
+	desc = "A cloak worn by the Black Oaks, a woodland band that once ranged these highlands."
 	icon_state = "forestcloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
@@ -1647,12 +1734,16 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	resistance_flags = FIRE_PROOF
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection =  CHEST | GROIN | ARM_LEFT | ARM_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/forrestercloak/snow
 	name = "snow cloak"
-	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
+	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of the coast."
 	icon_state = "snowcloak"
-	cold_protection = 15
+	cold_protection = CHEST | GROIN | ARM_LEFT | ARM_RIGHT
 
 /obj/item/clothing/cloak/poncho
 	name = "cloth poncho"
@@ -1725,6 +1816,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/cloak/ordinatorcape
 	name = "ordinator cape"
@@ -1736,6 +1831,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	cold_protection = CHEST
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = CHEST
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/ordinatorcape/lirvas
 	name = "lirvan silks"
@@ -1754,6 +1853,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	cold_protection = CHEST | GROIN
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = CHEST | GROIN
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/absolutionistrobe/black
 	name = "blessed robe"
@@ -1819,6 +1922,10 @@
 	detail_tag = "_detail"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	detail_color = "#39404d"
+	cold_protection = CHEST
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = CHEST
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/cloak/banneret/Initialize()
 	. = ..()
@@ -1849,7 +1956,7 @@
 
 /obj/item/clothing/cloak/kazengun
 	name = "jinbaori"
-	desc = "A simple kind of Kazengunite surcoat, worn here in the distant battlefields of Azuria to differentiate friend from foe."
+	desc = "A simple kind of Kazengunite surcoat, worn here on the outpost's distant battlefields to differentiate friend from foe."
 	icon_state = "kazenguncoat"
 	item_state = "kazenguncoat"
 	detail_tag = "_detail"

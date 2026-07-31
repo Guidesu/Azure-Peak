@@ -40,10 +40,10 @@
 /datum/outfit/job/roguetown/adventurer/cleric/pre_equip(mob/living/carbon/human/H)
 	..()
 
-	// Add druidic skill for Dendor followers
+	// Add druidic skill for Ignatius followers
 	if(istype(H.patron, /datum/patron/severance/ignatius))
 		H.adjust_skillrank(/datum/skill/magic/druidic, SKILL_LEVEL_JOURNEYMAN, TRUE)
-		to_chat(H, span_notice("As a follower of Dendor, you have innate knowledge of druidic magic."))
+		to_chat(H, span_notice("As a follower of Ignatius, you have innate knowledge of druidic magic."))
 
 	to_chat(H, span_warning("You are a wandering acolyte, versed in both miracles and martial arts. You forego the hauberk that paladins wear in favor of humbling your foes through bloodless strikes. Your satchel hangs heavy, too, with ample provisions for the pilgrimage you're upon."))
 	head = /obj/item/clothing/head/roguetown/headband/monk
@@ -71,7 +71,7 @@
 			if("Penance - Unarmored") // Loses Dodge Expert, gains Enduring and a weaker Skin Armor.
 				ADD_TRAIT(H, TRAIT_NOPAINSTUN, JOB_TRAIT)
 				H.change_stat(STATKEY_LCK, 1) // better pity bonus
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/monke // ape out, brothers. +25 durability over other monks.
 				else
 					armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/monk // same as gladiator's skin.
@@ -90,8 +90,8 @@
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
 			if("Knuckledusters")
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, JOB_TRAIT)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-					r_hand = /obj/item/clothing/gloves/roguetown/knuckles/psydon/old
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
+					r_hand = /obj/item/clothing/gloves/roguetown/knuckles/praecursor/old
 				else
 					r_hand = /obj/item/clothing/gloves/roguetown/knuckles/bronze
 			if("Quarterstaff")
@@ -106,11 +106,11 @@
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide TRAIT_DODGEEXPERT
 	switch(H.patron?.type)
 		if(/datum/patron/tribunal/praecursor)
-			cloak = /obj/item/clothing/cloak/tabard/psydontabard/black
-			mask = /obj/item/clothing/head/roguetown/roguehood/psydon/black
+			cloak = /obj/item/clothing/cloak/tabard/praecursortabard/black
+			mask = /obj/item/clothing/head/roguetown/roguehood/praecursor/black
 		if(/datum/patron/concordat/auxentius)
-			mask = /obj/item/clothing/head/roguetown/roguehood/astrata
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+			mask = /obj/item/clothing/head/roguetown/roguehood/auxentius
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/auxentius
 		if(/datum/patron/concordat/miluse)
 			mask =  /obj/item/clothing/head/roguetown/roguehood/nochood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/noc
@@ -119,7 +119,7 @@
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
 		if(/datum/patron/severance/ignatius)
 			mask = /obj/item/clothing/head/roguetown/dendormask
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 		if(/datum/patron/concordat/morwenna)
 			mask = /obj/item/clothing/head/roguetown/necrahood
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/necra
@@ -263,11 +263,11 @@
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/tribunal/praecursor)
-			cloak = /obj/item/clothing/cloak/tabard/psydontabard/black
+			cloak = /obj/item/clothing/cloak/tabard/praecursortabard/black
 			if(H.mind)
-				helmets += list("Psydonic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
-							"Psydonic Bucket Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket,
-							"Greatplumed Psydonic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume)
+				helmets += list("Vaeltic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm,
+							"Vaeltic Bucket Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket,
+							"Greatplumed Vaeltic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume)
 				var/armors = list("Hauberk","Cuirass")
 				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in armors
 				switch(armor_choice)
@@ -276,9 +276,9 @@
 					if("Cuirass")
 						armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
 		if(/datum/patron/concordat/auxentius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-			helmets += list("Old Astratan Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm)
+			helmets += list("Old Auxentian Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/auxentiushelm)
 		if(/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/noc
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
@@ -286,7 +286,7 @@
 			cloak = /obj/item/clothing/cloak/tabard/devotee/abyssor
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/severance/ignatius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/dendor
+			cloak = /obj/item/clothing/cloak/tabard/devotee/ignatius
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/concordat/morwenna)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/necra
@@ -300,7 +300,7 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			helmets += list("Old Eoran Sallet" = /obj/item/clothing/head/roguetown/helmet/sallet/eoran)
 		if (/datum/patron/concordat/auxentius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius/battle
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
@@ -325,7 +325,7 @@
 		var/weapon_choice = input(H, "Choose your WEAPON.", "TAKE UP YOUR GOD'S ARMS.") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					beltr = /obj/item/rogueweapon/sword/long/oldpsysword
 				else
 					beltr = /obj/item/rogueweapon/sword/long
@@ -337,7 +337,7 @@
 				beltr = /obj/item/rogueweapon/sword/long/broadsword
 			if("Mace")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
 				else
 					beltr = /obj/item/rogueweapon/mace
@@ -353,7 +353,7 @@
 			if("Spear")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					r_hand = /obj/item/rogueweapon/spear/psyspear/old
 				else
 					r_hand = /obj/item/rogueweapon/spear
@@ -374,7 +374,7 @@
 					if(/datum/patron/tribunal/praecursor)
 						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t
 					if(/datum/patron/concordat/auxentius)
-						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t/astrata
+						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t/auxentius
 					else
 						l_hand = /obj/item/clothing/cloak/tabard/stabard/crusader/t/undivided
 			if("None")
@@ -491,15 +491,15 @@
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/tribunal/praecursor)
-			cloak = /obj/item/clothing/cloak/absolutionistrobe/black //Formerly /obj/item/clothing/cloak/tabard/devotee/psydon.
+			cloak = /obj/item/clothing/cloak/absolutionistrobe/black //Formerly /obj/item/clothing/cloak/tabard/devotee/praecursor.
 		if(/datum/patron/concordat/auxentius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius
 		if(/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/noc
 		if(/datum/patron/concordat/wulfric)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/abyssor
 		if(/datum/patron/severance/ignatius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/dendor
+			cloak = /obj/item/clothing/cloak/tabard/devotee/ignatius
 		if(/datum/patron/concordat/morwenna)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/necra
 		if (/datum/patron/concordat/handwerra)
@@ -507,7 +507,7 @@
 		if (/datum/patron/concordat/miluse)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/eora
 		if (/datum/patron/concordat/auxentius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius/battle
 		if (/datum/patron/concordat/viator)
 			cloak = /obj/item/clothing/cloak/tabard/devotee/xylix
 		if (/datum/patron/concordat/handwerra)
@@ -646,7 +646,7 @@
 	switch(H.patron?.type)
 		if(/datum/patron/tribunal/praecursor)
 			cloak = /obj/item/clothing/cloak/absolutionistrobe/black
-			head = /obj/item/clothing/head/roguetown/roguehood/psydon/black
+			head = /obj/item/clothing/head/roguetown/roguehood/praecursor/black
 		if(/datum/patron/tribunal/custodius)
 			head = /obj/item/clothing/head/roguetown/roguehood/undividedcleric
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/undividedcleric //Only exclusion cause it looks bad without the cloak over it
@@ -661,8 +661,8 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		if(/datum/patron/concordat/auxentius)
-			head = /obj/item/clothing/head/roguetown/roguehood/astrata
-			cloak = /obj/item/clothing/cloak/tabard/devotee/astrata
+			head = /obj/item/clothing/head/roguetown/roguehood/auxentius
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius
 			H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		if(/datum/patron/concordat/miluse)
@@ -684,7 +684,7 @@
 			H.grant_language(/datum/language/abyssal)
 		if(/datum/patron/severance/ignatius)
 			head = /obj/item/clothing/head/roguetown/dendormask
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 			H.adjust_skillrank(/datum/skill/labor/farming, SKILL_LEVEL_APPRENTICE, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/hunting, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_EXPERT_HUNTER, TRAIT_GENERIC)
@@ -773,7 +773,7 @@
 			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 		if (/datum/patron/concordat/auxentius)
-			cloak = /obj/item/clothing/cloak/tabard/devotee/ravox
+			cloak = /obj/item/clothing/cloak/tabard/devotee/auxentius/battle
 			H.adjust_skillrank(/datum/skill/misc/athletics, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/staves, SKILL_LEVEL_NOVICE, TRUE) //On par with an Adventuring Monk. Seems quite fitting.
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -801,7 +801,7 @@
 	if(istype(H.patron, /datum/patron/unveiled))
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
 	if(istype(H.patron, /datum/patron/tribunal/praecursor))
-		H.mind?.AddSpell(new /datum/action/cooldown/spell/psydon/enduring_blast) //99% rock chance, 1% boulder, hilarious.
+		H.mind?.AddSpell(new /datum/action/cooldown/spell/praecursor/enduring_blast) //99% rock chance, 1% boulder, hilarious.
 	switch(H.patron?.type)
 		if(/datum/patron/tribunal/praecursor)
 			neck = /obj/item/clothing/neck/roguetown/psicross

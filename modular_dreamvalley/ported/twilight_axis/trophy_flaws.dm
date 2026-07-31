@@ -45,7 +45,7 @@
 		return
 
 	var/list/states = list(
-		"The Justiciary of Azuria" = GLOB.outlawed_players,
+		"The Outpost Justiciary" = GLOB.outlawed_players,
 		"The Grenzelhoftian Holy See" = GLOB.excommunicated_players,
 		"The Otavan Holy See" = GLOB.excommunicated_players,
 		)

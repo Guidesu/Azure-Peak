@@ -17,6 +17,7 @@ export const ATCLoanBanner = (props: { atc_loan: AtcLoanState }) => {
   const { act, data } = useBackend<Data>();
   const { atc_loan } = props;
   const aldermanActing = !!data.is_alderman_acting;
+  const factionName = data.faction_name || 'the Stewardry';
 
   const [amount, setAmount] = useState(atc_loan.min);
 
@@ -50,7 +51,7 @@ export const ATCLoanBanner = (props: { atc_loan: AtcLoanState }) => {
           color: accent,
         }}
       >
-        Azurian Trading Company - Company Clerk's Bench
+        {factionName} - Company Clerk&apos;s Bench
       </div>
       <div style={{ color: INK, marginBottom: '6px' }}>
         {atc_loan.available ? (

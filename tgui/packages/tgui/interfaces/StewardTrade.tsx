@@ -108,7 +108,10 @@ export const StewardTrade = () => {
             </div>
           )}
 
-          <SequestrationBanner sequestration={data.sequestration} />
+          <SequestrationBanner
+            sequestration={data.sequestration}
+            factionName={data.faction_name || 'the Stewardry'}
+          />
           <ArrearsBanner sequestration={data.sequestration} />
           <ATCLoanBanner atc_loan={data.atc_loan} />
           <BlockadeBanner regions={data.blockaded_regions} />

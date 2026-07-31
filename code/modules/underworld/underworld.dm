@@ -9,13 +9,20 @@
 	light_power = 20
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 
+// set_light() calls update_light(), which hard-CRASHes on anything but
+// light_system == STATIC_LIGHT (see lighting_atom.dm). This item inherits
+// MOVABLE_LIGHT from the base /obj/item/flashlight, so - same as that base
+// class's own update_brightness() - use the individual setters instead,
+// which don't touch update_light() at all.
 /obj/item/flashlight/lantern/shrunken/update_brightness(mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
+		set_light_range(3, 3)
+		set_light_power(20)
+		set_light_color(LIGHT_COLOR_BLOOD_MAGIC)
 	else
 		icon_state = initial(icon_state)
-		set_light(0)
+	set_light_on(on)
 
 /obj/structure/underworld/carriageman
 	name = "The Ferryman"
@@ -102,7 +109,7 @@
 
 /obj/structure/underworld/carriage_normal
 	name = "Carriage"
-	desc = "Azure Peak awaits."
+	desc = "The outpost awaits."
 	icon = 'icons/roguetown/underworld/enigma_carriage.dmi'
 	icon_state = "carriage_normal"
 	anchored = TRUE

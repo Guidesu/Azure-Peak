@@ -65,6 +65,7 @@
 	return ..()
 
 /datum/character_sheet_ui/proc/get_prefs()
+	RETURN_TYPE(/datum/preferences)
 	return owner?.prefs
 
 /datum/character_sheet_ui/proc/mark_preview_dirty()
@@ -103,10 +104,43 @@
 		ui = new(user, src, "CharacterSheet", "Character Sheet")
 		ui.open()
 
+// dreamvalley_open_character_sheet_ui() hides the classic preferences window
+// (winshow ... FALSE) so this tab doesn't float on top of it - bring it back
+// on close so Game Settings/OOC/Keybinds (still classic tabs on that window)
+// stay reachable.
+//
+// A bare winshow(..., TRUE) here just re-shows the window frame WITHOUT
+// re-running ShowChoices() to actually populate it - the window came back
+// empty/unsized (no content, no size=/pos= from ShowChoices' own winset
+// calls), which is what the blank/malformed panel players saw was. And it
+// must NOT reopen on tab 0/tabchoice 4 - ShowChoices() redirects tab 0
+// straight back into dreamvalley_open_character_sheet_ui() (see its own
+// comment above), so doing that here would just reopen the TGUI sheet we're
+// in the middle of closing. Tab 1 (Game Settings) is the classic tab this
+// close is meant to leave the player on, per the plain-language comment
+// above.
+/**
+ * ShowChoices()'s Game Settings tab (tabchoice=1, what's called below) ends by opening a
+ * /datum/browser/noclose popup - that subtype itself never sleeps, but DreamChecker's static
+ * analysis can't prove that from the call site alone: browser.open() is a virtual proc, and
+ * SOME override (/datum/browser/modal/open(), which waits on winexists() for a client
+ * round-trip) does sleep, so any caller reachable through the base /datum/browser type gets
+ * flagged regardless of which concrete subtype it's actually calling through. ui_close() is a
+ * TGUI lifecycle callback - nothing waits on its return value or needs it to finish
+ * synchronously - so `set waitfor = 0` here breaks the sleep-propagation chain at its actual
+ * source instead of leaving the warning unresolved.
+ */
+/datum/character_sheet_ui/ui_close(mob/user)
+	set waitfor = 0
+	. = ..()
+	var/datum/preferences/P = get_prefs()
+	P?.ShowChoices(user, 1)
+
 /datum/character_sheet_ui/ui_static_data(mob/user)
 	var/list/data = list()
 	data["pronoun_options"] = GLOB.pronouns_list
 	data["voice_type_options"] = GLOB.voice_types_list
+	data["accent_options"] = GLOB.character_accents
 	data["titles_options"] = list(TITLES_M, TITLES_F)
 	data["clothes_options"] = list(CLOTHES_M, CLOTHES_F)
 
@@ -121,6 +155,24 @@
 	data["combat_music_options"] = music_options
 	return data
 
+// ui_data() is polled roughly every couple seconds by every player who has
+// the sheet open, and build_species_options()/build_subspecies_options() used
+// to `new species_path()` + qdel() one throwaway instance per candidate
+// species on every single poll just to read base_name/sub_name/is_subrace/
+// patreon_req - on a single-threaded DM server that stalls the whole world
+// for every player's TGUI, not just the sheet's own window, for as long as
+// anyone has the sheet open. Those fields are finalized once by New()'s
+// defaulting logic and never change afterward, so cache one probe instance
+// per species path (first access only) instead of rebuilding on every poll.
+GLOBAL_LIST_EMPTY(character_sheet_species_probes)
+
+/datum/character_sheet_ui/proc/get_species_probe(species_path)
+	var/datum/species/probe = GLOB.character_sheet_species_probes[species_path]
+	if(!probe)
+		probe = new species_path()
+		GLOB.character_sheet_species_probes[species_path] = probe
+	return probe
+
 /datum/character_sheet_ui/proc/build_species_options(datum/preferences/P, mob/user)
 	var/list/result = list()
 	var/patreon_level = owner?.patreonlevel() || 0
@@ -133,18 +185,14 @@
 		// instance — :: static access returns the raw, often-unset compile-time
 		// value and silently breaks this list. Matches the classic species-picker
 		// in preferences.dm's Topic() switch, which also instantiates to inspect.
-		var/datum/species/probe = new species_path()
+		var/datum/species/probe = get_species_probe(species_path)
 		if(probe.patreon_req > patreon_level)
-			qdel(probe)
 			continue
 		if(probe.is_subrace)
-			qdel(probe)
 			continue
 		if(probe.base_name == P.pref_species.base_name)
-			qdel(probe)
 			continue
 		result[probe.base_name] = species_path
-		qdel(probe)
 	return result
 
 /datum/character_sheet_ui/proc/build_subspecies_options(datum/preferences/P, mob/user)
@@ -153,15 +201,12 @@
 		var/species_path = GLOB.species_list[species_name]
 		if(!species_path)
 			continue
-		var/datum/species/probe = new species_path()
+		var/datum/species/probe = get_species_probe(species_path)
 		if(probe.base_name != P.pref_species.base_name)
-			qdel(probe)
 			continue
 		if(probe.sub_name == P.pref_species.sub_name)
-			qdel(probe)
 			continue
 		result[probe.sub_name] = species_path
-		qdel(probe)
 	return result
 
 /datum/character_sheet_ui/proc/build_origin_options(datum/preferences/P)
@@ -306,6 +351,7 @@
 	if(!P)
 		return data
 
+	data["tile_layout"] = P.character_sheet_tile_layout
 	data["real_name"] = P.real_name
 	data["nickname"] = P.nickname
 	data["pronouns"] = P.pronouns
@@ -313,6 +359,7 @@
 	data["clothes_pref"] = P.clothes_pref
 	data["voice_type"] = P.voice_type
 	data["voice_pack"] = P.voice_pack
+	data["char_accent"] = P.char_accent
 	data["combat_music"] = P.combat_music?.name
 
 	data["age"] = P.age
@@ -326,6 +373,16 @@
 
 	data["origin"] = P.virtue_origin?.name
 	data["origin_options"] = build_origin_options(P)
+
+	// Legacy virtue slots (pre-TAT). They no longer grant any mechanical
+	// effect - TAT owns virtue selection now (see tat_traits.dm's
+	// ensure_virtue_trait_entries()) - but a character saved under the old
+	// system can still be holding a pick here with no in-game way to clear
+	// it, since the old "virtue"/"virtuetwo" href action was retired when
+	// TAT took over and nothing replaced it. Expose read + clear only; there
+	// is nothing left to reselect into.
+	data["legacy_virtue"] = istype(P.virtue, /datum/virtue/none) ? null : P.virtue?.name
+	data["legacy_virtue_two"] = istype(P.virtuetwo, /datum/virtue/none) ? null : P.virtuetwo?.name
 
 	data["race_bonus"] = P.race_bonus
 	data["race_bonus_options"] = length(P.pref_species.custom_selection) ? P.pref_species.custom_selection : list()
@@ -375,7 +432,7 @@
 	data["mutant_color2"] = P.features["mcolor2"]
 	data["mutant_color3"] = P.features["mcolor3"]
 	data["update_mutant_colors"] = !!P.update_mutant_colors
-	data["body_size"] = round((P.features["body_size"] || 1) * 100)
+	data["body_size"] = round((P.features["body_size"] || 1) * 100, 0.5)
 
 	// ── Voice / bark ───────────────────────────────────────────────
 	data["highlight_color"] = P.highlight_color
@@ -434,6 +491,22 @@
 		return TRUE
 
 	switch(action)
+		if("set_tile_layout")
+			var/layout_json = params["value"]
+			if(!istext(layout_json) || length(layout_json) > 8192)
+				return TRUE
+			// Validate it's actually JSON before persisting - a malformed client
+			// payload should not corrupt future reads of the saved layout.
+			var/list/decoded
+			try
+				decoded = json_decode(layout_json)
+			catch
+				return TRUE
+			if(!islist(decoded))
+				return TRUE
+			P.character_sheet_tile_layout = layout_json
+			return TRUE
+
 		if("set_name")
 			var/new_name = reject_bad_name(params["value"])
 			if(new_name)
@@ -481,6 +554,12 @@
 			if(!(pack_name in GLOB.voice_packs_list))
 				return TRUE
 			P.voice_pack = pack_name
+			return TRUE
+
+		if("set_char_accent")
+			if(!(params["value"] in GLOB.character_accents))
+				return TRUE
+			P.char_accent = params["value"]
 			return TRUE
 
 		if("preview_voice_pack")
@@ -550,6 +629,18 @@
 			to_chat(user, P.process_virtue_text(chosen))
 			return TRUE
 
+		if("clear_legacy_virtue")
+			P.virtue = new /datum/virtue/none
+			to_chat(user, span_notice("Cleared your legacy virtue slot."))
+			mark_preview_dirty()
+			return TRUE
+
+		if("clear_legacy_virtue_two")
+			P.virtuetwo = new /datum/virtue/none
+			to_chat(user, span_notice("Cleared your second legacy virtue slot."))
+			mark_preview_dirty()
+			return TRUE
+
 		if("open_origin_lore")
 			if(!P.virtue_origin)
 				return TRUE
@@ -557,6 +648,20 @@
 			dat += "<b>Origin Description:</b><br>"
 			dat += "[P.virtue_origin.origin_desc]"
 			var/datum/browser/popup = new(user, "Race Help", nwidth = 600, nheight = 450)
+			popup.set_content(dat.Join())
+			popup.open(FALSE)
+			return TRUE
+
+		if("open_language_lore")
+			var/list/options = build_extra_language_options(P)
+			var/language_path = options[params["value"]]
+			if(!ispath(language_path, /datum/language))
+				return TRUE
+			var/datum/language/language_ref = language_path
+			var/list/dat = list()
+			dat += "<b>[language_ref::name]</b><br>"
+			dat += length(language_ref::desc) ? "[language_ref::desc]" : "<i>No lore recorded for this language.</i>"
+			var/datum/browser/popup = new(user, "Language Lore", nwidth = 600, nheight = 450)
 			popup.set_content(dat.Join())
 			popup.open(FALSE)
 			return TRUE

@@ -203,7 +203,7 @@
 /obj/structure/flora/roguegrass/herb/benedictus
 	name = "benedictus"
 	desc = "Known as 'blessed thistle' by many commonfolk, the priests of the Otavan Orthodoxy claim \
-	this hairy, leathery plant to be sacred to Psydon; it thereby features often in sites of Psydonite \
+	this hairy, leathery plant to be sacred to Psydon; it thereby features often in sites of Vaeltite \
 	pilgrimage. The Holy See, in conscious contradiction, refuses to acknowledge any sacred association whatsoever."
 	icon_state = "benedictus"
 

@@ -421,8 +421,8 @@
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 4
 
-/datum/crafting_recipe/roguetown/survival/quarterstaff_psydonic
-	name = "psydonic silver-reinforced quarterstaff"
+/datum/crafting_recipe/roguetown/survival/quarterstaff_vaeltic
+	name = "vaeltic silver-reinforced quarterstaff"
 	display_category = ITEM_CAT_WEAPONS_POLEARMS
 	category = "Tools"
 	result = list(/obj/item/rogueweapon/woodstaff/quarterstaff/psy)
@@ -433,8 +433,8 @@
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 5
 
-/datum/crafting_recipe/roguetown/survival/quarterstaff_psydonic/bullion
-	name = "psydonic silver-reinforced quarterstaff"
+/datum/crafting_recipe/roguetown/survival/quarterstaff_vaeltic/bullion
+	name = "vaeltic silver-reinforced quarterstaff"
 	category = "Tools"
 	result = list(/obj/item/rogueweapon/woodstaff/quarterstaff/psy)
 	reqs = list(

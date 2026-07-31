@@ -20,7 +20,10 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	chunkcolor = "#978151"
 	material_category = ARMOR_MAT_LEATHER
-	cold_protection = 10
+	cold_protection = CHEST|GROIN|ARMS|LEGS
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 	var/shiftable = TRUE
 	var/shifted = FALSE
 
@@ -69,6 +72,10 @@
 	allowed_sex = list(MALE, FEMALE)
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER //50 more integ than a gamberson, at the cost of leg protection
 	shiftable = FALSE
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/lord/light
 	name = "light arming jacket"
@@ -121,6 +128,10 @@
 	color = "#976E6B"
 	shiftable = TRUE
 	shifted = FALSE
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/squire
 	name = "the singular squire padded gambeson"
@@ -211,7 +222,8 @@
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	sewrepair = TRUE
-	cold_protection = 10
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/freifechter/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
@@ -291,6 +303,10 @@
 	icon_state = "sherwani"
 	color = "#eec39a"
 	shiftable = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT | LEG_RIGHT | LEG_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
 	name = "hierophant's shawl"
@@ -299,6 +315,10 @@
 	desc = "A thick robe intervowen with spell-laced fabrics. Thick and protective while remaining light and breezy; the perfect gear for protecting one from the threats of the sun, the desert and the daemons, yet still allowing one to cast spells aptly."
 	naledicolor = TRUE
 	shiftable = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT | LEG_RIGHT | LEG_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/loadout
 	name = "aesthetic hierophant's shawl"
@@ -312,6 +332,10 @@
 	item_state = "monkleather"
 	desc = "Tight boiled leathers that stretch and fit to one's frame perfectly."
 	shiftable = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT | LEG_RIGHT | LEG_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex/loadout
 	name = "aesthetic pontifex's kaftan"

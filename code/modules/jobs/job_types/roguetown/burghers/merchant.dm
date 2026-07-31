@@ -7,9 +7,9 @@
 	spawn_positions = 1
 	selection_color = JCOLOR_ATC
 	forbidden_races = list(RACES_DESPISED)
-	tutorial = "Some find craft fulfilling, others take to powerful magic, and yet others take to war and steel. But you found a different vocation. You understand numbers, you understand trade, and you know how to close a good deal. Through expertise - or perhaps a well-placed connection - you have risen to the second most powerful position in the century-old Azurian Trading Company, second only to the Grand Factor, who keeps the Company's seat at Rosporth, a leased enclave a few days' ride north of Azure Peak.\n\
-You are the beating heart of the Azurian economy, inheritor of a thousand yils of her people's sailing traditions. Without you, Malumite craftsmen's wares would have nowhere to go, the grain blessed by Astrata and Dendor would rot in the fields, and the perfumes and spices promised to us by Eora would never reach our shores.\n\
-The priests will whisper that you follow the Sun-Thief. Frown, shake your head, and remind them you are an honest and humble merchant keeping the wheels of commerce turning, a faithful worker of Malum's will. Do not let some mouth-breathing crownsman tell you otherwise."
+	tutorial = "Some find craft fulfilling, others take to powerful magic, and yet others take to war and steel. But you found a different vocation. You understand numbers, you understand trade, and you know how to close a good deal. Through expertise - or perhaps a well-placed connection - you have risen to the second most powerful position in the long-standing Stewardry, second only to the Grand Factor, who keeps the Stewardry's seat at Rosporth, a leased enclave a few days' ride north of the outpost.\n\
+You are the beating heart of the outpost's economy, inheritor of a thousand yils of sailing traditions brought from afar. Without you, Malumite craftsmen's wares would have nowhere to go, the grain blessed by Astrata and Ignatius would rot in the fields, and the perfumes and spices promised to us by Eora would never reach our shores.\n\
+The priests will whisper that you follow the Sun-Thief. Frown, shake your head, and remind them you are an honest and humble merchant keeping the wheels of commerce turning, a faithful worker of Malum's will. Do not let some mouth-breathing pen-pusher tell you otherwise."
 
 	display_order = JDO_MERCHANT
 
@@ -38,9 +38,9 @@ The priests will whisper that you follow the Sun-Thief. Frown, shake your head, 
 
 /datum/advclass/merchant
 	name = "Merchant"
-	tutorial = "Some find craft fulfilling, others take to powerful magic, and yet others take to war and steel. But you found a different vocation. You understand numbers, you understand trade, and you know how to close a good deal. Through expertise - or perhaps a well-placed connection - you have risen to the second most powerful position in the century-old Azurian Trading Company, second only to the Grand Factor, who keeps the Company's seat at Rosporth, a leased enclave a few days' ride north of Azure Peak.\n\
-You are the beating heart of the Azurian economy, inheritor of a thousand yils of her people's sailing traditions. Without you, Malumite craftsmen's wares would have nowhere to go, the grain blessed by Astrata and Dendor would rot in the fields, and the perfumes and spices promised to us by Eora would never reach our shores.\n\
-The priests will whisper that you follow the Sun-Thief. Frown, shake your head, and remind them you are an honest and humble merchant keeping the wheels of commerce turning, a faithful worker of Malum's will. Do not let some mouth-breathing crownsman tell you otherwise"
+	tutorial = "Some find craft fulfilling, others take to powerful magic, and yet others take to war and steel. But you found a different vocation. You understand numbers, you understand trade, and you know how to close a good deal. Through expertise - or perhaps a well-placed connection - you have risen to the second most powerful position in the long-standing Stewardry, second only to the Grand Factor, who keeps the Stewardry's seat at Rosporth, a leased enclave a few days' ride north of the outpost.\n\
+You are the beating heart of the outpost's economy, inheritor of a thousand yils of sailing traditions brought from afar. Without you, Malumite craftsmen's wares would have nowhere to go, the grain blessed by Astrata and Ignatius would rot in the fields, and the perfumes and spices promised to us by Eora would never reach our shores.\n\
+The priests will whisper that you follow the Sun-Thief. Frown, shake your head, and remind them you are an honest and humble merchant keeping the wheels of commerce turning, a faithful worker of Malum's will. Do not let some mouth-breathing pen-pusher tell you otherwise"
 	outfit = /datum/outfit/job/roguetown/merchant/basic
 	category_tags = list(CTAG_MERCH)
 	subclass_stats = list(

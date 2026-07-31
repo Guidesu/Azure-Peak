@@ -97,6 +97,10 @@
 	/// Whether the bodypart has unlimited bleeding.
 	var/unlimited_bleeding = FALSE
 
+	// Ported from Twilight-Axis (modular_twilight_axis branding_iron feature): text seared onto this
+	// limb by a hot /obj/item/branding_iron. Null if unbranded.
+	var/brand_text = null
+
 	/// Cached variable that reflects how much bleeding our wounds are applying to the limb. Handled inside each individual wound.
 	var/bleeding = 0
 
@@ -175,6 +179,8 @@
 /obj/item/bodypart/Destroy()
 	if(owner)
 		owner.bodyparts -= src
+		if(owner.bodyparts_by_zone[body_zone] == src)
+			owner.bodyparts_by_zone -= body_zone
 		owner = null
 	if(bandage)
 		QDEL_NULL(bandage)
@@ -474,6 +480,8 @@
 //Updates an organ's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
 /obj/item/bodypart/proc/update_bodypart_damage_state()
+	if(!max_damage) // can't do anything boss, we aren't set up yet
+		return FALSE
 	var/tbrute	= round( (brute_dam/max_damage)*3, 1 )
 	var/tburn	= round( (burn_dam/max_damage)*3, 1 )
 	if((tbrute != brutestate) || (tburn != burnstate))
@@ -589,7 +597,7 @@
 
 	var/list/bodypart_organs
 	for(var/obj/item/organ/organ_check as anything in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
-		if(check_zone(organ_check.zone) == body_zone)
+		if(organ_check.zone_checked == body_zone)
 			LAZYADD(bodypart_organs, organ_check) // this way if we don't have any, it'll just return null
 
 	return bodypart_organs
@@ -600,7 +608,7 @@
 
 	var/list/bodypart_organs
 	for(var/obj/item/organ/organ_check as anything in owner.visible_organs) //internal organs inside the dismembered limb are dropped.
-		if(check_zone(organ_check.zone) == body_zone)
+		if(organ_check.zone_checked == body_zone)
 			LAZYADD(bodypart_organs, organ_check) // this way if we don't have any, it'll just return null
 
 	return bodypart_organs

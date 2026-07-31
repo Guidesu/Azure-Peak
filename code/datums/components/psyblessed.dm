@@ -39,11 +39,11 @@
 
 /datum/component/silverbless/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(!is_blessed)
-		if(silver_type & SILVER_PSYDONIAN)
+		if(silver_type & SILVER_VAELTIAN)
 			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON.</font>")
 		else if(silver_type & SILVER_TENNITE)
 			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by a bishop.</font>")
-	if(is_blessed == BLESSING_PSYDONIAN)
+	if(is_blessed == BLESSING_VAELTIAN)
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
 	else if(is_blessed == BLESSING_TENNITE)
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by THE TEN.</font>")
@@ -60,7 +60,7 @@
 	if(isitem(parent))
 		var/obj/item/I = parent
 		playsound(I, 'sound/magic/holyshield.ogg', 100)
-		if(silver_type == SILVER_PSYDONIAN) //Courtesy of @UntoldTactics, from PR #1354 on Scarlet Reach.
+		if(silver_type == SILVER_VAELTIAN) //Courtesy of @UntoldTactics, from PR #1354 on Scarlet Reach.
 			I.visible_message(span_notice("[I] glistens with power as dust of COMET SYON lands upon it!"))
 		else
 			I.visible_message(span_notice("[I] glistens with power as a divine blessing is infused within!"))

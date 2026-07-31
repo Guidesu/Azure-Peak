@@ -77,7 +77,7 @@
 	ignore_walls = FALSE
 	filter_pref = SOUND_MIDI
 
-/datum/looping_sound/psydonmusicboxsound
+/datum/looping_sound/praecursormusicboxsound
 	mid_sounds = list('sound/magic/psydonmusicbox.ogg')
 	mid_length = 320
 	volume = 50

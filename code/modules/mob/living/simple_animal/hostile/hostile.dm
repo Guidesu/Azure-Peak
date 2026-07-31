@@ -183,16 +183,12 @@
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
 /mob/living/simple_animal/hostile/proc/ListTargets() //Step 1, find out what we can see
-	if(!search_objects)
-		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
-
-		var/static/hostile_machines = typecacheof(list())
-
-		for(var/HM in typecache_filter_list(range(vision_range, targets_from), hostile_machines))
-			if(can_see(targets_from, HM, vision_range))
-				. += HM
-	else
+	if(search_objects)
 		. = oview(vision_range, targets_from)
+	else
+		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
+		// if you want to make certain non-mobs get targeted, PLEASE make a spatial grid channel for it
+		// do not add any kind of range() or view() or typecache or etc checking here, that is ludicrously expensive
 
 /mob/living/simple_animal/hostile/proc/FindTarget(list/possible_targets, HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
 	. = list()
@@ -540,7 +536,7 @@
 	for(var/obj/O in T.contents)
 		if(!O.Adjacent(targets_from))
 			continue
-		if((ismachinery(O) || isstructure(O)) && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
+		if((ismachinery(O) || isstructure(O)) && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES)
 			O.attack_animal(src)
 			return
 

@@ -1,6 +1,6 @@
 /datum/advclass/confessor
 	name = "Confessor"
-	tutorial = "Psydonite hunters, unmatched in the fields of subterfuge and investigation. There is no suspect too powerful to investigate, no room too guarded to infiltrate, and no weakness too hidden to exploit."
+	tutorial = "Vaeltite hunters, unmatched in the fields of subterfuge and investigation. There is no suspect too powerful to investigate, no room too guarded to infiltrate, and no weakness too hidden to exploit."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/confessor
@@ -11,7 +11,7 @@
 		TRAIT_DODGEEXPERT,
 		TRAIT_BLACKBAGGER,
 		TRAIT_PERFECT_TRACKER,
-		TRAIT_PSYDONITE,
+		TRAIT_VAELTITE,
 		TRAIT_SLEUTH,
 		TRAIT_STEELHEARTED,
 		TRAIT_INQUISITION
@@ -49,36 +49,36 @@
 /datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	if(H.mind)
-		var/weapons = list("Psydonic Rapier", "Psydonic Shortsword", "Psydonic Tomahawk", "Psydonic Cudgel", "Psydonic Flanged Mace")
+		var/weapons = list("Vaeltic Rapier", "Vaeltic Shortsword", "Vaeltic Tomahawk", "Vaeltic Cudgel", "Vaeltic Flanged Mace")
 		var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
 		switch(weapon_choice)
-			if("Psydonic Rapier")
+			if("Vaeltic Rapier")
 				l_hand = /obj/item/rogueweapon/sword/rapier/psy
 				r_hand = /obj/item/rogueweapon/scabbard/sword
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-			if("Psydonic Shortsword")
+			if("Vaeltic Shortsword")
 				l_hand = /obj/item/rogueweapon/sword/short/psy
 				r_hand = /obj/item/rogueweapon/scabbard/sword
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-			if("Psydonic Tomahawk")
+			if("Vaeltic Tomahawk")
 				l_hand = /obj/item/rogueweapon/stoneaxe/handaxe/psy
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
-			if("Psydonic Cudgel")
+			if("Vaeltic Cudgel")
 				l_hand = /obj/item/rogueweapon/mace/cudgel/psy
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-			if("Psydonic Flanged Mace")
+			if("Vaeltic Flanged Mace")
 				l_hand = /obj/item/rogueweapon/mace/cudgel/flanged/psy
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 		var/armors = list("Confessor - Dodge Expert, Complete Coverage", "Arbalist - Master Crossbows, +III STR / -III SPD")
 		var/armor_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in armors
 		switch(armor_choice)
 			if("Confessor - Dodge Expert, Complete Coverage")
-				head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+				head = /obj/item/clothing/head/roguetown/roguehood/praecursor/confessor
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
 				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 			if("Arbalist - Master Crossbows, +III STR / -III SPD")
 				head = /obj/item/clothing/head/roguetown/headband/bloodied
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
 				shirt = /obj/item/clothing/suit/roguetown/armor/manual/sewable/confessor
 				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
@@ -119,10 +119,10 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon_blessed
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor_blessed
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
 	id = /obj/item/clothing/ring/signet/psy
 	backpack_contents = list(

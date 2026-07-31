@@ -569,7 +569,7 @@
 
 /datum/crafting_recipe/roguetown/cooking/sugarshapedmarkp
 	category = FOOD_CAT_SUGARWORK
-	name = "sugarshape, psydonic mark"
+	name = "sugarshape, vaeltic mark"
 	display_category = ITEM_CAT_FOODSTUFF_PRESERVED
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/sugar = 1)

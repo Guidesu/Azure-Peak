@@ -10,6 +10,18 @@
 	var/list/magic_profile = list()
 	var/list/_cached_active_virtues = null
 	var/_cached_active_virtues_key = null
+	// get_active_virtues() used to recompute get_active_virtues_cache_key()
+	// (an O(selected traits) walk calling get_entry() for each) on every
+	// single call just to check whether the cache was still valid - and it's
+	// called once per skill_type from get_virtue_bonus_value()/
+	// get_virtue_skill_cap_bonus(), so a single ui_data() poll re-walked the
+	// full trait list dozens of times even when nothing had changed. A
+	// server profiler dump confirmed 80k+ calls/4.9M nested-loop iterations
+	// in a 20s window from exactly this path. This flag lets add_trait()/
+	// remove_trait() mark the cache dirty directly (same pattern set_dirty()
+	// already uses for the UI cache) so get_active_virtues() can trust a
+	// cheap boolean instead of recomputing a string key to check itself.
+	var/_active_virtues_dirty = TRUE
 	var/_cached_preference_loadout_key = null
 	var/_cached_owner_patron_type = null
 	var/list/_cached_ui_data = null
@@ -152,21 +164,6 @@
 	ui_tat_slots_cache = null
 	return TRUE
 
-/datum/tat_build/proc/get_active_virtues_cache_key(datum/preferences/P)
-	// P is deliberately ignored. Legacy preference virtues are hidden and must
-	// never leak bonuses into a TAT build; this key is derived only from TAT.
-	var/list/parts = list()
-	traits?.ensure_virtue_trait_entries()
-	for(var/trait_id in traits?.selected)
-		var/list/entry = traits.get_entry(trait_id)
-		var/virtue_type = entry?["virtue_type"] || traits.get_trait_backed_virtue_type(trait_id)
-		if(!virtue_type)
-			continue
-		var/choice = entry?["virtue_choice"]
-		parts += "[virtue_type]:[trait_id]:[choice]"
-	parts = sortList(parts)
-	return parts.Join("|")
-
 /datum/tat_build/proc/get_preference_loadout_cache_key(datum/preferences/P)
 	if(!P || !islist(P.gear_list))
 		return ""
@@ -192,7 +189,7 @@
 
 	if(preferences_changed || patron_changed)
 		_cached_active_virtues = null
-		_cached_active_virtues_key = null
+		_active_virtues_dirty = TRUE
 		_cached_owner_patron_type = new_patron_type
 		skills?.sanitize(FALSE)
 		traits?.sanitize()
@@ -209,8 +206,7 @@
 	return TRUE
 
 /datum/tat_build/proc/get_active_virtues()
-	var/cache_key = get_active_virtues_cache_key(owner_preferences)
-	if(islist(_cached_active_virtues) && _cached_active_virtues_key == cache_key)
+	if(islist(_cached_active_virtues) && !_active_virtues_dirty)
 		return _cached_active_virtues
 	var/list/result = list()
 	var/list/by_type = list()
@@ -233,12 +229,12 @@
 		virtue.on_load()
 
 	_cached_active_virtues = result
-	_cached_active_virtues_key = cache_key
+	_active_virtues_dirty = FALSE
 	return result
 
 /datum/tat_build/proc/invalidate_active_virtues_cache()
 	_cached_active_virtues = null
-	_cached_active_virtues_key = null
+	_active_virtues_dirty = TRUE
 
 /datum/tat_build/proc/sync_virtues_from_traits()
 	// Compatibility hook for callers from the old TAT branch. TAT traits no

@@ -68,7 +68,7 @@
 		eye_blurry = max(amount, eye_blurry)
 	update_eye_blur()
 
-/mob/proc/psydo_nyte()
+/mob/proc/praecursor_nyte()
 	sleep(2)
 	overlay_fullscreen("LYVES", /atom/movable/screen/fullscreen/zezuspsyst)
 	sleep(2)
@@ -124,6 +124,13 @@
 	return
 
 ///Adjust the body temperature of a mob, with min/max settings
-/mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
+/mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=600)
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = CLAMP(bodytemperature + amount,min_temp,max_temp)
+		var/mob/living/L = src
+
+		//non-small temperature changes apply a notice effect
+		if(amount < -20)
+			to_chat(src, span_notice("You feel yourself cooling down."))
+		else if(L && amount > 20 && !L.on_fire)
+			to_chat(src, span_notice("You feel yourself warming up."))

@@ -29,6 +29,10 @@
 #define MOVE_INTENT_RUN  "run"
 #define MOVE_INTENT_SNEAK "sneak"
 
+//time of day bitflags for mobs (temperature system map/ToD modifiers)
+#define TIME_OF_DAY_BIT_DAY		(1 << 0)
+#define TIME_OF_DAY_BIT_NIGHT	(1 << 1)
+
 //resist
 #define RESIST_INTENT 0
 #define SUBMIT_INTENT 1

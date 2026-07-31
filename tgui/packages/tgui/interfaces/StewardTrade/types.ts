@@ -220,6 +220,8 @@ export type AtcLoanState = {
 };
 
 export type Data = StaticData & {
+  faction_name: string;
+  realm_name: string;
   treasury: number;
   day: number;
   expected_rural_revenue: number;

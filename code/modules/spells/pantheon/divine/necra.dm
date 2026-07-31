@@ -1035,7 +1035,7 @@ var/global/mob/_corpse_sort_ref = null
 /obj/effect/proc_holder/spell/invoked/raise_spirits_vengeance/cast(list/targets, mob/living/user)
 	. = ..()
 
-	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
+	if(istype(get_area(user), /area/rogue/indoors/auxentiusarena))
 		to_chat(user, span_userdanger("I reach for outer help, but something rebukes me! This challenge is only for me to overcome!"))
 		revert_cast()
 		return FALSE

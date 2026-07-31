@@ -223,9 +223,9 @@
 	icon_state = "shopsign_merchant_left"
 
 /obj/structure/fluff/walldeco/psybanner
-	name = "psydonic banner"
+	name = "vaeltic banner"
 	desc = "A banner of fine fabric bearing the symbol of Psydon, the Weeping God, creator of the world. \
-	Flown frequently by both Psydonite and Tennite authorities. </br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
+	Flown frequently by both Vaeltite and Tennite authorities. </br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
 	icon_state = "Psybanner-PURPLE"
 
 /obj/structure/fluff/walldeco/psybanner/red
@@ -256,7 +256,7 @@
 	name = "zizite banner"
 	icon_state = "zizobanner_purple"
 	desc = "A carefully made banner bearing the inverted cross of Zizo, Dame of Progress. Banners such \
-	as this one are wildly dangerous to fly in any Tennite or Psydonite nation, in which the worship \
+	as this one are wildly dangerous to fly in any Tennite or Vaeltite nation, in which the worship \
 	of the progenitor of undeath is harshly criminalised, but may be commonly found in more remote \
 	areas of the world."
 
@@ -267,8 +267,8 @@
 	. = ..()
 	. += span_info("Faith is the most important aspect of lyfe, no matter if you're a peasant or a lord. Those with differing faiths oft-clash, both metaphorically and very literally.")
 	. += span_info("Your character can choose from a wide variety of patrons to worship. The three most relevant groups, as of todae, are the PANTHEON, the ASCENDANTS, and GENESISM.")
-	. += span_info("The PANTHEON, as the Church's official religion, is considered the 'status quo' within Azuria. They worship ONE of TEN GODS, all embodying certain aspects and virtues of humenity.")
-	. += span_info("The ASCENDANTS are considered 'heathens' by the PANTHEON, and are actively hunted if made apparent within Azuria. They worship ONE of FOUR MORTALS-TURNED-GODS, who seek to usurp the 'status quo'.")
+	. += span_info("The PANTHEON, as the Church's official religion, is considered the 'status quo' at the outpost. They worship ONE of TEN GODS, all embodying certain aspects and virtues of humenity.")
+	. += span_info("The ASCENDANTS are considered 'heathens' by the PANTHEON, and are actively hunted if made apparent at the outpost. They worship ONE of FOUR MORTALS-TURNED-GODS, who seek to usurp the 'status quo'.")
 	. += span_info("At last, GENESISM is considered 'archaic' by both the PANTHEON and ASCENDANTS. They worship PSYDON; the SAVIOR of this world who's presence is all-but-gone. They are, for lack of a better term, a 'wild card'.")
 	. += span_info("Irregardless of the chosen patron, your character is free - within reason - to interpret and worship their GOD in whatever way they see fit. After all, who's to say they aren't the only one that knows the TRUTH?")
 
@@ -350,8 +350,8 @@
 	..()
 
 /obj/structure/fluff/walldeco/customflag
-	name = "Azure Peak flag"
-	desc = "A banner flutters in the breeze in the proud heraldic colors of the Duchy."
+	name = "settlement flag"
+	desc = "A banner flutters in the breeze in the proud heraldic colors of the settlement."
 	icon_state = "wallflag"
 
 /obj/structure/fluff/walldeco/customflag/Initialize()
@@ -450,7 +450,7 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
-	. += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	. += span_info("Those who've died beyond the outpost's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")
@@ -464,7 +464,7 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
-	. += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	. += span_info("Those who've died beyond the outpost's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")
@@ -478,7 +478,7 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
-	. += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	. += span_info("Those who've died beyond the outpost's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")

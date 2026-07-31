@@ -94,6 +94,7 @@
 	associated_skill = /datum/skill/magic/holy
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_STAT_BUFF
+	mana_cost = MANACOST_MIRACLE_MINOR
 	spell_color = "#330000"
 	
 /datum/action/cooldown/spell/apply_malum/cast(atom/cast_on)
@@ -124,6 +125,7 @@
 
 	primary_resource_type = SPELL_COST_DEVOTION
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR + 20
+	mana_cost = MANACOST_MIRACLE_MAJOR + 5
 
 	secondary_resource_type = SPELL_COST_STAMINA
 	secondary_resource_cost = SPELLCOST_MIRACLE

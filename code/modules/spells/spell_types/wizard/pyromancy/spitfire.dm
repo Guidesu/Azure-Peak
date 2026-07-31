@@ -77,6 +77,9 @@
 			playsound(get_turf(target), 'sound/items/firesnuff.ogg', 100)
 			new /obj/effect/temp_visual/snap_freeze(get_turf(M))
 		apply_scorch_stack(M, 1, def_zone)
+		if(ishuman(M))
+			var/mob/living/carbon/human/human_target = M
+			human_target.adjust_bodytemperature(12)
 	else if(isatom(target))
 		var/atom/A = target
 		A.fire_act()

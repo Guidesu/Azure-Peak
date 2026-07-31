@@ -322,7 +322,7 @@ SUBSYSTEM_DEF(economy)
 	var/order_size_mult = min(STANDING_ORDER_POP_SCALE_MAX, 1.0 + (get_effective_player_count() * STANDING_ORDER_POP_SCALE_PER_PLAYER))
 	for(var/good in E.affected_goods)
 		var/datum/trade_good/tg = GLOB.trade_goods[good]
-		// Scale qty inversely with base_price so high-value goods (gems, dendor) land
+		// Scale qty inversely with base_price so high-value goods (gems, ignatius essence) land
 		// in small order sizes instead of blowing out the payout math.
 		var/base = tg ? tg.base_price : 5
 		var/qty_lo

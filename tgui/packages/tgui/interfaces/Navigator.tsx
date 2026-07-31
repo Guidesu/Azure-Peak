@@ -23,6 +23,7 @@ import type { MarketData } from './Noticeboard/types';
 
 type NavigatorData = {
   motto: string;
+  faction_name: string;
   next_airlift_seconds: number;
   handler_fee_percent: number;
   duty_rate: number;
@@ -228,6 +229,7 @@ export const Navigator = () => {
               isSmuggler ? 'State of the Shadow Market' : 'State of the Markets'
             }
             headerNote={isSmuggler ? 'Shadow pool - off the books' : undefined}
+            factionName={data.faction_name}
           />
         </div>
       </Window.Content>

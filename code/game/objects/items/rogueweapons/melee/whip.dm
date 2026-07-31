@@ -152,7 +152,7 @@
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	name = "Daybreak"
-	desc = "A chain-linked whip, meticulously assembled from a hundred pieces of blessed silver. Its origins are steeped in mythos: most believe it to originate from an ancient bloodline of vampyre-killers, which once saved Vaeltis from a powerful lyckerlorde. Whether it was happenstance or fate itself that eventually led it into your grasp, however, is better left unspoken. </br>'There, upon the Cathedral's ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness.'"
+	desc = "A chain-linked whip, meticulously assembled from a hundred pieces of blessed silver. Its origins are steeped in mythos: most believe it to originate from an ancient bloodline of vampyre-killers, which once saved Vaeltis from a powerful lyckerlorde. Whether it was happenstance or fate itself that eventually led it into your grasp, however, is better left unspoken. </br>'There, upon the Cathedral's ceiling, was painted a scene-most-beautiful: of a robed Praecursor standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness.'"
 	icon_state = "psywhip"
 	is_silver = TRUE
 	force = 25
@@ -165,8 +165,8 @@
 /obj/item/rogueweapon/whip/antique/psywhip/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\
@@ -196,7 +196,7 @@
 	)
 
 /obj/item/rogueweapon/whip/psywhip_lesser
-	name = "psydonic whip"
+	name = "vaeltic whip"
 	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
 	icon_state = "psywhip_lesser"
 	possible_item_intents = list(/datum/intent/whip/lash/master, /datum/intent/whip/crack, /datum/intent/whip/punish)
@@ -210,7 +210,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -220,8 +220,8 @@
 /obj/item/rogueweapon/whip/psywhip_lesser/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\

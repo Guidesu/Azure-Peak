@@ -19,7 +19,7 @@
 
 	point_cost = 0
 
-	spell_flags = SPELL_PSYDON //You are not immune to the propaganda.
+	spell_flags = SPELL_PRAECURSOR //You are not immune to the propaganda.
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross)
 
 /////////////////////
@@ -280,7 +280,7 @@
 
 /datum/action/cooldown/spell/graggar/graggar_battlecry
 	name = "Vicious Roar"
-	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution. Debuffs followers of the Ten, but not Psydonites."
+	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution. Debuffs followers of the Ten, but not Vaeltites."
 	fluff_desc = "The battlefield quakes with your roar! Shaken to their core, they will prove easy pickings for a worthy champion such as yourself; the power of the Sinistar, unleashed.\
 	SLAUGHTER THE LAMBS - DRINK THEIR MARROW - FEAST UPON THEIR FLESH - LEAVE NO TRACE OF THEIR PATHETIC EXISTENCE! - THE SINISTAR HUNGERS!"
 	button_icon_state = "vicious_roar"
@@ -313,7 +313,7 @@
 			target.apply_status_effect(/datum/status_effect/buff/call_to_slaughter)	//Buffs inhumens
 			continue
 		if(istype(target.patron, /datum/patron/tribunal/praecursor))
-			to_chat(target, span_danger("You feel a surge of cold wash over you; leaving your body as quick as it hit.."))	//No effect on Psydonians!
+			to_chat(target, span_danger("You feel a surge of cold wash over you; leaving your body as quick as it hit.."))	//No effect on Vaeltians!
 			continue
 		if(istype(target.patron, /datum/patron/oldkin/klokner))
 			to_chat(target, span_danger("You feel... nothing..")) //No effect on Vheslynites, fear them.
@@ -322,7 +322,7 @@
 			continue
 		if(target.mob_biotypes & MOB_UNDEAD)
 			continue
-		target.apply_status_effect(/datum/status_effect/debuff/call_to_slaughter)	//Debuffs non-inhumens/psydonians
+		target.apply_status_effect(/datum/status_effect/debuff/call_to_slaughter)	//Debuffs non-inhumens/vaeltians
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/call_to_slaughter

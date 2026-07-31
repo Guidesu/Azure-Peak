@@ -75,11 +75,11 @@
 	record_round_statistic(STATS_TREASURY_DEBT_REPAID, skim)
 	var/reason
 	if(treasury_state == TREASURY_BANKRUPTCY)
-		reason = "Sequestration debt - Azurian Trading Company"
+		reason = "Sequestration debt - [SSticker.faction_name || "the Stewardry"]"
 	else if(treasury_state == TREASURY_IN_ARREARS)
-		reason = "Arrears repayment - Burghers of Azuria"
+		reason = "Arrears repayment - [SSticker.faction_name || "the Stewardry"]"
 	else
-		reason = "ATC loan repayment"
+		reason = "Loan repayment - [SSticker.faction_name || "the Stewardry"]"
 	log_fund_entry(new /datum/treasury_entry("burn", to_fund, null, skim, reason))
 	if(treasury_debt <= 0)
 		treasury_debt = 0

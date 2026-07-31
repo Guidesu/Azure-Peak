@@ -135,6 +135,8 @@
 
 /obj/structure/roguemachine/steward/ui_data(mob/user)
 	var/list/data = list()
+	data["faction_name"] = SSticker.faction_name || "the Stewardry"
+	data["realm_name"] = SSticker.realm_name || "the Outpost"
 	data["treasury"] = SStreasury?.discretionary_fund?.balance || 0
 	data["day"] = GLOB.dayspassed
 	data["expected_rural_revenue"] = SStreasury?.get_rural_tax_amount() || 0
@@ -579,7 +581,7 @@ GLOBAL_LIST_INIT(steward_trade_sequestration_locked_actions, list(
 	if(locked && !alderman_has_access(usr))
 		return TRUE
 	if(SStreasury.is_in_receivership() && (action in GLOB.steward_trade_sequestration_locked_actions))
-		to_chat(usr, span_warning("The Azurian Trading Company holds the Crown's commerce in sequestration. Petition, tax, and fine are your remaining instruments."))
+		to_chat(usr, span_warning("[SSticker.faction_name || "The Stewardry"] holds the Crown's commerce in sequestration. Petition, tax, and fine are your remaining instruments."))
 		return TRUE
 	if(action == "fulfill_order" || (action in GLOB.steward_trade_sequestration_locked_actions))
 		SStreasury.dirty_market_view()
@@ -990,7 +992,7 @@ GLOBAL_LIST_INIT(steward_trade_sequestration_locked_actions, list(
 				return TRUE
 			if(SStreasury.take_atc_loan(amount, usr))
 				playsound(src, 'sound/items/inqslip_sealed.ogg', 70, FALSE, -1)
-				visible_message(span_notice("[src] stamps a sealed writ. The wax bears the mark of the Azurian Trading Company."))
+				visible_message(span_notice("[src] stamps a sealed writ. The wax bears the mark of [SSticker.faction_name || "the Stewardry"]."))
 			SStgui.update_uis(src)
 			return TRUE
 		if("set_royal_custom_margin")

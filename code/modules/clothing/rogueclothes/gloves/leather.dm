@@ -14,7 +14,10 @@
 	unarmed_bonus = 1
 	color = "#66584c"
 	salvage_result = /obj/item/natural/hide/cured // this arbitrary nonsense was removed, only 1 glove is made per craft now
-	cold_protection = 3
+	cold_protection = HANDS
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/gloves/roguetown/leather/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
@@ -39,6 +42,10 @@
 	desc = "Cloth gloves to absorb palm sweat while leaving the fingers free for fine manipulation."
 	icon_state = "shadowgloves"
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HAND_LEFT | HAND_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/gloves/roguetown/fingerless/shadowgloves/spymaster
 	name = "hand's gloves"
@@ -73,6 +80,10 @@
 	anvilrepair = null
 	sewrepair = TRUE
 	salvage_result = /obj/item/natural/hide/cured
+	cold_protection = HAND_LEFT | HAND_RIGHT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/gloves/roguetown/otavan
 	name = "otavan leather gloves"
@@ -97,7 +108,7 @@
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/gloves/roguetown/otavan/psygloves
-	name = "psydonic leather gloves"
+	name = "vaeltic leather gloves"
 	desc = "Thick leather mittens, stitched and cuffed to guard His children's palms from perforation."
 	armor = ARMOR_LEATHER
 	icon_state = "psydongloves"
@@ -191,7 +202,10 @@
 	sewrepair = TRUE
 	unarmed_bonus = 1
 	salvage_result = /obj/item/natural/cloth
-	cold_protection = 6
+	cold_protection = HANDS
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/gloves/roguetown/cloth/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)

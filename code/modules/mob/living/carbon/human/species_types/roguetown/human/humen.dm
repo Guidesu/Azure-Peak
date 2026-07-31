@@ -4,7 +4,7 @@
 /datum/species/human/northern
 	name = "Humen"
 	id = "humen"
-	psydonic = TRUE
+	vaeltic = TRUE
 	origin_default = /datum/virtue/origin/auxentia
 	origin = "Grenzelhoft"
 	sub_name = "Northern Humen"

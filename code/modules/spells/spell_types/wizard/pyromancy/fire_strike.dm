@@ -81,6 +81,8 @@
 				continue
 			if(istype(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, mob_damage, BODY_ZONE_CHEST, BCLASS_BURN, spell_name = "Fire Strike", damage_type = BURN, skip_animation = TRUE)
+				var/mob/living/carbon/human/human_target = L
+				human_target.adjust_bodytemperature(20)
 			else
 				L.adjustFireLoss(mob_damage)
 			apply_scorch_stack(L, 2)

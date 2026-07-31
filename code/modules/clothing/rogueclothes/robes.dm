@@ -58,10 +58,10 @@
 	icon_state = "ewarlock"
 	storage = FALSE
 
-/obj/item/clothing/suit/roguetown/shirt/robe/astrata
+/obj/item/clothing/suit/roguetown/shirt/robe/auxentius
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
 	name = "sun robe"
-	desc = "Just as Her radiance rises upon each morning, so too will order reign across the kingdoms."
+	desc = "Just as His radiance rises upon each morning, so too will order reign across the kingdoms."
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	icon_state = "astratarobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
@@ -161,10 +161,10 @@
 /obj/item/clothing/suit/roguetown/shirt/robe/necromancer/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, "The robes of Zizo's foul deadite-raisers")
 
-/obj/item/clothing/suit/roguetown/shirt/robe/dendor
+/obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
 	name = "briar robe"
-	desc = "A coarse, rough robe worn often by devout worshippers of Dendor, the Mad God, lord of all \
+	desc = "A coarse, rough robe worn often by devout worshippers of Ignatius, the Mad God, lord of all \
 	the wild places of the world. It's quite terribly itchy."
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	icon_state = "dendorrobe"
@@ -244,7 +244,7 @@
 	..()
 	AddComponent(/datum/component/adjustable_clothing, CHEST|GROIN|ARMS|VITALS, null, null, 'sound/foley/cloth_wipe (1).ogg', null, UPD_CHEST)
 
-//This is for templars/psydonites. Gives a boon for wearing it to counter-act giving up plate and such.
+//This is for templars/vaeltites. Gives a boon for wearing it to counter-act giving up plate and such.
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
 	name = "holy monk vestments"
 	desc = "Holy vestments, worn by those who pursue faith above all else. Hundreds of heavy leather strips have been meticulously sheared-and-stitched onto the cloth, resulting in unparalleled comfort and protection. It's said that those who 'don the cloth' will never tire; a boon of unbreakable faith."
@@ -255,6 +255,10 @@
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MAX
+	heat_protection = CHEST
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/equipped(mob/living/user, slot)
 	..()
@@ -396,6 +400,10 @@
 	item_state = "desertgown"
 	color = null
 	storage = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | GROIN
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/robe/hierophant/loadout
 	name = "aesthetic hierophant's kandys"
@@ -413,6 +421,10 @@
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
 	storage = FALSE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | GROIN | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout
 	name = "aesthetic pontifex's qaba"

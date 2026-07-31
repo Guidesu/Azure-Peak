@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(chastity_standard_traits, list(
 	var/cursed_anal_open = FALSE // STAGE 1: unused, reserved for later collar stage.
 	var/cursed_spikes_on = FALSE // STAGE 1: unused, reserved for later collar stage.
 	var/chastity_flat = FALSE // is the cage flat-style (more restrictive) or standard?
-	var/chastity_move_sound = SFX_JINGLE_BELLS
+	var/chastity_move_sound = CHASTITY_JINGLE_SOUND
 	var/chastity_move_delay = CHASTITY_MOVE_SOUND_DELAY
 	var/chastity_move_volume = 55
 	var/chastity_move_chance = 5

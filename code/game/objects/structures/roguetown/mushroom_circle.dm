@@ -10,7 +10,7 @@
 //   /obj/structure/flora/rogueshroom  (random mush1-5, final dead state)
 //
 // Teleportation (fey only):
-//   Hold Dendor amulet → click circle → choose destination → 3 sec cast
+//   Hold Ignatius amulet → click circle → choose destination → 3 sec cast
 //   You must stand inside the circle, and every living being standing in it travels together.
 //
 // Renaming (fey only):
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(mushroom_circles)
 //==============================================================================
 /obj/structure/mushroom_circle/fey
 	name = "fey mushroom circle"
-	desc = "A magical ring of pale and purple mushrooms that pulse with faint light. Druids of Dendor use these as waypoints to travel across long distances instantly."
+	desc = "A magical ring of pale and purple mushrooms that pulse with faint light. Druids of Ignatius use these as waypoints to travel across long distances instantly."
 	max_integrity = 200
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	destroy_sound = "plantcross"
@@ -196,15 +196,15 @@ GLOBAL_LIST_EMPTY(mushroom_circles)
 		. += span_info("The mushrooms glow steadily with fey power. They will become overgrown in [DisplayTimeText(time_to_overgrowth)] if left untended.")
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.patron && H.patron.type == /datum/patron/divine/dendor)
+		if(H.patron && H.patron.type == /datum/patron/severance/ignatius)
 			if(H.get_skill_level(/datum/skill/magic/druidic) >= SKILL_LEVEL_EXPERT)
-				. += span_notice("Hold my amulet of Dendor and press it on this circle to travel to another fey circle.")
+				. += span_notice("Hold my amulet of Ignatius and press it on this circle to travel to another fey circle.")
 			else
 				. += span_warning("The fey's mysteries are beyond my current understanding — I need greater druidic training to commune with this circle.")
 
 /obj/structure/mushroom_circle/fey/attackby(obj/item/I, mob/living/user, params)
 	// Only block fey circle USE actions from low-skill users — attacking/chopping is always allowed.
-	var/is_fey_use = istype(I, /obj/item/natural/feather) || istype(I, /obj/item/clothing/neck/roguetown/psicross/dendor) || ((istype(I, /obj/item/rogueweapon/huntingknife/scissors) || istype(I, /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr)) && user.used_intent.type == /datum/intent/snip)
+	var/is_fey_use = istype(I, /obj/item/natural/feather) || istype(I, /obj/item/clothing/neck/roguetown/psicross/ignatius) || ((istype(I, /obj/item/rogueweapon/huntingknife/scissors) || istype(I, /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr)) && user.used_intent.type == /datum/intent/snip)
 	if(is_fey_use && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.get_skill_level(/datum/skill/magic/druidic) < SKILL_LEVEL_EXPERT)
@@ -238,10 +238,10 @@ GLOBAL_LIST_EMPTY(mushroom_circles)
 			to_chat(user, span_notice("[src] looks well-maintained. The mystical glow brightens."))
 		return
 
-	// Dendor amulet — opens fey teleport menu
-	if(istype(I, /obj/item/clothing/neck/roguetown/psicross/dendor))
-		if(!user.patron || user.patron.type != /datum/patron/divine/dendor)
-			to_chat(user, span_warning("Only a follower of Dendor may commune with this circle."))
+	// Ignatius amulet — opens fey teleport menu
+	if(istype(I, /obj/item/clothing/neck/roguetown/psicross/ignatius))
+		if(!user.patron || user.patron.type != /datum/patron/severance/ignatius)
+			to_chat(user, span_warning("Only a follower of Ignatius may commune with this circle."))
 			return
 		if(!active)
 			to_chat(user, span_warning("This circle has waned in power — it can no longer carry you anywhere."))

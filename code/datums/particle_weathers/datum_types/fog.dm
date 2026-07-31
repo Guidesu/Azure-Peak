@@ -89,6 +89,8 @@
 	name = "Fog"
 	desc = "Gentle fog, la la description."
 	particleEffectType = /particles/weather/fog
+	warning_message = span_greenannounce("The air is thick and damp, and a rush of cool dry air foretells what approachs.")
+	late_warning_message = span_greenannounce("A cold mist rolls in, swallowing the horizon.")
 
 	scale_vol_with_severity = TRUE
 	//weather_sounds = list(/datum/looping_sound/rain)
@@ -103,6 +105,7 @@
 	immunity_type = TRAIT_RAINSTORM_IMMUNE
 	probability = 30
 	target_trait = PARTICLEWEATHER_RAIN
+	forecast_tag = "fog"
 	#ifndef  SPACEMAN_DMM
 	filter_type = filter(type="alpha", render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)
 	secondary_filter_type = filter(type="alpha", render_source = FOG_RENDER_TARGET, flags = MASK_INVERSE)
@@ -147,4 +150,5 @@
 	name = "Omen of Blood Feat Fog"
 	particleEffectType = /particles/weather/fog/bloodfog
 	probability = 1
+
 

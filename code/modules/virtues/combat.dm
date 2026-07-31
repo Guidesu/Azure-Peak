@@ -44,7 +44,7 @@
 		START_PROCESSING(SSobj, our_faith)
 	switch(recipient.patron?.type)
 		if(/datum/patron/concordat/auxentius)
-			recipient.mind?.special_items["Amulet of Astrata"] = /obj/item/clothing/neck/roguetown/psicross/auxentius
+			recipient.mind?.special_items["Amulet of Auxentius"] = /obj/item/clothing/neck/roguetown/psicross/auxentius
 		if(/datum/patron/concordat/wulfric)
 			recipient.mind?.special_items["Amulet of Abyssor"] = /obj/item/clothing/neck/roguetown/psicross/wulfric
 		if(/datum/patron/severance/ignatius)
@@ -57,12 +57,10 @@
 			recipient.mind?.special_items["Amulet of Eora"] = /obj/item/clothing/neck/roguetown/psicross/miluse
 		if(/datum/patron/concordat/miluse)
 			recipient.mind?.special_items["Amulet of Noc"] = /obj/item/clothing/neck/roguetown/psicross/miluse
-		if(/datum/patron/concordat/auxentius)
-			recipient.mind?.special_items["Amulet of Ravox"] =/obj/item/clothing/neck/roguetown/psicross/auxentius
 		if(/datum/patron/concordat/handwerra)
 			recipient.mind?.special_items["Amulet of Malum"] = /obj/item/clothing/neck/roguetown/psicross/handwerra
 		if(/datum/patron/tribunal/praecursor)
-			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
+			ADD_TRAIT(recipient, TRAIT_VAELTITE, TRAIT_GENERIC)
 			recipient.mind?.special_items["Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/tribunal/custodius)
 			recipient.mind?.special_items["Amulet of the Undivided"] = /obj/item/clothing/neck/roguetown/psicross/custodius
@@ -75,12 +73,12 @@
 		if(/datum/patron/unveiled/aurelian)
 			recipient.mind?.special_items["Inverted Psycross"] = /obj/item/clothing/neck/roguetown/psicross/aurelian/iron
 
-/datum/virtue/combat/devotee/astratan_affinity
-	name = "Astratan Affinity (Racial, Sun Elves)"
+/datum/virtue/combat/devotee/auxentian_affinity
+	name = "Auxentian Affinity (Racial, Sun Elves)"
 	desc = "This Virtue is unlisted and should not be visible."
 	unlisted = TRUE
 
-/datum/virtue/combat/devotee/astratan_affinity/apply_to_human(mob/living/carbon/human/recipient)
+/datum/virtue/combat/devotee/auxentian_affinity/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.patron?.type == /datum/patron/concordat/auxentius)
 		..()
 	else

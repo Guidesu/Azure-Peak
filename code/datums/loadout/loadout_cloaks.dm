@@ -160,13 +160,13 @@
 	sort_category = "Cloaks"
 
 /datum/loadout_item/surcoatgoldenorderast
-	name = "Surcoat, Golden Order, Astratan"
-	path = /obj/item/clothing/cloak/tabard/stabard/crusader/astrata
+	name = "Surcoat, Golden Order, Auxentian"
+	path = /obj/item/clothing/cloak/tabard/stabard/crusader/auxentius
 	sort_category = "Cloaks"
 
 /datum/loadout_item/surcoatsilverorderast
-	name = "Surcoat, Silver Order, Astratan"
-	path = /obj/item/clothing/cloak/tabard/stabard/crusader/t/astrata
+	name = "Surcoat, Silver Order, Auxentian"
+	path = /obj/item/clothing/cloak/tabard/stabard/crusader/t/auxentius
 	sort_category = "Cloaks"
 
 /datum/loadout_item/surcoatgoldenorderuni

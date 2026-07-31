@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/gronn
 	name = "Gronnic Privateer"
-	tutorial = "You are one of many upstarts from Gronn, who sailed from the coastal capital of Danheim to the southern beaches of Azuria in search of a more... honest means of profit than the Sea Raiders of infamy."
+	tutorial = "You are one of many upstarts from Gronn, who sailed from the coastal capital of Danheim to the outpost's southern beaches in search of a more... honest means of profit than the Sea Raiders of infamy."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/mercenary/gronn
@@ -22,7 +22,7 @@
 	)
 
 /datum/outfit/job/roguetown/mercenary/gronn
-	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Dendor as situational additions. Do not add any more to this, no matter what.
+	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Ignatius as situational additions. Do not add any more to this, no matter what.
 
 /datum/outfit/job/roguetown/mercenary/gronn/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -163,7 +163,7 @@
 	)
 
 /datum/outfit/job/roguetown/mercenary/gronn_heavy
-	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Dendor as situational additions. Do not add any more to this, no matter what.
+	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Ignatius as situational additions. Do not add any more to this, no matter what.
 
 /datum/outfit/job/roguetown/mercenary/gronn_heavy/pre_equip(mob/living/carbon/human/H)
 	..()

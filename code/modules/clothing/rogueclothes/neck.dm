@@ -35,6 +35,8 @@
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	sewrepair = TRUE
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/neck/roguetown/coif/get_mechanics_examine(mob/user)
     . = ..()
@@ -123,6 +125,8 @@
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER + ARMOR_INT_SIDE_COVERAGE_BONUS
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
+	min_cold_protection_temperature = 50
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/neck/roguetown/chaincoif
 	name = "chain coif"
@@ -869,12 +873,12 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/roguetown/psicross/ignatius
-	name = "amulet of Dendor"
+	name = "amulet of Ignatius"
 	desc = "If you need something to worship, then worship life. Every last crawling bit of it."
 	icon_state = "dendor"
 
 /obj/item/clothing/neck/roguetown/psicross/ignatius/wood
-	name = "wooden amulet of Dendor"
+	name = "wooden amulet of Ignatius"
 	desc = "The primordial life force thrumbs through your hands."
 	icon_state = "dendor_w"
 	item_state = "dendor_w"
@@ -883,7 +887,7 @@
 	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/psicross/ignatius/g
-	name = "golden amulet of Dendor"
+	name = "golden amulet of Ignatius"
 	desc = "Nature provides in all avenues, as long as one has the faith to dig it out."
 	icon_state = "dendor_g"
 	item_state = "dendor_g"
@@ -1249,7 +1253,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/auxentia
 	name = "auxentian psy-bracelet"
-	desc = "A peculiar icon of worship from a foreign land. Forming the three-pronged Psydonite cross in a circular ring, this bracelet embodies the Auxentian belief of Praecursor's eternity."
+	desc = "A peculiar icon of worship from a foreign land. Forming the three-pronged Vaeltite cross in a circular ring, this bracelet embodies the Auxentian belief of Praecursor's eternity."
 	icon_state = "psybracelet"
 	item_state = null
 

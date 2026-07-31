@@ -128,7 +128,7 @@
 	if(!istype(user))
 		return FALSE
 
-	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
+	if(istype(get_area(user), /area/rogue/indoors/auxentiusarena))
 		to_chat(user, span_userdanger("I reach for outer help, but something rebukes me! This challenge is only for me to overcome!"))
 		return FALSE
 

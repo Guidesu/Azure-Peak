@@ -4,7 +4,7 @@
 /datum/species/elf/wood
 	name = "Elf"
 	id = "elfw"
-	psydonic = TRUE
+	vaeltic = TRUE
 	sub_name = "Wood Elf"
 	desc_title = "Wood Elf: Guardians of the Grove"
 	desc = "\"Elf\" is a catch-all term used for tall, pointy-eared humanoids who can trace \

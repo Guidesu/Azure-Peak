@@ -7,7 +7,7 @@
 	hag_slots = 1
 
 // ----------------------------------------------------------------------------------------------------------
-// PSYDON pool - lowest intensity. No hard antags. Extended opens nothing; Low Intensity opens a few wretches.
+// PRAECURSOR pool - lowest intensity. No hard antags. Extended opens nothing; Low Intensity opens a few wretches.
 // (Low Intensity is defined further down as no_antag/small_wretch but votes in this pool via preset_pool.)
 // ----------------------------------------------------------------------------------------------------------
 /datum/storyteller/gamemode/extended
@@ -140,7 +140,7 @@
 	preferred_gnoll_mode = GNOLL_SCALING_FLAT	// max 2
 	wretch_slot_cap = 6
 
-// Low Intensity - votes in the PSYDON pool (see preset_pool) despite being a no_antag subtype.
+// Low Intensity - votes in the PRAECURSOR pool (see preset_pool) despite being a no_antag subtype.
 /datum/storyteller/gamemode/no_antag/small_wretch
 	name = "Low Intensity"
 	vote_desc = "No hard antagonists. Only a handful of soft antagonists are present.."

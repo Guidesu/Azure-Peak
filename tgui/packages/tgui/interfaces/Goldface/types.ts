@@ -189,6 +189,7 @@ export type VendingPack = {
 
 export type VendingData = {
   motto: string;
+  faction_name: string;
   budget: number;
   locked: BooleanLike;
   is_public: BooleanLike;

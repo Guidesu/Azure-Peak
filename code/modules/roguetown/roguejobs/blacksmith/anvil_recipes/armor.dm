@@ -1682,11 +1682,11 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/eoran
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
-/datum/anvil_recipe/armor/holysteel/astratahelm
-	name = "Astratan Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Astrata)"
+/datum/anvil_recipe/armor/holysteel/auxentiushelm
+	name = "Auxentian Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Auxentius)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured, /obj/item/clothing/neck/roguetown/psicross/auxentius)
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/auxentiushelm
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/holysteel/abyssorhelm
@@ -1770,66 +1770,66 @@
 // BLESSED SILVER
 
 /datum/anvil_recipe/armor/blessedsilver/psychestplate
-	name = "Psydonic Chestplate (+1 Cured Leather)"
+	name = "Vaeltic Chestplate (+1 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/natural/hide/cured)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psycuirass
-	name = "Psydonic Cuirass (+2 Cured Leather)"
+	name = "Vaeltic Cuirass (+2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/armetpsy
-	name = "Psydonic Armet"
+	name = "Vaeltic Armet"
 	req_bar = /obj/item/ingot/silverblessed
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/greatplumearmetpsy
-	name = "Psydonic Greatplumed Armet"
+	name = "Vaeltic Greatplumed Armet"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmsallpsy
-	name = "Psydonic Sallet"
+	name = "Vaeltic Sallet"
 	req_bar = /obj/item/ingot/silverblessed
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psysallet
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmbucketpsy
-	name = "Psydonic Bucket Helm"
+	name = "Vaeltic Bucket Helm"
 	req_bar = /obj/item/ingot/silverblessed
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmetabso
-	name = "Psydonian Conical Greathelm (+2 Blessed Silver)"
+	name = "Vaeltian Conical Greathelm (+2 Blessed Silver)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/ingot/silverblessed)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/psyhalfplate
-	name = "Psydonic Half-Plate (+ Psydonic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Half-Plate (+ Vaeltic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psyfullplate
-	name = "Psydonic Full-Plate (+ Psydonic Half-Plate, +1 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Full-Plate (+ Vaeltic Half-Plate, +1 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psyfullplatealt
-	name = "Psydonic Full-Plate, Hauberked (+ Psydonic Plate-And-Maille, +2 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Full-Plate, Hauberked (+ Vaeltic Plate-And-Maille, +2 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, /obj/item/ingot/silverblessed, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
@@ -1837,66 +1837,66 @@
 
 /// BLESSED SILVER, BULLION VARIANTS - FALLBACK
 /datum/anvil_recipe/armor/blessedsilver/psychestplate/inq
-	name = "Psydonic Chestplate (+1 Cured Leather)"
+	name = "Vaeltic Chestplate (+1 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/natural/hide/cured)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psycuirass/inq
-	name = "Psydonic Cuirass (+2 Cured Leather)"
+	name = "Vaeltic Cuirass (+2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/armetpsy/inq
-	name = "Psydonic Armet"
+	name = "Vaeltic Armet"
 	req_bar = /obj/item/ingot/silverblessed/bullion
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/greatplumearmetpsy/inq
-	name = "Psydonic Greatplumed Armet"
+	name = "Vaeltic Greatplumed Armet"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmsallpsy/inq
-	name = "Psydonic Sallet"
+	name = "Vaeltic Sallet"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psysallet
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmbucketpsy/inq
-	name = "Psydonic Bucket Helm"
+	name = "Vaeltic Bucket Helm"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/helmetabso/inq
-	name = "Psydonian Conical Greathelm (+2 Blessed Silver)"
+	name = "Vaeltian Conical Greathelm (+2 Blessed Silver)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/ingot/silverblessed/bullion, /obj/item/ingot/silverblessed/bullion)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/blessedsilver/psyhalfplate/inq
-	name = "Psydonic Half-Plate (+ Psydonic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Half-Plate (+ Vaeltic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate, /obj/item/ingot/silverblessed/bullion, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psyfullplate/inq
-	name = "Psydonic Full-Plate (+ Psydonic Half-Plate, +1 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Full-Plate (+ Vaeltic Half-Plate, +1 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate, /obj/item/ingot/silverblessed/bullion, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
 	display_category = ITEM_CAT_ARMOR_CHESTPIECES
 
 /datum/anvil_recipe/armor/blessedsilver/psyfullplatealt/inq
-	name = "Psydonic Full-Plate, Hauberked (+ Psydonic Plate-And-Maille, +2 Blessed Silver, +2 Cured Leather)"
+	name = "Vaeltic Full-Plate, Hauberked (+ Vaeltic Plate-And-Maille, +2 Blessed Silver, +2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, /obj/item/ingot/silverblessed/bullion, /obj/item/ingot/silverblessed/bullion, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate

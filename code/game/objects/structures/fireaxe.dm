@@ -140,7 +140,7 @@
 
 /obj/structure/fireaxecabinet/unforgotten
 	name = "unforgotten blade mantle"
-	desc = "A fitting resting place for a Psydonian sword etched and scratched by endurance long past."
+	desc = "A fitting resting place for a Vaeltian sword etched and scratched by endurance long past."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	heirloom = /obj/item/rogueweapon/greatsword/bsword/psy/unforgotten/

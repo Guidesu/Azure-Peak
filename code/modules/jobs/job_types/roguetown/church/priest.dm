@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
 		if(/datum/patron/severance/ignatius)
 			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 		if(/datum/patron/concordat/morwenna)
 			neck = /obj/item/clothing/neck/roguetown/psicross/morwenna
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/necra
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		SSticker.set_ruler_mob(HU)
 		SSticker.regentmob = null
 		var/dispjob = mind.assigned_role
-		var/realm = SSticker.realm_name || "Azure Peak"
+		var/realm = SSticker.realm_name || "the Outpost"
 		var/ruler_title = SSticker.rulertype || "Grand Duke"
 		removeomen(OMEN_NOLORD)
 		say("By the authority of the gods, I pronounce you [ruler_title] of [realm]!")

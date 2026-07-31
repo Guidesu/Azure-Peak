@@ -35,7 +35,7 @@ Coins are often buried with the dead to pay for the Carriageman's services.
 Zardmen tails are said to bring good luck if burned and scattered as powder.
 Lux from a tiefling is thought to be toxic. It is often purified with silver before transplantation.
 Handwerrans oft suffer bad relations with the rest of the Concordat, as their fixation on rot and decay is looked on increasingly with distrust in the new era of necromancy. Sects of physickers keep increasingly to themselves.
-Handwerra used to carry a divine hammer that gave life to all material things Azure Peak was built upon. It is now lost to history.
+Handwerra used to carry a divine hammer that gave life to all material things the Outpost was built upon. It is now lost to history.
 Carrion-beasts, cheeles, and nagas are sacred to Handwerra. Those who slay them are often punished with terrible plagues.
 Miluše stands for far more than familial love, but frowns upon those who break matrimony.
 What better trick than a bargain that costs the other party more than they know?
@@ -45,7 +45,7 @@ Black cats are symbols of death, and sacred to Morwenna. They stare at souls onl
 Trolls are thought to have once guarded Ignatius's ash-flats. Druids often seek them out. Few return.
 Drow mushroom wines are said to be delicious as long as they are paired with the right antidote.
 Servants of Viator are often capricious and untrustworthy, but all share in their god's hatred for slave-taking.
-Azure Peak used to answer to a grander Auxentian holding, before the reach of that old claim quietly lapsed. It is a shadow of what it once nominally belonged to.
+The Outpost used to answer to a grander Auxentian holding, before the reach of that old claim quietly lapsed. It is a shadow of what it once nominally belonged to.
 Volkovoi was given his hard authority as the winter's own arithmetic; and with it, he claws a share from every hungry season that comes.
 The gods are listening. To utter Aurelian's name too loudly is said to attract her attention - and, some claim, her interest in your soul.
 The Old Kin have many names for themselves. In the frozen, forsaken north, they are revered as sacred animals - the Moose, the Leopard, the Bear, and the Volf.
@@ -68,7 +68,7 @@ A comet capable of sealing an ending beneath it; oh, how graceful His power was!
 Dragons are holy symbols of Morwenna - incarnations of greed and debts long overdue. To slay one is a holy, and often suicidal, task.
 Merchants and the rich are often viewed with suspicion of usury by Vergenmark's harsher fringe. Except, of course, for nobility, who have divine right to wealth.
 The Six will have you think they are enough, and the Unveiled that the Six are hollow; but all Praecursor asks of you is for your faith to ENDURE.
-Vergenmark is home to a radical fringe that venerates PRAECURSOR above all, seeing the Concordat's Six as mortal compromise dressed up as divinity. Azure Peak is home to a small enclave of this doctrine.
+Vergenmark is home to a radical fringe that venerates PRAECURSOR above all, seeing the Concordat's Six as mortal compromise dressed up as divinity. The Outpost is home to a small enclave of this doctrine.
 The eastern desert capitals are prosperous metropolises built around an oasis. Gleaming gold filigree marks white-marble buildings. Grand temples stretch their minarets to the sky in praise of the old Word.
 I AM OLDER THAN AEON. I AM THE ENDING, FATHER OF UNMAKING. I HAVE GONE BY MANY NAMES. SAY THEM AND WEEP, FOR I AM ALL THAT THEY ARE.
 Working yourself to death is considered an act worthy of veneration for Handwerrans - so long as you finish your creation.
@@ -192,12 +192,12 @@ Blacksmith can I have fluted cuirass and steel chausses and plate gauntlets and 
 Via Medulla recently abolished the purchase and trade of slaves in one free city, sparking mass outrage from both eastern slave-trading guilds.
 Cultists of Miluše often take on a new name, called a Nocturne, and shed their past identity. Traditionally, this is to protect one's True Name from a summoned demon, though in more modern times, it serves the secondary benefit of hiding one's identity from a vengeful landlord wondering why their house is on magefire.
 Cultists of Miluše pursue wisdom, study, scripture and divination. Many of Vaeltis's greatest discoveries have come from a moon-sworn sect. Many of Vaeltis's greatest fires have also come from a moon-sworn sect.
-The ruins of Azuria are dotted with ancient, crumbling statues and fixtures. It is thought that the most ancient of these are Aasimar, who one day stopped moving, and never started again.
+The ruins scattered about the Outpost are dotted with ancient, crumbling statues and fixtures. It is thought that the most ancient of these are Aasimar, who one day stopped moving, and never started again.
 Aasimar cannot die of old age. Sometimes, however, they simply give up, and turn fully to stone. It is considered bad luck to deface a statue, as a result.
 Everything these tips tell you is made up.
 Everything these tips tell you is completely true.
 You should move to Kingsfield. It's better there.
-Every yil, Heartfelt hosts a grand banquet for the nobility of Azuria, Rockhill, and the coastal ports to attend. Vergenmark's harsher fringe is credited with thwarting an attempted bombing of its palace, during the previous yil's feast.
+Every yil, Heartfelt hosts a grand banquet of its own custom, drawing gentry from Rockhill and the coastal ports to attend. Vergenmark's harsher fringe is credited with thwarting an attempted bombing of its palace, during the previous yil's feast.
 They say that Heartfelt has fallen to a horde of the living dead, or-.. no, wait, wasn't that the Sanguine Reach?
 Adonai, my Word, why hath you forsaken me?!
 BEFORE THE FINAL BLOW WAS STRUCK, I TORE OPEN A PORTAL IN TYME AND FLUNG THE WORD INTO THE DAES-TO-COME; WHERE MY SIN IS LAW! NOW.. THE LOWLY FOOL SEEKS TO RETURN TO THE PAST, AND UNDO THE EVIL THAT IS THE UNMAKER!
@@ -219,7 +219,7 @@ The body is a fickle instrument, equally resillient and fragile. Water is the be
 Shift-clicking allows you to EXAMINE items, and EXAMINING items allows you to further understand all the MECHANICS tethered to them. Check a bed to figure out how to sleep, check a tree to figure out how to climb, check a steak to figure out how to eat, and much more!
 Within the Town are many posters, banners, and signs. By shift-clicking them, you can further EXAMINE them to get a crash course on many basic MECHANICS. Check the Church's banner to learn about Vaeltis's religions, check the Clinic's posters to learn about how to save a lyfe, check the Guild's signs to learn about how weapons-and-armor work, and much more!
 In lieu of a blacksmith's hammer, one can use a repair kit to patch up their damaged equipment 'on the go'. Three pieces of scrapped iron can be assembled into a kit, and sliding three more pieces into the kit'll ready it for use. As for where the scrap comes from? Just hack an iron weapon to pieces!
-Almost everyone has a tendancy to pack a copy of "Tips, Tricks, & Triumphs: The Novice's Handbook To Azuria" inside their satchel, at the start of each week. Shift-clicking this Azurian booklet will show you its description, which contains the link to Azure Peak's official wikipedia!
+Almost everyone has a tendancy to pack a copy of "Tips, Tricks, & Triumphs: The Novice's Handbook To The Outpost" inside their satchel, at the start of each week. Shift-clicking this booklet will show you its description, which contains the link to the Outpost's official wikipedia!
 Time heals all wounds. Sleeping heals them quicker. Sleeping in a decent bed with a crackling campfire within spitting range heals them even quicker.
 Joapstone, Petriamber, Rosellusk, and Aoetal are not real stones. Do not listen to the rambling of gem-crafting madmen.
 Gemerald skulls are a sign of calamity. Folk-tales mention their service to the darker impulses of the Wayward God.
@@ -251,10 +251,10 @@ Zaelarion, Adonai, the Unmaker. You will know these names, in due tyme.
 Acid is an unnatural ichor that is rarely found elsewhere, beyond the Underdark's most deepest pits. It needs only a moment to turn even the hardiest vessels into naught-but-ash.
 Mount Golgatha once hosted the final battle between the mortal vessels of Custodius and Volkovoi. When His blow cleaved Volkovoi's neck asunder, Custodius sought to bury the decapitated remains within its magmatic depths.
 Mount Decapitation is always blanketed in a thick layer of snow, owing to its elevation. It cradles many secrets and riches beneath the snow, yet plenty of perils as well.
-The Tomb of Alotheos is a massive dungeon, found in the thickets of Mount Decaptation's northern treelines. It is the cause for Azuria's unusually high amount of visiting Adventurers; after all, a seemingly untouched catacomb with hundreds of treasure-stuffed rooms almost sounds too good to be true.
+The Tomb of Alotheos is a massive dungeon, found in the thickets of Mount Decaptation's northern treelines. It is the cause for the Outpost's unusually high amount of visiting Adventurers; after all, a seemingly untouched catacomb with hundreds of treasure-stuffed rooms almost sounds too good to be true.
 No one is actually quite sure as to who Alotheos was, though there are plenty of rumors to pick from. Some say it was an ancient king, others purport it to've been a long-forgotten architect, while a few even dare to say that it was the true mortal name of Morwenna - before her ascension, of course.
-Strange dreams seem to trail all who inhabit Azuria. To hear someone remarking about a 'week' with unusual and unfortunate fates isn't uncommon, but one should be wary to discern whatever facts might've been laced into such fiction.
-Azuria cradles the remains of the Comet - and with it, the power to alter the very fate of Vaeltis itself.
+Strange dreams seem to trail all who inhabit the Outpost. To hear someone remarking about a 'week' with unusual and unfortunate fates isn't uncommon, but one should be wary to discern whatever facts might've been laced into such fiction.
+The Outpost cradles the remains of the Comet - and with it, the power to alter the very fate of Vaeltis itself.
 Some say that the Tribunal-faithful of the future have created TYME-MACHINES, in order to prevent the eternal darkness from coming to pass.
 If you are staying in a wayside inn and two men force entry to your room? Kill them with your crossbow.
 The mad prophet's COMET was sent down to destroy the GREAT WORM, or so the ravings go, and for thousands of yils you will supposedly pay the price.
@@ -291,7 +291,7 @@ Dwarves.
 Dwarves like to blow stuff up!
 You are a knave!
 It's a tough fight ahead, but happiness has to be fought for.
-The Duchy of Azuria beat back the Border Reivers in 1430 at a great cost. Some still lurk in the forests, biding their tyme.
+The Outpost beat back the Border Reivers in 1430 at a great cost. Some still lurk in the forests, biding their tyme.
 You now face divine judgement. May it extend eternally.
 BAITING is a suboptimal combat strategy. Never use it. Instead, stab your foe in the chest until they perish.
 FEINT attack the SKELETONS!

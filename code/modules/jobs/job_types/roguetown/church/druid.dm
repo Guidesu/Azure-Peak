@@ -90,7 +90,7 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	head = /obj/item/clothing/head/roguetown/dendormask
 	wrists = /obj/item/clothing/neck/roguetown/psicross/ignatius
-	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 	backpack_contents = list(/obj/item/ritechalk, /obj/item/storage/keyring/acolyte)
 	H.ambushable = FALSE
 	H.AddComponent(/datum/component/wise_tree_alert)

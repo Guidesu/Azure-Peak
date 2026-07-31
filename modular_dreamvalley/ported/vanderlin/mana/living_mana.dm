@@ -73,10 +73,14 @@
 
 // ---------------------------------------------------------------------------------------
 // Living mobs: innate mana pool that scales with arcane skill.
+//
+// DISABLED: has_initial_mana_pool left FALSE (the /atom/movable default) so no living mob
+// ever gets a pool constructed - no HUD bar, no regen, no overload/backlash. The mana
+// system had real, never-fully-diagnosed bugs (softcap/overload inconsistencies, reported
+// regen not working) and no live content actually depends on it (uses_mana component has
+// zero callers anywhere in this codebase - see use_mana_component.dm's own header). Left
+// in place rather than deleted in case a later pass wants to revisit it properly.
 // ---------------------------------------------------------------------------------------
-
-/mob/living
-	has_initial_mana_pool = TRUE
 
 /mob/living/get_initial_mana_pool_type()
 	return /datum/mana_pool/mob
@@ -86,17 +90,30 @@
 	var/datum/mana_pool/mob/pool = get_mana_pool_lazy()
 	if(istype(pool))
 		pool.recalculate_from_skill()
+		log_world("MANA_DEBUG: [type] post-recalc amount=[pool.amount] max=[pool.maximum_mana_capacity] overload_threshold=[pool.mana_overload_threshold]")
 
 /// A mana pool belonging to a living mob. Scales its max capacity and regen rate with the mob's /datum/skill/magic/arcane level.
 /datum/mana_pool/mob
 	maximum_mana_capacity = CARBON_BASE_MANA_CAPACITY
 	ethereal_recharge_rate = BASE_MANA_REGEN_PER_SECOND
 
+/**
+ * Previously returned maximum_mana_capacity directly ("mobs use their full capacity as their
+ * effective softcap"), which diverged from the real `softcap` var (set in New() to
+ * maximum_mana_capacity * BASE_MANA_SOFTCAP_MULT, 20% of max) that set_max_mana() still reads
+ * and rescales on every recalculate_from_skill() call. That divergence meant needs_processing()/
+ * process()'s softcap-decay branch (amount > get_softcap()) could never trigger below 100% of
+ * max for a mob, while mana_overload_threshold (90% of max) sat far below that - a mob could
+ * accumulate mana all the way up past the overload threshold with the decay-back-down mechanism
+ * never engaging to stop it. Returning the real softcap here instead restores the intended
+ * shape: passive regen fills up to the softcap normally, decay pulls anything above that back
+ * down, and only sustained pressure past the (higher) overload threshold actually backlashes.
+ */
 /datum/mana_pool/mob/get_softcap()
 	var/mob/living/holder = parent
 	if(!istype(holder))
 		return ..()
-	return maximum_mana_capacity // mobs use their full capacity as their effective softcap; overload threshold still gates backlash.
+	return softcap
 
 /**
  * Recalculates maximum_mana_capacity and ethereal_recharge_rate from the parent mob's arcane skill level.

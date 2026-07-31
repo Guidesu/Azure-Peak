@@ -142,7 +142,7 @@
 #define GAMEMODE_VOTE_MIN_PERIOD (30 SECONDS)
 
 /// Gamemode vote pool names (the three pools players vote between).
-#define GAMEMODE_POOL_EXTENDED "PSYDON"
+#define GAMEMODE_POOL_EXTENDED "PRAECURSOR"
 #define GAMEMODE_POOL_GUARANTEED "ASCENDANT"
 #define GAMEMODE_POOL_NOANTAG "TEN"
 

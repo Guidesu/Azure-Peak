@@ -97,22 +97,26 @@
 
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
 	toggle_ai(AI_ON)
-	var/list/around = hearers(vision_range, src)
 
-	for(var/atom/movable/A in around)
-		if(A == src)
+	// saving hearers to an intermediary list disables certain byond optimizations
+	// so we just use it directly in the for loop
+	for(var/mob/living/bystander in hearers(vision_range, src))
+		if(bystander == src)
 			continue
-		if(A in friends)
+		if(bystander in friends)
 			continue
-		if(isliving(A))
-			var/mob/living/M = A
-			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
-				add_enemy(M)
+		if(faction_check_mob(bystander) && attack_same || !faction_check_mob(bystander))
+			add_enemy(bystander)
 
-	for(var/mob/living/simple_animal/hostile/retaliate/H in around)
-		if(faction_check_mob(H) && !attack_same && !H.attack_same)
-			for(var/mob/living/E in resolve_enemies())
-				H.add_enemy(E)
+	if(attack_same)
+		return 0 // we aren't buddies with our faction so we don't warn them about enemies
+	for(var/mob/living/simple_animal/hostile/retaliate/ally in hearers(vision_range, src))
+		if(ally.attack_same)
+			continue
+		if(!faction_check_mob(ally))
+			continue
+		for(var/mob/living/E in resolve_enemies())
+			ally.add_enemy(E)
 	return 0
 
 

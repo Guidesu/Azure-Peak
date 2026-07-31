@@ -48,6 +48,8 @@
 			return /datum/virtue/utility/riding
 		if(TRAIT_OUTDOORSMAN)
 			return /datum/virtue/utility/woodwalker
+		if(TRAIT_KEENEARS)
+			return /datum/virtue/utility/keenears
 	return null
 
 /datum/tat_traits/proc/is_virtue_represented_by_static_trait(virtue_type)
@@ -57,6 +59,7 @@
 		/datum/virtue/combat/combat_virtue,
 		/datum/virtue/utility/riding,
 		/datum/virtue/utility/woodwalker,
+		/datum/virtue/utility/keenears,
 	)
 
 /datum/tat_traits/proc/get_static_trait_for_virtue(virtue_type)
@@ -71,6 +74,16 @@
 			return TAT_TRAIT_SADDLEBORN
 		if(/datum/virtue/utility/woodwalker)
 			return TRAIT_OUTDOORSMAN
+		// keenears' entire effect is added_traits = list(TRAIT_KEENEARS) - no bonus
+		// items/skills/choices like granary, homesteader, intellectual, or
+		// failed_squire (which also grant a static-TAT-covered trait, but bundle
+		// real extra payload on top - those are NOT duplicates and were left alone).
+		// Without this mapping, ensure_virtue_trait_entries() had no static-trait
+		// match for this virtue and fell through to generating its own synthetic
+		// tat_virtue_utility_keenears id - a second "Keen Ears" tile with identical
+		// name/effect sitting right next to the real TRAIT_KEENEARS one in Skills.
+		if(/datum/virtue/utility/keenears)
+			return TRAIT_KEENEARS
 	return null
 
 /datum/tat_traits/proc/is_tat_selectable_virtue(datum/virtue/virtue)
@@ -91,8 +104,14 @@
 	if(!virtue)
 		return 0
 	// Virtues used to be selected outside TAT, often for no build cost. A
-	// modest TAT cost makes their full packages explicit without spending TRI.
-	return max(1, min(4, round(virtue.triumph_cost || 1)))
+	// modest TAT cost makes their full packages explicit. This used to read
+	// virtue.triumph_cost, a var scaled for the (now-removed-from-this-path)
+	// real Triumph currency shop, not for balancing a TAT point budget -
+	// scale instead off how much the virtue actually grants (more
+	// added_traits/added_skills/extra_choices = a heavier package, same
+	// spirit as the old cost without borrowing a currency-shop number).
+	var/weight = length(virtue.added_traits) + length(virtue.added_skills) + (length(virtue.extra_choices) ? 1 : 0)
+	return max(1, min(4, round(weight / 2) || 1))
 
 /// Which direction tab a dynamically-adapted virtue trait should file under.
 /// The 5 virtues backed by a pre-existing static trait (see
@@ -124,7 +143,19 @@
 			return TAT_DIRECTION_SKILLS
 	return TAT_DIRECTION_ORDINARY
 
+// get_entry()/check_trait() call this unconditionally on every lookup, and
+// sanitize() (run after every single add_trait/remove_trait) calls
+// check_trait() once per already-selected trait - so before this guard, a
+// full GLOB.virtues x extra_choices sweep (string-building an id for every
+// choice of every virtue) reran dozens of times per click, and grew with the
+// number of traits already picked. GLOB.virtues/its extra_choices are static
+// round-start data, so once every entry has been populated this has nothing
+// left to do - skip the sweep entirely after the first successful pass.
+GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
+
 /datum/tat_traits/proc/ensure_virtue_trait_entries()
+	if(GLOB.tat_virtue_trait_entries_ready)
+		return TRUE
 	if(!length(GLOB.virtues))
 		return FALSE
 
@@ -153,8 +184,23 @@
 		if(!islist(GLOB.tat_direction_trait_rules[trait_id]))
 			GLOB.tat_direction_trait_rules[trait_id] = TAT_DIRECTION_ENTRY(get_virtue_trait_direction(virtue), list(), 0)
 
-		for(var/choice_index in 1 to length(virtue.extra_choices))
-			var/choice_name = virtue.extra_choices[choice_index]
+		// extra_choices is sometimes a plain list of display-name strings
+		// (e.g. second_chance's list(SC_ROTCURED, SC_PALLID, SC_BLACKBLOOD))
+		// and sometimes an associative list keyed BY the display name (e.g.
+		// noble's list("Gold Ring" = /obj/item/..., ...), same shape every
+		// apply_to_human() in code/modules/virtues/ already expects when it
+		// does extra_choices[choice]). Indexing extra_choices[choice_index]
+		// on an associative list returns the VALUE at that position (an item
+		// type path, a skill path, a sub-list), not the key - so the
+		// `istext(choice_name)` guard below silently `continue`d past every
+		// single choice for every associative-list virtue (Nobility and any
+		// other virtue shaped like it never got ANY TAT trait entry for
+		// their choices). Iterating "in" the list yields keys for
+		// associative lists and plain values for non-associative ones,
+		// which is exactly the polymorphic behavior needed here.
+		var/choice_index = 0
+		for(var/choice_name in virtue.extra_choices)
+			choice_index++
 			if(!istext(choice_name) || !length(choice_name))
 				continue
 			var/choice_trait_id = get_virtue_choice_trait_id(virtue.type, choice_index)
@@ -162,7 +208,17 @@
 				GLOB.tat_direction_trait_rules[choice_trait_id] = TAT_DIRECTION_ENTRY(get_virtue_trait_direction(virtue), list(), 0)
 			if(islist(GLOB.tat_available_traits[choice_trait_id]))
 				continue
-			var/choice_cost = max(0, round(virtue.choice_costs[choice_index] || 0))
+			// choice_costs isn't guaranteed to have one entry per extra_choices item -
+			// several virtues (e.g. /datum/virtue/utility/noble's 19 extra_choices vs its
+			// single-entry choice_costs) only cost-tag their first few choices and expect
+			// the rest to default to free. Indexing straight into choice_costs[choice_index]
+			// throws "list index out of bounds" the moment choice_index exceeds its length,
+			// which happened before the `|| 0` fallback ever got a chance to apply - and
+			// since this runs inside the loop that populates every virtue's TAT trait entry,
+			// one virtue crashing here could silently prevent every virtue processed after
+			// it (in GLOB.virtues iteration order) from ever getting an entry at all.
+			var/raw_choice_cost = (choice_index <= length(virtue.choice_costs)) ? virtue.choice_costs[choice_index] : 0
+			var/choice_cost = max(0, round(raw_choice_cost || 0))
 			var/choice_desc = virtue.choice_tooltips[choice_name] || "A selected bonus for [virtue.name]."
 			var/list/choice_entry = TAT_TRAIT_ENTRY("[virtue.name]: [choice_name]", choice_cost, choice_desc)
 			choice_entry["virtue_type"] = virtue.type
@@ -170,6 +226,7 @@
 			choice_entry["virtue_parent"] = trait_id
 			choice_entry["virtue_choice_index"] = choice_index
 			GLOB.tat_available_traits[choice_trait_id] = choice_entry
+	GLOB.tat_virtue_trait_entries_ready = TRUE
 	return TRUE
 
 /datum/tat_traits/proc/get_virtue_choice_parent(trait_id)
@@ -183,7 +240,21 @@
 			total += get_selected_trait_count(trait_id)
 	return total
 
-/datum/tat_traits/proc/can_select_virtue_choice(trait_id)
+/**
+ * Gates picking a NEW virtue choice (count-before-adding < max_choices). This
+ * must NOT be used to revalidate a choice that is already selected: for a
+ * max_choices=1 virtue, once exactly one choice is selected,
+ * get_selected_virtue_choice_count() == 1 and this correctly returns FALSE
+ * for any *additional* pick - but sanitize() used to call this on every
+ * already-selected trait too, including the one THAT choice itself
+ * contributes to the count. That made the already-selected choice
+ * immediately fail its own re-validation (1 < 1 is FALSE) and sanitize()
+ * would rip it right back out on the very next poll - "picking a choice"
+ * looked like it silently did nothing because it was undone within moments.
+ * See can_select_trait()'s new is_revalidation param and sanitize()'s call
+ * below for the actual fix.
+ */
+/datum/tat_traits/proc/can_select_virtue_choice(trait_id, is_revalidation = FALSE)
 	var/list/entry = get_entry(trait_id)
 	var/parent_trait_id = entry?["virtue_parent"]
 	if(!parent_trait_id)
@@ -194,7 +265,13 @@
 	var/datum/virtue/virtue = GLOB.virtues[virtue_type]
 	if(!virtue)
 		return FALSE
-	return get_selected_virtue_choice_count(parent_trait_id) < virtue.max_choices
+	var/current_count = get_selected_virtue_choice_count(parent_trait_id)
+	// Already-selected choices contribute to their own count - exclude that
+	// contribution when just confirming an existing pick is still valid,
+	// otherwise the count never has room for the choice that IS the count.
+	if(is_revalidation && has_trait(trait_id))
+		current_count -= get_selected_trait_count(trait_id)
+	return current_count < virtue.max_choices
 
 /datum/tat_traits/proc/is_contractor_skill_trait(trait_id)
 	if(trait_id in list(TRAIT_ARCYNE, TRAIT_JACKOFALLTRADES, TAT_TRAIT_MASTER_OF_WANDERING))
@@ -407,10 +484,10 @@
 /datum/tat_traits/proc/is_pq_locked_trait(trait_id)
 	return get_pq_lock_minimum(trait_id) > 0
 
-/datum/tat_traits/proc/can_select_trait(trait_id)
+/datum/tat_traits/proc/can_select_trait(trait_id, is_revalidation = FALSE)
 	if(!check_trait(trait_id))
 		return FALSE
-	if(!can_select_virtue_choice(trait_id))
+	if(!can_select_virtue_choice(trait_id, is_revalidation))
 		return FALSE
 	// Role-gated traits are now selectable in the single archetype.
 	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && owner_build?.has_built_in_weapon_training_foundation())
@@ -454,6 +531,7 @@
 	else
 		selected[trait_id] = TRUE
 	owner_build?.set_dirty()
+	owner_build?.invalidate_active_virtues_cache()
 	return TRUE
 
 /datum/tat_traits/proc/remove_trait(trait_id)
@@ -466,6 +544,7 @@
 	else
 		selected -= trait_id
 	owner_build?.set_dirty()
+	owner_build?.invalidate_active_virtues_cache()
 	return TRUE
 
 /datum/tat_traits/proc/get_bonus_stat_points()
@@ -871,7 +950,7 @@
 			if(!owner_build.directions.trait_requirements_met(trait_id) || owner_build.directions.get_remaining_trait_points(direction) < 0)
 				selected -= trait_id
 				continue
-		if(!can_select_trait(trait_id))
+		if(!can_select_trait(trait_id, is_revalidation = TRUE))
 			selected -= trait_id
 			continue
 		var/count = get_trait_count(trait_id)
@@ -1108,10 +1187,10 @@
 
 	to_chat(H, span_warning("You channel arcyne momentum through your fists. Build momentum with unarmed strikes, then release it through Spellfist techniques."))
 	H.mind.setup_mage_aspects(build_mage_aspects(FALSE))
-	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/fist_of_psydon)
-	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/grasp_of_psydon)
+	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/fist_of_praecursor)
+	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/grasp_of_praecursor)
 	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/blink/shadowstep)
-	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/storm_of_psydon)
+	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/storm_of_praecursor)
 	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/empower_weapon)
 	owner_build?.grant_mind_spell_if_missing(H, /datum/action/cooldown/spell/mending)
 
@@ -1121,11 +1200,11 @@
 
 /datum/tat_traits/proc/get_free_soul_rename_prefix()
 	if(!has_trait(TRAIT_OUTLANDER) && !has_trait(null))
-		return "Straying Free Soul"
+		return
 	if(has_trait(TRAIT_OUTLANDER))
-		return "Wandering Free Soul"
+		return
 	if(has_trait(null))
-		return "Local Free Soul"
+		return
 	return "Free Soul"
 
 /datum/tat_traits/proc/get_free_soul_default_class_name()

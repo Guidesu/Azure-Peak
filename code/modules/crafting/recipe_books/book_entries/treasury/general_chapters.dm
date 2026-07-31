@@ -8,15 +8,15 @@
 /datum/book_entry/treasury_general/charters/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p>Charters protect classes of subject from the Crown's taxation and levies.
-		The Ruler and Regent may suspend or restore a Charter, at the throne, by speaking <b>revise charter</b>. State is shown on the Charters sections of the Notice Board. Note that tax exemption only applies to direct taxation like Contract Levy and Headeater Levy, not indirect taxation like Import or Export tariffs.</p>
+		<p>Charters are old writs and pacts that predate the Outpost's current arrangement, and they've simply never been torn up. Whoever the settlement currently looks to for leadership may suspend or restore a Charter, at the throne, by speaking <b>revise charter</b>. State is shown on the Charters sections of the Notice Board. Note that tax exemption only applies to direct taxation like Contract Levy and Headeater Levy, not indirect taxation like Import or Export tariffs.</p>
 		</div>
 
 		<ul>
-			<li><b>The Great Writ of Azuria</b> - Nobility pays no tax and levy, and cannot be fined.</li>
+			<li><b>The Great Writ</b> - Nobility pays no tax and levy, and cannot be fined.</li>
 			<li><b>The Zenitstadt Compact</b> - The Church, and any declared benefactors of the Church (Whom the Bishop can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li>
 			<li><b>The Vergenmark Accords</b> - Vergenmark's harsher fringe pays no tax and no levy.</li>
 			<li><b>The Golden Bull of Kingsfield</b> - burghers are capped at [GOLDEN_BULL_BURGHER_CAP * 100]% of balance per levy or fine, with a [GOLDEN_BULL_DAILY_FINE_CAP]-mammon ceiling on each fine.</li>
+			<li><b>The Magna Carta</b> - when raised, zeroes every transaction levy outright. Fines remain; only voluntary tribute funds the treasury while it stands.</li>
 		</ul>
 
 		<p>Each Charter has a [DECREE_COOLDOWN / 600]-minute cooldown after revision. No more than one suspension and one restoration may be proclaimed per day.</p>
@@ -30,7 +30,7 @@
 /datum/book_entry/treasury_general/levies/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p>Rates on Taxation and Levies are set by the Steward using the "Adjust Taxes" verb. This can be done even with a ruler / regent in place; any conflict from both parties trying to set rates is an IC issue to resolve. Rates have a one-day cooldown - once set, they lock until the next day.</p>
+		<p>Rates on Taxation and Levies are set by the Steward using the "Adjust Taxes" verb. This can be done even with a settlement leader in place; any conflict from both parties trying to set rates is an IC issue to resolve. Rates have a one-day cooldown - once set, they lock until the next day.</p>
 		</div>
 
 		<h3>Transaction Levies</h3>
@@ -61,7 +61,7 @@
 		</ul>
 
 		<h3>Loans</h3>
-		<p>Crown loans carry fixed simple interest and a stated term. Default marks the subject <b>Debtor</b> until the loan is repaid or forgiven.</p>
+		<p>Treasury loans carry fixed simple interest and a stated term. Default marks the subject <b>Debtor</b> until the loan is repaid or forgiven.</p>
 		<p>Loans are voluntarily entered into, so default is valid grounds for arrest or legal action - though it does not authorise round-removal. Do not abuse ERP protection if you intend to default on a loan.</p>
 		</div>
 	"}
@@ -73,7 +73,7 @@
 /datum/book_entry/treasury_general/outlaws/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p>A subject declared Outlaw by the ruler at the Throne loses all Charter and patronage protection. Their account may be drained in its entirety by fine.</p>
+		<p>A subject declared Outlaw by the settlement's leader at the Throne loses all Charter and patronage protection. Their account may be drained in its entirety by fine.</p>
 		</div>
 	"}
 
@@ -95,8 +95,8 @@
 		<h3>Faction Patronage Writs</h3>
 		<p>Three factions print their own patronage writs at their MEISTER's institutional panel. Each writ is a one use item: hand it to someone for them to claim it by using it in hand. Roster slots are limited per faction and prune when an enrolled member dies or is gone.</p>
 		<ul>
-			<li><b>Writ of Charter</b> (Merchant, up to [PATRON_CAP_MERCHANT]) - the bearer becomes an Agent of the Azurian Trading Company. They are recognized as a Burgher for tax purposes (Golden Bull cap) and will recognize the Company's debtors. Also confers Residency, so they are treated as a towner for round purposes including the towner contract gate.</li>
-			<li><b>Token of the Bathhouse</b> (Bathmaster, up to [PATRON_CAP_BATHHOUSE]) - the bearer becomes an Agent of the Bathhouse. They may pass through the secret tunnel and the northeastern coast smugglers will offer them better prices on Black Market sales. They may also will recognize Bathhouse's debtors. Use discretion when granting to outlaws or wretches - the mark of the Bathhouse is visible, and being seen with it on a fugitive may invite Church or Crown reprisal against the Bathmaster.</li>
+			<li><b>Writ of Charter</b> (Merchant, up to [PATRON_CAP_MERCHANT]) - the bearer becomes an Agent of the Merchant's Company. They are recognized as a Burgher for tax purposes (Golden Bull cap) and will recognize the Company's debtors. Also confers Residency, so they are treated as a towner for round purposes including the towner contract gate.</li>
+			<li><b>Token of the Bathhouse</b> (Bathmaster, up to [PATRON_CAP_BATHHOUSE]) - the bearer becomes an Agent of the Bathhouse. They may pass through the secret tunnel and the northeastern coast smugglers will offer them better prices on Black Market sales. They may also will recognize Bathhouse's debtors. Use discretion when granting to outlaws or wretches - the mark of the Bathhouse is visible, and being seen with it on a fugitive may invite Church or Steward reprisal against the Bathmaster.</li>
 			<li><b>Letter of Benefaction</b> (Bishop / Martyr, up to [PATRON_CAP_CHURCH]) - the bearer becomes a Benefactor of the Church and inherits the Concordat's tax exemption (no direct taxation while the Concordat stands). They may also see the Church's debtors. This is one of the way for the Church main channel to gain lay allies say, in preparation for conflicts.</li>
 		</ul>
 		</div>
@@ -117,11 +117,11 @@
 		</ul>
 
 		<h3>Ending a Shortage Early</h3>
-		<p>A shortage does not have to run its full [ECON_EVENT_DURATION]-day course. The realm can <b>end it</b> by saturating the market. Every unit of an affected good that the Crown <b>exports</b> to a region that demands it - whether - counts toward relief.</p>
+		<p>A shortage does not have to run its full [ECON_EVENT_DURATION]-day course. The Outpost can <b>end it</b> by saturating the market. Every unit of an affected good that the treasury <b>exports</b> to a region that demands it - whether - counts toward relief.</p>
 
 		<p>The associated urgent order is unaffected by a shortage ending</p>
 
-		<p>Once cumulative deliveries cross <b>[round(ECON_EVENT_SATURATION_MULT * 100)]% of the average stockpile limit across the affected goods</b>, the shortage ends immediately: prices snap back to normal, the urgent order (if still standing) is recalled, and SCOM announces the relief. The target is realm-wide and aggregate - the Crown may meet it via any mix of the affected goods, through any channel.</p>
+		<p>Once cumulative deliveries cross <b>[round(ECON_EVENT_SATURATION_MULT * 100)]% of the average stockpile limit across the affected goods</b>, the shortage ends immediately: prices snap back to normal, the urgent order (if still standing) is recalled, and SCOM announces the relief. The target is Outpost-wide and aggregate - the treasury may meet it via any mix of the affected goods, through any channel.</p>
 
 		<p>The <b>Market Scroll</b> at the Nerve Master shows live buy/sell prices for every good in every region.</p>
 		</div>
@@ -138,7 +138,7 @@
 
 		<p><b>Legal Evasion</b>: Avoiding Contract Levy requires membership in a tax-exempt class - nobles, church members, or holders of Church Benefactor status (granted by the Bishop). Note that the Church itself is not expected to adventure without IC reason, so Benefactor status is the practical channel. Tax immunity does not apply to indirect taxes like import tariffs or export duties.</p>
 
-		<p><b>Illegal Evasion</b>: The Merchant can stop paying taxes by toggling the navigator's tax setting and refusing to pay on Goldface sales. The risk of being caught and penalised by the Crown falls on the Merchant. The machines tally dodged amounts, but only the Shophand and the Merchant themselves can view the exact tally - the Crown can only guess and accuse, with or without proof.</p>
+		<p><b>Illegal Evasion</b>: The Merchant can stop paying taxes by toggling the navigator's tax setting and refusing to pay on Goldface sales. The risk of being caught and penalised falls on the Merchant. The machines tally dodged amounts, but only the Shophand and the Merchant themselves can view the exact tally - the settlement's authorities can only guess and accuse, with or without proof.</p>
 		</div>
 	"}
 
@@ -198,8 +198,8 @@
 		<p>Towner contracts are exempt from both the Contract Levy and the Guild's referral cut.</p>
 
 		<ul>
-			<li><b>A Caravan Gone Missing</b> - a smith's wagon was ambushed on the road. The fellowship clears the bandits and the smith recover and opens the strongbox. The fellowship is paid in coins while the smith takes the recovered ingots. Restricted to Azure Grove and the Azurean Coast. Accessible by: Adventurer Blacksmith, Guild Blacksmith, Artificer, Guildmaster.</li>
-			<li><b>A Miner's Lead</b> - a miner has prospected an elemental-guarded vein. The vein erupts only when the miner arrives. The fellowship is paid in coin and the ore is the miner's by agreement. Restricted to the Azurean Coast and the Underdark. Accessible by: Miner, Architect, Guildmaster.</li>
+			<li><b>A Caravan Gone Missing</b> - a smith's wagon was ambushed on the road. The fellowship clears the bandits and the smith recover and opens the strongbox. The fellowship is paid in coins while the smith takes the recovered ingots. Restricted to the Grove and the Coast. Accessible by: Adventurer Blacksmith, Guild Blacksmith, Artificer, Guildmaster.</li>
+			<li><b>A Miner's Lead</b> - a miner has prospected an elemental-guarded vein. The vein erupts only when the miner arrives. The fellowship is paid in coin and the ore is the miner's by agreement. Restricted to the Coast and the Underdark. Accessible by: Miner, Architect, Guildmaster.</li>
 		</ul>
 		"}
 
@@ -245,7 +245,7 @@
 		<h3>Turn-In and the Guild Cut</h3>
 		<p>Completed contracts are turned in by clicking the Ledger while holding the quest scroll. Retrieval items must be dropped on the marked tile in front of the Ledger. On payout:</p>
 		<ul>
-			<li>The Crown's <b>Contract Levy</b> takes its tax cut (Levy Exempt contracts skip this).</li>
+			<li>The treasury's <b>Contract Levy</b> takes its tax cut (Levy Exempt contracts skip this).</li>
 			<li>The Guild takes a <b>[round(GUILD_REFERRAL_FEE_PCT * 100)]% referral fee</b> off the gross, remitted to the active Innkeeper.</li>
 			<li>The remainder is paid to the bearer's account.</li>
 		</ul>
@@ -328,8 +328,8 @@
 		<h3>The Alderman</h3>
 		<p>The Alderman holds two daily authorisation ceilings:</p>
 		<ul>
-			<li><b>Trade</b> - imports and exports spend the Crown's Purse, capped each day by the trade warrant. The Alderman accesses the Trade Scroll through the Assembly noticeboard's <i>Alderman - Trade</i> button without standing at the Nerve Master.</li>
-			<li><b>Defense</b> - commissions and blockade writs use the Burgher Pledge at the Grand Contract Ledger, capped each day by the defense warrant. The Alderman may not draw the Crown's Purse for defense, and may not issue Requests.</li>
+			<li><b>Trade</b> - imports and exports spend the Outpost Treasury, capped each day by the trade warrant. The Alderman accesses the Trade Scroll through the Assembly noticeboard's <i>Alderman - Trade</i> button without standing at the Nerve Master.</li>
+			<li><b>Defense</b> - commissions and blockade writs use the Burgher Pledge at the Grand Contract Ledger, capped each day by the defense warrant. The Alderman may not draw the Outpost Treasury for defense, and may not issue Requests.</li>
 		</ul>
 		<p>Both ceilings refresh at each session's resolution. Unspent authorisation does not carry over.</p>
 
@@ -344,7 +344,7 @@
 /datum/book_entry/treasury_general/zadcote/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p>The Zadcote is used to send messages, parcels, and for the nefarious - bottlebombs to linked zadcages. Each Zadcote is bound to a single faction - the Crown, the Azurian Trading Company, or the Bathhouse and accepts orders only from its faction.</p>
+		<p>The Zadcote is used to send messages, parcels, and for the nefarious - bottlebombs to linked zadcages. Each Zadcote is bound to a single faction - the Stewardry, the Merchant's Company, or the Bathhouse and accepts orders only from its faction.</p>
 
 		<p>A Zadcage can ride in a pack, on a person, or be set down, and the zad will route to it reliably. Each zadcote spawns with its linked zadcages automatically..</p>
 
@@ -366,7 +366,7 @@
 		<p>Once a zad lands, the Zadcage holder has three minutes to write a reply and place a return payload. After three minutes the zad lifts off on its own. Return capacity is equal to the dispatch capacity. <b>Auto-departure carries no message and no package.</b> The last 30 seconds tint the countdown red.</p>
 
 		<h3>Attrition and Zadpacks</h3>
-		<p>A returning zad has a small chance of being lost to exhaustion or harm. Bottlebomb flights are <b>one-way</b> - those zads are never recovered. A faction restocks its Zadcote with a Pack of Trained Zads bought through its supply machine: the ATC's at GOLDFACE, the Stewardry's via the nerve master's import, and the Bathhouse's through BRASSFACE. Strike the pack against the Zadcote to add ten fresh zads to the reserve.</p>
+		<p>A returning zad has a small chance of being lost to exhaustion or harm. Bottlebomb flights are <b>one-way</b> - those zads are never recovered. A faction restocks its Zadcote with a Pack of Trained Zads bought through its supply machine: the Merchant's Company's at GOLDFACE, the Stewardry's via the nerve master's import, and the Bathhouse's through BRASSFACE. Strike the pack against the Zadcote to add ten fresh zads to the reserve.</p>
 
 		<h3>Summoning</h3>
 		<p>A Zadcage holder can actively summon zads from the linked zadcote, so they can send a message or package back proactively. The owner of the zadcote could turn it off if they are low on zads or think the bearer is abusing it.</p>
@@ -374,8 +374,8 @@
 		<h3>Bombing!</h3>
 		<p>The Zadcote can carry bottlebombs as a payload - up to three per dispatch. Bomb can only be sent once every five minutes. The Zadcage holder sees the zads arriving with bombs slung beneath, has time to drop or throw the cage, and may even weaponize it against someone they dislike. Admin logs every bomb dispatch by sender, receiver, and place of detonation.</p>
 
-		<h3>Scrying (ATC and Bathhouse only)</h3>
-		<p>The Merchant's Zadcote and the Bathmaster's Zadcote may scry through the bonded zad on a Zadcage. Scrying draws from a small <b>scrying fund</b> kept by the Zadcote itself. Feed coins of any denomination directly into the Zadcote to add to the fund, each scry deducts five mammon. The Zadcage holder feels arcane energy stir, and the cage glows blue while the scrying is active. The view lasts three minutes, long enough to confirm the holder is safe - or to make trouble. The Steward and Crown have no scrying access through Zadcotes, they must relies on the Court Mage's expertise scrying.</p>
+		<h3>Scrying (Merchant's Company and Bathhouse only)</h3>
+		<p>The Merchant's Zadcote and the Bathmaster's Zadcote may scry through the bonded zad on a Zadcage. Scrying draws from a small <b>scrying fund</b> kept by the Zadcote itself. Feed coins of any denomination directly into the Zadcote to add to the fund, each scry deducts five mammon. The Zadcage holder feels arcane energy stir, and the cage glows blue while the scrying is active. The view lasts three minutes, long enough to confirm the holder is safe - or to make trouble. The Steward has no scrying access through the Stewardry's Zadcote.</p>
 
 		<h3>Spare zadcages & zads</h3>
 		<p>Spare Zadcages cost ten mammon at the can be replaced by purchase from the faction's import machine. Trained zads sell as packs of ten.</p>

@@ -6,6 +6,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
 	var/zone = BODY_ZONE_CHEST
+	///Cached result of check_zone(zone) so we don't need to recompute it every time something checks what zone this organ is in.
+	var/zone_checked
 	var/slot
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
@@ -212,6 +214,8 @@
 			return TRUE
 
 /obj/item/organ/Initialize()
+	if(!zone_checked)
+		zone_checked = check_zone(zone)
 	. = ..()
 	if(accessory_type && owner)
 		set_accessory_type(accessory_type)

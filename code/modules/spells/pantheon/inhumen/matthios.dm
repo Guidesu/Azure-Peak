@@ -18,7 +18,7 @@
 	point_cost = 0
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross)
 
-	spell_flags = SPELL_PSYDON //She does not discriminate
+	spell_flags = SPELL_PRAECURSOR //She does not discriminate
 
 //////////////////////////
 // T0 - Freeman's Tools //

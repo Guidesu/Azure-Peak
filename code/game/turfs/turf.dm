@@ -19,6 +19,9 @@
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 
+	/// world.time this turf's temperature should have fully recovered from weather chill by - see proc/apply_weather_chill().
+	var/weather_chill_recover_at = 0
+
 	var/blocks_air = FALSE
 
 	flags_1 = CAN_BE_DIRTY_1
@@ -613,6 +616,31 @@
 ////////////////////////////////////////////////////
 
 /turf/proc/burn_tile()
+
+/**
+ * Sags this turf's ambient temperature toward a cold weather event (snow, etc) instead of
+ * only nudging whichever mob happens to be standing on it. Without this, turf.temperature
+ * never moves off its T20C default, so handle_environment()'s continuous per-tick pull
+ * toward ambient room temperature fights and dilutes the much rarer (every 3s) direct
+ * weather-to-mob nudge - the net effect reported by players was "snow barely feels cold."
+ *
+ * amount is a negative delta (how much colder), target_floor is the coldest this single
+ * call is allowed to push the turf. Recovery is lazy: recover_ambient_chill() (called from
+ * handle_environment() itself) warms the turf back toward T20C once weather_chill_recover_at
+ * has passed, so a turf that stops seeing weather doesn't stay artificially cold forever.
+ */
+/turf/proc/apply_weather_chill(amount, target_floor, recover_after = 6 SECONDS)
+	if(!amount || temperature <= target_floor)
+		weather_chill_recover_at = world.time + recover_after
+		return
+	temperature = max(temperature + amount, target_floor)
+	weather_chill_recover_at = world.time + recover_after
+
+/// Called from handle_environment() - warms this turf back toward T20C once weather has stopped chilling it.
+/turf/proc/recover_ambient_chill()
+	if(temperature >= T20C || world.time < weather_chill_recover_at)
+		return
+	temperature = min(temperature + 2, T20C)
 
 /turf/proc/is_shielded()
 

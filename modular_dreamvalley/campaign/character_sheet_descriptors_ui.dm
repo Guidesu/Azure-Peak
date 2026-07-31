@@ -22,6 +22,7 @@
 	return ..()
 
 /datum/character_descriptors_ui/proc/get_prefs()
+	RETURN_TYPE(/datum/preferences)
 	return owner?.prefs
 
 /datum/character_descriptors_ui/ui_state(mob/user)

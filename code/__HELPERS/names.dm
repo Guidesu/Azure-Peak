@@ -47,14 +47,9 @@ GLOBAL_VAR(command_name)
 
 /proc/set_station_name(newname)
 	GLOB.station_name = newname
-
-#ifdef ROGUEWORLD
-	world.name = "AZURE PEAK"
-#else
-	world.name = "AZURE PEAK"
-#endif
+	world.name = newname
 #ifdef TESTSERVER
-	world.name = "AZURE PEAK (TESTING)"
+	world.name = "[newname] (TESTING)"
 #endif
 
 

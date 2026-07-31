@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 	name = "Essence Scarcity"
 	description = "The essence harvests in the Terrorbog have faltered - arcane reagents grow dear."
 	announcement = "<font color='#c44'>ESSENCE SCARCITY: Dendor's essence and viscera run short. Wizards fume.</font>"
-	affected_goods = list(TRADE_GOOD_DENDOR_ESSENCE, TRADE_GOOD_VISCERA)
+	affected_goods = list(TRADE_GOOD_IGNATIUS_ESSENCE, TRADE_GOOD_VISCERA)
 	price_mod = ECON_SHORTAGE_CRISIS
 	event_type = ECON_EVENT_SHORTAGE
 

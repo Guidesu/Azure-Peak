@@ -22,7 +22,7 @@
 /datum/action/cooldown/spell/raise_undead_guard/cast(atom/cast_on)
 	. = ..()
 
-	if(istype(get_area(owner), /area/rogue/indoors/ravoxarena))
+	if(istype(get_area(owner), /area/rogue/indoors/auxentiusarena))
 		to_chat(owner, span_userdanger("I reach for outer help, but something rebukes me! This challenge is only for me to overcome!"))
 		reset_spell_cooldown()
 		return FALSE

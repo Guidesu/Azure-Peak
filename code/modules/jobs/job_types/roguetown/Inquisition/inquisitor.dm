@@ -7,9 +7,9 @@
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)		//Would you trust a machine to handle a role that requires non-logical intuition and commanding? Maybe. Could undo this if the community likes it. Purpose-built supermachines sound cool, too.
-	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires your character's patron to be Psydon. This role is explicitly designed to be played by Psydonites, only, and almost everything they have - down to the equipment and statblock - is rooted in Psydonism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
-	tutorial = "You are a puritan of unmatched aptitude, adherent to the Psydonic doctrine and entrusted with the authority to lead a local sect. Otava - the \
-	largest Psydonic kingdom left on this world - has seen it fit to treat you like a silver-tipped olive branch, gifted to Azuria to ward off the encroaching \
+	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires your character's patron to be Psydon. This role is explicitly designed to be played by Vaeltites, only, and almost everything they have - down to the equipment and statblock - is rooted in Vaeltism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
+	tutorial = "You are a puritan of unmatched aptitude, adherent to the Vaeltic doctrine and entrusted with the authority to lead a local sect. Otava - the \
+	largest Vaeltic kingdom left on this world - has seen it fit to treat you like a silver-tipped olive branch, gifted to the outpost to ward off the encroaching \
 	darkness. Tread carefully when pursuing your missives, lest the faithless strap you to the pyre as well."
 	whitelist_req = TRUE
 	cmode_music = 'sound/music/combat_inqcommander.ogg' //Formerly 'sound/music/inquisitorcombat.ogg'.
@@ -93,7 +93,7 @@
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1) //Capped to T1 miracles.
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon_blessed
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor_blessed
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
@@ -122,7 +122,7 @@
 
 /datum/outfit/job/roguetown/inquisitor/inspector/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Relic, 'Stigmata' (Halberd)", "Relic, 'Eucharist' (Rapier)", "Relic, 'Providence' (Siegebow)", "Psydonic Tomahawk", "Psydonic Longsword", "Psydonic Rapier", "Psydonic Cudgel", "Psydonic Flanged Mace", "Your Faith (Expertise With Most Weapons)")
+	var/weapons = list("Relic, 'Stigmata' (Halberd)", "Relic, 'Eucharist' (Rapier)", "Relic, 'Providence' (Siegebow)", "Vaeltic Tomahawk", "Vaeltic Longsword", "Vaeltic Rapier", "Vaeltic Cudgel", "Vaeltic Flanged Mace", "Your Faith (Expertise With Most Weapons)")
 	var/weapon_choice = input(H,"FLOURISH YOUR SILVER.", "WIELD THEM IN HIS NAME.") as anything in weapons
 	switch(weapon_choice)
 		if("Relic, 'Stigmata' (Halberd)")
@@ -141,27 +141,27 @@
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolt/heavy/stake_silver, SLOT_BELT_R, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/heavy/relic, SLOT_BACK_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
-		if("Psydonic Longsword")
+		if("Vaeltic Longsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H))
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/sword/noble(H))
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolt/standard, SLOT_BELT_R, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow, SLOT_BACK_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Psydonic Tomahawk")
+		if("Vaeltic Tomahawk")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/handaxe/psy(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolt/standard, SLOT_BELT_R, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow, SLOT_BACK_L, TRUE)
-		if("Psydonic Rapier")
+		if("Vaeltic Rapier")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier/psy(H))
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/sword/noble(H))
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolt/standard, SLOT_BELT_R, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow, SLOT_BACK_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Psydonic Cudgel")
+		if("Vaeltic Cudgel")
 			H.put_in_hands(new /obj/item/rogueweapon/mace/cudgel/psy(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-		if("Psydonic Flanged Mace")
+		if("Vaeltic Flanged Mace")
 			H.put_in_hands(new /obj/item/rogueweapon/mace/cudgel/flanged/psy(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 		if("Your Faith (Expertise With Most Weapons)")
@@ -178,7 +178,7 @@
 
 /datum/advclass/inquisitor/ordinator
 	name = "Ordinator"
-	tutorial = "Adjudicator-Sergeants, hailing from the neighboring Psydonic Orders. Oft-mistaken for golems due \
+	tutorial = "Adjudicator-Sergeants, hailing from the neighboring Vaeltic Orders. Oft-mistaken for golems due \
 	to the lethargy imposed by their blessed plate armor, these holy knights have forsaken every other pursuit for \
 	a singular purpose: to break the inhumen against their knee."
 	outfit = /datum/outfit/job/roguetown/inquisitor/ordinator
@@ -254,7 +254,7 @@
 
 /datum/outfit/job/roguetown/inquisitor/ordinator/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Relic, 'Apocrypha' (Greatsword)", "Relic, 'Creed & Covenant' (Broadsword + Greatshield)", "Relic, 'Consecratia & Covenant' (Flail + Greatshield)", "Relic, 'Stigmata & Covenant' (Halberd + Greatshield)", "Relic, 'Covenant' (Greatshield) + Psydonic War Axe", "Psydonic Grand Mace", "Psydonic Broadsword", "Psydonic Poleaxe")
+	var/weapons = list("Relic, 'Apocrypha' (Greatsword)", "Relic, 'Creed & Covenant' (Broadsword + Greatshield)", "Relic, 'Consecratia & Covenant' (Flail + Greatshield)", "Relic, 'Stigmata & Covenant' (Halberd + Greatshield)", "Relic, 'Covenant' (Greatshield) + Vaeltic War Axe", "Vaeltic Grand Mace", "Vaeltic Broadsword", "Vaeltic Poleaxe")
 	var/weapon_choice = input(H,"CHOOSE YOUR RELIQUARY PIECE.", "WIELD THEM IN HIS NAME.") as anything in weapons
 	switch(weapon_choice)
 		if("Relic, 'Apocrypha' (Greatsword)")
@@ -278,20 +278,20 @@
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_R, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
-		if("Relic, 'Covenant' (Greatshield) + Psydonic War Axe")
+		if("Relic, 'Covenant' (Greatshield) + Vaeltic War Axe")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/psyaxe(H))
 			H.put_in_hands(new /obj/item/rogueweapon/shield/tower/metal/psy(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
-		if("Psydonic Broadsword")
+		if("Vaeltic Broadsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/kriegmesser/psy(H))
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BACK_R, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
-		if("Psydonic Poleaxe")
+		if("Vaeltic Poleaxe")
 			H.put_in_hands(new /obj/item/rogueweapon/greataxe/steel/knight/psy(H))
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_R, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
-		if("Psydonic Grand Mace")
+		if("Vaeltic Grand Mace")
 			H.put_in_hands(new /obj/item/rogueweapon/mace/goden/psymace(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE)
 

@@ -6,7 +6,7 @@
 
 /datum/map_adjustment/template/byos
 	map_file_name = "byos.dmm"
-	realm_name = "New Kingsfield"
+	realm_name = "New Colony"
 	slot_adjust = list(
 		// /datum/job/roguetown/villager = 42,
 		// /datum/job/roguetown/adventurer = 69
@@ -53,7 +53,7 @@
 		/datum/job/roguetown/beggar = list(display_title = "Stowaway", f_title = "Stowaway"),
 	)
 	tutorial_adjust = list(
-		/datum/job/roguetown/lord = "You have been sent by the queen to oversee the colony of New Kingsfield. CHANGE THIS LATER.",
+		/datum/job/roguetown/lord = "You have been sent by the queen to oversee the colony of New Colony. CHANGE THIS LATER.",
 		/datum/job/roguetown/bandit = "At some point in your lyfe, you'd fallen to the wrong side of the PIRATESHIP!. Whether by butchery or finesse, you're known throughout the SEVEN SEAS. Yet one of many faces in a SALTY PORT tavern, hung up on a wall. A tale told by the locals. Now, you lyve in a PIRATES COVE with your fellows, to avoid an unpleasant end."
 		// /datum/job/roguetown/orphan = "CHANGE THIS LATER!",
 
@@ -70,7 +70,7 @@
 		/datum/job/roguetown/slave,
 		/datum/job/roguetown/adventurer/courtslave,
 		/datum/job/roguetown/dtchaplain,
-		
+
 		// /datum/job/roguetown/adventurer//Adventurers
 		// /datum/job/roguetown/wretch,
 		// /datum/job/roguetown/bandit,
@@ -87,7 +87,7 @@
 		// /datum/job/roguetown/captain,
 		/datum/job/roguetown/marshal, //nyeah fuck you
 
-		//church. 
+		//church.
 		/datum/job/roguetown/keeper, //no beast
 		// /datum/job/roguetown/monk,
 		// /datum/job/roguetown/templar,
@@ -124,7 +124,7 @@
 		/datum/job/roguetown/niteman,
 		// /datum/job/roguetown/tailor,
 		// /datum/job/roguetown/elder,
-		
+
 		// /datum/job/roguetown/villager,
 		// /datum/job/roguetown/farmer,
 		// /datum/job/roguetown/prisonerb,
@@ -139,7 +139,7 @@
 		//inquisition. Fine as is?
 
 		//mercenaries. Fine as is?
-		
+
 		// /datum/job/roguetown/servant,
 		// /datum/job/roguetown/apothecary,
 		// /datum/job/roguetown/churchling,
@@ -148,7 +148,7 @@
 		// /datum/job/roguetown/orphan,
 		// /datum/job/roguetown/prince,
 		// /datum/job/roguetown/shophand,
-		
+
 	)
 
 	threat_regions = list(

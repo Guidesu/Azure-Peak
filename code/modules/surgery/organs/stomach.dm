@@ -73,7 +73,7 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			H.throw_alert("disgust", /atom/movable/screen/alert/disgusted)
 
-/obj/item/organ/stomach/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/stomach/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	var/mob/living/carbon/human/H = owner
 	if(istype(H))
 		H.clear_alert("disgust")
@@ -104,12 +104,12 @@
 	..()
 	adjust_charge(-ETHEREAL_CHARGE_FACTOR)
 
-/obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
+/obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	..()
 	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
 
-/obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
 	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
 	..()

@@ -115,6 +115,9 @@
 			if(L.anti_magic_check())
 				continue
 			apply_frost_stack(L, 1)
+			if(ishuman(L))
+				var/mob/living/carbon/human/human_target = L
+				human_target.adjust_bodytemperature(-8)
 
 /obj/effect/frozen_mist/Destroy()
 	caster = null
@@ -146,6 +149,9 @@
 			if(L.anti_magic_check())
 				continue
 			apply_frost_stack(L, 1)
+			if(ishuman(L))
+				var/mob/living/carbon/human/human_target = L
+				human_target.adjust_bodytemperature(-6)
 			var/actual_damage = rand(5, tick_damage)
 			if(ishuman(L) && ishuman(caster))
 				arcyne_strike(caster, L, null, actual_damage, BODY_ZONE_CHEST, \

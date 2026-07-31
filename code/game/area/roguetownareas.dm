@@ -90,14 +90,14 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(list(/area/rogue/indoors
 	first_time_text = "FORGOTTEN KEEP"
 	droning_sound = 'sound/music/area/morosewaters.ogg'
 
-/area/rogue/indoors/ravoxarena
-	name = "Ravox's Arena"
+/area/rogue/indoors/auxentiusarena
+	name = "Auxentius's Arena"
 	deathsight_message = "an arena of justice"
 
-/area/rogue/indoors/ravoxarena/can_craft_here()
+/area/rogue/indoors/auxentiusarena/can_craft_here()
 	return FALSE
 
-/area/rogue/indoors/ravoxarena/proc/cleanthearena(var/turf/returnzone)
+/area/rogue/indoors/auxentiusarena/proc/cleanthearena(var/turf/returnzone)
 	for(var/obj/item/trash in src)
 		do_teleport(trash, returnzone)
 	GLOB.arenafolks.len = list()
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(list(/area/rogue/indoors
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	converted_type = /area/rogue/indoors/shelter/town
-	first_time_text = "THE CITY OF AZURE PEAK"
+	first_time_text = "THE OUTPOST"
 	town_area = TRUE
 	fog_protected = TRUE
 

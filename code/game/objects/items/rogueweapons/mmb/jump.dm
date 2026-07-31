@@ -114,25 +114,7 @@
 			animate(transform = prev_transform, time = 0)
 
 		is_jumping = TRUE // Mark as jumping to differentiate from being thrown
-		if(jextra)
-			throw_at(A, jrange, 1, src, spin = FALSE)
-			while(src.throwing)
-				sleep(1)
-			throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
-		else
-			throw_at(A, jrange, 1, src, spin = FALSE)
-			while(src.throwing)
-				sleep(1)
-		is_jumping = FALSE
-		if(jroot && !HAS_TRAIT(src, TRAIT_ZJUMP))	//Jesters and werewolves don't get immobilized at all
-			Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))	//Acrobatics get half the time
-			if(HAS_TRAIT(src, TRAIT_DEADITE)) //Non-Jester deadites collapse and fall over on landing, you're literally rotting apart.
-				Knockdown(10)
-		if(isopenturf(src.loc))
-			var/turf/open/T = src.loc
-			if(T.landsound)
-				playsound(T, T.landsound, 100, FALSE)
-			T.Entered(src)
+		throw_at(A, jrange, 1, src, spin = FALSE, callback = CALLBACK(src, PROC_REF(jump_action_land), jextra, jroot))
 	else
 		animate(src, pixel_z = pixel_z + 6, time = 1)
 		animate(pixel_z = prev_pixel_z, transform = turn(transform, pick(-12, 0, 12)), time=2)
@@ -145,6 +127,23 @@
 		for(var/o in mob_offsets)
 			if(mob_offsets[o])
 				reset_offsets(o)
+
+/// Called back once the throw from a jump finishes. Replaces the old `while(throwing) sleep(1)` busy-wait.
+/mob/living/proc/jump_action_land(jextra, jroot)
+	if(QDELETED(src))
+		return
+	if(jextra)
+		throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
+	is_jumping = FALSE
+	if(jroot && !HAS_TRAIT(src, TRAIT_ZJUMP))	//Jesters and werewolves don't get immobilized at all
+		Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))	//Acrobatics get half the time
+		if(HAS_TRAIT(src, TRAIT_DEADITE)) //Non-Jester deadites collapse and fall over on landing, you're literally rotting apart.
+			Knockdown(10)
+	if(isopenturf(src.loc))
+		var/turf/open/T = src.loc
+		if(T.landsound)
+			playsound(T, T.landsound, 100, FALSE)
+		T.Entered(src)
 
 #undef FLIP_DIRECTION_CLOCKWISE
 #undef FLIP_DIRECTION_ANTICLOCKWISE

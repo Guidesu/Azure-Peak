@@ -135,6 +135,26 @@
 /// The limit the human body can take before it starts taking damage from coldness.
 #define BODYTEMP_COLD_DAMAGE_LIMIT			(BODYTEMP_NORMAL - 50)
 
+// 5-tier gamified temperature system (Weather & Temperature Overhaul, Phase 1 port).
+// These sit alongside (not replacing) the raw-Kelvin homeostasis defines above.
+// The 'Normal' band is 250-350K, itself split from the "safe zone" (300-330K) where
+// natural_bodytemperature_stabilization() recovers slowly so states actually linger.
+/// Upper bound of the 'Normal' temperature tier. Above this, you are in Heat level 1/2.
+#define BODYTEMP_NORMAL_MAX 350
+/// Lower bound of the 'Normal' temperature tier. Below this, you are in Cold level 1/2.
+#define BODYTEMP_NORMAL_MIN 250
+/// Heat level 1 is 350-450. Above this you are in heat level 2 (heatstroke risk).
+#define BODYTEMP_HEAT_LEVEL_ONE_MAX			450//(BODYTEMP_NORMAL_MAX + 100)
+/// Cold level 1 is 250-150. Below this you are in cold level 2 (frostbite risk).
+#define BODYTEMP_COLD_LEVEL_ONE_MAX			150	//(BODYTEMP_NORMAL_MIN - 100)
+
+// Temperature state defines, used by the HUD indicator and check_temperature_state()
+#define TEMP_STATE_VERY_COLD 1
+#define TEMP_STATE_COLD 2
+#define TEMP_STATE_NORMAL 3
+#define TEMP_STATE_HOT 4
+#define TEMP_STATE_VERY_HOT 5
+
 
 /// what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
 #define SPACE_HELM_MIN_TEMP_PROTECT			2.0

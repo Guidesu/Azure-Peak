@@ -263,6 +263,9 @@
 				return
 
 	if(thrown_thing)
+		if(src in thrown_thing.buckled_mobs) //Buckling to a chair and then grab-throwing the chair
+			to_chat(src, span_notice("I am not tricky enough to throw [thrown_thing] while I am buckled to it."))
+			return
 		if(rogue_sneaking)
 			mob_timers[MT_FOUNDSNEAK] = world.time
 			update_sneak_invis(reset = TRUE)
@@ -1192,6 +1195,7 @@
 		O.owner = src
 		bodyparts.Remove(X)
 		bodyparts.Add(O)
+		bodyparts_by_zone[O.body_zone] = O
 		if(O.body_part == ARM_LEFT)
 			l_arm_index_next += 2
 			O.held_index = l_arm_index_next //1, 3, 5, 7...

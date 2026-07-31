@@ -278,8 +278,8 @@
 
 /obj/item/rogueweapon/sword/long/ap
 	name = "stecher"
-	desc = "A unique longsword from the highest plateaus of the Azure Peak, sacrificing its cutting edge for a piercing tip that can easily penetrate maille. Tracing its roots to the \
-	late fourteenth century, this noble sidearm - born from Grenzelhoftian imitations of the Otavan estoc - is proudly displayed on Azuria's official coat-of-arms."
+	desc = "A unique longsword from the highest plateaus overlooking the outpost, sacrificing its cutting edge for a piercing tip that can easily penetrate maille. Tracing its roots to the \
+	late fourteenth century, this noble sidearm - born from Grenzelhoftian imitations of the Otavan estoc - is proudly displayed by local landholders."
 	icon_state = "aplongsword"
 	sheathe_icon = "aplongsword"
 	force = 20
@@ -417,7 +417,7 @@
 	name = "\"Adjudicator\""
 	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Ten against the encroaching darkness. The crossguard \
 	bears motif of the Justicar, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'...And upon the \
-	Lands came the DIVINE. In PSYDON's absence, so came the TRUE GODS from their rest. So were THEIR gifts spread across the breadth of the \
+	Lands came the DIVINE. In PRAECURSOR's absence, so came the TRUE GODS from their rest. So were THEIR gifts spread across the breadth of the \
 	world.' </br>'...It was the Justicar's hand that stayed the blade, for He objected to the execution, and demanded that Justice overcome where \
 	Vengeance reigned.'</br>Many tales surround this mythical blade - the demise of the Dark Star and the Mad Duke are often cited as to have been \
 	result of such - with little evidence to support these claims."
@@ -463,8 +463,8 @@
 	max_integrity = 225
 
 /obj/item/rogueweapon/sword/long/etruscan/freifechter
-	name = "psydonic reformist longsword"
-	desc = "A newly-smithed longsword with a reverse hilt in the shape of a reformist psydonian cross. It has the same kind of hand protection of \
+	name = "vaeltic reformist longsword"
+	desc = "A newly-smithed longsword with a reverse hilt in the shape of a reformist vaeltian cross. It has the same kind of hand protection of \
 	an Etruscan longsword. The cross is upright when the weapon is sheathed, bronze pommel reflecting sunlight directly - and it becomes inverted \
 	when drawn, a symbol of distress. Ad pacem servandam."
 	sheathe_icon = "reform"
@@ -565,7 +565,7 @@
 
 /obj/item/rogueweapon/sword/long/judgement
 	name = "\"Judgement\""
-	desc = "A noble longsword, and the cherished heirloom of Azuria's royal bloodline. Its blade is made from Aavnr's finest Vyšvou steel - held \
+	desc = "A noble longsword, and the cherished heirloom of an old bloodline from these highlands. Its blade is made from Aavnr's finest Vyšvou steel - held \
 	from an ornate carved ivory grip from the region's \"Mamük\" megafauna, and decorated with heraldric engravings of silver. ‎</br>‎‎ </br>'When \
 	you stand before thine lord, you cannot say, '..but I was told by others to do thus..', or that, '..virtue was not convenient at the time.' This \
 	will not suffice. Remember that.'"
@@ -669,7 +669,7 @@
 /obj/item/rogueweapon/sword/long/marlin
 	name = "shalal saber"
 	desc = "A large yet surprisingly agile curved blade meant to be wielded in two hands. It has a similar composition to northwestern \
-	Psydonian longswords, but it's notably lighter."
+	Vaeltian longswords, but it's notably lighter."
 	force = 26
 	force_wielded = 31
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
@@ -799,7 +799,7 @@
 	)
 
 /obj/item/rogueweapon/sword/long/exe/psy
-	name = "psydonic executioners sword"
+	name = "vaeltic executioners sword"
 	desc = "A blessed executioner's sword, whose massive silver blade lays mounted atop an intricately-carved \
 	handle. The heft belies a purpose most holy, when hoisted beyond the chopping block; to cleave through hordes, and \
 	to march knee-deep through the dead in search of absolution."
@@ -814,7 +814,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -824,8 +824,8 @@
 /obj/item/rogueweapon/sword/long/exe/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -865,8 +865,8 @@
 /obj/item/rogueweapon/sword/long/exe/berserk/dragonslayer/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 0,\
@@ -875,7 +875,7 @@
 
 /obj/item/rogueweapon/sword/long/oldpsysword
 	name = "enduring longsword"
-	desc = "A steel longsword with an angled crossguard. The lesser clerics of the Psydonic Orders oft-carry these blades, and - though it may not \
+	desc = "A steel longsword with an angled crossguard. The lesser clerics of the Vaeltic Orders oft-carry these blades, and - though it may not \
 	carry the bite of silver - it still humbles men and monsters alike with a well-poised strike."
 	icon_state = "opsysword"
 	sheathe_icon = "opsysword"
@@ -883,8 +883,8 @@
 	is_silver = FALSE
 
 /obj/item/rogueweapon/sword/long/psysword
-	name = "psydonic longsword"
-	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike. </br>'Psydon will \
+	name = "vaeltic longsword"
+	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike. </br>'Praecursor will \
 	deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.'"
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
@@ -900,7 +900,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -910,8 +910,8 @@
 /obj/item/rogueweapon/sword/long/psysword/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -972,7 +972,7 @@
 	)
 
 /obj/item/rogueweapon/sword/long/kriegmesser/psy
-	name = "psydonic broadsword"
+	name = "vaeltic broadsword"
 	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to \
 	save Vaeltis when all else is lost. </br>'Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this \
 	stone, in some angry hand - 'HOPE RIDES ALONE..'"
@@ -991,8 +991,8 @@
 /obj/item/rogueweapon/sword/long/kriegmesser/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1003,7 +1003,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1191,7 +1191,7 @@
 	max_integrity = 75
 
 /obj/item/rogueweapon/sword/short/psy
-	name = "psydonic shortsword"
+	name = "vaeltic shortsword"
 	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric sidearm was born: a shortsword with an unique design, dismissing a crossguard \
 	in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
 	icon_state = "psyswordshort"
@@ -1208,7 +1208,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1218,8 +1218,8 @@
 /obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1740,7 +1740,7 @@
 	)
 
 /obj/item/rogueweapon/sword/rapier/psy
-	name = "psydonic rapier"
+	name = "vaeltic rapier"
 	desc = "A basket-hilted rapier, fitted with a thin blade of pure silver. Such a resplendent weapon not only pierces the gaps within a heathen's \
 	maille, but also serves as the symbol of an Otavan diplomat's authority."
 	icon_state = "silverrapier"
@@ -1758,7 +1758,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -1768,8 +1768,8 @@
 /obj/item/rogueweapon/sword/rapier/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -1795,8 +1795,8 @@
 /obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -1914,7 +1914,7 @@
 	)
 
 /obj/item/rogueweapon/sword/psy
-	name = "psydonic arming sword"
+	name = "vaeltic arming sword"
 	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Vaeltis; \
 	cursed flesh erupts into holy fire, and unholy bravado twists into mortal fear."
 	icon_state = "silversword"
@@ -1934,7 +1934,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -1944,8 +1944,8 @@
 /obj/item/rogueweapon/sword/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\

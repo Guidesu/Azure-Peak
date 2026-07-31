@@ -24,6 +24,10 @@
 	block2add = FOV_BEHIND
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
 	. = ..()
@@ -104,6 +108,10 @@
 	overarmor = FALSE
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HEAD
+	max_heat_protection_temperature = 600
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -140,6 +148,10 @@
 	item_state = "heavyhood"
 	icon_state = "heavyhood"
 	hidesnoutADJ = FALSE
+	cold_protection = HEAD
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/yoruku
 	name = "shadowed hood"
@@ -148,10 +160,10 @@
 
 // Holy Hoods
 
-/obj/item/clothing/head/roguetown/roguehood/astrata
+/obj/item/clothing/head/roguetown/roguehood/auxentius
 	name = "sun hood"
-	desc = "A hood worn by those who favor Astrata, guarding the devoted from Her radiant flames. It is said that \
-	those of particular devotion will often combine their hoods with golden masks that've been sculpted in Her divine \
+	desc = "A hood worn by those who favor Auxentius, guarding the devoted from His radiant flames. It is said that \
+	those of particular devotion will often combine their hoods with golden masks that've been sculpted in His divine \
 	visage, further guarding them from those who'd seek to harm them."
 	color = null
 	icon_state = "astratahood"
@@ -168,9 +180,9 @@
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 
-/obj/item/clothing/head/roguetown/roguehood/astrata/stonekeep
+/obj/item/clothing/head/roguetown/roguehood/auxentius/stonekeep
 	name = "sunwrought visage"
-	desc = "A ceremonial hood that billows around a golden mask, stylized in tribute to Astrata's divine radiance. It \
+	desc = "A ceremonial hood that billows around a golden mask, stylized in tribute to Auxentius's divine radiance. It \
 	is traditionally worn by devoted Acolytes and Priests, though it isn't uncommon to be seen worn by others who \
 	revere the sun above all else."
 	color = null
@@ -419,9 +431,9 @@
 
 //
 
-/obj/item/clothing/head/roguetown/roguehood/psydon
-	name = "psydonian hood"
-	desc = "A hood worn by the adherents of the Holy Psydonic Inquisition, oft-donned in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
+/obj/item/clothing/head/roguetown/roguehood/praecursor
+	name = "vaeltian hood"
+	desc = "A hood worn by the adherents of the Holy Vaeltic Inquisition, oft-donned in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
 	icon_state = "psydonhood"
 	item_state = "psydonhood"
 	color = null
@@ -440,13 +452,13 @@
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 
-/obj/item/clothing/head/roguetown/roguehood/psydon/black
+/obj/item/clothing/head/roguetown/roguehood/praecursor/black
 	name = "blessed hood"
-	desc = "A hood worn by the worshippers of Psydon, oft-donned in conjunction with its matching tabard. Mourn, but do not despair; for even the smallest spark of faith might yet reignite the hearth of this dying world."
+	desc = "A hood worn by the worshippers of Praecursor, oft-donned in conjunction with its matching tabard. Mourn, but do not despair; for even the smallest spark of faith might yet reignite the hearth of this dying world."
 	icon_state = "blackpsydonhood"
 	item_state = "blackpsydonhood"
 
-/obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+/obj/item/clothing/head/roguetown/roguehood/praecursor/confessor
 	name = "confessional hood"
 	desc = "A loose-fitting piece of leatherwear that can be tightened on the move. Keeps rain, blood, and the tears of the sullied away."
 	icon_state = "confessorhood"

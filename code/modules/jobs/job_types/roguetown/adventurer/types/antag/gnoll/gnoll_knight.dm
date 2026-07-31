@@ -32,6 +32,7 @@
 	if(H.mind)
 		H.set_species(/datum/species/gnoll)
 		H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/regenerating/skin/gnoll_armor/knight(H)
+		H.AddComponent(/datum/component/vampiric_striker, 44, 20, 100)
 		neck = /obj/item/storage/belt/rogue/pouch/healing
 		don_pelt(H)
 

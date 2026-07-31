@@ -39,8 +39,8 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon_blessed
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor_blessed
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/clothing/ring/signet/psy
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -81,20 +81,20 @@
 			if("Shamisen")
 				backr = /obj/item/rogue/instrument/shamisen
 
-	var/weapons = list("Psydonic Whip", "Psydonic Shortsword", "Psydonic Cudgel", "Psydonic Flanged Mace")
+	var/weapons = list("Vaeltic Whip", "Vaeltic Shortsword", "Vaeltic Cudgel", "Vaeltic Flanged Mace")
 	var/weapon_choice = tgui_input_list(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.", weapons)
 	switch(weapon_choice)
-		if("Psydonic Whip")
+		if("Vaeltic Whip")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/psywhip_lesser(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
-		if("Psydonic Shortsword")
+		if("Vaeltic Shortsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H))
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/sword(H))
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Psydonic Cudgel")
+		if("Vaeltic Cudgel")
 			l_hand = /obj/item/rogueweapon/mace/cudgel/psy
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-		if("Psydonic Flanged Mace")
+		if("Vaeltic Flanged Mace")
 			l_hand = /obj/item/rogueweapon/mace/cudgel/flanged/psy
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")

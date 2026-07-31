@@ -1,6 +1,6 @@
 
 /datum/loadout_item/psicross
-	name = "Psydonian Cross"
+	name = "Vaeltian Cross"
 	path = /obj/item/clothing/neck/roguetown/psicross
 	sort_category = "Jewelry"
 
@@ -9,15 +9,15 @@
 	path = /obj/item/clothing/neck/roguetown/psicross/aalloy
 
 /datum/loadout_item/psicross/reform
-	name = "Reformist Psydonian Cross"
+	name = "Reformist Vaeltian Cross"
 	path = /obj/item/clothing/neck/roguetown/psicross/reform
 
 /datum/loadout_item/psicross/auxentia
 	name = "Auxentian Psy-Bracelet"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentia
 
-/datum/loadout_item/psicross/astrata
-	name = "Amulet of Astrata"
+/datum/loadout_item/psicross/auxentius
+	name = "Amulet of Auxentius"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius
 	sort_category = "Jewelry"
 
@@ -36,8 +36,8 @@
 	path = /obj/item/clothing/neck/roguetown/psicross/viator
 	sort_category = "Jewelry"
 
-/datum/loadout_item/psicross/dendor
-	name = "Amulet of Dendor"
+/datum/loadout_item/psicross/ignatius
+	name = "Amulet of Ignatius"
 	path = /obj/item/clothing/neck/roguetown/psicross/ignatius
 	sort_category = "Jewelry"
 
@@ -51,8 +51,8 @@
 	path = /obj/item/clothing/neck/roguetown/psicross/handwerra
 	sort_category = "Jewelry"
 
-/datum/loadout_item/psicross/ravox
-	name = "Amulet of Ravox"
+/datum/loadout_item/psicross/auxentius/battle
+	name = "Amulet of Auxentius, Battle"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius
 	sort_category = "Jewelry"
 

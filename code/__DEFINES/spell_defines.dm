@@ -18,9 +18,9 @@
 
 //Gods - Tennite
 #define GLOW_COLOR_UNDIVIDED "#28908C" //Undivided Cyan
-#define GLOW_COLOR_ASTRATA "#F9B362" //Astratan Yellow/Orange
+#define GLOW_COLOR_AUXENTIUS_SUN "#F9B362" //Auxentian Sun Yellow/Orange
 #define GLOW_COLOR_NOC "#9acdff" //Noc's lightbulb
-#define GLOW_COLOR_RAVOX "#7A1E30" //Ravox Crimson
+#define GLOW_COLOR_AUXENTIUS_BATTLE "#7A1E30" //Auxentian Battle Crimson
 #define GLOW_COLOR_MALUM "#884610" //Malum Orange
 
 //Gods - Ascendant
@@ -91,6 +91,15 @@
 #define SPELLCOST_MIRACLE            30
 #define SPELLCOST_MIRACLE_MAJOR      60
 #define SPELLCOST_MIRACLE_LEGENDARY  100 //Highest tiers of miracles should have this.
+
+// Additional mana cost for miracles, scaled roughly 1/3 of the matching devotion tier above -
+// mana is a secondary constraint (see modular_dreamvalley/ported/vanderlin/mana), not meant to
+// be as restrictive as devotion itself.
+#define MANACOST_MIRACLE_ORISON     2
+#define MANACOST_MIRACLE_MINOR      5
+#define MANACOST_MIRACLE            10
+#define MANACOST_MIRACLE_MAJOR      20
+#define MANACOST_MIRACLE_LEGENDARY  35
 
 
 #define SPELLCOST_MINOR_SKILL        30

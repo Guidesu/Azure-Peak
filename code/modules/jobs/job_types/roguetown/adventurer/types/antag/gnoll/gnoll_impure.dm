@@ -34,8 +34,10 @@
 		var/datum/antagonist/new_antag = new /datum/antagonist/gnoll()
 		H.mind.add_antag_datum(new_antag)
 		add_verb(H, /mob/living/carbon/human/proc/gnoll_inspect_skin)
+		add_verb(H, /mob/living/carbon/human/proc/gnoll_toggle_pelt_repair)
 	H.set_species(/datum/species/gnoll)
 	H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/regenerating/skin/gnoll_armor/impure(H)
+	H.AddComponent(/datum/component/vampiric_striker, 44, 20, 60)
 	don_pelt(H)
 
 /obj/item/clothing/suit/roguetown/armor/regenerating/skin/gnoll_armor/impure

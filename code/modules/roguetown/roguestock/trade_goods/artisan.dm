@@ -7,12 +7,12 @@
 	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/grown/log/tree/small
 
-/datum/trade_good/dendor_essence
-	id = TRADE_GOOD_DENDOR_ESSENCE
+/datum/trade_good/ignatius_essence
+	id = TRADE_GOOD_IGNATIUS_ESSENCE
 	name = "Essence of Wilderness"
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
-	base_price = SELLPRICE_DENDOR_ESSENCE
+	base_price = SELLPRICE_IGNATIUS_ESSENCE
 	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/natural/cured/essence
 
@@ -39,7 +39,7 @@
 	name = "Troll Horn"
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
-	base_price = SELLPRICE_DENDOR_ESSENCE
+	base_price = SELLPRICE_IGNATIUS_ESSENCE
 	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/horn
 
@@ -48,6 +48,6 @@
 	name = "Tail Bone"
 	category = TRADE_CATEGORY_ARTISAN
 	behavior = TRADE_BEHAVIOR_RAW
-	base_price = SELLPRICE_DENDOR_ESSENCE
+	base_price = SELLPRICE_IGNATIUS_ESSENCE
 	source_region_id = TRADE_REGION_ROSAWOOD
 	item_type = /obj/item/alch/bone

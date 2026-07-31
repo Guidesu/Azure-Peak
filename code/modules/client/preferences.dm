@@ -46,6 +46,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
 	var/tgui_theme = "azure_default"
+	/// Character Sheet draggable-tile x/y/w/h layout, keyed by storageKey, saved as JSON text.
+	/// DM-side because browser localStorage in the client webview isn't reliably durable
+	/// across sessions - see character_sheet_ui.dm's character_sheet_tile_layout action.
+	var/character_sheet_tile_layout = "{}"
 	var/parchment_skin = "leatherbound"
 	var/statbrowser_theme = "dark"
 	var/windowflashing = TRUE
@@ -238,8 +242,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/taur_type = null
 	var/taur_color = "ffffff"
 
-	/// Assoc list of culinary preferences, where the key is the type of the culinary preference, and value is food/drink typepath
-	var/list/culinary_preferences = list()
+	var/favorite_cuisine = NONE
+	var/favorite_dish = NONE
+	var/favorite_drink = NONE
 
 
 	var/tgui_pref = TRUE
@@ -1379,7 +1384,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			return
 		if("change_culinary_preferences")
 			handle_culinary_topic(user, href_list)
-			show_culinary_ui(user)
 			return
 		if("random")
 			switch(href_list["preference"])
@@ -2773,11 +2777,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	if(charflaws.len)
 		var/obj/item/bodypart/O = character.get_bodypart(BODY_ZONE_R_ARM)
 		if(O)
-			O.drop_limb()
+			O.drop_limb(TRUE)
 			qdel(O)
 		O = character.get_bodypart(BODY_ZONE_L_ARM)
 		if(O)
-			O.drop_limb()
+			O.drop_limb(TRUE)
 			qdel(O)
 		character.regenerate_limb(BODY_ZONE_R_ARM)
 		character.regenerate_limb(BODY_ZONE_L_ARM)
@@ -2919,13 +2923,16 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		character.update_hair()
 		character.update_body_parts(redraw = FALSE)
 
-	character.char_accent = char_accent
+	if(char_accent in GLOB.character_accents)
+		character.char_accent = char_accent
+	else
+		char_accent = "No accent"
+		character.char_accent = char_accent
 
 	// Customizers are already applied inside set_species() (both the species-change path via
 	// on_species_gain, and the same-species short-circuit). Re-applying here doubled the work.
 
-	if(culinary_preferences)
-		apply_culinary_preferences(character)
+	apply_culinary_preferences(character)
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

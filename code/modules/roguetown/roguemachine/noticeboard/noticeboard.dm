@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/noticeboard
 	name = "Notice Board"
-	desc = "A large wooden notice board, carrying postings from all across Azuria. A ZAD perch sits atop it."
+	desc = "A large wooden notice board, carrying postings from all across the outpost. A ZAD perch sits atop it."
 	icon = 'icons/roguetown/structure/noticeboard64.dmi'
 	icon_state = "noticeboard0"
 	density = TRUE
@@ -78,6 +78,7 @@
 /obj/structure/roguemachine/noticeboard/ui_static_data(mob/user)
 	var/list/data = list()
 	data["realm_name"] = SSticker.realm_name
+	data["faction_name"] = SSticker.faction_name || "the Stewardry"
 	data["market_data"] = build_market_data()
 	return data
 

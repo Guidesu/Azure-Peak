@@ -58,6 +58,10 @@
 
 	//messages to send at different severities
 	var/list/weather_messages = list()
+	/// Message sent to outdoor mobs when this weather is picked by the forecast/queued (early warning).
+	var/warning_message
+	/// Message sent to outdoor mobs shortly before the weather actually starts (late warning).
+	var/late_warning_message
 
 	// Sounds to play at different severities - order from lowest to highest
 	var/list/weather_sounds = list()
@@ -91,6 +95,10 @@
 
 	/// The map weather type to target
 	var/target_trait = PARTICLEWEATHER_RAIN
+
+	/// Short tag exposed via GLOB.forecast while this weather is queued (consumed/cleared once it actually starts).
+	/// Used by flavor procs like "look up at the sky" (see mob/living/living.dm) - e.g. "rain", "snow", "fog", "fireflies".
+	var/forecast_tag
 
 	// ==== Dont modify these ====
 
@@ -137,6 +145,19 @@
 	return
 
 /datum/particle_weather/Destroy()
+	// Remove particle effect if it's still ours
+	if(SSParticleWeather?.particleEffect)
+		qdel(SSParticleWeather.particleEffect)
+		SSParticleWeather.particleEffect = null
+
+	// Clear subsystem references so a destroyed weather can't be double-referenced
+	if(SSParticleWeather?.runningWeather == src)
+		SSParticleWeather.runningWeather = null
+
+	if(SSParticleWeather?.queued_weather == src)
+		SSParticleWeather.queued_weather = null
+		SSParticleWeather.queued_weather_start_time = null
+
 	for(var/S in currentSounds)
 		var/datum/looping_sound/looping_sound = currentSounds[S]
 		if(istype(looping_sound))
@@ -152,6 +173,10 @@
  *
  */
 /datum/particle_weather/proc/start(color)
+	if(SSParticleWeather.queued_weather == src)	//Clear ourselves from the queue now that we're actually starting
+		SSParticleWeather.queued_weather = null
+		SSParticleWeather.queued_weather_start_time = null
+
 	if(running)
 		return //some cheeky git has started you early
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
@@ -163,6 +188,9 @@
 
 	//Always step severity to start
 	ChangeSeverity()
+
+	// Forecast is consumed once weather actually begins
+	GLOB.forecast = null
 
 
 /datum/particle_weather/proc/ChangeSeverity()
@@ -198,6 +226,8 @@
  *
  */
 /datum/particle_weather/proc/wind_down()
+	if(QDELETED(src))
+		return
 	severity = 0
 	if(SSParticleWeather.particleEffect)
 		SSParticleWeather.particleEffect.animateSeverity(severityMod())
@@ -339,6 +369,59 @@
 		return
 
 	return TRUE
+
+/// Sent to outdoor players as soon as this weather is queued up by the forecast system (early warning).
+/datum/particle_weather/proc/send_warning()
+	if(!warning_message)
+		return
+
+	for(var/mob/living/M in GLOB.player_list)
+		if(!M.client)
+			continue
+		if(can_weather(M))
+			to_chat(M, warning_message)
+
+/// Sent to outdoor players shortly before the queued weather actually starts (late warning).
+/datum/particle_weather/proc/send_late_warning()
+	if(!late_warning_message)
+		return
+
+	for(var/mob/living/M in GLOB.player_list)
+		if(!M.client)
+			continue
+		if(can_weather(M))
+			to_chat(M, late_warning_message)
+
+// Cuts weather ambience the instant a human crosses an indoor/outdoor area boundary, rather than waiting on the
+// next SSParticleWeather tick to notice they moved.
+/turf/Exit(atom/movable/AM, atom/newLoc)
+	. = ..()
+
+	if(!isturf(newLoc))
+		return
+	if(!ishuman(AM))
+		return
+
+	var/mob/living/victim = AM
+
+	if(!victim.mind)
+		return
+	if(!SSParticleWeather.runningWeather)
+		return
+	if(!SSParticleWeather.runningWeather.running)
+		return
+
+	var/area/current_area = get_area(victim)
+	var/area/next_area = get_area(newLoc)
+
+	if(!current_area || !next_area || current_area == next_area)
+		return
+
+	if(
+		(istype(current_area, /area/rogue/indoors) && istype(next_area, /area/rogue/outdoors)) || \
+		(istype(next_area, /area/rogue/indoors) && istype(current_area, /area/rogue/outdoors))
+	)
+		SSParticleWeather.runningWeather.stop_weather_sound_effect(victim)
 
 /client/proc/run_particle_weather()
 	set category = "Game Master"

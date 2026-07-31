@@ -27,12 +27,12 @@
 		complete_objective()
 
 /datum/objective/wise_trees/proc/complete_objective()
-	to_chat(owner.current, span_greentext("You have created enough wise trees to satisfy Dendor!"))
+	to_chat(owner.current, span_greentext("You have created enough wise trees to satisfy Ignatius!"))
 	owner.current.adjust_triumphs(1)
 	completed = TRUE
-	adjust_storyteller_influence("Dendor", 15)
+	adjust_storyteller_influence("Ignatius", 15)
 	escalate_objective()
 	UnregisterSignal(owner.current, COMSIG_TREE_TRANSFORMED)
 
 /datum/objective/wise_trees/update_explanation_text()
-	explanation_text = "Transform [trees_required] common trees into guardian wise trees using Dendor's blessing."
+	explanation_text = "Transform [trees_required] common trees into guardian wise trees using Ignatius's blessing."

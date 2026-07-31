@@ -244,10 +244,12 @@ export const MarketView = ({
   market,
   headerLabel,
   headerNote,
+  factionName,
 }: {
   market: MarketData | null | undefined;
   headerLabel?: string;
   headerNote?: string;
+  factionName?: string;
 }) => {
   const categories: MarketCategory[] = market?.categories ?? [];
 
@@ -360,10 +362,10 @@ export const MarketView = ({
         {loreOpen && (
           <div style={{ ...dashedFrameStyle, marginTop: 8 }}>
             <p style={{ margin: '0 0 6px 0' }}>
-              Wares lifted from the Navigator pass into the warehouses of the
-              Azurian Trading Company, sorted by category. Each week the factors
-              weigh which goods are scarce and which lie in glut, and the
-              Navigator&apos;s payouts shift accordingly.
+              Wares lifted from the Navigator pass into the warehouses of{' '}
+              {factionName || 'the Stewardry'}, sorted by category. Each week
+              the factors weigh which goods are scarce and which lie in glut,
+              and the Navigator&apos;s payouts shift accordingly.
             </p>
             <p style={{ margin: '0 0 6px 0' }}>
               <b style={{ color: SEAL_GREEN }}>Saturation</b> tracks the
@@ -515,5 +517,8 @@ export const MarketView = ({
 };
 
 export const MarketSection = ({ data }: { data: NoticeboardData }) => (
-  <MarketView market={data.market_data} />
+  <MarketView
+    market={data.market_data}
+    factionName={data.faction_name}
+  />
 );

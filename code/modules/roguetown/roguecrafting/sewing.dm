@@ -615,41 +615,41 @@
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/psydonold
-	name = "tabard, psydonian devotee"
+	name = "tabard, vaeltian devotee"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/devotee/psydon)
+	result = list(/obj/item/clothing/cloak/tabard/devotee/praecursor)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/psydon
-	name = "tabard, psydonic"
+	name = "tabard, vaeltic"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/psydontabard/black)
+	result = list(/obj/item/clothing/cloak/tabard/praecursortabard/black)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/psydonhood
-	name = "hood, psydonic"
+	name = "hood, vaeltic"
 	category = "Hoods"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/psydon/black)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/praecursor/black)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/psydon
-	name = "robe, psydonic"
+	name = "robe, vaeltic"
 	category = "Tabards"
 	result = list(/obj/item/clothing/cloak/absolutionistrobe/black)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/sewing/psydoninq
-	name = "tabard, psydonian orthodoxist"
+/datum/crafting_recipe/roguetown/sewing/vaeltinq
+	name = "tabard, vaeltian orthodoxist"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/psydontabard)
+	result = list(/obj/item/clothing/cloak/tabard/praecursortabard)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 4
@@ -670,9 +670,9 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 4
 /datum/crafting_recipe/roguetown/sewing/psydonhoodinq
-	name = "hood, psydonian orthodoxist"
+	name = "hood, vaeltian orthodoxist"
 	category = "Hoods"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/psydon)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/praecursor)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 4
@@ -680,7 +680,7 @@
 /datum/crafting_recipe/roguetown/sewing/astrata
 	name = "tabard, astratan devotee"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/devotee/astrata)
+	result = list(/obj/item/clothing/cloak/tabard/devotee/auxentius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -703,7 +703,7 @@
 /datum/crafting_recipe/roguetown/sewing/dendor
 	name = "tabard, dendorite devotee"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/devotee/dendor)
+	result = list(/obj/item/clothing/cloak/tabard/devotee/ignatius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -807,7 +807,7 @@
 /datum/crafting_recipe/roguetown/sewing/ravox
 	name = "tabard, ravoxian devotee"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/devotee/ravox)
+	result = list(/obj/item/clothing/cloak/tabard/devotee/auxentius/battle)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -871,17 +871,17 @@
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/surcoatgoldast
-	name = "surcoat of the golden order, astratan"
+	name = "surcoat of the golden order, auxentian"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/stabard/crusader/astrata)
+	result = list(/obj/item/clothing/cloak/tabard/stabard/crusader/auxentius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/surcoatsilverast
-	name = "surcoat of the silver order, astratan"
+	name = "surcoat of the silver order, auxentian"
 	category = "Tabards"
-	result = list(/obj/item/clothing/cloak/tabard/stabard/crusader/t/astrata)
+	result = list(/obj/item/clothing/cloak/tabard/stabard/crusader/t/auxentius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -2065,14 +2065,14 @@
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/caparison/psy
-	name = "psydonite caparison"
+	name = "vaeltite caparison"
 	display_category = ITEM_CAT_ARMOR_BARDING
 	result = list(/obj/item/caparison/psy)
 
-/datum/crafting_recipe/roguetown/sewing/caparison/astrata
-	name = "astratan caparison"
+/datum/crafting_recipe/roguetown/sewing/caparison/auxentius
+	name = "auxentian caparison"
 	display_category = ITEM_CAT_ARMOR_BARDING
-	result = list(/obj/item/caparison/astrata)
+	result = list(/obj/item/caparison/auxentius)
 
 /datum/crafting_recipe/roguetown/sewing/caparison/eora
 	name = "eoran caparison"
@@ -2261,9 +2261,9 @@
 /datum/crafting_recipe/roguetown/sewing/astratahoodstonekeep
 	name = "turn sun hood into sunwrought visage"
 	category = "Misc"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/astrata/stonekeep)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/auxentius/stonekeep)
 	reqs = list(
-		/obj/item/clothing/head/roguetown/roguehood/astrata = 1,
+		/obj/item/clothing/head/roguetown/roguehood/auxentius = 1,
 		/obj/item/clothing/mask/rogue/facemask/goldmask = 1
 	)
 	skillcraft = /datum/skill/magic/holy //Uniquely requires a Holy skill to craft, to encourage its stricter use amongst Acolytes and Clerics.
@@ -2272,9 +2272,9 @@
 /datum/crafting_recipe/roguetown/sewing/astratahoodstonekeepalt
 	name = "turn sun hood into sunwrought visage"
 	category = "Misc"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/astrata/stonekeep)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/auxentius/stonekeep)
 	reqs = list(
-		/obj/item/clothing/head/roguetown/roguehood/astrata = 1,
+		/obj/item/clothing/head/roguetown/roguehood/auxentius = 1,
 		/obj/item/clothing/mask/rogue/facemask/goldmaskc = 1
 	)
 	skillcraft = /datum/skill/magic/holy
@@ -2283,9 +2283,9 @@
 /datum/crafting_recipe/roguetown/sewing/astratahoodstonekeeptri
 	name = "turn sun hood into sunwrought visage"
 	category = "Misc"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/astrata/stonekeep)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/auxentius/stonekeep)
 	reqs = list(
-		/obj/item/clothing/head/roguetown/roguehood/astrata = 1,
+		/obj/item/clothing/head/roguetown/roguehood/auxentius = 1,
 		/obj/item/clothing/mask/rogue/facemask/goldmask/triumph = 1
 	)
 	skillcraft = /datum/skill/magic/holy
@@ -2294,9 +2294,9 @@
 /datum/crafting_recipe/roguetown/sewing/astratahoodstonekeeptrialt
 	name = "turn sun hood into sunwrought visage"
 	category = "Misc"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/astrata/stonekeep)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/auxentius/stonekeep)
 	reqs = list(
-		/obj/item/clothing/head/roguetown/roguehood/astrata = 1,
+		/obj/item/clothing/head/roguetown/roguehood/auxentius = 1,
 		/obj/item/clothing/mask/rogue/facemask/goldmaskc/triumph = 1
 	)
 	skillcraft = /datum/skill/magic/holy

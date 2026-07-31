@@ -7,6 +7,7 @@
 	var/tmp/dreamvalley_tat_join_pending = FALSE
 
 /datum/preferences/proc/dreamvalley_get_tat_build()
+	RETURN_TYPE(/datum/tat_build)
 	if(!tat_build)
 		tat_build = new(src)
 	else

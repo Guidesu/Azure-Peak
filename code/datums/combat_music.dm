@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	desc = ""
 	shortname = "Adjudicator"
 	credits = "Chivalry 2 OST: Duty and Honor II (with Ryan Patrick Buckley)"
-	musicpath = list('sound/music/templarofpsydonia.ogg')
+	musicpath = list('sound/music/templarofvaeltis.ogg')
 
 /datum/combat_music/adventurer_default
 	name = "Adventurer Default (Warriors)"
@@ -96,10 +96,10 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "DON'T BLINK /// OUTCOME MEMORIES - LAST MAN STANDING"
 	musicpath = list('sound/music/combat_savior.ogg')
 
-/datum/combat_music/astrata
-	name = "Astratan Light"
+/datum/combat_music/auxentius
+	name = "Auxentian Light"
 	desc = ""
-	shortname = "Astrata"
+	shortname = "Auxentius"
 	credits = "T-87 SULFURHEAD - Heliotrix (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/cmode/church/combat_astrata.ogg')
 
@@ -183,10 +183,10 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	shortname = "Deadite"
 	musicpath = list('sound/music/combat_weird.ogg')
 
-/datum/combat_music/dendor
-	name = "Dendorite Clergy (Warden)"
+/datum/combat_music/ignatius
+	name = "Ignatian Clergy (Warden)"
 	desc = ""
-	shortname = "Dendor"
+	shortname = "Ignatius"
 	credits = "T87-Sulfurhead - Metamorphosis (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/cmode/garrison/combat_warden.ogg')
 
@@ -564,7 +564,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 
 /datum/combat_music/dying_world
 	name = "Chant Against a Dying World (Neu Verevolf)"
-	desc = "\"DENDOR! FATHER! SPIRIT GUIDE! LET ME-- VINDICATE MY PRIDE!\""
+	desc = "\"IGNATIUS! FATHER! SPIRIT GUIDE! LET ME-- VINDICATE MY PRIDE!\""
 	shortname = "Dying World (VOCAL)"
 	credits = "T-87 SULFURHEAD - CHANT AGAINST A DYING WORLD (https://www.youtube.com/watch?v=uf3Iqn-i6EM)"
 	musicpath = list('sound/music/cmode/antag/combat_dying_world.ogg')

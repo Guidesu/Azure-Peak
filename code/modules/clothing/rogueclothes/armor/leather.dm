@@ -28,6 +28,10 @@
 	detail_tag = "_detail"
 	color = CLOTHING_WHITE
 	detail_color = CLOTHING_BLACK
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/winterjacket/update_icon()
 	cut_overlays()
@@ -57,6 +61,10 @@
 	name = "artificer jacket"
 	icon_state = "artijacket"
 	desc = "A thick leather jacket adorned with fur and cog decals. The height of Heartfelt fashion."
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/cuirass
 	name = "leather cuirass"
@@ -73,7 +81,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/warden
 	name = "forester's armor"
-	desc = "A hardened leather harness with a large pauldron worn over a maille coat, associated with the Azurian wardens."
+	desc = "A hardened leather harness with a large pauldron worn over a maille coat, associated with the outpost's wardens."
 	icon = 'icons/roguetown/clothing/special/warden.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
 	icon_state = "forestleather"
@@ -114,6 +122,10 @@
 	icon_state = "cuirbouilli"
 	item_state = "cuirbouilli"
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 30
+	cold_protection = CHEST
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/cuirbouilli
 	name = "cuir-bouilli vest"
@@ -144,6 +156,10 @@
 	armor = ARMOR_LEATHER
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	color = "#7D6653"
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
 	name = "confessional coat"
@@ -162,6 +178,10 @@
 	icon_state = "pangolin"
 	item_state = "pangolin"
 	color = null
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
 	name = "fur-woven hatanga coat"
@@ -169,6 +189,10 @@
 	icon_state = "hatangafur"
 	item_state = "hatangafur"
 	color = null
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/gravecoat
 	name = "gravetender's coat"
@@ -217,6 +241,10 @@
 	detail_tag = "_detail"
 	color = "#5E4440"
 	detail_color = "#c08955"
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter/update_icon()
 	cut_overlays()
@@ -321,7 +349,10 @@
 	sleeved = 'icons/roguetown/clothing/onmob/armor.dmi'
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = NON_DWARVEN_RACE_TYPES
-
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	name = "hand's vest"

@@ -1,7 +1,7 @@
-/datum/action/cooldown/spell/storm_of_psydon
+/datum/action/cooldown/spell/storm_of_praecursor
 	button_icon = 'icons/mob/actions/classuniquespells/spellfist.dmi'
 	button_icon_state = "storm_of_psydon"
-	name = "Storm of Psydon"
+	name = "Storm of Praecursor"
 	desc = "Channel mana into your legs to leap toward a target from a distance, closing the gap rapidly. \
 		Then, channel the mana into your fists to unleash a storm of blows. \
 		Requires 7 Momentum: 3 punches + 1 kick (20 damage each). \
@@ -46,7 +46,7 @@
 	var/min_momentum = 7
 	var/empowered_momentum = 10
 
-/datum/action/cooldown/spell/storm_of_psydon/can_cast_spell(feedback = TRUE)
+/datum/action/cooldown/spell/storm_of_praecursor/can_cast_spell(feedback = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -60,11 +60,11 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/spell/storm_of_psydon/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/storm_of_praecursor/before_cast(atom/cast_on)
 	. = ..()
 	. |= SPELL_NO_IMMEDIATE_COOLDOWN
 
-/datum/action/cooldown/spell/storm_of_psydon/cast(atom/cast_on)
+/datum/action/cooldown/spell/storm_of_praecursor/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
@@ -182,12 +182,12 @@
 	StartCooldown(get_adjusted_cooldown())
 	return TRUE
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/release_momentum(mob/living/carbon/human/H, datum/status_effect/buff/arcyne_momentum/M, stacks)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/release_momentum(mob/living/carbon/human/H, datum/status_effect/buff/arcyne_momentum/M, stacks)
 	if(M)
 		M.consume_all_stacks()
 	to_chat(H, span_notice("All [stacks] momentum released into the storm!"))
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/combo_valid(mob/living/carbon/human/user, mob/living/target)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/combo_valid(mob/living/carbon/human/user, mob/living/target)
 	if(QDELETED(user) || QDELETED(target))
 		return FALSE
 	if(user.stat != CONSCIOUS)
@@ -196,7 +196,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/cling(mob/living/carbon/human/user, mob/living/target)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/cling(mob/living/carbon/human/user, mob/living/target)
 	if(get_dist(user, target) <= 1)
 		return TRUE
 	var/turf/user_turf = get_turf(user)
@@ -210,11 +210,11 @@
 	step(user, dir_to)
 	return get_dist(user, target) <= 1
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/combo_cleanup(obj/effect/after_image/shadow_left, obj/effect/after_image/shadow_right)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/combo_cleanup(obj/effect/after_image/shadow_left, obj/effect/after_image/shadow_right)
 	QDEL_NULL(shadow_left)
 	QDEL_NULL(shadow_right)
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/create_shadows(mob/living/carbon/human/user, mob/living/target)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/create_shadows(mob/living/carbon/human/user, mob/living/target)
 	var/turf/user_turf = get_turf(user)
 
 	var/obj/effect/after_image/shadow_left = new(user_turf, 0, 0, 0, 0, 0, 0, 0)
@@ -239,7 +239,7 @@
 
 	return list(shadow_left, shadow_right)
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/oraora(mob/living/carbon/human/user, mob/living/target)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/oraora(mob/living/carbon/human/user, mob/living/target)
 	user.changeNext_move(CLICK_CD_MELEE * 3)
 
 	var/target_zone = user.zone_selected || BODY_ZONE_CHEST	// Every punch lands where the caster aimed.
@@ -281,7 +281,7 @@
 				combo_broken = TRUE
 				break
 			hit_num++
-			arcyne_strike(user, target, null, punch_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Psydon (Punch [hit_num])", exact_zone = TRUE)
+			arcyne_strike(user, target, null, punch_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Praecursor (Punch [hit_num])", exact_zone = TRUE)
 			playsound(get_turf(target), pick('sound/combat/hits/punch/punch_hard (1).ogg','sound/combat/hits/punch/punch_hard (2).ogg','sound/combat/hits/punch/punch_hard (3).ogg'), 80, TRUE)
 			animate(shadow_left, pixel_x = -10 + lunge_px, pixel_y = 4 + lunge_py, time = 0.5, easing = EASE_OUT)
 			animate(pixel_x = -10, pixel_y = 4, time = 0.5, easing = EASE_IN)
@@ -293,15 +293,15 @@
 	if(!combo_broken && cling(user, target) && combo_valid(user, target))
 		if(!spell_guard_check(target, FALSE, deflected ? null : user))
 			user.emote("attack", forced = TRUE)
-			arcyne_strike(user, target, null, kick_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Psydon (Kick)", exact_zone = TRUE)
+			arcyne_strike(user, target, null, kick_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Praecursor (Kick)", exact_zone = TRUE)
 			playsound(get_turf(target), pick('sound/combat/hits/blunt/genblunt (1).ogg','sound/combat/hits/blunt/genblunt (2).ogg','sound/combat/hits/blunt/genblunt (3).ogg'), 100, TRUE)
 			var/atom/throw_target = get_edge_target_turf(user, get_dir(user, target))
 			target.throw_at(throw_target, 3, 4)
 
 	combo_cleanup(shadow_left, shadow_right)
-	log_combat(user, target, "used Storm of Psydon (full)")
+	log_combat(user, target, "used Storm of Praecursor (full)")
 
-/datum/action/cooldown/spell/storm_of_psydon/proc/oraora_lame(mob/living/carbon/human/user, mob/living/target)
+/datum/action/cooldown/spell/storm_of_praecursor/proc/oraora_lame(mob/living/carbon/human/user, mob/living/target)
 	user.changeNext_move(CLICK_CD_MELEE * 2)
 
 	var/target_zone = user.zone_selected || BODY_ZONE_CHEST
@@ -318,16 +318,16 @@
 			deflected = TRUE
 			combo_broken = TRUE
 			break
-		arcyne_strike(user, target, null, punch_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Psydon (Punch [i])", exact_zone = TRUE)
+		arcyne_strike(user, target, null, punch_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Praecursor (Punch [i])", exact_zone = TRUE)
 		playsound(get_turf(target), pick('sound/combat/hits/punch/punch_hard (1).ogg','sound/combat/hits/punch/punch_hard (2).ogg','sound/combat/hits/punch/punch_hard (3).ogg'), 80, TRUE)
 
 	sleep(1)
 	if(!combo_broken && cling(user, target) && combo_valid(user, target))
 		if(!spell_guard_check(target, FALSE, deflected ? null : user))
 			user.emote("attack", forced = TRUE)
-			arcyne_strike(user, target, null, kick_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Psydon (Kick)", exact_zone = TRUE)
+			arcyne_strike(user, target, null, kick_damage, target_zone, BCLASS_BLUNT, spell_name = "Storm of Praecursor (Kick)", exact_zone = TRUE)
 			playsound(get_turf(target), pick('sound/combat/hits/blunt/genblunt (1).ogg','sound/combat/hits/blunt/genblunt (2).ogg','sound/combat/hits/blunt/genblunt (3).ogg'), 100, TRUE)
 			var/atom/throw_target = get_edge_target_turf(user, get_dir(user, target))
 			target.throw_at(throw_target, 3, 4)
 
-	log_combat(user, target, "used Storm of Psydon (lame)")
+	log_combat(user, target, "used Storm of Praecursor (lame)")

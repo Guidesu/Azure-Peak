@@ -2,54 +2,43 @@ import { type ReactNode, useEffect, useRef, useState } from 'react';
 
 type Rect = { x: number; y: number; w: number; h: number };
 
-const STORAGE_PREFIX = 'dreamvalley_tile_layout_';
-
-const loadRect = (storageKey: string, fallback: Rect): Rect => {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_PREFIX + storageKey);
-    if (!raw) return fallback;
-    const parsed = JSON.parse(raw);
-    if (
-      typeof parsed?.x === 'number' &&
-      typeof parsed?.y === 'number' &&
-      typeof parsed?.w === 'number' &&
-      typeof parsed?.h === 'number'
-    ) {
-      return parsed;
-    }
-  } catch {
-    // ignore malformed/missing storage, fall through to default
-  }
-  return fallback;
-};
-
-const saveRect = (storageKey: string, rect: Rect): void => {
-  try {
-    window.localStorage.setItem(STORAGE_PREFIX + storageKey, JSON.stringify(rect));
-  } catch {
-    // localStorage unavailable (e.g. private mode) - positions just won't persist
-  }
-};
-
 const MIN_W = 200;
 const MIN_H = 120;
 
 /**
- * A free-form, drag-by-header + resize-by-corner tile. Position/size persist
- * to localStorage per `storageKey` so a player's layout survives reopening
- * the sheet. Parent container must be `position: relative`.
+ * A free-form, drag-by-header + resize-by-corner tile. Position/size are
+ * owned by the parent (CharacterSheet) and persisted DM-side in the
+ * player's preferences - browser localStorage was tried first but isn't
+ * reliably durable across sessions in the BYOND client webview, so the
+ * parent now passes down the last-known rect and a save callback instead of
+ * this component reading/writing storage itself. Parent container must be
+ * `position: relative`.
  */
 export const DraggableTile = (props: {
   storageKey: string;
   title: string;
   defaultRect: Rect;
+  savedRect?: Rect;
+  onRectChange: (storageKey: string, rect: Rect) => void;
   className?: string;
   children: ReactNode;
 }) => {
-  const { storageKey, title, defaultRect, className, children } = props;
-  const [rect, setRect] = useState<Rect>(() => loadRect(storageKey, defaultRect));
+  const { storageKey, title, defaultRect, savedRect, onRectChange, className, children } = props;
+  const [rect, setRect] = useState<Rect>(savedRect || defaultRect);
   const dragRef = useRef<{ startX: number; startY: number; origX: number; origY: number } | null>(null);
   const resizeRef = useRef<{ startX: number; startY: number; origW: number; origH: number } | null>(null);
+
+  // The backend's saved layout can arrive after first render (ui_data is
+  // async) - adopt it once it shows up, but only if the player hasn't
+  // already started dragging/resizing this tile this session.
+  const adoptedSavedRect = useRef(false);
+  useEffect(() => {
+    if (savedRect && !adoptedSavedRect.current) {
+      adoptedSavedRect.current = true;
+      setRect(savedRect);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savedRect]);
 
   useEffect(() => {
     const onMouseMove = (evt: MouseEvent) => {
@@ -75,7 +64,7 @@ export const DraggableTile = (props: {
         dragRef.current = null;
         resizeRef.current = null;
         setRect((prev) => {
-          saveRect(storageKey, prev);
+          onRectChange(storageKey, prev);
           return prev;
         });
       }
@@ -87,7 +76,7 @@ export const DraggableTile = (props: {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, [storageKey]);
+  }, [storageKey, onRectChange]);
 
   const startDrag = (evt: React.MouseEvent) => {
     evt.preventDefault();

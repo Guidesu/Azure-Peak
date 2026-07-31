@@ -76,6 +76,7 @@ type Tallies = {
 };
 
 type Data = {
+  realm_name: string;
   day: number;
   session_number: number;
   next_resolution: string;
@@ -257,7 +258,8 @@ export const CityAssembly = () => {
         <div style={pageStyle}>
           <div style={titleStyle}>The City Assembly</div>
           <div style={subtitleStyle}>
-            Voice of the respectable citizenry of Azuria
+            Voice of the respectable citizenry of{' '}
+            {data.realm_name || 'the Outpost'}
           </div>
           <hr style={rulerStyle} />
 

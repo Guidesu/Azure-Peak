@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/warscholar
 	name = "Naledi Hierophant"
-	tutorial = "You are a Naledi Hierophant, the most orthodox of all Naledian Magi to an outsider. You practice the art of Exomagic - channeling mana outward for both destructive and constructive purposes. Many of your kinds prioritize enhancing the potential of their teammates from behind, believing in the superiority and potent of the humen body. Some however, may take a more direct approach to the question of how to lay low Psydon's foes - incineration and annihilation."
+	tutorial = "You are a Naledi Hierophant, the most orthodox of all Naledian Magi to an outsider. You practice the art of Exomagic - channeling mana outward for both destructive and constructive purposes. Many of your kinds prioritize enhancing the potential of their teammates from behind, believing in the superiority and potent of the humen body. Some however, may take a more direct approach to the question of how to lay low Praecursor's foes - incineration and annihilation."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
@@ -148,12 +148,12 @@
 	if(H.mind)
 		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
 		detailcolor = naledicolors[detailcolor]
-		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_psydon)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_praecursor)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_praecursor())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/blink/shadowstep)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_praecursor())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/empower_weapon)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/blade_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/blade_of_praecursor())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/mending)
 
 	var/datum/status_effect/buff/arcyne_momentum/momentum = H.apply_status_effect(/datum/status_effect/buff/arcyne_momentum)
@@ -207,7 +207,7 @@
 /datum/advclass/mercenary/warscholar_vizier
 	name = "Naledi Vizier"
 	age_mod = /datum/class_age_mod/vizier
-	tutorial = "You are a Naledi Vizier. Psydonians have long struggled to channel the All-Father's divinity, but such obstacles need not stop you. The Yogis of Naledi have long studied the nature of magick, and concluded that as Psydon is the origin of all things, a school of magick that returns a person or an item to a form it had before is the purest of all magick - and named it Origin Magic. Others say that you do not wield true miracles, merely a form of magycks. But true believers know that magyck is one of Psydon's greatest gifts, and in His name you shall wield His powers to heal His creations. A line of magyck closely guarded and trained only in the seven Great Seminary of Naledi, of which only five remain standing in this age. It is said that one must attune themselves to Psydon for ten yils in the Naledian desert. And despite foreigners' many attempts, no one has managed to bring this lineage of magyck outside without studying in Naledi itself. Perhaps it is truly divine."
+	tutorial = "You are a Naledi Vizier. Vaeltians have long struggled to channel the All-Father's divinity, but such obstacles need not stop you. The Yogis of Naledi have long studied the nature of magick, and concluded that as Praecursor is the origin of all things, a school of magick that returns a person or an item to a form it had before is the purest of all magick - and named it Origin Magic. Others say that you do not wield true miracles, merely a form of magycks. But true believers know that magyck is one of Praecursor's greatest gifts, and in His name you shall wield His powers to heal His creations. A line of magyck closely guarded and trained only in the seven Great Seminary of Naledi, of which only five remain standing in this age. It is said that one must attune themselves to Praecursor for ten yils in the Naledian desert. And despite foreigners' many attempts, no one has managed to bring this lineage of magyck outside without studying in Naledi itself. Perhaps it is truly divine."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar_vizier

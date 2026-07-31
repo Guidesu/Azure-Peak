@@ -107,7 +107,8 @@
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	sewrepair = TRUE
 	body_parts_covered = GROIN | LEGS
-	cold_protection = 10
+	cold_protection = GROIN|LEGS
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
 	color = "#ad977d"
 	chunkcolor = "#978151"
 	var/shiftable = TRUE

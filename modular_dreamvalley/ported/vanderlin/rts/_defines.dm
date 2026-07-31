@@ -72,7 +72,8 @@
 #define COMSIG_WORKER_IDLE_START "worker_idle_start"
 #define COMSIG_WORKER_ATTACK_START "worker_attack_start"
 #define COMSIG_WORKER_ATTACK_END "worker_attack_end"
-#define COMSIG_AI_PATH_GENERATED "ai_path_generated"
+// COMSIG_AI_PATH_GENERATED already exists in code/__DEFINES/dcs/signals/signals_ai.dm with the
+// same value - redeclaring it here was a redundant duplicate (DreamChecker: "macro redefined").
 
 // Phase 2 addition (building pipeline). Ported from Vanderlin's
 // code/__DEFINES/dcs/signals/signals_ai.dm. Sent on a /turf when its pending

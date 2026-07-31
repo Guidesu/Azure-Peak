@@ -668,6 +668,10 @@
 					hud_used.energy.icon_state = "energy10"
 				else if(energy > 0)
 					hud_used.energy.icon_state = "energy5"
+		if(hud_used.mana)
+			hud_used.mana.update_from_mob(src)
+		if(hud_used.temperature)
+			hud_used.temperature.update_from_mob(src)
 
 /mob/living/carbon/human/fully_heal(admin_revive = FALSE, break_restraints = FALSE)
 	dna?.species.spec_fully_heal(src)
@@ -1015,6 +1019,7 @@
 		target_parts[zone] = target.get_bodypart(zone)
 
 	bodyparts = list()
+	bodyparts_by_zone = list()
 
 	// Rebuild bodyparts list with typepaths
 	for(var/zone_2 in full)

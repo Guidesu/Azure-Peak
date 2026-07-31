@@ -54,3 +54,33 @@
 //			grant_language(/datum/language/beachbum)
 //		else
 //			remove_language(/datum/language/beachbum)
+
+/// Map/time-of-day temperature modifier added to outdoor turf temperature in handle_environment().
+/// Ported from the Weather & Temperature Overhaul PR; that PR drove this off per-mob time_flags bitflags
+/// set by a weather/ToD subsystem this repo doesn't have wired up (out of scope for this port - weather
+/// subsystems are untouched). Instead this reads the already-live GLOB.tod ("day"/"night"/"dusk"/"dawn")
+/// maintained by settod() in __HELPERS/time.dm, which is simpler and needs no new plumbing.
+/mob/living/carbon/human/proc/get_temp_modifier()
+	var/modifier = 0
+	var/is_day = (GLOB.tod == "day")
+	var/is_night = (GLOB.tod == "night")
+
+	// Map-specific adjustments
+	if(SSmapping.config.map_name == "Rockhill")	//rockhill temperatures are moderate and wet climate
+		if(is_day)
+			modifier += 20
+		else if(is_night)
+			modifier -= 20
+
+	else if(SSmapping.config.map_name == "Desert Town")	//desert map has wild temperature swings
+		if(is_day)
+			modifier += 100							//300+100 is 400, in the middle of the 'hot' temperature range
+		else if(is_night)
+			modifier -= 100							//300-100 is 200, in the middle of the 'cold' temperature range
+
+	else if(SSmapping.config.map_name == "Dun World")	//Dunworld is colder than the other two maps
+		if(is_day)
+			modifier += 0							//No bonus for day time temperatures
+		else if(is_night)
+			modifier -= 60							//300-60 is 240, just enough for cold temperature outside, but not cold enough to cause hypothermia on water and other problems
+	return modifier

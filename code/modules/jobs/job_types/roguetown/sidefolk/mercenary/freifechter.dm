@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/freelancer
 	name = "Freifechter Fencer"
-	tutorial = "You are a graduate of the Aavnic Freifechters - \"Freelancers\" - part of a prestigious fighting guild localized in the independent City-state of Szöréndnížina. It has formed an odd thirty yils ago, but its visitors come from all over Western Vaeltis. You have swung one weapon ten-thousand times, and not the other way around. Your faith is stalwart in the teachings of the Psydonic Reformation, and you've become a warrior poet of sorts - educating the peasantry in the ways of the New Word and angering the Orthodoxy in turn. You've left your cradle in search of riches to fund your people's armies."
+	tutorial = "You are a graduate of the Aavnic Freifechters - \"Freelancers\" - part of a prestigious fighting guild localized in the independent City-state of Szöréndnížina. It has formed an odd thirty yils ago, but its visitors come from all over Western Vaeltis. You have swung one weapon ten-thousand times, and not the other way around. Your faith is stalwart in the teachings of the Vaeltic Reformation, and you've become a warrior poet of sorts - educating the peasantry in the ways of the New Word and angering the Orthodoxy in turn. You've left your cradle in search of riches to fund your people's armies."
 	extra_context = "This class is for experienced players who have a solid grasp on footwork and stamina management, master skills alone won't save your lyfe. You make up for your inherent weaknesses and limitations with \"master strike\" mechanics."
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -114,7 +114,7 @@
 		var/weapons = list(
 			"Graduate's Spear"				= /obj/item/rogueweapon/spear/boar/frei,
 			"Banner of Szöréndnížina"		= /obj/item/rogueweapon/spear/boar/frei/pike,
-			"Banner of Psydonic Reformism"	= /obj/item/rogueweapon/spear/boar/frei/pike/reformist
+			"Banner of Vaeltic Reformism"	= /obj/item/rogueweapon/spear/boar/frei/pike/reformist
 		)
 		var/weaponchoice = input(H, "Spear or Pike-Banner?", "As presented to me by Lance-Master Szörénsław...") as anything in weapons
 		r_hand = weapons[weaponchoice]
@@ -122,7 +122,7 @@
 
 /datum/advclass/mercenary/freelancer_sabrist
 	name = "Freifechter Sabrist"
-	tutorial = "You are a graduate of the Aavnic Freifechters - \"Freelancers\" - part of a prestigious fighting guild localized in the independent City-state of Szöréndnížina. It has formed an odd thirty yils ago, but its visitors come from all over Western Vaeltis. You have swung one weapon ten-thousand times, and not the other way around. Your faith is stalwart in the teachings of the Psydonic Reformation, and you've become a warrior poet of sorts - educating the peasantry in the ways of the New Word and angering the Orthodoxy in turn. You've left your cradle in search of riches to fund your people's armies. Sabrists are renowned for their dexterity and speed, but lack the adaptability of longswordmen."
+	tutorial = "You are a graduate of the Aavnic Freifechters - \"Freelancers\" - part of a prestigious fighting guild localized in the independent City-state of Szöréndnížina. It has formed an odd thirty yils ago, but its visitors come from all over Western Vaeltis. You have swung one weapon ten-thousand times, and not the other way around. Your faith is stalwart in the teachings of the Vaeltic Reformation, and you've become a warrior poet of sorts - educating the peasantry in the ways of the New Word and angering the Orthodoxy in turn. You've left your cradle in search of riches to fund your people's armies. Sabrists are renowned for their dexterity and speed, but lack the adaptability of longswordmen."
 	extra_context = "This class is for experienced players who have a solid grasp on footwork and stamina management, master skills alone won't save your lyfe. You make up for your inherent weaknesses and limitations with \"master strike\" mechanics."
 	allowed_sexes = list(MALE, FEMALE)
 

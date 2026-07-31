@@ -67,6 +67,8 @@
 
 	//Gets filled up in create_bodyparts()
 	var/list/bodyparts = list(/obj/item/bodypart/chest, /obj/item/bodypart/head, /obj/item/bodypart/l_arm, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg)
+	/// Associative list of body_zone -> bodypart instance, kept in sync with bodyparts, for fast get_bodypart() lookups.
+	var/list/bodyparts_by_zone = list()
 
 	var/list/hand_bodyparts = list() //a collection of arms (or actually whatever the fug /bodyparts you monsters use to wreck my systems)
 

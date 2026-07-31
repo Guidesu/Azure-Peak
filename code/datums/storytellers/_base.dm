@@ -1,6 +1,6 @@
 /// Standard follower modifier, ie. how many influence points a storyteller gets for each follower.
 #define STANDARD_FOLLOWER_MODIFIER 20
-/// Lower follower modifier for special storytellers such as Astrata, who is a default patron.
+/// Lower follower modifier for special storytellers such as Auxentius, who is a default patron.
 #define LOWER_FOLLOWER_MODIFIER (STANDARD_FOLLOWER_MODIFIER - 2)
 
 /datum/storyteller

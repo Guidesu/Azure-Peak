@@ -56,6 +56,9 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_hit_target(mob/living/carbon/human/H, mob/living/L, facing)
 	apply_scorch_stack(L, 1)
+	if(ishuman(L))
+		var/mob/living/carbon/human/human_target = L
+		human_target.adjust_bodytemperature(18)
 	var/push_dir = get_dir(H, L)
 	if(!push_dir)
 		push_dir = facing

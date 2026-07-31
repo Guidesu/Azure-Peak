@@ -347,6 +347,8 @@
 #define COMSIG_MOB_EQUIPPED_ITEM "mob_equipped_item"
 /// A mob has just unequipped an item.
 #define COMSIG_MOB_UNEQUIPPED_ITEM "mob_unequipped_item"
+/// Ported from Twilight-Axis: a worn armor piece just took integrity damage from base of /mob/living/carbon/human/proc/checkarmor(): (damage_taken, obj/item/clothing/damaged_item, current_layer, total_layers)
+#define COMSIG_MOB_ARMOR_INTEGRITY_DAMAGED "mob_armor_integrity_damaged"
 ///called on [/obj/item] before unequip from base of [mob/proc/doUnEquip]: (force, atom/newloc, no_move, invdrop, silent)
 
 // /obj/item signals

@@ -6,6 +6,10 @@
 	sewrepair = TRUE
 	salvage_result = /obj/item/natural/fibers
 	salvage_amount = 2 // Minor materials loss
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/head/roguetown/puritan
 	name = "buckled hat"
@@ -34,6 +38,10 @@
 	name = "bard's hat"
 	icon_state = "bardhat"
 	sewrepair = TRUE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/head/roguetown/smokingcap
 	name = "smoking cap"
@@ -60,7 +68,10 @@
 	desc = "A comfortable warm hat lined with fur."
 	icon_state = "hatfur"
 	sewrepair = TRUE
-	cold_protection = 5
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = 350
 
 /obj/item/clothing/head/roguetown/papakha
 	name = "papakha"
@@ -71,14 +82,20 @@
 	blocksound = SOFTHIT
 	salvage_result = /obj/item/natural/fur
 	salvage_amount = 1
-	cold_protection = 10
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = 350
 
 /obj/item/clothing/head/roguetown/hatblu
 	name = "fur hat"
 	desc = "A blue hat lined with fur."
 	icon_state = "hatblu"
 	sewrepair = TRUE
-	cold_protection = 5
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/fisherhat
 	name = "straw hat"
@@ -86,6 +103,10 @@
 	icon_state = "fisherhat"
 	item_state = "fisherhat"
 	sewrepair = TRUE
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
 //	color = "#fbc588"
 	//dropshrink = 0.75
 
@@ -94,6 +115,10 @@
 	icon_state = "flathat"
 	item_state = "flathat"
 	sewrepair = TRUE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/head/roguetown/explorerhat
 	name = "explorer's hat"
@@ -295,7 +320,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = ARMOR_LEATHER //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype. 
 	body_parts_covered = HEAD|HAIR|EARS
-	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
+	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Vaeltic Thorns.
 	blocksound = SOFTHIT
 	//dropshrink = 0.75
 	dynamic_hair_suffix = null
@@ -469,6 +494,10 @@
 /obj/item/clothing/head/roguetown/brimmed
 	desc = "A simple brimmed hat that provides some relief from the sun."
 	icon_state = "brimmed"
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 // azure addition - random wizard hats
 
@@ -559,7 +588,7 @@
 
 /obj/item/clothing/head/roguetown/veiled
 	name = "nurse's veil"
-	desc = "A chirurgeon's bonnet, veiled with petal-stuffed linen. The stitchwork is often donned by the likes of wandering plague doctors and clerics; especially, those who're beholden to Pestra and Psydon."
+	desc = "A chirurgeon's bonnet, veiled with petal-stuffed linen. The stitchwork is often donned by the likes of wandering plague doctors and clerics; especially, those who're beholden to Pestra and Praecursor."
 	icon_state = "veil"
 	item_state = "veil"
 	detail_tag = "_detail"

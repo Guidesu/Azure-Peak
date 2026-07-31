@@ -2,7 +2,7 @@
 	name = "Ascendant"
 	roundend_category = "maniacs"
 	antagpanel_category = "LISTENER"
-	antag_memory = "<b>PSYDON IS DEAD. The Old Pantheon ARE WEAK, and the New Gods ARE FOOLISH. The WORLD IS DYING, AND I AM THE ONLY THING THAT MAY SAVE IT- COMET SYON'S BLADE BLOODY ME UNTIL IT IS DONE.</b>"
+	antag_memory = "<b>PRAECURSOR IS DEAD. The Old Pantheon ARE WEAK, and the New Gods ARE FOOLISH. The WORLD IS DYING, AND I AM THE ONLY THING THAT MAY SAVE IT- COMET SYON'S BLADE BLOODY ME UNTIL IT IS DONE.</b>"
 	job_rank = ROLE_ASCENDANT
 	antag_hud_type = ANTAG_HUD_TRAITOR
 	antag_hud_name = "villain"
@@ -26,30 +26,30 @@
 	var/STAWIL
 
 /*
-var/psydon_artefact_one = psydon_pool[1]
-var/psydon_artefact_two = psydon_pool[2]
-var/psydon_capstone_one = psydon_pool[3]
+var/praecursor_artefact_one = praecursor_pool[1]
+var/praecursor_artefact_two = praecursor_pool[2]
+var/praecursor_capstone_one = praecursor_pool[3]
 
 // revealed after cap one
-var/psydon_artefact_three = psydon_pool[4]
-var/psydon_artefact_four = psydon_pool[5]
-var/psydon_capstone_two = psydon_pool[6]
+var/praecursor_artefact_three = praecursor_pool[4]
+var/praecursor_artefact_four = praecursor_pool[5]
+var/praecursor_capstone_two = praecursor_pool[6]
 
 //Roger, the deal is honored - you are blessed with entry to heaven.
-var/psydon_ascend = psydon_pool[7]
+var/praecursor_ascend = praecursor_pool[7]
 
 
-	var/psydon_artefact_one
-	var/psydon_artefact_two
-	var/psydon_capstone_one
+	var/praecursor_artefact_one
+	var/praecursor_artefact_two
+	var/praecursor_capstone_one
 
 //these are revealed after capstone one
-	var/psydon_artefact_three
-	var/psydon_artefact_four
-	var/psydon_capstone_two
+	var/praecursor_artefact_three
+	var/praecursor_artefact_four
+	var/praecursor_capstone_two
 
 //ascension artefact
-	var/psydon_ascend
+	var/praecursor_ascend
 */
 	var/static/list/possible_weapons = list(
 		/obj/item/rogueweapon/sword/cutlass,

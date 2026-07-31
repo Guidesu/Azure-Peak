@@ -65,7 +65,7 @@
 
 /obj/item/enchantingkit/triumph_weaponkit_axedouble
 	name = "'Doublehead' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of an Iron Axe, a Bronze Axe, a Steel Axe, a Battle Axe, a Silver War Axe, a Psydonic War Axe, or a Blacksteel Axe."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of an Iron Axe, a Bronze Axe, a Steel Axe, a Battle Axe, a Silver War Axe, a Vaeltic War Axe, or a Blacksteel Axe."
 	target_items = list(
 		/obj/item/rogueweapon/stoneaxe/woodcut/steel					= /obj/item/rogueweapon/stoneaxe/woodcut/steel/triumph,
 		/obj/item/rogueweapon/stoneaxe/woodcut/bronze					= /obj/item/rogueweapon/stoneaxe/woodcut/bronze/triumph,
@@ -165,7 +165,7 @@
 
 /obj/item/enchantingkit/triumph_weaponkit_psy
 	name = "'Psycrucifix' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Steel Longsword, an Enduring Longsword, or a Psydonic Longsword."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Steel Longsword, an Enduring Longsword, or a Vaeltic Longsword."
 	target_items = list(
 		/obj/item/rogueweapon/sword/long/psysword	  				= /obj/item/rogueweapon/sword/long/psysword/psycrucifix,
 		/obj/item/rogueweapon/sword/long/oldpsysword	  			= /obj/item/rogueweapon/sword/long/oldpsysword/psycrucifix,
@@ -568,7 +568,7 @@
 	icon_state = "longsword_psycrucifix"
 	sheathe_icon = "opsysword"
 
-/obj/item/rogueweapon/sword/long/psysword/psycrucifix //Alternate variant for the Psydonic Longswords.
+/obj/item/rogueweapon/sword/long/psysword/psycrucifix //Alternate variant for the Vaeltic Longswords.
 	name = "valorian silver longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
@@ -590,7 +590,7 @@
 			if("onbelt")
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/rogueweapon/sword/long/oldpsysword/psycrucifix //Alternate variant for the Old Psydonic Longswords.
+/obj/item/rogueweapon/sword/long/oldpsysword/psycrucifix //Alternate variant for the Old Vaeltic Longswords.
 	name = "valorian psycrucific longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	desc = "A lethal and perfectly balanced weapon, the longsword is the protagonist of endless tales and myths \
@@ -613,13 +613,13 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/estoc/triumph //Alternate variants for the Estoc series.
-	name = "azurian estoc"
+	name = "outpost estoc"
 	icon = 'icons/roguetown/weapons/swords64.dmi'
 	icon_state = "estoc_triumph"
 	desc = "A deviation from the traditional longsword, meant to pierce maille or find the gaps in an \
 	opponent's plate armor. This edgeless blade is almost exclusively half-sworded on foot, or as a lance \
-	from saigaback. Wrapped around the grip is a roll of leather, dyed in Azuria's stormier hues; an unfetterable \
-	connection to the Peak's history."
+	from saigaback. Wrapped around the grip is a roll of leather, dyed in the highlands' stormier hues; an unfetterable \
+	connection to the outpost's history."
 	bigboy = TRUE
 
 /obj/item/rogueweapon/sword/long/ap/triumph //Alternate variants for the Estoc series.
@@ -783,7 +783,7 @@
 	swingsound = BLADEWOOSH_HUGE
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/triumph
-	name = "double-headed psydonic axe"
+	name = "double-headed vaeltic axe"
 	desc = "'Hail to the king, baby.'"
 	icon_state = "psyaxedouble"
 	swingsound = BLADEWOOSH_HUGE

@@ -285,7 +285,7 @@
 		/obj/item/rogueweapon/stoneaxe/woodcut/steel = 1,
 	)
 
-/obj/effect/spawner/lootdrop/silver_weapon_spawner //doesn't include psydonian or elven
+/obj/effect/spawner/lootdrop/silver_weapon_spawner //doesn't include vaeltian or elven
 	name = "silver weapon spawner"
 	icon_state = "silverweapon"
 	lootcount = 1

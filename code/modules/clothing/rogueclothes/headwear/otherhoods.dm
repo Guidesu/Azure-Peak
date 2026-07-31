@@ -16,6 +16,10 @@
 	blocksound = SOFTHIT
 	salvage_result = /obj/item/natural/hide
 	salvage_amount = 1
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/beekeeper
 	name = "beekeeper's hood"
@@ -36,6 +40,10 @@
 	toggle_icon_state = FALSE
 	max_integrity = 100
 	sewrepair = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/necrahood
 	name = "death shroud"
@@ -46,6 +54,10 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/necramask
 	name = "death mask"
@@ -61,10 +73,14 @@
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
 	mask_override = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/dendormask
 	name = "briarmask"
-	desc = "A mask of wood and thorns worn by druids in service to Dendor."
+	desc = "A mask of wood and thorns worn by druids in service to Ignatius."
 	color = null
 	icon_state = "dendormask"
 	item_state = "dendormask"
@@ -76,6 +92,10 @@
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
 	mask_override = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/necromhood
 	name = "necromancers hood"
@@ -86,6 +106,10 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/menacing
 	name = "sack hood"
@@ -97,9 +121,17 @@
 	sewrepair = TRUE
 	color = "#999999"
 	//dropshrink = 0.75
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/head/roguetown/menacing/bandit
 	icon_state = "bandithood"
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = HEAD
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/head/roguetown/menacing/executioner
 	name = "executioners hood"

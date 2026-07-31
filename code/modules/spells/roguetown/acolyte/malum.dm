@@ -48,6 +48,7 @@
 	self_cast_possible = FALSE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR - 10
+	mana_cost = MANACOST_MIRACLE_MAJOR - 5
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
@@ -157,6 +158,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
@@ -221,6 +223,7 @@
 
 	primary_resource_type = SPELL_COST_DEVOTION
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR + 20
+	mana_cost = MANACOST_MIRACLE_MAJOR + 5
 
 	secondary_resource_type = SPELL_COST_STAMINA
 	secondary_resource_cost = SPELLCOST_MIRACLE//Dunno it's not properly inhereting for some reason.
@@ -320,6 +323,7 @@
 	self_cast_possible = FALSE //Why are you trying to set YOURSELF on fire.
 
 	primary_resource_cost = SPELLCOST_MIRACLE + 10
+	mana_cost = MANACOST_MIRACLE + 3
 
 	secondary_resource_cost = SPELLCOST_MIRACLE
 
@@ -499,6 +503,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_LEGENDARY
+	mana_cost = MANACOST_MIRACLE_LEGENDARY
 
 	secondary_resource_cost = SPELLCOST_ULTIMATE
 

@@ -887,7 +887,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "dG" = (
@@ -952,7 +952,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/vampire_manor)
 "dY" = (
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
 "ea" = (
@@ -1332,7 +1332,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -1471,7 +1471,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "gf" = (
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /obj/item/clothing/neck/roguetown/psicross/aalloy,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -1917,7 +1917,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/vampire_manor)
 "ip" = (
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/wretch_lair)
 "iq" = (
@@ -2734,7 +2734,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "ls" = (
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /obj/structure/fluff/railing/border/north,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -3836,7 +3836,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/vampire_manor)
 "qf" = (
-/obj/structure/ritualcircle/astrata,
+/obj/structure/ritualcircle/auxentius_sun,
 /obj/machinery/light/rogue/firebowl/church,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
@@ -6256,7 +6256,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/inhumen)
 "Ar" = (
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
@@ -9225,7 +9225,7 @@
 	dir = 8
 	},
 /obj/structure/fluff/walldeco/church/line,
-/obj/effect/decal/cleanable/roguerune/god/psydon,
+/obj/effect/decal/cleanable/roguerune/god/praecursor,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/woods/wretch_lair)
 "MK" = (
@@ -10715,7 +10715,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
 "TO" = (
-/obj/structure/ritualcircle/dendor,
+/obj/structure/ritualcircle/ignatius,
 /obj/effect/decal/cobbleedge{
 	dir = 9;
 	pixel_x = 1;
@@ -10906,7 +10906,7 @@
 /turf/open/floor/rogue/dirt/ambush,
 /area/rogue/outdoors/woods/vampire_lair)
 "UE" = (
-/obj/structure/ritualcircle/ravox,
+/obj/structure/ritualcircle/auxentius_justice,
 /obj/item/rogueweapon/sword/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)

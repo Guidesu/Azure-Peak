@@ -12,7 +12,7 @@
 	switch(weapon_choice)
 		if("Crossbow")
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-			belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+			belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			beltr = /obj/item/quiver/bolt/standard
 		if("Runelock Pistol")
@@ -119,7 +119,7 @@
 		if("Runed Volf")
 			H.equip_to_slot_or_del(new /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/blackpowder, SLOT_BELT, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/quiver/twilight_bullet/silver, SLOT_BELT_R, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/roguehood/psydon/confessor, SLOT_HEAD, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/roguehood/praecursor/confessor, SLOT_HEAD, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/rogue/satchel/beltpack, SLOT_CLOAK, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/rogue/facemask/steel/confessor, SLOT_WEAR_MASK, TRUE)
 			H.put_in_hands(new /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol/umbra(H), TRUE)

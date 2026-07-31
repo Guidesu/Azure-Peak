@@ -35,7 +35,7 @@
 	id = "shapespider"
 	species_traits = list(NO_UNDERWEAR, NO_ORGAN_FEATURES, NO_BODYPART_FEATURES)
 	inherent_traits = list(
-		TRAIT_KNEESTINGER_IMMUNITY, //All of these are dendorite transformations, they are ALL blessed by dendor
+		TRAIT_KNEESTINGER_IMMUNITY, //All of these are Ignatian transformations, they are ALL blessed by Ignatius
 		TRAIT_STRONGBITE,
 		TRAIT_NOFALLDAMAGE1,
 		TRAIT_WILD_EATER,

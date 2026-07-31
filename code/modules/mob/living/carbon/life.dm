@@ -73,9 +73,9 @@
 					emote("painmoan")
 			else
 				if(painpercent >= 100)
-					if(prob(25) && (HAS_TRAIT(src, TRAIT_PSYDONIAN_GRIT) || STAWIL >= 15) && (!HAS_TRAIT(src, TRAIT_NOPAINSTUN) || !HAS_TRAIT(src, TRAIT_IRONMAN))) // PSYDONIC WEIGHTED COINFLIP. TWEAK THIS AS THOU WILT. DON'T LET THEM BE BROKEN, PSYDON WILLING. THROW CON-MAXXERS A BONE, TOO.
+					if(prob(25) && (HAS_TRAIT(src, TRAIT_VAELTIAN_GRIT) || STAWIL >= 15) && (!HAS_TRAIT(src, TRAIT_NOPAINSTUN) || !HAS_TRAIT(src, TRAIT_IRONMAN))) // VAELTIC WEIGHTED COINFLIP. TWEAK THIS AS THOU WILT. DON'T LET THEM BE BROKEN, PSYDON WILLING. THROW CON-MAXXERS A BONE, TOO.
 						Immobilize(15) // EAT A MICROSTUN. YOU'RE AVOIDING A PAINCRIT.
-						if(HAS_TRAIT(src, TRAIT_PSYDONIAN_GRIT))
+						if(HAS_TRAIT(src, TRAIT_VAELTIAN_GRIT))
 							visible_message(span_info("[src] audibly grits [src.p_their()] teeth, ENDURING through [src.p_their()] pain."), span_info("Through my faith in HIM, I ENDURE."))
 						else
 							visible_message(span_info("[src] trembles for a moment, but [src.p_they()] remain standing."), span_info("My strong constitution keeps me upright."))
@@ -403,18 +403,36 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			Dizzy(25)//You are completely fucked up at this point, any more stacks of SUNDER and you're DEAD.
 
 
+#define BODYTEMP_EQUILIBRIUM 315
+
+// Kelvin per second (10 K per minute)
+#define TEMP_RECOVERY_RATE (10.0 / 60.0)
+
 //used in human and monkey handle_environment()
+//Temperature system design note (Weather & Temperature Overhaul, Phase 1 port):
+//Unlike a 'realistic' homeostasis sim, we want 5 main gamified 'states' of temperature that are hit and have effects.
+//These states should linger long enough that players will want to affect their temperature through means that aren't simply waiting around somewhere -
+//hence the slow (0.2x) recovery rate in the 300-330K band around BODYTEMP_EQUILIBRIUM, and the full rate outside of it.
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
-	var/body_temperature_difference = BODYTEMP_NORMAL - bodytemperature
-	switch(bodytemperature)
-		if(-INFINITY to BODYTEMP_COLD_DAMAGE_LIMIT) //Cold damage limit is 50 below the default, the temperature where you start to feel effects.
-			return max((body_temperature_difference * metabolism_efficiency / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-		if(BODYTEMP_COLD_DAMAGE_LIMIT to BODYTEMP_NORMAL)
-			return max(body_temperature_difference * metabolism_efficiency / BODYTEMP_AUTORECOVERY_DIVISOR, min(body_temperature_difference, BODYTEMP_AUTORECOVERY_MINIMUM/4))
-		if(BODYTEMP_NORMAL to BODYTEMP_HEAT_DAMAGE_LIMIT) // Heat damage limit is 50 above the default, the temperature where you start to feel effects.
-			return min(body_temperature_difference * metabolism_efficiency / BODYTEMP_AUTORECOVERY_DIVISOR, max(body_temperature_difference, -BODYTEMP_AUTORECOVERY_MINIMUM/4))
-		if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
-			return min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
+	var/delta = BODYTEMP_EQUILIBRIUM - bodytemperature
+	if(delta == 0)
+		return 0
+
+	var/abs_temp = bodytemperature
+	var/rate
+
+	if(abs_temp < 300)
+		rate = TEMP_RECOVERY_RATE
+	else if(abs_temp > 330)
+		rate = TEMP_RECOVERY_RATE
+	else
+		rate = TEMP_RECOVERY_RATE * 0.2
+
+	// Convert to per-call adjustment
+	var/seconds = world.tick_lag / 10
+	var/max_change = rate * seconds
+
+	return clamp(delta, -max_change, max_change)
 
 /////////
 //LIVER//
@@ -586,6 +604,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(HAS_TRAIT(src, TRAIT_NOREGEN) || HAS_TRAIT(src, TRAIT_IRONMAN))
 			return
 		var/sleepy_mod = 0.5
+		var/in_bed = FALSE
 		var/doesnt_hunger = HAS_TRAIT(src, TRAIT_NOHUNGER)
 		if(HAS_TRAIT(src, TRAIT_BETTER_SLEEP))
 			energy_add(sleepy_mod * 4)
@@ -604,11 +623,20 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			var/obj/structure/bed/rogue/bed = locate() in loc
 			if(bed)
 				sleepy_mod = bed.sleepy
+				in_bed = TRUE
 			else
 				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
 						sleepy_mod = 2 // just equivalent to a bedroll
+		if((buckled || in_bed) && isfloorturf(loc))
+			var/turf/open/floor/F = loc
+			if(F.heat)
+				energy_add(F.heat * 4)
+		if(sleepy_mod >= 2 && bodytemperature < BODYTEMP_NORMAL_MIN) // if we're sleeping on a bedroll or better
+			adjust_bodytemperature(0.5) // not exactly the best way to regain heat but it'll keep you from freezing to death, won't protect you from a snowstorm though
+		if(drunkenness)
+			drunkenness *= 0.94 //reduce drunkenness by 6% per 2 seconds
 		if(nutrition > 0 || doesnt_hunger)
 			energy_add(sleepy_mod * 15)
 		if(hydration > 0 || doesnt_hunger)
@@ -625,8 +653,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
+		if(prob(20))
+			handle_dreams()
+			if(prob(10) && health > crit_threshold)
+				emote("snore")
 	else
 		var/sleepy_mod = 0
+		var/in_bed = FALSE
 		var/sleep_threshold = 30
 		var/message = "I'll fall asleep soon..."
 		var/dream_prob = 2
@@ -637,12 +670,17 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(bed)
 				SEND_SIGNAL(bed, COMSIG_SLEEPING_ON_BED, src)
 				sleepy_mod = bed.sleepy
+				in_bed = TRUE
 			else
 				sleepy_mod = 1
 				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
 						sleepy_mod = 2 //Worse than a bedroll, better than nothing.
+		if((buckled || in_bed) && isfloorturf(loc))
+			var/turf/open/floor/F = loc
+			if(F.heat)
+				energy_add(F.heat * 4)
 		if(sleepy_mod > 0)
 			if(eyesclosed)
 				if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !sleepless_flaw)

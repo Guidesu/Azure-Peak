@@ -23,6 +23,8 @@
 
 	point_cost = 0
 
+	mana_cost = MANACOST_MIRACLE
+
 	//required_items = list(/obj/item/clothing/neck/roguetown/psicross)//Any cross will do it's generic
 
 ////////////////////
@@ -32,7 +34,7 @@
 /datum/action/cooldown/spell/miracle/heal
 	name = "Miracle"
 	desc = "Blesses the target with minor health regeneration. If casted in conjunction with the 'Fortify' blessing, its healing power is greatly \
-	increased. Most healing Miracles cannot affect devoted Psydonians.\
+	increased. Most healing Miracles cannot affect devoted Vaeltians.\
 	<br><br><b>Patron Conditions:</b>\
 	<ul>\
 	<li><b>Auxentius:</b> +80% healing during daytime. Up to +100% if the target has the Noble trait (does not stack with daytime). +40% if the target is using a strong attack intent. +20% if holding a weapon. +80% with blood restoration if cast on self while at low blood (30s cooldown).</li>\
@@ -57,6 +59,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MINOR
+	mana_cost = MANACOST_MIRACLE_MINOR
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
@@ -78,7 +81,7 @@
 	if(!isliving(spelltarget))
 		return FALSE
 
-	if(HAS_TRAIT(spelltarget, TRAIT_PSYDONITE))
+	if(HAS_TRAIT(spelltarget, TRAIT_VAELTITE))
 		spelltarget.visible_message(span_artery("[spelltarget] stirs for a moment, the miracle dissipates."), span_artery("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
@@ -168,7 +171,7 @@
 /datum/action/cooldown/spell/miracle/fortify
 	name = "Fortify"
 	desc = "Amplifies all incoming sources of healing for the chosen target. Combining this with the 'Miracle' blessing allows for the mending \
-	of more extreme injuries. </br>Most healing Miracles cannot affect devoted Psydonians."
+	of more extreme injuries. </br>Most healing Miracles cannot affect devoted Vaeltians."
 	fluff_desc = "The lyfeline of any devotee, channeling restorative energies of their worshipped diety within mortal realm."
 	button_icon_state = "fortify"
 	sound = 'sound/magic/heal.ogg'
@@ -178,6 +181,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
@@ -199,7 +203,7 @@
 	if(!isliving(spelltarget))
 		return FALSE
 
-	if(HAS_TRAIT(spelltarget, TRAIT_PSYDONITE))
+	if(HAS_TRAIT(spelltarget, TRAIT_VAELTITE))
 		spelltarget.visible_message(span_artery("[spelltarget] stirs for a moment, the miracle dissipates."), span_artery("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
@@ -241,7 +245,7 @@
 /datum/action/cooldown/spell/miracle/intervention
 	name = "Intervention"
 	desc = "Blesses the chosen target's limb, healing all damage and wounds present on it. This can fix ruptured arteries, broken bones, and \
-	anything short of complete dismemberment. </br>Most healing Miracles cannot affect devoted Psydonians."
+	anything short of complete dismemberment. </br>Most healing Miracles cannot affect devoted Vaeltians."
 	fluff_desc = "The most devout of Priests are taught in the old ways, able to reverse mortal wounds in blink of an eye where others would fail."
 	button_icon_state = "woundheal"
 	sound = 'sound/magic/woundheal.ogg'
@@ -251,6 +255,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_LEGENDARY
+	mana_cost = MANACOST_MIRACLE_LEGENDARY
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
@@ -280,7 +285,7 @@
 		var/def_zone = check_zone(owner.zone_selected)
 		var/obj/item/bodypart/affecting = target.get_bodypart(def_zone)
 
-		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+		if(HAS_TRAIT(target, TRAIT_VAELTITE))
 			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 			owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
@@ -324,7 +329,7 @@
 /datum/action/cooldown/spell/miracle/bloodmiracle
 	name = "Lyfeblood Transfer"
 	desc = "Transfers blood from the caster to the chosen target at a steady rate, staving off the lethal effects of blood loss. The amount of \
-	blood transfered with each heartbeat scales with the caster's Holy skill. </br>Most healing Miracles cannot affect devoted Psydonians."
+	blood transfered with each heartbeat scales with the caster's Holy skill. </br>Most healing Miracles cannot affect devoted Vaeltians."
 	fluff_desc = "Manipulation of lyfeblood is often seen as heretical and taboo thanks to its association with Lyckers & Liches. Due to its usefulness however this technique is one of the few sanctioned to be taught across Vaeltis."
 	button_icon_state = "bloodheal"
 	sound = 'sound/magic/bloodheal.ogg'
@@ -334,6 +339,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR
+	mana_cost = MANACOST_MIRACLE_MAJOR
 
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
@@ -367,7 +373,7 @@
 			to_chat(UH, span_warning("Their lyfeblood is at capacity. There is no need."))
 			return FALSE
 			
-		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+		if(HAS_TRAIT(target, TRAIT_VAELTITE))
 			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 			owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
@@ -433,6 +439,7 @@
 	self_cast_possible = FALSE //Why are you trying to set YOURSELF on fire.
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MINOR
+	mana_cost = MANACOST_MIRACLE_MINOR
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
@@ -441,7 +448,7 @@
 	charge_required = FALSE
 	cooldown_time = 10 SECONDS
 
-	spell_flags = SPELL_PSYDON
+	spell_flags = SPELL_PRAECURSOR
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 
 /datum/action/cooldown/spell/miracle/ignition/cast(atom/cast_on)
@@ -490,6 +497,7 @@
 
 	click_to_activate = FALSE
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 	invocation_type = INVOCATION_NONE
 	charge_required = FALSE
@@ -508,19 +516,19 @@
 		/obj/effect/proc_holder/spell/invoked/deaths_door::name				= /obj/effect/proc_holder/spell/invoked/deaths_door,
 		//Noc gets one after the rework passes.
 		//Pestra has actually nothing, son 😢
-		//Ravox will get something else.
+		//Auxentius will get something else.
 		/datum/action/cooldown/spell/undivided/undivided_battlecry::name	= /datum/action/cooldown/spell/undivided/undivided_battlecry,
 		/obj/effect/proc_holder/spell/invoked/abscond::name					= /obj/effect/proc_holder/spell/invoked/abscond
 	)
 	var/list/miracle_bishop_t3 = list(
 		/obj/effect/proc_holder/spell/invoked/call_dreamfiend::name			= /obj/effect/proc_holder/spell/invoked/call_dreamfiend,
-		/datum/action/cooldown/spell/astrata/firecloak::name				= /datum/action/cooldown/spell/astrata/firecloak,
+		/datum/action/cooldown/spell/auxentius/firecloak::name				= /datum/action/cooldown/spell/auxentius/firecloak,
 		/obj/effect/proc_holder/spell/invoked/eoracurse::name				= /obj/effect/proc_holder/spell/invoked/eoracurse,
 		/datum/action/cooldown/spell/malum_blessing::name					= /datum/action/cooldown/spell/malum_blessing,
 		/obj/effect/proc_holder/spell/invoked/bless_cross::name				= /obj/effect/proc_holder/spell/invoked/bless_cross,
 		//Noc is fine as is
 		//Pestra has actually nothing, son 😢
-		/datum/action/cooldown/spell/ravox/battlecry::name					= /datum/action/cooldown/spell/ravox/battlecry,
+		/datum/action/cooldown/spell/auxentius/battle/battlecry::name					= /datum/action/cooldown/spell/auxentius/battle/battlecry,
 		/datum/action/cooldown/spell/undivided/gallow_humor::name			= /datum/action/cooldown/spell/undivided/gallow_humor,
 		/obj/effect/proc_holder/spell/targeted/touch/parlor_trick::name		= /obj/effect/proc_holder/spell/targeted/touch/parlor_trick
 	)

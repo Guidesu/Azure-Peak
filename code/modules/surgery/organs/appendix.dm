@@ -28,7 +28,7 @@
 	if(M)
 		M.adjustToxLoss(4, TRUE, TRUE)	//forced to ensure people don't use it to gain tox as slime person
 
-/obj/item/organ/appendix/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/appendix/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	update_icon()
 	..()
 

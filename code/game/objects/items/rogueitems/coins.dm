@@ -51,7 +51,10 @@
 	return sellprice * quantity
 
 /obj/item/roguecoin/proc/set_quantity(new_quantity)
-	quantity = new_quantity
+	quantity = max(new_quantity, 0)
+	if(quantity <= 0)
+		qdel(src)
+		return
 	update_icon()
 	update_transform()
 

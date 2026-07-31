@@ -160,7 +160,6 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 #define TAT_BUILD_ITEM_BONUS_WANTED 10
 #define TAT_BUILD_ITEM_BONUS_LOOTRAT 10
 #define TAT_BUILD_ITEM_BONUS_LOOTRAT_2 15
-#define TAT_TRAIT_FREE_SOUL_RENAME_PQ_MINIMUM 50
 
 #define TAT_NEGATIVE_TRAIT_CREDIT_CAP 4
 #define TAT_NEGATIVE_DIRECTION_POINT_CAP 4
@@ -246,7 +245,7 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 	TRAIT_ARCYNE = TAT_TRAIT_ENTRY("Arcyne Training", 1, "Magic 1. Guarantees Arcane 3 and unlocks Arcyne Armament training. Weapon Training, Expert Armament, Expert Warrior, and Master Warrior raise its cap normally."), \
 	TRAIT_JACKOFALLTRADES = TAT_TRAIT_ENTRY("Jack of All Trades", 2, "Skills cost half as much for you to raise."), \
 	TAT_TRAIT_MASTER_OF_WANDERING = TAT_TRAIT_ENTRY("Master of Wandering", 2, "Advanced wandering mastery in the Skills direction. Gives -1 cost to misc skills, improved to -2. Conflicts with other major traits."), \
-	TAT_TRAIT_FREE_SOUL_RENAME = TAT_TRAIT_ENTRY("Free Soul Class Name", 0, "Requires 50+ player quality. Lets you rename your displayed class while keeping the Free Soul admin marker prefix. class selection is applied first, then you may choose the current class or a matching skill title as the base, and finally use that name, your active TAT slot name, or custom input."), \
+	TAT_TRAIT_FREE_SOUL_RENAME = TAT_TRAIT_ENTRY("Free Soul Class Name", 0, "Lets you rename your displayed class while keeping the Free Soul admin marker prefix. class selection is applied first, then you may choose the current class or a matching skill title as the base, and finally use that name, your active TAT slot name, or custom input."), \
 	TRAIT_EMPATH = TAT_TRAIT_ENTRY("Empath", 1, "You can notice when people are in pain."), \
 	TRAIT_NOSTINK = TAT_TRAIT_ENTRY("Dead Nose", 1, "Your nose is numb to the smell of decay."), \
 	TRAIT_CICERONE = TAT_TRAIT_ENTRY("Cicerone", 1, "You are well-versed in brews and spirits, and can tell them apart at a glance."), \
@@ -364,9 +363,7 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 	TAT_UNLOCK_TYPE_ARMOR_FAMILY = list(TAT_ARMOR_LEATHER = TAT_TRAIT_LEATHER_SUPPLIER, TAT_ARMOR_MAIL = TAT_TRAIT_MAIL_SUPPLIER, TAT_ARMOR_PLATE = TAT_TRAIT_PLATE_SUPPLIER) \
 )
 
-#define TAT_TRAIT_PQ_LOCK_RULES list( \
-	TAT_TRAIT_FREE_SOUL_RENAME = TAT_TRAIT_FREE_SOUL_RENAME_PQ_MINIMUM \
-)
+#define TAT_TRAIT_PQ_LOCK_RULES list()
 
 #define TAT_TRAIT_REPEATABLE_MAXIMUMS list()
 

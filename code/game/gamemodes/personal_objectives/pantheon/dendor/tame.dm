@@ -25,12 +25,12 @@
 		complete_objective(animal)
 
 /datum/objective/tame_animal/proc/complete_objective(mob/living/simple_animal/animal)
-	to_chat(owner.current, span_greentext("You have tamed [animal], fulfilling Dendor's will!"))
+	to_chat(owner.current, span_greentext("You have tamed [animal], fulfilling Ignatius's will!"))
 	owner.current.adjust_triumphs(1)
 	completed = TRUE
-	adjust_storyteller_influence("Dendor", 15)
+	adjust_storyteller_influence("Ignatius", 15)
 	escalate_objective()
 	UnregisterSignal(owner.current, COMSIG_ANIMAL_TAMED)
 
 /datum/objective/tame_animal/update_explanation_text()
-	explanation_text = "Tame an animal, either by feeding it or any other means until it acknowledges you as a friend. Dendor wills it!"
+	explanation_text = "Tame an animal, either by feeding it or any other means until it acknowledges you as a friend. Ignatius wills it!"

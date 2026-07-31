@@ -8,6 +8,22 @@
 	var/list/spent_points_cache = list()
 	var/_cached_combat_expert_count = -1
 	var/_cached_combat_master_count = -1
+	// get_virtue_bonus_value()/get_virtue_skill_cap_bonus() each do a full
+	// O(active virtues x rule table) nested loop (add_virtue_rule_value()/
+	// add_virtue_choice_rule_value()) and are called once per skill_type from
+	// half a dozen different cap-computation procs (get_firearms_skill_cap(),
+	// get_arcyne_armament_skill_cap(), etc) - themselves called once per
+	// skill_type from rebuild_bonus_values() and the skills UI. A server
+	// profiler dump showed 1.75M calls to virtue_matches_rule() in one
+	// window from exactly this path, well after the get_active_virtues()
+	// cache fix (a different, now-fixed redundancy) - these two results need
+	// their own per-skill_type cache, invalidated the same way
+	// _active_virtues_dirty is (see tat_build.dm), or every one of those
+	// per-skill-type callers keeps redoing the same nested loop from
+	// scratch on every single poll.
+	var/list/_virtue_bonus_cache = list()
+	var/list/_virtue_cap_bonus_cache = list()
+	var/_virtue_cache_active_virtues_ref
 
 /datum/tat_skills/proc/invalidate_combat_count_cache()
 	_cached_combat_expert_count = -1
@@ -326,17 +342,33 @@
 
 	return total
 
+/datum/tat_skills/proc/check_virtue_cache(list/virtues)
+	if(_virtue_cache_active_virtues_ref != virtues)
+		_virtue_cache_active_virtues_ref = virtues
+		_virtue_bonus_cache = list()
+		_virtue_cap_bonus_cache = list()
+
 /datum/tat_skills/proc/get_virtue_bonus_value(skill_type)
 	var/list/virtues = owner_build?.get_active_virtues()
 	if(!length(virtues))
 		return 0
-	return add_virtue_rule_value(skill_type, GLOB.tat_virtue_skill_bonus_rules, virtues) + add_virtue_choice_rule_value(skill_type, GLOB.tat_virtue_choice_skill_bonus_rules, virtues)
+	check_virtue_cache(virtues)
+	if(_virtue_bonus_cache["[skill_type]"] != null)
+		return _virtue_bonus_cache["[skill_type]"]
+	var/value = add_virtue_rule_value(skill_type, GLOB.tat_virtue_skill_bonus_rules, virtues) + add_virtue_choice_rule_value(skill_type, GLOB.tat_virtue_choice_skill_bonus_rules, virtues)
+	_virtue_bonus_cache["[skill_type]"] = value
+	return value
 
 /datum/tat_skills/proc/get_virtue_skill_cap_bonus(skill_type)
 	var/list/virtues = owner_build?.get_active_virtues()
 	if(!length(virtues))
 		return 0
-	return add_virtue_rule_value(skill_type, GLOB.tat_virtue_skill_cap_bonus_rules, virtues) + add_virtue_choice_rule_value(skill_type, GLOB.tat_virtue_choice_skill_cap_bonus_rules, virtues)
+	check_virtue_cache(virtues)
+	if(_virtue_cap_bonus_cache["[skill_type]"] != null)
+		return _virtue_cap_bonus_cache["[skill_type]"]
+	var/value = add_virtue_rule_value(skill_type, GLOB.tat_virtue_skill_cap_bonus_rules, virtues) + add_virtue_choice_rule_value(skill_type, GLOB.tat_virtue_choice_skill_cap_bonus_rules, virtues)
+	_virtue_cap_bonus_cache["[skill_type]"] = value
+	return value
 
 /datum/tat_skills/proc/get_virtue_skill_floor(skill_type)
 	return max(get_virtue_bonus_value(skill_type), get_virtue_skill_cap_bonus(skill_type))

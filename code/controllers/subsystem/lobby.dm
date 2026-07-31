@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(lobbymenu)
 	name = "Lobbyrefresh"
 	wait = 20
-	priority = 100
+	priority = FIRE_PRIORITY_DEFAULT
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_LOBBY
 	var/list/currentrun = list()

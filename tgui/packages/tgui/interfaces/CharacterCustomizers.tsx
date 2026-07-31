@@ -207,6 +207,20 @@ export const CharacterCustomizers = () => {
       <Window.Content scrollable>
         <Box className="CharacterSheet">
           <Stack vertical>
+            <Stack.Item>
+              <Stack>
+                <Stack.Item grow>
+                  <Button fluid icon="floppy-disk" onClick={() => act('save_and_close')}>
+                    Save
+                  </Button>
+                </Stack.Item>
+                <Stack.Item grow>
+                  <Button fluid icon="undo" onClick={() => act('reset_all')}>
+                    Reset All
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Stack.Item>
             {customizers.map((row) => (
               <Stack.Item key={row.customizer_type}>
                 <CustomizerCard row={row} act={act} />

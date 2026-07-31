@@ -23,6 +23,7 @@
 	return ..()
 
 /datum/character_origin_map_ui/proc/get_prefs()
+	RETURN_TYPE(/datum/preferences)
 	return owner?.prefs
 
 /datum/character_origin_map_ui/ui_state(mob/user)

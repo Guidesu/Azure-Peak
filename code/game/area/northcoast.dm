@@ -1,6 +1,6 @@
-// Azure Coast - the northern part of the map - may not be actually coast 
+//  Coast - the northern part of the map - may not be actually coast
 /area/rogue/outdoors/beach/forest
-	name = "Azure Coast"
+	name = "Coast"
 	loot_budget = LOOT_BUDGET_AZURE_COAST
 	loot_pool_key = "azure_coast"
 	icon_state = "beach"
@@ -29,25 +29,25 @@
 				/mob/living/carbon/human/species/goblin/npc/ambush/sea = 40,
 				/mob/living/carbon/human/species/hobgoblin/npc/ambush = 12,
 				/mob/living/carbon/human/species/goblin/npc/archer/sea = 10)
-	first_time_text = "THE AZURE COAST"
+	first_time_text = "THE COAST"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere betwixt Abyssor's realm and Dendor's bounty"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 	detail_text = DETAIL_TEXT_NORTH_COAST
 
 /area/rogue/outdoors/beach/forest/hamlet
-	name = "The Azure Coast - Hamlet"
+	name = "The Coast - Hamlet"
 	first_time_text = "THE HAMLET"
 	ambush_mobs = null // We don't want actual ambushes in Hamlet but we also don't want to misuse outdoors/beach lol
 	threat_region = THREAT_REGION_AZUREAN_COAST
 	detail_text = DETAIL_TEXT_NORTH_COAST_HAMLET
 
 /area/rogue/outdoors/beach/forest/north
-	name = "The Azure Coast - North"
+	name = "The Coast - North"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 
 /area/rogue/outdoors/beach/forest/south
-	name = "The Azure Coast - South"
+	name = "The Coast - South"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 
 /area/rogue/under/cave/dukecourt

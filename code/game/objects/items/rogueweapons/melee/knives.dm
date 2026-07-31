@@ -937,7 +937,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 0,\
@@ -947,8 +947,8 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/stake/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 0,\
@@ -963,7 +963,7 @@
 	icon_state = "stake_otavan"
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
-	name = "psydonic dagger"
+	name = "vaeltic dagger"
 	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
 	sheathe_icon = "psydagger"
@@ -972,8 +972,8 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\
@@ -982,8 +982,8 @@
 	sellprice += 200
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/heavy
-	name = "psydonic misericorde"
-	desc = "A sanctified misericorde, purposemade for piercing the perverted plate of pestilent paladins. Rarely seen in Azuria, beyond the tasseted \
+	name = "vaeltic misericorde"
+	desc = "A sanctified misericorde, purposemade for piercing the perverted plate of pestilent paladins. Rarely seen out here, beyond the tasseted \
 	sheaths of Otava's most knightly delegates."
 	icon_state = "psydaggerheavy"
 	sheathe_icon = "psydagger"
@@ -992,8 +992,8 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/heavy/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 150,\
@@ -1050,7 +1050,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/poopknife
 	name = "thine majesty's nitesoil-cleaver"
-	desc = "A heraldric accompaniment to the chamberpot, and the most closely-guarded secret in all of Azuria. It is said that this once belonged to the Duke's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
+	desc = "A heraldric accompaniment to the chamberpot, and the most closely-guarded secret this side of the outpost. It is said that this once belonged to a wealthy landholder's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
 	force = 15 //On the FIRST ROUND this was added, someone managed to kill the Vampire Lord with the Poop Knife. Reducing the force 
 	max_integrity = 50 //Should render to ~100, at most. More fragile than alloyed knives. You know why.
 	max_blade_int = 333 //Exceedingly sharp. Ditto.
@@ -1240,9 +1240,9 @@
 		added_def = 3,\
 	)
 
-/obj/item/rogueweapon/huntingknife/throwingknife/psydon
-	name = "psydonic tossblade"
-	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well. </br>This dagger can be stowed away inside a pair of boots, permitting it to be quickly drawn when needed."
+/obj/item/rogueweapon/huntingknife/throwingknife/praecursor
+	name = "vaeltic tossblade"
+	desc = "An unconventional method of delivering silver to a heretic; but one PRAECURSOR smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well. </br>This dagger can be stowed away inside a pair of boots, permitting it to be quickly drawn when needed."
 	item_state = "bone_dagger"
 	force = 10
 	throwforce = 20
@@ -1254,22 +1254,22 @@
 	is_silver = TRUE
 	sellprice = 6
 
-/obj/item/rogueweapon/huntingknife/throwingknife/psydon/ComponentInitialize()
+/obj/item/rogueweapon/huntingknife/throwingknife/praecursor/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\
 		added_def = 3,\
 	)
 
-/obj/item/rogueweapon/huntingknife/throwingknife/psydon/preblessed/ComponentInitialize()
+/obj/item/rogueweapon/huntingknife/throwingknife/praecursor/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\

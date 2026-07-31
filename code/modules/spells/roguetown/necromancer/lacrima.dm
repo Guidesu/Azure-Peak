@@ -100,9 +100,9 @@
 	playsound(user, 'sound/items/blackmirror_needle.ogg', 60, FALSE, 3)
 	user.visible_message(span_alert("[user] tears a glob of pulsating Lux from [target]'s heart!"))
 
-	if(HAS_TRAIT(target, TRAIT_PSYDONITE) || HAS_TRAIT(target, TRAIT_INQUISITION))
+	if(HAS_TRAIT(target, TRAIT_VAELTITE) || HAS_TRAIT(target, TRAIT_INQUISITION))
 		to_chat(target, span_purple("<b>You hear a vicious giggle echoing through your mind. The Dame of Progress is pleased.</b>"))
-		target.add_stress(/datum/stressevent/torn_lux_psydonite)
+		target.add_stress(/datum/stressevent/torn_lux_vaeltite)
 		owner.add_stress(/datum/stressevent/dame_favor)
 		owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
 
@@ -127,7 +127,7 @@
 	stressadd = 30
 	timer = 5 MINUTES
 
-/datum/stressevent/torn_lux_psydonite
+/datum/stressevent/torn_lux_vaeltite
 	desc = span_boldred("PSYDON... forgive me... I feel impure. Defiled. Hollow. How could I allow this sacrilege upon your most precious gift?!")
 	stressadd = 30
 	timer = 5 MINUTES

@@ -1,4 +1,4 @@
-// Direct successor to the old Psydon patron (formerly type-pathed as the standalone "old_god"). Same mechanical
+// Direct successor to the old Praecursor patron (formerly Psydon; formerly type-pathed as the standalone "old_god"). Same mechanical
 // baseline preserved verbatim; renamed and re-flavored as the Tribunal's godhead - the Word, first law, and
 // judgment, rather than "father of all" divinity.
 /datum/patron/tribunal/praecursor
@@ -10,15 +10,15 @@
 	</br>''He, who spent Himself to bind the Unmaker with the Comet Syon.'' \
 	</br>''He, who yet waits in silence to this dae; and who may yet still speak again.''"
 	worshippers = "Magistrates, Zealots, Judges, Heretics-Turned-Faithful, and the Esoteric"
-	mob_traits = list(TRAIT_PSYDONIAN_GRIT) //Assigned to all mobs with Praecursor as the chosen patron. Gives a Willpower-scaling chance to resist succumbing to pain.
+	mob_traits = list(TRAIT_VAELTIAN_GRIT) //Assigned to all mobs with Praecursor as the chosen patron. Gives a Willpower-scaling chance to resist succumbing to pain.
 	miracles = list(/datum/action/cooldown/spell/touch/orison		= CLERIC_ORI,
-					/datum/action/cooldown/spell/psydon/bootcheck	= CLERIC_T0, //Personal spell - summons a completely random item upon use. Your mileage might vary.
-					/datum/action/cooldown/spell/psydon/endure		= CLERIC_T1, //External spell - seals bleeding wounds and helps to save people who've been critically injured.
-					/datum/action/cooldown/spell/psydon/prayer		= CLERIC_T1, //Internal spell - minor self-regeneration, repeatedly casted while still.
-					/datum/action/cooldown/spell/psydon/respite		= CLERIC_T2, //Ditto, but stronger. The original variant, intended for dedicated - non-Adventuring - combat classes.
-					/datum/action/cooldown/spell/psydon/persist		= CLERIC_T3, //Ditto-ditto. Intended for non-combative devotee classes, such as the Missionary and Absolver.
+					/datum/action/cooldown/spell/praecursor/bootcheck	= CLERIC_T0, //Personal spell - summons a completely random item upon use. Your mileage might vary.
+					/datum/action/cooldown/spell/praecursor/endure		= CLERIC_T1, //External spell - seals bleeding wounds and helps to save people who've been critically injured.
+					/datum/action/cooldown/spell/praecursor/prayer		= CLERIC_T1, //Internal spell - minor self-regeneration, repeatedly casted while still.
+					/datum/action/cooldown/spell/praecursor/respite		= CLERIC_T2, //Ditto, but stronger. The original variant, intended for dedicated - non-Adventuring - combat classes.
+					/datum/action/cooldown/spell/praecursor/persist		= CLERIC_T3, //Ditto-ditto. Intended for non-combative devotee classes, such as the Missionary and Absolver.
 	)
-	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T0) //Requires a minimal holy skill or the 'Devotee' virtue to unlock. Offers passive wound regeneration, but prevents healing from most miracles.
+	traits_tier = list(TRAIT_VAELTITE = CLERIC_T0) //Requires a minimal holy skill or the 'Devotee' virtue to unlock. Offers passive wound regeneration, but prevents healing from most miracles.
 	confess_lines = list(
 		"THERE IS ONLY ONE TRUE WORD!",
 		"PRAECURSOR YET SPEAKS! PRAECURSOR YET ENDURES!",

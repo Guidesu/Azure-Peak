@@ -96,7 +96,7 @@
 	. += span_info("If handed to a Tailor, this Blacksteel Sugarloaf Helmet can be used to stitch a uniquely matching surcoat.")
 
 /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
-	name = "crown of psydonian thorns"
+	name = "crown of vaeltian thorns"
 	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be worn upon the head."
 	body_parts_covered = HAIR | HEAD
 	icon_state = "psybarbs"
@@ -127,7 +127,7 @@
 		return
 
 /obj/item/clothing/head/roguetown/helmet/blacksteel/psychains
-	name = "length of psydonian chains"
+	name = "length of vaeltian chains"
 	desc = "Chains fashioned from blacksteel, ritualistically worn atop helmets to testify one's unshatterable bond to Him."
 	icon_state = "psychains"
 	armor = ARMOR_PLATE_BSTEEL

@@ -146,7 +146,7 @@
 	data += "<div style='display: table-cell; width: 50%; vertical-align: top; border-left: 1px solid #444; padding: 0 10px;'>"
 	data += "<font color='#9b6937'><span class='bold'>Total Deaths:</span></font> [GLOB.azure_round_stats[STATS_DEATHS]]<br>"
 	data += "<font color='#6b5ba1'><span class='bold'>Noble Deaths:</span></font> [GLOB.azure_round_stats[STATS_NOBLE_DEATHS]]<br>"
-	data += "<font color='#e6b327'><span class='bold'>Revivals:</span></font> [GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]]<br>"
+	data += "<font color='#e6b327'><span class='bold'>Revivals:</span></font> [GLOB.azure_round_stats[STATS_AUXENTIUS_REVIVALS]]<br>"
 	data += "<font color='#2dc5bd'><span class='bold'>Lux Revivals:</span></font> [GLOB.azure_round_stats[STATS_LUX_REVIVALS]]<br>"
 	data += "<font color='#825b1c'><span class='bold'>Moat Fallers:</span></font> [GLOB.azure_round_stats[STATS_MOAT_FALLERS]]<br>"
 	data += "<font color='#ac5d5d'><span class='bold'>Ankles Broken:</span></font> [GLOB.azure_round_stats[STATS_ANKLES_BROKEN]]<br>"
@@ -875,12 +875,12 @@
 		data += "</div>"
 
 	// Psydon Section
-	var/psydonite_user = FALSE
+	var/vaeltite_user = FALSE
 	if(mob)
 		if(isliving(mob))
 			var/mob/living/living_user_mob = mob
 			if(istype(living_user_mob.patron, /datum/patron/tribunal/praecursor))
-				psydonite_user = TRUE
+				vaeltite_user = TRUE
 
 	var/psydon_followers = GLOB.patron_follower_counts["Psydon"] || 0
 	var/largest_religion = (psydon_followers > 0)
@@ -892,8 +892,8 @@
 				largest_religion = FALSE
 				break
 	var/apostasy_followers = GLOB.patron_follower_counts["Godless"] || 0
-	var/psydonite_monarch = GLOB.azure_round_stats[STATS_MONARCH_PATRON] == "Psydon" ? TRUE : FALSE
-	var/psydon_influence = (psydon_followers * 20) + (GLOB.confessors.len * 20) + (GLOB.azure_round_stats[STATS_HUMEN_DEATHS] * -10) + (GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS] * -20) + (psydonite_monarch ? (psydonite_monarch * 500) : -250) + (largest_religion? (largest_religion * 500) : -250) + (GLOB.azure_round_stats[STATS_PSYCROSS_USERS] * 10) + (apostasy_followers * -20) + (GLOB.azure_round_stats[STATS_LUX_HARVESTED] * -50) + (psydonite_user ? 10000 : -10000)
+	var/vaeltite_monarch = GLOB.azure_round_stats[STATS_MONARCH_PATRON] == "Psydon" ? TRUE : FALSE
+	var/psydon_influence = (psydon_followers * 20) + (GLOB.confessors.len * 20) + (GLOB.azure_round_stats[STATS_HUMEN_DEATHS] * -10) + (GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS] * -20) + (vaeltite_monarch ? (vaeltite_monarch * 500) : -250) + (largest_religion? (largest_religion * 500) : -250) + (GLOB.azure_round_stats[STATS_PSYCROSS_USERS] * 10) + (apostasy_followers * -20) + (GLOB.azure_round_stats[STATS_LUX_HARVESTED] * -50) + (vaeltite_user ? 10000 : -10000)
 
 	data += "<div style='width: 42.5%; margin: 0 auto 30px; border: 2px solid #99b2b1; background: #47636d; color: #d0d0d0; max-height: 420px;'>"
 	data += "<div style='text-align: center; font-size: 1.3em; padding: 12px;'><b>PSYDON</b></div>"
@@ -906,7 +906,7 @@
 	data += "People wearing psycross: [GLOB.azure_round_stats[STATS_PSYCROSS_USERS]] ([get_colored_influence_value(GLOB.azure_round_stats[STATS_PSYCROSS_USERS] * 10)])<br>"
 	data += "Number of confessions: [GLOB.confessors.len] ([get_colored_influence_value(GLOB.confessors.len * 20)])<br>"
 	data += "Largest faith: [largest_religion ? "YES" : "NO"] ([get_colored_influence_value(largest_religion ? 500 : -250)])<br>"
-	data += "Psydonite monarch: [psydonite_monarch ? "YES" : "NO"] ([get_colored_influence_value((psydonite_monarch ? (psydonite_monarch * 500) : -250))])<br>"
+	data += "Vaeltite monarch: [vaeltite_monarch ? "YES" : "NO"] ([get_colored_influence_value((vaeltite_monarch ? (vaeltite_monarch * 500) : -250))])<br>"
 	data += "</div>"
 
 	data += "<div style='flex: 1; padding-left: 60px;'>"
@@ -914,7 +914,7 @@
 	data += "Humen deaths: [GLOB.azure_round_stats[STATS_HUMEN_DEATHS]] ([get_colored_influence_value(GLOB.azure_round_stats[STATS_HUMEN_DEATHS] * -10)])<br>"
 	data += "Largest faith: [largest_religion ? "YES" : "NO"] ([get_colored_influence_value(largest_religion ? 500 : -250)])<br>"
 	data += "Lux harvested: [GLOB.azure_round_stats[STATS_LUX_HARVESTED]] ([get_colored_influence_value(GLOB.azure_round_stats[STATS_LUX_HARVESTED] * -50)])<br>"
-	data += "God's status: [psydonite_user ? "ALIVE" : "DEAD"] ([get_colored_influence_value(psydonite_user ? 10000 : -10000)])<br>"
+	data += "God's status: [vaeltite_user ? "ALIVE" : "DEAD"] ([get_colored_influence_value(vaeltite_user ? 10000 : -10000)])<br>"
 	data += "</div>"
 
 	data += "</div>"
@@ -934,8 +934,8 @@
 	// Astrata
 	data += god_ui_block("ASTRATA", "#e7a962", "#642705", /datum/storyteller/auxentius, debug)
 
-	// Dendor
-	data += god_ui_block("DENDOR", "#412938", "#66745c", /datum/storyteller/ignatius, debug)
+	// Ignatius
+	data += god_ui_block("IGNATIUS", "#412938", "#66745c", /datum/storyteller/ignatius, debug)
 
 	// Ravox
 	data += god_ui_block("RAVOX", "#2c232d", "#710f0f", /datum/storyteller/auxentius, debug)

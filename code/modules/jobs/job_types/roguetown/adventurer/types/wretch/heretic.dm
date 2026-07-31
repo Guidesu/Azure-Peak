@@ -39,7 +39,7 @@
 
 /datum/advclass/wretch/heretic/get_vice_limits(mob/living/carbon/human/H)
 	. = ..()
-	if(istype(H.patron, /datum/patron/tribunal/praecursor) || HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+	if(istype(H.patron, /datum/patron/tribunal/praecursor) || HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 		if(!(/datum/charflaw/silverweakness in .))
 			. += /datum/charflaw/silverweakness
 
@@ -58,27 +58,27 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Longsword", "Mace", "Flail", "Battle Axe", "Billhook")
-		if(!HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT)) //Remove Regular Axe BEFORE choice, is picked (so we don't mislead)
+		if(!HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT)) //Remove Regular Axe BEFORE choice, is picked (so we don't mislead)
 			weapons += "Steel Axe"
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/scabbard/sword
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					r_hand = /obj/item/rogueweapon/sword/long/psysword
 				else
 					r_hand = /obj/item/rogueweapon/sword/long
 			if("Mace")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					r_hand = /obj/item/rogueweapon/mace/goden/psymace
 					l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 				else
 					beltr = /obj/item/rogueweapon/mace/steel
 			if("Flail")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					beltr = /obj/item/rogueweapon/flail/sflail/psyflail
 				else
 					beltr = /obj/item/rogueweapon/flail/sflail
@@ -87,14 +87,14 @@
 				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 			if("Battle Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					beltr = /obj/item/rogueweapon/stoneaxe/battle/psyaxe
 				else
 					beltr = /obj/item/rogueweapon/stoneaxe/battle
 			if("Billhook")
 				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					r_hand = /obj/item/rogueweapon/spear/psyspear
 				else
 					r_hand = /obj/item/rogueweapon/spear/billhook
@@ -189,7 +189,7 @@
 			H.change_stat(STATKEY_PER, 2)
 			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
-			helmets += list("Old Astratan Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm)
+			helmets += list("Old Auxentian Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/auxentiushelm)
 		if(/datum/patron/concordat/wulfric)
 			H.change_stat(STATKEY_INT, 2)
 			H.change_stat(STATKEY_PER, 2)
@@ -211,7 +211,7 @@
 			H.change_stat(STATKEY_INT, 2)
 			H.change_stat(STATKEY_PER, 2)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/ignatius, SLOT_RING, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/tabard/crusader/dendor, SLOT_CLOAK, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/tabard/crusader/ignatius, SLOT_CLOAK, TRUE)
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 			H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
@@ -261,14 +261,14 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, SLOT_ARMOR, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq, SLOT_SHIRT, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/chain/psydon, SLOT_GLOVES, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roguetown/boots/psydonboots, SLOT_SHOES, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/tabard/psydontabard/black, SLOT_CLOAK, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roguetown/boots/praecursorboots, SLOT_SHOES, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/tabard/praecursortabard/black, SLOT_CLOAK, TRUE)
 			H.change_stat(STATKEY_WIL, 2)
 			H.change_stat(STATKEY_CON, 2)
-			helmets += list("Psydonic Barbute" = /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute,
-				"Psydonic Sallet" = /obj/item/clothing/head/roguetown/helmet/heavy/psysallet,
-				"Psydonic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
-				"Psydonic Bucket Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket)
+			helmets += list("Vaeltic Barbute" = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorbarbute,
+				"Vaeltic Sallet" = /obj/item/clothing/head/roguetown/helmet/heavy/psysallet,
+				"Vaeltic Armet" = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm,
+				"Vaeltic Bucket Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket)
 	if(H.mind)
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
@@ -326,7 +326,7 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget
-	mask =  HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT)?/obj/item/clothing/mask/rogue/facemask/steel/confessor : /obj/item/clothing/mask/rogue/ragmask/black
+	mask =  HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT)?/obj/item/clothing/mask/rogue/facemask/steel/confessor : /obj/item/clothing/mask/rogue/ragmask/black
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/lockpickring/mundane = 1,
@@ -344,7 +344,7 @@
 		switch(weapon_choice)
 			if("Daggers")
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 				else if(istype(H.patron, /datum/patron/unveiled/aurelian))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/zizo
@@ -355,7 +355,7 @@
 				beltr = /obj/item/rogueweapon/scabbard/sheath
 			if("Rapier")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/sword/rapier/psy //Fuck you it's aura
 				else
 					l_hand = /obj/item/rogueweapon/sword/rapier
@@ -370,7 +370,7 @@
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
 				beltl = /obj/item/rogueweapon/scabbard/sheath
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 				else if(istype(H.patron, /datum/patron/unveiled/aurelian))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/zizo
@@ -382,7 +382,7 @@
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
 				beltl = /obj/item/rogueweapon/scabbard/sheath
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 				else if(istype(H.patron, /datum/patron/unveiled/aurelian))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/zizo
@@ -394,7 +394,7 @@
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
 				beltl = /obj/item/rogueweapon/scabbard/sheath
-				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 				else if(istype(H.patron, /datum/patron/unveiled/aurelian))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/zizo
@@ -475,11 +475,11 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 		if(/datum/patron/tribunal/praecursor)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/silver, SLOT_RING, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/roguehood/psydon/confessor, SLOT_HEAD, TRUE) // You do not get the NVGs. Explode.
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/roguehood/praecursor/confessor, SLOT_HEAD, TRUE) // You do not get the NVGs. Explode.
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor, SLOT_ARMOR, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq, SLOT_SHIRT, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/otavan/psygloves, SLOT_GLOVES, TRUE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roguetown/boots/psydonboots, SLOT_SHOES, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roguetown/boots/praecursorboots, SLOT_SHOES, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan, SLOT_PANTS, TRUE)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/roguetown/heavy_leather_pants, SLOT_PANTS, TRUE)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat, SLOT_ARMOR, TRUE)

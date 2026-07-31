@@ -3,8 +3,9 @@ import type { SequestrationState } from './types';
 
 export const SequestrationBanner = (props: {
   sequestration: SequestrationState;
+  factionName: string;
 }) => {
-  const { sequestration } = props;
+  const { sequestration, factionName } = props;
   if (!sequestration?.active) {
     return null;
   }
@@ -41,8 +42,8 @@ export const SequestrationBanner = (props: {
         SEQUESTRATION DECLARED
       </div>
       <div style={{ fontVariant: 'normal' }}>
-        Following the Crown&apos;s default, the Azurian Trading Company holds
-        the sequestered revenues of the realm and farms the customs and salt
+        Following the Crown&apos;s default, {factionName} holds the
+        sequestered revenues of the realm and farms the customs and salt
         tolls in perpetuity until the {sequestration.debt}m debt is repaid.
         Trade controls and stockpile pricing stand locked. Petitions, taxation,
         and the lash of fines remain.

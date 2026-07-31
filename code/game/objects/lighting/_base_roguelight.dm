@@ -14,6 +14,27 @@
 	var/can_damage = TRUE
 	var/roundstart_forbid = FALSE
 	var/refueling = FALSE
+	var/heat_level = 0
+
+/obj/machinery/light/rogue/proc/update_turf_heat()
+	if(!heat_level)
+		return
+	var/turf/open/floor/T = loc
+	if(!isfloorturf(T))
+		return
+	if(on)
+		T.add_heat_source(src, heat_level)
+	else
+		T.remove_heat_source(src)
+
+/obj/machinery/light/rogue/Moved(atom/OldLoc, Dir)
+	. = ..()
+	if(!heat_level)
+		return
+	if(isfloorturf(OldLoc))
+		var/turf/open/floor/T = OldLoc
+		T.remove_heat_source(src)
+	update_turf_heat()
 
 /obj/machinery/light/rogue/Initialize()
 	if(soundloop)
@@ -25,6 +46,7 @@
 	update_icon()
 	if(!roundstart_forbid)
 		seton(TRUE)
+	update_turf_heat()
 	. = ..()
 
 /obj/machinery/light/rogue/weather_trigger(W)
@@ -78,10 +100,14 @@
 		GLOB.fires_list |= src
 	else
 		GLOB.fires_list -= src
+	update_turf_heat()
 
 /obj/machinery/light/rogue/Destroy()
 	QDEL_NULL(soundloop)
 	GLOB.fires_list -= src
+	if(heat_level && isfloorturf(loc))
+		var/turf/open/floor/T = loc
+		T.remove_heat_source(src)
 	. = ..()
 
 /obj/machinery/light/rogue/fire_act(added, maxstacks)
@@ -238,6 +264,7 @@
 				on = FALSE
 				set_light(0)
 				update_icon()
+				update_turf_heat()
 				qdel(W)
 				src.visible_message("<span class='warning'>[user] snuffs the fire.</span>")
 				return

@@ -196,14 +196,22 @@
 	/// Ref to orison-like sunder object
 	var/sunder_light_obj = null
 
-	/// Assoc list of culinary preferences of the mob
-	var/list/culinary_preferences = list()
+	var/favorite_cuisine = NONE
+	var/favorite_dish = NONE
+	var/favorite_drink = NONE
 
 	/// List of mobs that have attacked us. Only relevant to someone with TRAIT_TEMPO.
 	var/list/tempo_attackers = list()
 
 	var/next_tempo_cull
 
+	// Temperature system (Weather & Temperature Overhaul, Phase 1 port)
+	/// Bitflags for time-of-day based temperature modifiers, see get_temp_modifier(). Currently unwired (driven off GLOB.tod instead) but kept for future map/ToD-specific tuning.
+	var/time_flags = 0
+	/// Timer id for the level-2-cold -> hypothermia wound progression. Non-null while ticking.
+	var/hypothermia_timer_id
+	/// Timer id for the level-2-heat -> heatexhaustion wound progression. Non-null while ticking.
+	var/heatstroke_timer_id
 
 	var/list/charflaws = list()
 

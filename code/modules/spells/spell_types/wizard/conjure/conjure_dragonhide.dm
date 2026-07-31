@@ -25,12 +25,12 @@
 
 #undef DRAGONHIDE_FILTER
 
-/datum/status_effect/buff/dragonhide/astrata
+/datum/status_effect/buff/dragonhide/auxentius
 	id = "asbestine"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/astrata
+	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/auxentius
 	duration = 2 MINUTES
 	outline_colour = "#9B7439"
 
-/atom/movable/screen/alert/status_effect/buff/dragonhide/astrata
+/atom/movable/screen/alert/status_effect/buff/dragonhide/auxentius
 	name = "Asbestine Cloak"
-	desc = "Enveloped in Her radiance flames bear no hold over me!"
+	desc = "Enveloped in His radiance flames bear no hold over me!"

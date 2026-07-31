@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/atm
 	name = "MEISTER"
-	desc = "A magitech apparatus with a mouth that stores and withdraws currency for accounts managed by the Grand Duchy of Azuria."
+	desc = "A magitech apparatus with a mouth that stores and withdraws currency for accounts managed by the outpost's treasury."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "atm"
 	density = FALSE
@@ -126,7 +126,7 @@
 	. += span_smallnotice("Crown levies - Contract: [round(SStreasury.get_tax_rate(TAX_CATEGORY_CONTRACT_LEVY) * 100)]%, Headeater: [round(SStreasury.get_tax_rate(TAX_CATEGORY_HEADEATER_LEVY) * 100)]%, Import: [round(SStreasury.get_tax_rate(TAX_CATEGORY_IMPORT_TARIFF) * 100)]%, Export: [round(SStreasury.get_tax_rate(TAX_CATEGORY_EXPORT_DUTY) * 100)]%")
 	var/datum/decree/concordat = SStreasury.get_decree(DECREE_ZENITSTADT_CONCORDAT)
 	if(concordat?.active)
-		. += span_smallnotice("Compact of Zenitstadt: [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Church of Azuria, drawn from the Crown's share.")
+		. += span_smallnotice("Compact of Zenitstadt: [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Church, drawn from the Crown's share.")
 
 
 /obj/structure/roguemachine/atm/proc/drill(obj/structure/roguemachine/atm)

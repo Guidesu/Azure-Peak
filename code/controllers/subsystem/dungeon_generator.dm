@@ -21,11 +21,27 @@ SUBSYSTEM_DEF(dungeon_generator)
 	var/repetition_penalty = 2
 
 	var/target_z = 0
+	/// Hard safety range for where a dungeon piece is ever allowed to land, resolved
+	/// alongside target_z from the same "Dungeon Map"/"Dungeon Map 2" space_level
+	/// names (see LoadGroup() in mapping.dm - "[name][i ? " [i + 1]" : ""]" naming).
+	/// can_place() refuses anything outside this range no matter what target_z or a
+	/// z_off computation comes out to, as a backstop against ever placing dungeon
+	/// content onto a station map's own z-levels.
+	var/list/allowed_z_range = list()
 	var/setup_done = FALSE
 	var/setup_attempts = 0
 	var/max_setup_attempts = 12
 	var/loot_pool_finalized = FALSE
 	var/generation_complete = FALSE
+	/// Players can reach the tomb well before generation fully finishes - a
+	/// large multi-biome dungeon can take well over a minute to place every
+	/// room. Waiting for finalize_generation() to run the loot sweep left
+	/// early-generated rooms' spawners sitting inert (visible as the bare
+	/// "General low/mid" etc. spawner objects) for however long the rest of
+	/// generation still had left. Sweep periodically during generation too,
+	/// not just once at the very end - process_deferred_loot_pool() already
+	/// tolerates repeat calls safely (see loot_pool.dm).
+	var/next_interim_loot_sweep = 0
 
 	var/prot_min_x = 0; var/prot_max_x = 0; var/prot_min_y = 0; var/prot_max_y = 0
 
@@ -58,11 +74,42 @@ SUBSYSTEM_DEF(dungeon_generator)
 	addtimer(CALLBACK(src, .proc/find_initial_map_data), 50) 
 	return ..()
 
+/**
+ * target_z used to be inferred from "whichever dungeon_directional_helper this
+ * for(...) in world loop finds first" - `in world` iteration order isn't
+ * something DM guarantees, and the actual z that lands on depends entirely on
+ * how many z-levels the current map config loads before "Dungeon Map"
+ * (otherz/dungeon.json) does. That's what made the tomb appear to regenerate
+ * on a different z-level than expected: the number was never pinned to
+ * anything, just whatever came out of load order that boot.
+ *
+ * "Dungeon Map" (see otherz/dungeon.json's map_name, and how
+ * /datum/controller/subsystem/mapping/proc/LoadGroup() names each space_level
+ * after it) is the one stable identifier for this z-level regardless of load
+ * order, so resolve target_z from that instead.
+ */
 /datum/controller/subsystem/dungeon_generator/proc/find_initial_map_data()
+	if(!target_z)
+		for(var/datum/space_level/level in SSmapping.z_list)
+			if(level.name == "Dungeon Map" || level.name == "Dungeon Map 2")
+				allowed_z_range += level.z_value
+			if(level.name == "Dungeon Map")
+				target_z = level.z_value
+		if(target_z)
+			log_world("DUNGEON_DEBUG: target_z resolved to [target_z] (world.maxz=[world.maxz]), allowed_z_range=[allowed_z_range.Join(",")] via 'Dungeon Map' z_list lookup.")
+
+	if(!target_z)
+		setup_attempts++
+		if(setup_attempts >= max_setup_attempts)
+			log_world("DUNGEON_DEBUG: giving up after [setup_attempts] attempts - no z_list entry named 'Dungeon Map' ever appeared. z_list names: [dungeon_debug_zlist_names()]")
+			generation_complete = TRUE
+			can_fire = FALSE
+			return
+		addtimer(CALLBACK(src, .proc/find_initial_map_data), 50)
+		return
+
 	var/list/found_points = list()
 	for(var/obj/effect/dungeon_directional_helper/H in world)
-		if(!target_z)
-			target_z = H.z
 		if(H.z == target_z)
 			found_points += H
 
@@ -75,8 +122,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 		addtimer(CALLBACK(src, .proc/find_initial_map_data), 50)
 		return
 
-	if(SSmapping.z_list.len < target_z + 1)
-		SSmapping.add_new_zlevel("Dungeon Upper Layer", list(ZTRAIT_AWAY = TRUE))
+	log_world("DUNGEON_DEBUG: found [length(found_points)] dungeon_directional_helper marker(s) on target_z=[target_z].")
 
 	if(length(found_points) >= 4)
 		var/obj/F = found_points[1]
@@ -85,10 +131,16 @@ SUBSYSTEM_DEF(dungeon_generator)
 			var/obj/O = found_points[i]
 			prot_min_x = min(prot_min_x, O.x); prot_max_x = max(prot_max_x, O.x)
 			prot_min_y = min(prot_min_y, O.y); prot_max_y = max(prot_max_y, O.y)
-	
+
 	markers |= found_points
 	setup_done = TRUE
 	setup_attempts = 0
+
+/datum/controller/subsystem/dungeon_generator/proc/dungeon_debug_zlist_names()
+	var/list/names = list()
+	for(var/datum/space_level/level in SSmapping.z_list)
+		names += "[level.z_value]:[level.name]"
+	return names.Join(", ")
 
 /datum/controller/subsystem/dungeon_generator/fire(resumed)
 	if(!setup_done) return
@@ -111,6 +163,10 @@ SUBSYSTEM_DEF(dungeon_generator)
 			process_failed_markers(marker_process_limit)
 		else
 			generation_stage = STAGE_EXPANSION
+
+	if(world.time >= next_interim_loot_sweep)
+		next_interim_loot_sweep = world.time + 10 SECONDS
+		process_deferred_loot_pool("tomb_of_alotheos")
 
 /datum/controller/subsystem/dungeon_generator/proc/process_markers(limit)
 	var/processed = 0
@@ -193,6 +249,9 @@ SUBSYSTEM_DEF(dungeon_generator)
 	for(var/z_off in 0 to 1)
 		var/cz = target_z + z_off
 		if(cz > world.maxz) return FALSE
+		if(length(allowed_z_range) && !(cz in allowed_z_range))
+			log_world("DUNGEON_DEBUG: REFUSED placement of [T.type] at z=[cz] (outside allowed_z_range=[allowed_z_range.Join(",")]) - this would have overlapped a station map.")
+			return FALSE
 		for(var/turf/test in block(locate(start_T.x, start_T.y, cz), locate(ex, ey, cz)))
 			if(z_off == 0)
 				if(!is_strictly_void(test) || is_protected(test.x, test.y)) return FALSE
@@ -253,6 +312,11 @@ SUBSYSTEM_DEF(dungeon_generator)
 		return
 	loot_pool_finalized = TRUE
 	process_deferred_loot_pool("tomb_of_alotheos")
+	// The very last room(s) placed via T.load() can still have spawners sitting
+	// in SSatoms' LateInitialize queue (INITIALIZE_HINT_LATELOAD) when this
+	// fires - they haven't been added to GLOB.loot_spawners_pending yet and get
+	// missed by the sweep above. Retry once the queue has had time to drain.
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/process_deferred_loot_pool, "tomb_of_alotheos"), 3 SECONDS)
 
 /datum/controller/subsystem/dungeon_generator/proc/finalize_generation()
 	if(generation_complete)
@@ -277,7 +341,16 @@ SUBSYSTEM_DEF(dungeon_generator)
 		var/obj/effect/dungeon_directional_helper/helper = failed_markers[1]
 		failed_markers.Cut(1, 2)
 		if(helper && !QDELETED(helper))
-			try_spawn_filler(helper.dir, get_turf(helper))
+			// try_spawn_filler()'s return value used to be discarded and the marker qdel'd
+			// unconditionally either way - a marker whose filler placement ALSO failed (same
+			// can_place() constraints that failed its original growth attempt) just vanished
+			// with nothing built and no further attempt, no new markers created to replace it.
+			// With very few seed markers (the static "Dungeon Map" only places 4 - everything
+			// else comes from room pieces spawning their own connector markers as they load),
+			// losing even one or two of those 4 to a bad template roll can mean the entire
+			// dungeon interior never gets seeded at all.
+			if(!try_spawn_filler(helper.dir, get_turf(helper)))
+				log_world("DUNGEON_DEBUG: try_spawn_filler FAILED for marker at [get_turf(helper)] dir=[helper.dir] - this seed is lost with nothing built there.")
 			qdel(helper)
 		processed++
 

@@ -299,14 +299,17 @@
 			if(C.is_mouth_covered())
 				return
 		user.visible_message(span_info("[user] starts to drink from [src]."))
-		drink_act(user, L)
+		for(var/drink in 1 to 40)
+			if(drink_act(user, L))
+				return
+		to_chat(user, span_warning("I've had enough."))
 		return
 	..()
 
 /turf/open/water/proc/drink_act(mob/user, mob/living/L)
 	playsound(user, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
 	if(L.stat != CONSCIOUS)
-		return
+		return TRUE
 
 	if(do_after(L, 25, target = src))
 		if (istype(src,/turf/open/water/sewer))
@@ -316,8 +319,8 @@
 		reagents.add_reagent_list(waterl)
 		reagents.trans_to(L, reagents.total_volume, transfered_by = user, method = INGEST)
 		playsound(user,pick('sound/items/drink_gen (1).ogg','sound/items/drink_gen (2).ogg','sound/items/drink_gen (3).ogg'), 100, TRUE)
-		drink_act(user, L)
-	return
+		return FALSE
+	return TRUE
 
 /turf/open/water/Destroy()
 	. = ..()

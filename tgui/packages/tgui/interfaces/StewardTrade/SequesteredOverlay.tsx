@@ -1,12 +1,16 @@
 import type { ReactNode } from 'react';
 
+import { useBackend } from '../../backend';
 import { FONT_BODY, SEAL_RED } from '../common/parchment';
+import type { Data } from './types';
 
 export const SequesteredOverlay = (props: {
   active: boolean;
   label: string;
   children: ReactNode;
 }) => {
+  const { data } = useBackend<Data>();
+  const factionName = data.faction_name || 'the Stewardry';
   if (!props.active) {
     return <>{props.children}</>;
   }
@@ -49,7 +53,7 @@ export const SequesteredOverlay = (props: {
             color: SEAL_RED,
           }}
         >
-          {props.label} held by the Azurian Trading Company
+          {props.label} held by {factionName}
         </div>
       </div>
     </div>

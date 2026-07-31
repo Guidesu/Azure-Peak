@@ -344,7 +344,7 @@
 			return FALSE
 		return TRUE
 
-/obj/structure/vine/dendor
+/obj/structure/vine/ignatius
 	mutations = newlist(/datum/vine_mutation/earthy)
 	opacity = 1
 //ATTACK HAND IGNORING PARENT RETURN VALUE

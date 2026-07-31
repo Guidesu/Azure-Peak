@@ -160,6 +160,7 @@
 /obj/item/roguemachine/navigator/ui_static_data(mob/user)
 	var/list/data = list()
 	data["motto"] = motto
+	data["faction_name"] = SSticker.faction_name || "the Stewardry"
 	data["handler_fee_percent"] = round(fixed_tax * 100)
 	data["duty_rate"] = SStreasury ? SStreasury.get_tax_rate(TAX_CATEGORY_EXPORT_DUTY) : 0
 	data["pay_taxes"] = pay_taxes

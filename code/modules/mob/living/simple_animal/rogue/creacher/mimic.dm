@@ -111,7 +111,7 @@
 	for(var/mob/living/carbon/C in view(4, src))
 		if(C == src || HAS_TRAIT(C, TRAIT_NOMOOD))
 			continue
-		if(!HAS_TRAIT(C, TRAIT_PSYDONIAN_GRIT) && (!HAS_TRAIT(C, TRAIT_STEELHEARTED) || prob(50)))
+		if(!HAS_TRAIT(C, TRAIT_VAELTIAN_GRIT) && (!HAS_TRAIT(C, TRAIT_STEELHEARTED) || prob(50)))
 			C.freak_out_mimic(src)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mimic/Aggro()

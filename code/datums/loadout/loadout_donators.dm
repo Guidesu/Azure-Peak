@@ -119,7 +119,7 @@
 	path = /obj/item/enchantingkit/heroicleathercuirass
 
 /datum/loadout_item/donator/universal/armor_triheartfelt
-	name = "Gift - Kit, Azurian Plate Armor"
+	name = "Gift - Kit, Azurosa Plate Armor"
 	path = /obj/item/enchantingkit/triheartfelt
 
 /datum/loadout_item/donator/universal/headpiece_decoration
@@ -517,7 +517,7 @@
 	ckeywhitelist = list("ryan180602")
 
 /datum/loadout_item/donator/ryan/psy_helm
-	name = "Donator Kit - Unorthodoxist Psydonite Helm"
+	name = "Donator Kit - Unorthodoxist Vaeltite Helm"
 	path = /obj/item/enchantingkit/ryan_psyhelm
 
 /datum/loadout_item/donator/koruu
@@ -660,7 +660,7 @@
 	ckeywhitelist = list("nicksone")
 
 /datum/loadout_item/donator/koruu_silver_kukri
-	name = "Donator Kit - Psydonic Leachwhacker"
+	name = "Donator Kit - Vaeltic Leachwhacker"
 	path = /obj/item/enchantingkit/weapon/koruu_kukri_silver
 	ckeywhitelist = list("koruu", "pepperoniplayboy")
 

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/transform_tree
 	name = "Transform Tree"
-	desc = "Transform a normal tree into a wise tree of Dendor."
+	desc = "Transform a normal tree into a wise tree of Ignatius."
 	invocation_type = "whisper"
 	overlay_state = "entangle"
 	range = 1
@@ -73,5 +73,5 @@
 	playsound(T, 'sound/ambience/noises/mystical (4).ogg', 50, TRUE)
 
 	if(uses <= 0)
-		to_chat(H, span_warning("Dendor's blessing fades from you."))
+		to_chat(H, span_warning("Ignatius's blessing fades from you."))
 		H.mind.RemoveSpell(src)

@@ -57,16 +57,16 @@
 	icon_state = "leverwall[toggled]"
 
 /obj/structure/fluff/psycross/psycrucifix/stone
-	name = "stone psydonic crucifix"
+	name = "stone vaeltic crucifix"
 	desc = "Formed of stone, this great Psycross symbolises that HE is forever ENDURING. Considered a rare sight upon the vale."
 	icon_state = "psycruci_r"
 	max_integrity = 120
 	chance2hear = 10
 
 /obj/structure/fluff/psycross/psycrucifix/silver
-	name = "silver psydonic crucifix"
+	name = "silver vaeltic crucifix"
 	icon_state = "psycruci_s"
-	desc = "Constructed of Blessed Silver, this crucifix symbolises absolute faith in the ONE - For PSYDON WEEPS, for all mortal ilk. PSYDON WEEPS, for all who walk upon the soil. PSYDON WEEPS..."
+	desc = "Constructed of Blessed Silver, this crucifix symbolises absolute faith in the ONE - For PRAECURSOR WEEPS, for all mortal ilk. PRAECURSOR WEEPS, for all who walk upon the soil. PRAECURSOR WEEPS..."
 	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
 
 /obj/structure/fluff/walldeco/mercenaryflag

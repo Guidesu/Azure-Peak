@@ -221,7 +221,7 @@
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_dendorcross
-	name = "Golden Dendorian Amulet, Ornate"
+	name = "Golden Ignatian Amulet, Ornate"
 	path = /obj/item/clothing/neck/roguetown/psicross/ignatius/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
@@ -449,7 +449,7 @@
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_weaponkit_estoc
-	name = "Triumph Kit - Azurian Estoc"
+	name = "Triumph Kit - Highland Estoc"
 	path = /obj/item/enchantingkit/triumph_weaponkit_estoc
 	triumph_cost = 3
 	sort_category = "Triumphs"

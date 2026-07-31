@@ -155,10 +155,10 @@ GLOBAL_DATUM_INIT(armour_filter_effect_generic, /datum/armour_filter_effect, new
 	reject_message = "It may be light, but this armor chafes my focus far too much. I couldn't hope to hone my techniques, while wearing it."
 
 
-/datum/armour_filter_effect/psydonian_grit
-	required_trait = TRAIT_PSYDONIAN_GRIT
+/datum/armour_filter_effect/vaeltian_grit
+	required_trait = TRAIT_VAELTIAN_GRIT
 	required_id = "ornate_plate"
-	worn_buff = /datum/status_effect/buff/psydonic_endurance
+	worn_buff = /datum/status_effect/buff/vaeltic_endurance
 
 /datum/armour_filter_effect/naledi_mask
 	required_trait = TRAIT_NALEDI

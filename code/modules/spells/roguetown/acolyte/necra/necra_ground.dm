@@ -9,6 +9,7 @@
 
 	primary_resource_type  = SPELL_COST_DEVOTION
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR * 2
+	mana_cost = MANACOST_MIRACLE_MAJOR * 2
 	secondary_resource_type = SPELL_COST_STAMINA
 	secondary_resource_cost = SPELLCOST_MAJOR_AOE
 

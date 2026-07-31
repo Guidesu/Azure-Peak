@@ -81,7 +81,7 @@
 	if(M.has_dna() && ishuman(M))
 		M.dna.species.handle_body(M) //updates eye icon
 
-/obj/item/organ/eyes/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/eyes/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
 	if(ishuman(M) && eye_color)
 		var/mob/living/carbon/human/HMN = M
@@ -296,7 +296,7 @@
 	terminate_effects()
 	. = ..()
 
-/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	terminate_effects()
 	. = ..()
 
@@ -359,7 +359,7 @@
 	. = ..()
 	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_visuals))
 
-/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
 	UnregisterSignal(M, COMSIG_ATOM_DIR_CHANGE)
 

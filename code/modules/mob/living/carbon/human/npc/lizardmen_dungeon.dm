@@ -138,13 +138,13 @@ GLOBAL_LIST_INIT(psyvault_aggro, world.file2list("strings/rt/psyvaultaggrolines.
 	var/add_random_psy_vault_guard_mask = rand(1,5)
 	switch(add_random_psy_vault_guard_mask)
 		if(1)
-			mask = /obj/item/clothing/mask/rogue/facemask/psydonmask
+			mask = /obj/item/clothing/mask/rogue/facemask/praecursormask
 		if(2)
 			mask = /obj/item/clothing/mask/rogue/sack/psy
 		if(3)
 			head = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 		if(4)
-			head = /obj/item/clothing/head/roguetown/roguehood/psydon
+			head = /obj/item/clothing/head/roguetown/roguehood/praecursor
 
 /datum/outfit/job/roguetown/human/species/lizardfolk/psy_vault_guard/proc/add_random_psy_vault_guard_psycross(mob/living/carbon/human/H)
 	var/add_random_psy_vault_guard_psycross = rand(1,5)

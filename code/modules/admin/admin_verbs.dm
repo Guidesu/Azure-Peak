@@ -113,6 +113,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/extend_round,
 	/client/proc/cmd_admin_set_ic_date, /* Set custom IC date for events */
 	/client/proc/log_viewer_new,
+	/client/proc/cmd_admin_set_outpost_name,
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(
 	/client/proc/unban_panel,
@@ -228,7 +229,9 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/performance_stress_test, // Uncomment these if you tick the performance stress test .dm file
 	/client/proc/cleanup_stress_test_mobs,
 	/client/proc/cmd_admin_economic_panel,
-	/client/proc/cmd_admin_view_chronicle
+	/client/proc/cmd_admin_view_chronicle,
+	/client/proc/cmd_admin_campaign_save_status,
+	/client/proc/cmd_admin_reset_campaign_save
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
 GLOBAL_PROTECT(admin_verbs_possess)

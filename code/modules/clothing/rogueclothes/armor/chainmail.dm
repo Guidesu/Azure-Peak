@@ -231,19 +231,19 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	armor_class = ARMOR_CLASS_HEAVY
 	armor = ARMOR_PLATE
-	name = "psydonic plate-and-maille"
+	name = "vaeltic plate-and-maille"
 	desc = "A beautiful steel cuirass, decorated with blessed silver fluting and worn atop thick chainmaille. While it falters against \
 	arrows and bolts, these interlinked layers are superb at warding off the blows of inhumen claws and axes. </br>‎  </br>'..the \
 	knowledge of evil, and the burden of carrying Vaeltis's hope upon thine shoulders..'"
 	icon_state = "ornatehauberk"
 	item_state = "ornatehauberk"
-	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON + 50
+	max_integrity = ARMOR_INT_CHEST_PLATE_PRAECURSOR + 50
 	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("With more blessed silver and an armorsmith's hammer, this armor can be further upgraded.")
-	. += span_info("If a character has the 'Maille Training' trait and has Psydon as their selected patron, they can comfortably wear Psydonic plate armor without suffering any downsides.")
+	. += span_info("If a character has the 'Maille Training' trait and has Praecursor as their selected patron, they can comfortably wear Vaeltic plate armor without suffering any downsides.")
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/heavy/decorated
 	name = "decorated plate-and-maille"
@@ -295,7 +295,7 @@
 	bypass_dupe_test = TRUE
 
 /datum/crafting_recipe/roguetown/survival/ornatemailledhauberk
-	name = "layer a psydonic cuirass atop hauberk"
+	name = "layer a vaeltic cuirass atop hauberk"
 	result = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate)
 	reqs = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate = 1,
 	            /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk = 1)

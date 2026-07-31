@@ -763,17 +763,17 @@ A LITTLE MORE CONSISTENT IN HERE. PLEASE DO YOUR BEST. THANKS.
 				)
 
 /datum/supply_pack/rogue/wardrobe/caparison/caparison_psy
-	name = "Psydonic Caparison"
+	name = "Vaeltic Caparison"
 	cost = 25
 	contains = list(
 					/obj/item/caparison/psy,
 				)
 
-/datum/supply_pack/rogue/wardrobe/caparison/caparison_astrata
-	name = "Astratan Caparison"
+/datum/supply_pack/rogue/wardrobe/caparison/caparison_auxentius
+	name = "Auxentian Caparison"
 	cost = 25
 	contains = list(
-					/obj/item/caparison/astrata,
+					/obj/item/caparison/auxentius,
 				)
 
 /datum/supply_pack/rogue/wardrobe/caparison/caparison_eora

@@ -82,25 +82,16 @@
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 	if(HAS_TRAIT(user, TRAIT_ROYALSERVANT))
 		var/datum/job/our_job = SSjob.name_occupations[job]
-		if(length(culinary_preferences) && is_type_in_list(our_job, list(/datum/job/roguetown/lord, /datum/job/roguetown/lady, /datum/job/roguetown/exlady, /datum/job/roguetown/prince)))
-			var/obj/item/reagent_containers/food/snacks/fav_food = src.culinary_preferences[CULINARY_FAVOURITE_FOOD]
-			var/datum/reagent/consumable/fav_drink = src.culinary_preferences[CULINARY_FAVOURITE_DRINK]
-			if(fav_food)
-				if(fav_drink)
-					. += span_notice("Their favourites are [fav_food.name] and [fav_drink.name].")
-				else
-					. += span_notice("Their favourite is [fav_food.name].")
-			else if(fav_drink)
-				. += span_notice("Their favourite is [fav_drink.name].")
-			var/obj/item/reagent_containers/food/snacks/hated_food = src.culinary_preferences[CULINARY_HATED_FOOD]
-			var/datum/reagent/consumable/hated_drink = src.culinary_preferences[CULINARY_HATED_DRINK]
-			if(hated_food)
-				if(hated_drink)
-					. += span_notice("They hate [hated_food.name] and [hated_drink.name].")
-				else
-					. += span_notice("They hate [hated_food.name].")
-			else if(hated_drink)
-				. += span_notice("They hate [hated_drink.name].")
+		if(is_type_in_list(our_job, list(/datum/job/roguetown/lord, /datum/job/roguetown/lady, /datum/job/roguetown/exlady, /datum/job/roguetown/prince)))
+			var/list/tastes = list()
+			if(favorite_cuisine)
+				tastes += "[culinary_flag_name(GLOB.culinary_cuisines, favorite_cuisine)] cuisine"
+			if(favorite_dish)
+				tastes += culinary_flag_name(GLOB.culinary_dishes, favorite_dish)
+			if(favorite_drink)
+				tastes += culinary_flag_name(GLOB.culinary_drinks, favorite_drink)
+			if(length(tastes))
+				. += span_notice("They have a taste for [english_list(tastes)].")
 
 	var/is_stupid = FALSE
 	var/is_smart = FALSE
@@ -387,6 +378,17 @@
 			if(100 to INFINITY)
 				msg += span_danger("[m1] gravely wounded.")
 
+	//body temp
+	switch(bodytemperature)
+		if(0 to BODYTEMP_COLD_LEVEL_ONE_MAX)
+			msg += span_biginfo("<font color='#023E8A'> [m1] shivering uncontrollably</font>")
+		if(BODYTEMP_COLD_LEVEL_ONE_MAX to BODYTEMP_NORMAL_MIN)
+			msg += span_biginfo("<font color='#99e6ff'> [m1] shivering</font>")
+		if(BODYTEMP_NORMAL_MAX to BODYTEMP_HEAT_LEVEL_ONE_MAX)
+			msg += span_biginfo("<font color='#ffff00'> [m1] sweating</font>")
+		if(BODYTEMP_HEAT_LEVEL_ONE_MAX to 600)
+			msg += span_biginfo("<font color='#DC143C'> [m1] sweating greatly</font>")
+
 	// Blood volume
 	switch(blood_volume)
 		if(-INFINITY to BLOOD_VOLUME_SURVIVE)
@@ -463,6 +465,12 @@
 		else
 			missing_limb_message = span_danger("[missing_limb_message]")
 		msg += missing_limb_message
+
+	// Brand marks - Ported from Twilight-Axis (branding_iron feature)
+	for(var/obj/item/bodypart/BP in bodyparts)
+		if(BP.brand_text)
+			if(observer_privilege || get_location_accessible(src, BP.body_zone))
+				msg += "<span class='warning' style='font-size: 1.15em;'>[m1] branded on [m2] [BP.name]: <b style='font-size: 1.3em; color: #c48e42;'>\"[uppertext(BP.brand_text)]\"</b></span>"
 
 	//Grabbing
 	if(pulledby && pulledby.grab_state)
@@ -849,7 +857,7 @@
 				origin = dna.species.origin
 		var/astratan_symbol
 		var/astratan_tooltip
-		if(HAS_TRAIT(user, TRAIT_ASTRATAN_AFFINITY) && get_dist(user, src) <= 2)
+		if(HAS_TRAIT(user, TRAIT_AUXENTIAN_AFFINITY) && get_dist(user, src) <= 2)
 			if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))	//Guarded virtue protects from this
 				if(issunelf(src) || patron?.type == /datum/patron/concordat/auxentius)
 					astratan_symbol = icon2html('icons/misc/language.dmi', world, "celestial")
@@ -883,10 +891,10 @@
 					. += span_notice("A noble!")
 
 		if(HAS_TRAIT(src, TRAIT_RESIDENT))
-			. += span_notice("A chartered resident of Azuria.")
+			. += span_notice("A chartered resident of the outpost.")
 
 		if(HAS_TRAIT(src, TRAIT_AGENT_MERCHANT))
-			. += span_notice("An agent of the Azurian Trading Company.")
+			. += span_notice("An agent of [SSticker.faction_name || "the Stewardry"].")
 		if(HAS_TRAIT(src, TRAIT_AGENT_BATHHOUSE))
 			. += span_notice("An agent of the Bathhouse.")
 		if(HAS_TRAIT(src, TRAIT_ARMOR_BREAK))
@@ -919,9 +927,9 @@
 					. += span_smallred("Destitute..")
 
 		if(src.job in GLOB.church_positions)
-			. += span_notice("A member of the Church of Azuria.")
+			. += span_notice("A member of the Church.")
 		else if(HAS_TRAIT(src, TRAIT_AGENT_CHURCH))
-			. += span_notice("A benefactor of the Church of Azuria.")
+			. += span_notice("A benefactor of the Church.")
 
 		if(src.job in GLOB.inquisition_positions)
 			. += span_notice("An adherent of the Holy Otavan Inquisition.")
@@ -1081,7 +1089,7 @@
 		//Blackblood Inquisition trauma
 		if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(user, TRAIT_BLACKBLOOD))
 			var/mob/living/carbon/carbs = user
-			if(HAS_TRAIT(user, TRAIT_PSYDONIAN_GRIT) || HAS_TRAIT(user, TRAIT_NOMOOD))
+			if(HAS_TRAIT(user, TRAIT_VAELTIAN_GRIT) || HAS_TRAIT(user, TRAIT_NOMOOD))
 				return
 			if(!carbs.has_stress_event(/datum/stressevent/inq_trauma))
 				carbs.add_stress(/datum/stressevent/inq_trauma)
@@ -1255,13 +1263,13 @@
 	if(!HAS_TRAIT(examiner, TRAIT_CLERGY)) //If the person doing the examining doesn't have the trait, we don't need to do the other four ifs
 		return null
 	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CLERGY))
-		clergy_text = "A fellow member of the Azurian Church of the Ten."
+		clergy_text = "A fellow member of the local Church of the Ten."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CLERGY))
 		clergy_text = "The Bishop, the leader of my Church and Chosen of the Ten."
 	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
 		clergy_text = "A member of the clergy under my leadership, as willed by the Ten."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
-		clergy_text = "Myself. I am the Bishop of Azuria, voice of the Ten in these lands."
+		clergy_text = "Myself. I am the Bishop of the outpost, voice of the Ten in these lands."
 
 	return clergy_text
 

@@ -2,7 +2,7 @@
 
 /obj/structure/roguemachine/vaultbank
 	name = "\improper JAWBANK"
-	desc = "A biomechanical obselisk that collects and secures the treasury of the Grand Duchy of Azuria. Throttle it with a strike to spill that which is rightfully yours."
+	desc = "A biomechanical obselisk that collects and secures the outpost's treasury. Throttle it with a strike to spill that which is rightfully yours."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "jawbank"
 	density = TRUE
@@ -745,7 +745,7 @@
 
 /obj/structure/roguemachine/vaultbank/bathhouse
 	name = "\improper BATHHOUSE JAWBANK"
-	desc = "A biomechanical obselisk that secures the takings of the Azurian Bathhouse. Throttle it with a strike to spill that which is rightfully yours."
+	desc = "A biomechanical obselisk that secures the takings of the Bathhouse. Throttle it with a strike to spill that which is rightfully yours."
 	alert_jobs = list("Bathmaster", "Bathhouse Attendant")
 	alert_location = "the Bathhouse"
 	bash_floor = 500

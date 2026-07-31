@@ -1,6 +1,6 @@
 // OH GOD IT'S SO SHITTY IM SO SORRY PLEASE PLEAS EPLEASEP ELEA
 
-GLOBAL_LIST_INIT(psydon_pool, list(
+GLOBAL_LIST_INIT(praecursor_pool, list(
 	/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk,  //todo: items lol
 	/obj/item/clothing/suit/roguetown/armor/gambeson,
 	/obj/item/clothing/suit/roguetown/armor/leather,
@@ -45,8 +45,8 @@ GLOBAL_LIST_INIT(capstone_pool, list(
 		. += "It almost looks like it's waiting for something- but I don't know what."
 		return
 
-	var/obj/item/next_artefact = LAZYACCESS(GLOB.psydon_pool, 1)
-	var/obj/item/next_capstone = LAZYACCESS(GLOB.psydon_pool, 1)
+	var/obj/item/next_artefact = LAZYACCESS(GLOB.praecursor_pool, 1)
+	var/obj/item/next_capstone = LAZYACCESS(GLOB.praecursor_pool, 1)
 	if(next_artefact)
 		. += "The next artefact I must find is \a [initial(next_artefact.name)]."
 	else
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(capstone_pool, list(
 		. += span_danger("I have all the capstones I need!")
 
 /obj/structure/ascendant_altar/proc/consume_artefact(obj/item/I, mob/living/user)
-	var/next_artefact = LAZYACCESS(GLOB.psydon_pool, 1)
+	var/next_artefact = LAZYACCESS(GLOB.praecursor_pool, 1)
 	if(!next_artefact)
 		return FALSE
 	if(!istype(I, next_artefact))
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(capstone_pool, list(
 			ADD_TRAIT(user, TRAIT_STABLEHEART, TRAIT_GENERIC)
 			ADD_TRAIT(user, TRAIT_STABLELIVER, TRAIT_GENERIC)
 			to_chat(user, span_userdanger("My insides BECOME like INCONGRUOUS STONE. Lines of vapour cross me over. I can NOT be mortal, I am BEYOND MORTAL, I AM I AM I AM I AM NEARING COMPLETION. MAJOR ARCANA : STRENGTH"))
-	GLOB.psydon_pool.Cut(1, 2) // remove the first item
+	GLOB.praecursor_pool.Cut(1, 2) // remove the first item
 	qdel(I)
 
 

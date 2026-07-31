@@ -26,7 +26,12 @@
 
 /// Sound played when a worn chastity device jingles on movement. Distinct define so a later stage can swap it
 /// for a bespoke SFX without hunting through chastity_core.dm.
-#define SFX_JINGLE_BELLS 'sound/misc/bell_small.ogg'
+/// Named CHASTITY_JINGLE_SOUND (not SFX_JINGLE_BELLS) because code/__DEFINES/sound.dm already
+/// defines SFX_JINGLE_BELLS as a string lookup key ("jingle_bells") for game/sound.dm's playsound
+/// switch/item_equipped_movement_rustle component - a completely different value (a lookup key,
+/// not a sound file) used across ~15 real call sites. The two defines silently collided (whichever
+/// file happened to compile last won for every use site in the whole codebase) until this rename.
+#define CHASTITY_JINGLE_SOUND 'sound/misc/bell_small.ogg'
 
 /// Movement-sound throttling — mirrors chastity_core.dm's chastity_move_delay/chance defaults.
 #define CHASTITY_MOVE_SOUND_DELAY 3

@@ -1,7 +1,7 @@
-/datum/action/cooldown/spell/psydon
+/datum/action/cooldown/spell/praecursor
 	background_icon = 'icons/mob/actions/psydonmiracles.dmi'
 	button_icon = 'icons/mob/actions/psydonmiracles.dmi'
-	spell_color = GLOW_COLOR_ASTRATA
+	spell_color = GLOW_COLOR_AUXENTIUS_SUN
 	glow_intensity = null
 
 	ignore_armor_penalty = TRUE
@@ -20,7 +20,7 @@
 
 	point_cost = 0
 
-	spell_flags = SPELL_PSYDON
+	spell_flags = SPELL_PRAECURSOR
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross) //He is dead so yeah we need something to INVOKE IT
 
@@ -28,7 +28,7 @@
 // T0 - BOOTCHECK  //
 /////////////////////
 
-/datum/action/cooldown/spell/psydon/bootcheck
+/datum/action/cooldown/spell/praecursor/bootcheck
 	name = "BOOTCHECK"
 	desc = "'Now, where did I put that..?' </br>Checks your boot - or failing that, your surroundings - for something of use.\
 	Scales with FORTUNE of the user."
@@ -91,7 +91,7 @@
 	/obj/item/clothing/shoes/roguetown/sandals,
 	/obj/item/alch/transisdust)
 
-/datum/action/cooldown/spell/psydon/bootcheck/cast(atom/cast_on)
+/datum/action/cooldown/spell/praecursor/bootcheck/cast(atom/cast_on)
 	. = ..()
 	if(!ishuman(owner))
 		return FALSE
@@ -126,7 +126,7 @@
 // T1 - ENDURE //
 /////////////////
 
-/datum/action/cooldown/spell/psydon/endure
+/datum/action/cooldown/spell/praecursor/endure
 	name = "ENDURE"
 	desc = "Invoke an envigoring prayer for those who're faltering in willpower. </br>‎  </br>Provides minor wound regeneration, staunches the target's bleeding, and helps to alleviate those who're struggling to breathe. The more valuable a caster's psycross is, the more health that is restored unto the target - this is further increased if they have been mortally wounded."
 	button_icon_state = "ENDURE"
@@ -143,7 +143,7 @@
 	charge_required = FALSE
 	cooldown_time = 30 SECONDS
 
-/datum/action/cooldown/spell/psydon/endure/cast(atom/cast_on)
+/datum/action/cooldown/spell/praecursor/endure/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	if(isliving(cast_on))
@@ -189,13 +189,13 @@
 					target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
 					playsound(owner, 'sound/magic/PSYDONE.ogg', 100, FALSE)
 					sleep(60)
-					owner.psydo_nyte()
+					owner.praecursor_nyte()
 					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
 					sleep(20)
-					owner.psydo_nyte()
+					owner.praecursor_nyte()
 					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
 					sleep(15)
-					owner.psydo_nyte()
+					owner.praecursor_nyte()
 					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
 					sleep(10)
 					owner.gib()
@@ -252,7 +252,7 @@
 // T1 - PRAYER //
 /////////////////
 
-/datum/action/cooldown/spell/psydon/prayer
+/datum/action/cooldown/spell/praecursor/prayer
 	name = "PRAYER"
 	desc = "Recite a psalm betwixt huffs, so that your wits do not succumb to more worldly ailments. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	button_icon_state = "PRAYER"
@@ -272,7 +272,7 @@
 	charge_required = FALSE
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/spell/psydon/prayer/cast(atom/cast_on) ///Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative.
+/datum/action/cooldown/spell/praecursor/prayer/cast(atom/cast_on) ///Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative.
 	. = ..()
 	if(!ishuman(cast_on))
 		return FALSE
@@ -362,7 +362,7 @@
 // T2 - RESPITE //
 //////////////////
 
-/datum/action/cooldown/spell/psydon/respite
+/datum/action/cooldown/spell/praecursor/respite
 	name = "RESPITE"
 	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>‎  </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	button_icon_state = "RESPITE"
@@ -382,7 +382,7 @@
 	charge_required = FALSE
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/spell/psydon/respite/cast(mob/living/carbon/human/user) // Greater version of 'PRAYER', T2. Requires the 'Devotee' virtue to unlock, if not playing as an Orthodoxist or Missionary.
+/datum/action/cooldown/spell/praecursor/respite/cast(mob/living/carbon/human/user) // Greater version of 'PRAYER', T2. Requires the 'Devotee' virtue to unlock, if not playing as an Orthodoxist or Missionary.
 	. = ..()
 	if(!ishuman(user))
 		return FALSE
@@ -472,7 +472,7 @@
 // T3 - PERSIST //
 //////////////////
 
-/datum/action/cooldown/spell/psydon/persist
+/datum/action/cooldown/spell/praecursor/persist
 	name = "PERSIST"
 	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>‎  </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	button_icon_state = "PERSIST"
@@ -492,7 +492,7 @@
 	charge_required = FALSE
 	cooldown_time = 5 MINUTES
 
-/datum/action/cooldown/spell/psydon/persist/cast(mob/living/carbon/human/user) // Greater version of 'PRAYER' and 'RESPITE', T4. Inherently restricted to the Absolver, but potentially(?) achievable as a Missionary with the 'Devotee' virtue.
+/datum/action/cooldown/spell/praecursor/persist/cast(mob/living/carbon/human/user) // Greater version of 'PRAYER' and 'RESPITE', T4. Inherently restricted to the Absolver, but potentially(?) achievable as a Missionary with the 'Devotee' virtue.
 	. = ..()
 	if(!ishuman(user))
 		return FALSE
@@ -580,7 +580,7 @@
 
 //
 
-/obj/effect/proc_holder/spell/invoked/psydonlux_tamper
+/obj/effect/proc_holder/spell/invoked/praecursorlux_tamper
 	name = "WEEP"
 	action_icon = 'icons/mob/actions/psydonmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/psydonmiracles.dmi'
@@ -599,7 +599,7 @@
 	miracle = TRUE
 	devotion_cost = 80
 
-/obj/effect/proc_holder/spell/invoked/psydonlux_tamper/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/praecursorlux_tamper/cast(list/targets, mob/living/user)
 
 	if(!ishuman(targets[1]))
 		to_chat(user, span_warning("Their Lux cannot be interacted with."))
@@ -784,7 +784,7 @@
 
 //
 
-/obj/effect/proc_holder/spell/invoked/psydonabsolve	
+/obj/effect/proc_holder/spell/invoked/praecursorabsolve	
 	name = "ABSOLVE"
 	action_icon = 'icons/mob/actions/psydonmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/psydonmiracles.dmi'
@@ -803,7 +803,7 @@
 	miracle = TRUE
 	devotion_cost = 100
 
-/obj/effect/proc_holder/spell/invoked/psydonabsolve/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/praecursorabsolve/cast(list/targets, mob/living/user)
 
 	if(!ishuman(targets[1]))
 		to_chat(user, span_warning("ABSOLUTION is for those who walk in HIS image!"))

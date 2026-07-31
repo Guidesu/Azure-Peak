@@ -644,9 +644,9 @@
 
 
 /obj/item/rogueweapon/spear/psyspear
-	name = "psydonic spear"
+	name = "vaeltic spear"
 	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never \
-	forget that you are why Psydon wept."
+	forget that you are why Praecursor wept."
 	icon_state = "psyspear"
 	force = 15
 	force_wielded = 25
@@ -660,7 +660,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -670,8 +670,8 @@
 /obj/item/rogueweapon/spear/psyspear/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -1150,8 +1150,8 @@
 /obj/item/rogueweapon/halberd/psyhalberd/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -1182,7 +1182,7 @@
 	)
 
 /obj/item/rogueweapon/halberd/psyhalberd
-	name = "psydonic halberd"
+	name = "vaeltic halberd"
 	desc = "A blessed polearm that has guarded the walls of kingdoms-a-plenty, ever since the first castles of mortar-and-stone arose in Syon's wake. It \
 	not only professes the elegance of its knightly wielder, but also their vow to keep the innocent guarded from the guilty."
 	icon_state = "silverhalberd"
@@ -1197,7 +1197,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -1207,8 +1207,8 @@
 /obj/item/rogueweapon/halberd/psyhalberd/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -1489,7 +1489,7 @@
 	)
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/psy
-	name = "psydonic quarterstaff"
+	name = "vaeltic quarterstaff"
 	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs \
 	oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
 	force_wielded = 27
@@ -1502,7 +1502,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -1512,8 +1512,8 @@
 /obj/item/rogueweapon/woodstaff/quarterstaff/psy/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -1531,7 +1531,7 @@
 	special = /datum/special_intent/gilded_dragon_sweep
 	sellprice = 80
 	no_loot_taint = TRUE
-	max_integrity = 250 //equal to psydonite; putting it at half of this was a neat little experiment but agonizing
+	max_integrity = 250 //equal to vaeltite; putting it at half of this was a neat little experiment but agonizing
 
 
 /obj/item/rogueweapon/spear/partizan
@@ -1603,8 +1603,8 @@
 	gripped_intents = list(/datum/intent/spear/thrust/pike, /datum/intent/spear/thrust/pike/skewer)
 
 /obj/item/rogueweapon/spear/boar/frei/pike/reformist
-	name = "banner of Psydonic Reformism"
-	desc = "A steel pike with an altered Psydonic cross representing the order of Primo Reformatio, crossed by a black \
+	name = "banner of Vaeltic Reformism"
+	desc = "A steel pike with an altered Vaeltic cross representing the order of Primo Reformatio, crossed by a black \
 	stripe that symbolizes mourning. Mammukhus sum, qui castellum onere fero. Numquam genua flecto aut gradum amitto."
 	icon_state = "reformistbanner"
 

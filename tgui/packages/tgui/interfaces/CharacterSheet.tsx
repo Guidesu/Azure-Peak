@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -21,7 +21,10 @@ type Charflaw = {
   desc: string;
 };
 
+type TileRect = { x: number; y: number; w: number; h: number };
+
 type Data = {
+  tile_layout: string;
   real_name: string;
   nickname: string;
   pronouns: string;
@@ -34,6 +37,8 @@ type Data = {
   voice_type_options: string[];
   voice_pack: string;
   voice_pack_options: string[];
+  char_accent: string;
+  accent_options: string[];
   combat_music: string | null;
   combat_music_options: string[];
   age: string;
@@ -44,6 +49,8 @@ type Data = {
   subspecies_options: OptionMap;
   origin: string | null;
   origin_options: OptionMap;
+  legacy_virtue: string | null;
+  legacy_virtue_two: string | null;
   race_bonus: string | null;
   race_bonus_options: string[];
   extra_language: string;
@@ -253,8 +260,61 @@ const GalleryField = ({
   </FieldRow>
 );
 
+const isValidRect = (value: unknown): value is TileRect =>
+  !!value
+  && typeof (value as TileRect).x === 'number'
+  && typeof (value as TileRect).y === 'number'
+  && typeof (value as TileRect).w === 'number'
+  && typeof (value as TileRect).h === 'number';
+
 export const CharacterSheet = () => {
   const { act, data } = useBackend<Data>();
+
+  // Draggable tile positions used to live in browser localStorage, which
+  // isn't reliably durable across sessions in the BYOND client webview -
+  // moved DM-side (P.character_sheet_tile_layout, see character_sheet_ui.dm's
+  // set_tile_layout action) so it survives regardless of client storage.
+  const tileLayout = useMemo<Record<string, TileRect>>(() => {
+    try {
+      const parsed = JSON.parse(data.tile_layout || '{}');
+      const result: Record<string, TileRect> = {};
+      if (parsed && typeof parsed === 'object') {
+        for (const key of Object.keys(parsed)) {
+          if (isValidRect(parsed[key])) {
+            result[key] = parsed[key];
+          }
+        }
+      }
+      return result;
+    } catch {
+      return {};
+    }
+  }, [data.tile_layout]);
+
+  // Debounced so dragging/resizing doesn't spam an act() per mouseup burst
+  // across multiple tiles - the layout only needs to reach the backend a
+  // moment after the player stops moving a tile, not on every single change.
+  // Tracks the latest known backend layout plus any edits made locally since
+  // the last successful save, so a fresh ui_data push never clobbers an
+  // in-flight drag and a drag never gets lost if ui_data updates mid-edit.
+  const latestBackendLayoutRef = useRef<Record<string, TileRect>>(tileLayout);
+  latestBackendLayoutRef.current = tileLayout;
+  const pendingEditsRef = useRef<Record<string, TileRect>>({});
+  const saveTimeoutRef = useRef<number | null>(null);
+  const handleRectChange = useCallback(
+    (storageKey: string, rect: TileRect) => {
+      pendingEditsRef.current = { ...pendingEditsRef.current, [storageKey]: rect };
+      if (saveTimeoutRef.current) {
+        window.clearTimeout(saveTimeoutRef.current);
+      }
+      saveTimeoutRef.current = window.setTimeout(() => {
+        const merged = { ...latestBackendLayoutRef.current, ...pendingEditsRef.current };
+        act('set_tile_layout', { value: JSON.stringify(merged) });
+        pendingEditsRef.current = {};
+      }, 400);
+    },
+    [act]
+  );
 
   if (!data.species) {
     return (
@@ -372,6 +432,8 @@ export const CharacterSheet = () => {
             <div className="CharacterSheet__Grid CharacterSheet__Grid--free">
               <DraggableTile
                 storageKey="identity"
+                savedRect={tileLayout['identity']}
+                onRectChange={handleRectChange}
                 title="Identity"
                 defaultRect={{ x: 0, y: 0, w: 480, h: 260 }}
               >
@@ -390,6 +452,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="heritage"
+                savedRect={tileLayout['heritage']}
+                onRectChange={handleRectChange}
                 title="Heritage"
                 defaultRect={{ x: 490, y: 0, w: 480, h: 260 }}
               >
@@ -425,16 +489,53 @@ export const CharacterSheet = () => {
                     options={data.extra_language_options}
                     act={act}
                     action="set_extra_language"
+                    extra={
+                      data.extra_language !== 'None' && (
+                        <Button
+                          icon="book"
+                          onClick={() => act('open_language_lore', { value: data.extra_language })}
+                        >
+                          Lore
+                        </Button>
+                      )
+                    }
                   />
                   <SelectField label="Statpack" value={data.statpack} options={data.statpack_options} act={act} action="set_statpack" />
+                  {!!data.legacy_virtue && (
+                    <FieldRow label="Legacy Virtue">
+                      <Stack align="center">
+                        <Stack.Item grow>{data.legacy_virtue}</Stack.Item>
+                        <Stack.Item>
+                          <Button icon="trash" onClick={() => act('clear_legacy_virtue')}>
+                            Clear
+                          </Button>
+                        </Stack.Item>
+                      </Stack>
+                    </FieldRow>
+                  )}
+                  {!!data.legacy_virtue_two && (
+                    <FieldRow label="Legacy Virtue 2">
+                      <Stack align="center">
+                        <Stack.Item grow>{data.legacy_virtue_two}</Stack.Item>
+                        <Stack.Item>
+                          <Button icon="trash" onClick={() => act('clear_legacy_virtue_two')}>
+                            Clear
+                          </Button>
+                        </Stack.Item>
+                      </Stack>
+                    </FieldRow>
+                  )}
               </DraggableTile>
 
               <DraggableTile
                 storageKey="voice"
+                savedRect={tileLayout['voice']}
+                onRectChange={handleRectChange}
                 title="Voice & Sound"
                 defaultRect={{ x: 980, y: 0, w: 340, h: 420 }}
               >
                   <SelectField label="Voice Type" value={data.voice_type} options={data.voice_type_options} act={act} action="set_voice_type" />
+                  <SelectField label="Accent" value={data.char_accent} options={data.accent_options} act={act} action="set_char_accent" />
                   <SelectField
                     label="Voice Pack"
                     value={data.voice_pack}
@@ -487,6 +588,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="body"
+                savedRect={tileLayout['body']}
+                onRectChange={handleRectChange}
                 title="Body"
                 defaultRect={{ x: 0, y: 270, w: 480, h: 320 }}
               >
@@ -526,10 +629,13 @@ export const CharacterSheet = () => {
                   )}
                   <FieldRow label="Sprite Scale">
                     <NumberInput
-                      width="5em"
-                      step={1}
+                      width="6em"
+                      step={0.5}
                       stepPixelSize={5}
+                      minValue={75}
+                      maxValue={125}
                       unit="%"
+                      format={(value) => value.toFixed(1)}
                       value={data.body_size}
                       onChange={(value) => act('set_body_size', { value })}
                     />
@@ -538,6 +644,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="faith"
+                savedRect={tileLayout['faith']}
+                onRectChange={handleRectChange}
                 title="Faith"
                 defaultRect={{ x: 490, y: 270, w: 340, h: 160 }}
               >
@@ -558,6 +666,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="estate"
+                savedRect={tileLayout['estate']}
+                onRectChange={handleRectChange}
                 title="Estate"
                 defaultRect={{ x: 490, y: 440, w: 340, h: 200 }}
               >
@@ -588,20 +698,25 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="vices"
+                savedRect={tileLayout['vices']}
+                onRectChange={handleRectChange}
                 title="Vices"
                 defaultRect={{ x: 840, y: 270, w: 340, h: 260 }}
+                className="CharacterSheet__Tile--fixedControls"
               >
-                  {data.charflaws.map((cf) => (
-                    <Stack key={cf.name} align="center" mb={0.3}>
-                      <Stack.Item grow>
-                        <b>{cf.name}</b>
-                        {!!cf.desc && <Box color="label">{cf.desc}</Box>}
-                      </Stack.Item>
-                      <Stack.Item>
-                        <Button icon="trash" onClick={() => act('remove_vice', { index: data.charflaws.indexOf(cf) + 1 })} />
-                      </Stack.Item>
-                    </Stack>
-                  ))}
+                  <Box className="CharacterSheet__ScrollRegion">
+                    {data.charflaws.map((cf) => (
+                      <Stack key={cf.name} align="center" mb={0.3}>
+                        <Stack.Item grow>
+                          <b>{cf.name}</b>
+                          {!!cf.desc && <Box color="label">{cf.desc}</Box>}
+                        </Stack.Item>
+                        <Stack.Item>
+                          <Button icon="trash" onClick={() => act('remove_vice', { index: data.charflaws.indexOf(cf) + 1 })} />
+                        </Stack.Item>
+                      </Stack>
+                    ))}
+                  </Box>
                   {data.charflaws.length < data.max_vices && (
                     <SelectField label="Add Vice" value={null} options={data.charflaw_options} act={act} action="add_vice" placeholder="Choose a vice..." />
                   )}
@@ -612,6 +727,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="other"
+                savedRect={tileLayout['other']}
+                onRectChange={handleRectChange}
                 title="Other"
                 defaultRect={{ x: 840, y: 540, w: 340, h: 300 }}
               >
@@ -651,6 +768,8 @@ export const CharacterSheet = () => {
 
               <DraggableTile
                 storageKey="flavor"
+                savedRect={tileLayout['flavor']}
+                onRectChange={handleRectChange}
                 title="Flavor & OOC"
                 defaultRect={{ x: 0, y: 600, w: 560, h: 420 }}
               >

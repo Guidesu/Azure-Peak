@@ -99,6 +99,15 @@
         inset 0 0 20px rgba(0, 0, 0, 0.6),
         0 6px 14px rgba(0, 0, 0, 0.65);
     }
+
+    // Tiles with a fixed (non-scrolling) control row - e.g. Vices' "Add Vice"
+    // dropdown - below a scrolling list. tgui-core's Dropdown closes itself
+    // the instant any ancestor scrolls (Floating's useDismiss ancestorScroll),
+    // so the dropdown control must sit outside the scrolling region entirely
+    // rather than get dismissed the moment the list under it is scrolled.
+    &--fixedControls .CharacterSheet__TileBody--floating {
+      overflow: visible;
+    }
   }
 
   &__TileHeader {
@@ -128,6 +137,15 @@
     }
   }
 
+  // Scrolls independently of a fixed control row above/below it - see
+  // &__Tile--fixedControls above for why this exists as a separate region
+  // instead of just scrolling the whole TileBody.
+  &__ScrollRegion {
+    flex: 1;
+    overflow: auto;
+    min-height: 0;
+  }
+
   &__TileBody {
     min-width: 0;
     padding: 7px 9px 9px;
@@ -142,6 +160,15 @@
     &--floating {
       flex: 1;
       overflow: auto;
+
+      // See &--fixedControls above: when this tile's control row must stay
+      // fixed, the body itself stops scrolling (overflow: visible is set on
+      // the ancestor selector) and instead lays out in a column so
+      // &__ScrollRegion's flex: 1 can claim just the remaining space.
+      .CharacterSheet__ScrollRegion {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 

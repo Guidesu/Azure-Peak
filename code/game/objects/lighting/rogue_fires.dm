@@ -27,6 +27,7 @@
 	can_damage = TRUE
 	flags_1 = NONE
 	damtype = BURN
+	heat_level = 4
 
 /obj/machinery/light/rogue/get_mechanics_examine(mob/user)
 	. = ..()
@@ -100,6 +101,7 @@
 	cookonme = FALSE
 	crossfire = FALSE
 	max_integrity = 80
+	heat_level = 3
 
 
 /obj/machinery/light/rogue/firebowl/standing/blue
@@ -146,6 +148,7 @@
 	crossfire = FALSE
 	pixel_y = 32
 	healing_range = 2
+	heat_level = 6
 
 /obj/machinery/light/rogue/campfire/fireplace/attack_hand(mob/user)
 	if(isliving(user) && on)
@@ -431,6 +434,7 @@
 	roundstart_forbid = TRUE
 	cookonme = TRUE
 	soundloop = /datum/looping_sound/fireloop
+	heat_level = 3
 	var/obj/item/attachment = null
 	var/obj/item/food = null
 	var/mob/living/carbon/human/lastuser
@@ -790,6 +794,7 @@
 	cookonme = TRUE
 	max_integrity = 30
 	soundloop = /datum/looping_sound/fireloop
+	heat_level = 5
 	var/healing_range = 1
 	var/static/list/acceptable_beds = list(/obj/structure/bed, /obj/structure/flora/roguetree/stump, /obj/item/bedsheet)
 
@@ -861,6 +866,7 @@
 	bulb_colour = "#eea96a"
 	max_integrity = 60
 	healing_range = 2
+	heat_level = 5
 
 /obj/machinery/light/rogue/campfire/densefire/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
@@ -888,6 +894,7 @@
 	dir = NORTH
 	buckle_requires_restraints = 1
 	buckle_prevents_pull = 1
+	heat_level = 5
 
 
 /obj/machinery/light/rogue/campfire/pyre/post_buckle_mob(mob/living/M)

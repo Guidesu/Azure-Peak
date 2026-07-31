@@ -7,7 +7,7 @@
 	wiki.show_to_user(
 		user,
 		list(/datum/book_entry/treasury_general, /datum/book_entry/treasury_realm, /datum/book_entry/treasury_merchant, /datum/book_entry/treasury_underground),
-		"The Comprehensive Guide to the Azvrian Economy",
+		"The Comprehensive Guide to the Outpost's Economy",
 		/obj/item/recipe_book/treasury_primer,
 		category,
 		entry,
@@ -19,13 +19,13 @@
 /datum/book_entry/treasury_merchant/navigator/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p><b>NAVIGATOR:</b> The heart of commerce of Azuria. This ancient machine lifts goods up by balloons to ships at the dock and the ATC's warehouse. The mechanisms are a trade secret of
-		Azurian Trading Company. There's three variants: Public Navigator, Navigator and Smuggler's Navigator</p>
+		<p><b>NAVIGATOR:</b> The heart of commerce at the Outpost. This ancient machine lifts goods up by balloons to ships at the dock and the Merchant's Company's warehouse. The mechanisms are a trade secret of
+		the Merchant's Company. There's three variants: Public Navigator, Navigator and Smuggler's Navigator</p>
 
 		<h3>How it works</h3>
 		<ul>
 			<li>Drop sellable items on the eight tiles surrounding the machine. A balloon arrives every two minutes and lifts them into the air.</li>
-			<li>Anchored items, coins, handcarts, ATC-sealed items, and items flagged unmintable (items that spawned in town at mapstart) are skipped.</li>
+			<li>Anchored items, coins, handcarts, Company-sealed items, and items flagged unmintable (items that spawned in town at mapstart) are skipped.</li>
 			<li>Each item's payout is its base price multiplied by category demand (current ship demand boost), then reduced by the navigator's handler fees - including export duty, merchant's levy,
 			and any handler fees imposed by say, smugglers.</li>
 			<li>Items priced below 1m of net payout are refused outright with a "the market is choked" message.</li>
@@ -34,9 +34,9 @@
 
 		<h3>Public Navigator</h3>
 		<ul>
-			<li>By default, it pays Crown's export duty AND the merchant's levy. The levy is also taxed at the same export duty rates to prevent tax base shrinking because of the Merchant's cut.</li>
+			<li>By default, it pays the treasury's export duty AND the merchant's levy. The levy is also taxed at the same export duty rates to prevent tax base shrinking because of the Merchant's cut.</li>
 			<li>Seller net drops on the navigator's tile; the Merchant's levy share and taxes remits directly to the factional fund.</li>
-			<li>Merchants and Shophands can right-click and toggle two switches: Crown duty PAYING/DODGING and Merchant's levy COLLECTING/WAIVED. Dodged duty accrues to STATS_TAXES_EVADED and is shown in the panel.</li>
+			<li>Merchants and Shophands can right-click and toggle two switches: export duty PAYING/DODGING and Merchant's levy COLLECTING/WAIVED. Dodged duty accrues to STATS_TAXES_EVADED and is shown in the panel.</li>
 			<li>Per machine tallies (duty collected, duty evaded, levy collected) are visible to Merchant/Shophand only.</li>
 		</ul>
 
@@ -48,13 +48,13 @@
 
 		<h3>Smuggler Navigator (battered)</h3>
 		<ul>
-			<li>Pays no Crown duty and collects no Merchant levy. It uses the Black Market saturation pools. Demand is static. Saturation regenerates passively.</li>
+			<li>Pays no export duty and collects no Merchant levy. It uses the Black Market saturation pools. Demand is static. Saturation regenerates passively.</li>
 			<li>Handler fee defaults to 50%. If a bathhouse worker is within 7 tiles when the lifting fires, the fee drops to 0% for that cycle.</li>
 		</ul>
 
 		<h3>Tax Collection</h3>
 		<ul>
-			<li>Crown duty remits to Crown's Purse, with a portion given unto the Church for the Concordat tithe if it is in force.</li>
+			<li>Export duty remits to the Outpost Treasury, with a portion given unto the Church for the Concordat tithe if it is in force.</li>
 			<li>Merchant's levy remits to the Merchant's Fund, held in a secure Jawbank.</li>
 		</ul>
 		</div>
@@ -67,7 +67,7 @@
 /datum/book_entry/treasury_merchant/fulfillment_crate/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p><b>SHIP FULFILLMENT CRATE:</b> A crate used to fill the bulk demands of docked foreign vessels. The crate pays out at the per-line price the docked ship is offering, less Crown export duty and the Merchant's middleman cut.</p>
+		<p><b>SHIP FULFILLMENT CRATE:</b> A crate used to fill the bulk demands of docked foreign vessels. The crate pays out at the per-line price the docked ship is offering, less the treasury's export duty and the Merchant's middleman cut.</p>
 
 		<h3>How it works</h3>
 		<ul>
@@ -89,7 +89,7 @@
 
 		<h3>What the crate refuses</h3>
 		<ul>
-			<li>ATC-sealed items (anything bought from Goldface or Silverface, or otherwise spawned with the Company seal).</li>
+			<li>Company-sealed items (anything bought from Goldface or Silverface, or otherwise spawned with the Company seal).</li>
 			<li>Rotten food.</li>
 			<li>Items priced below the demand line's offered price are still accepted - the ship pays the line price, not the item base price.</li>
 			<li>Goods not on any docked vessel's open manifest.</li>
@@ -117,9 +117,9 @@
 		<ul>
 			<li>Locked/Unlocked by the merchant key or skeleton.</li>
 			<li>Coin must be manually loaded and then used to buy goods</li>
-			<li>ATC members can flip the Secrets toggle to enable the no tax upgrade, avoiding import tariffs</li>
-			<li>Total tax paid and evaded are tracked per machine, and visible only to ATC members.</li>
-			<li>Bought items are spawned ATC-sealed and cannot be re-exported via the navigator or the bulk fulfillment crate.</li>
+			<li>Company members can flip the Secrets toggle to enable the no tax upgrade, avoiding import tariffs</li>
+			<li>Total tax paid and evaded are tracked per machine, and visible only to Company members.</li>
+			<li>Bought items are spawned Company-sealed and cannot be re-exported via the navigator or the bulk fulfillment crate.</li>
 		</ul>
 
 		<h3>The Harbor tab (GOLDFACE only)</h3>
@@ -207,14 +207,14 @@
 		<h3>What it does</h3>
 		<ul>
 			<li><b>-[round((1 - KINSHIP_BUY_MULT) * 100)]% on buys</b> from kin ships - bulk cargo at Goldface and cultural-stock packs both pay [round((1 - KINSHIP_BUY_MULT) * 100)]% less.</li>
-			<li><b>+[round((KINSHIP_SELL_MULT - 1) * 100)]% on sells</b> when fulfilling kin realm ships' bulk demands at the Ship Fulfillment Crate, before Crown duty and Merchant's levy.</li>
+			<li><b>+[round((KINSHIP_SELL_MULT - 1) * 100)]% on sells</b> when fulfilling kin realm ships' bulk demands at the Ship Fulfillment Crate, before export duty and Merchant's levy.</li>
 			<li><b>Guaranteed daily ship</b> - one of the day's [TRADE_SHIPS_PER_DAY_ROLL] ship rolls is reserved for a kin realm vessel. The remaining rolls use the normal weighted draw. If the Merchant latejoins after the daily roll, the kin slot is backfilled immediately by swapping a random undocked ship in the available pool for a kin one (docked ships are never touched).</li>
 			<li>The bonus is <b>global</b> - any producer fulfilling a kin ship's demand gets the +[round((KINSHIP_SELL_MULT - 1) * 100)]%, not just the Merchant. The Navigator's flat exports are not affected.</li>
 		</ul>
 
 		<h3>How it gets set</h3>
 		<ul>
-			<li>The bonus follows the active Merchant's character origin (Lirvan, Gronnic, Otavan, etc.). Azurian and Elsewhere Merchants confer no Kinship.</li>
+			<li>The bonus follows the active Merchant's character origin (Lirvan, Gronnic, Otavan, etc.). Outpost-born and Elsewhere Merchants confer no Kinship.</li>
 			<li>It <b>persists</b> through Merchant death or FT until a new Merchant of a different realm takes the role. If no Merchant has joined yet this round, there is no Kinship.</li>
 			<li>A Merchant of the same realm replacing the previous one does not flip the bonus.</li>
 			<li>When a new kin realm is claimed mid-round, the available ship pool is checked - if no kin ship is already waiting, one is swapped in immediately so the Merchant has a kin vessel to hail without waiting for tomorrow's roll.</li>
@@ -222,7 +222,7 @@
 
 		<h3>Shophand and Agent variant</h3>
 		<ul>
-			<li>A <b>Shophand</b> or holder of the Azurian Trading Company's Writ of Charter gets a personal <b>-[round((1 - KINSHIP_BUY_MULT) * 100)]% on Goldface buys</b> from ships of <b>their own</b> origin.</li>
+			<li>A <b>Shophand</b> or holder of the Merchant's Company's Writ of Charter gets a personal <b>-[round((1 - KINSHIP_BUY_MULT) * 100)]% on Goldface buys</b> from ships of <b>their own</b> origin.</li>
 			<li>This does <b>not stack</b> with the global Kinship. If the global Kinship already covers the same ship, the agent's personal discount does not add - the buy is -[round((1 - KINSHIP_BUY_MULT) * 100)]%, never -[round((1 - (KINSHIP_BUY_MULT * KINSHIP_BUY_MULT)) * 100)]%.</li>
 			<li>It only fires on Goldface purchase actions; the Shophand doesn't extend the +[round((KINSHIP_SELL_MULT - 1) * 100)]% sell side.</li>
 		</ul>
@@ -253,7 +253,7 @@
 /datum/book_entry/treasury_merchant/avisa_market/inner_book_html(mob/user)
 	return {"
 		<div>
-		<p><b>AVISA:</b>The Avisa, Azuria's longest running newspaper, for the discerning and intellectual!</p>
+		<p><b>AVISA:</b>The Avisa, the Outpost's longest running newspaper, for the discerning and intellectual!</p>
 
 		<h3>What it shows</h3>
 		<p>

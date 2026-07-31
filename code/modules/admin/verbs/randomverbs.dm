@@ -706,7 +706,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		ADMIN_PUNISHMENT_LIAM,
 		ADMIN_PUNISHMENT_THROWMOB,
 		ADMIN_PUNISHMENT_CRIPPLE,
-		ADMIN_PUNISHMENT_PSYDON,
+		ADMIN_PUNISHMENT_PRAECURSOR,
 		ADMIN_PUNISHMENT_DIVINE_WRATH,
 		ADMIN_PUNISHMENT_CHANDELIER,
 	)
@@ -728,15 +728,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(target, span_danger("The gods have punished you for your sins!"))
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
-		if(ADMIN_PUNISHMENT_PSYDON)
+		if(ADMIN_PUNISHMENT_PRAECURSOR)
 			sleep(60)
-			target.psydo_nyte()
+			target.praecursor_nyte()
 			target.playsound_local(target, 'sound/misc/psydong.ogg', 100, FALSE)
 			sleep(20)
-			target.psydo_nyte()
+			target.praecursor_nyte()
 			target.playsound_local(target, 'sound/misc/psydong.ogg', 100, FALSE)
 			sleep(15)
-			target.psydo_nyte()
+			target.praecursor_nyte()
 			target.playsound_local(target, 'sound/misc/psydong.ogg', 100, FALSE)
 			sleep(10)
 			target.gib(FALSE)
@@ -808,7 +808,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			humie.add_stress(/datum/stressevent/maniac_woke_up)
 			to_chat(humie, span_deadsay("<span class='reallybig'>... WHERE AM I? ...</span>"))
 			var/static/list/slop_lore = list(
-				span_deadsay("... Azure Peak? No ... It doesn't exist ..."),
+				span_deadsay("... The outpost? No ... It doesn't exist ..."),
 				span_deadsay("... My name is Trey. Trey Liam, Liamtific Troverseer ..."),
 				span_deadsay("... I'm on NT Liam, a self Treystaining ship, used to Treyserve what Liamains of roguemanity ..."),
 				span_deadsay("... Launched into the Grim Darkness, War and Grim Darkness preserves their grimness ... Their edge ..."),

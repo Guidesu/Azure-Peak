@@ -178,20 +178,20 @@
 		),
 
 		/// (Repeat this block, tailored for each god)
-		/// Astrata - The Sun Queen
+		/// Auxentius - The Sun's Law
 		/datum/patron/concordat/auxentius = list(
-			/datum/status_effect/buff/beastsense = "Astrata commandeth: \"LET THY SIGHT BE CLEARED. THE LIGHT REVEALETH ALL.\"",
-			/datum/status_effect/buff/trollshape = "Astrata proclaimeth: \"BECOME THE HAMMER OF MINE WILL. STRIKE WITH PURPOSE.\"",
-			/datum/status_effect/buff/divine_beauty = "Astrata speaketh: \"RADIATE THY DUTY. LET NONE AVERT THEIR GAZE.\"",
-			/datum/status_effect/buff/call_to_arms = "Astrata belloweth: \"RISE, O RIGHTEOUS ONE. MARCH TO GLORY IN MINE NAME.\"",
-			/datum/status_effect/buff/craft_buff = "Astrata declareth: \"LET THINE HANDS BUILD THAT WHICH SHALL ENDURE.\"",
-			/datum/status_effect/buff/mealbuff = "Astrata blesseth: \"FEAST AND GROW STRONG BENEATH MINE EVER-WATCHFUL GAZE.\"",
-			/datum/status_effect/buff/clean_plus = "Astrata proclaims: \"THE LIGHT CLEANSETH ALL. DIRT SHALL NOT ENDURE.\"",
-			/datum/status_effect/buff/featherfall = "Astrata commandeth: \"ASCEND, FOR THOU ART WORTHY OF HEIGHT.\"",
-			/datum/status_effect/buff/darkvision = "Astrata scoffeth: \"SHADOWS ARE FOR THE FAINT. THOU NEEDST THEM NOT.\"",
-			/datum/status_effect/buff/haste = "Astrata ordereth: \"SWIFT BE THY FEET. DUTY BROOKETH NO DELAY.\"",
-			/datum/status_effect/buff/calm = "Astrata whispereth: \"BE STILL. THE SUN KEEPETH THEE SAFE.\"",
-			/datum/status_effect/buff/barbrage = "Astrata declareth: \"LET THY RIGHTEOUS FURY BURN AS MINE SUN DOES.\""
+			/datum/status_effect/buff/beastsense = "Auxentius commandeth: \"LET THY SIGHT BE CLEARED. THE LIGHT REVEALETH ALL.\"",
+			/datum/status_effect/buff/trollshape = "Auxentius proclaimeth: \"BECOME THE HAMMER OF MINE WILL. STRIKE WITH PURPOSE.\"",
+			/datum/status_effect/buff/divine_beauty = "Auxentius speaketh: \"RADIATE THY DUTY. LET NONE AVERT THEIR GAZE.\"",
+			/datum/status_effect/buff/call_to_arms = "Auxentius belloweth: \"RISE, O RIGHTEOUS ONE. MARCH TO GLORY IN MINE NAME.\"",
+			/datum/status_effect/buff/craft_buff = "Auxentius declareth: \"LET THINE HANDS BUILD THAT WHICH SHALL ENDURE.\"",
+			/datum/status_effect/buff/mealbuff = "Auxentius blesseth: \"FEAST AND GROW STRONG BENEATH MINE EVER-WATCHFUL GAZE.\"",
+			/datum/status_effect/buff/clean_plus = "Auxentius proclaims: \"THE LIGHT CLEANSETH ALL. DIRT SHALL NOT ENDURE.\"",
+			/datum/status_effect/buff/featherfall = "Auxentius commandeth: \"ASCEND, FOR THOU ART WORTHY OF HEIGHT.\"",
+			/datum/status_effect/buff/darkvision = "Auxentius scoffeth: \"SHADOWS ARE FOR THE FAINT. THOU NEEDST THEM NOT.\"",
+			/datum/status_effect/buff/haste = "Auxentius ordereth: \"SWIFT BE THY FEET. DUTY BROOKETH NO DELAY.\"",
+			/datum/status_effect/buff/calm = "Auxentius whispereth: \"BE STILL. THE SUN KEEPETH THEE SAFE.\"",
+			/datum/status_effect/buff/barbrage = "Auxentius declareth: \"LET THY RIGHTEOUS FURY BURN AS MINE SUN DOES.\""
 		),
 
 		/// Baotha - The Tiefling Queen

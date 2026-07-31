@@ -10,13 +10,13 @@
 	name = "The Zenitstadt Compact"
 	category = DECREE_CATEGORY_ANCIENT
 	mechanical_text = "Church clergy and declared Benefactors of the Faith pay no taxes."
-	flavor_text = {"This Zenitstadt Compact, sworne under the Six Seats' Grace and with Auxentius as witness, witnesseth that the Church of Azuria, consecrated beneath the Concordat and quickened by Auxentius's light, shall keep the peace of the gods upon this land: to pray for the safety and prosperity of the Realm by daye and by night, to maintain the favor of the Six through proper sacrament and offering, to levy tithe from amongst its own brethren, to shelter the poor and downtrodden, and to furnish its own knightly order of templars that the common defense of the Realm be not wanting.
+	flavor_text = {"This Zenitstadt Compact, sworne under the Six Seats' Grace and with Auxentius as witness, witnesseth that the Church, consecrated beneath the Concordat and quickened by Auxentius's light, shall keep the peace of the gods upon this land: to pray for the safety and prosperity of the outpost by daye and by night, to maintain the favor of the Six through proper sacrament and offering, to levy tithe from amongst its own brethren, to shelter the poor and downtrodden, and to furnish its own knightly order of templars that the common defense be not wanting.
 
-In exchange, as the sacred envoys of the gods and sworn servants of the Six, the clergy of the Church of Azuria shall bear no tax nor levy, neither upon their persons nor upon the properties of the Faith; nor shall the Crown intrude upon the internal discipline of the Church, save by lawful counsel taken with the Church of the Six.
+In exchange, as the sacred envoys of the gods and sworn servants of the Six, the clergy of the Church shall bear no tax nor levy, neither upon their persons nor upon the properties of the Faith; nor shall the ruling seat intrude upon the internal discipline of the Church, save by lawful counsel taken with the Church of the Six.
 
-Yeven under the seal of the Crown, in witness of the Six."}
-	revoke_text = "The %RULER% has rescinded the Zenitstadt Compact. The Church's wealth shall serve the greater good of the Realm - let the Six judge who betrayed whom."
-	restore_text = "The %RULER% has affirmed the Zenitstadt Compact. The hand of the Crown shall meddle no more in the disposition of the Church's worldly wealth."
+Yeven under the old seal, in witness of the Six."}
+	revoke_text = "The %RULER% has rescinded the Zenitstadt Compact. The Church's wealth shall serve the greater good of the outpost - let the Six judge who betrayed whom."
+	restore_text = "The %RULER% has affirmed the Zenitstadt Compact. No hand shall meddle further in the disposition of the Church's worldly wealth."
 
 /datum/decree/zenitstadt_concordat/roll_initial_year()
 	return CALENDAR_EPOCH_YEAR - rand(50, 120)

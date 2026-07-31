@@ -156,6 +156,10 @@
 	name = "tinker suit"
 	desc = "Typical fashion of the best engineers."
 	icon_state = "artishirt"
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
 	name = "low cut tunic"
@@ -170,6 +174,10 @@
 	r_sleeve_status = SLEEVE_TORN
 	l_sleeve_status = SLEEVE_TORN
 	body_parts_covered = CHEST|VITALS
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock
 	allowed_race = NON_DWARVEN_RACE_TYPES
@@ -338,6 +346,10 @@
 	detail_color = "#e395bb"
 	salvage_result = /obj/item/natural/silk
 	salvage_amount = 2
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -356,6 +368,10 @@
 	detail_color = "#45749d"
 	salvage_result = /obj/item/natural/silk
 	salvage_amount = 2
+	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown/aristocratotava
 	detail_color = "#1f1818ff"
@@ -489,6 +505,8 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	flags_inv = HIDECROTCH|HIDEBOOB
+	heat_protection = CHEST|GROIN|ARMS
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/tunic/green
 	color = CLOTHING_GREEN
@@ -558,6 +576,10 @@
 	color = "#e6e5e5"
 	salvage_result = /obj/item/natural/silk
 	salvage_amount = 2
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/princess
 	color = CLOTHING_WHITE
@@ -752,7 +774,7 @@
 /obj/item/clothing/suit/roguetown/shirt/dress/captainrobe
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	name = "foreign robes"
-	desc = "Flower-styled robes. The Azurian Trading Company's factor swears they came up the harbor from the southern Kazeungese region."
+	desc = "Flower-styled robes. The trading post's factor swears they came up the harbor from the southern Kazeungese region."
 	icon = 'icons/roguetown/clothing/armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
 	icon_state = "eastsuit4"

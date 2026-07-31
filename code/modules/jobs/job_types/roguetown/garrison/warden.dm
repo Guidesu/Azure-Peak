@@ -9,9 +9,9 @@
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "You are a volunteer with the Wardens; a fraternity of rangers who keep a vigil over Azuria's untamed wilderness. \
-				While you may not be a professional soldier, you nevertheless serve the Duchy as the first line of defense against outside threats. \
-				Obey your Sergeant-at-Arms, the Marshal, and the Crown. Serve their will, and you will receive that which a Warden covets most - freedom and safety."
+	tutorial = "You are a volunteer with the Wardens; a fraternity of rangers who keep a vigil over the outpost's untamed wilderness. \
+				While you may not be a professional soldier, you nevertheless serve the outpost as the first line of defense against outside threats. \
+				Obey your Sergeant-at-Arms and the Marshal. Serve their will, and you will receive that which a Warden covets most - freedom and safety."
 
 	display_order = JDO_WARDEN
 	whitelist_req = TRUE
@@ -44,8 +44,8 @@
 
 /datum/advclass/warden/warden
 	name = "Warden"
-	tutorial = "You are a Warden; a guerilla beneath the Crown's command, a ranger of Azuria's sparsely populated woods, and the first line of defense against whatever foulness befalls this fief."
-	extra_context = "Wardens receive a boost to Perception, Willpower, and Speed when traveling within the 'Azurian Grove' biome. When outside this biome, their statblock - compared to the Man-at-Arms - is slightly reduced."
+	tutorial = "You are a Warden; a guerilla who answers to the garrison's command, a ranger of the outpost's sparsely populated woods, and the first line of defense against whatever foulness befalls this land."
+	extra_context = "Wardens receive a boost to Perception, Willpower, and Speed when traveling within the 'Azure Grove' biome. When outside this biome, their statblock - compared to the Man-at-Arms - is slightly reduced."
 	outfit = /datum/outfit/job/roguetown/warden/warden
 	category_tags = list(CTAG_WARDEN)
 	subclass_stats = list(

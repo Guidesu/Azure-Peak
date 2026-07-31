@@ -1,11 +1,12 @@
 /**
- * In-world half of DreamValley's campaign save bridge.
+ * DreamValley's campaign save/load system.
  *
- * This manager identifies persistent objects and records changed turfs. The
- * Stardew host owns atomic checkpoints, the append-only journal, and backups.
+ * This manager identifies persistent objects, records changed turfs, and
+ * owns the whole checkpoint loop locally (see campaign_transport.dm for the
+ * save.json read/write and the subsystem that drives it on a timer).
  */
 /datum/dreamvalley_campaign_manager
-	/// This branch is a campaign codebase even when launched without Stardew.
+	/// Whether the campaign save/load system is active on this server.
 	var/enabled = TRUE
 	var/campaign_id = "default"
 	var/data_root = "data/dreamvalley/campaigns"
@@ -23,12 +24,14 @@
 	var/list/persisted_turfs = list()
 	/// Prevent restoration changes from being journalled as player changes.
 	var/restoring_snapshot = FALSE
-	/// Host-side durable sequence/generation cursors loaded from bootstrap.
-	var/journal_sequence = 0
+	/// Local checkpoint counter, persisted in save.json. A write to disk is
+	/// immediately durable - see checkpoint_is_durable() in campaign_transport.dm.
 	var/checkpoint_generation = 0
-	/// Checkpoints written to the spool but not yet acknowledged by the host.
-	var/list/pending_checkpoint_generations = list()
-	var/last_acknowledged_generation = 0
+	/// world.realtime of the last successful emit_checkpoint() write, for the
+	/// save-status UI (see campaign_save_status_ui.dm). Not persisted itself -
+	/// on a fresh boot this stays null until the first checkpoint this session,
+	/// which is the correct "no write yet" state to show.
+	var/last_checkpoint_at
 
 	/// Round completion/reboot is replaced by explicit campaign save and shutdown.
 	var/suppress_round_end = TRUE
@@ -217,10 +220,30 @@
 
 	return thing.dreamvalley_save_state()
 
+/**
+ * The procedurally-generated dungeon ("Dungeon Map"/"Dungeon Map 2", see
+ * SSdungeon_generator) is deliberately NOT part of the persistent world - it's rebuilt
+ * from scratch every boot by design (code/controllers/subsystem/dungeon_generator.dm).
+ * Every room SSdungeon_generator places goes through ChangeTurf() -> AfterChange() ->
+ * mark_turf_dirty() just like any player-caused turf change, with no z-level exclusion -
+ * so the whole generated layout was getting captured into persisted_turfs and then
+ * stamped back on top of the FRESH layout the generator built on the next boot,
+ * corrupting/overwriting it. This is what made the tomb look identical (or broken)
+ * every restart instead of actually regenerating.
+ */
+/datum/dreamvalley_campaign_manager/proc/is_dungeon_generator_z(z)
+	for(var/datum/space_level/level in SSmapping.z_list)
+		if(level.z_value != z)
+			continue
+		return (level.name == "Dungeon Map" || level.name == "Dungeon Map 2")
+	return FALSE
+
 /datum/dreamvalley_campaign_manager/proc/mark_turf_dirty(turf/changed_turf)
 	if(!enabled || !changed_turf)
 		return FALSE
 	if(restoring_snapshot || !SSticker || SSticker.current_state != GAME_STATE_PLAYING)
+		return FALSE
+	if(is_dungeon_generator_z(changed_turf.z))
 		return FALSE
 
 	var/key = "[changed_turf.x],[changed_turf.y],[changed_turf.z]"
@@ -300,6 +323,12 @@
 			var/type_text = turf_state["type"]
 			if(!isnum(x) || !isnum(y) || !isnum(z) || !istext(type_text))
 				continue
+			// Defense-in-depth alongside mark_turf_dirty()'s own exclusion (see
+			// is_dungeon_generator_z()) - a save file written before that fix can still
+			// carry stale dungeon-z turf entries. Skip replaying them so they don't get
+			// stamped on top of the fresh layout SSdungeon_generator just built this boot.
+			if(is_dungeon_generator_z(z))
+				continue
 			var/turf/current = locate(x, y, z)
 			var/turf_path = text2path(type_text)
 			if(!current || !ispath(turf_path, /turf))
@@ -333,10 +362,7 @@
 		"parked_characters" = length(parked_characters),
 		"parking_characters" = length(pending_character_parking),
 		"resuming_characters" = length(pending_character_resumes),
-		"journal_sequence" = journal_sequence,
 		"checkpoint_generation" = checkpoint_generation,
-		"pending_checkpoints" = length(pending_checkpoint_generations),
-		"last_acknowledged_generation" = last_acknowledged_generation,
 		"suppress_round_end" = suppress_round_end,
 		"suppress_daily_triumphs" = suppress_daily_triumphs,
 		"rules" = rules_status(),

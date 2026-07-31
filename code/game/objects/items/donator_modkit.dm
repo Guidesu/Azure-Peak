@@ -265,7 +265,7 @@
 	result_item = /obj/item/storage/belt/rogue/leather/donator_steel
 
 /obj/item/enchantingkit/triheartfelt
-	name = "'Azurian Plate Armor' morphing elixir"
+	name = "'Azurosa Plate Armor' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of either a set of Steel Plate Armor, or a set of Fluted Plate Armor."
 	target_items = list(
 		/obj/item/clothing/suit/roguetown/armor/plate/full/fluted/legacy				= /obj/item/clothing/suit/roguetown/armor/plate/full/donator_triheartfelt,
@@ -556,9 +556,9 @@
 
 //Ryan180602 - Armet
 /obj/item/enchantingkit/ryan_psyhelm
-	name = "'maimed psydonic helm' morphing elixir"
-	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm)
-	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan
+	name = "'maimed vaeltic helm' morphing elixir"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm/ryan
 
 //Dakken12 - Armet/Hounskull/Swords
 /obj/item/enchantingkit/dakken_zizhelm
@@ -734,7 +734,7 @@
 
 //more koruu stuff below
 /obj/item/enchantingkit/weapon/koruu_kukri_silver
-	name = "'Psydonic Leachwhacker' morphing elixir"
+	name = "'Vaeltic Leachwhacker' morphing elixir"
 	target_items = list(
 		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger,
 		/obj/item/rogueweapon/huntingknife/idagger/silver

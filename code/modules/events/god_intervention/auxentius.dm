@@ -1,4 +1,4 @@
-// Merge of the old Astrata (astrata_grandeur) and Ravox (ravox_resolve) intervention events.
+// Merge of the old Astrata (auxentius_grandeur) and Ravox (auxentius_resolve) intervention events.
 /datum/round_event_control/auxentius_grandeur
 	name = "Auxentius's Grandeur"
 	track = EVENT_TRACK_INTERVENTION
@@ -29,7 +29,7 @@
 		if(!(human_mob.mind?.assigned_role in GLOB.church_positions) && !human_mob.is_noble())
 			continue
 
-		human_mob.add_stress(/datum/stressevent/astrata_grandeur)
+		human_mob.add_stress(/datum/stressevent/auxentius_grandeur)
 
 		to_chat(human_mob, span_notice("Auxentius shines brightly todae - and just as he sits first among the Six Seats, so must you guide others with a firm hand. The Sun Lord demands no less from those who bask in his glory."))
 		human_mob.playsound_local(human_mob, 'sound/magic/bless.ogg', 100)

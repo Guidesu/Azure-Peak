@@ -563,6 +563,13 @@
 
 /datum/tat_build/proc/build_ui_trait_entries()
 	var/list/result = list()
+	// Virtue-backed trait ids are only added to GLOB.tat_available_traits as a
+	// side effect of traits.get_entry() (see ensure_virtue_trait_entries()).
+	// Iterating the list first and only calling get_entry() partway through
+	// each iteration means newly-added virtue keys are never visited in the
+	// same pass BYOND started iterating - they'd only show up a whole render
+	// cycle later, if ever. Ensure the entries exist before the loop starts.
+	traits?.ensure_virtue_trait_entries()
 	for(var/trait_id in GLOB.tat_available_traits)
 		if(trait_id == TAT_TRAIT_CONTRACTOR_ENTITY && get_owner_ckey() != "mrix")
 			continue
@@ -600,6 +607,11 @@
 			"direction_locked_reason" = lock_reason,
 			"direction_point_bonus" = traits?.get_oddity_direction_point_bonus(trait_id),
 			"ordinary_group" = traits?.get_ordinary_trait_group(trait_id),
+			// Set only on virtue-choice child traits (see ensure_virtue_trait_entries() in
+			// tat_traits.dm) - lets the frontend group these under their parent virtue's card
+			// instead of showing one flat tile per choice.
+			"virtue_parent" = entry["virtue_parent"],
+			"virtue_choice" = entry["virtue_choice"],
 		)
 	return result
 

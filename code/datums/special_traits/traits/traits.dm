@@ -193,14 +193,14 @@
 	character.mind.special_items["Whip"] = /obj/item/rogueweapon/whip
 	character.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 6, TRUE)
 
-/datum/special_trait/psydons_rider
-	name = "Psydon's Drunkest Rider"
-	greet_text = span_notice("I ride! None of the laws shall stop me for that is Psydon's divine will!")
-	req_text = "Worship Psydon"
+/datum/special_trait/praecursors_rider
+	name = "Praecursor's Drunkest Rider"
+	greet_text = span_notice("I ride! None of the laws shall stop me for that is Praecursor's divine will!")
+	req_text = "Worship Praecursor"
 	allowed_patrons = list(/datum/patron/tribunal/praecursor)
 	weight = 100
 
-/datum/special_trait/psydons_rider/on_apply(mob/living/carbon/human/character, silent)
+/datum/special_trait/praecursors_rider/on_apply(mob/living/carbon/human/character, silent)
 	character.drunkenness = 50
 	for(var/i in 1 to 2)
 		var/obj/item/bottle = new /obj/item/reagent_containers/glass/bottle/rogue/wine(get_turf(character))

@@ -356,7 +356,7 @@
 
 /obj/item/rogueweapon/katar/punchdagger
 	name = "punch dagger"
-	desc = "A weapon that combines the ergonomics of the Ranesheni katar with the capabilities of the Western Psydonian \"knight-killers\". It can be tied around the wrist."
+	desc = "A weapon that combines the ergonomics of the Ranesheni katar with the capabilities of the Western Vaeltian \"knight-killers\". It can be tied around the wrist."
 	slot_flags = ITEM_SLOT_WRISTS
 	max_integrity = 120		//Steel dagger -30
 	force = 15		//Steel dagger -5
@@ -375,8 +375,8 @@
 	icon = 'icons/roguetown/weapons/special/freifechter32.dmi'
 	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/thrust/pick, /datum/intent/mace/smash)
 
-/obj/item/rogueweapon/katar/psydon
-	name = "psydonic katar"
+/obj/item/rogueweapon/katar/praecursor
+	name = "vaeltic katar"
 	desc = "An exotic weapon taken from the hands of wandering monks, an esoteric design to the Otavan Orthodoxy. Special care was taken into account towards the user's knuckles: silver-tipped steel from tip to edges, and His holy cross reinforcing the heart of the weapon, with curved shoulders to allow its user to deflect incoming blows - provided they lead it in with the blade."
 	icon_state = "psykatar"
 	force = 19
@@ -384,22 +384,22 @@
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed
 
-/obj/item/rogueweapon/katar/psydon/ComponentInitialize()
+/obj/item/rogueweapon/katar/praecursor/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/katar/psydon/preblessed/ComponentInitialize()
+/obj/item/rogueweapon/katar/praecursor/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -559,7 +559,7 @@
 
 /obj/item/rogueweapon/greataxe/militia/silver
 	name = "silver militia shovelaxe"
-	desc = "'Do you think Psydon stays in Heaven because He too lives in fear of what He's created?' </br>A silver shovel, improvised - perhaps, by the hands of a particularly desperate gravedigger - to fill a polearm's duty."
+	desc = "'Do you think Praecursor stays in Heaven because He too lives in fear of what He's created?' </br>A silver shovel, improvised - perhaps, by the hands of a particularly desperate gravedigger - to fill a polearm's duty."
 	icon_state = "silvershovelwaraxe"
 	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/rend/reach, /datum/intent/axe/chop/long, SPEAR_BASH)
@@ -1101,7 +1101,7 @@
 	desc = "Thieve the appearance of another."
 	icon_state = "inpeculate"
 
-//Knuckledusters. Uses the Psydonic Thorns code to swap between this and the wearable, unarmed-damage-multiplying variants.
+//Knuckledusters. Uses the Vaeltic Thorns code to swap between this and the wearable, unarmed-damage-multiplying variants.
 /obj/item/rogueweapon/knuckledusters
 	name = "knuckledusters" //(Currenty?) inaccessable base.
 	desc = "An alloyed piece of pugilism, adjusted to be actively swung rather than passively worn atop the knuckles. Favored \
@@ -1175,8 +1175,8 @@
 		return
 
 /obj/item/rogueweapon/knuckledusters/psy
-	name = "psydonic knuckledusters"
-	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Psydon's crown - to crush the heretics' garments and armor into smithereens."
+	name = "vaeltic knuckledusters"
+	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Praecursor's crown - to crush the heretics' garments and armor into smithereens."
 	icon_state = "psyknuckledusters"
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed
@@ -1185,7 +1185,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -1196,7 +1196,7 @@
 	. = ..()
 	user.visible_message(span_warning("[user] starts adjusting their grip on [src]."))
 	if(do_after(user, 3 SECONDS))
-		var/obj/item/rogueweapon/knuckledusters/psy/P = new /obj/item/clothing/gloves/roguetown/knuckles/psydon(get_turf(src.loc))
+		var/obj/item/rogueweapon/knuckledusters/psy/P = new /obj/item/clothing/gloves/roguetown/knuckles/praecursor(get_turf(src.loc))
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)
@@ -1218,7 +1218,7 @@
 	. = ..()
 	user.visible_message(span_warning("[user] starts adjusting their grip on [src]."))
 	if(do_after(user, 3 SECONDS))
-		var/obj/item/rogueweapon/knuckledusters/enduring/P = new /obj/item/clothing/gloves/roguetown/knuckles/psydon/old(get_turf(src.loc))
+		var/obj/item/rogueweapon/knuckledusters/enduring/P = new /obj/item/clothing/gloves/roguetown/knuckles/praecursor/old(get_turf(src.loc))
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)

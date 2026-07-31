@@ -81,7 +81,7 @@
 	sellprice = 20
 
 /obj/item/clothing/wrists/roguetown/bracers/psythorns
-	name = "psydonic thorns"
+	name = "vaeltic thorns"
 	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be wrapped around the wrists."
 	body_parts_covered = ARMS
 	icon_state = "psybarbs"
@@ -175,6 +175,10 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 	color = "#7f829d"
+	cold_protection =  ARM_RIGHT | ARM_LEFT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/wrists/roguetown/bracers/copper
 	name = "copper bracers"
@@ -217,7 +221,7 @@
 	armor = ARMOR_PADDED
 	icon_state = "nocwrappings"
 	item_state = "nocwrappings"
-	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns. Uncraftable.
+	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Vaeltic Thorns. Uncraftable.
 	blocksound = SOFTHIT
 	anvilrepair = null
 	sewrepair = TRUE

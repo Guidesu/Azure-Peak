@@ -112,6 +112,7 @@
 
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_STAT_BUFF
+	mana_cost = MANACOST_MIRACLE_MINOR
 
 	invocations = list("Miluše, grant us respite!")
 	invocation_type = INVOCATION_SHOUT

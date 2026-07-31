@@ -7,13 +7,22 @@
 #define PARTICLEWEATHER_BLOODRAIN "weather_blood"
 #define PARTICLEWEATHER_LEAVES "weather_leaves"
 #define PARTICLEWEATHER_SAKURA "weather_sakura"
+#define PARTICLEWEATHER_SAND "weather_sand"
+#define PARTICLEWEATHER_FIREFLY "weather_firefly"
+#define PARTICLEWEATHER_ASH "weather_ashstorm"
 
 GLOBAL_LIST_EMPTY(weather_act_upon_list)
 
 /// Weather immunities, also protect mobs inside them.
 #define TRAIT_SNOWSTORM_IMMUNE "snowstorm_immune"
+#define TRAIT_SANDSTORM_IMMUNE "sandstorm_immune"
 #define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
 #define TRAIT_RAINSTORM_IMMUNE "rainstorm_immune"
+
+/// Applied to a mob while actively being pelted by a sandstorm (not sand_gentle) - lets other systems check/react to it.
+#define TRAIT_SANDSTORMED "sandstormed"
+/// Granted by goggles/eyewear that keep sand out of your eyes - blocks the blurriness effect from sand weather.
+#define TRAIT_SANDSTORM_GOGGLES "sandstorm_goggles"
 
 #define SUNLIGHT_DARK_MATRIX \
 	list                     \

@@ -84,10 +84,16 @@
 #define TRAIT_RITUALIST "Ritualist"  // Allows use of ritual chalk
 #define TRAIT_MARRIAGE_CAPABLE "Marriage Capable"
 #define TRAIT_INQUISITION "Otavan Adherent"
-#define TRAIT_CLERGY "Clergy of the Azurian Church"
+#define TRAIT_CLERGY "Clergy of the Concordat"
 #define TRAIT_GOODTRAINER "Good Trainer"
 #define TRAIT_BADTRAINER "Bad Trainer"
 #define TRAIT_OUTDOORSMAN "Outdoorsman"
+/// DISABLED: an elemental-bending combat system (Fire/Water/Earth/Air) was scaffolded here but was
+/// out-of-scope, unrequested content added during an unrelated porting pass, and has been removed
+/// (the files under modular_dreamvalley/bending/ were deleted before ever being committed - not
+/// recoverable from git history). This trait define is left in place, unused, in case the system
+/// is deliberately rebuilt later; it currently has no granters and no effect.
+#define TRAIT_BENDER "Bender"
 #define TRAIT_SEA_DRINKER "Denizen of the Deep"
 #define TRAIT_STUDENT		"Student"
 #define TRAIT_INTELLECTUAL "Intellectual"
@@ -162,11 +168,11 @@
 #define TRAIT_BETTER_SLEEP	"Better Sleep" //Recover more energy (blue bar) when sleeping
 #define TRAIT_LEECHIMMUNE "Unleechable" //leeches wont attach in bog squares + ignatius boon.
 #define TRAIT_LEECHRESIST "Leech Awareness" //leeches have a chance to be avoided
-#define TRAIT_ASTRATAN_AFFINITY "Auxentian Affinity" //Telling who's an Auxentian on examine
+#define TRAIT_AUXENTIAN_AFFINITY "Auxentian Affinity" //Telling who's an Auxentian on examine
 #define TRAIT_LONGSTRIDER "Longstrider"
 #define TRAIT_UNDIVIDED "The Tribunal Undivided"
-#define TRAIT_PSYDONIAN_GRIT "Praecursory Willpower" // Willpower-scaling boost to pain resistance. From X to XV, every point of WIL increases the chance of ignoring a paincrit check.
-#define TRAIT_PSYDONITE "Praecursory Devotion" // Passively heals wounds at a slow rate, but doesn't restore lost blood. Negates the effects of all non-Praecursor miracles, save for Anastasis and Cure Rot.
+#define TRAIT_VAELTIAN_GRIT "Praecursory Willpower" // Willpower-scaling boost to pain resistance. From X to XV, every point of WIL increases the chance of ignoring a paincrit check.
+#define TRAIT_VAELTITE "Praecursory Devotion" // Passively heals wounds at a slow rate, but doesn't restore lost blood. Negates the effects of all non-Praecursor miracles, save for Anastasis and Cure Rot.
 #define TRAIT_BLACKBAGGER "Skilled Apprehender" // Allows the effective usage of garrotes and blackbags.
 #define TRAIT_LYCANRESILENCE "Werewolf Resilence"
 #define TRAIT_UNFORGIVABLE "Unforgivable" //Handles Klokner-touched gibbing, miracle backfires, confession/conversion killing, etc.
@@ -348,22 +354,22 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEVY = span_greentext("I am one among the Levy! We are the Crown's spare spears, sent ahead of the Armsmen to face dangers beyond the walls and hold the line until better soldiers arrive. When fighting alongside fellow levymen, I can issue coordinated callouts (Shift + Ctrl + RMB)!"),
 	TRAIT_STEELHEARTED = span_info("I have hardened nerves, and do not waiver from the sight of violence in battle."),
 	TRAIT_OUTLAW = span_info("This land's meisters and castificos reject my touch."),
-	TRAIT_ALDERMAN = span_info("Alderman of the Assembly, voice of the respectable citizenry of Azuria. Upon my charter I may spend the Crown's Purse and commission the realm's defense within the bounds the Commons have set me."),
+	TRAIT_ALDERMAN = span_info("Alderman of the Assembly, voice of the outpost's respectable residents. Upon my charter I may spend the treasury and commission the settlement's defense within the bounds the Commons have set me."),
 	TRAIT_ALDERMAN_CENSURED = span_warning("The Assembly has censured my name. No seat, no warrant shall be mine until the week ends."),
 	TRAIT_TECHNOPHOBE = span_info("I've principles against using some forms of artificed machinery, or perhaps I'm incapable of using them."),
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
 	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of Custodius's Tribunal. I feel most comfortable around churchmen."),
 	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
-	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Azure Peak, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the streets of the outpost, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_GUARDSMAN_DISGRACED = span_warning("I have betrayed my oath. My vigilance falters in the town. I must beg forgiveness to restore my honor, or see my betrayal through to the end."),
-	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Azure Peak, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast surrounding the outpost, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_ANTHRAXI = span_info("I am the deadliest being in the underdark. No beast or foe can ever hope to match me in the caves."),
 	TRAIT_DEATHBARGAIN = span_info("A horrible deal has been prepared in your name. May you never see it fulfilled..."),
 	TRAIT_RITUALIST = span_info("I am skilled in the holy arts. Using ritual chalk, I can more deftly channel my God's powers via runes."),
 	TRAIT_MARRIAGE_CAPABLE = span_info("By the favor of Miluše or the authority of Auxentius, I can perform the rite of marriage."),
 	TRAIT_INSPIRING_MUSICIAN = span_info("The flow of battle dances to my song!"),
 	TRAIT_INQUISITION = span_info("I serve the Tribunal's Inquisition. From a passing glance, I can recognize all other adherents within the local sect."),
-	TRAIT_CLERGY = span_info("I serve the Church of the Concordat in Azuria. From a passing glance, I can recognize all other clergy of this Church."),
+	TRAIT_CLERGY = span_info("I serve the Church of the Concordat. From a passing glance, I can recognize all other clergy of this Church."),
 	TRAIT_CHOSEN = "Auxentius chose you to represent his glory.",
 	TRAIT_WEBWALK = "I can move freely between webs.",
 	TRAIT_NOSTINK = span_dead("My nose is numb to the smell of decay."),
@@ -465,8 +471,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BATTLEMASTER = span_info("I can use special attacks of any weapon without needing to be trained in it."),
 	TRAIT_CABAL = span_info("In secret, I have studied the ways of Her ascension."),
 	TRAIT_HORDE = span_info("BY BLOOD AND BONE, I AM OF VOLKOVOI'S ANOINTED!"),
-	TRAIT_PSYDONITE = span_info("I can gradually recover from most injuries, so long as I am not bled dry. Divine spite towards my faith leaves me unable to receive most miracles."),
-	TRAIT_PSYDONIAN_GRIT = span_info("While I still stand, there is yet hope for mankind. The stronger my willpower is, the better I can struggle through crippling wounds."),
+	TRAIT_VAELTITE = span_info("I can gradually recover from most injuries, so long as I am not bled dry. Divine spite towards my faith leaves me unable to receive most miracles."),
+	TRAIT_VAELTIAN_GRIT = span_info("While I still stand, there is yet hope for mankind. The stronger my willpower is, the better I can struggle through crippling wounds."),
 	TRAIT_BLACKBAGGER = span_info("I've been trained to properly abduct individuals through the use of seizing garrotes and blackbags."),
 	TRAIT_LYCANRESILENCE = span_info("Ignatius's fury flows through my veins, my wounds regenerate over time..."),
 	TRAIT_FORTITUDE = span_info("The typical drain I feel from day to day life is lessened, my athleticism greater."),
@@ -512,15 +518,15 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NITEVISION = span_info("I can see perfectly in the dark."),
 	TRAIT_UNFORGIVABLE = span_smallred("THE NEEDLE IN MY EYE OPENS MY MYND TO THE TRUTH! HELL IS REAL, REALITY SUFFERS, THE GARDEN BURNS AND I AM HOLDING THE TORCH, ALL WHOM ATTEMPT TO DIVERGE ME FROM THIS PATH TO BE UNMADE SHALL JOIN ME."),
 	TRAIT_NOCSHADES = span_info("The lens I look through allows me to see in the dark clear as dae, at the cost of greater vision."),
-	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Azure Peak."),
+	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in the outpost."),
 	TRAIT_DEBTOR = span_danger("I have defaulted on a loan. My name is writ red in the ledger until the debt is cleared."),
 	TRAIT_DEBTOR_CROWN = span_danger("My defaulted debt is owed to the Crown. The Steward keeps the tally."),
 	TRAIT_DEBTOR_CHURCH = span_danger("My defaulted debt is owed to the Church. The faithful keep the tally."),
 	TRAIT_DEBTOR_MERCHANT = span_danger("My defaulted debt is owed to the Merchant. The trading company keeps the tally."),
 	TRAIT_DEBTOR_BATHHOUSE = span_danger("My defaulted debt is owed to the Bathhouse. The bathmasters keep the tally."),
-	TRAIT_AGENT_MERCHANT = span_info("I am a chartered agent of the Azurian Trading Company. I keep its tally and ledger."),
+	TRAIT_AGENT_MERCHANT = span_info("I am a chartered agent of the Stewardry. I keep its tally and ledger."),
 	TRAIT_AGENT_BATHHOUSE = span_info("I am an agent of the Bathhouse. I keep its tally and ledger."),
-	TRAIT_AGENT_CHURCH = span_info("I am a Benefactor of the Church of Azuria. The faithful know my name."),
+	TRAIT_AGENT_CHURCH = span_info("I am a Benefactor of the Church of the Concordat. The faithful know my name."),
 	TRAIT_ARREARS = span_smallred("I am behind on my poll tax. The Stewardry keeps the tally; the garrison may mark my destitution."),
 	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking and wearing armor, and can sneak much quicker."),
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
@@ -558,7 +564,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_CURSE_HAUSVETTE = span_warning("I am forsaken by the Hearth-Keeper. I am drowning in her promises."),
 	TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise."),
 	TRAIT_BLOODLOSS_IMMUNE = span_notice("While I may bleed, I will feel nothing from it."),
-	TRAIT_ASTRATAN_AFFINITY = span_bone("My bond with Auxentius is strong. I can tell who worships him from up close."),
+	TRAIT_AUXENTIAN_AFFINITY = span_bone("My bond with Auxentius is strong. I can tell who worships him from up close."),
 	TRAIT_ADRENALINE_RUSH = span_notice("I'm invigorated in the midst of battle! I don't feel my wounds!"),
 	TRAIT_MEDICINE_EXPERT = span_greentext("I've deep, intricate knowledge of the medicinal arts. This skill can progress to Master and Legendary levels."),
 	TRAIT_ALCHEMY_EXPERT = span_greentext("I've deep, intricate knowledge of the alchemical arts. This skill can progress to Legendary levels."),
@@ -576,7 +582,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BLACKBLOOD = span_artery("I was once a creature of the night, but cured by the Otavan Inquisition at a heavy cost. My blood, tainted with tinctures, rites and concoctions, endures infection and holds an odd regenerative factor to it. Unfortunately, most healing miracles do not affect me at all, and I am sensitive to sunlight, aswell."),
 	TRAIT_COMBAT_AWARE = span_notice("My honed senses and intuition allow me to spot notable things in the midst of battle with ease."),
 	TRAIT_TEMPO	= span_greentext("I can keep up with multiple opponents at once."),
-	TRAIT_BLACKOAK = span_warning("The Black Oaks can spot <b>any</b> foreigners and outsiders, no matter how long they've lived in Azuria. I can spot an invader at a glance."),
+	TRAIT_BLACKOAK = span_warning("The Black Oaks can spot <b>any</b> foreigners and outsiders, no matter how long they've lived at the outpost. I can spot an invader at a glance."),
 	TRAIT_DREAMWALKER = span_warning("I walk the dream and reality at the same time. My mind frays, but my vision shall be reality."),
 	TRAIT_ENGINEERING_GOGGLES = span_warning("I can see structural details others can't."),
 	TRAIT_ASSASSIN = span_warning("My soul has been tainted by foul spirits, through them I honor my pact."),

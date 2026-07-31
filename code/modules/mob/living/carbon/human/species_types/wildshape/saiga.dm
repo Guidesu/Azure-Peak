@@ -33,7 +33,7 @@
 	id = "shapesaiga"
 	species_traits = list(NO_UNDERWEAR, NO_ORGAN_FEATURES, NO_BODYPART_FEATURES)
 	inherent_traits = list(
-		TRAIT_KNEESTINGER_IMMUNITY, //All of these are dendorite transformations, they are ALL blessed by dendor
+		TRAIT_KNEESTINGER_IMMUNITY, //All of these are Ignatian transformations, they are ALL blessed by Ignatius
 		TRAIT_WILD_EATER,
 		TRAIT_HARDDISMEMBER, //Decapping wildshapes causes them to bug out, badly, and need admin intervention to fix. Bandaid fix.
 		TRAIT_PIERCEIMMUNE, //Prevents weapon dusting and caltrop effects when killed/stepping on shards.

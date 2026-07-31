@@ -350,7 +350,22 @@
 	else if(arousal <= BLUEBALLS_LOOSE_THRESHOLD)
 		user.remove_stress(/datum/stressevent/blue_balls)
 
+// Was an empty stub - called from update_arousal_effects() on every arousal
+// change, but never actually did anything. The organ itself also listens for
+// COMSIG_SEX_AROUSAL_CHANGED directly (see /obj/item/organ/penis/proc/
+// on_arousal_changed() in sex_organs/penis.dm) and should be sufficient on
+// its own, but this stub being a silent no-op left no direct call path at
+// all if that registration was ever missing/unregistered - mirrors Ratwood's
+// /datum/sex_controller/proc/update_erect_state(), which looks up the organ
+// and pushes state to it directly rather than relying solely on a signal.
 /datum/component/arousal/proc/update_erect_state()
+	var/mob/living/carbon/user = parent
+	if(!istype(user))
+		return
+	var/obj/item/organ/penis/pp = user.getorganslot(ORGAN_SLOT_PENIS)
+	if(!pp)
+		return
+	pp.on_arousal_changed()
 
 
 /datum/component/arousal/proc/damage_from_pain(pain_amt)

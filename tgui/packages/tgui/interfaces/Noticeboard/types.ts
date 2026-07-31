@@ -135,6 +135,7 @@ export type MercenaryRoster = {
 
 export type NoticeboardData = {
   realm_name: string;
+  faction_name: string;
   postings: Posting[];
   scout_regions: ScoutRegion[];
   trade_orders: TradeOrder[];

@@ -1,4 +1,4 @@
-// Areas for byos.dmm ("New Kingsfield" / Build-Your-Own-Settlement island map).
+// Areas for byos.dmm ("New Colony" / Build-Your-Own-Settlement island map).
 // Ported from Ratwood-2.0 code/game/area/byos.dm (and small related pieces of
 // actualcoast.dm, roguetownareas.dm, town/town.dm) — all parent area types
 // (banditcamp, inq, town/warehouse, outdoors/beach, under/cave, under/cavewet)
@@ -31,7 +31,7 @@
 	deathsight_message = "a wretched, sweltering jungle"
 
 /area/rogue/outdoors/byos
-	name = "New-Kingsfield wilderness"
+	name = "New-Colony wilderness"
 	first_time_text = null
 	town_area = TRUE
 	icon_state = "rtfield"
@@ -50,15 +50,15 @@
 	droning_sound = 'sound/music/area/field.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
-	deathsight_message = "the outskirts of the colony of New Kingsfield and all its bustling souls"
+	deathsight_message = "the outskirts of the colony of New Colony and all its bustling souls"
 	threat_region = THREAT_REGION_ISLAND
 	detail_text = THREAT_REGION_ISLAND
 
 /area/rogue/outdoors/town/byos
 	icon_state = "town"
-	first_time_text = "The Colony of New Kingsfield"
+	first_time_text = "The Colony"
 	town_area = TRUE
-	deathsight_message = "the colony of New Kingsfield and all its bustling souls"
+	deathsight_message = "the colony and all its souls"
 	threat_region = THREAT_REGION_ISLAND
 	detail_text = THREAT_REGION_ISLAND
 	ambush_times = list("night")

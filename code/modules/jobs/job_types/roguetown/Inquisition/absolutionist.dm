@@ -6,8 +6,8 @@
 	total_positions = 1 // THE ONE.
 	spawn_positions = 1
 	forbidden_races = list(RACES_OOZE)
-	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires the character to be a practicing Psydonite.
-	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
+	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires the character to be a practicing Vaeltite.
+	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Praecursor's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
 	selection_color = JCOLOR_INQUISITION
 	outfit = /datum/outfit/job/roguetown/absolver
 	display_order = JDO_ABSOLVER
@@ -37,7 +37,7 @@
 
 /datum/advclass/absolver
 	name = "Absolver"
-	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
+	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Praecursor's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
 	outfit = /datum/outfit/job/roguetown/absolver/basic
 	subclass_languages = list(/datum/language/medullan)
 	category_tags = list(CTAG_ABSOLVER)
@@ -77,13 +77,13 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.mind)
-			H.mind.AddSpell(new /datum/action/cooldown/spell/psydon/persist)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonlux_tamper)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonabsolve)
-			H.mind.RemoveSpell(/datum/action/cooldown/spell/psydon/respite)
+			H.mind.AddSpell(new /datum/action/cooldown/spell/praecursor/persist)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/praecursorlux_tamper)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/praecursorabsolve)
+			H.mind.RemoveSpell(/datum/action/cooldown/spell/praecursor/respite)
 			H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_psydon)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_praecursor)
 
 /datum/outfit/job/roguetown/absolver/basic/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -98,9 +98,9 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/absolver
 	id = /obj/item/clothing/ring/signet/psy
@@ -114,12 +114,12 @@
 		/obj/item/storage/keyring/inquisitor = 1,
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // VAELTIAN MIRACLE-WORKER. LUX-MERGING FREEK.
 	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")
 
-/obj/effect/proc_holder/spell/invoked/convert_psydon
+/obj/effect/proc_holder/spell/invoked/convert_praecursor
 	name = "REDEEM"
-	desc = "Absolve the wayward and lost of their sins, bringing them back into His fold.  </br>‎  </br>Offers a chance for the target to willingly renounce their faith and allegiance, in favor of becoming a worshipper of Psydon. In the right circumstance, this can save a heretic or apostate from a far less peaceful end."
+	desc = "Absolve the wayward and lost of their sins, bringing them back into His fold.  </br>‎  </br>Offers a chance for the target to willingly renounce their faith and allegiance, in favor of becoming a worshipper of Praecursor. In the right circumstance, this can save a heretic or apostate from a far less peaceful end."
 	invocations = list("Allfather, accept your wayward child once more.")
 	invocation_type = "whisper"
 	sound = 'sound/magic/bless.ogg'
@@ -129,7 +129,7 @@
 	associated_skill = /datum/skill/magic/holy
 	overlay_state = "convert_heretic"
 
-/obj/effect/proc_holder/spell/invoked/convert_psydon/cast(list/targets, mob/living/carbon/human/user)
+/obj/effect/proc_holder/spell/invoked/convert_praecursor/cast(list/targets, mob/living/carbon/human/user)
 	var/mob/living/carbon/human/target = targets[1]
 
 	if(!ishuman(target))
@@ -141,12 +141,12 @@
 		return FALSE
 
 	if(istype(target.patron, /datum/patron/tribunal/praecursor))
-		to_chat(user, span_warning("[target] is already faithful to Psydon!"))
+		to_chat(user, span_warning("[target] is already faithful to Praecursor!"))
 		revert_cast()
 		return FALSE
 
 	if(istype(target.patron, /datum/patron/oldkin/klokner)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
-		to_chat(user, span_userdanger("[target] is UNFORGIVABLE, my attempt to convert them to PSYDON, violently sunders my lux!"))
+		to_chat(user, span_userdanger("[target] is UNFORGIVABLE, my attempt to convert them to PRAECURSOR, violently sunders my lux!"))
 		if(!HAS_TRAIT(user, TRAIT_NOPAIN))
 			user.emote("agony")
 		if(!HAS_TRAIT(user, TRAIT_NOMOOD))
@@ -162,13 +162,13 @@
 		user.visible_message(span_danger("[user] is violently smited as profane flames engulf their entire body!"))
 		return TRUE
 
-	if(alert(target, "[user.real_name] offers you the chance to renounce your sins, and to worship Psydon once more. Do you take it?", "REDEMPTION OR REFUSAL", "Yes", "No") != "Yes")
+	if(alert(target, "[user.real_name] offers you the chance to renounce your sins, and to worship Praecursor once more. Do you take it?", "REDEMPTION OR REFUSAL", "Yes", "No") != "Yes")
 		to_chat(user, span_warning("[target] has refused your offer of redemption."))
 		revert_cast()
 		return FALSE
 
 
-	if(target.devotion) //Remove all granted miracles and does NOT replace them, since Psydonic "miracles" don't work the same way and your old skills don't help with it.
+	if(target.devotion) //Remove all granted miracles and does NOT replace them, since Vaeltic "miracles" don't work the same way and your old skills don't help with it.
 
 		for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
 			target.mind.RemoveSpell(S)
@@ -179,11 +179,11 @@
 		target.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 		target.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
 
-	// Convert to PSYDON
+	// Convert to PRAECURSOR
 	target.patron = new user.patron.type()
 
-	message_admins("PSYDONIC CONVERSION: [user.real_name] ([user.ckey]) has converted [target.real_name] ([target.ckey]) to [user.patron.name]")
-	log_game("PSYDONIC CONVERSION: [user.real_name] ([user.ckey]) converted [target.real_name] ([target.ckey]) to [user.patron.name]")
+	message_admins("VAELTIC CONVERSION: [user.real_name] ([user.ckey]) has converted [target.real_name] ([target.ckey]) to [user.patron.name]")
+	log_game("VAELTIC CONVERSION: [user.real_name] ([user.ckey]) converted [target.real_name] ([target.ckey]) to [user.patron.name]")
 	to_chat(user, span_hypnophrase("Your offer of redemption to [target.name] has been accepted, and their former allegiances have been renounced in favor of [user.patron.name]!"))
 	to_chat(target, span_hypnophrase("As you embrace [user.patron.name], a strange sensation stirs within your heart; a dull warmth, inexplicable yet immediate. Despite everything you've done, He still loves you."))
 	playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)

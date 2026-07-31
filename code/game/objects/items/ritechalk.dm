@@ -46,7 +46,7 @@
 			ritechoices+="Rune of Storms"
 			ritechoices+="Rune of Stirring"
 		if(/datum/patron/tribunal/praecursor)
-			ritechoices+="Rune of Psydon"
+			ritechoices+="Rune of Praecursor"
 
 	if(HAS_TRAIT(user, TRAIT_DREAMWALKER) && !("Rune of Stirring" in ritechoices))
 		ritechoices+="Rune of Stirring"
@@ -55,10 +55,10 @@
 	var/turf/step_turf = get_step(get_turf(user), user.dir)
 	switch(runeselection)
 		if("Rune of Sun")
-			to_chat(user,span_cultsmall("I begin inscribing the rune of Her radiance..."))
+			to_chat(user,span_cultsmall("I begin inscribing the rune of His radiance..."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
-				new /obj/structure/ritualcircle/astrata(step_turf)
+				new /obj/structure/ritualcircle/auxentius_sun(step_turf)
 		if("Rune of Moon")
 			to_chat(user, span_cultsmall("I begin inscribing the rune of His wisdom."))
 			if(do_after(user, 30, src))
@@ -68,7 +68,7 @@
 			to_chat(user,span_cultsmall("I begin inscribing the rune of His madness."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
-				new /obj/structure/ritualcircle/dendor(step_turf)
+				new /obj/structure/ritualcircle/ignatius(step_turf)
 		if("Rune of Forge")
 			to_chat(user,span_cultsmall("I begin inscribing the rune of Their craft..."))
 			if(do_after(user, 30, src))
@@ -98,7 +98,7 @@
 			to_chat(user,span_cultsmall("I begin inscribing the rune of His justice..."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
-				new /obj/structure/ritualcircle/ravox(step_turf)
+				new /obj/structure/ritualcircle/auxentius_justice(step_turf)
 		if("Rune of Storms")
 			to_chat(user,span_cultsmall("I begin inscribing the rune of His storm..."))
 			if(do_after(user, 30, src))
@@ -129,11 +129,11 @@
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/baotha(step_turf)
-		if("Rune of Psydon")
+		if("Rune of Praecursor")
 			to_chat(user,span_cultsmall("I begin inscribing the rune of His presence..."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
-				new /obj/effect/decal/cleanable/roguerune/god/psydon(step_turf)
+				new /obj/effect/decal/cleanable/roguerune/god/praecursor(step_turf)
 		if("Rune of Divinity")
 			to_chat(user,span_cultsmall("I begin inscribing the rune of Their divinity..."))
 			if(do_after(user, 30, src))

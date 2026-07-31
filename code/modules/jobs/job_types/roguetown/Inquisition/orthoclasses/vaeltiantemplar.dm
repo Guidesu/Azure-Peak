@@ -1,0 +1,156 @@
+/datum/advclass/vaeltiantemplar // A templar, but for the Inquisition
+	name = "Adjudicator"
+	tutorial = "Vaeltite knights, clad in fluted chainmaille and blessed with the capacity to invoke lesser \
+	miracles. In lieu of greater miracles and rituals, they compensate through martial discipline and blessed weaponry."
+	allowed_sexes = list(MALE, FEMALE)
+	
+	outfit = /datum/outfit/job/roguetown/vaeltiantemplar
+	category_tags = list(CTAG_ORTHODOXIST)
+	subclass_languages = list(/datum/language/medullan)
+	cmode_music = 'sound/music/templarofvaeltis.ogg'
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_INQUISITION)
+	subclass_stats = list(
+		STATKEY_WIL = 3,
+		STATKEY_CON = 3,
+		STATKEY_STR = 2,
+		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+	)
+	subclass_stashed_items = list(
+		"The Book" = /obj/item/book/rogue/bibble/psy
+	)
+	extra_context = "This subclass can choose between two Disciplines; the Adjudicator and Justicar. The latter - armed with a Cuirass instead of Mailled Hauberk - sacrifices its Willpower and Constitution, in exchange for a major bonus to Perception and Intelligence."
+
+/datum/outfit/job/roguetown/vaeltiantemplar
+	job_bitflag = BITFLAG_HOLY_WARRIOR
+
+/datum/outfit/job/roguetown/vaeltiantemplar/pre_equip(mob/living/carbon/human/H)
+	..()
+	has_loadout = TRUE
+	cloak = /obj/item/clothing/cloak/tabard/praecursortabard
+	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	backl = /obj/item/storage/backpack/rogue/satchel/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
+	belt = /obj/item/storage/belt/rogue/leather/black
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	id = /obj/item/clothing/neck/roguetown/psicross/silver
+	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
+	/obj/item/paper/inqslip/arrival/ortho = 1,
+	/obj/item/rogueweapon/huntingknife/idagger/stake/inq = 1,
+	/obj/item/clothing/ring/signet/psy = 1)
+
+	H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/knight]
+	var/datum/devotion/C = new /datum/devotion(H, H.patron)
+	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_2) //Capped to T2 miracles. ENDURE. WITH RESPITE.
+
+	change_origin(H, /datum/virtue/origin/vergenmark, "Holy order")
+
+/datum/outfit/job/roguetown/vaeltiantemplar/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	var/helmets = list("Barbute", "Sallet", "Armet", "Bucket Helm", "Greatplumed Armet")
+	var/helmet_choice = input(H,"Choose your HELMET.", "TAKE UP PSYDON'S HELMS.") as anything in helmets
+	switch(helmet_choice)
+		if("Barbute")
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/praecursorbarbute, SLOT_HEAD, TRUE)
+		if("Sallet")
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psysallet, SLOT_HEAD, TRUE)
+		if("Armet")
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm, SLOT_HEAD, TRUE)
+		if("Bucket Helm")
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket, SLOT_HEAD, TRUE)
+		if("Greatplumed Armet")
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume, SLOT_HEAD, TRUE)
+
+	var/armors = list("Adjudicator - Mailled Hauberk, +II CON / +II WIL", "Justicar - Cuirass, +II INT / +II PER")
+	var/armor_choice = input(H, "Choose your OATH.", "TAKE UP PSYDON'S MANTLE.") as anything in armors
+	switch(armor_choice)
+		if("Adjudicator - Mailled Hauberk, +II CON / +II WIL")
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, SLOT_ARMOR, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq, SLOT_SHIRT, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/wrists/roguetown/bracers/chain, SLOT_WRISTS, TRUE)
+		if("Justicar - Cuirass, +II INT / +II PER")
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate, SLOT_ARMOR, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/leather/studded/cuirbouilli, SLOT_SHIRT, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/wrists/roguetown/bracers, SLOT_WRISTS, TRUE)
+			H.change_stat(STATKEY_INT, 2)
+			H.change_stat(STATKEY_PER, 2)
+			H.change_stat(STATKEY_CON, -2)
+			H.change_stat(STATKEY_WIL, -2)
+
+	var/weapons = list("Vaeltic Longsword", "Vaeltic Broadsword", "Vaeltic Executioner Sword", "Vaeltic War Axe", "Vaeltic Whip", "Vaeltic Flail", "Vaeltic Flanged Mace", "Vaeltic Grand Mace", "Vaeltic Maul", "Vaeltic Halberd + Arming Sword", "Vaeltic Spear + Flanged Mace", "Vaeltic Poleaxe + Shortsword")
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
+	switch(weapon_choice)
+		if("Vaeltic Longsword")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BELT_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		if("Vaeltic Broadsword")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/kriegmesser/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BELT_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		if("Vaeltic Executioner Sword")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/exe/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		if("Vaeltic War Axe")
+			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/psyaxe(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
+		if("Vaeltic Whip")
+			H.put_in_hands(new /obj/item/rogueweapon/whip/psywhip_lesser(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+		if("Vaeltic Flail")
+			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail/psyflail(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+		if("Vaeltic Flanged Mace")
+			H.put_in_hands(new /obj/item/rogueweapon/mace/cudgel/flanged/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+		if("Vaeltic Grand Mace")
+			H.put_in_hands(new /obj/item/rogueweapon/mace/goden/psymace(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+		if("Vaeltic Maul")
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H))
+			H.put_in_hands(new /obj/item/rogueweapon/mace/maul/grand/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal, SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+		if("Vaeltic Halberd + Arming Sword")
+			H.put_in_hands(new /obj/item/rogueweapon/halberd/psyhalberd(H))
+			H.put_in_hands(new /obj/item/rogueweapon/sword/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap(H), SLOT_BACK_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BELT_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+		if("Vaeltic Spear + Flanged Mace")
+			H.put_in_hands(new /obj/item/rogueweapon/spear/psyspear(H))
+			H.put_in_hands(new /obj/item/rogueweapon/mace/cudgel/flanged/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap(H), SLOT_BACK_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+		if("Vaeltic Poleaxe + Shortsword")
+			H.put_in_hands(new /obj/item/rogueweapon/greataxe/steel/knight/psy(H))
+			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H))
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap(H), SLOT_BACK_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BELT_R, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)

@@ -283,7 +283,7 @@
 
 /datum/advclass/mage/spellfist
 	name = "Spellfist"
-	tutorial = "You are a Spellfist, an unarmed warrior who combines martial prowess with arcyne magyck. Your art descends from the Pontifexes of Naledi, warrior-monks who first learned to channel arcyne power through their fists, though the technique has since spread across the world — especially to Lingyuese Psydonites in the east. You eschew most weapons in favor of using magyck to accelerate and strengthen your own body, striking enemies with blows from afar and storms of fists up close."
+	tutorial = "You are a Spellfist, an unarmed warrior who combines martial prowess with arcyne magyck. Your art descends from the Pontifexes of Naledi, warrior-monks who first learned to channel arcyne power through their fists, though the technique has since spread across the world — especially to Lingyuese Vaeltites in the east. You eschew most weapons in favor of using magyck to accelerate and strengthen your own body, striking enemies with blows from afar and storms of fists up close."
 	outfit = /datum/outfit/job/roguetown/adventurer/spellfist
 	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_ARCYNE)
 	subclass_stats = list(
@@ -339,10 +339,10 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/civilian
 
 	if(H.mind)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_psydon)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_psydon)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_praecursor)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_praecursor)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/blink/shadowstep)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_psydon)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_praecursor)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/empower_weapon)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/mending)
 

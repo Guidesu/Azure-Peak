@@ -37,6 +37,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_STAT_BUFF
+	mana_cost = MANACOST_MIRACLE_MINOR
 
 	secondary_resource_cost = SPELLCOST_STAT_BUFF
 
@@ -82,6 +83,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_STAT_BUFF
+	mana_cost = MANACOST_MIRACLE_MINOR
 	secondary_resource_cost = SPELLCOST_STAT_BUFF
 
 	invocations = list("Grant me your guidance.")
@@ -162,6 +164,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 
 	secondary_resource_cost = SPELLCOST_MIRACLE
 
@@ -216,9 +219,11 @@
 
 	primary_resource_type = SPELL_COST_DEVOTION
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 
 	secondary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_MINOR_PROJECTILE
+	mana_cost = MANACOST_MIRACLE_ORISON
 
 	invocation_type = INVOCATION_SHOUT
 	invocations = list("Blackest nite, blind!")
@@ -311,6 +316,7 @@
 //Magister = Generic magos, low utility mostly damage; Enchanter = Area denial beast, some utility; Seer = Full support with practically 0 offensive capacity.
 	click_to_activate = FALSE
 	primary_resource_cost = SPELLCOST_MIRACLE
+	mana_cost = MANACOST_MIRACLE
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 	invocation_type = INVOCATION_NONE
 	charge_required = FALSE
@@ -468,6 +474,7 @@
 	self_cast_possible = TRUE
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MAJOR
+	mana_cost = MANACOST_MIRACLE_MAJOR
 
 	secondary_resource_cost = SPELLCOST_MAJOR_PROJECTILE
 

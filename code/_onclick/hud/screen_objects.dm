@@ -2142,6 +2142,92 @@
 	else
 		..()
 
+/**
+ * The ported mana system (modular_dreamvalley/ported/vanderlin/mana) has no HUD sprite sheet
+ * of its own - there is no mana .dmi anywhere in this codebase (confirmed by grepping every
+ * .dmi in the repo for a mana-shaped icon_state). This used to reuse the energy bar's raw
+ * "energy0".."energy100" frames (icons/mob/rogueheat.dmi) with a flat blue tint - a copy of
+ * the energy bar's look, not a widget of its own.
+ *
+ * rogueheat.dmi separately has an actual masked-fill bar template (mana_bg/mana_fill/
+ * mana_mask/mana_fg) that's real border+background+fill art, just never used for mana itself -
+ * only reused (under those same "mana_*" icon_states) as the bloodpool/health widget's layers
+ * (see /atom/movable/screen/bloodpool_maskpart below). This gives mana that same widget
+ * treatment - background, animated fill, mask, foreground border - instead of a single flat
+ * icon_state swap.
+ *
+ * The fill also tints from the caster's actual attuned school when they have one:
+ * /datum/magic_aspect subtypes each declare a real school_color (see
+ * code/modules/spells/spell_types/wizard/major_aspects.dm, e.g. GLOW_COLOR_FIRE for
+ * Pyromancy) already used elsewhere for that school's spell glow/aspect-picker UI - a
+ * Pyromancer's mana bar burns orange-red, a Cryomancer's runs pale cyan, etc., rather than
+ * every caster sharing one fixed color regardless of what they actually practice. Mobs
+ * without an attuned major aspect (or without a mind at all) fall back to the previous
+ * generic blue.
+ */
+/atom/movable/screen/mana
+	appearance_flags = KEEP_TOGETHER
+	icon_state = "empty"
+	icon = 'icons/mob/rogueheat.dmi'
+	screen_loc = rogueui_mana
+	var/width = 21
+	var/height = 4
+	var/orientation = WEST
+	var/atom/movable/screen/bloodpool_maskpart/background
+	var/atom/movable/screen/bloodpool_maskpart/foreground
+	var/atom/movable/screen/bloodpool_maskpart/fill
+	var/atom/movable/screen/bloodpool_maskpart/mask
+	var/static/default_fill_color = "#3a6fd6"
+
+/atom/movable/screen/mana/Initialize(mapload, ...)
+	. = ..()
+	foreground = new /atom/movable/screen/bloodpool_maskpart/foreground(null, icon, src)
+	background = new /atom/movable/screen/bloodpool_maskpart/background(null, icon, src)
+	fill = new /atom/movable/screen/bloodpool_maskpart/fill(null, icon, src)
+	mask = new /atom/movable/screen/bloodpool_maskpart/mask(null, icon, src)
+	fill.color = default_fill_color
+
+	background.vis_contents += fill
+	mask.vis_contents += background
+	vis_contents.Add(mask, foreground)
+
+/atom/movable/screen/mana/Destroy()
+	QDEL_NULL(background)
+	QDEL_NULL(foreground)
+	QDEL_NULL(fill)
+	QDEL_NULL(mask)
+	return ..()
+
+/atom/movable/screen/mana/proc/get_school_color(mob/living/L)
+	var/datum/magic_aspect/primary = L?.mind?.major_aspects?[1]
+	if(istype(primary) && primary.school_color)
+		return primary.school_color
+	return default_fill_color
+
+/atom/movable/screen/mana/proc/set_value(ratio = 1.0)
+	ratio = clamp(ratio, 0, 1)
+	var/invratio = 1 - ratio
+	fill.pixel_w = width * invratio
+
+/atom/movable/screen/mana/proc/update_from_mob(mob/living/L)
+	if(!istype(L))
+		set_value(0)
+		return
+	var/current = L.get_personal_mana()
+	var/maximum = L.get_max_personal_mana()
+	fill.color = get_school_color(L)
+	if(maximum <= 0)
+		set_value(0)
+		return
+	set_value(current / maximum)
+
+/atom/movable/screen/mana/examine_ui(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		to_chat(user, span_info("<b>Mana:</b> [round(L.get_personal_mana(), 0.1)] / [round(L.get_max_personal_mana(), 0.1)]"))
+	else
+		..()
+
 /atom/movable/screen/feint
 	name = "feint"
 	icon_state = "feintbar0"
@@ -2157,6 +2243,72 @@
 	icon = 'icons/mob/rogueheat.dmi'
 	screen_loc = rogueui_fat
 	layer = HUD_LAYER+0.1
+
+/**
+ * 5-tier gamified temperature HUD indicator (Weather & Temperature Overhaul, Phase 1 port).
+ * The upstream Ratwood-2.0 rogueheat.dmi this feature was ported from ships two different
+ * temperature art sets: a small tempverycold/tempcold/tempnormal/temphot/tempveryhot gem
+ * (meant to sit inside the separate tempbase lantern-frame overlay) and a full-size
+ * temp0/25/50/75/100 lantern set that already bakes its own frame into each state (the
+ * same "one self-contained icon per tier" shape as the working stam0../energy0.. bars).
+ *
+ * The gem+tempbase combo was tried first and looked wrong in-game (reported as "just grey"):
+ * the gem is only ~8x14px of opaque pixels inside a ~24x32px dark frame, so at HUD scale the
+ * frame visually swamps the color and the state reads as indistinct regardless of temperature.
+ * Switched to the temp0../temp100 lantern set instead - each state is a complete, legible
+ * icon on its own, so tempbase/the separate frame overlay is no longer used at all.
+ */
+/atom/movable/screen/temperature
+	name = "Temperature"
+	icon_state = "temp50"
+	icon = 'icons/mob/rogueheat.dmi'
+	screen_loc = rogueui_temperature
+	layer = HUD_LAYER+0.1
+	var/heated_tile = FALSE
+
+/atom/movable/screen/temperature/proc/update_from_mob(mob/living/carbon/human/H)
+	if(!istype(H))
+		icon_state = "temp50"
+		return
+	switch(H.bodytemperature)
+		if(-INFINITY to BODYTEMP_COLD_LEVEL_ONE_MAX)
+			icon_state = "temp0"
+		if(BODYTEMP_COLD_LEVEL_ONE_MAX to BODYTEMP_NORMAL_MIN)
+			icon_state = "temp25"
+		if(BODYTEMP_NORMAL_MIN to BODYTEMP_NORMAL_MAX)
+			icon_state = "temp50"
+		if(BODYTEMP_NORMAL_MAX to BODYTEMP_HEAT_LEVEL_ONE_MAX)
+			icon_state = "temp75"
+		if(BODYTEMP_HEAT_LEVEL_ONE_MAX to INFINITY)
+			icon_state = "temp100"
+	var/turf/open/floor/F = H.loc
+	if(isfloorturf(F) && F.heat)
+		if(!heated_tile)
+			heated_tile = TRUE
+			add_overlay("tempheated")
+	else if(heated_tile)
+		heated_tile = FALSE
+		cut_overlay("tempheated")
+
+/atom/movable/screen/temperature/Click(location, control, params)
+	// The base /atom/movable/screen/Click() only reaches examine_ui() on shift+left-click,
+	// but that dispatch happens in the parent - overriding Click() bypasses it unless we
+	// replicate the check here (see /atom/movable/screen/stress/Click() for the same pattern).
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] && modifiers["left"])
+		examine_ui(usr)
+		return FALSE
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		H.check_temperature_state(H)
+	return FALSE
+
+/atom/movable/screen/temperature/examine_ui(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.check_temperature_state(H)
+	else
+		..()
 
 /atom/movable/screen/grain
 	icon = 'icons/grain.dmi'

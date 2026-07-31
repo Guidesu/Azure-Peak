@@ -911,7 +911,7 @@
 "gX" = (
 /obj/structure/fluff/statue/knight/r,
 /turf/open/water/pond,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "hg" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/rogue/cobble,
@@ -959,7 +959,7 @@
 /area/rogue/indoors/lich_start/lich_lair)
 "iE" = (
 /turf/closed/wall/mineral/rogue/decostone,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "iF" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt/road,
@@ -1127,9 +1127,9 @@
 /turf/open/floor/rogue/underworld/space/sparkle_quiet/dense,
 /area/rogue)
 "lo" = (
-/obj/structure/fluff/ravox/challenged,
+/obj/structure/fluff/auxentius/challenged,
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "lw" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue)
@@ -1423,9 +1423,9 @@
 /turf/open/floor/rogue/shroud/hag,
 /area/rogue/indoors/shelter/bog_hag)
 "rz" = (
-/obj/structure/fluff/ravox/challenger,
+/obj/structure/fluff/auxentius/challenger,
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "rE" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
 	dir = 1
@@ -1438,7 +1438,7 @@
 "rH" = (
 /obj/structure/fluff/statue/knight,
 /turf/open/water/pond,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "rL" = (
 /obj/structure/fluff/railing/border/east,
 /obj/structure/fluff/railing/border,
@@ -1637,7 +1637,7 @@
 /area/rogue/indoors/shelter/bog_hag)
 "va" = (
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "vf" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/rogue/cobble,
@@ -2227,7 +2227,7 @@
 "Fs" = (
 /obj/machinery/light/rogue/candle,
 /turf/closed/wall/mineral/rogue/decostone,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "Ft" = (
 /obj/item/grown/log/tree/stick,
 /turf/open/floor/rogue/grassyel,
@@ -3215,14 +3215,14 @@
 /area/rogue/indoors/lich_start/lich_lair)
 "XX" = (
 /turf/open/water/pond,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "XY" = (
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/lich_start/lich_lair)
 "Yc" = (
 /obj/machinery/light/rogue/candle,
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors/ravoxarena)
+/area/rogue/indoors/auxentiusarena)
 "Yd" = (
 /obj/structure/mineral_door/wood/fancywood,
 /turf/open/floor/rogue/concrete,

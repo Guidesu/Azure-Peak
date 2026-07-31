@@ -7,6 +7,9 @@
 	RETURN_TYPE(/obj/item/bodypart)
 	if(!zone)
 		zone = BODY_ZONE_CHEST
+	var/obj/item/bodypart/cached = bodyparts_by_zone[zone]
+	if(cached)
+		return cached
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		if(bodypart.body_zone == zone)
 			return bodypart
@@ -22,9 +25,7 @@
 	RETURN_TYPE(/obj/item/bodypart)
 	if(!zone)
 		zone = BODY_ZONE_CHEST
-	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
-		if(bodypart.body_zone == zone)
-			return bodypart
+	return bodyparts_by_zone[zone]
 
 /mob/living/carbon/proc/get_bodypart_complex(list/zones)
 	if(!length(zones))

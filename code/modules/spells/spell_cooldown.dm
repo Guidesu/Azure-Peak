@@ -67,6 +67,11 @@
 	var/point_cost = 0
 	/// Whether this spell was chosen through the aspect picker (counts against point budget).
 	var/utility_learned = FALSE
+	/// Additional mana cost for this spell, on top of whatever primary/secondary resource cost
+	/// it already has. Uses the ported Vanderlin mana system (see
+	/// modular_dreamvalley/ported/vanderlin/mana) - 0 (the default) means this spell has no mana
+	/// gating at all. Only acolyte/miracle spells currently set this to a nonzero value.
+	var/mana_cost = 0
 	/// Tier of the spell, used to determine whether you can learn it based on class.
 	var/spell_tier = 1
 	/// If true, this utility spell requires the class to have minor aspect access (T2+ mage) to select.
@@ -224,6 +229,12 @@
 		R.icon_state = button_icon_state
 		mob_charge_effect = R
 
+	if(mana_cost > 0)
+		AddComponent(/datum/component/uses_mana/spell, \
+			get_user_callback = CALLBACK(src, PROC_REF(get_spell_owner)), \
+			mana_required = CALLBACK(src, PROC_REF(get_mana_cost)), \
+		)
+
 	if(!charge_required)
 		return
 	if(charge_time <= 0)
@@ -232,6 +243,14 @@
 		return
 	if(charge_sound)
 		charge_sound_instance = sound(charge_sound)
+
+/// Callback target for the uses_mana component - returns whoever currently owns this spell.
+/datum/action/cooldown/spell/proc/get_spell_owner()
+	return owner
+
+/// Callback target for the uses_mana component - returns this spell's current mana cost.
+/datum/action/cooldown/spell/proc/get_mana_cost()
+	return mana_cost
 
 /datum/action/cooldown/spell/Destroy()
 	QDEL_NULL(mob_charge_effect)
@@ -676,7 +695,11 @@
 		return FALSE
 
 	// Certain spells are not allowed on the centcom zlevel
-	var/turf/caster_turf = get_turf(owner)
+	var/turf/caster_turf = owner.loc
+	if(!istype(caster_turf))
+		if(feedback)
+			owner.balloon_alert(owner, "Cannot cast here!")
+		return FALSE // no spell casting when you're inside something please
 	if((spell_requirements & SPELL_REQUIRES_STATION) && is_centcom_level(caster_turf.z))
 		if(feedback)
 			owner.balloon_alert(owner, "Cannot cast here!")
@@ -861,8 +884,8 @@
 				)
 			return sig_return | SPELL_CANCEL_CAST
 
-		//Psydonites/Vheslynites feel nothing
-		if((primary_resource_type == SPELL_COST_DEVOTION) && HAS_TRAIT(cast_on, TRAIT_PSYDONITE) && !(spell_flags & SPELL_PSYDON) || HAS_TRAIT(cast_on, TRAIT_UNFORGIVABLE) && !(spell_flags & SPELL_PSYDON))
+		//Vaeltites/Vheslynites feel nothing
+		if((primary_resource_type == SPELL_COST_DEVOTION) && HAS_TRAIT(cast_on, TRAIT_VAELTITE) && !(spell_flags & SPELL_PRAECURSOR) || HAS_TRAIT(cast_on, TRAIT_UNFORGIVABLE) && !(spell_flags & SPELL_PRAECURSOR))
 			cast_on.visible_message(span_info("[cast_on] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 			playsound(cast_on, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)

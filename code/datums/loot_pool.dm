@@ -183,14 +183,54 @@ GLOBAL_LIST_EMPTY(loot_pools_deferred_finalized)
 		pool.process_pool()
 		CHECK_TICK
 
-/// Process a deferred pool by key once its source generation is complete (e.g. dungeon generator finishing).
-/// Removes the pool from GLOB.loot_pools after processing so any straggler spawners fire normally instead of joining an exhausted pool.
+/**
+ * Process a deferred pool by key once its source generation is complete (e.g. dungeon generator finishing).
+ * Removes the pool from GLOB.loot_pools after processing so any straggler spawners fire normally instead of joining an exhausted pool.
+ *
+ * process_all_loot_pools() (Phase 1 creating the pool + marking it deferred, Phase 2 sweeping
+ * GLOB.loot_spawners_pending into it) only ever runs ONCE, from SSatoms right after the static
+ * map finishes LateInitialize. An area like the Tomb of Alotheos that's built entirely by the
+ * dungeon generator - piece by piece, well after boot, sometimes minutes into the round - has NO
+ * instances anywhere in world at that boot-time pass: Phase 1 never sees the area (so
+ * GLOB.loot_pools_deferred_keys/GLOB.loot_pools never get an entry for its key at all) and Phase
+ * 2 never sees its spawners either (they don't exist yet). The result: this pool was never
+ * created in the first place, and even if it had been, nothing would ever drain the spawners the
+ * dungeon generator's rooms add to GLOB.loot_spawners_pending afterward. Both gaps show up
+ * identically in-game as spawner markers that never resolve into loot and never delete
+ * themselves (the "General low/mid/hi" tiles seen in the Tomb of Alotheos).
+ *
+ * Fixed by making this proc self-sufficient instead of depending on Phase 1 having already run
+ * for this key: create the pool here (reading budget off whatever live area instance matches the
+ * key - by the time the dungeon generator calls this, generation just finished, so at least one
+ * real instance is guaranteed to exist) if Phase 1 never did, then sweep
+ * GLOB.loot_spawners_pending for this key's spawners before processing, since Phase 2 never gets
+ * a second chance to do that sweep itself.
+ */
 /proc/process_deferred_loot_pool(key)
-	if(!GLOB.loot_pools_deferred_keys[key])
-		return
 	var/datum/loot_pool/pool = GLOB.loot_pools[key]
 	if(!pool)
-		return
+		var/found_budget = 0
+		for(var/area/rogue/A in world)
+			if(A.loot_budget <= 0)
+				continue
+			if(get_area_pool_key(A) != key)
+				continue
+			found_budget = A.loot_budget
+			break
+		if(!found_budget)
+			return
+		pool = new(key, found_budget)
+		GLOB.loot_pools[key] = pool
+
+	for(var/obj/effect/spawner/lootdrop/spawner as anything in GLOB.loot_spawners_pending)
+		var/area/rogue/A = get_area(spawner)
+		if(!istype(A) || A.loot_budget <= 0)
+			continue
+		if(get_area_pool_key(A) != key)
+			continue
+		pool.register(spawner)
+		GLOB.loot_spawners_pending -= spawner
+
 	GLOB.loot_pools_deferred_keys -= key
 	GLOB.loot_pools_deferred_finalized[key] = TRUE
 	pool.process_pool()

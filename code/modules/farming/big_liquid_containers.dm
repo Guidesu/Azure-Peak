@@ -91,7 +91,7 @@
 
 /obj/structure/fermentation_keg/redwine
 	name = "sweetly sour-toned barrel"
-	desc = "A barrel that contains an Otavan luxury. It was originally served as part of Psydonic communion, eventually becoming wildly enjoyed within Otava to the point of being oft paired with EVERY meal."
+	desc = "A barrel that contains an Otavan luxury. It was originally served as part of Vaeltic communion, eventually becoming wildly enjoyed within Otava to the point of being oft paired with EVERY meal."
 
 /obj/structure/fermentation_keg/redwine/Initialize()
 	. = ..()
@@ -158,7 +158,7 @@
 
 /obj/structure/fermentation_keg/rose_tea
 	name = "saliciously aromatic barrel"
-	desc = "A barrel with a mark of a rosa over it. Sloshing inside is an Azurian variant of rosa tea; refreshingly fragrant, calming, and purported to have minor restorative effects."
+	desc = "A barrel with a mark of a rosa over it. Sloshing inside is a local variant of rosa tea; refreshingly fragrant, calming, and purported to have minor restorative effects."
 
 /obj/structure/fermentation_keg/rose_tea/Initialize()
 	. = ..()

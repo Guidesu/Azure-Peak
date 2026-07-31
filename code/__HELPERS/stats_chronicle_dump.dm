@@ -266,7 +266,7 @@
 	var/list/out = list()
 	out += chronicle_section_header("Combat")
 	out += chronicle_kv("Total deaths / Noble / Humen", "[GLOB.azure_round_stats[STATS_DEATHS]] / [GLOB.azure_round_stats[STATS_NOBLE_DEATHS]] / [GLOB.azure_round_stats[STATS_HUMEN_DEATHS]]")
-	out += chronicle_kv("Revivals (Astrata / Lux)", "[GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]] / [GLOB.azure_round_stats[STATS_LUX_REVIVALS]]")
+	out += chronicle_kv("Revivals (Auxentius / Lux)", "[GLOB.azure_round_stats[STATS_AUXENTIUS_REVIVALS]] / [GLOB.azure_round_stats[STATS_LUX_REVIVALS]]")
 	out += chronicle_kv("Crits / Parries / Yields / Warcries", "[GLOB.azure_round_stats[STATS_CRITS_MADE]] / [GLOB.azure_round_stats[STATS_PARRIES]] / [GLOB.azure_round_stats[STATS_YIELDS]] / [GLOB.azure_round_stats[STATS_WARCRIES]]")
 	out += chronicle_kv("People Smitten / Ankles Broken / Moat Fallers", "[GLOB.azure_round_stats[STATS_PEOPLE_SMITTEN]] / [GLOB.azure_round_stats[STATS_ANKLES_BROKEN]] / [GLOB.azure_round_stats[STATS_MOAT_FALLERS]]")
 	out += "\n"

@@ -48,7 +48,7 @@
 	..()
 	if (!istype(H.patron, /datum/patron/concordat/morwenna))
 		to_chat(H, span_warning("My former deity has abandoned me.. Matthios is my new master."))
-		H.set_patron(/datum/patron/concordat/morwenna)	//We allow other heretics into the cool-kids club, but if you are a tennite/psydonian it sets you to matthiosan.
+		H.set_patron(/datum/patron/concordat/morwenna)	//We allow other heretics into the cool-kids club, but if you are a tennite/vaeltian it sets you to matthiosan.
 	beltl = /obj/item/quiver/twilight_bullet/lead
 	neck = /obj/item/clothing/neck/roguetown/coif
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft

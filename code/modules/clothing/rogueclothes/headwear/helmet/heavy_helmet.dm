@@ -244,7 +244,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
 	name = "ancient savoyard"
 	desc = "Polished gilbranze plates, molded into a bulwark's greathelm. The Comet Syon's glare has been forever burnt into the alloy; a \
-	decayed glimpse into the world that was, before Psydon's slumber and Zizo's awakening."
+	decayed glimpse into the world that was, before Praecursor's slumber and Zizo's awakening."
 	icon_state = "ancientsavoyard"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -566,7 +566,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet
 	name = "armet"
-	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
+	desc = "Holy lamb, sacrificial hero, blessed idiot - Praecursor endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
 	icon_state = "armet"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/ComponentInitialize()
@@ -740,9 +740,9 @@
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_HONORBOUND)
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/astratahelm
-	name = "astrata helmet"
-	desc = "Headwear commonly worn by Templars in service to Astrata. The firstborn child's light will forever shine on within its crest."
+/obj/item/clothing/head/roguetown/helmet/heavy/auxentiushelm
+	name = "auxentian helmet"
+	desc = "Headwear commonly worn by Templars in service to Auxentius. The firstborn child's light will forever shine on within its crest."
 	icon_state = "astratahelm"
 	item_state = "astratahelm"
 	emote_environment = 3
@@ -751,15 +751,15 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute
-	name = "psydonic barbute"
-	desc = "A ceremonial barbute, masterfully forged to represent Psydon's divine authority. The Order of Saint Malum's artisans \
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorbarbute
+	name = "vaeltic barbute"
+	desc = "A ceremonial barbute, masterfully forged to represent Praecursor's divine authority. The Order of Saint Malum's artisans \
 	have chiseled this pronged visage into more statues than you could possibly imagine."
 	icon_state = "psydonbarbute"
 	item_state = "psydonbarbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute/getonmobprop(tag)
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorbarbute/getonmobprop(tag)
 	if(tag)
 		switch(tag)
 			if("gen")
@@ -767,8 +767,8 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
-	name = "psydonic armet"
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm
+	name = "vaeltic armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates \
 	these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder \
 	that 'happiness has to be fought for.'"
@@ -779,7 +779,7 @@
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY
 	smeltresult = /obj/item/ingot/silver
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/getonmobprop(tag)
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm/getonmobprop(tag)
 	if(tag)
 		switch(tag)
 			if("gen")
@@ -787,12 +787,12 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ComponentInitialize()
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_HONORBOUND)
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/attackby(obj/item/W, mob/living/user, params)
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
 		var/choice = input(user, "Choose a color.", "Orle") as anything in COLOR_MAP + pridelist
@@ -817,7 +817,7 @@
 			var/mob/living/carbon/H = user
 			H.update_inv_head()
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/update_icon()
+/obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm/update_icon()
 	cut_overlays()
 	if(get_detail_tag())
 		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
@@ -833,7 +833,7 @@
 		add_overlay(pic2)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy
-	name = "psydonic armet"
+	name = "vaeltic armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates \
 	these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder \
 	that 'happiness has to be fought for.'"
@@ -845,7 +845,7 @@
 	bloody_icon = 'icons/effects/blood64.dmi'
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/psy/greatplume
-	name = "psydonic armet with greatplume"
+	name = "vaeltic armet with greatplume"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates \
 	these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder \
 	that 'happiness has to be fought for.' This particular armet has a wider couplet, for accepting greatplumes."
@@ -973,7 +973,7 @@
 	is_lesser_silver = TRUE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed
-	name = "psydonic conical greathelm" //Vanilla version of the Greathelm, like before.
+	name = "vaeltic conical greathelm" //Vanilla version of the Greathelm, like before.
 	desc = "'In my dreams, I heard your footsteps coming closer.' \
 	</br>'In my dreams I tried to talk to you and introduce myself.' \
 	</br>'Guardian of the Comet and the Comet's banner.' \
@@ -990,7 +990,7 @@
 	is_silver = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
-	name = "psydonic bucket helmet"
+	name = "vaeltic bucket helmet"
 	desc = "Worn by the blade-carrying arms of Saint Astrata and Saint Ravox, it is a true-and-tested design. Silver \
 	encapsulates your head, and His cross when facing enemies reminds them that you will endure until they meet oblivion. Only then may you rest."
 	icon_state = "psybucket"
@@ -1045,7 +1045,7 @@
 	. += span_info("Bucket helmets, Sugarloaf helmets, and their decorated variants can be uniquely decorated with a nurse's veil as well.")
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psysallet
-	name = "psydonic sallet"
+	name = "vaeltic sallet"
 	desc = "A boiled leather cap, crowned with silver and veiled with His cross. Fear not - He will show you the way, and He will see your blows well-struck."
 	icon_state = "psysallet"
 	item_state = "psysallet"
@@ -1228,7 +1228,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the \
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus overlooking the outpost. It covers not only the \
 	entire head and face, but the neck as well. Add some cloth to show the colors of your family or allegiance, or a nurse's \
 	veil to ward off the chilliness of a winterborn tournament."
 	icon_state = "frogmouth"
@@ -1283,7 +1283,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/greatplume
 	name = "froggemund helmet with greatplume"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the \
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus overlooking the outpost. It covers not only the \
 	entire head and face, but the neck as well. Mounted on the back is a larger couplet, capable of mounting a feathered greatplume; a \
 	blessing for the flamboyant-hearted."
 	icon_state = "frogmouthgreatplume"
@@ -1598,7 +1598,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/bogman/iron
 	name = "bogman's helmet"
-	desc = "An iron helmet featuring the face of a snarling goblin. Once worn by the Bogmen, now a relic of old Azuria."
+	desc = "An iron helmet featuring the face of a snarling goblin. Once worn by the Bogmen, now a relic of a bygone age."
 	icon_state = "iguardhelm"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_HEAVY_IRON
@@ -1621,7 +1621,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/iron
 	name = "iron armet"
-	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
+	desc = "Holy lamb, sacrificial hero, blessed idiot - Praecursor endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
 	icon_state = "iarmet"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_HEAVY_IRON - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY

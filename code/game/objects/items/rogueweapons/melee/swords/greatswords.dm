@@ -203,7 +203,7 @@
 /obj/item/rogueweapon/greatsword/silver
 	name = "silver greatsword"
 	desc = "A greatsword with a massive blade of pure silver. Such is favored amongst the Order of Syonica's paladins: a faith-militance that \
-	seeks to safeguard those who've taken pilgrimage towards Azuria. </br>'There is no fate, but what we make for ourselves. It is not the will of \
+	seeks to safeguard those who've taken pilgrimage towards the outpost. </br>'There is no fate, but what we make for ourselves. It is not the will of \
 	gods that will determine Vaeltis's fate.. but instead, the hope of its children.'"
 	icon_state = "silverexealt"
 	force = 8
@@ -225,8 +225,8 @@
 	)
 
 /obj/item/rogueweapon/greatsword/psygsword
-	name = "psydonic greatsword"
-	desc = "It is said that a Psydonian smith was guided by Saint Malum himself to forge such a formidable blade, and given the task to slay a \
+	name = "vaeltic greatsword"
+	desc = "It is said that a Vaeltian smith was guided by Saint Malum himself to forge such a formidable blade, and given the task to slay a \
 	daemon preying on the Otavan farmlands. The design was retrieved, studied, and only a few replicas made - for they believe it dulls its edge."
 	icon_state = "silverexealt"
 	force = 8
@@ -240,7 +240,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -263,8 +263,8 @@
 /obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -305,7 +305,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 10,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -315,7 +315,7 @@
 /obj/item/rogueweapon/greatsword/bsword/psy/unforgotten
 	name = "unforgotten blade"
 	desc = "'Let His name be naught but forgot'n.' </br>High Inquisitor Archibald once recorded an expedition of seven brave Adjudicators into Gronnian snow-felled wastes to \
-	root out evil. Its leader, Holy Ordinator Guillemin, was said to have held on for seven daes and seven nights against darksteel-clad heretics before Psydon acknowledged his \
+	root out evil. Its leader, Holy Ordinator Guillemin, was said to have held on for seven daes and seven nights against darksteel-clad heretics before Praecursor acknowledged his \
 	endurance. Nothing but his blade remained - his psycross wrapped around its hilt in rememberance."
 	icon_state = "forgottenblade"
 	is_silver = TRUE
@@ -325,7 +325,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 10,\
 		added_blade_int = 50,\
 		added_int = 50,\
@@ -334,7 +334,7 @@
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic
 	name = "Creed"
-	desc = "Psydonian prayers and Tennite smiths, working as one to craft a weapon to slay the Four. A heavy and large blade, favored by Saint Ravox, to lay \
+	desc = "Vaeltian prayers and Tennite smiths, working as one to craft a weapon to slay the Four. A heavy and large blade, favored by Saint Ravox, to lay \
 	waste to those who threaten His flock. The crossguard's psycross reflects even the faintest of Noc's light. You're the light - show them the way."
 	icon_state = "psybroadsword"
 	force = 25 
@@ -354,8 +354,8 @@
 /obj/item/rogueweapon/greatsword/bsword/psy/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\

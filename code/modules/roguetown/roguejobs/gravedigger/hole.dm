@@ -427,7 +427,7 @@
 	return ..()
 
 /obj/structure/closet/dirthole/Destroy()
-	QDEL_NULL(abovemob)
+	abovemob = null // don't qdel a mutable appearance
 	if(mastert && mastert.holie == src)
 		mastert.holie = null
 	return ..()

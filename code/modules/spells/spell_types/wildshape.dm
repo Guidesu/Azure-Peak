@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/self/wildshape
 	name = "Beast Form"
-	desc = "Take on the form of one of Dendor's sacred beasts."
+	desc = "Take on the form of one of Ignatius's sacred beasts."
 	overlay_state = "tamebeast"
 	clothes_req = FALSE
 	human_req = FALSE
@@ -30,7 +30,7 @@
 /obj/effect/proc_holder/spell/self/wildshape/cast(list/targets, mob/living/carbon/human/user = usr)
 	. = ..()
 
-	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
+	if(istype(get_area(user), /area/rogue/indoors/auxentiusarena))
 		to_chat(user, span_userdanger("I tried to transform, but something rebukes me! This challenge is for my current vessel only!"))
 		revert_cast()
 		return FALSE
@@ -83,10 +83,10 @@
 
 /mob/living/carbon/human/species/wildshape/proc/gain_inherent_skills()
 	if(src.mind)
-		src.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE) //Any dendorite using this should be a holy magic user
+		src.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE) //Any ignatian using this should be a holy magic user
 
-		var/datum/devotion/C = new /datum/devotion(src, src.patron) //If we don't do this, Dendorites can't be clerics and they can't revert back to their true forms
-		C.grant_miracles(src, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MAJOR)	//Major regen as no matter the previous level, it gets reset on transform. More connection to dendor I guess? Can level up to T4.
+		var/datum/devotion/C = new /datum/devotion(src, src.patron) //If we don't do this, Ignatians can't be clerics and they can't revert back to their true forms
+		C.grant_miracles(src, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MAJOR)	//Major regen as no matter the previous level, it gets reset on transform. More connection to Ignatius I guess? Can level up to T4.
 
 /mob/living/carbon/human/species/wildshape/update_inv_gloves() //Prevents weird blood overlays
 	remove_overlay(GLOVES_LAYER)

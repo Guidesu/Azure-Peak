@@ -33,4 +33,8 @@
 		target.apply_status_effect(/datum/status_effect/buff/frostbite/) //apply debuff
 		target.adjustFireLoss(12) //damage
 		target.adjustBruteLoss(12)
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			human_target.apply_weather_temperature(-35)
+			human_target.adjust_bodytemperature(-25)
 		new /obj/effect/temp_visual/spell_impact(get_turf(target), glow_color, spell_impact_intensity)

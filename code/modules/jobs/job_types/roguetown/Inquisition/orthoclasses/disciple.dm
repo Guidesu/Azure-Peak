@@ -1,6 +1,6 @@
 /datum/advclass/disciple
 	name = "Disciple"
-	tutorial = "Psydonite monks, practiced in both martiality and scripture. Spilling blood on sacred grounds is considered 'sinful' to the clergymen, though no qualms are spared towards knocking someone's lights out."
+	tutorial = "Vaeltite monks, practiced in both martiality and scripture. Spilling blood on sacred grounds is considered 'sinful' to the clergymen, though no qualms are spared towards knocking someone's lights out."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/disciple
@@ -72,7 +72,7 @@
 				H.change_stat(STATKEY_PER, 1)
 			if("Katar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_EXPERT, TRUE)
-				r_hand = /obj/item/rogueweapon/katar/psydon
+				r_hand = /obj/item/rogueweapon/katar/praecursor
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			if("Knuckledusters")
 				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_EXPERT, TRUE)
@@ -89,7 +89,7 @@
 			if("Headbutt - Vulnerable Debuff")
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/headbutt)
 
-	head = /obj/item/clothing/head/roguetown/roguehood/psydon
+	head = /obj/item/clothing/head/roguetown/roguehood/praecursor
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
@@ -97,14 +97,14 @@
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	id = /obj/item/clothing/ring/signet/psy
 
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
 	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
 
 	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
 	/obj/item/paper/inqslip/arrival/ortho = 1)
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
-	cloak = /obj/item/clothing/cloak/tabard/psydontabard/alt
+	cloak = /obj/item/clothing/cloak/tabard/praecursortabard/alt
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles.

@@ -250,10 +250,12 @@
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	armor = ARMOR_PADDED
 	sewrepair = TRUE
+	cold_protection = HEAD
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
 
 /obj/item/clothing/mask/rogue/sack/psy
-	name = "psydonic sack mask"
-	desc = "An ordinary brown sack. This one has eyeholes cut into it, bearing a crude chalk drawing of Psydon's cross upon its visage. Unsettling for most."
+	name = "vaeltic sack mask"
+	desc = "An ordinary brown sack. This one has eyeholes cut into it, bearing a crude chalk drawing of Praecursor's cross upon its visage. Unsettling for most."
 	icon_state = "sackmask_psy"
 
 /obj/item/clothing/mask/rogue/facemask
@@ -427,9 +429,9 @@
 	icon_state = "bronzemask_legacy_snout"
 	item_state = "bronzemask_legacy_snout"
 
-/obj/item/clothing/mask/rogue/facemask/psydonmask
-	name = "psydonic mask"
-	desc = "A silver mask, forever locked in a rigor of uncontestable joy. The Order of Saint Xylix can't decide on whether it's meant to represent Psydon's 'mirthfulness,' 'theatricality,' or the unpredictable melding of both."
+/obj/item/clothing/mask/rogue/facemask/praecursormask
+	name = "vaeltic mask"
+	desc = "A silver mask, forever locked in a rigor of uncontestable joy. The Order of Saint Xylix can't decide on whether it's meant to represent Praecursor's 'mirthfulness,' 'theatricality,' or the unpredictable melding of both."
 	icon_state = "psydonmask"
 	item_state = "psydonmask"
 

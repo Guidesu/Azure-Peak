@@ -30,6 +30,11 @@
 
 /datum/character_customizers_ui
 	var/client/owner
+	/// Snapshot of every customizer_entry's vars, taken the moment this popup is first
+	/// opened. Lets "Reset" undo every change made in THIS session of the popup, not just
+	/// per-accessory color resets. Keyed by customizer_type; cleared (and retaken on next
+	/// open) once the popup is closed, so re-opening starts a fresh undo baseline.
+	var/list/opening_snapshot
 
 /datum/character_customizers_ui/New(client/C)
 	owner = C
@@ -39,16 +44,50 @@
 	return ..()
 
 /datum/character_customizers_ui/proc/get_prefs()
+	RETURN_TYPE(/datum/preferences)
 	return owner?.prefs
 
 /datum/character_customizers_ui/ui_state(mob/user)
 	return GLOB.always_state
 
 /datum/character_customizers_ui/ui_interact(mob/user, datum/tgui/ui)
+	var/is_new_ui = !ui
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		if(is_new_ui)
+			take_opening_snapshot()
 		ui = new(user, src, "CharacterCustomizers", "Customization")
 		ui.open()
+
+/datum/character_customizers_ui/ui_close(mob/user)
+	. = ..()
+	opening_snapshot = null
+
+/// Copies every customizer_entry's own vars (all plain scalars - see customizer_entry.dm)
+/// into a plain list keyed by customizer_type, so "Reset" can restore them later without
+/// needing type-specific logic per customizer subtype.
+/datum/character_customizers_ui/proc/take_opening_snapshot()
+	var/datum/preferences/P = get_prefs()
+	opening_snapshot = list()
+	if(!P)
+		return
+	for(var/datum/customizer_entry/entry as anything in P.customizer_entries)
+		opening_snapshot["[entry.customizer_type]"] = entry.vars.Copy()
+
+/datum/character_customizers_ui/proc/restore_opening_snapshot()
+	var/datum/preferences/P = get_prefs()
+	if(!P || !islist(opening_snapshot))
+		return FALSE
+	for(var/datum/customizer_entry/entry as anything in P.customizer_entries)
+		var/list/saved_vars = opening_snapshot["[entry.customizer_type]"]
+		if(!islist(saved_vars))
+			continue
+		for(var/var_name in saved_vars)
+			if(var_name == "vars" || var_name == "type" || var_name == "parent_type")
+				continue
+			entry.vars[var_name] = saved_vars[var_name]
+		P.clear_hair_cache(entry.customizer_type)
+	return TRUE
 
 /// Builds the extra small scalar fields a handful of customizer_choice
 /// subtypes add beyond the generic accessory+color shape. Returns a list of
@@ -168,6 +207,18 @@
 	if(!P)
 		return TRUE
 
+	if(action == "reset_all")
+		if(restore_opening_snapshot())
+			to_chat(user, span_notice("Reverted all customizer changes made since opening this window."))
+		return TRUE
+
+	if(action == "save_and_close")
+		P.save_preferences()
+		P.save_character()
+		to_chat(user, span_notice("CHARACTER SAVED."))
+		take_opening_snapshot() // saved state is the new undo baseline
+		return TRUE
+
 	var/customizer_type = text2path(params["customizer_type"])
 	if(!customizer_type)
 		return TRUE
@@ -212,10 +263,16 @@
 			var/datum/sprite_accessory/accessory = SPRITE_ACCESSORY(entry.accessory_type)
 			if(!index || (index > accessory.color_keys))
 				return TRUE
-			var/new_color = params["color"]
+			var/list/color_list = color_string_to_list(entry.accessory_colors)
+			var/current_color = color_list[index] || "FFFFFF"
+			// The frontend has no color picker of its own - it can only show the
+			// current swatch and ask us to change it. Prompt with a real BYOND
+			// color picker here rather than trusting a client-supplied color
+			// (previously this just re-saved whatever the client echoed back,
+			// which was always the same value the swatch already showed).
+			var/new_color = color_pick_sanitized(user, "Choose a color:", "Character Preference", "#"+current_color)
 			if(!new_color)
 				return TRUE
-			var/list/color_list = color_string_to_list(entry.accessory_colors)
 			color_list[index] = sanitize_hexcolor(new_color, 6, TRUE)
 			entry.accessory_colors = color_list_to_string(color_list)
 
@@ -247,7 +304,12 @@
 
 		if("set_extra_color")
 			var/key = params["key"]
-			var/new_color = params["color"]
+			// The frontend sends the current color as params["color"] (it has no
+			// picker of its own - see set_accessory_color's comment above for why
+			// this must be resolved through a real prompt here rather than
+			// trusted directly, or the color could never actually change).
+			var/current_color = params["color"] || "FFFFFF"
+			var/new_color = color_pick_sanitized(user, "Choose a color:", "Character Preference", "#"+current_color)
 			if(!new_color)
 				return TRUE
 			if(istype(choice, /datum/customizer_choice/organ/eyes))

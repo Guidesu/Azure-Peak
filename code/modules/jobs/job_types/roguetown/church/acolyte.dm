@@ -83,11 +83,11 @@
 			cloak = /obj/item/clothing/cloak/undivided
 			shirt = /obj/item/clothing/suit/roguetown/armor/vestments_padded
 		if(/datum/patron/concordat/auxentius)
-			head = /obj/item/clothing/head/roguetown/roguehood/astrata
+			head = /obj/item/clothing/head/roguetown/roguehood/auxentius
 			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			wrists = /obj/item/clothing/wrists/roguetown/wrappings
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/auxentius
 			shirt = /obj/item/clothing/suit/roguetown/armor/vestments_padded
 		if(/datum/patron/concordat/miluse)
 			head = /obj/item/clothing/head/roguetown/roguehood/nochood
@@ -106,7 +106,7 @@
 		if(/datum/patron/severance/ignatius) //Dendorites all busted. Play Druid.
 			head = /obj/item/clothing/head/roguetown/dendormask
 			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 			shirt = /obj/item/clothing/suit/roguetown/armor/vestments_padded // Kunai: I think I'll give them a weak ass skin srmor later, once that PR is merged, for the nudist theme
 		if(/datum/patron/concordat/morwenna)
@@ -206,11 +206,11 @@
 					if("Shamisen")
 						backr = /obj/item/rogue/instrument/shamisen
 		else
-			head = /obj/item/clothing/head/roguetown/roguehood/astrata
+			head = /obj/item/clothing/head/roguetown/roguehood/auxentius
 			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
 			wrists = /obj/item/clothing/wrists/roguetown/wrappings
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/auxentius
 			shirt = /obj/item/clothing/suit/roguetown/armor/vestments_padded
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)

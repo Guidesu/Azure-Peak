@@ -521,5 +521,6 @@
 			BP.owner = src
 			BP.held_index = i
 			bodyparts += BP
+			bodyparts_by_zone[BP.body_zone] = BP
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them

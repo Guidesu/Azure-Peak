@@ -38,12 +38,17 @@
 	var/ethereal_recharge_rate = 0
 
 	/// The overload threshold (absolute value). Above this, the holder starts taking mana backlash each tick.
-	var/mana_overload_threshold = 0
+	var/mana_overload_threshold = 120
 	/// Whether we are currently in an overloaded state (used to only send the backlash message/effect once per overload).
 	var/mana_overloaded = FALSE
 
 	/// World time of the next allowed "feeling tingly" overload warning message, to avoid spam.
 	var/next_overload_message = 0
+	/// World time of the next allowed mana_backlash() message, to avoid spam - mana_backlash()
+	/// itself fires every process() tick while overloaded (that part is intentional, the damage
+	/// should keep applying), but printing to_chat() on every one of those ticks spammed the
+	/// same line every fraction of a second. This throttles the message only, not the damage.
+	var/next_backlash_message = 0
 
 	VAR_PRIVATE/is_processing = FALSE
 
@@ -210,11 +215,15 @@
 	if(!istype(holder))
 		return
 	SEND_SIGNAL(holder, COMSIG_LIVING_MANA_BACKLASH, intensity)
-	switch(intensity)
-		if(0 to 5)
-			to_chat(holder, span_warning("I feel woozy from the strain of holding so much power."))
-		if(5 to 15)
-			to_chat(holder, span_danger("Sharp pain courses through my body as the excess magic burns me!"))
-		else
-			holder.visible_message(span_danger("[holder] shudders as excess magic burns through them!"), span_danger("Magic sears through me from the inside!"))
+	// The damage below applies every tick while overloaded (intentional - it's the actual
+	// mechanical consequence), but the message only needs to remind the player periodically.
+	if(world.time > next_backlash_message)
+		next_backlash_message = world.time + 10 SECONDS
+		switch(intensity)
+			if(0 to 5)
+				to_chat(holder, span_warning("I feel woozy from the strain of holding so much power."))
+			if(5 to 15)
+				to_chat(holder, span_danger("Sharp pain courses through my body as the excess magic burns me!"))
+			else
+				holder.visible_message(span_danger("[holder] shudders as excess magic burns through them!"), span_danger("Magic sears through me from the inside!"))
 	holder.apply_damage(intensity, BRUTE)

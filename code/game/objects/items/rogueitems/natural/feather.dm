@@ -58,7 +58,7 @@
 	icon_state = "inqfeather"
 	possible_item_intents = list(/datum/intent/use)
 	desc = "A large feather, plucked-with-care from the wings of a great eagle. These are traditionally \
-	worn as plumes by the elite of the Holy Psydonic Inquisition; either nocked on a wide-brimmed hat, or \
+	worn as plumes by the elite of the Holy Vaeltic Inquisition; either nocked on a wide-brimmed hat, or \
 	nested upon a silver froggemund."
 	force = 0
 	throwforce = 0

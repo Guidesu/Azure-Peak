@@ -13,19 +13,19 @@
 // only once those are exhausted does it fall back to the caster's own personal mana_pool.
 //
 // PUBLIC API:
-//   AddComponent(/datum/component/uses_mana, \
-//       pre_use_check_with_feedback_comsig = COMSIG_SPELL_BEFORE_CAST, \  // signal to hook for the pre-use mana check (must fire BEFORE the effect happens)
-//       post_use_comsig = COMSIG_SPELL_AFTER_CAST, \                     // signal to hook for post-use mana drain (fires AFTER the effect resolves)
-//       mana_required = 10, \                                            // flat number, OR a /datum/callback returning a number (for variable-cost spells/items)
-//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)), \        // callback returning the mob/atom whose mana pools should be checked/drained
-//       activate_check_failure_callback = CALLBACK(src, PROC_REF(on_insufficient_mana)), \ // optional; called (and should return truthy on success at cancelling) when there isn't enough mana
+//   AddComponent(/datum/component/uses_mana,
+//       pre_use_check_with_feedback_comsig = COMSIG_SPELL_BEFORE_CAST,  // signal to hook for the pre-use mana check (must fire BEFORE the effect happens)
+//       post_use_comsig = COMSIG_SPELL_AFTER_CAST,                     // signal to hook for post-use mana drain (fires AFTER the effect resolves)
+//       mana_required = 10,                                            // flat number, OR a /datum/callback returning a number (for variable-cost spells/items)
+//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)),        // callback returning the mob/atom whose mana pools should be checked/drained
+//       activate_check_failure_callback = CALLBACK(src, PROC_REF(on_insufficient_mana)), // optional; called (and should return truthy on success at cancelling) when there isn't enough mana
 //   )
 //
 // Convenience subtype for spells (pre-fills the two COMSIG args to match this repo's existing
 // spell action signal names from code/__DEFINES/dcs/signals/signals_spell.dm):
-//   AddComponent(/datum/component/uses_mana/spell, \
-//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)), \
-//       mana_required = 10, \
+//   AddComponent(/datum/component/uses_mana/spell,
+//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)),
+//       mana_required = 10,
 //   )
 //
 // Procs other code can call directly on the component:
@@ -188,9 +188,9 @@
 // (COMSIG_SPELL_BEFORE_CAST / COMSIG_SPELL_AFTER_CAST, see code/__DEFINES/dcs/signals/signals_spell.dm).
 //
 // Usage from within a /datum/action/cooldown/spell/mySpell/New():
-//   AddComponent(/datum/component/uses_mana/spell, \
-//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)), \
-//       mana_required = 15, \
+//   AddComponent(/datum/component/uses_mana/spell,
+//       get_user_callback = CALLBACK(src, PROC_REF(get_owner)),
+//       mana_required = 15,
 //   )
 // ---------------------------------------------------------------------------------------
 /datum/component/uses_mana/spell/Initialize(

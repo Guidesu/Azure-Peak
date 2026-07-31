@@ -58,7 +58,7 @@
 	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/psydon_cross
-	name = "wooden psydonic crucifix"
+	name = "wooden vaeltic crucifix"
 	category = "Misc"
 	result = /obj/structure/fluff/psycross/praecursorcrucifix
 	reqs = list(/obj/item/grown/log/tree/small = 1,
@@ -67,7 +67,7 @@
 	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/psydon_cross_stone
-	name = "stone psydonic crucifix"
+	name = "stone vaeltic crucifix"
 	category = "Misc"
 	result = /obj/structure/fluff/psycross/praecursorcrucifix/stone
 	reqs =	list(/obj/item/natural/stone = 3)
@@ -75,7 +75,7 @@
 	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/psydon_cross_silver
-	name = "silver psydonic crucifix"
+	name = "silver vaeltic crucifix"
 	category = "Misc"
 	result = /obj/structure/fluff/psycross/praecursorcrucifix/silver
 	reqs = list(/obj/item/ingot/silverblessed = 1,

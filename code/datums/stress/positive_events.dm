@@ -191,9 +191,9 @@
 	desc = span_green("The warmth of the fire is comforting.")
 	timer = 5 MINUTES
 
-/datum/stressevent/astrata_pyre
+/datum/stressevent/auxentius_pyre
 	stressadd = -3
-	desc = span_green("I feel safe under Her watch.")
+	desc = span_green("I feel safe under His watch.")
 	timer = 5 MINUTES
 
 /datum/stressevent/puzzle_easy
@@ -247,62 +247,10 @@
 	desc = span_green("I ate my favourite food!")
 	timer = 5 MINUTES
 
-/datum/stressevent/favourite_food/can_apply(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(user.has_stress_event(/datum/stressevent/favourite_food))
-		return FALSE
-	else if(ishuman(user))
-		var/mob/living/carbon/human/human_eater = user
-		if(human_eater.culinary_preferences && human_eater.culinary_preferences[CULINARY_FAVOURITE_FOOD])
-			var/favorite_food_type = human_eater.culinary_preferences[CULINARY_FAVOURITE_FOOD]
-			var/obj/item/reagent_containers/food/snacks/favorite_food_instance = favorite_food_type
-			timer = timer * max(initial(favorite_food_instance.faretype), 1)
-			return TRUE
-
 /datum/stressevent/favourite_drink
 	stressadd = -1
 	desc = span_green("I drank my favourite drink!")
 	timer = 5 MINUTES
-
-/datum/stressevent/favourite_drink/can_apply(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(user.has_stress_event(/datum/stressevent/favourite_drink))
-		return FALSE
-	else if(ishuman(user))
-		var/mob/living/carbon/human/human_drinker = user
-		if(human_drinker.culinary_preferences && human_drinker.culinary_preferences[CULINARY_FAVOURITE_DRINK])
-			var/favorite_drink_type = human_drinker.culinary_preferences[CULINARY_FAVOURITE_DRINK]
-			var/datum/reagent/consumable/favorite_drink_instance = favorite_drink_type
-			timer = timer * max(1 + initial(favorite_drink_instance.quality), 1)
-			return TRUE
-
-/datum/stressevent/hated_food
-	stressadd = 1
-	desc = span_red("How vile! How can anyone eat what I just ate?!")
-	timer = 10 MINUTES
-
-/datum/stressevent/hated_food/can_apply(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(user.has_stress_event(/datum/stressevent/hated_food))
-		return FALSE
-
-/datum/stressevent/hated_drink
-	stressadd = 1
-	desc = span_red("Disgusting! How could anyone drink what I just drank?!")
-	timer = 10 MINUTES
-
-/datum/stressevent/hated_drink/can_apply(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(user.has_stress_event(/datum/stressevent/hated_drink))
-		return FALSE
 
 /datum/stressevent/meditation
 	timer = 10 MINUTES
@@ -343,10 +291,10 @@
 	desc = span_green("A soothing fragrance envelops me.")
 	timer = 10 MINUTES
 
-/datum/stressevent/astrata_grandeur
+/datum/stressevent/auxentius_grandeur
 	timer = 30 MINUTES
 	stressadd = -2
-	desc = span_green("Astrata's light shines brightly through me. I must not let others ever forget that.")
+	desc = span_green("Auxentius's light shines brightly through me. I must not let others ever forget that.")
 
 /datum/stressevent/graggar_culling_finished
 	stressadd = -1
@@ -419,6 +367,18 @@
 	timer = 1 MINUTES
 	stressadd = -3
 	desc = list(span_boldred("I SOAKED IN THE BLOOD OF THE THOUSANDS DEAD! GRAGGAR GRAGGAR GRAGGAR!"))
+
+// Intended to proc on TRAIT_HORDE mobs caught in blood rain (see graggarite_blood_rain above for the older equivalent).
+/datum/stressevent/bloodrevel
+	timer = 1 MINUTES
+	stressadd = -3
+	desc = list(span_boldred("A rain of blood! Glorious! I revel in it!"))
+
+// Intended to proc on mobs caught in the fireflies weather.
+/datum/stressevent/fireflies
+	timer = 1 MINUTES
+	stressadd = -2
+	desc = list(span_blue("Tiny lights drift lazily through the air. How peaceful."))
 
 // Intended to proc upon exposure to gentle rain.
 /datum/stressevent/abyssor_rain

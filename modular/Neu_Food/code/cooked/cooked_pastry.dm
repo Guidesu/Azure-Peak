@@ -971,7 +971,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/plumbookbread
 	name = "plum bookbread"
-	desc = "The origin of Nocsmas are shrouded in mystery, perhaps intentionally so, though some theorize it may have had its origins as an originally Psydonian holidae."
+	desc = "The origin of Nocsmas are shrouded in mystery, perhaps intentionally so, though some theorize it may have had its origins as an originally Vaeltian holidae."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "plum_bookbread5"
 	slices_num = 5

@@ -378,7 +378,7 @@ a.choose-btn:hover {
 /proc/get_blade_chant_text(faction, mob/living/carbon/human/H)
 	switch(faction)
 		if("blackoak")
-			return {"<p><em>I am a blade of Tarichea — Azuria, her name reborn!</em></p>
+			return {"<p><em>I am a blade of Tarichea — this outpost, her ashes reborn!</em></p>
 <p><em>The sword is my law! Blood my ink!</em></p>
 <p><em>True is my strike! Sharp is my edge!</em></p>
 <p><em>With a dozen cuts I shall defend our home.</em></p>
@@ -413,7 +413,7 @@ a.choose-btn:hover {
 <p><em>Not even the gods shall stop us!</em></p>
 <p><em>In Tarichea's name, we are unshea—</em></p>
 <p><b>WAKE UP. WAKE UP.</b></p>"}
-	return {"<p><em>I am a blade of Azuria.</em></p>
+	return {"<p><em>I am a blade of the outpost.</em></p>
 <p><em>The sword is my voice, and war my verse.</em></p>
 <p><em>True is my strike and sharp is my edge.</em></p>
 <p><em>With a hundred cuts I shall cleanse our land of its foes.</em></p>
@@ -423,7 +423,7 @@ a.choose-btn:hover {
 /proc/get_phalanx_chant_text(faction, mob/living/carbon/human/H)
 	switch(faction)
 		if("blackoak")
-			return {"<p><em>I am a blade of Tarichea — Azuria, her name reborn!</em></p>
+			return {"<p><em>I am a blade of Tarichea — this outpost, her ashes reborn!</em></p>
 <p><em>The glaive is my law! Blood my ink!</em></p>
 <p><em>Swift is my strike! Sharp is my edge!</em></p>
 <p><em>With a dozen cuts I shall hew our foe.</em></p>
@@ -458,7 +458,7 @@ a.choose-btn:hover {
 <p><em>Not even the gods shall stop us!</em></p>
 <p><em>In Tarichea's name, we march for—</em></p>
 <p><b>WAKE UP. WAKE UP.</b></p>"}
-	return {"<p><em>I am a shield of Azuria.</em></p>
+	return {"<p><em>I am a shield of the outpost.</em></p>
 <p><em>The spear is my reach, and duty my anchor.</em></p>
 <p><em>True is my strike and long is my reach.</em></p>
 <p><em>With a hundred thrusts I shall hold our foe at bay.</em></p>
@@ -468,7 +468,7 @@ a.choose-btn:hover {
 /proc/get_macebearer_chant_text(faction, mob/living/carbon/human/H)
 	switch(faction)
 		if("blackoak")
-			return {"<p><em>I am a mace of Tarichea — Azuria, her name reborn!</em></p>
+			return {"<p><em>I am a mace of Tarichea — this outpost, her ashes reborn!</em></p>
 <p><em>The hammer is my law! Blood my ink!</em></p>
 <p><em>Never bowed! Never stopped!</em></p>
 <p><em>With a dozen blows I shall crush all who threaten our home.</em></p>
@@ -503,7 +503,7 @@ a.choose-btn:hover {
 <p><em>Not even the gods shall stop us!</em></p>
 <p><em>In Tarichea's name, we charge for—</em></p>
 <p><b>WAKE UP. WAKE UP.</b></p>"}
-	return {"<p><em>I am a mace of Azuria.</em></p>
+	return {"<p><em>I am a mace of the outpost.</em></p>
 <p><em>The hammer is my word, and ruin my punctuation.</em></p>
 <p><em>Never bowed! Never stopped!</em></p>
 <p><em>With a hundred blows I shall shatter our foes to dust.</em></p>

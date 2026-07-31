@@ -1,7 +1,7 @@
-/datum/round_event_control/dendor_trees
+/datum/round_event_control/ignatius_trees
 	name = "Wise Trees Propagation"
 	track = EVENT_TRACK_PERSONAL
-	typepath = /datum/round_event/dendor_trees
+	typepath = /datum/round_event/ignatius_trees
 	weight = 7
 	earliest_start = 15 MINUTES
 	max_occurrences = 1
@@ -11,7 +11,7 @@
 		TAG_NATURE,
 	)
 
-/datum/round_event_control/dendor_trees/canSpawnEvent(players_amt, gamemode, fake_check)
+/datum/round_event_control/ignatius_trees/canSpawnEvent(players_amt, gamemode, fake_check)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -27,7 +27,7 @@
 
 	return FALSE
 
-/datum/round_event/dendor_trees/start()
+/datum/round_event/ignatius_trees/start()
 	var/list/valid_targets = list()
 
 	for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
@@ -53,9 +53,9 @@
 	chosen_one.mind.AddSpell(tree_spell)
 
 	to_chat(chosen_one, span_userdanger("YOU ARE GOD'S CHOSEN!"))
-	to_chat(chosen_one, span_biginfo("Dendor wants you to choose suitable trees, which are to become guardians of the forest! [new_objective.explanation_text]"))
+	to_chat(chosen_one, span_biginfo("Ignatius wants you to choose suitable trees, which are to become guardians of the forest! [new_objective.explanation_text]"))
 	chosen_one.playsound_local(chosen_one, 'sound/ambience/noises/genspooky (1).ogg', 100)
 
-	to_chat(chosen_one, span_notice("Dendor grants you the power to transform trees into wise trees!"))
+	to_chat(chosen_one, span_notice("Ignatius grants you the power to transform trees into wise trees!"))
 
 	chosen_one.mind.announce_personal_objectives()

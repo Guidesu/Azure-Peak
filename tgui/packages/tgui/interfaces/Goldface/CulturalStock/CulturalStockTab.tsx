@@ -34,6 +34,7 @@ type Props = {
   budget: number;
   isAgent?: boolean;
   act: ActFn;
+  factionName?: string;
 };
 
 const StockCard = (props: {
@@ -372,7 +373,8 @@ const KinshipBanner = (props: { children: React.ReactNode }) => (
 );
 
 export const CulturalStockTab = (props: Props) => {
-  const { stock, catalogs = [], kinship, budget, isAgent, act } = props;
+  const { stock, catalogs = [], kinship, budget, isAgent, act, factionName } =
+    props;
 
   const companyKinCatalogs = catalogs.filter(
     (c) => c.access_basis === 'kinship',
@@ -414,9 +416,9 @@ export const CulturalStockTab = (props: Props) => {
             Chartered Agent
           </span>
           <span style={{ color: INK_SOFT }}>
-            As an agent of the Azurian Trading Company, you are allowed to
-            access, view, and purchase the Cultural Stock of any docked ships,
-            and view and hail ships on behalf of the Factor.
+            As an agent of {factionName || 'the Stewardry'}, you are allowed
+            to access, view, and purchase the Cultural Stock of any docked
+            ships, and view and hail ships on behalf of the Factor.
           </span>
         </KinshipBanner>
       )}

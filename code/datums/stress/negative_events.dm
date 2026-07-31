@@ -3,6 +3,12 @@
 	stressadd = 5
 	desc = list(span_boldred("I don't indulge my vice."),span_boldred("I need to sate my vice."))
 
+// Intended to proc on non-Horde mobs caught in blood rain.
+/datum/stressevent/bloodrain
+	timer = 1 MINUTES
+	stressadd = 4
+	desc = list(span_boldred("Blood is raining from the sky! What foul omen is this?!"))
+
 /datum/stressevent/miasmagas
 	timer = 10 SECONDS
 	stressadd = 2
@@ -318,7 +324,7 @@
 	stressadd = 30
 	desc = span_red("The horrid wails of the dead call for relief!")
 
-/datum/stressevent/soulchurnerpsydon
+/datum/stressevent/soulchurnerpraecursor
 	timer = 1 MINUTES
 	stressadd = 1
 	desc = span_red("The horrid wails of the dead call for relief! I can ENDURE such calls...")
@@ -475,7 +481,7 @@
 	stressadd = 3
 	desc = span_boldred("The undermaiden is watching me with disgust!")
 
-/datum/stressevent/something_stirs // Psydonites can pray in blood rain. For a price.
+/datum/stressevent/something_stirs // Vaeltites can pray in blood rain. For a price.
 	timer = 5 MINUTES
 	stressadd = 4
 	desc = span_boldred("I feel watched... did something *hear* me?")
@@ -531,7 +537,7 @@
 /datum/stressevent/lesser_sun_sensitivity
 	timer = 2 MINUTES
 	stressadd = 1
-	desc = span_red("I'm shielded from the the sunlight, but still! It's too bright outside!") // always a hater, aren't ya?! shame on u, astrata shames u
+	desc = span_red("I'm shielded from the the sunlight, but still! It's too bright outside!") // always a hater, aren't ya?! shame on u, auxentius shames u
 
 /datum/stressevent/inq_trauma
 	timer = 3 MINUTES

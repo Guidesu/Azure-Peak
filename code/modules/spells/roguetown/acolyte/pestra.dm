@@ -740,7 +740,7 @@
 			revert_cast()
 			return FALSE
 		var/mob/living/target = targets[1]
-		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+		if(HAS_TRAIT(target, TRAIT_VAELTITE))
 			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
@@ -797,7 +797,7 @@
 	devotion_cost = 250
 	chargedloop = /datum/looping_sound/invokeholy
 
-// Given this is Pestra's true T4 spell, and it is limited in availability and gated heavily behind tech, this heal does affect Psydonites.
+// Given this is Pestra's true T4 spell, and it is limited in availability and gated heavily behind tech, this heal does affect Vaeltites.
 // You can't resist Pestra's most divine gift.
 /obj/effect/proc_holder/spell/invoked/divine_rebirth/cast(list/targets, mob/living/user)
 	. = ..()

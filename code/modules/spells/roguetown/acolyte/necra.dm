@@ -82,7 +82,7 @@
 	if(!isopenturf(T))
 		return FALSE
 	
-	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
+	if(istype(get_area(user), /area/rogue/indoors/auxentiusarena))
 		to_chat(user, span_userdanger("I tried to escape, but something rebukes me! There's no escape until the end of the challenge!"))
 		revert_cast()
 		return FALSE

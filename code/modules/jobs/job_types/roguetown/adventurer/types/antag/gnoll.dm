@@ -69,6 +69,7 @@
 			var/datum/antagonist/new_antag = new /datum/antagonist/gnoll()
 			H.mind.add_antag_datum(new_antag)
 			add_verb(H, /mob/living/carbon/human/proc/gnoll_inspect_skin)
+			add_verb(H, /mob/living/carbon/human/proc/gnoll_toggle_pelt_repair)
 
 /datum/outfit/job/roguetown/gnoll/proc/don_pelt(mob/living/carbon/human/H)
 	if(H.mind)

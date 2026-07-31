@@ -156,6 +156,7 @@ export const Goldface = () => {
             budget={data.budget}
             isAgent={isAgent}
             act={act}
+            factionName={data.faction_name}
           />
         )}
         {activeTab === 'harbor' && canSeeHarborTabs && (
@@ -164,10 +165,11 @@ export const Goldface = () => {
             budget={data.budget}
             isAgent={isAgent}
             act={act}
+            factionName={data.faction_name}
           />
         )}
         {activeTab === 'market' && canSeeMerchantTabs && (
-          <MarketTab harbor={data.harbor} />
+          <MarketTab harbor={data.harbor} factionName={data.faction_name} />
         )}
         {activeTab === 'management' && canSeeMerchantTabs && (
           <ManagementTab harbor={data.harbor} act={act} />

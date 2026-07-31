@@ -92,6 +92,8 @@
 					emote("groan", forced = TRUE)
 
 			used.take_damage(intdamage, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100)
+			if(intdamage > 0)
+				SEND_SIGNAL(src, COMSIG_MOB_ARMOR_INTEGRITY_DAMAGED, intdamage, used, 1, 1)
 	else
 		// DR types: blunt, fire, acid
 		var/list/layers = get_best_worn_armor_layered(def_zone, d_type)
@@ -147,11 +149,14 @@
 			else
 				var/layers_deep = 1
 				var/played_sound = FALSE
+				var/total_layer_count = length(layers)
 				for(var/obj/item/clothing/C in layers)
 					var/actualdmg = intdamage
 					if(!full_dmg)
 						actualdmg /= layers_deep
 					C.take_damage(actualdmg, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100)
+					if(actualdmg > 0)
+						SEND_SIGNAL(src, COMSIG_MOB_ARMOR_INTEGRITY_DAMAGED, actualdmg, C, layers_deep, total_layer_count)
 					if(C.blocksound && !played_sound)
 						playsound(loc, get_armor_sound(C.blocksound, blade_dulling), 100)
 						played_sound = TRUE
@@ -683,6 +688,18 @@
 	else
 		examination += span_dead("[m1] dead.")
 
+	switch(bodytemperature)
+		if(0 to BODYTEMP_COLD_LEVEL_ONE_MAX)
+			examination += span_biginfo("<font color='#023E8A'> [m1] shivering greatly</font>")
+		if(BODYTEMP_COLD_LEVEL_ONE_MAX to BODYTEMP_NORMAL_MIN)
+			examination += span_biginfo("<font color='#99e6ff'> [m1] shivering</font>")
+		if(BODYTEMP_NORMAL_MIN to BODYTEMP_NORMAL_MAX)
+			examination += span_biginfo("<B>[m1] average temperature.</B>")
+		if(BODYTEMP_NORMAL_MAX to BODYTEMP_HEAT_LEVEL_ONE_MAX)
+			examination += span_biginfo("<font color='#ffff00'> [m1] sweating</font>")
+		if(BODYTEMP_HEAT_LEVEL_ONE_MAX to 600)
+			examination += span_biginfo("<font color='#DC143C'> [m1] sweating greatly</font>")
+
 	switch(blood_volume)
 		if(-INFINITY to BLOOD_VOLUME_SURVIVE)
 			examination += span_artery("<B>[m1] extremely anemic.</B>")
@@ -709,7 +726,18 @@
 		BODY_ZONE_L_LEG,
 		BODY_ZONE_R_LEG,
 	)
-	for(var/body_zone in body_zones)
+	// this is done to avoid showing the taur part twice since there's two legs
+	var/static/list/taur_zones = list(
+		BODY_ZONE_HEAD,
+		BODY_ZONE_CHEST,
+		BODY_ZONE_L_ARM,
+		BODY_ZONE_R_ARM,
+		BODY_ZONE_TAUR
+	)
+	var/list/zones_to_check = body_zones
+	if(get_taur_tail())
+		zones_to_check = taur_zones
+	for(var/body_zone in zones_to_check)
 		var/obj/item/bodypart/bodypart = get_bodypart(body_zone)
 		if(!bodypart)
 			examination += span_info("☼ [capitalize(parse_zone(body_zone))]: <span class='deadsay'><b>MISSING</b></span>")
@@ -723,6 +751,158 @@
 	if(!silent)
 		to_chat(user, examination.Join("\n"))
 	return examination
+
+/// Returns the current TEMP_STATE_* tier, read off the HUD temperature indicator's icon_state.
+/mob/living/carbon/human/proc/get_temperature_state()
+
+	var/atom/movable/screen/temperature/T = hud_used?.temperature
+	if(!T)
+		return TEMP_STATE_NORMAL
+
+	switch(T.icon_state)
+		if("tempverycold") return TEMP_STATE_VERY_COLD
+		if("tempcold") return TEMP_STATE_COLD
+		if("tempnormal") return TEMP_STATE_NORMAL
+		if("temphot") return TEMP_STATE_HOT
+		if("tempveryhot") return TEMP_STATE_VERY_HOT
+
+	return TEMP_STATE_NORMAL
+
+/// Shift-clicking the HUD temperature indicator calls this - explains the current state and its effects in chat.
+/mob/living/carbon/human/proc/check_temperature_state(mob/user = src, silent = FALSE)
+
+	var/list/examination = list("<span class='info'>ø ------------ ø")
+
+	var/m1
+	if(user == src)
+		m1 = "I am"
+		examination += span_notice("Let's see how my body temperature feels.")
+	else
+		m1 = "[p_they(TRUE)] [p_are()]"
+		examination += span_notice("Let's see how [src]'s temperature looks.")
+
+	// Get temperature state
+	var/temp_state = get_temperature_state()
+
+	switch(temp_state)
+
+		if(TEMP_STATE_VERY_COLD)
+			examination += span_danger("<B>[m1] extremely cold!</B>")
+			examination += span_biginfo("- Severe shivering")
+			examination += span_biginfo("- Movement speed reduced")
+			examination += span_biginfo("- Constitution reduced")
+			examination += span_danger("- Risk of frostbite after prolonged exposure")
+
+		if(TEMP_STATE_COLD)
+			examination += span_danger("[m1] cold.")
+			examination += span_biginfo("- Hunger increases faster")
+			examination += span_biginfo("- Occasional shivering")
+
+		if(TEMP_STATE_NORMAL)
+			examination += span_biginfo("[m1] at a comfortable temperature.")
+
+		if(TEMP_STATE_HOT)
+			examination += span_danger("[m1] hot.")
+			examination += span_biginfo("- Thirst increases faster")
+			examination += span_biginfo("- Occasional sweating")
+
+		if(TEMP_STATE_VERY_HOT)
+			examination += span_danger("<B>[m1] extremely hot!</B>")
+			examination += span_biginfo("- Actions take more stamina")
+			examination += span_biginfo("- Stamina recovery takes twice as long")
+			examination += span_danger("- Risk of heatstroke after prolonged exposure")
+
+	var/turf/open/floor/F = loc
+	if(isfloorturf(F) && F.heat)
+		examination += span_biginfo("It is warm here. Sitting down on something would refresh me.")
+
+	examination += "ø ------------ ø</span>"
+
+	if(!silent)
+		to_chat(user, examination.Join("\n"))
+
+	return examination
+
+/// Called from handle_environment() 20s into level-1 heat/level-2 heat. One-shot warning message + alert.
+/mob/living/carbon/human/proc/heat_warn()
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(bodytemperature <= BODYTEMP_NORMAL_MAX)
+		return
+	if(bodytemperature >= BODYTEMP_HEAT_LEVEL_ONE_MAX)
+		throw_alert("temp", /atom/movable/screen/alert/hot, 2)
+		to_chat(src, span_danger("The heat is really getting to me. I need to cool down."))
+	else
+		throw_alert("temp", /atom/movable/screen/alert/hot, 1)
+		to_chat(src, span_warning("I'm getting uncomfortably warm."))
+
+/// Called from handle_environment() 20s into level-1 cold/level-2 cold. One-shot warning message + alert.
+/mob/living/carbon/human/proc/cold_warn()
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(bodytemperature >= BODYTEMP_NORMAL_MIN)
+		return
+	if(bodytemperature < BODYTEMP_COLD_LEVEL_ONE_MAX)
+		throw_alert("temp", /atom/movable/screen/alert/cold, 2)
+		to_chat(src, span_danger("The cold is really getting to me. I need to warm up."))
+	else
+		throw_alert("temp", /atom/movable/screen/alert/cold, 1)
+		to_chat(src, span_warning("I'm getting uncomfortably cold."))
+
+/**
+ * Adjusts bodytemperature the same way weather effects (rain, snow, hail, heatwaves, ashstorms, etc.) should -
+ * scales the raw delta down by whatever cold/heat protection the human's current worn clothing provides,
+ * then hands off to the normal adjust_bodytemperature(). Positive amount warms, negative amount cools.
+ *
+ * Reuses get_cold_protection()/get_heat_protection() (code/modules/mob/living/carbon/human/life.dm) - the
+ * same clothing-coverage-weighted 0..1 protection factor species.dm's handle_environment() already uses -
+ * so weather-driven temperature changes respect the same gear as ambient temperature does.
+ */
+/mob/living/carbon/human/proc/apply_weather_temperature(amount, min_temp=0, max_temp=600)
+	if(!amount)
+		return
+	var/protection = (amount < 0) ? get_cold_protection(bodytemperature) : get_heat_protection(bodytemperature)
+	adjust_bodytemperature(amount * (1 - protection), min_temp, max_temp)
+
+/// Called 2 minutes into cold level 2 (if bodytemperature is still below BODYTEMP_COLD_LEVEL_ONE_MAX) - applies the hypothermia wound to the chest.
+/mob/living/carbon/human/proc/apply_hypothermia()
+	hypothermia_timer_id = null
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(bodytemperature >= BODYTEMP_COLD_LEVEL_ONE_MAX)
+		return
+	var/obj/item/bodypart/chest/BP = get_bodypart(BODY_ZONE_CHEST)
+	if(!BP)
+		return
+	for(var/datum/wound/hypothermia/existing in BP.wounds)
+		return //already have it
+	to_chat(src, span_userdanger("The cold has sunk into my bones!"))
+	BP.add_wound(/datum/wound/hypothermia)
+
+/// Called 2 minutes into heat level 2 (if bodytemperature is still above BODYTEMP_HEAT_LEVEL_ONE_MAX) - applies the heatexhaustion wound to the chest.
+/mob/living/carbon/human/proc/apply_heatexhaust()
+	heatstroke_timer_id = null
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(bodytemperature < BODYTEMP_HEAT_LEVEL_ONE_MAX)
+		return
+	var/obj/item/bodypart/chest/BP = get_bodypart(BODY_ZONE_CHEST)
+	if(!BP)
+		return
+	for(var/datum/wound/heatexhaustion/existing in BP.wounds)
+		return //already have it
+	BP.add_wound(/datum/wound/heatexhaustion)
+
+/// If the mob is suffering heatstroke/heatexhaustion and has since cooled back to normal, this hurries that along -
+/// called whenever the mob re-enters cold level 1/2, since actively getting chilled should help fix overheating.
+/mob/living/carbon/human/proc/relieve_heatstroke_from_cold()
+	var/obj/item/bodypart/chest/BP = get_bodypart(BODY_ZONE_CHEST)
+	if(!BP)
+		return
+	for(var/datum/wound/heatexhaustion/HE in BP.wounds)
+		qdel(HE)
+	for(var/datum/wound/heatstroke/HS in BP.wounds)
+		qdel(HS)
 
 /mob/living/carbon/human/proc/check_limb_for_injuries(mob/user = src, choice = BODY_ZONE_CHEST, advanced = FALSE, silent = FALSE)
 	choice = check_zone(choice)

@@ -88,7 +88,7 @@
 
 /obj/item/reagent_containers/food/snacks/jamtallowslice
 	name = "slice of jamtallow"
-	desc = "A portion of jammy paradise, bearing the same hues as Azuria's morning skies. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
+	desc = "A portion of jammy paradise, bearing the same hues as the outpost's morning skies. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
 	icon = 'modular/Neu_Food/icons/others/sweet.dmi'
 	icon_state = "jamtallow_slice"
 	faretype = FARE_POOR
@@ -133,7 +133,7 @@
 
 /obj/item/reagent_containers/food/snacks/marmaladeslice
 	name = "slice of marmalade"
-	desc = "A portion of jammy paradise, bearing the same hues as Azuria's evening seas. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
+	desc = "A portion of jammy paradise, bearing the same hues as the outpost's evening seas. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
 	icon = 'modular/Neu_Food/icons/others/sweet.dmi'
 	icon_state = "marmalade_slice"
 	faretype = FARE_POOR
@@ -206,8 +206,8 @@
 	eat_effect = /datum/status_effect/buff/sweet
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/dmark
-	name = "sugarshape of ducal mark"
-	desc = "A mound of sugar, shaped into a decorative mark with Azuria's sigil. It yearns to be completed beneath an oven's heat, or to be milled back down into sugarpowder."
+	name = "sugarshape of the old mark"
+	desc = "A mound of sugar, shaped into a decorative mark with a sigil from another time. It yearns to be completed beneath an oven's heat, or to be milled back down into sugarpowder."
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/dmark
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/smark
@@ -226,7 +226,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/zmark
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/pmark
-	name = "sugarshape of psydonic mark"
+	name = "sugarshape of vaeltic mark"
 	desc = "A mound of sugar, shaped into a decorative mark with Psydon's sigil. It yearns to be completed beneath an oven's heat, or to be milled back down into sugarpowder."
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/pmark
 
@@ -313,8 +313,8 @@
 	eat_effect = /datum/status_effect/buff/sweet
 
 /obj/item/reagent_containers/food/snacks/sugarstatue/dmark
-	name = "ducal sugarglass mark"
-	desc = "A decorative piece of sugarglass, meticulously fashioned to mimic a sigil of Azuria's royal house. Deliciously regal!"
+	name = "old sugarglass mark"
+	desc = "A decorative piece of sugarglass, meticulously fashioned to mimic a sigil of some long-forgotten noble house. Deliciously regal!"
 	icon_state = "sugarstatuemarkd"
 	bitesize = 2
 
@@ -337,7 +337,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/sugarstatue/pmark
-	name = "psydonic sugarglass mark"
+	name = "vaeltic sugarglass mark"
 	desc = "A decorative piece of sugarglass, meticulously fashioned to mimic a sigil of Psydon. Deliciously enduring!"
 	icon_state = "sugarstatuemarkp"
 	bitesize = 2

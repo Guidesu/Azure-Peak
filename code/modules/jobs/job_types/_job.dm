@@ -204,6 +204,18 @@
 	return title in list("Wretch", "Gnoll", "Assassin")
 
 /datum/job/proc/get_used_title(mob/player)
+	// The TAT "Free Soul Class Name" trait (see apply_free_soul_title() in
+	// modular_twilight_axis/code/datums/tat_system/domains/tat_traits.dm)
+	// sets player.tat_free_soul_title to the player's chosen custom class
+	// name - the trait's own tooltip promises this renames "your displayed
+	// class," but nothing in the actual job-title pipeline ever read the var
+	// back, so the custom name only ever showed up in a one-time spawn
+	// announcement and never anywhere players would actually see a title
+	// (like here, examine text's "[used_title]" line).
+	if(ishuman(player))
+		var/mob/living/carbon/human/H = player
+		if(length(H.tat_free_soul_title))
+			return H.tat_free_soul_title
 	var/titles = player.titles_pref
 	var/used_name = display_title || title
 	if((titles == TITLES_F) && f_title)
@@ -280,7 +292,7 @@
 		var/used_title = display_title || title
 		if((H.titles_pref == TITLES_F) && f_title)
 			used_title = f_title
-		scom_announce("[H.real_name] the [used_title] arrives to Azure Peak.")
+		scom_announce("[H.real_name] the [used_title] arrives at the outpost.")
 
 	if(give_bank_account)
 		if(give_bank_account > TRUE)

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/projectile/unholyblast // this CANNOT be a child of divine_blast bc you have to call parent on cast. 
 	name = "Unholy Blast"
-	desc = "Channel unholy power and sunder the unbelievers. Deals additional damage to wretched conformists and Psydonites! \n\
+	desc = "Channel unholy power and sunder the unbelievers. Deals additional damage to wretched conformists and Vaeltites! \n\
 	Damage is increased by 100% versus simple-minded creechurs.\n\
 	Toggle arc mode (Shift+G) while the spell is active to fire it over intervening mobs. Arced attacks deal 25% less damage."
 	clothes_req = FALSE

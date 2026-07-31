@@ -237,7 +237,7 @@
 	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail
-	name = "psydonic flail"
+	name = "vaeltic flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
 	force = 35
@@ -250,7 +250,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -260,8 +260,8 @@
 /obj/item/rogueweapon/flail/sflail/psyflail/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
@@ -270,15 +270,15 @@
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic
 	name = "Consecratia"
-	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
+	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Praecursor lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
 	icon_state = "psymorningstar"
 	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/smash/ranged, /datum/intent/flail/bash)
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
@@ -362,7 +362,7 @@
 /obj/item/rogueweapon/flail/sflail/holysee
 	name = "holy see flail"
 	desc = "A blessed flail, oft conflicts arise betwixt the Otavian Orthodoxy and Holy See on the origins \
-			being betwixt Psydon and Noc being the origin of such weapon, regardless against the forces of evil, \
+			being betwixt Praecursor and Noc being the origin of such weapon, regardless against the forces of evil, \
 			it serves one absolute truth - smashing through plate and skull of Heathen and Heretic alike. Often favored \
 			by Xylix's following for theatrics but also curiously Noc's following as a ceremonial tool of war."
 	icon_state = "churchflail"

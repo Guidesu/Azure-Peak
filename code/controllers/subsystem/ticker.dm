@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/royals_readied = list()
 
 	/// Realm name, the location name of the current map
-	var/realm_name = "Azure Peak"
+	var/realm_name = "the Outpost"
 	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic").
 	var/realm_type = "Outpost"
 	/// Short form for casual references (e.g. "Duchy", "Republic").
@@ -295,7 +295,7 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/V in required_jobs)
 		for(var/mob/dead/new_player/player in GLOB.player_list)
-			if(!player)
+			if(!player || !player.client)
 				continue
 			if(player.client.prefs.job_preferences[V] == JP_HIGH)
 				if(player.ready == PLAYER_READY_TO_PLAY)
@@ -832,12 +832,12 @@ SUBSYSTEM_DEF(ticker)
 	priority_announce("The Sun is torn from the sky, the world is bleeding!", "Terrible Omen", 'sound/music/wolfintro.ogg') //THE WORLD IS DYING, YOU SHOULD BE SCARED
 	addomen(OMEN_SUNSTEAL)
 	SSParticleWeather.run_weather(/datum/particle_weather/fog/blood, TRUE)
-	for(var/mob/living/carbon/human/astrater as anything in GLOB.human_list)
-		if(!istype(astrater.patron, /datum/patron/concordat/auxentius))
+	for(var/mob/living/carbon/human/auxentian as anything in GLOB.human_list)
+		if(!istype(auxentian.patron, /datum/patron/concordat/auxentius))
 			continue
-		to_chat(astrater, span_userdanger("You feel the pain of [astrater.patron]!"))
-		astrater.playsound_local(get_turf(astrater), 'sound/misc/astratascream.ogg', 60, FALSE, pressure_affected = FALSE) //Only Astratians can hear their godess scream in agony.
-		astrater.emote("painscream", intentional = FALSE)
+		to_chat(auxentian, span_userdanger("You feel the pain of [auxentian.patron]!"))
+		auxentian.playsound_local(get_turf(auxentian), 'sound/misc/astratascream.ogg', 60, FALSE, pressure_affected = FALSE) //Only Auxentians can hear their god scream in agony.
+		auxentian.emote("painscream", intentional = FALSE)
 
 	for(var/turf/open/water/W in world)
 		W.water_reagent = /datum/reagent/blood
@@ -892,7 +892,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/on_sunscorch()
 	GLOB.todoverride = "day"
 	settod()
-	priority_announce("WAVE OF AGONY. ASTRATA BLOTS AS AN IMPOSSIBLY-SHAPED NOOSPHERIC GLOME RADIATES BURNING FEAR-HEAT. SCORCHING RAY OF NOTHING; THE WORM SCREAMS DOWN UPON ME IN MALICE. DEADLY HEAT BEGINS TO CREEP INTO THE AIR.", "THE WORM AWAKENS, THE WORLD BURNS // EKPYROSIS - GOD O GOD WHERE'RT THOU?", 'sound/villain/ascendant_intro.ogg')
+	priority_announce("WAVE OF AGONY. AUXENTIUS BLOTS AS AN IMPOSSIBLY-SHAPED NOOSPHERIC GLOME RADIATES BURNING FEAR-HEAT. SCORCHING RAY OF NOTHING; THE WORM SCREAMS DOWN UPON ME IN MALICE. DEADLY HEAT BEGINS TO CREEP INTO THE AIR.", "THE WORM AWAKENS, THE WORLD BURNS // EKPYROSIS - GOD O GOD WHERE'RT THOU?", 'sound/villain/ascendant_intro.ogg')
 	addomen(OMEN_SUNSCORCH)
 	for(var/mob/living/carbon/human/nocite as anything in GLOB.human_list)
 		if(!istype(nocite.patron, /datum/patron/concordat/miluse))
@@ -937,7 +937,7 @@ SUBSYSTEM_DEF(ticker)
 	sunscorched = FALSE
 	sunscorch_burn_start_time = 0
 	sunscorch_burn_warning_sent = FALSE
-	priority_announce("ASTRATA's now-weary light slowly seeps back into existence. The WORM recedes; the sky is safe. God is here. God is here and all is well once more.", "THIS DAMNED SUN /// EKPYROSIS ENDS", 'sound/misc/otavanlament.ogg')
+	priority_announce("AUXENTIUS's now-weary light slowly seeps back into existence. The WORM recedes; the sky is safe. God is here. God is here and all is well once more.", "THIS DAMNED SUN /// EKPYROSIS ENDS", 'sound/misc/otavanlament.ogg')
 	settod()
 	SSParticleWeather.run_weather(/datum/particle_weather/rain_gentle, TRUE)
 

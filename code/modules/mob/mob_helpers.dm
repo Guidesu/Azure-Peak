@@ -1154,6 +1154,18 @@
 	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents
 
 /mob/proc/get_role_title()
+	// The TAT "Free Soul Class Name" trait (apply_free_soul_title() in
+	// modular_twilight_axis/code/datums/tat_system/domains/tat_traits.dm)
+	// sets tat_free_soul_title to the player's own chosen custom class name
+	// - this is the actual proc examine text reads (examine.dm's "used_title"
+	// local var, NOT /datum/job/proc/get_used_title() despite the similar
+	// name - that one is a separate, only-used-at-spawn-greet proc). Without
+	// this check the custom title only ever showed up in a one-time spawn
+	// announcement and never in the place players actually look for it.
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(length(H.tat_free_soul_title))
+			return H.tat_free_soul_title
 	var/used_title
 	if(migrant_type)
 		var/datum/migrant_role/migrant = MIGRANT_ROLE(migrant_type)

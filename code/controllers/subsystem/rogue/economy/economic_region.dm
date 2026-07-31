@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	var/region_id
 	var/name
 	/// Italicized one-liner shown beneath the region name in the Lore Primer's
-	/// AZURIA'S REGIONS section. The steward UI ignores it; only `description` shows there.
+	/// Trade Contacts section. The steward UI ignores it; only `description` shows there.
 	var/subtitle = ""
 	var/description = ""
 	var/list/produces = list()
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 		TRADE_GOOD_SILK = TG_SUPPLY_SILK,
 		TRADE_GOOD_VISCERA = TG_SUPPLY_SPECIALTY_HERB,
 		TRADE_GOOD_SINEW = TG_SUPPLY_SPECIALTY_HERB,
-		TRADE_GOOD_DENDOR_ESSENCE = 1, // literal: deliberately scarce, not category-bound
+		TRADE_GOOD_IGNATIUS_ESSENCE = 1, // literal: deliberately scarce, not category-bound
 		TRADE_GOOD_CALENDULA = TG_SUPPLY_SPECIALTY_HERB,
 	)
 	demands = list(

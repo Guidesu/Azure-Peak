@@ -1,8 +1,8 @@
 // Pontifex but inquisition. Same statblock - only differences being access to T1 miracles.
 /datum/advclass/sojourner
 	name = "Sojourner"
-	tutorial = "Psydonite monks, trained in the Naledian discipline of Automagic - enhancement of one's own body through Arcyne Magick. \
-	Your fists and your will are the one thing that cannot be deprived from you, handy tools when Azuria is rife with monsters and heretics alike. \
+	tutorial = "Vaeltite monks, trained in the Naledian discipline of Automagic - enhancement of one's own body through Arcyne Magick. \
+	Your fists and your will are the one thing that cannot be deprived from you, handy tools when the outpost is rife with monsters and heretics alike. \
 	Where your fists fall short, your wits prevail. Where your magyck falters, your fists answer. \
 	His will be done."
 	allowed_sexes = list(MALE, FEMALE)
@@ -52,12 +52,12 @@
 /datum/outfit/job/roguetown/sojourner/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	if(H.mind)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_psydon)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_praecursor)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_praecursor())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/blink/shadowstep)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_praecursor())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/empower_weapon)
-		H.mind.AddSpell(new /datum/action/cooldown/spell/blade_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/blade_of_praecursor())
 
 	var/datum/status_effect/buff/arcyne_momentum/momentum = H.apply_status_effect(/datum/status_effect/buff/arcyne_momentum)
 	if(momentum)
@@ -78,7 +78,7 @@
 
 	switch(sidearm_selected)
 		if("katar")
-			H.put_in_hands(new /obj/item/rogueweapon/katar/psydon(H))
+			H.put_in_hands(new /obj/item/rogueweapon/katar/praecursor(H))
 		if("knuckledusters")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckledusters/psy(H))
 
@@ -87,13 +87,13 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/naledi
 	gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver/auxentia
 	id = /obj/item/clothing/ring/signet/psy/g
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded/dark
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	backl = /obj/item/storage/backpack/rogue/satchel/black
-	cloak = /obj/item/clothing/cloak/tabard/psydontabard/alt
+	cloak = /obj/item/clothing/cloak/tabard/praecursortabard/alt
 	var/list/armor_choices = list("Light Armor", "Bare Skin")
 	var/armor_choice = input(H,"Choose your DEFENSE.", "How will you ENDURE.") as anything in armor_choices
 	switch(armor_choice)

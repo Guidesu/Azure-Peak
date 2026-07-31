@@ -477,17 +477,17 @@
 		knives += K
 	update_icon()
 
-/obj/item/storage/belt/rogue/leather/knifebelt/black/psydon/Initialize()
+/obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/rogueweapon/huntingknife/throwingknife/psydon/K = new()
+		var/obj/item/rogueweapon/huntingknife/throwingknife/praecursor/K = new()
 		knives += K
 	update_icon()
 
-/obj/item/storage/belt/rogue/leather/knifebelt/black/psydon_blessed/Initialize()
+/obj/item/storage/belt/rogue/leather/knifebelt/black/praecursor_blessed/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/rogueweapon/huntingknife/throwingknife/psydon/preblessed/K = new()
+		var/obj/item/rogueweapon/huntingknife/throwingknife/praecursor/preblessed/K = new()
 		knives += K
 	update_icon()
 

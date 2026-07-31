@@ -21,6 +21,10 @@
 	max_integrity = ARMOR_INT_SIDE_IRON
 	smeltresult = /obj/item/rogueore/coal
 	anvilrepair = /datum/skill/craft/carpentry
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HAND_LEFT | HAND_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/gloves/roguetown/bandages
 	name = "bandages"
@@ -40,6 +44,10 @@
 	sewrepair = TRUE
 	salvage_result = /obj/item/natural/cloth
 	unarmed_bonus = 3 //Light armor with good durability and a flat unarmed damage bonus. Loadout-selectable.
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = HAND_LEFT | HAND_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/gloves/roguetown/bandages/get_mechanics_examine(mob/user)
 	. = ..()
@@ -93,29 +101,29 @@
 	smeltresult = /obj/item/ingot/iron
 	unarmed_bonus = 7
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon
-	name = "psydonic knuckles"
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor
+	name = "vaeltic knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Psydon's crown - to crush the heretics' garments and armor into smithereens."
 	icon_state = "psyknuckle"
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon/ComponentInitialize()
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
 		added_def = 2,\
 	)
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon/attack_self(mob/living/user)
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor/attack_self(mob/living/user)
 	. = ..()
 	user.visible_message(span_warning("[user] starts adjusting their grip on [src]."))
 	if(do_after(user, 3 SECONDS))
-		var/obj/item/clothing/gloves/roguetown/knuckles/psydon/P = new /obj/item/rogueweapon/knuckledusters/psy(get_turf(src.loc))
+		var/obj/item/clothing/gloves/roguetown/knuckles/praecursor/P = new /obj/item/rogueweapon/knuckledusters/psy(get_turf(src.loc))
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)
@@ -158,7 +166,7 @@
 		user.visible_message(span_warning("[user] stops adjusting their grip on [src]."))
 		return
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon/old
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor/old
 	name = "enduring knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, its holy blessing long since faded. You are HIS weapon, you needn't fear Aeon."
 	icon_state = "psyknuckle"
@@ -166,11 +174,11 @@
 	smeltresult = /obj/item/ingot/steel
 	color = COLOR_FLOORTILE_GRAY
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon/old/attack_self(mob/living/user)
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor/old/attack_self(mob/living/user)
 	. = ..()
 	user.visible_message(span_warning("[user] starts adjusting their grip on [src]."))
 	if(do_after(user, 3 SECONDS))
-		var/obj/item/clothing/gloves/roguetown/knuckles/psydon/old/P = new /obj/item/rogueweapon/knuckledusters/enduring(get_turf(src.loc))
+		var/obj/item/clothing/gloves/roguetown/knuckles/praecursor/old/P = new /obj/item/rogueweapon/knuckledusters/enduring(get_turf(src.loc))
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)
@@ -180,7 +188,7 @@
 		user.visible_message(span_warning("[user] stops adjusting their grip on [src]."))
 		return
 
-/obj/item/clothing/gloves/roguetown/knuckles/psydon/old/ComponentInitialize()
+/obj/item/clothing/gloves/roguetown/knuckles/praecursor/old/ComponentInitialize()
 	return
 
 /obj/item/clothing/gloves/roguetown/knuckles/decrepit

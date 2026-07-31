@@ -173,6 +173,9 @@
 		var/fallback_zone = check_zone(hit_zone)
 		var/armor_block = L.run_armor_check(fallback_zone, "fire", blade_dulling = BCLASS_BURN, damage = tick_damage, flat_integ = TRUE)
 		L.apply_damage(tick_damage, BURN, fallback_zone, armor_block)
+	if(ishuman(L))
+		var/mob/living/carbon/human/human_target = L
+		human_target.adjust_bodytemperature(7)
 	apply_scorch_stack(L, 1, hit_zone)
 	L.emote("pain", forced = TRUE)
 

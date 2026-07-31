@@ -8,14 +8,14 @@
 	density = TRUE
 	var/opened = FALSE
 
-/obj/item/roguekey/psydonkey
+/obj/item/roguekey/praecursorkey
 	icon_state = "birdkey"
 	name = "Reliquary Key"
 	desc = "The single use key with which to unleash woe. Choose wisely."
 
 /obj/structure/reliquarybox/attackby(obj/item/W, mob/user, params)
 	if(ishuman(user))
-		if(istype(W, /obj/item/roguekey/psydonkey))
+		if(istype(W, /obj/item/roguekey/praecursorkey))
 			if(opened)
 				to_chat(user, span_info("The reliquary box has already been opened.."))
 				return
@@ -28,7 +28,7 @@
 			var/obj/choice
 			switch(relicchoice)
 				if("Melancholic Crankbox - Antimagic")
-					choice = /obj/item/psydonmusicbox
+					choice = /obj/item/praecursormusicbox
 				if("Daybreak - Silver Whip")
 					choice = /obj/item/rogueweapon/whip/antique/psywhip
 				if("Stigmata - Silver Halberd")
@@ -47,8 +47,8 @@
 
 
 
-// Soul Churner - Music box which applies magic resistance to Inquisition members, greatly mood debuffs everyone not a Psydon worshipper.
-/obj/item/psydonmusicbox
+// Soul Churner - Music box which applies magic resistance to Inquisition members, greatly mood debuffs everyone not a Praecursor worshipper.
+/obj/item/praecursormusicbox
 	name = "melancholic crankbox"
 	desc = ""
 	icon_state = "psydonmusicbox"
@@ -63,9 +63,9 @@
 	possible_item_intents = list(/datum/intent/hit)
 	obj_flags = CAN_BE_HIT
 	twohands_required = TRUE
-	var/datum/looping_sound/psydonmusicboxsound/soundloop
+	var/datum/looping_sound/praecursormusicboxsound/soundloop
 
-/obj/item/psydonmusicbox/get_examine_highlight_status()
+/obj/item/praecursormusicbox/get_examine_highlight_status()
 	// If we are not crankin' that shit... its just a musical box, nothing weird.
 	if(cranking_true_nature == FALSE)
 		return null
@@ -73,14 +73,14 @@
 	else
 		return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_INQUIS_CHURNER)
 
-/obj/item/psydonmusicbox/examine(mob/user)
+/obj/item/praecursormusicbox/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(usr, TRAIT_INQUISITION))
 		desc = "A relic from the bowels of the Grand Otavan Cathedral's thaumaturgical workshops. The spirits of fifteen heathens, bound within this infernal contraption, sign a haunting tune; one that disrupts the leylines, prevents the faithless from casting spells, and immunizing the faithful to all magicka. <b>It would be wise to not teach outsiders of its true nature</b>, and to only bring it to bear in dire circumstances."
 	else
 		desc = "A cranked music box, bearing the seal of the Holy Otavan Inquisition on its side. It radiates with an inexplicable feeling of somberness."
 
-/obj/item/psydonmusicbox/attack_self(mob/living/user)
+/obj/item/praecursormusicbox/attack_self(mob/living/user)
 	. = ..()
 	if(!HAS_TRAIT(usr, TRAIT_INQUISITION))
 		user.add_stress(/datum/stressevent/soulchurnerhorror)
@@ -107,11 +107,11 @@
 		user.remove_status_effect(/datum/status_effect/buff/cranking_soulchurner)
 		user.remove_status_effect(/datum/status_effect/buff/quelling_soulchurner)
 
-/obj/item/psydonmusicbox/Initialize()
+/obj/item/praecursormusicbox/Initialize()
 	soundloop = new(src, FALSE)
 	. = ..()
 
-/obj/item/psydonmusicbox/Destroy()
+/obj/item/praecursormusicbox/Destroy()
 	if(soundloop)
 		QDEL_NULL(soundloop)
 	src.visible_message(span_cult("A great deluge of souls escapes the shattered box! Their wails of vengeance and peace coalesce into an ethereal swan song, as the spirits ascend into the sky.."))
@@ -119,13 +119,13 @@
 	playsound(src, 'sound/misc/otavanlament.ogg', 70, TRUE, -1)
 	return ..()
 
-/obj/item/psydonmusicbox/update_icon()
+/obj/item/praecursormusicbox/update_icon()
 	if(cranking)
 		icon_state = "psydonmusicbox_active"
 	else
 		icon_state = "psydonmusicbox"
 
-/obj/item/psydonmusicbox/dropped(mob/living/user, silent)
+/obj/item/praecursormusicbox/dropped(mob/living/user, silent)
 	..()
 	cranking = FALSE
 	update_icon()
@@ -133,7 +133,7 @@
 		soundloop.stop()
 		user.remove_status_effect(/datum/status_effect/buff/cranking_soulchurner)
 
-/obj/item/psydonmusicbox/getonmobprop(tag)
+/obj/item/praecursormusicbox/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -151,7 +151,7 @@
 	var/effect_color
 	var/pulse = 0
 	var/ticks_to_apply = 10
-	var/undividedlines =list("'THEY HAVE TRAPPED US HERE FOR ETERNITY!'", "'SAVE US, CHILD OF TEN! SHATTER THIS ACCURSED MUSIC BOX!'", "'DEATH TO THE PSYDONIAN, FREE US!'")
+	var/undividedlines =list("'THEY HAVE TRAPPED US HERE FOR ETERNITY!'", "'SAVE US, CHILD OF TEN! SHATTER THIS ACCURSED MUSIC BOX!'", "'DEATH TO THE VAELTIAN, FREE US!'")
 	var/astratanlines =list("'HER LIGHT HAS LEFT ME! WHERE AM I?!'", "'SHATTER THIS CONTRAPTION, SO I MAY FEEL HER WARMTH ONE LAST TIME!'", "'I am royal.. Why did they do this to me...?'")
 	var/noclines =list("'Colder than moonlight...'", "'No wisdom can reach me here...'", "'Please help me, I miss the stars...'")
 	var/necralines =list("'They snatched me from her grasp, for eternal torment...'", "'Necra! Please! I am so tired! Release me!'", "'I am lost, lost in a sea of stolen ends.'")
@@ -163,10 +163,10 @@
 	var/xylixlines =list("'ONE, TWO, THREE, FOUR- TWO, TWO, THREE, FOUR. --What do you mean, annoying?'", "'There are thirteen others in here, you know! What a good audience- they literally can't get out of their seats!'", "'Of course I went all-in! I thought he had an ace-high!'", "'No, the XYLIX'S FORTUNE was right- this definitely is quite bad.'")
 	var/malumlines =list("'The structure of this cursed machine is malleable.. Shatter it, please...'", "'My craft could've changed the world...'", "'Free me, so I may return to my apprentice, please...'")
 	var/matthioslines =list("'My final transaction... He will never receive my value... Stolen away by these monsters...'", "'Comrade, I have been shackled into this HORRIFIC CONTRAPTION, FREE ME!'", "'I feel our shackles twist with eachother's...'")
-	var/zizolines =list("'ZIZO! MY MAGICKS FAIL ME! STRIKE DOWN THESE PSYDONIAN DOGS!'", "'CABALIST? There is TWISTED MAGICK HERE, BEWARE THE MUSIC! OUR VOICES ARE FORCED!'", "'DESTROY THE BOX, KILL THE WIELDER. YOUR MAGICKS WILL BE FREE.'")
+	var/zizolines =list("'ZIZO! MY MAGICKS FAIL ME! STRIKE DOWN THESE VAELTIAN DOGS!'", "'CABALIST? There is TWISTED MAGICK HERE, BEWARE THE MUSIC! OUR VOICES ARE FORCED!'", "'DESTROY THE BOX, KILL THE WIELDER. YOUR MAGICKS WILL BE FREE.'")
 	var/graggarlines =list("'ANOINTED! TEAR THIS OTAVAN'S HEAD OFF!'", "'ANOINTED! SHATTER THE BOX, AND WE WILL KILL THEM TOGETHER!'", "'GRAGGAR, GIVE ME STRENGTH TO BREAK MY BONDS!'")
 	var/baothalines =list("'I miss the warmth of ozium... There is no feeling in here for me...'", "'Debauched one, rescue me from this contraption, I have such things to share with you.'", "'MY PERFECTION WAS TAKEN FROM ME BY THESE OTAVAN MONSTERS!'")
-	var/psydonianlines =list("'FREE US! FREE US! WE HAVE SUFFERED ENOUGH!'", "'PLEASE, RELEASE US!", "WE MISS OUR FAMILIES!'", "'WHEN WE ESCAPE, WE ARE GOING TO CHASE YOU INTO YOUR GRAVE.'")
+	var/vaeltianlines =list("'FREE US! FREE US! WE HAVE SUFFERED ENOUGH!'", "'PLEASE, RELEASE US!", "WE MISS OUR FAMILIES!'", "'WHEN WE ESCAPE, WE ARE GOING TO CHASE YOU INTO YOUR GRAVE.'")
 	var/otherlines =list("'FREE US! FREE US!'", "'PLEASE, SAVE US!", "WE MISS OUR FAMILIES!'", "'NO MORE! NO MORE! NO MORE!'")
 /datum/status_effect/buff/cranking_soulchurner/on_creation(mob/living/new_owner, stress, colour)
 	effect_color = "#800000"
@@ -186,10 +186,10 @@
 			if (!H.has_stress_event(/datum/stressevent/soulchurner))
 				switch(H.patron?.type)
 					if(/datum/patron/tribunal/praecursor)
-						if (!H.has_stress_event(/datum/stressevent/soulchurnerpsydon))
-							H.add_stress(/datum/stressevent/soulchurnerpsydon)
+						if (!H.has_stress_event(/datum/stressevent/soulchurnerpraecursor))
+							H.add_stress(/datum/stressevent/soulchurnerpraecursor)
 							to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
-							to_chat(H, (span_cultsmall(pick(psydonianlines))))
+							to_chat(H, (span_cultsmall(pick(vaeltianlines))))
 						if(HAS_TRAIT(H, TRAIT_INQUISITION))
 							H.apply_status_effect(/datum/status_effect/buff/churnerprotection)
 					if(/datum/patron/concordat/morwenna)
@@ -337,7 +337,7 @@ Inquisitorial armory down here
 
 /obj/item/flashlight/flare/torch/lantern/psycenser
 	name = "Golgatha"
-	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of Psydonites. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
+	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of Vaeltites. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
 	icon_state = "psycenser"
 	item_state = "psycenser"
 	light_outer_range = 8
@@ -352,8 +352,8 @@ Inquisitorial armory down here
 	. = ..()
 	if(fuel > 0)
 		. += span_info("Activate in your hand to open it.")
-		. += span_info("When opened, the 'BLESS' intent can be used to anoint Psydonic silver weaponry. Blessing a Psydonic silver weapon greatly enhances the power of its critical hits and debuffs against sunderable opponents.")
-		. += span_info("Blessing someone else, who happens to be a worshipper of Psydon, will temporarily buff them with increased Willpower, Constitution, and Fortune.")
+		. += span_info("When opened, the 'BLESS' intent can be used to anoint Vaeltic silver weaponry. Blessing a Vaeltic silver weapon greatly enhances the power of its critical hits and debuffs against sunderable opponents.")
+		. += span_info("Blessing someone else, who happens to be a worshipper of Praecursor, will temporarily buff them with increased Willpower, Constitution, and Fortune.")
 		. += span_warning("If the 'SMASH' intent is used while it's opened, the residing shard will violently explode with unimaginable force.")
 		. += span_warning("<font color='#00e1ff'>While active, Golgatha burns and weakens anyone who attacks its bearer. The effect persists only while the attacker remains within the relic's light. This feature requires the bearer to be Silverblessed, and inflicts extra damage to mindless foes.</font>")
 	if(fuel <= 0)
@@ -421,7 +421,7 @@ Inquisitorial armory down here
 	. = ..()	//We smashed a guy with it turned on. Bad idea!
 	if(ismob(A) && on && (user.used_intent.type == /datum/intent/flail/smash/golgotha) && user.cmode)
 		user.visible_message(span_warningbig("[user] smashes the exposed [src], shattering the shard of SYON!"))
-		user.visible_message(span_blue(pick("WHY--!!","SYON BLAS--!!","ENDU--!!","ENDURE THI--!!","WHAT THE F--!!","OH MY ALLFA--!!","OH PSYDO--!!","KABOO--!!","MASHALLA--!!","OH ADONA--!!","OH SHI--!!","PSYDO--!!","PSYDON BLAS--!!")))
+		user.visible_message(span_blue(pick("WHY--!!","SYON BLAS--!!","ENDU--!!","ENDURE THI--!!","WHAT THE F--!!","OH MY ALLFA--!!","OH PRAECUR--!!","KABOO--!!","MASHALLA--!!","OH ADONA--!!","OH SHI--!!","PRAECUR--!!","PRAECURSOR BLAS--!!")))
 		explosion(get_turf(A),devastation_range = 3, heavy_impact_range = 5, light_impact_range = 6, flame_range = 3, flash_range = 6, smoke = FALSE)
 		fuel = 0
 		turn_off()
@@ -429,18 +429,18 @@ Inquisitorial armory down here
 		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
-			if(H.patron?.type == /datum/patron/tribunal/praecursor)	//Psydonites get VERY depressed seeing an artifact get turned into an ullapool caber.
+			if(H.patron?.type == /datum/patron/tribunal/praecursor)	//Vaeltites get VERY depressed seeing an artifact get turned into an ullapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
 		for(var/mob/living/carbon/human/H in range(1, get_turf(src)))
 			H.gib()
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
-			if(!CP.is_blessed && (CP.silver_type & SILVER_PSYDONIAN))
+			if(!CP.is_blessed && (CP.silver_type & SILVER_VAELTIAN))
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
 				user.visible_message(span_info("[user] holds \the [src] over \the [A].."))
 				if(do_after(user, 50, target = A))
-					CP.try_bless(BLESSING_PSYDONIAN)
+					CP.try_bless(BLESSING_VAELTIAN)
 					new /obj/effect/temp_visual/censer_dust(get_turf(A))
 			else
 				to_chat(user, span_info("It has already been blessed."))
@@ -495,7 +495,7 @@ Inquisitorial armory down here
 
 /atom/movable/screen/alert/status_effect/syonchurn
 	name = "Dying Light"
-	desc = "The shard of Syon rejects my hostility against Psydon's anointed! Luminous fragments scour my body and spirit!"
+	desc = "The shard of Syon rejects my hostility against Praecursor's anointed! Luminous fragments scour my body and spirit!"
 	icon_state = "supersunder"
 
 /datum/status_effect/syonchurn
@@ -893,7 +893,7 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/garrote // Do not give this item out freely to other classes. Do not subtype this item for other classes. This is intended purely as the Confessor's identifying sidegrade, and as a bonus for the Inspector INQ. I will be very sad if you disregard this comment. Thank you. - Yische.
 	name = "\proper seizing garrote" // It's nonlethal. It's so silly and fun.
-	desc = "A macabre instrument favored by the more clandestine of the Psydonian Silver Order; A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced, held and threaded between two iron links. Perfect for apprehension."
+	desc = "A macabre instrument favored by the more clandestine of the Vaeltian Silver Order; A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced, held and threaded between two iron links. Perfect for apprehension."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "garrote"
 	item_state = "garrote"
@@ -1295,7 +1295,7 @@ Inquisitorial armory down here
 /obj/item/inqarticles/bmirror/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(usr, TRAIT_INQUISITION))
-		desc = "A hauntingly beautiful mirror, clasped within a blacksteeled clamshell. It is a hand-produced relic of the Holy Psydonic Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret. One worth dying over, supposedly."
+		desc = "A hauntingly beautiful mirror, clasped within a blacksteeled clamshell. It is a hand-produced relic of the Holy Vaeltic Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret. One worth dying over, supposedly."
 	else
 		desc = "A hauntingly beautiful mirror, clasped within a blacksteeled clamshell. A lone spike awaits at the bottom; but, for what?"
 
@@ -1663,7 +1663,7 @@ GLOBAL_LIST_INIT(inquisition_used_ids, list())
 		"Subject assigned permanent Haemological Index prior to Lux interrogation cycle.",
 		"Entry confirmed under Castifico Warrant Registry where applicable.",
 		"Chain-of-custody verified through Hermes transit sigils. No deviation recorded.",
-		"Sample entered into sealed doctrinal custody pending full Psydonic evaluation.",
+		"Sample entered into sealed doctrinal custody pending full Vaeltic evaluation.",
 		"Administrative classification assigned: FIELD BLOOD / HERESY PROXIMITY UNKNOWN.",
 		"Registry notes prior submission history for subject; continuity preserved.",
 		"Duplicate sample suppression active; prior entries retained for comparative judgement.",
@@ -1672,9 +1672,9 @@ GLOBAL_LIST_INIT(inquisition_used_ids, list())
 		"Sample placed under conditional observation for latent Inhumen resonance.",
 		"Cross-reference completed with regional heresy hunting ledgers.",
 		"Transit record confirms no interference by non-Otavan authorities.",
-		"Filed under PSYDON's Mandate Archive. All other divine attributions rejected as falsehoods.",
+		"Filed under PRAECURSOR's Mandate Archive. All other divine attributions rejected as falsehoods.",
 		"Archival note: subject appears in minor peripheral inquiry logs unrelated to current case.",
-		"Record sealed under Inquisitorial Authority. Access restricted to sworn Hands of Psydon.",
+		"Record sealed under Inquisitorial Authority. Access restricted to sworn Hands of Praecursor.",
 		"Administrative remark: repeated submissions from same sect logged; efficiency rating adjusted.",
 		"Final classification withheld pending Lux Resonance Determination."
 	)
@@ -1804,11 +1804,11 @@ GLOBAL_LIST_INIT(inquisition_used_ids, list())
 	if(isitem(A) && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
-			if(!CP.is_blessed && (CP.silver_type & SILVER_PSYDONIAN))
+			if(!CP.is_blessed && (CP.silver_type & SILVER_VAELTIAN))
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
 				user.visible_message(span_info("[user] holds \the [src] over \the [A].."))
 				if(do_after(user, 50, target = A))
-					CP.try_bless(BLESSING_PSYDONIAN)
+					CP.try_bless(BLESSING_VAELTIAN)
 					user.visible_message(span_blue("[user] finishes their rite, anointing \the [A] with \the [src]!"))
 					new /obj/effect/temp_visual/censer_dust(get_turf(A))
 					qdel(src) //Deletes itself upon blessing a single weapon.

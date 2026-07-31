@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react';
+﻿import { memo, useEffect, useMemo, useState } from 'react';
 import { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -52,6 +52,11 @@ type TraitEntry = {
   direction_locked_reason?: string | null;
   direction_point_bonus?: number;
   ordinary_group?: string;
+  // Set only on virtue-choice child traits (e.g. "Nobility: Gold Ring") - virtue_parent is
+  // the parent virtue's own trait id (e.g. "tat_virtue_utility_noble"), so these can be
+  // grouped under the parent's card instead of showing as their own flat tile.
+  virtue_parent?: string | null;
+  virtue_choice?: string | null;
 };
 
 type TraitState = {
@@ -220,6 +225,34 @@ type Data = {
 };
 
 type TabKey = 'control' | 'stats' | 'skills' | 'traits' | 'items' | 'loadout';
+
+const TAT_TAB_STORAGE_KEY = 'dreamvalley_tat_build_tab';
+const TAT_TAB_VALUES: TabKey[] = ['control', 'stats', 'skills', 'traits', 'items', 'loadout'];
+
+// BYOND's embedded browser can remount the whole TGUI page on window
+// refocus (e.g. after alt-tab), which resets all useState - including which
+// tab was open. Persist to localStorage the same way DraggableTile persists
+// panel layout, so reopening the window (or a refocus-triggered remount)
+// lands back on the tab the player was actually using.
+const loadStoredTab = (): TabKey => {
+  try {
+    const raw = window.localStorage.getItem(TAT_TAB_STORAGE_KEY);
+    if (raw && (TAT_TAB_VALUES as string[]).includes(raw)) {
+      return raw as TabKey;
+    }
+  } catch {
+    // localStorage unavailable (e.g. private mode) - just start on Control
+  }
+  return 'control';
+};
+
+const saveStoredTab = (tab: TabKey): void => {
+  try {
+    window.localStorage.setItem(TAT_TAB_STORAGE_KEY, tab);
+  } catch {
+    // ignore - tab just won't persist
+  }
+};
 type BackendAct = (action: string, payload?: Record<string, unknown>) => void;
 
 type HoverCardData = {
@@ -1532,6 +1565,10 @@ const TraitPill = ({
   );
 };
 
+// Matches the backend's TAT_DIRECTION_ORDER (tat_defines_directions.dm) - deliberately
+// excludes 'ordinary', which is rendered as a separate fallback button (see
+// hasOrdinaryDirection below) rather than a normal tab. Including it here made that
+// fallback permanently think Ordinary was "already handled" and never show its button.
 const DIRECTION_ORDER: DirectionKey[] = [
   'combat',
   'ranged',
@@ -1540,7 +1577,6 @@ const DIRECTION_ORDER: DirectionKey[] = [
   'music',
   'skills',
   'survival',
-  'ordinary',
 ];
 
 const DIRECTION_LABELS: Record<DirectionKey, string> = {
@@ -1708,12 +1744,14 @@ const getOrdinaryGroupLabel = (entry: TraitEntry) => (
 const TraitNode = ({
   traitId,
   entry,
+  childEntries,
   data,
   act,
   setHoveredItem,
 }: {
   traitId: string;
   entry: TraitEntry;
+  childEntries?: Array<[string, TraitEntry]>;
   data: Data;
   act: BackendAct;
   setHoveredItem: (value: HoverCardData | null) => void;
@@ -1728,6 +1766,16 @@ const TraitNode = ({
   const effectText = isOrdinary && directionPointBonus > 0
     ? `Grants +${directionPointBonus} direction points`
     : null;
+
+  // Virtues with extra_choices (e.g. Nobility's 19 stashed-item picks) show a picker below
+  // the main card once the virtue itself is selected - the backend gates each choice on the
+  // parent virtue being bought first (can_select_virtue_choice), so there's no point
+  // offering choices before that.
+  const hasChildren = !!childEntries?.length;
+  const selectedChildIds = (childEntries || [])
+    .filter(([childId]) => getTraitAmount(data, childId) > 0)
+    .map(([childId]) => childId);
+  const unselectedChildren = (childEntries || []).filter(([childId]) => getTraitAmount(data, childId) <= 0);
 
   const hoverData: HoverCardData = {
     name: entry.name || traitId,
@@ -1751,7 +1799,7 @@ const TraitNode = ({
     rightHelp: amount > 0 ? 'RMB: remove trait / decrease stack' : 'RMB: nothing to remove',
   };
 
-  return (
+  const card = (
     <div
       onClick={() => {
         if (canAdd) {
@@ -1790,17 +1838,120 @@ const TraitNode = ({
       )}
     </div>
   );
+
+  if (!hasChildren) {
+    return card;
+  }
+
+  return (
+    <Box style={{ width: '188px' }}>
+      {card}
+      {selected && (
+        <Box
+          mt={0.25}
+          style={{
+            border: '1px solid rgba(255,255,255,0.12)',
+            background: 'rgba(0,0,0,0.2)',
+            padding: '4px 5px',
+            maxHeight: '160px',
+            overflowY: 'auto',
+          }}>
+          <Box style={{ fontSize: '9px', opacity: 0.65, marginBottom: '3px' }}>
+            Choices selected: {selectedChildIds.length}
+          </Box>
+          {selectedChildIds.map((childId) => {
+            const child = childEntries?.find(([id]) => id === childId);
+            if (!child) {
+              return null;
+            }
+            const [, childEntry] = child;
+            return (
+              <Box
+                key={childId}
+                onClick={(event: React.MouseEvent) => {
+                  event.stopPropagation();
+                  act('remove_trait', { id: childId, amount: 1 });
+                }}
+                style={{
+                  fontSize: '10px',
+                  padding: '2px 4px',
+                  marginBottom: '2px',
+                  borderRadius: '3px',
+                  background: 'rgba(80,125,58,0.34)',
+                  border: '1px solid rgba(145,207,104,0.8)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={() =>
+                  setHoveredItem({
+                    name: childEntry.name || childId,
+                    desc: childEntry.desc,
+                    costText: 'Selected',
+                    total: 1,
+                    canAdd: false,
+                    leftHelp: 'LMB: remove this choice',
+                    rightHelp: '',
+                  })
+                }
+                onMouseLeave={() => setHoveredItem(null)}>
+                {childEntry.name || childId}
+              </Box>
+            );
+          })}
+          {unselectedChildren.map(([childId, childEntry]) => {
+            const childCanAdd = canAddTrait(data, childId, childEntry);
+            return (
+              <Box
+                key={childId}
+                onClick={(event: React.MouseEvent) => {
+                  event.stopPropagation();
+                  if (childCanAdd) {
+                    act('add_trait', { id: childId, amount: 1 });
+                  }
+                }}
+                style={{
+                  fontSize: '10px',
+                  padding: '2px 4px',
+                  marginBottom: '2px',
+                  borderRadius: '3px',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  opacity: childCanAdd ? 1 : 0.45,
+                  cursor: childCanAdd ? 'pointer' : 'default',
+                }}
+                onMouseEnter={() =>
+                  setHoveredItem({
+                    name: childEntry.name || childId,
+                    desc: childEntry.desc,
+                    costText: `${childEntry.cost || 0} pts`,
+                    total: 0,
+                    canAdd: childCanAdd,
+                    leftHelp: childCanAdd ? 'LMB: pick this choice' : 'Cannot add more choices',
+                    rightHelp: '',
+                  })
+                }
+                onMouseLeave={() => setHoveredItem(null)}>
+                {childEntry.name || childId}
+                {(childEntry.cost || 0) > 0 ? ` (+${childEntry.cost})` : ''}
+              </Box>
+            );
+          })}
+        </Box>
+      )}
+    </Box>
+  );
 };
 
 const DirectionTraitTree = ({
   direction,
   entries,
+  childrenByParent,
   data,
   act,
   setHoveredItem,
 }: {
   direction: DirectionKey;
   entries: Array<[string, TraitEntry]>;
+  childrenByParent: Record<string, Array<[string, TraitEntry]>>;
   data: Data;
   act: BackendAct;
   setHoveredItem: (value: HoverCardData | null) => void;
@@ -1848,7 +1999,14 @@ const DirectionTraitTree = ({
               <Stack wrap>
                 {group.entries.map(([traitId, entry]) => (
                   <Stack.Item key={traitId}>
-                    <TraitNode traitId={traitId} entry={entry} data={data} act={act} setHoveredItem={setHoveredItem} />
+                    <TraitNode
+                      traitId={traitId}
+                      entry={entry}
+                      childEntries={childrenByParent[traitId]}
+                      data={data}
+                      act={act}
+                      setHoveredItem={setHoveredItem}
+                    />
                   </Stack.Item>
                 ))}
               </Stack>
@@ -1872,10 +2030,30 @@ const TraitsTab = ({
   setHoveredItem: (value: HoverCardData | null) => void;
 }) => {
   const [selectedDirection, setSelectedDirection] = useState<TraitTabKey>('combat');
+  const allEntries = useMemo(() => Object.entries(data.available_traits || {}), [data.available_traits]);
+
+  // Virtue-choice children (e.g. "Nobility: Gold Ring") are grouped under their parent
+  // virtue's card (see TraitNode's childEntries) instead of appearing as their own flat
+  // tile - collapses e.g. Nobility's 19 choices into one card with a dropdown.
+  const childrenByParent = useMemo(() => {
+    const result: Record<string, Array<[string, TraitEntry]>> = {};
+    allEntries.forEach(([traitId, entry]) => {
+      if (!entry.virtue_parent) {
+        return;
+      }
+      if (!result[entry.virtue_parent]) {
+        result[entry.virtue_parent] = [];
+      }
+      result[entry.virtue_parent].push([traitId, entry]);
+    });
+    return result;
+  }, [allEntries]);
+
   const entries = useMemo(
-    () => Object.entries(data.available_traits || {})
+    () => allEntries
+      .filter(([, entry]) => !entry.virtue_parent)
       .filter(([traitId, entry]) => matchesSearch(search, traitId, entry.name, entry.desc, entry.direction)),
-    [data.available_traits, search]
+    [allEntries, search]
   );
   const visibleEntries = useMemo(
     () => entries.filter(([, entry]) => entry.direction === selectedDirection),
@@ -1887,27 +2065,36 @@ const TraitsTab = ({
       <DirectionsPanel data={data} act={act} selectedDirection={selectedDirection} setSelectedDirection={setSelectedDirection} />
       <Section title="Traits">
         <Box mt={0.5}>
-          <DirectionTraitTree direction={selectedDirection} entries={visibleEntries} data={data} act={act} setHoveredItem={setHoveredItem} />
+          <DirectionTraitTree
+            direction={selectedDirection}
+            entries={visibleEntries}
+            childrenByParent={childrenByParent}
+            data={data}
+            act={act}
+            setHoveredItem={setHoveredItem}
+          />
         </Box>
       </Section>
     </Stack>
   );
 };
 
-const ItemsTab = ({
+const ItemsTabInner = ({
   itemEntries,
   act,
   search,
   setHoveredItem,
   itemsAvailable,
-  data,
+  pointsItemsRemaining,
+  pointsItems,
 }: {
   itemEntries: Record<string, ItemViewEntry>;
   act: BackendAct;
   search: string;
   setHoveredItem: (value: HoverCardData | null) => void;
   itemsAvailable: boolean;
-  data: Data;
+  pointsItemsRemaining: number;
+  pointsItems: number;
 }) => {
   const groups = useMemo(() => {
     return groupEntriesByCategoryAndSlot(
@@ -1920,7 +2107,7 @@ const ItemsTab = ({
 
   return (
     <Section
-      title={<SectionTitleWithMeta title="Items" meta={`Free: ${data.points_items_remaining} / ${data.points_items}`} />}>
+      title={<SectionTitleWithMeta title="Items" meta={`Free: ${pointsItemsRemaining} / ${pointsItems}`} />}>
       {!itemsAvailable ? (
         <NoticeBox>Loading items...</NoticeBox>
       ) : !groups.length ? (
@@ -1990,7 +2177,13 @@ const ItemsTab = ({
   );
 };
 
-const LoadoutTab = ({
+// Memoized so hovering an item tile (which updates hoveredItem state in the
+// TATBuild parent) doesn't force a re-render of the entire item grid -
+// hover previously re-rendered every tile's onHoverStart closure and layout
+// on every mouse movement, which is what made this tab feel laggy.
+const ItemsTab = memo(ItemsTabInner);
+
+const LoadoutTabInner = ({
   loadoutEntries,
   act,
   search,
@@ -2380,9 +2573,17 @@ const LoadoutTab = ({
   );
 };
 
+// See ItemsTab above for why this is memoized - same hover-driven re-render
+// cost applies here (paper doll + bag/stash rows both use onMouseEnter).
+const LoadoutTab = memo(LoadoutTabInner);
+
 export const TATBuild = () => {
   const { act, data } = useBackend<Data>();
-  const [tab, setTab] = useState<TabKey>('control');
+  const [tab, setTabState] = useState<TabKey>(loadStoredTab);
+  const setTab = (next: TabKey) => {
+    setTabState(next);
+    saveStoredTab(next);
+  };
   const [search, setSearch] = useState('');
   const [hoveredItem, setHoveredItem] = useState<HoverCardData | null>(null);
 
@@ -2519,7 +2720,8 @@ export const TATBuild = () => {
               search={search}
               setHoveredItem={setHoveredItem}
               itemsAvailable={itemsAvailable}
-              data={data}
+              pointsItemsRemaining={data.points_items_remaining}
+              pointsItems={data.points_items}
             />
           )}
           {tab === 'loadout' && (

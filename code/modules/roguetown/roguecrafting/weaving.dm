@@ -63,7 +63,7 @@
 
 /datum/crafting_recipe/roguetown/weaving/astratarobe
 	name = "astrata robes"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/astrata)
+	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/auxentius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/silk = 1)
 	craftdiff = 4
@@ -105,7 +105,7 @@
 
 /datum/crafting_recipe/roguetown/weaving/astratahood
 	name = "solar hood"
-	result = list(/obj/item/clothing/head/roguetown/roguehood/astrata)
+	result = list(/obj/item/clothing/head/roguetown/roguehood/auxentius)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/silk = 1)
 	craftdiff = 3
@@ -140,7 +140,7 @@
 
 /datum/crafting_recipe/roguetown/weaving/dendorrobe
 	name = "dendor robes"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/dendor)
+	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/ignatius)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/silk = 1)
 	craftdiff = 4

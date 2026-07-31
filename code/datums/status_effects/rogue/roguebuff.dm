@@ -669,7 +669,7 @@
 
 #undef REWIND_AURA
 
-//lasts shorter than magic, one chomp every 3 seconds is good enough, let's not forget food can have multiple slices. This does not heal wounds, wounds are healed automatically like psydonitian trait, but it consumes 1% hunger a tick.
+//lasts shorter than magic, one chomp every 3 seconds is good enough, let's not forget food can have multiple slices. This does not heal wounds, wounds are healed automatically like vaeltitian trait, but it consumes 1% hunger a tick.
 #define CONSUME_AURA "consumehealing"
 
 /datum/status_effect/buff/foodhealing
@@ -895,8 +895,8 @@
 	desc = "I feel a strange sense of peace."
 	icon_state = "buff"
 
-#define PSYDON_HEALING_FILTER "psydon_heal_glow"
-#define PSYDON_REVIVED_FILTER "psydon_revival_glow"
+#define PRAECURSOR_HEALING_FILTER "praecursor_heal_glow"
+#define PRAECURSOR_REVIVED_FILTER "praecursor_revival_glow"
 
 /datum/status_effect/buff/psyhealing
 	id = "psyhealing"
@@ -912,9 +912,9 @@
 
 /datum/status_effect/buff/psyhealing/on_apply()
 	SEND_SIGNAL(owner, COMSIG_LIVING_MIRACLE_HEAL_APPLY, healing_on_tick, src)
-	var/filter = owner.get_filter(PSYDON_HEALING_FILTER)
+	var/filter = owner.get_filter(PRAECURSOR_HEALING_FILTER)
 	if (!filter)
-		owner.add_filter(PSYDON_HEALING_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+		owner.add_filter(PRAECURSOR_HEALING_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
 	return TRUE
 
 /datum/status_effect/buff/psyhealing/tick()
@@ -944,9 +944,9 @@
 	return ..()
 
 /datum/status_effect/buff/psyvived/on_apply()
-	var/filter = owner.get_filter(PSYDON_REVIVED_FILTER)
+	var/filter = owner.get_filter(PRAECURSOR_REVIVED_FILTER)
 	if (!filter)
-		owner.add_filter(PSYDON_REVIVED_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+		owner.add_filter(PRAECURSOR_REVIVED_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
 	return TRUE
 
 /datum/status_effect/buff/psyvived/tick()
@@ -1096,11 +1096,11 @@
 	owner.update_damage_hud()
 
 /datum/status_effect/buff/psyhealing/on_remove()
-	owner.remove_filter(PSYDON_HEALING_FILTER)
+	owner.remove_filter(PRAECURSOR_HEALING_FILTER)
 	owner.update_damage_hud()
 
 /datum/status_effect/buff/psyvived/on_remove()
-	owner.remove_filter(PSYDON_REVIVED_FILTER)
+	owner.remove_filter(PRAECURSOR_REVIVED_FILTER)
 	owner.update_damage_hud()
 
 /atom/movable/screen/alert/status_effect/buff/fortify
@@ -1216,7 +1216,7 @@
 #define BLESSINGOFSUN_FILTER "sun_glow"
 /atom/movable/screen/alert/status_effect/buff/guidinglight
 	name = "Guiding Light"
-	desc = "Astrata's gaze follows me, lighting the path!"
+	desc = "Auxentius's gaze follows me, lighting the path!"
 	icon_state = "stressvg"
 
 /datum/status_effect/buff/guidinglight // Hey did u follow us from ritualcircles? Cool, okay this stuff is pretty simple yeah? Most ritual circles use some sort of status effects to get their effects ez.
@@ -1225,7 +1225,7 @@
 	duration = 30 MINUTES // Lasts for 30 minutes, roughly an ingame day. This should be the gold standard for rituals, unless its some particularly powerul effect or one-time effect(Flylord's triage)
 	status_type = STATUS_EFFECT_REFRESH
 	effectedstats = list(STATKEY_PER = 2) // This is for basic stat effects, I would consider these a 'little topping' and not what you should rlly aim for for rituals. Ideally we have cool flavor boons, rather than combat stims.
-	examine_text = "SUBJECTPRONOUN walks with Her Light!"
+	examine_text = "SUBJECTPRONOUN walks with His Light!"
 	var/list/mobs_affected
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
 	var/outline_colour = "#ffffff"
@@ -1251,7 +1251,7 @@
 	icon_state = "guiding_light_undivided"
 
 /datum/status_effect/buff/guidinglight/undivided
-	id = "guidinglight"//Admitedly don't want this to stack with Astrata's one because that would result in a flashbang.
+	id = "guidinglight"//Admitedly don't want this to stack with Auxentius's one because that would result in a flashbang.
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guidinglight/undivided
 	duration = -1
 	status_type = STATUS_EFFECT_REFRESH
@@ -1971,22 +1971,22 @@
 /datum/status_effect/buff/clash/limbguard/guard_on_kick()
 	return
 
-/datum/status_effect/buff/psydonic_endurance
-	id = "psydonic_endurance"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/psydonic_endurance
+/datum/status_effect/buff/vaeltic_endurance
+	id = "vaeltic_endurance"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/vaeltic_endurance
 	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1)
 
-/datum/status_effect/buff/psydonic_endurance/on_apply()
+/datum/status_effect/buff/vaeltic_endurance/on_apply()
 	. = ..()
 	if(HAS_TRAIT(owner, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(owner, TRAIT_HEAVYARMOR))
 		ADD_TRAIT(owner, TRAIT_HEAVYARMOR, src)
 
-/datum/status_effect/buff/psydonic_endurance/on_remove()
+/datum/status_effect/buff/vaeltic_endurance/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, src)
 
-/atom/movable/screen/alert/status_effect/buff/psydonic_endurance
-	name = "Psydonic Vitality"
+/atom/movable/screen/alert/status_effect/buff/vaeltic_endurance
+	name = "Vaeltic Vitality"
 	desc = "I feel blessed, underneath this holy armor!"
 	icon_state = "stressvg"
 
@@ -2174,26 +2174,26 @@
 	to_chat(owner, span_warning("I fall back to the ground."))
 	owner.movement_type = GROUND
 
-/datum/status_effect/buff/ravox_vow
-	id = "ravox_vow"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/ravox_vow
+/datum/status_effect/buff/auxentius_vow
+	id = "auxentius_vow"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/auxentius_vow
 	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1)
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 	tick_interval = -1
 
-/datum/status_effect/buff/ravox_vow/proc/on_life()
+/datum/status_effect/buff/auxentius_vow/proc/on_life()
 	SIGNAL_HANDLER
 
 	owner.heal_wounds(0.2)
 
-/datum/status_effect/buff/ravox_vow/on_apply()
+/datum/status_effect/buff/auxentius_vow/on_apply()
 	. = ..()
 	RegisterSignal(owner, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	RegisterSignal(owner, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(on_item_attack))
 	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
-/datum/status_effect/buff/ravox_vow/proc/on_unarmed_attack(mob/living/user, mob/living/carbon/human/target)
+/datum/status_effect/buff/auxentius_vow/proc/on_unarmed_attack(mob/living/user, mob/living/carbon/human/target)
 	SIGNAL_HANDLER
 
 	if(!istype(target))
@@ -2208,7 +2208,7 @@
 
 	apply_effects(target)
 
-/datum/status_effect/buff/ravox_vow/proc/on_item_attack(mob/living/user, mob/living/carbon/human/target, obj/item/item)
+/datum/status_effect/buff/auxentius_vow/proc/on_item_attack(mob/living/user, mob/living/carbon/human/target, obj/item/item)
 	SIGNAL_HANDLER
 
 	if(!istype(target))
@@ -2223,20 +2223,20 @@
 
 	apply_effects(target)
 
-/datum/status_effect/buff/ravox_vow/proc/apply_effects(mob/living/carbon/human/target)
+/datum/status_effect/buff/auxentius_vow/proc/apply_effects(mob/living/carbon/human/target)
 	if(target.fire_stacks >= 3)
 		return
 
 	target.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/divine)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob/living, ignite_mob))
 
-/datum/status_effect/buff/ravox_vow/on_remove()
+/datum/status_effect/buff/auxentius_vow/on_remove()
 	. = ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_ITEM_AFTERATTACK, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, COMSIG_LIVING_LIFE))
 
-/atom/movable/screen/alert/status_effect/buff/ravox_vow
-	name = "Ravox vow"
-	desc = "I vowed to Ravox. I shall bring justice to Vaeltis."
+/atom/movable/screen/alert/status_effect/buff/auxentius_vow
+	name = "Auxentius vow"
+	desc = "I vowed to Auxentius. I shall bring justice to Vaeltis."
 
 #define JOYBRINGER_FILTER "joybringer"
 
@@ -2279,7 +2279,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/mob in get_hearers_in_view(2, owner))
-		if(HAS_TRAIT(mob, TRAIT_CRACKHEAD) || HAS_TRAIT(mob, TRAIT_PSYDONITE))
+		if(HAS_TRAIT(mob, TRAIT_CRACKHEAD) || HAS_TRAIT(mob, TRAIT_VAELTITE))
 			continue
 
 		mob.apply_status_effect(/datum/status_effect/debuff/joybringer_druqks)
@@ -2287,8 +2287,8 @@
 #undef JOYBRINGER_FILTER
 
 #undef MIRACLE_BLOODHEAL_FILTER
-#undef PSYDON_HEALING_FILTER
-#undef PSYDON_REVIVED_FILTER
+#undef PRAECURSOR_HEALING_FILTER
+#undef PRAECURSOR_REVIVED_FILTER
 
 /atom/movable/screen/alert/status_effect/buff/dagger_dash
 	name = "Dagger Dash"
@@ -2606,7 +2606,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/mob in get_hearers_in_view(2, owner))
-		if(HAS_TRAIT(mob, TRAIT_PSYDONITE) || HAS_TRAIT(mob, TRAIT_UNFORGIVABLE) || HAS_TRAIT(mob, TRAIT_CABAL) || HAS_TRAIT(mob, TRAIT_HORDE) || HAS_TRAIT(mob, TRAIT_FREEMAN) || HAS_TRAIT(mob, TRAIT_CRACKHEAD))
+		if(HAS_TRAIT(mob, TRAIT_VAELTITE) || HAS_TRAIT(mob, TRAIT_UNFORGIVABLE) || HAS_TRAIT(mob, TRAIT_CABAL) || HAS_TRAIT(mob, TRAIT_HORDE) || HAS_TRAIT(mob, TRAIT_FREEMAN) || HAS_TRAIT(mob, TRAIT_CRACKHEAD))
 			continue
 
 		mob.apply_status_effect(/datum/status_effect/buff/fortify)
@@ -2736,7 +2736,7 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/mob in get_hearers_in_view(2, owner))
-		if(HAS_TRAIT(mob,  TRAIT_PSYDONITE) || HAS_TRAIT(mob,  TRAIT_UNFORGIVABLE))
+		if(HAS_TRAIT(mob,  TRAIT_VAELTITE) || HAS_TRAIT(mob,  TRAIT_UNFORGIVABLE))
 			continue
 
 		mob.apply_status_effect(/datum/status_effect/eora_blessing)

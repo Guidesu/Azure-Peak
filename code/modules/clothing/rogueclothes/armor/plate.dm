@@ -336,23 +336,23 @@
 	qdel(src)
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonic half-plate"
-	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Psydon \
+	name = "vaeltic half-plate"
+	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Praecursor \
 	oft-decorate these sets with dyed cloths, so that those who're wounded can still find salvation in the madness of \
 	battle."
 	icon_state = "ornatehalfplate"
 	smeltresult = /obj/item/ingot/silverblessed
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
-	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
+	max_integrity = ARMOR_INT_CHEST_PLATE_PRAECURSOR
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_PSYDONIAN_GRIT, "ornate_plate")
+	AddComponent(/datum/component/armour_filtering/positive, TRAIT_VAELTIAN_GRIT, "ornate_plate")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("With more blessed silver and an armorsmith's hammer, this armor can be further upgraded.")
-	. += span_info("If a character has the 'Maille Training' trait and has Psydon as their selected patron, they can comfortably wear Psydonic plate armor without suffering any downsides.")
+	. += span_info("If a character has the 'Maille Training' trait and has Praecursor as their selected patron, they can comfortably wear Vaeltic plate armor without suffering any downsides.")
 	. += span_hypnophrase("'..the thrumbing of madness, to think that your suffering was all-for-naught to Adonai's sacrifical lamb..'")
 
 // HEAVY
@@ -444,14 +444,14 @@
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonic plate armor"
+	name = "vaeltic plate armor"
 	desc = "A suit of beautiful plate armor, meticulously fluted with blessed silver. This design's origins lay in \
-	the hands of a legendary armorsmith, who sought to mimic the heavenly maille that Psydon's angels once \
+	the hands of a legendary armorsmith, who sought to mimic the heavenly maille that Praecursor's angels once \
 	wore."
 	icon_state = "ornateplate"
 	smeltresult = /obj/item/ingot/silverblessed
 
-	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
+	max_integrity = ARMOR_INT_CHEST_PLATE_PRAECURSOR
 
 	/// Whether the user has the Heavy Armour Trait prior to donning.
 	var/traited = FALSE
@@ -459,12 +459,12 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_PSYDONIAN_GRIT, "ornate_plate")
+	AddComponent(/datum/component/armour_filtering/positive, TRAIT_VAELTIAN_GRIT, "ornate_plate")
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("With more blessed silver and an armorsmith's hammer, this armor can be further upgraded.")
-	. += span_info("If a character has the 'Maille Training' trait and has Psydon as their selected patron, they can comfortably wear Psydonic plate armor without suffering any downsides.")
+	. += span_info("If a character has the 'Maille Training' trait and has Praecursor as their selected patron, they can comfortably wear Vaeltic plate armor without suffering any downsides.")
 	. += span_hypnophrase("'..the refusal of despair, and the resolve to defend Vaeltis in its darkest hour..'")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/shadowplate
@@ -755,15 +755,15 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/donator_gothic
 	name = "gothic cuirass"
-	desc = "A magnificent steel cuirass, assembled by an Azurian mastersmith. The intricate fluting and interlocked plates are clear \
+	desc = "A magnificent steel cuirass, assembled by a foreign mastersmith. The intricate fluting and interlocked plates are clear \
 	signs of its Grenzelhoftian heritage; expensive, but second-to-none when it comes to what truly matters in life."
 	icon = 'icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
 	item_state = "gcuirass"
 	icon_state = "gcuirass"
 
-/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
-	name = "psydonic chestplate"
+/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
+	name = "vaeltic chestplate"
 	desc = "A form-fitting steel cuirass with flutings of blessed server. It is much lighter and agile than its contemporaries, but breaks \
 	with much more ease. In lieu of traditional padding, the underside is backed with thickly-woven silk to thwart deadlier blows."
 	smelt_bar_num = 1
@@ -837,7 +837,7 @@
 	unenchantable = TRUE
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
-	name = "psydonic cuirass"
+	name = "vaeltic cuirass"
 	icon_state = "ornatecuirass"
 	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously \
 	incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver \
@@ -848,7 +848,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("With more blessed silver and an armorsmith's hammer, this armor can be further upgraded.")
-	. += span_info("If a character has the 'Maille Training' trait and has Psydon as their selected patron, they can comfortably wear Psydonic plate armor without suffering any downsides.")
+	. += span_info("If a character has the 'Maille Training' trait and has Praecursor as their selected patron, they can comfortably wear Vaeltic plate armor without suffering any downsides.")
 	. += span_hypnophrase("'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..'")
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron
@@ -933,7 +933,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/marshal
 	name = "coat of the commander"
-	desc = "A coat of plates concealed beneath a heavy leather surcoat. Only the most battle-hardened of Azuria's commanders can \
+	desc = "A coat of plates concealed beneath a heavy leather surcoat. Only the most battle-hardened of the outpost's commanders can \
 	hope to bear its burden, both metaphorically and quite literally."
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
@@ -976,7 +976,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
-	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Psydonic Inquisition's \
+	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Vaeltic Inquisition's \
 	finest."
 	sewrepair = TRUE
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
@@ -996,7 +996,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate/get_mechanics_examine(mob/user)
 	. = ..()
-	. += span_info("A Psydonic Cuirass can be fitted with this longcoat, in order to ward off deadlier blows without compromising one's fashion sense.")
+	. += span_info("A Vaeltic Cuirass can be fitted with this longcoat, in order to ward off deadlier blows without compromising one's fashion sense.")
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/ComponentInitialize()	//No movement rustle component.
 	return
@@ -1021,7 +1021,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "armored inquisitorial duster"
-	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Psydonic Inquisition's finest. Where \
+	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Vaeltic Inquisition's finest. Where \
 	the longcoat parts, a surprise awaits; an ornate steel cuirass, worn beneath the leathers to ward off crippling blows."
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel 

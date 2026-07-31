@@ -47,9 +47,9 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/custodius
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/undivided
 		if(/datum/patron/concordat/auxentius)
-			mask = /obj/item/clothing/head/roguetown/roguehood/astrata
+			mask = /obj/item/clothing/head/roguetown/roguehood/auxentius
 			neck = /obj/item/clothing/neck/roguetown/psicross/auxentius
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/auxentius
 		if(/datum/patron/concordat/wulfric)
 			mask = /obj/item/clothing/head/roguetown/roguehood/abyssor
 			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
@@ -62,7 +62,7 @@
 		if(/datum/patron/severance/ignatius)
 			mask = /obj/item/clothing/head/roguetown/dendormask
 			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 		if(/datum/patron/concordat/morwenna)
 			mask = /obj/item/clothing/head/roguetown/necramask

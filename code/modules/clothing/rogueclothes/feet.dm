@@ -80,8 +80,8 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/shoes/roguetown/boots/psydonboots
-	name = "psydonic leather boots"
+/obj/item/clothing/shoes/roguetown/boots/praecursorboots
+	name = "vaeltic leather boots"
 	desc = "Blacksteel-heeled boots. The leather refuses to be worn down, no matter how far you march through these lands."
 	icon_state = "psydonboots"
 	item_state = "psydonboots"
@@ -92,7 +92,7 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
-/obj/item/clothing/shoes/roguetown/boots/psydonboots/ComponentInitialize()
+/obj/item/clothing/shoes/roguetown/boots/praecursorboots/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
 	AddComponent(/datum/component/armour_filtering/positive, TRAIT_HONORBOUND)
 
@@ -216,6 +216,10 @@
 	sewrepair = TRUE
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = FOOT_LEFT | FOOT_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/shoes/roguetown/boots/leather
 	name = "leather boots"
@@ -241,6 +245,10 @@
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	armor = ARMOR_LEATHER			//Better than regular leather.
 	color = null
+	cold_protection = FOOT_LEFT | FOOT_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/shoes/roguetown/boots/leather/reinforced/short
 	name = "dress boots"
@@ -651,6 +659,10 @@
 	armor = ARMOR_CLOTHING
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/fur
+	cold_protection = FOOT_LEFT | FOOT_RIGHT
+	min_cold_protection_temperature = 50
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 	name = "fur lined anklets"
@@ -664,6 +676,10 @@
 	is_barefoot = TRUE
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/fur
+	cold_protection = FOOT_LEFT | FOOT_RIGHT
+	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
+	heat_protection = null
+	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/shoes/roguetown/boots/clothlinedanklets
 	name = "cloth lined anklets"
@@ -676,6 +692,10 @@
 	armor = ARMOR_CLOTHING
 	salvage_amount = 2
 	salvage_result = /obj/item/natural/cloth
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = FOOT_LEFT | FOOT_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	name = "inquisitorial boots"
@@ -684,6 +704,10 @@
 	item_state = "inqboots"
 	allowed_race = ALL_RACES_TYPES
 	armor = ARMOR_PLATE
+	cold_protection = null
+	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
+	heat_protection = FOOT_LEFT | FOOT_RIGHT
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 
 // ----------------- BLACKSTEEL -----------------------

@@ -64,7 +64,7 @@
 	integrity_failure = 0.5
 
 /obj/structure/roguewindow/stained/silver
-	name = "psydonic stained glass window"
+	name = "vaeltic stained glass window"
 	desc = "A stained glass window bearing the cross of Psydon, the Weeping God, creator of the world. \
 	Either as a venerated martyr or a still-living deity, His imagery features often in both churches of the Ten \
 	and those of the Otavan Orthodoxy. Despite their differences, they share a common origin."

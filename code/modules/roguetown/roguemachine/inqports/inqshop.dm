@@ -16,11 +16,11 @@
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/
 	name = "inquisitorial supply crate"
-	desc = "A crate of boswellia wood, marked with the sigil of the Holy Psydonic Inquisition." 
+	desc = "A crate of boswellia wood, marked with the sigil of the Holy Vaeltic Inquisition." 
 
 /obj/structure/closet/crate/chest/inqcrate/articles/
 	name = "inquisitorial article crate"
-	desc = "A crate of boswellia wood, marked with the sigil of the Holy Psydonic Inquisition." 
+	desc = "A crate of boswellia wood, marked with the sigil of the Holy Vaeltic Inquisition." 
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/
 	name = "reliquary crate"
@@ -28,11 +28,11 @@
 
 /obj/structure/closet/crate/chest/inqcrate/equipment/
 	name = "inquisitorial equipment crate"
-	desc = "A crate of boswellia wood, marked with the sigil of the Holy Psydonic Inquisition." 
+	desc = "A crate of boswellia wood, marked with the sigil of the Holy Vaeltic Inquisition." 
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/
 	name = "inquisitorial wardrobe crate"
-	desc = "A crate of boswellia wood, marked with the sigil of the Holy Psydonic Inquisition." 
+	desc = "A crate of boswellia wood, marked with the sigil of the Holy Vaeltic Inquisition." 
 
 /// ✤ RELIQUARY ✤ START HERE! WOW!
 
@@ -79,7 +79,7 @@
 	marquescost = 12
 
 /datum/inqports/supplies/litany
-	name = "The Archbishop's Litany - Singular Blessing Of Psydonic Weaponry"
+	name = "The Archbishop's Litany - Singular Blessing Of Vaeltic Weaponry"
 	item_type = /obj/item/inqarticles/litany
 	maximum = 5
 	marquescost = 6
@@ -236,7 +236,7 @@
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/crankbox/Initialize()
 	. = ..()
-	new /obj/item/psydonmusicbox(src)
+	new /obj/item/praecursormusicbox(src)
 
 /datum/inqports/articles/bmirror
 	name = "Relic - The Mirrors, Everseeing"
@@ -447,7 +447,7 @@
 	new /obj/item/clothing/head/inqarticles/blackbag(src)
 
 /datum/inqports/equipment/psybles
-	name = "3 Books of the Psydonic Orthodoxy"
+	name = "3 Books of the Vaeltic Orthodoxy"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/psybles
 	marquescost = 3
 
@@ -493,7 +493,7 @@
 	marquescost = 6
 
 /datum/inqports/wardrobe/psysack
-	name = "1 Psydonian Facemask"
+	name = "1 Vaeltian Facemask"
 	item_type = /obj/item/clothing/mask/rogue/sack/psy
 	marquescost = 3
 
@@ -502,28 +502,28 @@
 	item_type = /obj/item/clothing/mask/rogue/facemask/steel/confessor
 	marquescost = 6
 
-/datum/inqports/wardrobe/psydonthorns
-	name = "1 Psydonian Crown of Thorns"
+/datum/inqports/wardrobe/praecursorthorns
+	name = "1 Vaeltian Crown of Thorns"
 	item_type = /obj/item/clothing/wrists/roguetown/bracers/psythorns
 	marquescost = 12
 
-/datum/inqports/wardrobe/psydonchains
-	name = "1 Psydonian Chain-Orle"
+/datum/inqports/wardrobe/praecursorchains
+	name = "1 Vaeltian Chain-Orle"
 	item_type = /obj/item/clothing/head/roguetown/helmet/blacksteel/psychains
 	marquescost = 6
 
-/datum/inqports/wardrobe/psydonhelms
-	name = "The 'Greathelms of Psydon' Crate"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms
+/datum/inqports/wardrobe/praecursorhelms
+	name = "The 'Greathelms of Praecursor' Crate"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/praecursorhelms
 	marquescost = 12
 	maximum = 1
 
-/obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms/Initialize()
+/obj/structure/closet/crate/chest/inqcrate/equipment/praecursorhelms/Initialize()
 	. = ..()
-	new /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute(src)
+	new /obj/item/clothing/head/roguetown/helmet/heavy/praecursorbarbute(src)
 	new /obj/item/clothing/head/roguetown/helmet/heavy/psysallet(src)
 	new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket(src)
-	new /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm(src)
+	new /obj/item/clothing/head/roguetown/helmet/heavy/praecursorhelm(src)
 	new /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed(src)
 
 /datum/inqports/wardrobe/fencerset
@@ -557,7 +557,7 @@
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/confessionalcombo/Initialize()
 	. = ..()
-	new /obj/item/clothing/head/roguetown/roguehood/psydon/confessor(src)
+	new /obj/item/clothing/head/roguetown/roguehood/praecursor/confessor(src)
 	new /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor(src)
 
 /datum/inqports/wardrobe/inspectorcoat
@@ -584,17 +584,17 @@
 	new /obj/item/clothing/gloves/roguetown/otavan/inqgloves(src)
 	new /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots(src)
 
-/datum/inqports/wardrobe/psydonianstandard
+/datum/inqports/wardrobe/vaeltianstandard
 	name = "The 'Inquisitorial Standard' Crate"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian
+	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/vaeltian
 	marquescost = 12
 
-/obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian/Initialize()
+/obj/structure/closet/crate/chest/inqcrate/wardrobe/vaeltian/Initialize()
 	. = ..()
 	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
 	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq(src)
 	new /obj/item/clothing/gloves/roguetown/otavan/psygloves(src)
-	new /obj/item/clothing/shoes/roguetown/boots/psydonboots(src)
+	new /obj/item/clothing/shoes/roguetown/boots/praecursorboots(src)
 
 /datum/inqports/wardrobe/nobledressup
 	name = "The 'Cost Of Nobility' Crate"

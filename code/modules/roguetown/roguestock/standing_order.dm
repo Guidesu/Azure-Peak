@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(standing_order_pool)
 
 /datum/standing_order/demand_exotic/generate_item_mix()
 	var/list/mix = list()
-	mix[TRADE_GOOD_DENDOR_ESSENCE] = rand(3, 6)
+	mix[TRADE_GOOD_IGNATIUS_ESSENCE] = rand(3, 6)
 	if(prob(60))
 		mix[TRADE_GOOD_SILK] = rand(8, 15)
 	if(prob(60))

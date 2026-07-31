@@ -25,6 +25,9 @@
 	if(victim.blood_volume <= 0)
 		to_chat(src, span_warning("Sigh. No blood left."))
 		return
+	if(victim.get_armor_class(sublimb_grabbed, "stab") != ARMOR_CLASS_NONE)
+		to_chat(src, span_warning("I can't drink their blood through armor!"))
+		return
 
 	var/datum/antagonist/vampire/VDrinker = mind.has_antag_datum(/datum/antagonist/vampire)
 	var/datum/antagonist/vampire/VVictim = victim.mind?.has_antag_datum(/datum/antagonist/vampire)

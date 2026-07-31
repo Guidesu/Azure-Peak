@@ -507,21 +507,21 @@
 	created_item = /obj/item/clothing/ring/signet/silver
 
 /datum/anvil_recipe/valuables/signet/psy
-	name = "Psydonian Signet Ring, Blessed Silver"
+	name = "Vaeltian Signet Ring, Blessed Silver"
 	craftdiff = SKILL_LEVEL_MASTER
 	req_bar = /obj/item/ingot/silverblessed
 	display_category = ITEM_CAT_VALUABLES_RINGS
 	created_item = /obj/item/clothing/ring/signet/psy	
 
 /datum/anvil_recipe/valuables/signet/psy/inq
-	name = "Psydonian Signet Ring, Blessed Silver"
+	name = "Vaeltian Signet Ring, Blessed Silver"
 	craftdiff = SKILL_LEVEL_MASTER
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	display_category = ITEM_CAT_VALUABLES_RINGS
 	created_item = /obj/item/clothing/ring/signet/psy
 
 /datum/anvil_recipe/valuables/signet/psy/gold
-	name = "Psydonian Signet Ring, Gold"
+	name = "Vaeltian Signet Ring, Gold"
 	craftdiff = SKILL_LEVEL_EXPERT
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/clothing/ring/signet/psy/g	

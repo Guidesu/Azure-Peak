@@ -304,8 +304,6 @@
 		user.update_inv_back()
 		user.update_inv_belt()
 
-	getonmobprop(tag)
-
 /obj/item/rogueweapon/scabbard/sheath/getonmobprop(tag)
 	..()
 

@@ -1,13 +1,13 @@
 // Ported from Twilight-Axis's firearms/code/jobs/orthodoxist.dm. The new
 // "Blackpowder Legionnaire" advclass attaches automatically to the base
 // Orthodoxist job via CTAG_ORTHODOXIST category roll. Also brings in the
-// psydonic claws weapon. The seizing garrote item this legionnaire's
+// vaeltic claws weapon. The seizing garrote item this legionnaire's
 // "Otavan Volf" archetype (and inquisitor.dm's Runed Volf) equips already
 // exists natively in this repo (code/game/objects/items/rogueitems/
 // inquisitionrelics.dm) — reused as-is, not redefined here.
 
 /obj/item/rogueweapon/handclaw/gronn/silver/psy
-	name = "psydonic claws"
+	name = "vaeltic claws"
 	desc = "A trinity of silver razor sharp claws, long anough to catch your prey in this silent war."
 	icon = 'modular_dreamvalley/icons/twilight_firearms/weapons/32.dmi'
 	icon_state = "psyclaws"
@@ -17,7 +17,7 @@
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = 5,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -32,7 +32,7 @@
 	subclass_languages = list(/datum/language/vergenmarkian)
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_blackpowder.ogg'
 	category_tags = list(CTAG_ORTHODOXIST)
-	traits_applied = list(TRAIT_PSYDONITE, TRAIT_ARTILLERY_EXPERT)
+	traits_applied = list(TRAIT_VAELTITE, TRAIT_ARTILLERY_EXPERT)
 	classes = list("Legionnaire" = "Soldier of the Last War. Bring your deadly weapon of blackpowder to the battlefield",
 	"Otavan Volf" = "No matter who you were before. Now you are a bloodhound of Inquisition enchanted with rune magyck. \
 	No doors can stop you and no heretic can escape your silent bullet.")
@@ -68,7 +68,7 @@
 /datum/outfit/job/roguetown/blackpowder_legionnaire/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/praecursorboots
 	cloak = /obj/item/clothing/cloak/bandolier
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	neck = /obj/item/clothing/neck/roguetown/leather/blackpowder
@@ -116,7 +116,7 @@
 						pants = /obj/item/clothing/under/roguetown/chainlegs
 						ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 					if("Light Armor")
-						armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+						armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/praecursor
 						pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 						ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				head = /obj/item/clothing/head/roguetown/helmet/kettle
@@ -139,7 +139,7 @@
 				wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
 				l_hand = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol/umbra
-				head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+				head = /obj/item/clothing/head/roguetown/roguehood/praecursor/confessor
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 				belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/blackpowder
 				beltr = /obj/item/quiver/twilight_bullet/lead

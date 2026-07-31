@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(vanderlin_weather, list(PARTICLEWEATHER_RAIN, PARTICLEWEATHER_BLOODRAIN, PARTICLEWEATHER_LEAVES))
+GLOBAL_LIST_INIT(vanderlin_weather, list(PARTICLEWEATHER_RAIN, PARTICLEWEATHER_BLOODRAIN, PARTICLEWEATHER_LEAVES, PARTICLEWEATHER_SAND, PARTICLEWEATHER_FIREFLY, PARTICLEWEATHER_ASH))
 SUBSYSTEM_DEF(ParticleWeather)
 	name = "Particle Weather"
 	flags = SS_BACKGROUND
@@ -6,7 +6,11 @@ SUBSYSTEM_DEF(ParticleWeather)
 	runlevels = RUNLEVEL_GAME
 	var/list/elligble_weather = list()
 	var/datum/particle_weather/runningWeather
-	// var/list/next_hit = list() //Used by barometers to know when the next storm is coming
+
+	/// Weather that has been picked (by the forecast system, or forced) and is waiting on its randomized start timer.
+	var/datum/particle_weather/queued_weather
+	/// world.time the queued weather is set to actually start - used by anything that wants to know when the next storm hits.
+	var/queued_weather_start_time
 
 	var/particles/weather/particleEffect
 	var/obj/weatherEffect
@@ -19,6 +23,9 @@ SUBSYSTEM_DEF(ParticleWeather)
 
 	var/obj_act_interval = 3 SECONDS
 	var/next_obj_act = 0
+
+	/// The forecast datum selected for the current map at Initialize() - drives check_forecast() picks.
+	var/datum/forecast/selected_forecast
 
 /datum/controller/subsystem/ParticleWeather/fire(resumed = FALSE)
 	// process active weather
@@ -66,14 +73,28 @@ SUBSYSTEM_DEF(ParticleWeather)
 		if (prob(probability) && (target_trait in GLOB.vanderlin_weather)) //TODO VANDERLIN: Map trait this.
 			LAZYINITLIST(elligble_weather)
 			elligble_weather[W] = probability
+
+	switch(SSmapping.config?.map_name)
+		if("Dun World")
+			selected_forecast = new /datum/forecast/dunworld()
+		if("Al Ashur", "Desert Town") //no desert map exists in this repo yet - kept for when one is added
+			selected_forecast = new /datum/forecast/alashur()
+		if("Hargh", "Rockhill")
+			selected_forecast = new /datum/forecast/rockhill()
+		else
+			selected_forecast = new /datum/forecast/rockhill()	//Default to rockhill if no configs match so we have some weather
 	return ..()
 
 /datum/controller/subsystem/ParticleWeather/proc/run_weather(datum/particle_weather/weather_datum_type, force = 0, color)
-	if(runningWeather)
-		if(force)
-			runningWeather.end()
-		else
+	if(runningWeather || queued_weather)
+		if(!force)
 			return
+		if(runningWeather)
+			runningWeather.end()
+		if(queued_weather)
+			QDEL_NULL(queued_weather)
+			queued_weather_start_time = null
+
 	if (istext(weather_datum_type))
 		for (var/V in subtypesof(/datum/particle_weather))
 			var/datum/particle_weather/W = V
@@ -89,6 +110,17 @@ SUBSYSTEM_DEF(ParticleWeather)
 		runningWeather.start(color)
 	else
 		var/randTime = rand(0, 6000) + initial(runningWeather.weather_duration_upper)
+
+		queued_weather = runningWeather
+		queued_weather_start_time = world.time + randTime
+
+		// Early forecast warning - sent immediately once the weather is picked
+		runningWeather.send_warning()
+
+		// Late warning ~30s before the weather actually starts, if there's time for one
+		if(randTime > 30 SECONDS)
+			addtimer(CALLBACK(runningWeather, /datum/particle_weather/proc/send_late_warning), randTime - (30 SECONDS), TIMER_UNIQUE|TIMER_STOPPABLE)
+
 		addtimer(CALLBACK(runningWeather, /datum/particle_weather/proc/start), randTime, TIMER_UNIQUE|TIMER_STOPPABLE) //Around 0-10 minutes between weathers
 
 
@@ -122,7 +154,33 @@ SUBSYSTEM_DEF(ParticleWeather)
 
 /datum/controller/subsystem/ParticleWeather/proc/stopWeather()
 	for(var/obj/act_on as anything in GLOB.weather_act_upon_list)
+		if(!act_on)	//guard against nulls from deletions
+			continue
 		act_on.weather = FALSE
 	weatherEffect.particles = null
 	QDEL_NULL(runningWeather)
 	QDEL_NULL(particleEffect)
+
+/**
+ * Called whenever GLOB.tod changes (see settod() in code/__HELPERS/time.dm) - rolls the map's forecast
+ * for the new time-of-day bucket and, if it picks something, queues that weather up via run_weather().
+ *
+ * Replaces the old hardcoded switch(GLOB.tod) block that used to live directly in settod().
+ */
+/datum/controller/subsystem/ParticleWeather/proc/check_forecast(time_of_day)
+	// Do not roll a new forecast if weather is already active or queued
+	if(runningWeather || queued_weather)
+		return
+
+	if(!selected_forecast)
+		log_game("No selected_forecast set!")
+		return
+
+	var/datum/particle_weather/weather_type = selected_forecast.pick_weather(time_of_day)
+
+	if(!weather_type)
+		return
+
+	GLOB.forecast = initial(weather_type.forecast_tag)
+
+	run_weather(weather_type)

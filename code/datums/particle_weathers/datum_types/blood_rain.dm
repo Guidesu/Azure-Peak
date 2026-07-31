@@ -15,9 +15,11 @@
 
 
 /datum/particle_weather/blood_rain_gentle
-	name = "Rain"
+	name = "Strange Rain"
 	desc = "Gentle Rain, la la description."
 	particleEffectType = /particles/weather/blood_rain
+	warning_message = span_greenannounce("The air grows heavy- something is very wrong.")
+	late_warning_message = span_userdanger("A metallic scent fills the air. Something is wrong with the sky...")
 
 	scale_vol_with_severity = TRUE
 	weather_sounds = list(/datum/looping_sound/rain)
@@ -36,13 +38,28 @@
 		return
 	if(HAS_TRAIT(L, TRAIT_HORDE))
 		L.add_stress(/datum/stressevent/graggarite_blood_rain)
+	if(issimple(L))
+		L.adjust_fire_stacks(-100)
+		L.SoakMob(FULL_BODY)
+		return
+	if(ishuman(L))
+		// NOTE: upstream gates this on /datum/patron/inhumen/graggar and /datum/patron/inhumen/zizo, neither of
+		// which exist in this repo's renamed pantheon (Volkovoi retains the "graggar" name on some legacy spell/
+		// structure paths - see code/datums/gods/patrons/oldkin/volkovoi.dm). TRAIT_HORDE is what the rest of
+		// this file already uses to detect Graggarite followers, so it's reused here too.
+		if(HAS_TRAIT(L, TRAIT_HORDE))
+			L.add_stress(/datum/stressevent/bloodrevel)
+		else
+			L.add_stress(/datum/stressevent/bloodrain)
 	L.adjust_fire_stacks(-100)
 	L.SoakMob(FULL_BODY)
 
 /datum/particle_weather/blood_rain_storm
-	name = "Rain"
+	name = "Strange Rainstorm"
 	desc = "Gentle Rain, la la description."
 	particleEffectType = /particles/weather/blood_rain
+	warning_message = span_greenannounce("The air grows heavy- something is very wrong.")
+	late_warning_message = span_greenannounce("A metallic scent fills the air. Something is wrong with the sky...")
 
 	scale_vol_with_severity = TRUE
 	weather_sounds = list(/datum/looping_sound/storm)
@@ -59,5 +76,18 @@
 /datum/particle_weather/blood_rain_storm/weather_act(mob/living/L)
 	if(HAS_TRAIT(L, TRAIT_HORDE))
 		L.add_stress(/datum/stressevent/graggarite_blood_rain)
+	if(issimple(L))
+		L.adjust_fire_stacks(-100)
+		L.SoakMob(FULL_BODY)
+		return
+	if(ishuman(L))
+		// NOTE: upstream gates this on /datum/patron/inhumen/graggar and /datum/patron/inhumen/zizo, neither of
+		// which exist in this repo's renamed pantheon (Volkovoi retains the "graggar" name on some legacy spell/
+		// structure paths - see code/datums/gods/patrons/oldkin/volkovoi.dm). TRAIT_HORDE is what the rest of
+		// this file already uses to detect Graggarite followers, so it's reused here too.
+		if(HAS_TRAIT(L, TRAIT_HORDE))
+			L.add_stress(/datum/stressevent/bloodrevel)
+		else
+			L.add_stress(/datum/stressevent/bloodrain)
 	L.adjust_fire_stacks(-100)
 	L.SoakMob(FULL_BODY)

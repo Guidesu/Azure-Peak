@@ -36,6 +36,7 @@
 	if(H.mind)
 		H.set_species(/datum/species/gnoll)
 		H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/regenerating/skin/gnoll_armor/shaman(H)
+		H.AddComponent(/datum/component/vampiric_striker, 44, 20, 79)
 		var/obj/item/ritechalk/chalk = new /obj/item/ritechalk(H.loc)
 		H.put_in_r_hand(chalk)
 		neck = /obj/item/storage/belt/rogue/pouch/alchemy

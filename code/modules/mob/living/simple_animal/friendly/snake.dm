@@ -41,21 +41,15 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
-	. = oview(vision_range, targets_from) //get list of things in vision range
-	var/list/living_mobs = list()
+	. = hearers(vision_range, targets_from) - src //get list of things we can hear, instead of an expensive oview() scan
 	var/list/mice = list()
-	for (var/HM in .)
-		//Yum a tasty mouse
-		if(istype(HM, /mob/living/simple_animal/mouse))
-			mice += HM
-		if(isliving(HM))
-			living_mobs += HM
-
+	for(var/mob/living/simple_animal/mouse/mouse in .)
+		mice += mouse
+	//Yum a tasty mouse
+	if(length(mice))
+		return mice
 	// if no tasty mice to chase, lets chase any living mob enemies in our vision range
-	if(length(mice) == 0)
-		//Filter living mobs (in range mobs) by those we consider enemies (retaliate behaviour)
-		return  living_mobs & resolve_enemies()
-	return mice
+	return . & resolve_enemies()
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
         if(istype(target, /mob/living/simple_animal/mouse))

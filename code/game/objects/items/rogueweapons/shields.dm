@@ -474,7 +474,7 @@
 
 /obj/item/rogueweapon/shield/tower/metal/psy
 	name = "Covenant"
-	desc = "'A Psydonian endures. A Psydonian preserves themselves. A Psydonian preserves His flock.' </br>A blessed silver pavise, capable of thwarting the deadliness of \
+	desc = "'A Vaeltian endures. A Vaeltian preserves themselves. A Vaeltian preserves His flock.' </br>A blessed silver pavise, capable of thwarting the deadliness of \
 	even the hottest balefires. The one who wields it shall never falter; and the ones behind them shall never suffer."
 	icon_state = "psyshield"
 	force = 15
@@ -496,8 +496,8 @@
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_PSYDONIAN,\
+		pre_blessed = BLESSING_VAELTIAN,\
+		silver_type = SILVER_VAELTIAN,\
 		added_force = -3,\
 		added_blade_int = 0,\
 		added_int = 100,\

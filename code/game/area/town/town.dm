@@ -14,7 +14,7 @@
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	converted_type = /area/rogue/outdoors/exposed/town
 	town_area = TRUE
-	deathsight_message = "the city of Azure Peak and all its bustling souls"
+	deathsight_message = "the outpost and all its bustling souls"
 	detail_text = DETAIL_TEXT_AZURE_PEAK
 
 /area/rogue/outdoors/exposed/town
@@ -45,7 +45,7 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/manorgarri
-	first_time_text = "THE KEEP OF AZURE PEAK"
+	first_time_text = "THE OUTPOST KEEP"
 	keep_area = TRUE
 	detail_text = DETAIL_TEXT_MANOR
 
@@ -57,17 +57,17 @@
 	keep_area = TRUE
 
 /area/rogue/indoors/town/magician
-	name = "University of Azuria"
+	name = "University of the Outpost"
 	icon_state = "magician"
 	spookysounds = SPOOKY_MYSTICAL
 	spookynight = SPOOKY_MYSTICAL
 	droning_sound = 'sound/music/area/magiciantower.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	first_time_text = "THE UNIVERSITY OF AZURIA"
+	first_time_text = "THE UNIVERSITY OF THE OUTPOST"
 	converted_type = /area/rogue/outdoors/exposed/magiciantower
 	keep_area = TRUE
-	detail_text = DETAIL_TEXT_UNIVERSITY_OF_AZURIA
+	detail_text = DETAIL_TEXT_UNIVERSITY_OF_THE_OUTPOST
 
 /area/rogue/indoors/town/pestra_sanctum
 	name = "Sanctum of Pestra"
@@ -87,7 +87,7 @@
 	droning_sound_night = null
 	keep_area = TRUE
 	town_area = TRUE
-	detail_text = DETAIL_TEXT_UNIVERSITY_OF_AZURIA
+	detail_text = DETAIL_TEXT_UNIVERSITY_OF_THE_OUTPOST
 
 /area/rogue/indoors/town/shop
 	name = "Merchant"
@@ -156,7 +156,7 @@
 	cell_area = TRUE
 
 /area/rogue/indoors/town/tavern
-	name = "Azurian Pint"
+	name = "Outpost Pint"
 	icon_state = "tavern"
 	ambientsounds = AMB_INGEN
 	ambientnight = AMB_INGEN
@@ -232,9 +232,9 @@
 	icon_state = "chapel"
 
 /area/rogue/indoors/inq/chapel
-	name = "The Psydonic Chapel"
+	name = "The Vaeltic Chapel"
 	icon_state = "chapel"
-	first_time_text = "THE PSYDONIC CHAPEL"
+	first_time_text = "THE VAELTIC CHAPEL"
 
 /area/rogue/indoors/town/warehouse/can_craft_here()
 	return FALSE

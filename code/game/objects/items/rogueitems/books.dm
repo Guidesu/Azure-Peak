@@ -249,7 +249,7 @@
 /obj/item/book/rogue/bibble/psy
 	name = "The Book"
 	desc = "'And He weeps. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the \
-	beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent \
+	beliefs held by the Orthodoxy; the largest Vaeltic denomination in the world. The 'Harlaus Press', a recent \
 	invention by Otava's clergymen, has ensured that no corner of Vaeltis would remain unlit by His teachings. Inside \
 	are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING \
 	INTERPRETATION. </br>GENESIS - TESTAMENTS OF VAELTIS'S CREATION, FOR WHAT ONCE WAS. </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
@@ -281,8 +281,8 @@
 			if(m)
 				if(prob(1) && sect == "sect1")
 					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
-					user.say("PSY 23:4... And so, ZEZUS wept; for he had been struck down by the silvered javelin of JVDAS, PSYDON's most devout.")
-					user.psydo_nyte()
+					user.say("PSY 23:4... And so, ZEZUS wept; for he had been struck down by the silvered javelin of JVDAS, PRAECURSOR's most devout.")
+					user.praecursor_nyte()
 				else
 					user.say(m)
 

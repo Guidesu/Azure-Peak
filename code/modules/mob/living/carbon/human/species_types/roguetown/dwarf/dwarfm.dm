@@ -4,7 +4,7 @@
 /datum/species/dwarf/mountain
 	name = "Dwarf"
 	id = "dwarfm"
-	psydonic = TRUE
+	vaeltic = TRUE
 	origin_default = /datum/virtue/origin/vergenmark
 	origin = "Hammerhold"
 	sub_name = "Mountain Dwarf"

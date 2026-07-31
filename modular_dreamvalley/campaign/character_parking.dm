@@ -3,10 +3,27 @@
  *
  * Azure's original Far Travel path deletes the body, forgets known people,
  * removes bounties and bank records, and forfeits some balances. A campaign
- * character must never enter that path. Until the complete character graph
- * serializer and checkpoint acknowledgement are wired up, consume the request
- * and cancel it safely.
+ * character must never enter that path - this reroutes it into an exact
+ * character-graph capture that parks the body until its checkpoint is
+ * written to disk (see campaign_transport.dm), then frees the slot instead
+ * of deleting anything.
  */
+/// Surfaces a validation failure with the actual blocker list, both to the
+/// player (so it's clear what's wrong, not just that something is) and to
+/// the admin log (so this is traceable after the fact instead of vanishing
+/// the moment the chat message scrolls past).
+/datum/dreamvalley_campaign_manager/proc/report_parking_validation_failure(mob/user, mob/living/carbon/human/departing_mob, stage, list/issues)
+	var/list/preview = list()
+	if(islist(issues))
+		for(var/index in 1 to min(5, length(issues)))
+			preview += "[issues[index]]"
+	var/more_count = islist(issues) ? length(issues) - length(preview) : 0
+	var/more_text = more_count > 0 ? " (+[more_count] more)" : ""
+	var/detail = length(preview) ? preview.Join(", ") : "no blockers reported (record itself failed to build)"
+	to_chat(user, span_boldwarning("Exact character [stage] did not validate: [detail][more_text]. Departure was cancelled without removing the body."))
+	log_admin("DREAMVALLEY PARKING FAILED ([stage]): [key_name(departing_mob)] - [islist(issues) ? issues.Join(", ") : "no issues list"]")
+	message_admins("DreamValley campaign save failed for [key_name_admin(departing_mob)] at [stage] stage - see log for full issue list.")
+
 /datum/dreamvalley_campaign_manager/proc/handle_far_travel(mob/living/carbon/human/departing_mob, mob/user, obj/structure/far_travel/source)
 	if(!enabled)
 		return DREAMVALLEY_TRAVEL_UNHANDLED
@@ -43,7 +60,7 @@
 		to_chat(user, span_notice("This character is already waiting for its durable campaign checkpoint."))
 		return DREAMVALLEY_TRAVEL_HANDLED
 
-	if(alert(user, "Save this exact character and return to the Character Sheet? The body will only leave the world after the host confirms its checkpoint.", "Far Travel", "Save and leave", "Cancel") != "Save and leave")
+	if(alert(user, "Save this exact character and return to the Character Sheet? The body will only leave the world once the save writes to disk.", "Far Travel", "Save and leave", "Cancel") != "Save and leave")
 		return DREAMVALLEY_TRAVEL_HANDLED
 	if(QDELETED(departing_mob) || !departing_mob.client || get_dist(source, departing_mob) > 2)
 		return DREAMVALLEY_TRAVEL_HANDLED
@@ -61,13 +78,13 @@
 	var/list/issues = record?["validation_issues"]
 	if(!islist(record) || length(issues))
 		source.in_use = FALSE
-		to_chat(user, span_boldwarning("Exact character capture did not validate. Departure was cancelled without removing the body."))
+		report_parking_validation_failure(user, departing_mob, "capture", issues)
 		return DREAMVALLEY_TRAVEL_HANDLED
 
 	issues = validate_character_round_trip(departing_mob, record["core"])
 	if(length(issues))
 		source.in_use = FALSE
-		to_chat(user, span_boldwarning("The character restore test did not reproduce the same body: [issues.Join(", ")]. Departure was cancelled."))
+		report_parking_validation_failure(user, departing_mob, "round-trip", issues)
 		return DREAMVALLEY_TRAVEL_HANDLED
 
 	// Capture once more after the successful test so the staged record exactly
@@ -76,7 +93,7 @@
 	issues = record?["validation_issues"]
 	if(!islist(record) || length(issues))
 		source.in_use = FALSE
-		to_chat(user, span_boldwarning("The post-restore character capture was not clean. Departure was cancelled."))
+		report_parking_validation_failure(user, departing_mob, "post-restore capture", issues)
 		return DREAMVALLEY_TRAVEL_HANDLED
 
 	record["state"] = "parking"
@@ -123,7 +140,7 @@
 		"lobby" = lobby,
 		"source" = source,
 	)
-	to_chat(lobby, span_notice("Saving [record["core"]?["identity"]?["real_name"]] to the campaign. The body will remain protected until the host confirms checkpoint [generation]."))
+	to_chat(lobby, span_notice("Saving [record["core"]?["identity"]?["real_name"]] to the campaign. The body will remain protected until checkpoint [generation] writes to disk."))
 	return DREAMVALLEY_TRAVEL_HANDLED
 
 /datum/dreamvalley_campaign_manager/proc/poll_character_parking_transactions()
@@ -165,6 +182,63 @@
 		// already-durable "parking" state, so failure here cannot lose access.
 		request_durable_checkpoint()
 	return completed
+
+/**
+ * Silently captures every connected human character's exact record before a
+ * server shutdown, so their body (identity, stats, and - critically - their
+ * held/worn items) is actually part of the campaign save instead of only
+ * ever being captured when a player manually walks through Far Travel's
+ * interactive "Save and leave" flow.
+ *
+ * Without this, ordinary characters were never added to parked_characters at
+ * all: emit_checkpoint()'s snapshot only knows about two things - the world
+ * object graph (every individually-registered /obj, captured at its OWN
+ * turf) and this parked_characters dict. A connected player's mob is never
+ * part of the object graph (see dreamvalley_should_persist() in
+ * persistence/contracts.dm - only /obj subtypes opt in, never /mob), so on
+ * restart their held items reappeared as loose objects sitting directly on
+ * whatever tile the mob was last standing on, with the character itself not
+ * restored at all (can_continue_character() requires state == "parked",
+ * which only Far Travel ever set).
+ *
+ * This deliberately skips handle_far_travel()'s whole interactive ceremony
+ * (the confirmation alert(), do_after() channel, and the immediate
+ * lobby-transfer/qdel of the body) - none of that makes sense mid-shutdown
+ * with no time for a player to respond, and the body doesn't need to leave
+ * the world early since the process is ending anyway. It only needs its
+ * data captured and marked "parked" before emit_checkpoint() writes the
+ * snapshot to disk right after this runs (see campaign_transport.dm's
+ * Shutdown()).
+ */
+/datum/dreamvalley_campaign_manager/proc/auto_park_connected_characters()
+	if(!enabled)
+		return 0
+	var/parked_count = 0
+	for(var/mob/living/carbon/human/H as anything in GLOB.human_list)
+		if(!H.client)
+			continue
+		var/record_key = character_record_key(H.client)
+		if(!record_key)
+			continue
+		// A character already durably parked (via a completed Far Travel)
+		// has no live body left to capture - nothing to do here.
+		var/list/existing = parked_characters[record_key]
+		if(islist(existing) && existing["state"] == "parked")
+			continue
+
+		var/list/record = capture_character_draft(H)
+		var/list/issues = record?["validation_issues"]
+		if(!islist(record) || length(issues))
+			log_world("DreamValley auto-park at shutdown failed validation for [key_name(H)]: [islist(issues) ? issues.Join(", ") : "capture returned null"]")
+			continue
+
+		record["state"] = "parked"
+		record["complete"] = TRUE
+		record["missing_sections"] = list()
+		record["validation_issues"] = list()
+		parked_characters[record_key] = record
+		parked_count++
+	return parked_count
 
 /proc/dreamvalley_handle_far_travel(mob/living/carbon/human/departing_mob, mob/user, obj/structure/far_travel/source)
 	if(!GLOB.dreamvalley_campaign)
