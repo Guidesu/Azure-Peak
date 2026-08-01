@@ -6,12 +6,14 @@
 	icon_state = null
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	unenchantable = TRUE
-	// Skin armors are magical hide, not cloth or metal. They provide no
-	// thermal insulation beyond what bare skin would.
-	heat_protection = NONE
-	cold_protection = NONE
-	max_heat_protection_temperature = null
-	min_cold_protection_temperature = null
+	// Skin armors are the wearer's own magical hide — thickened bark,
+	// scales, or beast skin. Being your skin, it insulates naturally
+	// against both heat and cold. Subtypes inherit this; their
+	// body_parts_covered already determines what area the skin covers.
+	heat_protection = CHEST
+	cold_protection = CHEST
+	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
+	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 
 	/// Feedback messages
 	var/repairmsg_begin = "My armour begins to slowly mend its abuse.."
