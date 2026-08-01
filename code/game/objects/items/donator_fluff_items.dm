@@ -2014,6 +2014,11 @@ As Excaliber."
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes64.dmi'
 	icon = 'icons/clothing/donor_clothes.dmi'
 	bloody_icon = 'icons/effects/blood64.dmi'
+	adjustable = CAN_CADJUST
+
+/obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm/limetease/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)
 
 /obj/item/clothing/head/roguetown/octopus/ComponentInitialize()
 	..()
