@@ -1,7 +1,3 @@
-#define HUMAN_NPC_BASE_JUKE_CHANCE              15
-#define HUMAN_NPC_JUKE_MIN_SPD                  10
-#define HUMAN_NPC_JUKE_PER_OVERSPD              5
-
 #define HUMAN_NPC_WEAKPOINT_SCAN_CHANCE         15
 #define HUMAN_NPC_WEAKPOINT_CACHE_DURATION      (6 SECONDS)
 #define HUMAN_NPC_ZONE_SWITCH_THRESHOLD_BASE         9
@@ -46,6 +42,12 @@
 /datum/ai_behavior/basic_melee_attack/human_npc
 	action_cooldown = 0.2 SECONDS
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+
+/datum/ai_behavior/basic_melee_attack/human_npc/static
+	behavior_flags = AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+
+/datum/ai_planning_subtree/basic_melee_attack_subtree/human_npc/static
+	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/human_npc/static
 
 /datum/ai_behavior/basic_melee_attack/human_npc/setup(datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
@@ -161,7 +163,6 @@
 	if(prob(scan_chance) && isliving(target))
 		_scan_for_weakpoint(controller, pawn, target)
 
-	_try_backstep(pawn, target)
 
 /datum/ai_behavior/basic_melee_attack/human_npc/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
@@ -466,52 +467,6 @@
 			return rand(1, 4)
 	return null
 
-/datum/ai_behavior/basic_melee_attack/human_npc/proc/_try_backstep(mob/living/carbon/human/pawn, atom/target)
-	if(pawn.mind?.has_antag_datum(/datum/antagonist/zombie))
-		return FALSE
-	if(!pawn.ai_controller.can_move())
-		return FALSE
-	if(!(pawn.mobility_flags & MOBILITY_STAND))
-		return FALSE
-	if(pawn.ai_controller.blackboard[BB_HUMAN_NPC_HARASS_MODE])
-		return FALSE
-	if(!target || !isturf(pawn.loc) || !isturf(target.loc))
-		return FALSE
-
-	if(world.time < pawn.ai_controller.blackboard[BB_HUMAN_NPC_JUKE_COOLDOWN])
-		return FALSE
-
-	var/juke_chance = HUMAN_NPC_BASE_JUKE_CHANCE
-	if(pawn.STASPD > HUMAN_NPC_JUKE_MIN_SPD)
-		juke_chance += (pawn.STASPD - HUMAN_NPC_JUKE_MIN_SPD) * HUMAN_NPC_JUKE_PER_OVERSPD
-
-	if(!prob(juke_chance))
-		return FALSE
-
-	pawn.tempfixeye = TRUE
-	pawn.nodirchange = TRUE
-	var/was_fixedeye = pawn.fixedeye
-	if(!was_fixedeye)
-		pawn.fixedeye = TRUE
-
-	var/list/candidates = pawn.get_dodge_destinations(target, null)
-	if(!length(candidates))
-		pawn.tempfixeye = FALSE
-		if(!was_fixedeye)
-			pawn.fixedeye = FALSE
-		return FALSE
-
-	var/turf/juke_turf = pick(candidates)
-	pawn.Move(juke_turf, get_dir(pawn, juke_turf))
-	pawn.nodirchange = FALSE
-	pawn.face_atom(target)
-
-	pawn.ai_controller.set_blackboard_key(BB_HUMAN_NPC_JUKE_COOLDOWN, world.time + 1.5 SECONDS)
-	pawn.tempfixeye = FALSE
-	if(!was_fixedeye)
-		pawn.fixedeye = FALSE
-	return TRUE
-
 /proc/bclass_to_armor_rating(bclass)
 	switch(bclass)
 		if(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PUNCH, BCLASS_LASHING)
@@ -526,9 +481,6 @@
 			return "fire"
 	return "blunt"
 
-#undef HUMAN_NPC_BASE_JUKE_CHANCE
-#undef HUMAN_NPC_JUKE_MIN_SPD
-#undef HUMAN_NPC_JUKE_PER_OVERSPD
 #undef HUMAN_NPC_WEAKPOINT_SCAN_CHANCE
 #undef HUMAN_NPC_WEAKPOINT_CACHE_DURATION
 #undef HUMAN_NPC_WEAPON_SPECIAL_CHANCE

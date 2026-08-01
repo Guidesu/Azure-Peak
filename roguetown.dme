@@ -683,7 +683,6 @@
 #include "code\datums\ai\subtrees\equip_item.dm"
 #include "code\datums\ai\subtrees\find_food.dm"
 #include "code\datums\ai\subtrees\find_weapon.dm"
-#include "code\datums\ai\subtrees\flank.dm"
 #include "code\datums\ai\subtrees\flee_nearest_target.dm"
 #include "code\datums\ai\subtrees\flee_target.dm"
 #include "code\datums\ai\subtrees\generic_resist.dm"

@@ -15,12 +15,9 @@
 		BB_HUMAN_NPC_LAST_ATTACK_ZONE = null,  // last zone we attacked
 		BB_HUMAN_NPC_WEAKPOINT = null,         // cached weakpoint zone if we found one
 		BB_HUMAN_NPC_JUMP_COOLDOWN = 0,        // world.time when we can next jump
-		BB_HUMAN_NPC_FLANK_ANGLE = null,       // our claimed flank direction (degrees, 0-359)
-		BB_HUMAN_NPC_FLANK_TARGET = null,      // the turf we're moving toward for flanking
 		BB_HUMAN_NPC_HARASS_MODE = FALSE,      // TRUE when in hit-and-run mode
 		BB_HUMAN_NPC_HARASS_RETREATING = FALSE,// TRUE when in the back-off phase of harass
 		BB_HUMAN_NPC_HARASS_COOLDOWN = 0,      // world.time before we can dart in again
-		BB_HUMAN_NPC_JUKE_COOLDOWN = 0,        // world.time before we can juke again
 	)
 	/// Subtrees shared by all human NPC archetypes. Subtypes prepend archetype-specific
 	/// subtrees via their own planning_subtrees list.
@@ -89,6 +86,27 @@
 
 /// Melee-only human NPC. Same as base — the base class is already melee-focused since it
 /datum/ai_controller/human_npc/melee
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/being_a_minion,
+		/datum/ai_planning_subtree/call_for_help,
+		/datum/ai_planning_subtree/generic_break_restraints,
+		/datum/ai_planning_subtree/use_powder,
+		/datum/ai_planning_subtree/use_throwable,
+		/datum/ai_planning_subtree/generic_wield,
+		/datum/ai_planning_subtree/kick_attack,
+		/datum/ai_planning_subtree/generic_resist,
+		/datum/ai_planning_subtree/generic_stand,
+		/datum/ai_planning_subtree/flee_target,
+		/datum/ai_planning_subtree/tree_climb,
+		/datum/ai_planning_subtree/aggro_find_target,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
+		/datum/ai_planning_subtree/leap_attack,
+		/datum/ai_planning_subtree/spacing/melee,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree/human_npc/static,
+		/datum/ai_planning_subtree/find_weapon,
+		/datum/ai_planning_subtree/equip_item,
+		/datum/ai_planning_subtree/loot,
+	)
 
 /// Archer human NPC. Adds archer-specific planning subtrees and blackboard keys on top of
 /// the base. Uses the same melee subtree as a fallback when out of ammo / in melee range.
@@ -103,12 +121,9 @@
 		BB_HUMAN_NPC_LAST_ATTACK_ZONE = null,
 		BB_HUMAN_NPC_WEAKPOINT = null,
 		BB_HUMAN_NPC_JUMP_COOLDOWN = 0,
-		BB_HUMAN_NPC_FLANK_ANGLE = null,
-		BB_HUMAN_NPC_FLANK_TARGET = null,
 		BB_HUMAN_NPC_HARASS_MODE = FALSE,
 		BB_HUMAN_NPC_HARASS_RETREATING = FALSE,
 		BB_HUMAN_NPC_HARASS_COOLDOWN = 0,
-		BB_HUMAN_NPC_JUKE_COOLDOWN = 0,
 
 		// Archer-specific state — only relevant to mobs that carry a bow
 		BB_ARCHER_NPC_BOW = null,

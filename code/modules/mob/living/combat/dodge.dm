@@ -76,29 +76,44 @@
 			return FALSE
 	return TRUE
 
-// origin is used for multi-step dodges like jukes
-/mob/living/proc/get_dodge_destinations(mob/living/attacker, atom/origin = src)
-	var/dodge_dir = get_dir(attacker, origin)
-	if(!dodge_dir) // dir is 0, so we're on the same tile.
-		return null
-	var/list/dirry = list(turn(dodge_dir, -90), dodge_dir, turn(dodge_dir, 90))
-	// pick a random dir
-	var/list/turf/dodge_candidates = list()
-	for(var/dir_to_check in dirry)
-		var/turf/dodge_candidate = get_step(origin, dir_to_check)
-		if(!dodge_candidate)
-			continue
-		if(dodge_candidate.density)
-			continue
-		var/has_impassable_atom = FALSE
-		for(var/atom/movable/AM in dodge_candidate)
-			if(!AM.CanPass(src, dodge_candidate))
-				has_impassable_atom = TRUE
-				break
-		if(has_impassable_atom)
-			continue
-		dodge_candidates += dodge_candidate
-	return dodge_candidates
+/mob/living/proc/combat_sidestep(atom/target, list/offsets, prefer_flank = FALSE)
+	if(QDELETED(target) || !isturf(loc) || !isturf(target.loc))
+		return FALSE
+	if(!(mobility_flags & MOBILITY_STAND))
+		return FALSE
+	var/target_dir = get_dir(src, target)
+	if(!target_dir)
+		return FALSE
+	var/static/list/lateral_offsets = list(-90, -45, 45, 90)
+	if(!length(offsets))
+		offsets = lateral_offsets
+	var/list/candidates = list()
+	for(var/offset in offsets)
+		var/turf/candidate = get_step(src, turn(target_dir, offset))
+		if(check_dodge_turf(candidate))
+			candidates += candidate
+	if(!length(candidates))
+		return FALSE
+	if(prefer_flank && ismob(target))
+		var/mob/victim = target
+		var/list/frontal = list(victim.dir, turn(victim.dir, 45), turn(victim.dir, -45))
+		var/list/flanking = list()
+		for(var/turf/candidate as anything in candidates)
+			if(!(get_dir(victim, candidate) in frontal))
+				flanking += candidate
+		if(length(flanking))
+			candidates = flanking
+	var/turf/step_to = pick(candidates)
+	var/was_fixedeye = fixedeye
+	tempfixeye = TRUE
+	nodirchange = TRUE
+	fixedeye = TRUE
+	Move(step_to, get_dir(src, step_to))
+	nodirchange = FALSE
+	tempfixeye = FALSE
+	fixedeye = was_fixedeye
+	face_atom(target)
+	return TRUE
 
 /mob/proc/do_dodge(mob/user, turf/turfy)
 	if(dodgecd)

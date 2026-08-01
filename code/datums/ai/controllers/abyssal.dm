@@ -76,22 +76,10 @@
 			controller.set_blackboard_key(BB_RETALIATE_COOLDOWN, current_time + 2 SECONDS)
 		dreamfiend.ClickOn(target, list())
 
-	if(sidesteps_after && prob(33)) //this is so fucking hacky, but going off og code this is exactly how it goes ignoring movetimers
-		if(!target || !isturf(target.loc) || !isturf(dreamfiend.loc) || dreamfiend.stat == DEAD)
+	if(sidesteps_after && prob(sidestep_chance))
+		if(dreamfiend.stat == DEAD)
 			return
-		var/target_dir = get_dir(dreamfiend,target)
-
-		var/static/list/cardinal_sidestep_directions = list(-90,-45,0,45,90)
-		var/static/list/diagonal_sidestep_directions = list(-45,0,45)
-		var/chosen_dir = 0
-		if (target_dir & (target_dir - 1))
-			chosen_dir = pick(diagonal_sidestep_directions)
-		else
-			chosen_dir = pick(cardinal_sidestep_directions)
-		if(chosen_dir)
-			chosen_dir = turn(target_dir,chosen_dir)
-			dreamfiend.Move(get_step(dreamfiend,chosen_dir))
-			dreamfiend.face_atom(target)
+		dreamfiend.combat_sidestep(target, sidestep_offsets, sidestep_seeks_flank)
 		
 	if(retaliation_count <= 0)
 		var/main_target = controller.blackboard[BB_MAIN_TARGET]

@@ -1,7 +1,6 @@
 /datum/ai_behavior/static_melee_attack //attack on the spot, other behaviors will handle moving
 	action_cooldown = 0.2 SECONDS 
 	behavior_flags = AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
-	var/sidesteps_after = FALSE
 
 /datum/ai_behavior/static_melee_attack/setup(datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
