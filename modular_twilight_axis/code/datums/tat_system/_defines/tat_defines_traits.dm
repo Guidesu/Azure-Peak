@@ -501,28 +501,7 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 	TRAIT_HERETIC_SEER = TAT_TRAIT_ENTRY("Heretic Seer", 1, "You can tell other Unveiled followers without sharing their faith."), \
 	TRAIT_DUSTRUNNER = TAT_TRAIT_ENTRY("Dust Runner", 1, "You run dust for the Thieves' Guild. Those in the trade know how to spot one of their own."), \
 	TRAIT_WHITE_STAG = TAT_TRAIT_ENTRY("Stag Protection", 1, "The power of the white stag lives on inside of you!"), \
-	TRAIT_TRAINED_SMITH = TAT_TRAIT_ENTRY("Trained Smith", 1, "You've spent long training, and with some more, you will be able to smith legendary items."), \
-	TRAIT_DEFILED_NOBLE = TAT_TRAIT_ENTRY("Drained Noble Blood", 1, "You're of noble blood but... something feels off!"), \
-	TRAIT_ALDERMAN = TAT_TRAIT_ENTRY("Alderman of the Assembly", 2, "Alderman of the Assembly, voice of the outpost's respectable residents. Upon your charter you may spend the treasury and commission the settlement's defense within the bounds the Commons have set you."), \
-	TRAIT_ALDERMAN_CENSURED = TAT_TRAIT_ENTRY("Assembly Censure", -1, "The Assembly has censured your name. No seat, no warrant shall be yours until the week ends."), \
-	TRAIT_OUTLAW = TAT_TRAIT_ENTRY("Outlaw", -2, "This land's meisters and castificos reject your touch."), \
-	TRAIT_KNOWNCRIMINAL = TAT_TRAIT_ENTRY("Known Criminal", -1, "You are a branded criminal. Nothing can change this."), \
-	TRAIT_LEVY = TAT_TRAIT_ENTRY("Levy Militia", 1, "You are one among the Levy! The Crown's spare spears, sent ahead of the Armsmen to face dangers beyond the walls and hold the line. When fighting alongside fellow levymen, you can issue coordinated callouts (Shift + Ctrl + RMB)!"), \
-	TRAIT_JESTERPHOBIA = TAT_TRAIT_ENTRY("Jesterphobic", -1, "You have a severe irrational fear of Jesters."), \
-	TRAIT_XENOPHOBIC = TAT_TRAIT_ENTRY("Xenophobic", -1, "Lesser races pollute our land."), \
-	TRAIT_MISSING_NOSE = TAT_TRAIT_ENTRY("Missing Nose", -2, "You struggle to breathe. Halved stamina regeneration."), \
-	TRAIT_CYCLOPS_LEFT = TAT_TRAIT_ENTRY("Cyclops (Left)", -1, "Your left eye has been poked out..."), \
-	TRAIT_CYCLOPS_RIGHT = TAT_TRAIT_ENTRY("Cyclops (Right)", -1, "Your right eye has been poked out..."), \
-	TRAIT_VAMPBITE = TAT_TRAIT_ENTRY("Vampire Bite", 1, "Victims of your bite will feel immense pleasure."), \
-	TRAIT_DEBTOR = TAT_TRAIT_ENTRY("Default Debtor", -1, "You have defaulted on a loan. Your name is writ red in the ledger until the debt is cleared."), \
-	TRAIT_DEBTOR_CROWN = TAT_TRAIT_ENTRY("Default Debtor (Crown)", -1, "Your defaulted debt is owed to the Crown. The Steward keeps the tally."), \
-	TRAIT_DEBTOR_CHURCH = TAT_TRAIT_ENTRY("Default Debtor (Church)", -1, "Your defaulted debt is owed to the Church. The faithful keep the tally."), \
-	TRAIT_DEBTOR_MERCHANT = TAT_TRAIT_ENTRY("Default Debtor (Merchant)", -1, "Your defaulted debt is owed to the Merchant. The trading company keeps the tally."), \
-	TRAIT_DEBTOR_BATHHOUSE = TAT_TRAIT_ENTRY("Default Debtor (Bathhouse)", -1, "Your defaulted debt is owed to the Bathhouse. The bathmasters keep the tally."), \
-	TRAIT_AGENT_MERCHANT = TAT_TRAIT_ENTRY("Agent of the Trading Company", 1, "You are a chartered agent of the Stewardry. You keep its tally and ledger."), \
-	TRAIT_AGENT_BATHHOUSE = TAT_TRAIT_ENTRY("Agent of the Bathhouse", 1, "You are an agent of the Bathhouse. You keep its tally and ledger."), \
-	TRAIT_AGENT_CHURCH = TAT_TRAIT_ENTRY("Ecclesiastical Benefactor", 1, "You are a Benefactor of the Church of the Concordat. The faithful know your name."), \
-	TRAIT_ARREARS = TAT_TRAIT_ENTRY("Poll Tax Arrears", -1, "You are behind on your poll tax. The Stewardry keeps the tally; the garrison may mark your destitution.")
+	TRAIT_TRAINED_SMITH = TAT_TRAIT_ENTRY("Trained Smith", 1, "You've spent long training, and with some more, you will be able to smith legendary items.")
 
 #define TAT_TRAIT_STAT_POINT_RULES list( \
 	TAT_TRAIT_BONUS_STAT_POOL = TAT_BUILD_STAT_BONUS_EXTRA_STATS, \
