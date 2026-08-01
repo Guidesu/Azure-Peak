@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(chastity_standard_traits, list(
 	var/chastity_move_delay = CHASTITY_MOVE_SOUND_DELAY // delay between movement sounds
 	var/chastity_move_volume = 55 // how loud is our cock cage?
 	var/chastity_move_chance = 5 // how often does it trigger on move?
-	var/chastity_high_pop_client_cap = CHASTITY_HIGH_POP_THRESHOLD // for jingle throttle. Don't want the server spamming the noise when 120 people potentially cage up. 
+	var/chastity_high_pop_client_cap = CHASTITY_HIGH_POP_THRESHOLD // for jingle throttle. Don't want the server spamming the noise when 120 people potentially cage up.
 	var/chastity_high_pop_move_chance_mult = CHASTITY_HIGH_POP_SOUND_MULT // lower chance to play the sound in high pop.
 	var/tmp/chastity_move_counter = 0 // counter for move sound delay
 // Core type definition — base name, icon, sizing, and feature-slot vars.
@@ -48,7 +48,9 @@ GLOBAL_LIST_INIT(chastity_standard_traits, list(
 	var/chastity_organtype = 0 // 0 = neuter, 1 = penis required, 2 = vagina required, 3 = both required
 	var/obj/item/roguekey/chastity/generated_key = null // persistent key object for this device; reused across re-equips
 	var/lockable = TRUE // if the device can be traditionally locked with a key or lockpick, should be true for everything but cursed devices which are locked via the collar master menu
-	locked = FALSE
+	var/lockhash = null
+	var/lockid = null
+	var/locked = FALSE
 	var/chastity_cursed = FALSE // if the device works like a cursed collar
 	var/mob/living/carbon/human/chastity_victim = null // variable for anyone currently caged
 	var/datum/mind/chastity_master = null // varient of the collar master variable but for specifically cages

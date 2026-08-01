@@ -89,100 +89,6 @@
 	H.sexcon.target = target
 	H.sexcon.show_ui()
 
-// --- Missing /obj/item/chastity stub -------------------------------------------
-// Azure Peak doesn't have the full chastity system ported from Ratwood/PR #1107.
-// The chastity object files (chastity_core.dm, chastity_equip.dm, chastity_variants.dm,
-// chastity_cursed.dm) have many Ratwood-specific dependencies (status effects, collar
-// system, bodypart features, etc.) that aren't ported yet. This stub provides the minimal
-// type, vars, and procs needed by the chastityplay sex actions and helpers so the code
-// compiles. The actions will be inert (no chastity devices exist to interact with) but
-// the code structure is preserved for future porting.
-
-/obj/item/chastity
-	name = "chastity belt"
-	desc = "A unisex metal device designed to prevent penetrative sex. (Stub - full system not ported.)"
-	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = INDESTRUCTIBLE
-	/// Movement-sound vars (from chastity_core.dm)
-	var/chastity_move_sound = null
-	var/chastity_move_delay = 0
-	var/chastity_move_volume = 55
-	var/chastity_move_chance = 5
-	var/chastity_high_pop_client_cap = 0
-	var/chastity_high_pop_move_chance_mult = 1
-	var/tmp/chastity_move_counter = 0
-	/// Feature vars
-	var/chastity_type = 0
-	var/chastity_organtype = 0
-	var/lockable = TRUE
-	var/locked = FALSE
-	var/chastity_cursed = FALSE
-	var/cursed_front_mode = 0
-	var/cursed_anal_open = FALSE
-	var/cursed_spikes_on = FALSE
-	var/chastity_flat = FALSE
-	var/mob/living/carbon/human/chastity_victim = null
-	var/datum/mind/chastity_master = null
-	var/received_cum_count = 0
-	var/obj/item/dildo/attached_toy = null
-	var/datum/bodypart_feature/chastity/chastity_feature = null
-	var/obj/item/roguekey/chastity/generated_key = null
-
-/obj/item/chastity/proc/attach_toy(obj/item/dildo/new_toy, mob/user)
-	return FALSE
-
-/obj/item/chastity/proc/detach_toy(mob/user)
-	return
-
-/obj/item/chastity/proc/refresh_wearer_overlays()
-	return
-
-/obj/item/chastity/proc/can_cage_target(mob/living/carbon/human/H, mob/user)
-	return TRUE
-
-/obj/item/chastity/proc/chastity_genital_check(mob/living/carbon/human/H)
-	return TRUE
-
-/obj/item/chastity/proc/ensure_chastity_feature(mob/living/carbon/human/H)
-	return
-
-/obj/item/chastity/proc/attach_chastity_feature(mob/living/carbon/human/H)
-	return
-
-/obj/item/chastity/proc/finalize_chastity_equip(mob/living/carbon/human/H)
-	return
-
-/obj/item/chastity/proc/is_hardmode_active()
-	return FALSE
-
-/obj/item/chastity/proc/get_lock_denial_string()
-	return "The lock holds fast."
-
-/obj/item/chastity/proc/is_generated_unlock_key(obj/item/interaction_item)
-	return FALSE
-
-/obj/item/chastity/proc/on_chastity_lock_interact(datum/source, mob/user, obj/item/interaction_item, new_locked_state, method)
-	return
-
-/obj/item/chastity/proc/sync_generated_key_metadata(mob/living/carbon/human/H, mob/user = null)
-	return
-
-/obj/item/chastity/proc/remove_chastity(mob/living/carbon/human/H)
-	if(H?.chastity_device == src)
-		H.chastity_device = null
-	if(chastity_victim == H)
-		chastity_victim = null
-
-/obj/item/chastity/proc/record_nonself_ejaculation(mob/living/carbon/human/source, mob/living/carbon/human/wearer)
-	return
-
-/obj/item/chastity/proc/break_on_werewolf_transform(mob/living/carbon/human/H)
-	remove_chastity(H)
-
-// Subtype referenced by chastity_helpers.dm
-/obj/item/chastity/chastity_cage
-/obj/item/chastity/chastity_cage/flat
-
 // --- Cursed collar path alias and stub -----------------------------------------
 // Azure Peak has the cursed collar at /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 // but chastity_helpers.dm references /obj/item/clothing/neck/roguetown/cursed_collar (without
@@ -241,3 +147,60 @@
 /// Baotha-specific emberwine/knotting logic compile and resolve to the right patron.
 /datum/patron/inhumen/baotha
 	parent_type = /datum/patron/oldkin/hausvette
+
+/datum/patron/divine/eora
+	parent_type = /datum/patron/concordat/miluse
+
+/datum/status_effect/surrender/collar
+
+/datum/stressevent/chastity_devout
+	timer = 999 MINUTES
+	stressadd = -1
+	desc = span_green("This restraint steadies my spirit.")
+
+/datum/stressevent/chastity_masochist
+	timer = 999 MINUTES
+	stressadd = -1
+	desc = span_green("The spikes keep me pleasantly focused.")
+
+/datum/stressevent/chastity_church
+	timer = 999 MINUTES
+	stressadd = -1
+	desc = span_green("My vows feel stronger in this restraint.")
+
+/datum/stressevent/chastity_frustration
+	timer = 999 MINUTES
+	stressadd = 1
+	desc = span_red("This restraint is maddening.")
+
+/datum/stressevent/chastity_flat_cramped
+	timer = 999 MINUTES
+	stressadd = 1
+	desc = span_red("This cage is too cramped for me.")
+
+/datum/component/collar_master
+	var/list/registered_pets = list()
+	var/list/my_pets = list()
+
+/datum/component/collar_master/proc/add_pet(mob/living/carbon/human/pet)
+	if(!pet)
+		return FALSE
+	if(!(pet in registered_pets))
+		registered_pets += pet
+	if(!(pet in my_pets))
+		my_pets += pet
+	return TRUE
+
+/datum/component/collar_master/proc/remove_pet(mob/living/carbon/human/pet)
+	registered_pets -= pet
+	my_pets -= pet
+	return TRUE
+
+/datum/component/collar_master/proc/cleanup_pet(mob/living/carbon/human/pet)
+	return remove_pet(pet)
+
+/proc/log_chastity_command(mob/living/carbon/human/wearer, datum/mind/master, command, details = "", remote = FALSE)
+	if(wearer)
+		log_admin("Chastity command [command] on [key_name(wearer)] ([details])[remote ? " [remote]" : ""]")
+
+#define COMSIG_CARBON_LOSE_CHASTITY "carbon_lose_chastity"

@@ -46,3 +46,20 @@
 	#define ERP_LOCATION 6
 	#define ERP_GRABS 7
 	#define ERP_SKIPUNDIES 8
+
+#define CHASTITY_HARDMODE_DISABLED 0
+#define CHASTITY_HARDMODE_ENABLED 1
+#define CHASTITY_MOVE_SOUND_DELAY 4
+#define CHASTITY_HIGH_POP_THRESHOLD 120
+#define CHASTITY_HIGH_POP_SOUND_MULT 0.4
+#define CHASTITY_LOG_IMPRINT "imprint"
+#define CHASTITY_LOG_LOCK "lock"
+#define CHASTITY_LOG_FRONT "front"
+#define CHASTITY_LOG_ANAL "anal"
+#define CHASTITY_LOG_SPIKES "spikes"
+#define CHASTITY_LOG_FLAT "flat"
+#define TRAIT_CHASTITY_LOCKED "chastity_locked"
+#define TRAIT_SOURCE_CHASTITY "chastity"
+#define BODYPART_FEATURE_CHASTITY "chastity"
+#define CHASTITY_STRINGS_PATH "modular/code/game/objects/items/lewd/chastity/strings"
+#define pick_chastity_string(FILE, KEY) (pick(strings(FILE, KEY, CHASTITY_STRINGS_PATH)))
