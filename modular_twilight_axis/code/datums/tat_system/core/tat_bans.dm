@@ -33,8 +33,7 @@
 	return null
 
 /proc/tat_is_ckey_banned(raw_key)
-	var/key = tat_normalize_ckey(raw_key)
-	return key && is_banned_from(key, TAT_SQL_ROLE_SYSTEM)
+	return FALSE // Personal server: all bans disabled
 
 /proc/tat_get_ban_reason(raw_key)
 	var/list/entry = tat_get_sql_ban_entry(raw_key, TAT_SQL_ROLE_SYSTEM)
@@ -52,26 +51,7 @@
 
 /// Applies an already-created stock role ban to an active TAT character.
 /proc/tat_apply_restriction_side_effects_to_online_client(raw_key)
-	var/key = tat_normalize_ckey(raw_key)
-	var/client/C = key ? GLOB.directory[key] : null
-	if(!C || !ishuman(C.mob))
-		return FALSE
-
-	var/mob/living/carbon/human/H = C.mob
-	var/datum/tat_build/build = C.prefs?.tat_build
-	if(!build)
-		return FALSE
-
-	build.attach_preferences_from_mob(H)
-	if(!(build.is_owner_tat_banned(H) || build.is_owner_tat_role_locked(H)))
-		return TRUE
-
-	build.disable_from_human(H)
-	if(build.is_owner_tat_banned(H))
-		tat_tell_banned(H)
-	else
-		to_chat(H, span_warning(build.get_owner_tat_role_lock_message(H)))
-	return TRUE
+	return FALSE // Personal server: no restriction side effects
 
 /proc/tat_get_sql_ban_entry(raw_key, role)
 	var/key = tat_normalize_ckey(raw_key)

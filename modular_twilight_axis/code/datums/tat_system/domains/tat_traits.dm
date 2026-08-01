@@ -478,11 +478,10 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	return islist(get_entry(trait_id))
 
 /datum/tat_traits/proc/get_pq_lock_minimum(trait_id)
-	var/list/rules = GLOB.tat_trait_pq_lock_rules
-	return round(rules[trait_id] || 0)
+	return 0 // Personal server: no PQ locks on traits
 
 /datum/tat_traits/proc/is_pq_locked_trait(trait_id)
-	return get_pq_lock_minimum(trait_id) > 0
+	return FALSE // Personal server: no PQ locks on traits
 
 /datum/tat_traits/proc/can_select_trait(trait_id, is_revalidation = FALSE)
 	if(!check_trait(trait_id))
@@ -492,25 +491,14 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	// Role-gated traits are now selectable in the single archetype.
 	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && owner_build?.has_built_in_weapon_training_foundation())
 		return FALSE
-	if(owner_build?.directions?.is_role_trait(trait_id))
-		return FALSE
-	if(trait_id == TAT_TRAIT_CONTRACTOR && !owner_build?.can_select_contractor_trait())
-		return FALSE
-	if(trait_id == TAT_TRAIT_CONTRACTOR_ENTITY && owner_build?.get_owner_ckey() != "mrix")
-		return FALSE
-	if(is_contractor_trait_blocked(trait_id))
-		return FALSE
-	if(trait_id == TAT_TRAIT_DRUID_INITIATE && !owner_build?.can_select_druid_initiate_trait())
-		return FALSE
+	// Personal server: all trait restrictions removed (contractor, mrix-only,
+	// druid_initiate, PQ minimum, direction role-gate, contractor blocks)
 	// Foundation/role-gated traits disabled in single-archetype build.
 	if(owner_build?.directions && !owner_build.directions.can_select_trait(trait_id))
 		return FALSE
 	var/list/requirements = get_trait_requirement_map()
 	var/list/requirement_rule = requirements[trait_id]
 	if(islist(requirement_rule) && !trait_requirement_is_met(requirement_rule))
-		return FALSE
-	var/pq_minimum = get_pq_lock_minimum(trait_id)
-	if(pq_minimum > 0 && (owner_build?.get_owner_playerquality() || 0) < pq_minimum)
 		return FALSE
 	// Virtue-granted flaws are already real character traits. Do not allow buying
 	// the same negative TAT trait again just to farm trait points. Positive

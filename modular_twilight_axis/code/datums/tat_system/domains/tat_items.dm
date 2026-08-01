@@ -162,32 +162,10 @@
 	return base_points + (owner_build ? owner_build.get_bonus_item_points() : 0)
 
 /datum/tat_items/proc/can_use_weapon_supply_type(supply_type)
-	switch(supply_type)
-		if(TAT_SUPPLY_IRON)
-			return TRUE
-		if(TAT_SUPPLY_BRONZE)
-			return !!owner_build?.has_trait(TAT_TRAIT_BRONZE_SUPPLIER)
-		if(TAT_SUPPLY_SILVER)
-			return !!owner_build?.has_trait(TAT_TRAIT_SILVER_SUPPLIER)
-		if(TAT_SUPPLY_STEEL)
-			return !!owner_build?.has_trait(TAT_TRAIT_STEEL_SUPPLIER)
-		if(TAT_SUPPLY_FIREARMS)
-			return !!owner_build?.has_trait(TAT_TRAIT_FIREARMS_SUPPLIER)
-		if(TAT_SUPPLY_ARTIFACTS)
-			return !!owner_build?.has_trait(TAT_TRAIT_ARTIFACTS_SUPPLIER)
-	return FALSE
+	return TRUE // Personal server: all weapon supply restrictions disabled
 
 /datum/tat_items/proc/can_use_armor_family(armor_family)
-	switch(armor_family)
-		if(TAT_ARMOR_CLOTH)
-			return TRUE
-		if(TAT_ARMOR_LEATHER)
-			return !!owner_build?.has_trait(TAT_TRAIT_LEATHER_SUPPLIER)
-		if(TAT_ARMOR_MAIL)
-			return !!owner_build?.has_trait(TAT_TRAIT_MAIL_SUPPLIER) || !!owner_build?.has_trait(TRAIT_MEDIUMARMOR) || !!owner_build?.has_trait(TRAIT_HEAVYARMOR)
-		if(TAT_ARMOR_PLATE)
-			return !!owner_build?.has_trait(TAT_TRAIT_PLATE_SUPPLIER) || !!owner_build?.has_trait(TRAIT_HEAVYARMOR)
-	return FALSE
+	return TRUE // Personal server: all armor family restrictions disabled
 
 /proc/tat_ckey_in_ckey_list(key, list/ckey_list)
 	key = ckey(key)
@@ -201,42 +179,15 @@
 	return FALSE
 
 /proc/tat_can_ckey_use_donation_item(key, required_tier, list/entry = null)
-	required_tier = round(required_tier || 0)
-	if(required_tier <= 0)
-		return TRUE
-
-	key = ckey(key)
-	if(!key)
-		return FALSE
-	if(tat_ckey_in_ckey_list(key, GLOB.tat_donation_access_all_ckeys))
-		return TRUE
-	if(islist(entry) && tat_ckey_in_ckey_list(key, entry["donat_ignore"]))
-		return TRUE
-
-	return round(check_patreon_lvl(key) || 0) >= required_tier
+	return TRUE // Personal server: all donation tier restrictions disabled
 
 /datum/tat_items/proc/can_use_item_entry(list/entry)
 	if(!islist(entry))
 		return FALSE
 	if(is_loadout_only_entry(entry))
 		return FALSE
-	var/donat_tier = round(entry["donat_tier"] || 0)
-	if(donat_tier > 0 && !tat_can_ckey_use_donation_item(owner_build?.get_owner_ckey(), donat_tier, entry))
-		return FALSE
-
-	var/required_trait = entry["required_trait"]
-	if(required_trait && !owner_build?.has_trait(required_trait))
-		return FALSE
-
-	var/unlock_type = entry["unlock_type"]
-	var/unlock_key = entry["unlock_key"]
-	switch(unlock_type)
-		if(TAT_UNLOCK_TYPE_WEAPON_SUPPLY)
-			return can_use_weapon_supply_type(unlock_key)
-		if(TAT_UNLOCK_TYPE_ARMOR_FAMILY)
-			return can_use_armor_family(unlock_key)
-		if(TAT_UNLOCK_TYPE_TRAIT)
-			return !!owner_build?.has_trait(unlock_key)
+	// Personal server: all item restrictions removed (donation tier,
+	// required_trait, weapon supply, armor family, trait unlock)
 	return TRUE
 
 /datum/tat_items/proc/check_item(item_path)

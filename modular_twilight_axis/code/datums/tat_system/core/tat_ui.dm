@@ -582,15 +582,7 @@
 			continue
 		var/can_add = traits?.can_select_trait(trait_id)
 		var/lock_reason = traits?.get_trait_requirement_block_reason(trait_id) || directions?.get_trait_block_reason(trait_id)
-		if(!lock_reason && !can_add)
-			if(trait_id == TAT_TRAIT_CONTRACTOR && !can_select_contractor_trait())
-				lock_reason = "Contractor is not available for this character."
-			else if(traits?.is_contractor_trait_blocked(trait_id))
-				lock_reason = "Contractor may only select skill traits."
-			else if(trait_id == TAT_TRAIT_DRUID_INITIATE && !can_select_druid_initiate_trait())
-				lock_reason = "Requires Ignatius as patron."
-			else if(traits?.is_pq_locked_trait(trait_id))
-				lock_reason = "Requires [traits.get_pq_lock_minimum(trait_id)] player quality."
+		// Personal server: all trait lock reasons removed (contractor, druid, PQ)
 		result[trait_id] = list(
 			"name" = entry["name"],
 			"cost" = get_trait_cost_display(trait_id),

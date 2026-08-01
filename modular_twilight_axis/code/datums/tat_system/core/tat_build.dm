@@ -102,13 +102,13 @@
 	return FALSE
 
 /datum/tat_build/proc/can_select_contractor_trait()
-	return is_owner_admin() //TRUE for full lock
+	return TRUE // Personal server: no admin-only traits
 
 /datum/tat_build/proc/has_dendor_patron()
 	return owner_preferences?.selected_patron?.type == /datum/patron/severance/ignatius
 
 /datum/tat_build/proc/can_select_druid_initiate_trait()
-	return has_dendor_patron()
+	return TRUE // Personal server: no patron-gated traits
 
 /datum/tat_build/proc/is_owner_tat_banned(mob/user = null)
 	if(user?.ckey)
@@ -119,10 +119,7 @@
 	return tat_is_ckey_banned(key)
 
 /datum/tat_build/proc/is_owner_tat_role_locked(mob/user = null)
-	var/key = user?.ckey || get_owner_ckey()
-	if(!key)
-		return FALSE
-	return tat_is_role_bucket_locked(key, get_role_bucket())
+	return FALSE // Personal server: all role locks disabled
 
 /datum/tat_build/proc/get_owner_tat_role_lock_message(mob/user = null)
 	var/key = user?.ckey || get_owner_ckey()
@@ -958,14 +955,7 @@
 	return class_name
 
 /datum/tat_build/proc/get_tat_role_min_pq(bucket)
-	var/class_path = get_tat_role_class_path(bucket)
-	if(!class_path)
-		return 0
-
-	var/datum/advclass/class_datum = new class_path
-	var/minimum = round(class_datum?.min_pq || 0)
-	qdel(class_datum)
-	return minimum
+	return 0 // Personal server: no PQ minimums on roles
 
 /datum/tat_build/proc/build_ui_role_status_for_data(list/build_data)
 	var/bucket = get_role_bucket_from_data(build_data)
