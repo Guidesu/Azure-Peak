@@ -615,6 +615,11 @@
 	if(HAS_TRAIT(living_owner, TRAIT_LEYLINE_HASTE)) // Hastens CD by 25%.
 		newcd *= 0.75
 
+	// Tempo: being swarmed by foes focuses the mind, hastening cooldowns
+	var/tempo_cd_bonus = living_owner.get_tempo_bonus(TEMPO_TAG_SPELL_COOLDOWN)
+	if(tempo_cd_bonus > 0)
+		newcd = max(newcd - tempo_cd_bonus, 0.5 SECONDS)
+
 	return newcd
 
 /// Returns the armor cooldown penalty multiplier for this spell and caster.
@@ -653,6 +658,11 @@
 	// Weapon-in-hand penalty
 	if(weapon_penalty_active)
 		new_cost += base_cost * WEAPON_CAST_PENALTY
+
+	// Tempo: being swarmed by foes focuses the mind, reducing chi/devotion costs
+	var/tempo_cost_mult = living_owner.get_tempo_bonus(TEMPO_TAG_SPELL_COST)
+	if(tempo_cost_mult < 1.0)
+		new_cost *= tempo_cost_mult
 
 	return max(new_cost, 0.1)
 

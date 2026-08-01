@@ -77,6 +77,11 @@
 	// Enter new stance
 	if(new_trait != TRAIT_STANCE_NEUTRAL)
 		ADD_TRAIT(H, new_trait, "bending_stance")
+	// Tempo stance also grants TRAIT_TEMPO so the real tempo system activates against NPCs
+	if(new_trait == TRAIT_STANCE_TEMPO)
+		ADD_TRAIT(H, TRAIT_TEMPO, "bending_stance")
+	else
+		REMOVE_TRAIT(H, TRAIT_TEMPO, "bending_stance")
 	active_stance_trait = new_trait
 
 	// Show enter gesture
@@ -109,6 +114,8 @@
 /datum/action/cooldown/spell/bending_stance/Destroy()
 	if(owner && active_stance_trait && active_stance_trait != TRAIT_STANCE_NEUTRAL)
 		REMOVE_TRAIT(owner, active_stance_trait, "bending_stance")
+	if(owner)
+		REMOVE_TRAIT(owner, TRAIT_TEMPO, "bending_stance")
 	return ..()
 
 // ═══════════════════════════════════════════════════════════════════
@@ -169,6 +176,17 @@
 			"cost_mult" = 0.85,
 			"cooldown_mult" = 1.1,
 			"damage_mult" = 0.9,
+			"speed_bonus" = 0,
+		),
+		list(
+			"label" = "Flame Tempo",
+			"trait" = TRAIT_STANCE_TEMPO,
+			"enter_gesture" = "begins a rhythmic, aggressive footwork pattern, each step sending a pulse of flame across the ground",
+			"exit_gesture" = "stops the rhythmic footwork, the flame pulses dying",
+			"desc" = "Battle rhythm. The more foes attack you, the stronger and cheaper your firebending becomes. Tempo empowers all bending.",
+			"cost_mult" = 1.0,
+			"cooldown_mult" = 1.0,
+			"damage_mult" = 1.0,
 			"speed_bonus" = 0,
 		),
 	)
@@ -233,6 +251,17 @@
 			"damage_mult" = 0.9,
 			"speed_bonus" = 0,
 		),
+		list(
+			"label" = "Tidal Tempo",
+			"trait" = TRAIT_STANCE_TEMPO,
+			"enter_gesture" = "begins a rhythmic back-and-forth sway, like the tide rolling in and out, each motion building momentum",
+			"exit_gesture" = "stops the tidal swaying, the rhythm of the sea fading",
+			"desc" = "Battle rhythm. The more foes attack you, the stronger and cheaper your waterbending becomes. Tempo empowers all bending.",
+			"cost_mult" = 1.0,
+			"cooldown_mult" = 1.0,
+			"damage_mult" = 1.0,
+			"speed_bonus" = 0,
+		),
 	)
 
 // ═══════════════════════════════════════════════════════════════════
@@ -293,6 +322,17 @@
 			"cost_mult" = 1.1,
 			"cooldown_mult" = 0.85,
 			"damage_mult" = 1.1,
+			"speed_bonus" = 0,
+		),
+		list(
+			"label" = "Quake Tempo",
+			"trait" = TRAIT_STANCE_TEMPO,
+			"enter_gesture" = "begins a rhythmic stomping pattern, each footfall sending a small tremor through the ground, building in intensity",
+			"exit_gesture" = "stops the rhythmic stomping, the tremors settling to stillness",
+			"desc" = "Battle rhythm. The more foes attack you, the stronger and cheaper your earthbending becomes. Tempo empowers all bending.",
+			"cost_mult" = 1.0,
+			"cooldown_mult" = 1.0,
+			"damage_mult" = 1.0,
 			"speed_bonus" = 0,
 		),
 	)
@@ -356,5 +396,16 @@
 			"cooldown_mult" = 0.95,
 			"damage_mult" = 0.75,
 			"speed_bonus" = 1,
+		),
+		list(
+			"label" = "Gale Tempo",
+			"trait" = TRAIT_STANCE_TEMPO,
+			"enter_gesture" = "begins a rhythmic circular motion, arms spiraling faster and faster like a building cyclone",
+			"exit_gesture" = "slows the spiraling motion, the cyclone dissipating",
+			"desc" = "Battle rhythm. The more foes attack you, the stronger and cheaper your airbending becomes. Tempo empowers all bending.",
+			"cost_mult" = 1.0,
+			"cooldown_mult" = 1.0,
+			"damage_mult" = 1.0,
+			"speed_bonus" = 0,
 		),
 	)

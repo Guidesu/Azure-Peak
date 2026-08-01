@@ -411,6 +411,9 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 	#define TEMPO_DODGE_LOSS_NONE 2
 #define TEMPO_TAG_BINDABLE "defbindable"
 #define TEMPO_TAG_EQUIPTOSS "equiptoss"
+#define TEMPO_TAG_SPELL_POWER "spellpower"		//Bonus spell/miracle power multiplier at each tempo tier
+#define TEMPO_TAG_SPELL_COST "spellcost"		//Devotion/chi cost reduction multiplier at each tempo tier
+#define TEMPO_TAG_SPELL_COOLDOWN "spellcooldown"	//Cooldown reduction for spells/miracles at each tempo tier
 
 #define TEMPO_FACTION_KEEP (1 << 0)
 #define TEMPO_FACTION_WRETCH (1 << 1)
@@ -423,7 +426,7 @@ Medical defines
 #define CONSTITUTION_BLEEDRATE_MOD 0.05	//How much slower we'll be bleeding for every CON point. 0.1 = 10% slower.
 #define CONSTITUTION_BLEEDRATE_CAP 20	//The CON value up to which we get a bleedrate reduction.
 
-#define WILLPOWER_STARTING_STAMINA 135	//Starting stamina (green bar) value. Before major changes this would represent Expert Athletics + ~11.5 WIL 
+#define WILLPOWER_STARTING_STAMINA 135	//Starting stamina (green bar) value. Before major changes this would represent Expert Athletics + ~11.5 WIL
 #define WILLPOWER_MODIFIER	5	//How much stamina (flat value) we gain (or lose) for every WIL above / below 10.
 
 #define SPEED_MOVSPD_MOD 0.075	//Multiplicative modifier for our speed, per point (for both <10 and >10 values)
@@ -437,7 +440,7 @@ Medical defines
 #define CRIT_ARMOUR_THRESHOLD 0.35 // ratio of obj_integrity and max_integrity for zone armour. Beyond this, crits are prevented.
 
 /*
-	Critical Resistance Defines 
+	Critical Resistance Defines
 */
 // Normal classes are guaranteed 4 resists, NPC 1, noblood / revenant 1
 #define CRIT_RESISTANCE_STACKS_PLAYER 4

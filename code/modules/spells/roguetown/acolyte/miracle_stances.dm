@@ -37,8 +37,6 @@
 	var/stance_index = 1
 	/// Currently active stance trait
 	var/active_stance_trait
-	/// Tempo counter — builds with each miracle cast while in tempo stance
-	var/tempo_stacks = 0
 	/// All available stances. Subtypes override with patron-specific stances.
 	var/list/stances = list(
 		list(
@@ -75,12 +73,14 @@
 	if(active_stance_trait)
 		H.visible_message(span_notice("[H] [stance["exit_gesture"]]."), span_notice("You [stance["exit_gesture"]]."))
 
-	// Reset tempo when switching stances
-	tempo_stacks = 0
-
 	// Enter new stance
 	if(new_trait != TRAIT_STANCE_NEUTRAL)
 		ADD_TRAIT(H, new_trait, "miracle_stance")
+	// Tempo stance also grants TRAIT_TEMPO so the real tempo system activates
+	if(new_trait == TRAIT_STANCE_TEMPO)
+		ADD_TRAIT(H, TRAIT_TEMPO, "miracle_stance")
+	else
+		REMOVE_TRAIT(H, TRAIT_TEMPO, "miracle_stance")
 	active_stance_trait = new_trait
 
 	// Show enter gesture
@@ -97,21 +97,23 @@
 	to_chat(user, span_notice("Stance selected: [stance["label"]] — [stance["desc"]] (cast to assume)."))
 	return TRUE
 
-/// Called when a miracle is cast while a stance is active — builds tempo, applies bonuses
+/// Called when a miracle is cast while a stance is active — tempo stance benefits from the real tempo system
 /datum/action/cooldown/spell/miracle_stance/proc/on_miracle_cast(mob/living/carbon/human/H)
 	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
 		return
+	// Tempo stance uses the real tempo system (TRAIT_TEMPO) — bonuses are applied
+	// automatically via get_tempo_bonus() in spell_cooldown.dm's get_adjusted_cost/cooldown
+	if(active_stance_trait == TRAIT_STANCE_TEMPO && HAS_TRAIT(H, TRAIT_TEMPO))
+		var/attacker_count = length(H.tempo_attackers)
+		if(attacker_count >= TEMPO_ONE)
+			to_chat(H, span_notice("The rhythm of battle flows through you — [attacker_count] foes, your miracles surge with tempo!"))
 
-	if(active_stance_trait == TRAIT_STANCE_TEMPO)
-		tempo_stacks = min(tempo_stacks + 1, 5)
-		to_chat(H, span_notice("Tempo builds — [tempo_stacks] stacks. Next miracle is [tempo_stacks * 10]% stronger."))
-
-/datum/action/cooldown/spell/miracle_stance/proc/get_tempo_bonus()
-	if(active_stance_trait != TRAIT_STANCE_TEMPO)
+/// Get the tempo power bonus for miracle damage/healing — uses the real tempo system
+/datum/action/cooldown/spell/miracle_stance/proc/get_tempo_power_bonus()
+	if(!owner)
 		return 1.0
-	var/bonus = 1.0 + (tempo_stacks * 0.1)
-	tempo_stacks = 0 // Reset after consuming
-	return bonus
+	var/mob/living/L = owner
+	return L.get_tempo_bonus(TEMPO_TAG_SPELL_POWER)
 
 /datum/action/cooldown/spell/miracle_stance/proc/update_stance_maptext(label)
 	for(var/datum/hud/hud as anything in viewers)
@@ -129,6 +131,8 @@
 /datum/action/cooldown/spell/miracle_stance/Destroy()
 	if(owner && active_stance_trait && active_stance_trait != TRAIT_STANCE_NEUTRAL)
 		REMOVE_TRAIT(owner, active_stance_trait, "miracle_stance")
+	if(owner)
+		REMOVE_TRAIT(owner, TRAIT_TEMPO, "miracle_stance")
 	return ..()
 
 // ═══════════════════════════════════════════════════════════════════
@@ -181,7 +185,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a rhythmic swaying motion, hands tracing circles like the sun's path across the sky",
 			"exit_gesture" = "stops the rhythmic swaying, the solar rhythm ending",
-			"desc" = "Rhythmic faith. Each miracle cast builds tempo (+10% power per stack, max 5). Resets if you stop casting. The Sun's rhythm drives you forward.",
+			"desc" = "Rhythmic faith. Each miracle cast builds tempo (+10% power per stack, max 5). Resets if you stop casting. The Sun's rhythm empowers you in battle.",
 			"cost_mult" = 1.0, "cooldown_mult" = 0.95, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
@@ -236,7 +240,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a rhythmic back-and-forth sway, like the tide rolling in and out",
 			"exit_gesture" = "stops the tidal swaying, the rhythm of the sea fading",
-			"desc" = "Tidal rhythm. Each miracle builds tempo (+10% power per stack, max 5). The tide's rhythm empowers your faith.",
+			"desc" = "Tidal rhythm. Each miracle builds tempo (+10% power per stack, max 5). The tide's rhythm empowers you in battle.",
 			"cost_mult" = 1.0, "cooldown_mult" = 0.95, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
@@ -291,7 +295,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a rhythmic hammering motion, fists alternating like a blacksmith striking hot steel",
 			"exit_gesture" = "stops the hammering rhythm, the forge going quiet",
-			"desc" = "Forge tempo. Each miracle builds tempo (+10% power per stack, max 5). The hammer's rhythm drives your faith.",
+			"desc" = "Forge tempo. Each miracle builds tempo (+10% power per stack, max 5). The hammer's rhythm empowers you in battle.",
 			"cost_mult" = 1.0, "cooldown_mult" = 0.95, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
@@ -346,7 +350,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a slow, deliberate rhythmic step, like a funeral procession — each step measured and solemn",
 			"exit_gesture" = "stops the procession step, the march ending",
-			"desc" = "Funeral tempo. Each miracle builds tempo (+10% power per stack, max 5). The march of the dead drives your faith.",
+			"desc" = "Funeral tempo. Each miracle builds tempo (+10% power per stack, max 5). The march of the dead empowers you in battle.",
 			"cost_mult" = 1.0, "cooldown_mult" = 1.0, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
@@ -401,7 +405,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a slow, circular motion with their hands, tracing the moon's phases from new to full and back",
 			"exit_gesture" = "stops the circular motion, the lunar cycle ending",
-			"desc" = "Lunar tempo. Each miracle builds tempo (+10% power per stack, max 5). The moon's cycle drives your faith.",
+			"desc" = "Lunar tempo. Each miracle builds tempo (+10% power per stack, max 5). The moon's cycle empowers you in battle.",
 			"cost_mult" = 1.0, "cooldown_mult" = 0.95, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
@@ -464,7 +468,7 @@
 			"trait" = TRAIT_STANCE_TEMPO,
 			"enter_gesture" = "begins a rhythmic, swaying prayer motion, body rocking back and forth in sacred rhythm",
 			"exit_gesture" = "stops the sacred swaying, the rhythm ending",
-			"desc" = "Sacred rhythm. Each miracle builds tempo (+10% power per stack, max 5). The rhythm of faith drives you forward.",
+			"desc" = "Battle rhythm. The more foes attack you, the stronger and cheaper your miracles become. Tempo empowers all faith.",
 			"cost_mult" = 1.0, "cooldown_mult" = 0.95, "heal_mult" = 1.0, "damage_mult" = 1.0,
 		),
 	)
