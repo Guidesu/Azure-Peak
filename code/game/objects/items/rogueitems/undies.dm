@@ -78,6 +78,11 @@
 	icon_state = "eoran_reg"
 	sprite_acc = /datum/sprite_accessory/underwear/briefs/eoran
 
+/obj/item/undies/loinclothunder
+	name = "small loincloth"
+	icon_state = "loinclothunder"
+	sprite_acc = /datum/sprite_accessory/underwear/loinclothunder
+
 // Craft
 
 /datum/crafting_recipe/roguetown/sewing/undies

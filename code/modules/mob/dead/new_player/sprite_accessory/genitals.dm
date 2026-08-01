@@ -27,6 +27,8 @@
 		return "[icon_state]_[pp.penis_size]"
 
 /datum/sprite_accessory/penis/is_visible(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
+	if(owner.sexcon && owner.sexcon.bottom_exposed == TRUE)
+		return TRUE
 	if(owner.underwear)
 		return FALSE
 	return is_human_part_visible(owner, HIDEJUMPSUIT|HIDECROTCH)
@@ -53,6 +55,11 @@
 	name = "Flared"
 	color_key_defaults = list(KEY_CHEST_COLOR, KEY_CHEST_COLOR)
 
+/datum/sprite_accessory/penis/flared_knotted
+	icon_state = "flared"
+	name = "Flared, Knotted"
+	color_key_defaults = list(KEY_CHEST_COLOR, KEY_CHEST_COLOR)
+
 /datum/sprite_accessory/penis/barbknot
 	icon_state = "barbknot"
 	name = "Barbed, Knotted"
@@ -70,6 +77,17 @@
 	color_key_defaults = list(null, KEY_CHEST_COLOR)
 	default_colors = list("C52828", null)
 
+/datum/sprite_accessory/penis/taperedknot
+	icon_state = "taperedknot"
+	name = "Tapered, Knotted"
+	default_colors = list("C52828", "C52828")
+
+/datum/sprite_accessory/penis/taperedknot_mammal
+	icon_state = "taperedknot"
+	name = "Tapered, Knotted"
+	color_key_defaults = list(null, KEY_CHEST_COLOR)
+	default_colors = list("C52828", null)
+
 /datum/sprite_accessory/penis/tentacle
 	icon_state = "tentacle"
 	name = "Tentacled"
@@ -79,6 +97,12 @@
 	icon_state = "hemi"
 	name = "Hemi"
 	default_colors = list("C52828", "C52828")
+
+/datum/sprite_accessory/penis/hemi_mammal
+	icon_state = "hemi"
+	name = "Hemi"
+	color_key_defaults = list(null, KEY_CHEST_COLOR)
+	default_colors = list("C52828", null)
 
 /datum/sprite_accessory/penis/hemiknot
 	icon_state = "hemiknot"
@@ -98,10 +122,12 @@
 	return "[icon_state]_[testes.ball_size]"
 
 /datum/sprite_accessory/testicles/is_visible(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
-	if(owner.underwear)
-		return FALSE
 	var/obj/item/organ/penis/pp = owner.getorganslot(ORGAN_SLOT_PENIS)
 	if(pp && pp.sheath_type == SHEATH_TYPE_SLIT)
+		return FALSE
+	if(owner.sexcon && owner.sexcon.bottom_exposed == TRUE)
+		return TRUE
+	if(owner.underwear)
 		return FALSE
 	return is_human_part_visible(owner, HIDEJUMPSUIT|HIDECROTCH)
 
@@ -113,14 +139,15 @@
 /datum/sprite_accessory/breasts
 	icon = 'icons/mob/sprite_accessory/genitals/breasts.dmi'
 	color_key_name = "Breasts"
-	relevant_layers = list(BODY_ADJ_LAYER)
+	relevant_layers = list(BODY_ADJ_LAYER, BODY_BEHIND_LAYER)
 
 /datum/sprite_accessory/breasts/get_icon_state(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
 	var/obj/item/organ/breasts/badonkers = organ
-	return "[icon_state]_[badonkers.breast_size]"
+	var/max_sprite_size = icon_state == "pair" ? 12 : 5
+	return "[icon_state]_[clamp(badonkers.breast_size, 0, max_sprite_size)]"
 
 /datum/sprite_accessory/breasts/adjust_appearance_list(list/appearance_list, obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
-	generic_gender_feature_adjust(appearance_list, organ, bodypart, owner, OFFSET_ID, OFFSET_ID_F)
+	generic_gender_feature_adjust(appearance_list, organ, bodypart, owner, OFFSET_BREASTS, OFFSET_BREASTS_F)
 
 /datum/sprite_accessory/breasts/is_visible(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
 	if(owner.underwear && owner.underwear.covers_breasts)
@@ -151,6 +178,8 @@
 	generic_gender_feature_adjust(appearance_list, organ, bodypart, owner, OFFSET_BELT, OFFSET_BELT_F)
 
 /datum/sprite_accessory/vagina/is_visible(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
+	if(owner.sexcon && owner.sexcon.bottom_exposed == TRUE)
+		return TRUE
 	if(owner.underwear)
 		return FALSE
 	return is_human_part_visible(owner, HIDECROTCH|HIDEJUMPSUIT)
@@ -164,6 +193,11 @@
 	icon_state = "hairy"
 	name = "Hairy"
 	color_key_defaults = list(KEY_HAIR_COLOR)
+
+/datum/sprite_accessory/vagina/trimmed
+	icon_state = "trimmed"
+	name = "Trimmed"
+	default_colors = list("ea6767")
 
 /datum/sprite_accessory/vagina/spade
 	icon_state = "spade"

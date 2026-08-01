@@ -111,6 +111,11 @@
 	penis_type = PENIS_TYPE_EQUINE
 	sheath_type = SHEATH_TYPE_NORMAL
 
+/obj/item/organ/penis/equine_knotted
+	name = "equine knotted penis"
+	penis_type = PENIS_TYPE_EQUINE_KNOTTED
+	sheath_type = SHEATH_TYPE_NORMAL
+
 /obj/item/organ/penis/tapered_mammal
 	name = "tapered penis"
 	penis_type = PENIS_TYPE_TAPERED
@@ -121,15 +126,35 @@
 	penis_type = PENIS_TYPE_TAPERED
 	sheath_type = SHEATH_TYPE_SLIT
 
+/obj/item/organ/penis/tapered_knotted
+	name = "tapered knotted penis"
+	penis_type = PENIS_TYPE_TAPERED_KNOTTED
+	sheath_type = SHEATH_TYPE_SLIT
+
+/obj/item/organ/penis/tapered_knotted_mammal
+	name = "tapered knotted penis"
+	penis_type = PENIS_TYPE_TAPERED_KNOTTED
+	sheath_type = SHEATH_TYPE_NORMAL
+
 /obj/item/organ/penis/tapered_double
 	name = "hemi tapered penis"
 	penis_type = PENIS_TYPE_TAPERED_DOUBLE
 	sheath_type = SHEATH_TYPE_SLIT
 
+/obj/item/organ/penis/tapered_double_mammal
+	name = "hemi tapered penis"
+	penis_type = PENIS_TYPE_TAPERED_DOUBLE
+	sheath_type = SHEATH_TYPE_NORMAL
+
 /obj/item/organ/penis/tapered_double_knotted
 	name = "hemi knotted tapered penis"
 	penis_type = PENIS_TYPE_TAPERED_DOUBLE_KNOTTED
 	sheath_type = SHEATH_TYPE_SLIT
+
+/obj/item/organ/penis/tapered_double_knotted_mammal
+	name = "hemi knotted tapered penis (sheath)"
+	penis_type = PENIS_TYPE_TAPERED_DOUBLE_KNOTTED
+	sheath_type = SHEATH_TYPE_NORMAL
 
 /obj/item/organ/penis/barbed
 	name = "barbed penis"

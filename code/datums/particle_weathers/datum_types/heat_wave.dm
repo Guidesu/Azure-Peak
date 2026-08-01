@@ -1,5 +1,5 @@
 /particles/weather/heat
-	icon_state = "puff" // no bespoke "heatwave" particle state exists on particle.dmi; puff is the closest soft-blob shape available
+	icon_state = "heatwave"
 	color      = "#453723" // VERY faint brown
 
 	position   = generator("box", list(-600,-256,5), list(600,500,0))
@@ -102,7 +102,7 @@
 /obj/effect/temp_visual/heat_ripple
 	name = "heat shimmer"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "wave1" // no bespoke "heatwave" state exists on this sheet; wave1 is the closest generic wavy-distortion frame available
+	icon_state = "heatwave"
 	layer = ABOVE_MOB_LAYER
 	plane = GAME_PLANE
 	alpha = 0

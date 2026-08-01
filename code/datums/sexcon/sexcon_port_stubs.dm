@@ -40,18 +40,19 @@
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/emberwine
 
 /atom/movable/screen/alert/status_effect/debuff/emberwine
-	name = "Emberwine"
-	desc = "Warmed by emberwine."
-	icon_state = "debuff"
+	name = "Aphrodisiac"
+	desc = "The warmth is spreading through my body..."
+	icon_state = "emberwine"
 
 /datum/status_effect/buff/cum_consumed
 	id = "cum_consumed"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/cum_consumed
+	duration = 10 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/cum_consumed
-	name = "Satiated"
-	desc = "You feel sated."
-	icon_state = "buff"
+	name = "Cumdrunk"
+	desc = "I've swallowed someone's load..."
+	icon_state = "drunk"
 
 // --- Missing stress events -----------------------------------------------------
 
@@ -66,8 +67,10 @@
 
 /obj/effect/decal/cleanable/confetti/xylix
 	name = "confetti"
-	desc = "Colorful confetti scattered about."
-	icon_state = "confetti"
+	desc = "A colorful scatter of confetti made of dyed parchment. It smells funny."
+	icon = 'icons/effects/confetti.dmi'
+	mouse_opacity = MOUSE_OPACITY_ICON
+	random_icon_states = list("confetti1", "confetti2", "confetti3")
 
 // --- Missing stress events (additional) ---------------------------------------
 

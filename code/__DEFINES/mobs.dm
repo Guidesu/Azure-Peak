@@ -46,7 +46,7 @@
 #define BLOOD_VOLUME_BAD 224
 #define BLOOD_VOLUME_SURVIVE 122
 
-/// Blood pool regeneration in non-vampiric living mobs per SSmobs tick. 
+/// Blood pool regeneration in non-vampiric living mobs per SSmobs tick.
 #define BLOODPOL_REGEN 2
 
 //Sizes of mobs, used by mob/living/var/mob_size
@@ -337,6 +337,8 @@
 #define OFFSET_ARMOR_F "wear_armorf"
 #define OFFSET_HANDS_F "handsf"
 #define OFFSET_UNDIES_F "underwearf"
+#define OFFSET_BREASTS OFFSET_ID
+#define OFFSET_BREASTS_F OFFSET_ID_F
 
 //MINOR TWEAKS/MISC
 #define AGE_MIN				18	//youngest a character can be
@@ -454,8 +456,8 @@
 #define SKIN_COLOR_MORNING "dbaB8f"
 #define SKIN_COLOR_NOON "be8f73"
 #define SKIN_COLOR_EVENING "a57962"
-#define SKIN_COLOR_SUNSET "7B5752"  
-#define SKIN_COLOR_DUSK "564044" 
+#define SKIN_COLOR_SUNSET "7B5752"
+#define SKIN_COLOR_DUSK "564044"
 #define SKIN_COLOR_GILDED "e1b772"
 #define SKIN_COLOR_SELFAMBER "c9aa79"
 #define SKIN_COLOR_SELFTOPAZ "b19d68"
