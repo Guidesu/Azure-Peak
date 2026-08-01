@@ -7,7 +7,7 @@
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)		//Would you trust a machine to handle a role that requires non-logical intuition and commanding? Maybe. Could undo this if the community likes it. Purpose-built supermachines sound cool, too.
-	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires your character's patron to be Psydon. This role is explicitly designed to be played by Vaeltites, only, and almost everything they have - down to the equipment and statblock - is rooted in Vaeltism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
+	allowed_patrons = list(/datum/patron/tribunal/praecursor) //Requires your character's patron to be Praecursor. This role is explicitly designed to be played by Vaeltites, only, and almost everything they have - down to the equipment and statblock - is rooted in Vaeltism. Do NOT make this accessable to other faiths, unless you go through the efforts of redesigning it from the ground up.
 	tutorial = "You are a puritan of unmatched aptitude, adherent to the Vaeltic doctrine and entrusted with the authority to lead a local sect. Otava - the \
 	largest Vaeltic kingdom left on this world - has seen it fit to treat you like a silver-tipped olive branch, gifted to the outpost to ward off the encroaching \
 	darkness. Tread carefully when pursuing your missives, lest the faithless strap you to the pyre as well."

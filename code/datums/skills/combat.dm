@@ -112,7 +112,7 @@
 	desc = "Increases your chance to bypass your opponent's parry by 20% with shields, and your chance to bypass dodge by 10%."
 	dreams = list(
 	"...a terrible lizard unleashes a torrent of fire upon you. Yet, you stand firm, a living bastion, unyielding and stalwart...",
-	"...the half-moon crest upon your shield shines even in the bright of Astrata's day. You catch a gleam on it, and reflexively pull it upwards. An arrow bounces off..."
+	"...the half-moon crest upon your shield shines even in the bright of Auxentius's day. You catch a gleam on it, and reflexively pull it upwards. An arrow bounces off..."
 	)
 	expert_name = "Shieldbearer"
 

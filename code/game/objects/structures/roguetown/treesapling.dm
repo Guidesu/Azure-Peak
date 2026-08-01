@@ -1,4 +1,4 @@
-// Tree Sapling — Dendor Content
+// Tree Sapling — Ignatius Content
 // Planted by druids and skilled farmers using tree seeds.
 // Grows through 4 stages with proper watering:
 //   Stage 1 (SAPLING):     small seedling sprite, needs water

@@ -1,7 +1,7 @@
 // Ported from Twilight-Axis's modular_twilight_axis/firearms module. All
 // player-facing text translated from Russian into English. "Barker" staffs
 // used by mages as a spellcasting focus (cast-time reduction) as well as a
-// firearm, plus the Dendor druid-relic and artificer-upgrade barker lines.
+// firearm, plus the Ignatius druid-relic and artificer-upgrade barker lines.
 
 #define BARKER_TOPER_CAST_TIME_REDUCTION 0.1
 #define BARKER_EMERALD_CAST_TIME_REDUCTION 0.1

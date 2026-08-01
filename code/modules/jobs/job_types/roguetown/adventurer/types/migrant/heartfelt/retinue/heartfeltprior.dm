@@ -2,7 +2,7 @@
 /datum/advclass/heartfelt/retinue/prior
 	name = "Heartfelt Priest"
 	tutorial = "The Priest of Heartfelt, you were destined for ascension within the Church. \
-	. Still guided by the blessings of Astrata, you journey to the Peak, determined to offer what aid and solace you can."
+	. Still guided by the blessings of Auxentius, you journey to the Peak, determined to offer what aid and solace you can."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED)
 	outfit = /datum/outfit/job/roguetown/heartfelt/prior

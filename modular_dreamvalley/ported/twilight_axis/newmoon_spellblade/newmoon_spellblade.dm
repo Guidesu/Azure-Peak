@@ -16,7 +16,7 @@
 	tutorial = "Newmoon Conjurers are known in radical Noctite circles as the most devoted of Noc's monks, most often hailing from Zybantia. \
 		For some reason you left your monastery and came here. Is it a pilgrimage, or a mission to spread Noc's word?... \
 		Only you could really say. Though you are a fairly fanatical Noctite, you came here in peace, and so you're fairly tolerant of the other gods and the established Order, \
-		though perhaps you harbor some distrust of Astrata, per the radical Noctite teaching... \
+		though perhaps you harbor some distrust of Auxentius, per the radical Noctite teaching... \
 		Despite the local Church of the Ten's teachings, you know - and are firmly convinced - that Noc does not demand worship; she has granted you something more unique: \
 		for your faithful service and mastery of the arcane, you've been given access to arcane weaponry. Miracles are closed to you, but in exchange you've gained access to the arcane, and no matter what weapon Noc's light might conjure for you, you are an expert with it."
 	outfit = /datum/outfit/job/roguetown/spellblade

@@ -67,8 +67,8 @@
 "abA" = (
 /obj/structure/fluff/stonecoffin{
 	color = "#7D9BAE";
-	desc = "Here lies a saint of Psydon... forgotten and crumbling but still enduring.";
-	name = "Psydon's Saint Coffin"
+	desc = "Here lies a saint of Praecursor... forgotten and crumbling but still enduring.";
+	name = "Praecursor's Saint Coffin"
 	},
 /turf/open/floor/abyss_tile/three{
 	color = "#7D9BAE"
@@ -841,8 +841,8 @@
 "arl" = (
 /obj/structure/fluff/stonecoffin{
 	color = "#7D9BAE";
-	desc = "Here lies a saint of Psydon... forgotten and crumbling but still enduring.";
-	name = "Psydon's Saint Coffin"
+	desc = "Here lies a saint of Praecursor... forgotten and crumbling but still enduring.";
+	name = "Praecursor's Saint Coffin"
 	},
 /turf/open/floor/abyss_tile/three{
 	color = "#547285"
@@ -1514,7 +1514,7 @@
 	pixel_x = -1;
 	pixel_y = 22;
 	layer = 4.2;
-	aportalloc = "Psydon"
+	aportalloc = "Praecursor"
 	},
 /obj/structure/fluff/railing/border{
 	dir = 5;
@@ -1579,8 +1579,8 @@
 "aEV" = (
 /obj/structure/fluff/stonecoffin{
 	color = "#7D9BAE";
-	desc = "Here lies a saint of Psydon... forgotten and crumbling but still enduring.";
-	name = "Psydon's Saint Coffin"
+	desc = "Here lies a saint of Praecursor... forgotten and crumbling but still enduring.";
+	name = "Praecursor's Saint Coffin"
 	},
 /turf/open/floor/abyss_tile{
 	color = "#7D9BAE"
@@ -7246,7 +7246,7 @@
 	pixel_x = 16;
 	pixel_y = 42;
 	layer = 4.2;
-	aportalloc = "Psydon's Hope"
+	aportalloc = "Praecursor's Hope"
 	},
 /turf/open/floor/abyss_tile{
 	color = "#547285"
@@ -9137,7 +9137,7 @@
 	pixel_x = -1;
 	pixel_y = 22;
 	layer = 4.2;
-	aportalloc = "Psydon's Hope"
+	aportalloc = "Praecursor's Hope"
 	},
 /turf/open/floor/abyss_tile/three{
 	color = "#547285"

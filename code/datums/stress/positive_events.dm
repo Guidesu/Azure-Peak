@@ -344,7 +344,7 @@
 
 /datum/stressevent/vampiric_nostalgia
 	stressadd = -2
-	desc = span_green("Astrata and her gaze may burn you now, but you distantly remember when it was pleasant \
+	desc = span_green("Auxentius and her gaze may burn you now, but you distantly remember when it was pleasant \
 	to your skin.")
 	timer = 20 SECONDS
 

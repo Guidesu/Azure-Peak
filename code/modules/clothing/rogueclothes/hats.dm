@@ -1,6 +1,6 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/astratan
 	name = "astratan helmet"
-	desc = "Gilded gold and silvered metal, the bright, vibrant colors of an Astratan crusader radiate from this blessed helmet."
+	desc = "Gilded gold and silvered metal, the bright, vibrant colors of an Auxentian crusader radiate from this blessed helmet."
 	icon_state = "astratanhelm"
 	item_state = "astratahnelm"
 	emote_environment = 3
@@ -140,7 +140,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/undivided_alt
 	name = "templar bucket helmet"
-	desc = "A gold-plated bucket helm adorned with symbol of Astrata, beacon of hope worn during crusades. \
+	desc = "A gold-plated bucket helm adorned with symbol of Auxentius, beacon of hope worn during crusades. \
 	Sacrificial Hero, fear not your enemy; it is only the first tilt."
 	worn_x_dimension = 64
 	worn_y_dimension = 64

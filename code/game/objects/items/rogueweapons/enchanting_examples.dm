@@ -8,7 +8,7 @@
 
 /obj/item/rogueweapon/example/eiren_sabre_alt
 	name = "Cinis"
-	desc = "Two blades, the other born of Astrata's ire, a raging flame of passion. Here, and here alone, were fates severed and torn."
+	desc = "Two blades, the other born of Auxentius's ire, a raging flame of passion. Here, and here alone, were fates severed and torn."
 	icon_state = "eiren3"
 	icon = 'icons/obj/items/donor_weapons.dmi'
 	sheathe_icon = "eiren3"
@@ -24,7 +24,7 @@
 // Inverserun
 /obj/item/rogueweapon/example/inverserun_greatsword
 	name = "Votive Thorns"
-	desc = "Promises hurt, but so does plucking rosa. Hoping hurts, but so does looking at the beauty of Astrata's light. Pick yourself back up. Remember your promise, despite the thorns."
+	desc = "Promises hurt, but so does plucking rosa. Hoping hurts, but so does looking at the beauty of Auxentius's light. Pick yourself back up. Remember your promise, despite the thorns."
 	icon_state = "inverse"
 	icon = 'icons/obj/items/donor_weapons_64.dmi'
 	bigboy = TRUE

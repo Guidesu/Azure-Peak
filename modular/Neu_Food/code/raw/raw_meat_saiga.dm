@@ -85,7 +85,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/saiga_w
 	name = "pale venison"
-	desc = "The stag danced, now it is as anyone but the Dendorite prefers them. Dead, unmoving, tasty."
+	desc = "The stag danced, now it is as anyone but the Ignatian prefers them. Dead, unmoving, tasty."
 	icon = 'modular/Neu_Food/icons/raw/raw_meat_saiga.dmi'
 	icon_state = "steak_w"
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/saiga_w/cooked
@@ -115,7 +115,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/saiga_prime_w
 	name = "pale venison prime cut"
-	desc = "Skirmishes have been started over the mere legend of the stag's flesh. For it is said to yield unimaginable power. Even those with no tongue can taste it, those with no breath can smell it, for Dendor's madness knows no bounds."
+	desc = "Skirmishes have been started over the mere legend of the stag's flesh. For it is said to yield unimaginable power. Even those with no tongue can taste it, those with no breath can smell it, for Ignatius's madness knows no bounds."
 	icon = 'modular/Neu_Food/icons/raw/raw_meat_saiga.dmi'
 	icon_state = "ossobuco_w"
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/saiga_prime_w/cooked

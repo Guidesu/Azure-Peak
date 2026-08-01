@@ -64,7 +64,7 @@
 			H.set_blindness(0)
 			to_chat(H, span_warning("Having left the ranks of the Otavan militant orders, you set off into the wider world, selling your combat skills to the highest bidder. Your rare runelock firearm, once awarded to you for your service, is now your primary tool of the trade."))
 			if(istype(H.patron, /datum/patron/unveiled/aurelian) || istype(H.patron, /datum/patron/concordat/morwenna) || istype(H.patron, /datum/patron/oldkin/volkovoi) || istype(H.patron, /datum/patron/oldkin/hausvette))
-				to_chat(H, span_warning("Even if Inhumen once watched over me, my loyalty to them did not survive the trials of Otava. Psydon is one true God!"))
+				to_chat(H, span_warning("Even if Inhumen once watched over me, my loyalty to them did not survive the trials of Otava. Praecursor is one true God!"))
 				H.set_patron(/datum/patron/tribunal/praecursor)
 			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 			beltl = /obj/item/quiver/twilight_bullet/runicbag/runed

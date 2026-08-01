@@ -342,7 +342,7 @@
 	alternate_worn_layer = TABARD_LAYER
 	boobed = FALSE
 	name = "astratan tabard"
-	desc = "The washed out golds of an Astratan crusader adorn these fine robes."
+	desc = "The washed out golds of an Auxentian crusader adorn these fine robes."
 	icon_state = "astratatabard"
 	resistance_flags = FIRE_PROOF
 
@@ -403,7 +403,7 @@
 
 /obj/item/clothing/cloak/templar/ravox
 	name = "justice tabard"
-	desc = "An underarmor vestments with a neck cover, worn by templars of Ravox."
+	desc = "An underarmor vestments with a neck cover, worn by templars of Auxentius."
 	icon_state = "justicetabard"
 	body_parts_covered = CHEST|GROIN
 	boobed = TRUE

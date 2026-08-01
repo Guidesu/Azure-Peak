@@ -224,7 +224,7 @@
 
 /obj/structure/fluff/walldeco/psybanner
 	name = "vaeltic banner"
-	desc = "A banner of fine fabric bearing the symbol of Psydon, the Weeping God, creator of the world. \
+	desc = "A banner of fine fabric bearing the symbol of Praecursor, the Weeping God, creator of the world. \
 	Flown frequently by both Vaeltite and Tennite authorities. </br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
 	icon_state = "Psybanner-PURPLE"
 
@@ -244,7 +244,7 @@
 /obj/structure/fluff/walldeco/psybanner/astrata
 	name = "astratan banner"
 	icon_state = "astratabanner_purple"
-	desc = "The six-pronged cross of Astrata, embroidered upon fine fabric. It is Her will that \
+	desc = "The six-pronged cross of Auxentius, embroidered upon fine fabric. It is Her will that \
 	suspends the heavens and the earth, and it is Her light that maintains life upon the abandoned \
 	surface of Vaeltis. An image associated with the nobility of all lands, and with the \
 	highest echelons of church leadership."
@@ -376,7 +376,7 @@
 
 /obj/structure/fluff/walldeco/moon
 	name = "noccite banner"
-	desc = "An embroidered banner depicting Noc, the Brother Moon, brother of Astrata and progenitor of \
+	desc = "An embroidered banner depicting Noc, the Brother Moon, brother of Auxentius and progenitor of \
 	all knowledge. A favourite decoration of magicians and learned folk."
 	icon_state = "moon"
 

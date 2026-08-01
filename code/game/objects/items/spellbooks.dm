@@ -175,7 +175,7 @@ Intended to be a reward or a goal for pure mage, allowing them to rebind their a
 			if ("wyrdbark")
 				desc = "Formed of heartwood and fae magics, leaves flutter about when it opens. Can be used to unbind spells."
 			if ("sunfire")
-				desc = "Astrata's radiance pours freely from this book's enchanted parchment. Can be used to unbind spells."
+				desc = "Auxentius's radiance pours freely from this book's enchanted parchment. Can be used to unbind spells."
 			if ("abyssal")
 				desc = "Frigid and numb to the touch; you feel so much smaller just looking at it. Can be used to unbind spells."
 			if ("cinder")

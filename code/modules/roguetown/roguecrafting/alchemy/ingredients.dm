@@ -335,7 +335,7 @@
 
 /obj/item/alch/solardust
 	name = "solar dust"
-	desc = "A pinch of Astrata worked into radiant matter. Looking at it hurts your eyes."
+	desc = "A pinch of Auxentius worked into radiant matter. Looking at it hurts your eyes."
 	icon_state = "solardust"
 	sellprice = SELLPRICE_ARCANE_DUST_MID
 

@@ -57,7 +57,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_astrata
-	name = "Silver Amulet of Astrata (+1 Amulet of Astrata)"
+	name = "Silver Amulet of Auxentius (+1 Amulet of Auxentius)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	craftdiff = SKILL_LEVEL_EXPERT
@@ -97,7 +97,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_astrata
-	name = "Golden Amulet of Astrata (+1 Astratan Amulet)"
+	name = "Golden Amulet of Auxentius (+1 Auxentian Amulet)"
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius)
 	craftdiff = SKILL_LEVEL_EXPERT
@@ -121,7 +121,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_dendor
-	name = "Golden Amulet of Dendor (+1 Dendorian Amulet)"
+	name = "Golden Amulet of Ignatius (+1 Ignatian Amulet)"
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/ignatius)
 	craftdiff = SKILL_LEVEL_EXPERT
@@ -145,7 +145,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_cross_ravox
-	name = "Golden Amulet of Ravox (+1 Ravoxian Amulet)"
+	name = "Golden Amulet of Auxentius (+1 Auxentian Amulet)"
 	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius)
 	craftdiff = SKILL_LEVEL_EXPERT

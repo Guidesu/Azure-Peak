@@ -33,6 +33,7 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 /// Minimal organ bitmask scoped to feeding COMSIG_CARBON_SEX_ACTION_RECEIVED/VALIDATE. Ratwood's old sexcon had
 /// an equivalent SEX_PART_* bitmask baked into every sex_action; sexcon2 has no such concept (see
 /// /datum/sex_action/proc/get_acted_sex_part() in code/datums/sexcon2/actions/_base_action.dm for the mapping).
+#define SEX_PART_NULL 0
 #define SEX_PART_COCK (1<<0)
 #define SEX_PART_CUNT (1<<1)
 #define SEX_PART_ANUS (1<<2)
@@ -70,7 +71,7 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 #define SEX_SPEEDS list(SEX_SPEED_LOW, SEX_SPEED_MID, SEX_SPEED_HIGH, SEX_SPEED_EXTREME)
 
 #define SEX_SPEED_MIN 1
-#define SEX_SPEED_MAX 4
+#define SEX_SPEED_MAX 5
 
 #define SEX_FORCE_LOW 1
 #define SEX_FORCE_MID 2
@@ -80,7 +81,7 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 #define SEX_FORCES list(SEX_FORCE_LOW, SEX_FORCE_MID, SEX_FORCE_HIGH, SEX_FORCE_EXTREME)
 
 #define SEX_FORCE_MIN 1
-#define SEX_FORCE_MAX 4
+#define SEX_FORCE_MAX 5
 
 #define SEX_MANUAL_AROUSAL_DEFAULT 1
 #define SEX_MANUAL_AROUSAL_UNAROUSED 2
@@ -221,13 +222,9 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 #define KINK_TEASING "Teasing"
 #define KINK_VISUAL_EFFECTS "Visual Effects"
 
-/proc/build_sex_actions()
-	. = list()
-	for(var/path in typesof(/datum/sex_action))
-		if(is_abstract(path))
-			continue
-		.[path] = new path()
-	return .
+// build_sex_actions() now lives in code/__DEFINES/sexcon_defines.dm alongside the rest of the
+// sexcon defines - kept there so the GLOBAL_LIST_INIT(sex_actions, ...) right above it stays
+// together with the proc that populates it.
 
 
 #define SUBTLE_TAG (1 << 0)
@@ -255,3 +252,28 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 #define KNOTTED_NULL 0
 #define KNOTTED_AS_TOP 1
 #define KNOTTED_AS_BTM 2
+
+// Ratwood compat defines
+#define AROUSAL_HIGH_UNHORNY_RATE (1.5/(1 SECONDS))
+#define SEX_SPEED_LUDICROUS 5
+#define SEX_FORCE_LUDICROUS 5
+#define IMPREG_PROB_DEFAULT 25
+#define SEX_CATEGORY_NULL 0
+#define SEX_PART_JAWS (1<<3)
+#define SEX_PART_SLIT_SHEATH (1<<4)
+#define TRAIT_CHASTITY_SPIKED "chastity_spiked"
+#define TRAIT_CHASTITY_FULL "chastity_full"
+#define TRAIT_CHASTITY_CAGE "chastity_cage"
+#define TRAIT_CHASTITY_PENIS_BLOCKED "chastity_penis_blocked"
+#define TRAIT_CHASTITY_VAGINA_BLOCKED "chastity_vagina_blocked"
+#define TRAIT_CHASTITY_ANAL "chastity_anal"
+#define TRAIT_BAOTHA_FERTILITY_BOON "baotha_fertility_boon"
+#define TRAIT_PSYDONIAN_GRIT "praecursorian_grit"
+#define SFX_COLLARJINGLE "collarjingle"
+#define PENIS_TYPE_EQUINE_KNOTTED 10
+#define PENIS_TYPE_TAPERED_KNOTTED 11
+#define COMSIG_MOB_EJACULATED "mob_ejaculated"
+#define STATS_KNOTTED "knotted"
+#define STATS_IMPREGNATIONS "impregnations"
+#define addiction_permanent FALSE
+#define LOWER_TEXT lowertext

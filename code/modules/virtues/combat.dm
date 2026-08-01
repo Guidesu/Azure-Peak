@@ -48,7 +48,7 @@
 		if(/datum/patron/concordat/wulfric)
 			recipient.mind?.special_items["Amulet of Abyssor"] = /obj/item/clothing/neck/roguetown/psicross/wulfric
 		if(/datum/patron/severance/ignatius)
-			recipient.mind?.special_items["Amulet of Dendor"] = /obj/item/clothing/neck/roguetown/psicross/ignatius
+			recipient.mind?.special_items["Amulet of Ignatius"] = /obj/item/clothing/neck/roguetown/psicross/ignatius
 		if(/datum/patron/concordat/morwenna)
 			recipient.mind?.special_items["Amulet of Necra"] = /obj/item/clothing/neck/roguetown/psicross/morwenna
 		if(/datum/patron/concordat/handwerra)
@@ -219,7 +219,7 @@
 					ADD_TRAIT(recipient, TRAIT_NOBREATH, TRAIT_VIRTUE)
 					ADD_TRAIT(recipient, TRAIT_ZOMBIE_IMMUNE, TRAIT_VIRTUE)
 					ADD_TRAIT(recipient, TRAIT_SILVER_WEAK, TRAIT_VIRTUE)
-					to_chat(recipient, "You are no longer one scorned by Astrata, by the mercy of the gods.</font>")
+					to_chat(recipient, "You are no longer one scorned by Auxentius, by the mercy of the gods.</font>")
 				
 				if(SC_BLACKBLOOD)
 					ADD_TRAIT(recipient, TRAIT_BLACKBLOOD, TRAIT_VIRTUE)

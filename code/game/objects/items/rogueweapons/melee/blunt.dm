@@ -227,8 +227,8 @@
 /obj/item/rogueweapon/mace/steel/holyseemace/sunburst
 	name = "sunburst"
 	desc = "A luminous steeled mace with a lengthened handle, adorned with vibrant golden trimmings along a faintly silvered polished metal edge, \
-			the spikes that protrude from its heavy edge radiate with Astrata's glow upon the points. Often issued as a heavy-reminder of divine \
-			judgement to crash against the ever-growing legions of monsters that would dare stand against the weight of Astrata's fury and judgement."
+			the spikes that protrude from its heavy edge radiate with Auxentius's glow upon the points. Often issued as a heavy-reminder of divine \
+			judgement to crash against the ever-growing legions of monsters that would dare stand against the weight of Auxentius's fury and judgement."
 	icon = 'icons/roguetown/weapons/blunt32.dmi'
 	icon_state = "astratamace"
 	force_wielded = 35
@@ -735,7 +735,7 @@
 
 /obj/item/rogueweapon/mace/goden/steel/ravox
 	name = "duel settler"
-	desc = "The tenets of Ravoxian duels are enscribed upon the head of this maul."
+	desc = "The tenets of Auxentian duels are enscribed upon the head of this maul."
 	icon_state = "ravoxhammer"
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze, /datum/intent/mace/bash/ranged) // It loses the Goden stab so I give it daze
 	max_integrity = 400 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
@@ -781,7 +781,7 @@
 /obj/item/rogueweapon/mace/steel/morningstar
 	name = "morning star"
 	icon_state = "morningstar"
-	desc = "Royalty. </br>An uncommon derivative of the mace, studded with spikes and seated upon a serpentine shaft. When raised aloft, the macehead mimics a stylized imitation of Astrata's glare; ergo, 'morning star'."
+	desc = "Royalty. </br>An uncommon derivative of the mace, studded with spikes and seated upon a serpentine shaft. When raised aloft, the macehead mimics a stylized imitation of Auxentius's glare; ergo, 'morning star'."
 	wdefense = 5
 
 /obj/item/rogueweapon/mace/warhammer
@@ -799,7 +799,7 @@
 /obj/item/rogueweapon/mace/warhammer/bronze
 	force = 22
 	name = "bronze warclub"
-	desc = "The warhammer's ancestral link, carved from a weightsome log and studded with bronze. Elven natureguards carry it to both honor their forefathers, and as a way to sunder those who'd ravage Dendor's bounties without thought-or-restraint; a toss from afar turns into a sundering hurlbat."
+	desc = "The warhammer's ancestral link, carved from a weightsome log and studded with bronze. Elven natureguards carry it to both honor their forefathers, and as a way to sunder those who'd ravage Ignatius's bounties without thought-or-restraint; a toss from afar turns into a sundering hurlbat."
 	icon_state = "bronzeclub"
 	wbalance = WBALANCE_HEAVY
 	throwforce = 30

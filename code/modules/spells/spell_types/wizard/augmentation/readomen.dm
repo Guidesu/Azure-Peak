@@ -42,7 +42,7 @@
 	
 	if(istype(current_god, /datum/storyteller/auxentius))
 		if(istype(user.patron, /datum/patron/concordat/auxentius))
-			to_chat(user, "<span class='warning'>You know this feeling well. That is the warmth of the sun on your cheeks. Astrata light beams upon you in this moment.</span>")
+			to_chat(user, "<span class='warning'>You know this feeling well. That is the warmth of the sun on your cheeks. Auxentius light beams upon you in this moment.</span>")
 		else
 			to_chat(user, "<span class='warning'>You feel warm for a moment, like you are beginning to get flush from a fever, and then it fades.</span>")
 			

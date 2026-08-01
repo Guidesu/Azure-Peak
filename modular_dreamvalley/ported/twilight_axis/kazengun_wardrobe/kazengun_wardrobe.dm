@@ -24,7 +24,7 @@
 // - plate/fluted/baotha_ta: "baotha" is not a Twilight-Axis-exclusive proper noun - this repo
 //   already has /obj/item/ingot/component/baotha (code/game/objects/items.dm), the
 //   HERESYDESC_BAOTHA_ARMOR define, and TRAIT_DEPRAVED / /datum/component/cursed_item, all used
-//   identically here. The flavor text references Eora/Ravox/Belladoth, all of whom already have
+//   identically here. The flavor text references Eora/Auxentius/Belladoth, all of whom already have
 //   dedicated native content in this repo (code/modules/spells/roguetown/acolyte/eora.dm,
 //   .../ravox.dm) - so this is compatible native lore, not a foreign pantheon reference. Ported
 //   as-is with no rename. Note only /obj/item/clothing/suit/roguetown/armor/plate/fluted/baotha_ta
@@ -132,7 +132,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/baotha_ta
 	name = "saccharine plate armor"
-	desc = "Is it not obvious what Ravox would've chosen? Yet upon the dae of His choice, She refused to gift any chance to Her sister.."
+	desc = "Is it not obvious what Auxentius would've chosen? Yet upon the dae of His choice, She refused to gift any chance to Her sister.."
 	icon_state = "baothaplate"
 	item_state = "baothaplate"
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG - 250

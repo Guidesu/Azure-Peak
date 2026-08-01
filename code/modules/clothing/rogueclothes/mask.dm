@@ -359,7 +359,7 @@
 
 /obj/item/clothing/mask/rogue/wildguard
 	name = "wild guard"
-	desc = "A mask shaped after the snarling beasts of Dendor."
+	desc = "A mask shaped after the snarling beasts of Ignatius."
 	icon_state = "wildguard"
 	blocksound = PLATEHIT
 	break_sound = 'sound/foley/breaksound.ogg'

@@ -567,7 +567,7 @@
 
 				data += "</div>"
 			else
-				data += "<div style='text-align: center; color: #999; font-style: italic;'>Psydon was the last hero to live</div>"
+				data += "<div style='text-align: center; color: #999; font-style: italic;'>Praecursor was the last hero to live</div>"
 
 		if("Villains")
 			data += "<div style='text-align: center; color: #d4b4b4; font-size: 1.2em; margin-bottom: 15px;'>VILLAINS OF THE REALM</div>"
@@ -874,7 +874,7 @@
 		data += "<a href='byond://?src=[REF(src)];viewinfluences=1;debug=[!debug]' style='color: [debug ? "#00FF00" : "#FF0000"];'>[debug ? "DEBUG MODE ON" : "DEBUG MODE OFF"]</a>"
 		data += "</div>"
 
-	// Psydon Section
+	// Praecursor Section
 	var/vaeltite_user = FALSE
 	if(mob)
 		if(isliving(mob))
@@ -882,17 +882,17 @@
 			if(istype(living_user_mob.patron, /datum/patron/tribunal/praecursor))
 				vaeltite_user = TRUE
 
-	var/psydon_followers = GLOB.patron_follower_counts["Psydon"] || 0
+	var/psydon_followers = GLOB.patron_follower_counts["Praecursor"] || 0
 	var/largest_religion = (psydon_followers > 0)
 	if(largest_religion)
 		for(var/patron in GLOB.patron_follower_counts)
-			if(patron == "Psydon")
+			if(patron == "Praecursor")
 				continue
 			if(GLOB.patron_follower_counts[patron] >= psydon_followers)
 				largest_religion = FALSE
 				break
 	var/apostasy_followers = GLOB.patron_follower_counts["Godless"] || 0
-	var/vaeltite_monarch = GLOB.azure_round_stats[STATS_MONARCH_PATRON] == "Psydon" ? TRUE : FALSE
+	var/vaeltite_monarch = GLOB.azure_round_stats[STATS_MONARCH_PATRON] == "Praecursor" ? TRUE : FALSE
 	var/psydon_influence = (psydon_followers * 20) + (GLOB.confessors.len * 20) + (GLOB.azure_round_stats[STATS_HUMEN_DEATHS] * -10) + (GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS] * -20) + (vaeltite_monarch ? (vaeltite_monarch * 500) : -250) + (largest_religion? (largest_religion * 500) : -250) + (GLOB.azure_round_stats[STATS_PSYCROSS_USERS] * 10) + (apostasy_followers * -20) + (GLOB.azure_round_stats[STATS_LUX_HARVESTED] * -50) + (vaeltite_user ? 10000 : -10000)
 
 	data += "<div style='width: 42.5%; margin: 0 auto 30px; border: 2px solid #99b2b1; background: #47636d; color: #d0d0d0; max-height: 420px;'>"
@@ -931,13 +931,13 @@
 	data += "<div style='width: 91.5%; margin: 0 auto 40px;'>"
 	data += "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 30px;'>"
 
-	// Astrata
+	// Auxentius
 	data += god_ui_block("ASTRATA", "#e7a962", "#642705", /datum/storyteller/auxentius, debug)
 
 	// Ignatius
 	data += god_ui_block("IGNATIUS", "#412938", "#66745c", /datum/storyteller/ignatius, debug)
 
-	// Ravox
+	// Auxentius
 	data += god_ui_block("RAVOX", "#2c232d", "#710f0f", /datum/storyteller/auxentius, debug)
 
 	// Eora

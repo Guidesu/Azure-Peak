@@ -3,7 +3,7 @@
 
 /obj/effect/proc_holder/spell/self/noctite_fortify
 	name = "Arcane Armor"
-	desc = "Carrying Noc's light within you, it shields you. You grow tougher beneath moonlight, but Astrata's light interferes, so you cannot use this under it."
+	desc = "Carrying Noc's light within you, it shields you. You grow tougher beneath moonlight, but Auxentius's light interferes, so you cannot use this under it."
 	recharge_time = 10 MINUTES
 	action_icon_state = "summons"
 	action_icon = 'icons/mob/actions/roguespells.dmi'
@@ -83,7 +83,7 @@
 
 /obj/effect/proc_holder/spell/invoked/spellblade_summon_weapon
 	name = "Summon moonlight weapon"
-	desc = "Noc's light takes on solid, unstable form, becoming the weapon you chose. Astrata resists this, so it's best conjured beneath Noc's light."
+	desc = "Noc's light takes on solid, unstable form, becoming the weapon you chose. Auxentius resists this, so it's best conjured beneath Noc's light."
 	clothes_req = FALSE
 	recharge_time = 2 SECONDS
 	chargedloop = /datum/looping_sound/invokegen
@@ -109,7 +109,7 @@
 	sleep(0.75 SECONDS)
 	if(user.put_in_hands(spawned_weapon, del_on_fail = TRUE))
 		if(GLOB.tod == "day")
-			to_chat(usr, span_warningbig("I've conjured a weapon and Noc has granted me knowledge of it. Astrata's light resists this, so the weapon and my skill with it are weaker."))
+			to_chat(usr, span_warningbig("I've conjured a weapon and Noc has granted me knowledge of it. Auxentius's light resists this, so the weapon and my skill with it are weaker."))
 			user.adjust_skillrank(weapon_select.selected_weapon.associated_skill, SKILL_LEVEL_APPRENTICE, TRUE)
 			spawned_weapon.force /= 2
 		else

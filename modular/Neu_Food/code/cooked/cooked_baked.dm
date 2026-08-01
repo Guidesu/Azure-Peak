@@ -224,7 +224,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/bun_jamtallow
 	name = "jamtallowed bun"
-	desc = "A delicious treat to bring along for those long-and-lonesome hikes through the Naledian deserts; doubly-so, if you happen to be smuggling enough starsugar to buy out Astrata's throne."
+	desc = "A delicious treat to bring along for those long-and-lonesome hikes through the Naledian deserts; doubly-so, if you happen to be smuggling enough starsugar to buy out Auxentius's throne."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	tastes = list("sweetly-sour jamminess" = 1, "a lavish break from the dae's woes" = 1)
 	icon_state = "bun_jamtallow"
@@ -251,13 +251,13 @@
 /* 	.................   Crossbuns   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
 	name = "raw crossbun"
-	desc = "A piece of raw dough with the shape of Astrata's cross pressed onto it. In Her Light."
+	desc = "A piece of raw dough with the shape of Auxentius's cross pressed onto it. In Her Light."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun_raw"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SMALLDOUGH_NUTRITION)
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
 
-// Psydon variant
+// Praecursor variant
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
 	name = "raw psycrossbun"
 	desc = "A piece of raw dough with the shape of a Psycross pressed onto it. He ENDURES."
@@ -268,7 +268,7 @@
 /* 	.................   Crossbuns   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/crossbun
 	name = "crossbun"
-	desc = "Traditionally eaten for breakfast amongst Vaeltis's abbeys. Astratans in particular have made it a \
+	desc = "Traditionally eaten for breakfast amongst Vaeltis's abbeys. Auxentians in particular have made it a \
 	practice to add a slice of marmalade to their crossbuns, in reverance of Her golden authority."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun"
@@ -294,7 +294,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/crossbun_marmaladed
 	name = "marmaladed crossbun"
 	desc = "A particularly favorite treat amonst the papacies of Grenzelhoft and Etruscea, especially during the \
-	holidaes that pay reverance to Astrata. The marmalade is said to represent the Sun's blessed light and warming \
+	holidaes that pay reverance to Auxentius. The marmalade is said to represent the Sun's blessed light and warming \
 	radiance, though the spiritual implication tends to be lost on more eager-minded children."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun_marmalade"
@@ -321,7 +321,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/psycrossbun_jamtallowed
 	name = "jamtallowed psycrossbun"
 	desc = "A particularly favorite treat amonst the papacies of Otava and Rockhill, especially during the \
-	holidaes that pay reverance to Psydon's sacrifice. The jamtallow is said to represent the Weeping God's \
+	holidaes that pay reverance to Praecursor's sacrifice. The jamtallow is said to represent the Weeping God's \
 	tears, though the spiritual implication tends to be lost on more eager-minded children."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "psycrossbun_jamtallow"
@@ -987,7 +987,7 @@
 /*	.................   Challah   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/challah
 	name = "challah loaf"
-	desc = "A Nshkormh loaf of bread, made from leavened dough and egg, the communities of Vaeltites in the region continued it's usage even during the Sun Dominion's banning of it's creation for it's 'rejection of Astratan butterness'."
+	desc = "A Nshkormh loaf of bread, made from leavened dough and egg, the communities of Vaeltites in the region continued it's usage even during the Sun Dominion's banning of it's creation for it's 'rejection of Auxentian butterness'."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "challah4"
 	slices_num = 4

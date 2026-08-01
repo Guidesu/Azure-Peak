@@ -7,6 +7,8 @@
 	accessory_type = /datum/sprite_accessory/vagina/human
 	var/pregnant = FALSE
 	var/fertility = TRUE
+	/// Ported from Ratwood: per-round impregnation probability, increments on each attempt.
+	var/impregnation_probability = IMPREG_PROB_DEFAULT
 
 /obj/item/organ/vagina/proc/be_impregnated(mob/living/carbon/human/father)
 	if(pregnant)

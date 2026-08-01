@@ -670,7 +670,7 @@
 
 /obj/item/rogueweapon/huntingknife/combat/kris
 	name = "steel kris"
-	desc = "A large steel dagger with a unique, flame-shaped blade. It is coveted as a ceremonial tool by Astratan \
+	desc = "A large steel dagger with a unique, flame-shaped blade. It is coveted as a ceremonial tool by Auxentian \
 	priests and clerics, especially during rites of sacrifice; symbolically, of course."
 	icon_state = "kris"
 	sheathe_icon = "sdagger"
@@ -684,7 +684,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/kris
 	name = "steel kris"
-	desc = "A large steel dagger with a unique, flame-shaped blade. It is coveted as a ceremonial tool by Astratan \
+	desc = "A large steel dagger with a unique, flame-shaped blade. It is coveted as a ceremonial tool by Auxentian \
 	priests and clerics, especially during rites of sacrifice; symbolically, of course."
 	icon_state = "kris"
 	sheathe_icon = "sdagger"
@@ -745,7 +745,7 @@
 /obj/item/rogueweapon/stoneaxe/woodcut/triumph
 	name = "valorian axe"
 	icon_state = "axelegacy"
-	desc = "'Through thick-and-thin, I have never failed you. May we trounce through the Terrorbog, one last time, before Astrata's glare vanishes 'neath the horizon?'"
+	desc = "'Through thick-and-thin, I have never failed you. May we trounce through the Terrorbog, one last time, before Auxentius's glare vanishes 'neath the horizon?'"
 
 /obj/item/rogueweapon/stoneaxe/handaxe/triumph
 	name = "valorian hatchet"

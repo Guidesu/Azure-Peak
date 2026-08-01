@@ -5,11 +5,11 @@
 	var/mob/living/target = M
 
 	var/list/curse_choices = list(
-		"Curse of Astrata" = /datum/curse/auxentius,
+		"Curse of Auxentius" = /datum/curse/auxentius,
 		"Curse of Noc" = /datum/curse/miluse,
-		"Curse of Dendor" = /datum/curse/ignatius,
+		"Curse of Ignatius" = /datum/curse/ignatius,
 		"Curse of Abyssor" = /datum/curse/wulfric,
-		"Curse of Ravox" = /datum/curse/auxentius,
+		"Curse of Auxentius" = /datum/curse/auxentius,
 		"Curse of Necra" = /datum/curse/morwenna,
 		"Curse of Xylix" = /datum/curse/viator,
 		"Curse of Pestra" = /datum/curse/handwerra,

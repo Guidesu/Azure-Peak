@@ -212,3 +212,7 @@ GLOBAL_VAR_INIT(magic_appearance_detecting_image, new /image) // appearances are
 #define is_matthios_amulet(amulet_type) (amulet_type in typesof(/obj/item/clothing/neck/roguetown/psicross/morwenna))
 #define is_graggar_amulet(amulet_type) (amulet_type in typesof(/obj/item/clothing/neck/roguetown/psicross/volkovoi))
 #define is_gronn_amulet(amulet_type) (amulet_type in GLOB.gronn_amulet_types)
+
+// No lamia species exists in Azure Peak; this is ported from Ratwood for sexcon tail actions
+// that gate on lamia body type. Always FALSE here so those actions simply require a tail organ.
+#define islamia(A) FALSE

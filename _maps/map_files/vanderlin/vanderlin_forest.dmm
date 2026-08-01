@@ -1363,7 +1363,7 @@
 	dir = 1
 	},
 /obj/item/weapon/sword/katana/mulyeog/rumacaptain{
-	name = "Astrata's Will";
+	name = "Auxentius's Will";
 	desc = "A gold-stained sword with cloud patterns, it seems to be a highly sacred relic."
 	},
 /turf/open/floor/sandstone_tile/five,
@@ -2314,8 +2314,8 @@
 /area/under/cave)
 "nH" = (
 /obj/structure/fluff/statue/knightalt{
-	desc = "A statue detailing of a Ravox Saint.";
-	name = "Ravox's Saint"
+	desc = "A statue detailing of a Auxentius Saint.";
+	name = "Auxentius's Saint"
 	},
 /turf/open/floor/churchbrick,
 /area/indoors/dungeon)
@@ -4478,9 +4478,9 @@
 /obj/structure/table/wood/fancy,
 /obj/item/carvedgem/rose/statue{
 	pixel_y = 12;
-	name = "Carving of Ravox";
+	name = "Carving of Auxentius";
 	sellprice = 100;
-	desc = "A statue of Ravox carved out of rosellusk."
+	desc = "A statue of Auxentius carved out of rosellusk."
 	},
 /obj/item/clothing/face/facemask/goldnosechain,
 /turf/open/floor/churchmarble,
@@ -7677,7 +7677,7 @@
 /area/outdoors/wilderness)
 "QD" = (
 /obj/effect/mapping_helpers/secret_door_creator{
-	redstone_id = "ForestAstrataTemple"
+	redstone_id = "ForestAuxentiusTemple"
 	},
 /turf/closed/wall/mineral/desert_sandstone,
 /area/indoors/dungeon)
@@ -7864,7 +7864,7 @@
 /area/indoors/dungeon)
 "RN" = (
 /obj/structure/lever/hidden{
-	redstone_id = "ForestAstrataTemple"
+	redstone_id = "ForestAuxentiusTemple"
 	},
 /turf/closed/wall/mineral/desert_sandstone,
 /area/indoors/dungeon)

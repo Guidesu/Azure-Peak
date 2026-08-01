@@ -861,7 +861,7 @@
 			if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))	//Guarded virtue protects from this
 				if(issunelf(src) || patron?.type == /datum/patron/concordat/auxentius)
 					astratan_symbol = icon2html('icons/misc/language.dmi', world, "celestial")
-					astratan_tooltip = SPAN_TOOLTIP("One of Astrata's [issunelf(src) ? "chosen" : "followers"]", astratan_symbol)
+					astratan_tooltip = SPAN_TOOLTIP("One of Auxentius's [issunelf(src) ? "chosen" : "followers"]", astratan_symbol)
 		. += span_info("[pronoun] [wording] [origin]. [astratan_tooltip]")	//"He hails from [X / Nowhere]" || "His [word] originates from [X]" || "His [word] is implacable..."
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))

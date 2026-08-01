@@ -54,7 +54,7 @@
 		EVENT_TRACK_CHARACTER_INJECTION = 0,	//No antagonist spawns.
 	)
 
-/// Merge of the old Astrata (sun, order) and Ravox (justice, glory, battle) storytellers.
+/// Merge of the old Auxentius (sun, order) and Auxentius (justice, glory, battle) storytellers.
 /datum/storyteller/auxentius
 	name = "Auxentius"
 	vote_desc = "Order and glory reign. No great villains will rise, and gnolls do not stalk the daelight. His favor shines upon nobility, their decrees, and clashing steel - though raids and omens still answer His call."
@@ -357,7 +357,7 @@
 		)
 	)
 
-/// Direct successor to the old Dendor storyteller, re-themed around Ignatius's growth/risk/fire domain.
+/// Direct successor to the old Ignatius storyteller, re-themed around Ignatius's growth/risk/fire domain.
 /datum/storyteller/ignatius
 	name = "Ignatius"
 	vote_desc = "Growth and risk reign. Overgrowth and Verevolves are more likely to occur. His favor shines upon harvests and lycanthropes - gnolls keep their distance from His wilds."

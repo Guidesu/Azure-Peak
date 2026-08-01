@@ -744,7 +744,7 @@
     ckeywhitelist = list("olympus7")
 
 /datum/loadout_item/donator/bobby
-	name = "Donator Kit - Holy Astratan Bascinet"
+	name = "Donator Kit - Holy Auxentian Bascinet"
 	path = /obj/item/enchantingkit/bobby_helm
 	ckeywhitelist = list("spartanbobby")
 

@@ -48,7 +48,7 @@
 
 	switch(class_choice)
 		if("Noble")
-			to_chat(H, span_purple("'..Ah, your forebears clearly went to great lengths to earn Astrata's blessing, don't shame them.. Ah, you already have.. how did you manage to ride your horse to death?..'"))
+			to_chat(H, span_purple("'..Ah, your forebears clearly went to great lengths to earn Auxentius's blessing, don't shame them.. Ah, you already have.. how did you manage to ride your horse to death?..'"))
 			var/helmets = list(
 				"Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/iron,
 				"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored/iron,

@@ -126,7 +126,7 @@
 
 /obj/item/rogueweapon/whip/antique
 	name = "\"Repenta En\""
-	desc = "A multi-tailed whip that's extremely well-maintained. The gilded handle first burdens the hand with its inordinate weight, and then the mind with an unsettling realization; this is not a tool of honor. </br>'Ravox stands for justice, not murder.'"
+	desc = "A multi-tailed whip that's extremely well-maintained. The gilded handle first burdens the hand with its inordinate weight, and then the mind with an unsettling realization; this is not a tool of honor. </br>'Auxentius stands for justice, not murder.'"
 	force = 25
 	minstr = 11
 	icon_state = "gwhip"

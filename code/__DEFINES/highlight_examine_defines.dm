@@ -51,7 +51,7 @@
 #define VIBEDESC_FRIEND "A loyal ally of the outpost."
 #define VIBEDESC_FOE "A disloyal enemy of the outpost."
 #define VIBEDESC_CROWN "A relic anointed by Auxentius."
-#define VIBEDESC_GOLGATHA "A relic of Psydon's creation."
+#define VIBEDESC_GOLGATHA "A relic of Praecursor's creation."
 
 /**
 * -========= HERESY ITEM SEVERITY LEVELS =========-

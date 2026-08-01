@@ -265,7 +265,7 @@
 /obj/item/clothing/ring/signet/psy/g
 	name = "vaeltian gold signet ring"
 	icon_state = "psysignet_gold"
-	desc = "A ring of opulent gold, embodying the Naledian belief in Psydon's eternity. Its face is cut to seal writs of religious importance, a bead of tallow nested in the underside."
+	desc = "A ring of opulent gold, embodying the Naledian belief in Praecursor's eternity. Its face is cut to seal writs of religious importance, a bead of tallow nested in the underside."
 	is_silver = FALSE
 
 ///

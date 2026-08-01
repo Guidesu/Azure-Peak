@@ -18,7 +18,7 @@
 /datum/action/cooldown/spell/vizier/restoration
 	name = "Restoration"
 	desc = "Uses Origin Magick to gradually rewind a target's body to a healthier state. The effects happen in order, and only one at a time. Removes embedded objects, stops bleeding, grants health regeneration and energy recovery. The nature of time-based manipulation allows this to work on most targets."
-	fluff_desc = "The Yogis of Naledi teach that time is not a river but a tapestry, every moment of a thing's existence woven into a single whole. Origin Magick draws upon this belief, allowing its practitioners to call forth echoes of an earlier state and impose them upon the present. To heal is to remember an unwounded body; to restore is to recall a form before it was broken. Though no mortal can truly stand outside the march of time, Origin Magick is regarded as the nearest approach to Psydon's divinity ever achieved by humenity."
+	fluff_desc = "The Yogis of Naledi teach that time is not a river but a tapestry, every moment of a thing's existence woven into a single whole. Origin Magick draws upon this belief, allowing its practitioners to call forth echoes of an earlier state and impose them upon the present. To heal is to remember an unwounded body; to restore is to recall a form before it was broken. Though no mortal can truly stand outside the march of time, Origin Magick is regarded as the nearest approach to Praecursor's divinity ever achieved by humenity."
 	button_icon_state = "restoration"
 	sound = list('sound/magic/regression1.ogg', 'sound/magic/regression2.ogg', 'sound/magic/regression3.ogg', 'sound/magic/regression4.ogg')
 	cast_range = 4

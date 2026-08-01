@@ -3049,7 +3049,7 @@
 /area/indoors/town/clocktower)
 "bxn" = (
 /obj/structure/fluff/statue/psy{
-	name = "statue of <s>Psydon</s> the Sunlord"
+	name = "statue of <s>Praecursor</s> the Sunlord"
 	},
 /turf/open/floor/hay,
 /area/outdoors/exposed/under/basement)

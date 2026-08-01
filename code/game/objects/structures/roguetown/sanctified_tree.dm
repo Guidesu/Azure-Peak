@@ -60,7 +60,7 @@
 /obj/structure/flora/roguetree/wise/sanctified/proc/is_valid_vigil_follower(mob/living/carbon/human/H)
 	if(!H)
 		return FALSE
-	// Psydon followers have no patron datum — identified by trait.
+	// Praecursor followers have no patron datum — identified by trait.
 	if(HAS_TRAIT(H, TRAIT_VAELTITE))
 		return FALSE
 	// Old-god worshippers and all inhumen (Zizo, Baotha, Graggar, Matthios) patrons are excluded.

@@ -31,7 +31,7 @@
 				/mob/living/carbon/human/species/goblin/npc/archer/sea = 10)
 	first_time_text = "THE COAST"
 	converted_type = /area/rogue/indoors/shelter/woods
-	deathsight_message = "somewhere betwixt Abyssor's realm and Dendor's bounty"
+	deathsight_message = "somewhere betwixt Abyssor's realm and Ignatius's bounty"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 	detail_text = DETAIL_TEXT_NORTH_COAST
 
@@ -58,6 +58,6 @@
 	droning_sound = 'sound/music/area/dungeon2.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	deathsight_message = "somewhere betwixt Abyssor's realm and Dendor's bounty"
+	deathsight_message = "somewhere betwixt Abyssor's realm and Ignatius's bounty"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 	detail_text = DETAIL_TEXT_MAD_DUKE_COURT

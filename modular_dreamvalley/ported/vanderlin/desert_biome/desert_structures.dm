@@ -13,7 +13,7 @@
 //   decor-only prop (see code/game/objects/structures/fluff.dm), so these were rebased
 //   onto /obj/structure/fluff instead for consistency with local convention.
 // - /obj/structure/flora/astrata is decorative dressing named after Vanderlin's light
-//   deity. This codebase happens to independently have its own "Astrata" patron in its
+//   deity. This codebase happens to independently have its own "Auxentius" patron in its
 //   pantheon (code/modules/spells/roguetown/acolyte/astrata.dm etc.) - this port does NOT
 //   connect to or reference that system in any way; it is kept purely as a cosmetic flora
 //   sprite with a religion-neutral description to avoid implying a tie to this repo's own

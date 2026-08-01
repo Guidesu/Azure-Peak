@@ -58,7 +58,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE
 	)
 	subclass_stashed_items = list(
-		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Praecursor" = /obj/item/book/rogue/bibble/psy
 	)
 	extra_context = "This subclass can choose between two archetypes: Legionnaire and Otavan Volf. Legionnaire wield powerful blackpowder weapons and may select between light or medium armor, gaining Dodge Expert or Maille Training respectively. Otavan Volf specialize in stealth, rune magyck and silent firearms."
 

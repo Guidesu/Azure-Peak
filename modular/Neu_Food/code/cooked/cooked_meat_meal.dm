@@ -163,7 +163,7 @@
 /*	.................  Baked Double Poultry  ................... */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/doublestacked
 	name = "bird filled bird-roast"
-	desc = "A plump bird, roasted perfection.. filled with another bird - what compelled you to make this? Psydon Weeps at your hubris."
+	desc = "A plump bird, roasted perfection.. filled with another bird - what compelled you to make this? Praecursor Weeps at your hubris."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'
 	icon_state = "stuffedchicken"
 	eat_effect = /datum/status_effect/buff/mealbuff
@@ -174,7 +174,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_MEAL_AND_QUARTER)
 	tastes = list("frybird" = 1, "tato" = 1)
 	name = "frybird with a tato"
-	desc = "Hearty, comforting, and rich - Some say it was Ravox's favorite meal."
+	desc = "Hearty, comforting, and rich - Some say it was Auxentius's favorite meal."
 	faretype = FARE_FINE
 	portable = FALSE
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'

@@ -850,7 +850,7 @@
 
 //SpartanBobby
 /obj/item/enchantingkit/bobby_helm
-	name = "'Holy Astratan Bascinet' morphing elixir"
+	name = "'Holy Auxentian Bascinet' morphing elixir"
 	target_items = list(
 		/obj/item/clothing/head/roguetown/helmet/heavy/astratan,
 		/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,

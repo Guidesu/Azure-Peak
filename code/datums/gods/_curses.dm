@@ -66,7 +66,7 @@
 //////////////////////////
 ///   CONCORDAT CURSES  ///
 //////////////////////////
-// Astrata+Ravox merged into Auxentius; Noc+Eora merged into Miluse; Malum+Pestra merged into Handwerra;
+// Auxentius+Auxentius merged into Auxentius; Noc+Eora merged into Miluse; Malum+Pestra merged into Handwerra;
 // Necra+Matthios merged into Morwenna (see Old Kin / Tribunal sections below for the rest).
 
 /datum/curse/auxentius
@@ -166,7 +166,7 @@
 /// ON GAIN / LOSS ///
 //////////////////////
 
-//AUXENTIUS// (Astrata's sleeplessness + Ravox's combat malus)
+//AUXENTIUS// (Auxentius's sleeplessness + Auxentius's combat malus)
 /datum/curse/auxentius/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
 	if(curse_resist && prob(50))

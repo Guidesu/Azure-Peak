@@ -238,9 +238,9 @@
 	var/mob/living/carbon/human/hostage //What hostage we have
 
 	/// Boolean. Usually set only to TRUE for non-Eoran church roles.
-	var/virginity = FALSE
+	//var/virginity = FALSE //-> sexcon_helpers
 	/// Used to prevent certain antag from having sex
-	var/can_do_sex = TRUE
+	//var/can_do_sex = TRUE //-> sexcon_helpers
 	/// For vision cone, check out mobs.dm defines for values
 	fovangle = FOV_DEFAULT
 

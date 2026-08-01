@@ -103,7 +103,7 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/wulfric
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
 			head = /obj/item/clothing/head/roguetown/roguehood/abyssor
-		if(/datum/patron/severance/ignatius) //Dendorites all busted. Play Druid.
+		if(/datum/patron/severance/ignatius) //Ignatians all busted. Play Druid.
 			head = /obj/item/clothing/head/roguetown/dendormask
 			neck = /obj/item/clothing/neck/roguetown/psicross/ignatius
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/ignatius

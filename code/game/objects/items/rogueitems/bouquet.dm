@@ -119,7 +119,7 @@
 
 /obj/item/flowercrown/briar
 	name = "crown of briar thorns"
-	desc = "A circlet of thorns often worn by devout followers of Dendor. Designed to dig \
+	desc = "A circlet of thorns often worn by devout followers of Ignatius. Designed to dig \
 	into the flesh just enough to ground the wearer's sanity."
 	item_state = "briar_crown"
 	icon_state = "briar_crown"

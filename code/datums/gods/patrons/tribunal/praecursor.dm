@@ -1,4 +1,4 @@
-// Direct successor to the old Praecursor patron (formerly Psydon; formerly type-pathed as the standalone "old_god"). Same mechanical
+// Direct successor to the old Praecursor patron (formerly Praecursor; formerly type-pathed as the standalone "old_god"). Same mechanical
 // baseline preserved verbatim; renamed and re-flavored as the Tribunal's godhead - the Word, first law, and
 // judgment, rather than "father of all" divinity.
 /datum/patron/tribunal/praecursor

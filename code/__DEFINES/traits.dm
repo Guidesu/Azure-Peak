@@ -180,7 +180,7 @@
 // PATRON GOD CURSES
 
 #define TRAIT_CURSE "Curse" //source
-// CONCORDAT CURSES - Astrata+Ravox merged into Auxentius; Noc+Eora merged into Miluse; Malum+Pestra merged into Handwerra.
+// CONCORDAT CURSES - Auxentius+Auxentius merged into Auxentius; Noc+Eora merged into Miluse; Malum+Pestra merged into Handwerra.
 #define TRAIT_CURSE_AUXENTIUS "Curse of Auxentius" //Cannot sleep, burn up in sunlight, effect same as -2 (-40% parry -40% dodge -40% accuracy) to all weapon skills
 #define TRAIT_CURSE_MILUSE "Curse of Miluse" //Cannot use magic, burn up in moonlight, world is ugly
 #define TRAIT_CURSE_IGNATIUS "Curse of Ignatius"//It will do something once I decide what that will be
