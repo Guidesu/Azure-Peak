@@ -356,7 +356,7 @@
 			return FALSE
 		var/zones = M.zone_selected
 		if(!M.ckey)
-			zones = M.get_attack_zone()
+			zones = M.get_attack_zone(src)
 		var/dam_zone = dismembering_strike(M, zones)
 		if(!dam_zone) //Dismemberment successful
 			return TRUE

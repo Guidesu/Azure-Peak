@@ -160,6 +160,7 @@
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
 
 // Tell us where a mob tends to aim with their attacks
+#define MOB_AIM_GROUND	"ground"
 #define MOB_AIM_LOW		"low"
 #define MOB_AIM_LEVEL	"level"
 #define MOB_AIM_HIGH	"high"

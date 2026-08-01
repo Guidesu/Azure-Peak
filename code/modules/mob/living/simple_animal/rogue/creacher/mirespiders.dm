@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mirespider
-	attack_aim = MOB_AIM_LOW
+	attack_aim = MOB_AIM_GROUND
 	icon = 'icons/mob/mirespider_small.dmi'
 	desc = "Said to have originated from the decapitated heads of fallen legionnaires from eons past, grown legs and a voracious appetite, mire crawlers are common pests in many a wetland. Occasionally hunted for their silk."
 	name = "mire crawler"

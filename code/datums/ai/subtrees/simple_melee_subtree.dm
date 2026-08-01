@@ -46,8 +46,5 @@
 /datum/ai_planning_subtree/basic_melee_attack_subtree/spear //Spacing takes care of our movement
 	melee_attack_behavior = /datum/ai_behavior/static_melee_attack
 
-/datum/ai_planning_subtree/basic_melee_attack_subtree/static //Spacing takes care of our movement
-	melee_attack_behavior = /datum/ai_behavior/static_melee_attack
-
 /datum/ai_planning_subtree/basic_melee_attack_subtree/circler
 	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/circler

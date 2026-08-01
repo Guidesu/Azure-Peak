@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider
-	attack_aim = MOB_AIM_LOW
+	attack_aim = MOB_AIM_GROUND
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
 	name = "beespider"
 	desc = "An invasive species of oversized spider known both for its dangerous venom and its production of bee-like honey. While occasionally domesticated in some parts of the world, feral specimens are reputedly dangerous and best avoided."

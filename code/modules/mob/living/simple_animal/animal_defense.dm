@@ -390,17 +390,35 @@
 
 	take_overall_damage(brute_loss,burn_loss)
 
-/mob/living/simple_animal/proc/get_attack_zone()
+/mob/living/simple_animal/proc/get_attack_zone(mob/living/target)
+	if(target && !(target.mobility_flags & MOBILITY_STAND))
+		return pickweight(list(
+			BODY_ZONE_CHEST = 34,
+			BODY_ZONE_HEAD = 24,
+			BODY_ZONE_L_ARM = 11,
+			BODY_ZONE_R_ARM = 11,
+			BODY_ZONE_L_LEG = 10,
+			BODY_ZONE_R_LEG = 10,
+		))
 	if(length(attack_zone_weights))
 		return pickweight(attack_zone_weights)
 	switch(attack_aim)
+		if(MOB_AIM_GROUND)
+			return pickweight(list(
+				BODY_ZONE_L_LEG = 35,
+				BODY_ZONE_R_LEG = 35,
+				BODY_ZONE_L_ARM = 9,
+				BODY_ZONE_R_ARM = 9,
+				BODY_ZONE_CHEST = 10,
+				BODY_ZONE_HEAD = 2,
+			))
 		if(MOB_AIM_LOW)
 			return pickweight(list(
-				BODY_ZONE_CHEST = 30,
-				BODY_ZONE_L_LEG = 20,
-				BODY_ZONE_R_LEG = 20,
-				BODY_ZONE_L_ARM = 12,
-				BODY_ZONE_R_ARM = 12,
+				BODY_ZONE_L_LEG = 21,
+				BODY_ZONE_R_LEG = 21,
+				BODY_ZONE_CHEST = 22,
+				BODY_ZONE_L_ARM = 15,
+				BODY_ZONE_R_ARM = 15,
 				BODY_ZONE_HEAD = 6,
 			))
 		if(MOB_AIM_HIGH)
@@ -413,12 +431,12 @@
 				BODY_ZONE_R_LEG = 8,
 			))
 	return pickweight(list(
-		BODY_ZONE_CHEST = 28,
+		BODY_ZONE_CHEST = 27,
 		BODY_ZONE_L_ARM = 16,
 		BODY_ZONE_R_ARM = 16,
-		BODY_ZONE_HEAD = 14,
-		BODY_ZONE_L_LEG = 13,
-		BODY_ZONE_R_LEG = 13,
+		BODY_ZONE_HEAD = 17,
+		BODY_ZONE_L_LEG = 12,
+		BODY_ZONE_R_LEG = 12,
 	))
 
 /mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent = null, simplified = TRUE)

@@ -43,12 +43,6 @@
 	action_cooldown = 0.2 SECONDS
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
 
-/datum/ai_behavior/basic_melee_attack/human_npc/static
-	behavior_flags = AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
-
-/datum/ai_planning_subtree/basic_melee_attack_subtree/human_npc/static
-	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/human_npc/static
-
 /datum/ai_behavior/basic_melee_attack/human_npc/setup(datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
 	if(!.)
@@ -163,6 +157,8 @@
 	if(prob(scan_chance) && isliving(target))
 		_scan_for_weakpoint(controller, pawn, target)
 
+	if(sidesteps_after && !pawn.mind?.has_antag_datum(/datum/antagonist/zombie) && prob(sidestep_chance))
+		pawn.combat_sidestep(target, sidestep_offsets, sidestep_seeks_flank)
 
 /datum/ai_behavior/basic_melee_attack/human_npc/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()

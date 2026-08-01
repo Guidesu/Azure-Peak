@@ -1,6 +1,6 @@
 ///For the Nosferatu Vampire Lord transformationn
 /mob/living/simple_animal/hostile/retaliate/smallrat
-	attack_aim = MOB_AIM_LOW
+	attack_aim = MOB_AIM_GROUND
 	name = "rat"
 	desc = ""
 	icon_state = "srat"

@@ -8,7 +8,7 @@
 	max_range = 7
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/charge_speed = 2
-	var/windup_time = 0.5 SECONDS
+	var/windup_time = 0.7 SECONDS
 	var/missed_once = FALSE
 
 /datum/action/cooldown/mob_cooldown/boar_charge/use_special(atom/target)
@@ -17,14 +17,15 @@
 
 /datum/action/cooldown/mob_cooldown/boar_charge/proc/wind_up(atom/target)
 	var/mob/living/boar = owner
+	boar.visible_message("<b>[boar]</b> lowers its head and paws at the ground!")
+	playsound(boar, 'sound/vo//mobs/boar/boar_charge.ogg', 75, TRUE)
 	if(!do_after(boar, windup_time))
 		StartCooldownSelf(0)
 		return
 	if(QDELETED(target) || QDELETED(boar) || boar.buckled || boar.incapacitated())
 		StartCooldownSelf(0)
 		return
-	boar.visible_message("<b>[boar]</b> lowers its head and charges!")
-	playsound(boar, 'sound/vo//mobs/boar/boar_charge.ogg', 75, TRUE)
+	boar.visible_message(span_danger("<b>[boar]</b> charges!"))
 	var/charge_dir = get_dir(boar, target)
 	boar.throw_at(target, max_range, charge_speed, boar, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
 

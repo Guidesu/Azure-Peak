@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/cat
-	attack_aim = MOB_AIM_LOW
+	attack_aim = MOB_AIM_GROUND
 	anatomy_type = /datum/anatomy/quadruped/trash
 	name = "cat"
 	desc = "A ferocious little beast."

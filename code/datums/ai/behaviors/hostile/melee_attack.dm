@@ -1,8 +1,8 @@
 /datum/ai_behavior/basic_melee_attack
 	action_cooldown = 0.2 SECONDS // We gotta check unfortunately often because we're in a race condition with nextmove
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
-	var/sidesteps_after = FALSE
-	var/sidestep_chance = 33
+	var/sidesteps_after = TRUE
+	var/sidestep_chance = 15
 	var/list/sidestep_offsets
 	var/sidestep_seeks_flank = FALSE
 
@@ -16,8 +16,7 @@
 	var/atom/target = controller.blackboard[hiding_location_key] || controller.blackboard[target_key]
 	if(QDELETED(target))
 		return FALSE
-	if(behavior_flags & AI_BEHAVIOR_REQUIRE_MOVEMENT)
-		set_movement_target(controller, target)
+	set_movement_target(controller, target)
 
 /datum/ai_behavior/basic_melee_attack/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	if (isliving(controller.pawn))
@@ -57,8 +56,6 @@
 		basic_mob.combat_sidestep(target, sidestep_offsets, sidestep_seeks_flank)
 
 /datum/ai_behavior/basic_melee_attack/circler
-	sidesteps_after = TRUE
-	sidestep_chance = 15
 	sidestep_seeks_flank = TRUE
 
 /datum/ai_behavior/basic_melee_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
