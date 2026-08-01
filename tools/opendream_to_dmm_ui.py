@@ -10,11 +10,12 @@ Defaults to port 8477. Opens browser automatically.
 
 import json
 import os
+import re
 import sys
 import threading
 import webbrowser
 import tempfile
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
 from pathlib import Path
 
@@ -22,10 +23,43 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from opendream_to_dmm import (
     format_value, format_var_overrides, build_cell_string, build_grid
 )
+from campaign_save_to_dmm import merge
 
 loaded_data = None
 loaded_path = None
+loaded_dmm_path = None
+loaded_save_path = None
 tempfile_dir = tempfile.mkdtemp(prefix="dmm_export_")
+
+
+def inspect_dmm(data):
+    """Read dimensions and basic metadata from a standard DMM file."""
+    text = data.decode("utf-8", errors="replace").splitlines()
+    cell_count = sum(1 for line in text if re.match(r'^"[A-Za-z]+" = \($', line))
+    coordinates = []
+    i = 0
+    while i < len(text):
+        match = re.match(r'^\((\d+),(\d+),(\d+)\) = \{"$', text[i])
+        if match:
+            x, y, z = (int(value) for value in match.groups())
+            key_count = 0
+            i += 1
+            while i < len(text) and text[i] != '"}':
+                key_count += 1
+                i += 1
+            coordinates.append((x, y, z, key_count))
+        i += 1
+
+    if not coordinates:
+        raise ValueError("No DMM grid entries found")
+
+    return {
+        "maxx": max(x for x, _, _, _ in coordinates),
+        "maxy": max(key_count for _, _, _, key_count in coordinates),
+        "maxz": max(z for _, _, z, _ in coordinates),
+        "cellCount": cell_count,
+        "rows": len(coordinates),
+    }
 
 # ─── HTML ────────────────────────────────────────────────────────────────────
 
@@ -85,27 +119,39 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#e94560}
 <body>
 <div class="c">
   <h1>OpenDream &rarr; DMM</h1>
-  <p class="sub">Convert compiled JSON to an editable .dmm map file</p>
+  <p class="sub">Drop a source .dmm map directly, or convert compiled JSON when appropriate</p>
 
   <div class="card">
-    <h2>1 &middot; Load JSON</h2>
+    <h2>1 &middot; Load map source</h2>
     <div class="dz" id="dz">
       <div class="dz-ic">&#128193;</div>
-      <div class="dz-tx" id="dzTx">Drop roguetown.json here</div>
+      <div class="dz-tx" id="dzTx">Drop the BYOS .dmm map here</div>
       <div class="dz-hn">or click to browse</div>
     </div>
-    <input type="file" id="fi" accept=".json,application/json" style="display:none">
+    <input type="file" id="fi" accept=".dmm" style="display:none">
     <div class="or"><span>or paste path</span></div>
     <div class="fw">
-      <input type="text" id="jp" placeholder="C:\...\roguetown.json">
+      <input type="text" id="jp" placeholder="C:\...\_maps\map_files\byos\byos.dmm">
       <button class="btn" id="lb">Load</button>
     </div>
     <div class="mi" id="mi"></div>
     <div class="st" id="ls"></div>
   </div>
 
+  <div class="card" id="sc" style="opacity:.35;pointer-events:none">
+    <h2>2 &middot; Apply campaign save</h2>
+    <div class="dz" id="sdz">
+      <div class="dz-ic">&#128196;</div>
+      <div class="dz-tx" id="sdzTx">Drop data/dreamvalley/save.json here</div>
+      <div class="dz-hn">Optional: adds your played-world changes to the base DMM</div>
+    </div>
+    <input type="file" id="sfi" accept=".json,application/json" style="display:none">
+    <div class="mi" id="smi"></div>
+    <div class="st" id="ss"></div>
+  </div>
+
   <div class="card" id="oc" style="opacity:.35;pointer-events:none">
-    <h2>2 &middot; Export</h2>
+    <h2>3 &middot; Export</h2>
     <div class="row">
       <label>Z-level</label>
       <select id="zl"><option value="">All</option></select>
@@ -137,23 +183,32 @@ function st(id, m, t) { const e = $(id); e.className = 'st show ' + t; e.innerHT
 // ─── File input (hidden, triggered by dropzone click) ───────────────────────
 const dz = $('dz');
 const fi = $('fi');
+const sdz = $('sdz');
+const sfi = $('sfi');
 
 dz.addEventListener('click', () => fi.click());
+sdz.addEventListener('click', () => sfi.click());
 
 fi.addEventListener('change', () => {
   if (fi.files.length) handleFile(fi.files[0]);
+});
+sfi.addEventListener('change', () => {
+  if (sfi.files.length) handleSaveFile(sfi.files[0]);
 });
 
 // ─── Drag & drop on dropzone ────────────────────────────────────────────────
 ['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('over'); }));
 ['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
 dz.addEventListener('drop', e => { if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+['dragenter','dragover'].forEach(ev => sdz.addEventListener(ev, e => { e.preventDefault(); sdz.classList.add('over'); }));
+['dragleave','drop'].forEach(ev => sdz.addEventListener(ev, e => { e.preventDefault(); sdz.classList.remove('over'); }));
+sdz.addEventListener('drop', e => { if (e.dataTransfer.files.length) handleSaveFile(e.dataTransfer.files[0]); });
 
 // ─── Drag & drop anywhere on page (prevent browser from opening the file) ──
 ['dragover'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
 document.addEventListener('drop', e => {
   e.preventDefault();
-  if (e.dataTransfer.files.length && !dz.contains(e.target)) handleFile(e.dataTransfer.files[0]);
+  if (e.dataTransfer.files.length && !dz.contains(e.target) && !sdz.contains(e.target)) handleFile(e.dataTransfer.files[0]);
 });
 
 // ─── Handle a file (from input or drag-drop) ────────────────────────────────
@@ -168,6 +223,21 @@ async function handleFile(file) {
     if (d.error) { st('ls', 'Error: ' + d.error, 'err'); return; }
     loaded(d, file.name);
   } catch(e) { st('ls', 'Error: ' + e.message, 'err'); }
+}
+
+async function handleSaveFile(file) {
+  $('sdzTx').textContent = file.name;
+  st('ss', '<span class="sp"></span>Uploading campaign save...', 'load');
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const r = await fetch('/api/upload-save', { method: 'POST', body: fd });
+    const d = await r.json();
+    if (d.error) { st('ss', 'Error: ' + d.error, 'err'); return; }
+    $('smi').className = 'mi show';
+    $('smi').innerHTML = 'Generation <b>' + d.generation + '</b> &middot; <b>' + d.turfs + '</b> changed turfs &middot; <b>' + d.objects + '</b> saved objects';
+    st('ss', 'Campaign save loaded. Export will merge it into the DMM.', 'ok');
+  } catch(e) { st('ss', 'Error: ' + e.message, 'err'); }
 }
 
 // ─── Load by path ───────────────────────────────────────────────────────────
@@ -192,18 +262,32 @@ async function loadPath() {
 // ─── Common: data loaded ────────────────────────────────────────────────────
 function loaded(d, name) {
   mb = d;
+  $('smi').className = 'mi';
+  $('ss').className = 'st';
+  $('sdzTx').textContent = 'Drop data/dreamvalley/save.json here';
   $('mi').className = 'mi show';
   $('mi').innerHTML = 'Map: <b>' + d.maxx + '</b> x <b>' + d.maxy + '</b> x <b>' + d.maxz + '</b> &middot; <b>' + d.cellCount + '</b> cells &middot; <b>' + d.fileSize + '</b>';
-  st('ls', 'Loaded ' + name, 'ok');
+  if (d.sourceType === 'dmm') {
+    $('mi').innerHTML += ' &middot; <b>source DMM (already editor-ready)</b>';
+    st('ls', 'Loaded ' + name + '. This is already a DMM map; no JSON conversion is needed.', 'ok');
+  } else {
+    $('mi').innerHTML += '<br><span style="color:#e9a23b">Compiled JSON contains the base map, not the runtime-loaded BYOS map. Drop byos_original.dmm for the campaign map.</span>';
+    st('ls', 'Loaded ' + name, 'ok');
+  }
 
   let opts = '<option value="">All</option>';
   for (let z = 1; z <= d.maxz; z++) opts += '<option value="' + z + '">Z-level ' + z + '</option>';
   $('zl').innerHTML = opts;
 
+  const saveCard = $('sc');
+  saveCard.style.opacity = d.sourceType === 'dmm' ? '1' : '.35';
+  saveCard.style.pointerEvents = d.sourceType === 'dmm' ? 'auto' : 'none';
   const c = $('oc');
   c.style.opacity = '1'; c.style.pointerEvents = 'auto';
   $('eb').disabled = false;
-  ['x1','x2','y1','y2'].forEach(id => $(id).disabled = false);
+  $('eb').textContent = d.sourceType === 'dmm' ? 'Use this DMM' : 'Export to .dmm';
+  const controlsDisabled = d.sourceType === 'dmm';
+  ['zl','x1','x2','y1','y2','no'].forEach(id => $(id).disabled = controlsDisabled);
   $('x1').placeholder = '1'; $('x2').placeholder = d.maxx;
   $('y1').placeholder = '1'; $('y2').placeholder = d.maxy;
 }
@@ -225,7 +309,7 @@ $('eb').addEventListener('click', async () => {
     const r = await fetch('/api/export?' + p);
     const d = await r.json();
     if (d.error) { st('es', 'Error: ' + d.error, 'err'); return; }
-    st('es', 'Done! <b>' + d.size + '</b> (' + d.cells + ' cells, ' + d.rows + ' rows)', 'ok');
+    st('es', d.sourceType === 'merged' ? 'Merged campaign save into DMM: <b>' + d.size + '</b>' + (d.skipped ? ' &middot; skipped <b>' + d.skipped + '</b> records outside this DMM\'s z-levels' : '') : d.sourceType === 'dmm' ? 'Ready to download the source DMM: <b>' + d.size + '</b>' : 'Done! <b>' + d.size + '</b> (' + d.cells + ' cells, ' + d.rows + ' rows)', 'ok');
     $('dl').href = '/api/download/' + encodeURIComponent(d.filename);
     $('dl').download = d.filename;
     $('dl').style.display = 'inline-block';
@@ -243,6 +327,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt, *args):
         pass
+
+    def handle_expect_100(self):
+        self.send_response_only(100)
+        self.end_headers()
+        return True
 
     def do_GET(self):
         parsed = urlparse(self.path)
@@ -287,6 +376,9 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/upload":
             self.handle_upload()
             return
+        if parsed.path == "/api/upload-save":
+            self.handle_upload(save_only=True)
+            return
         self.send_response(404)
         self.send_header("Content-Length", "0")
         self.end_headers()
@@ -300,7 +392,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def handle_load(self):
-        global loaded_data, loaded_path
+        global loaded_data, loaded_path, loaded_dmm_path, loaded_save_path
         cl = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(cl)
         try:
@@ -310,6 +402,19 @@ class Handler(BaseHTTPRequestHandler):
                 self._json({"error": f"File not found: {path}"})
                 return
             loaded_path = path
+            loaded_save_path = None
+            if path.lower().endswith(".dmm"):
+                with open(path, "rb") as f:
+                    file_data = f.read()
+                loaded_dmm_path = path
+                loaded_data = None
+                info = inspect_dmm(file_data)
+                size = os.path.getsize(path)
+                sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
+                self._json({**info, "fileSize": sz, "sourceType": "dmm"})
+                return
+
+            loaded_dmm_path = None
             with open(path, "r", encoding="utf-8") as f:
                 loaded_data = json.load(f)
             if "Maps" not in loaded_data or not loaded_data["Maps"]:
@@ -320,13 +425,13 @@ class Handler(BaseHTTPRequestHandler):
             size = os.path.getsize(path)
             sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
             self._json({"maxx": m["MaxX"], "maxy": m["MaxY"], "maxz": m["MaxZ"],
-                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz})
+                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz, "sourceType": "json"})
         except Exception as e:
             self._json({"error": str(e)})
             loaded_data = None
 
-    def handle_upload(self):
-        global loaded_data, loaded_path
+    def handle_upload(self, save_only=False):
+        global loaded_data, loaded_path, loaded_dmm_path, loaded_save_path
         ct = self.headers.get("Content-Type", "")
         if "multipart/form-data" not in ct:
             self._json({"error": "Expected multipart/form-data"})
@@ -389,25 +494,73 @@ class Handler(BaseHTTPRequestHandler):
                 de = len(body)
             file_data = body[ds:de]
 
+            if not save_only:
+                loaded_path = os.path.basename(filename)
+            size = len(file_data)
+            sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
+            if save_only:
+                candidate = json.loads(file_data.decode("utf-8"))
+                snapshot = candidate.get("snapshot", {})
+                if not isinstance(snapshot, dict):
+                    self._json({"error": "This is not a DreamValley campaign save.json"})
+                    return
+                loaded_save_path = os.path.join(tempfile_dir, "campaign_save.json")
+                with open(loaded_save_path, "wb") as f:
+                    f.write(file_data)
+                self._json({"sourceType": "save", "generation": candidate.get("checkpoint_generation", 0),
+                            "turfs": len(snapshot.get("turfs", [])), "objects": len(snapshot.get("objects", [])),
+                            "fileSize": sz})
+                return
+            loaded_save_path = None
+            if filename.lower().endswith(".dmm"):
+                stored_name = f"source_{os.path.basename(filename)}"
+                loaded_dmm_path = os.path.join(tempfile_dir, stored_name)
+                with open(loaded_dmm_path, "wb") as f:
+                    f.write(file_data)
+                loaded_data = None
+                self._json({**inspect_dmm(file_data), "fileSize": sz, "sourceType": "dmm"})
+                return
+
+            loaded_dmm_path = None
             loaded_data = json.loads(file_data.decode("utf-8"))
-            loaded_path = os.path.basename(filename)
             if "Maps" not in loaded_data or not loaded_data["Maps"]:
                 self._json({"error": "No maps in JSON"})
                 loaded_data = None
                 return
             m = loaded_data["Maps"][0]
-            size = len(file_data)
-            sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
             self._json({"maxx": m["MaxX"], "maxy": m["MaxY"], "maxz": m["MaxZ"],
-                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz})
+                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz, "sourceType": "json"})
         except Exception as e:
             self._json({"error": str(e)})
             loaded_data = None
 
     def handle_export(self, params):
-        global loaded_data, loaded_path
+        global loaded_data, loaded_path, loaded_dmm_path, loaded_save_path
+        if loaded_dmm_path:
+            base_name = Path(loaded_path or "map.dmm").stem
+            if loaded_save_path:
+                filename = f"{base_name}_saved.dmm"
+                output_path = os.path.join(tempfile_dir, filename)
+                stats = merge(loaded_dmm_path, loaded_save_path, output_path)
+                size = os.path.getsize(output_path)
+                sz = f"{size/1024:.0f} KB" if size > 1024 else f"{size} B"
+                self._json({"filename": filename, "size": sz, "cells": stats["modified_cells"],
+                            "rows": stats["turf_changes"] + stats["mapped_objects"] + stats["new_objects"],
+                            "sourceType": "merged", "skipped": stats["skipped_out_of_bounds"]})
+                return
+            filename = os.path.basename(loaded_path or "map.dmm")
+            output_path = os.path.join(tempfile_dir, filename)
+            if os.path.abspath(output_path) != os.path.abspath(loaded_dmm_path):
+                with open(loaded_dmm_path, "rb") as source, open(output_path, "wb") as destination:
+                    destination.write(source.read())
+            size = os.path.getsize(output_path)
+            sz = f"{size/1024:.0f} KB" if size > 1024 else f"{size} B"
+            info = inspect_dmm(open(output_path, "rb").read())
+            self._json({"filename": filename, "size": sz, "cells": info["cellCount"],
+                        "rows": info["rows"], "sourceType": "dmm"})
+            return
         if loaded_data is None:
-            self._json({"error": "No JSON loaded"})
+            self._json({"error": "No map source loaded"})
             return
         try:
             m = loaded_data["Maps"][0]
@@ -461,7 +614,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8477
-    server = HTTPServer(("127.0.0.1", port), Handler)
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     url = f"http://127.0.0.1:{port}"
     print(f"DMM Converter UI running at {url}")
     print(f"Output dir: {tempfile_dir}")

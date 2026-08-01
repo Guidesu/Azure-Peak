@@ -117,7 +117,7 @@ def build_grid(blocks: list, cell_defs: dict, maxx: int, maxy: int, maxz: int,
     Build the DMM grid lines.
 
     OpenDream stores blocks in column-major order (each block is one column:
-    X, Y=1, Width=1, Height=maxy, Cells=[bottom-to-top]).
+    X, Y=1, Width=1, Height=maxy, Cells=[top-to-bottom]).
 
     DMM format is:
     (1,1,1) = {"keykeykeykey"
@@ -145,7 +145,7 @@ def build_grid(blocks: list, cell_defs: dict, maxx: int, maxy: int, maxz: int,
                 idx = dy * w + dx
                 if idx < len(cells):
                     cx = x + dx
-                    cy = y_start + dy
+                    cy = y_start + h - 1 - dy
                     grid[(cx, cy, z)] = cells[idx]
 
     # Determine output bounds
@@ -174,7 +174,7 @@ def build_grid(blocks: list, cell_defs: dict, maxx: int, maxy: int, maxz: int,
             coord = f"({x},{min_y},{z})"
             lines.append(f'{coord} = {{"')
 
-            for y in range(min_y, max_y + 1):
+            for y in range(max_y, min_y - 1, -1):
                 key = grid.get((x, y, z), "aa")
                 lines.append(key)
 
