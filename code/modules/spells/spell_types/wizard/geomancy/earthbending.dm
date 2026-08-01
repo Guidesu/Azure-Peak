@@ -91,6 +91,13 @@
 	var/list/form = forms[form_index]
 	var/form_label = form["label"]
 
+	// ── Bending Flow: gain flow stacks on cast ──
+	add_bending_flow(H, BENDING_ELEMENT_EARTH, 1)
+	// ── Bending Combo: register form cast for combo tracking ──
+	register_bending_form_cast(H, BENDING_ELEMENT_EARTH, form_label)
+	// ── VFX: cast burst on caster ──
+	create_bending_cast_burst(get_turf(H), GLOW_COLOR_EARTHEN)
+
 	switch(form_label)
 		if("Boulder")
 			return cast_boulder(H, cast_on)
@@ -127,11 +134,13 @@
 
 	// Create a projectile
 	var/obj/projectile/magic/gravel_blast/proj = new /obj/projectile/magic/gravel_blast(get_turf(H))
-	proj.damage = 45
+	proj.damage = round(45 * get_bending_flow_damage_mult(H))
 	proj.knockdown = 20
-	proj.range = 12
+	proj.range = 12 + get_bending_flow_range_bonus(H)
 	proj.speed = 0.3
 	proj.fire(dir2angle(dir))
+	// VFX: earth spike at target
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_earth_spike, T, GLOW_COLOR_EARTHEN), 0.3 SECONDS)
 	return TRUE
 
 /// Rock Spike: Line attack from caster to target, high damage
@@ -158,11 +167,11 @@
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(35, BRUTE, null, L.run_armor_check(null, "blunt", damage = 35))
+			L.apply_damage(round(35 * get_bending_flow_damage_mult(H)), BRUTE, null, L.run_armor_check(null, "blunt", damage = 35))
 			L.visible_message(span_danger("A rock spike impales [L]!"), span_userdanger("A rock spike erupts beneath me and impales my leg!"))
 			L.Knockdown(10)
 		// Visual effect
-		new /obj/effect/temp_visual/spell_impact(current, GLOW_COLOR_EARTHEN, SPELL_IMPACT_MEDIUM)
+		create_bending_earth_spike(current, GLOW_COLOR_EARTHEN)
 	return TRUE
 
 /// Earth Wall: Raise a dense wall at target tile
@@ -186,6 +195,9 @@
 	var/obj/structure/earthen_wall/wall = new /obj/structure/earthen_wall(T)
 	wall.timeleft = 30 SECONDS
 	QDEL_IN(wall, 30 SECONDS)
+	// VFX: earth spikes erupt around the wall
+	for(var/turf/ST in range(1, T))
+		create_bending_earth_spike(ST, GLOW_COLOR_EARTHEN)
 	return TRUE
 
 /// Gravel Spray: Close-range shotgun blast
@@ -227,12 +239,12 @@
 	for(var/mob/living/L in T)
 		if(L == H)
 			continue
-		L.apply_damage(20, BRUTE, null, L.run_armor_check(null, "blunt", damage = 20))
+		L.apply_damage(round(20 * get_bending_flow_damage_mult(H)), BRUTE, null, L.run_armor_check(null, "blunt", damage = 20))
 		L.Knockdown(30)
 		L.Immobilize(50)
 		L.visible_message(span_danger("[L] plunges into a sinkhole!"), span_userdanger("The ground opens beneath me and I fall into a pit!"))
 
-	new /obj/effect/temp_visual/spell_impact(T, GLOW_COLOR_EARTHEN, SPELL_IMPACT_MEDIUM)
+	create_bending_impact_ring(T, GLOW_COLOR_EARTHEN, 1.5)
 	return TRUE
 
 /// Earth Armor: Self-buff damage reduction
@@ -268,13 +280,17 @@
 		if(L == H)
 			continue
 		var/dist = get_dist(H, L)
-		var/damage = max(30 - (dist * 5), 10)
+		var/damage = max(round((30 - (dist * 5)) * get_bending_flow_damage_mult(H)), 10)
 		L.apply_damage(damage, BRUTE, null, L.run_armor_check(null, "blunt", damage = damage))
 		L.Knockdown(15)
 		L.visible_message(span_danger("[L] is caught in the tremor!"), span_userdanger("The ground heaves beneath me!"))
 
 	// Visual effect
-	new /obj/effect/temp_visual/spell_impact(get_turf(H), GLOW_COLOR_EARTHEN, SPELL_IMPACT_HIGH)
+	// VFX: expanding ring + earth spikes around caster
+	create_bending_impact_ring(get_turf(H), GLOW_COLOR_EARTHEN, 2.5)
+	for(var/turf/ET in range(2, get_turf(H)))
+		create_bending_earth_spike(ET, GLOW_COLOR_EARTHEN)
+	consume_bending_flow(H, 2)
 	return TRUE
 
 /// Stone Skate: Dash to target tile
@@ -303,11 +319,12 @@
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(15, BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
+			L.apply_damage(round(15 * get_bending_flow_damage_mult(H)), BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
 			L.Knockdown(10)
 			L.visible_message(span_danger("[H] slams through [L] on a slab of stone!"), span_userdanger("A slab of stone slams into me!"))
 
 	H.forceMove(T)
+	create_bending_cast_burst(T, GLOW_COLOR_EARTHEN)
 	return TRUE
 
 /// Rock Hand: Grab and pull a target

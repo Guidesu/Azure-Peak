@@ -86,6 +86,12 @@
 	if(!istype(H))
 		return FALSE
 	var/list/form = forms[form_index]
+	// ── Bending Flow: gain flow stacks on cast ──
+	add_bending_flow(H, BENDING_ELEMENT_WATER, 1)
+	// ── Bending Combo: register form cast for combo tracking ──
+	register_bending_form_cast(H, BENDING_ELEMENT_WATER, form["label"])
+	// ── VFX: cast burst on caster ──
+	create_bending_cast_burst(get_turf(H), GLOW_COLOR_ICE)
 	switch(form["label"])
 		if("Ice Shard")
 			return cast_ice_shard(H, cast_on)
@@ -115,9 +121,10 @@
 	H.visible_message(span_warning("[H] flicks a wrist, launching a shard of ice!"), span_notice("I hurl a shard of ice!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 50, TRUE)
 	var/obj/projectile/magic/frostbolt/proj = new /obj/projectile/magic/frostbolt(get_turf(H))
-	proj.damage = 35
-	proj.range = 12
+	proj.damage = round(35 * get_bending_flow_damage_mult(H))
+	proj.range = 12 + get_bending_flow_range_bonus(H)
 	proj.fire(dir2angle(dir))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_impact_ring, T, GLOW_COLOR_ICE, 1.0), 0.3 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/spell/waterbending/proc/cast_water_whip(mob/living/carbon/human/H, atom/target)
@@ -158,6 +165,9 @@
 	wall.obj_integrity = 150
 	wall.timeleft = 20 SECONDS
 	QDEL_IN(wall, 20 SECONDS)
+	// VFX: ice floor effect around the wall
+	for(var/turf/ST in range(1, T))
+		create_bending_ice_floor(ST)
 	return TRUE
 
 /datum/action/cooldown/spell/waterbending/proc/cast_frost_wave(mob/living/carbon/human/H, atom/target)
@@ -203,13 +213,14 @@
 		current = get_step(current, dir)
 		if(!current)
 			break
-		new /obj/effect/temp_visual/frozen_mist_tile(current)
+		create_bending_ice_floor(current)
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(12, BURN, null, L.run_armor_check(null, "fire", damage = 12))
+			L.apply_damage(round(12 * get_bending_flow_damage_mult(H)), BURN, null, L.run_armor_check(null, "fire", damage = 12))
 			L.Knockdown(10)
 	H.forceMove(T)
+	create_bending_cast_burst(T, GLOW_COLOR_ICE)
 	return TRUE
 
 /datum/action/cooldown/spell/waterbending/proc/cast_water_grab(mob/living/carbon/human/H, atom/target)
@@ -234,12 +245,16 @@
 		if(L == H)
 			continue
 		var/dist = get_dist(H, L)
-		var/damage = max(50 - (dist * 8), 15)
+		var/damage = max(round((50 - (dist * 8)) * get_bending_flow_damage_mult(H)), 15)
 		L.apply_damage(damage, BURN, null, L.run_armor_check(null, "fire", damage = damage))
 		L.Knockdown(20)
 		L.Immobilize(30)
 		L.visible_message(span_danger("[L] is shattered by the glacier!"), span_userdanger("A glacier erupts beneath me and shatters!"))
-	new /obj/effect/temp_visual/snap_freeze(get_turf(H))
+	// VFX: massive expanding ring + ice floor
+	create_bending_impact_ring(get_turf(H), GLOW_COLOR_ICE, 3.0)
+	for(var/turf/IT in range(3, get_turf(H)))
+		create_bending_ice_floor(IT)
+	consume_bending_flow(H, 2)
 	return TRUE
 
 /datum/action/cooldown/spell/waterbending/proc/cast_mist_form(mob/living/carbon/human/H)
@@ -247,6 +262,8 @@
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 40, TRUE)
 	ADD_TRAIT(H, "mist_form_buff", "waterbending")
 	H.alpha = 120
+	// VFX: mist particles around the caster
+	create_bending_cast_burst(get_turf(H), GLOW_COLOR_ICE)
 	addtimer(CALLBACK(src, .proc/remove_mist_form, H), 10 SECONDS)
 	return TRUE
 

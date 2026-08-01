@@ -86,6 +86,12 @@
 	if(!istype(H))
 		return FALSE
 	var/list/form = forms[form_index]
+	// ── Bending Flow: gain flow stacks on cast ──
+	add_bending_flow(H, BENDING_ELEMENT_AIR, 1)
+	// ── Bending Combo: register form cast for combo tracking ──
+	register_bending_form_cast(H, BENDING_ELEMENT_AIR, form["label"])
+	// ── VFX: cast burst on caster ──
+	create_bending_cast_burst(get_turf(H), GLOW_COLOR_KINESIS)
 	switch(form["label"])
 		if("Air Blast")
 			return cast_air_blast(H, cast_on)
@@ -115,9 +121,11 @@
 	H.visible_message(span_warning("[H] thrusts both palms forward, blasting a torrent of air!"), span_notice("I blast a torrent of air!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 50, TRUE)
 	var/obj/projectile/magic/soulshot/proj = new /obj/projectile/magic/soulshot(get_turf(H))
-	proj.damage = 25
-	proj.range = 12
+	proj.damage = round(25 * get_bending_flow_damage_mult(H))
+	proj.range = 12 + get_bending_flow_range_bonus(H)
 	proj.fire(dir2angle(dir))
+	// VFX: air gust at target
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_air_gust, T, GLOW_COLOR_KINESIS), 0.3 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_air_blade(mob/living/carbon/human/H, atom/target)
@@ -126,9 +134,11 @@
 	H.visible_message(span_warning("[H] slashes through the air, sending a cutting blade of wind!"), span_notice("I launch a blade of compressed air!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 50, TRUE)
 	var/obj/projectile/energy/airblade/proj = new /obj/projectile/energy/airblade(get_turf(H))
-	proj.damage = 40
-	proj.range = 10
+	proj.damage = round(40 * get_bending_flow_damage_mult(H))
+	proj.range = 10 + get_bending_flow_range_bonus(H)
 	proj.fire(dir2angle(dir))
+	// VFX: air gust at target
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_air_gust, T, GLOW_COLOR_KINESIS), 0.3 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_air_shield(mob/living/carbon/human/H)
@@ -153,9 +163,10 @@
 		return FALSE
 	H.visible_message(span_notice("[H] vanishes in a gust of wind and reappears elsewhere!"), span_notice("I step on the wind and appear at my target."))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 40, TRUE)
-	new /obj/effect/temp_visual/telekinesis(get_turf(H))
+	create_bending_air_gust(get_turf(H), GLOW_COLOR_KINESIS)
 	H.forceMove(T)
-	new /obj/effect/temp_visual/telekinesis(T)
+	create_bending_air_gust(T, GLOW_COLOR_KINESIS)
+	create_bending_cast_burst(T, GLOW_COLOR_KINESIS)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_air_burst(mob/living/carbon/human/H)
@@ -165,7 +176,7 @@
 		if(L == H)
 			continue
 		var/dist = get_dist(H, L)
-		var/damage = max(25 - (dist * 5), 8)
+		var/damage = max(round((25 - (dist * 5)) * get_bending_flow_damage_mult(H)), 8)
 		L.apply_damage(damage, BRUTE, null, L.run_armor_check(null, "blunt", damage = damage))
 		L.Knockdown(10)
 		// Push away from caster
@@ -174,7 +185,9 @@
 		if(push_to)
 			L.forceMove(push_to)
 		L.visible_message(span_danger("[L] is thrown back by the shockwave!"), span_userdanger("A shockwave of air slams into me!"))
-	new /obj/effect/temp_visual/kinetic_blast(get_turf(H))
+	// VFX: expanding air ring
+	create_bending_impact_ring(get_turf(H), GLOW_COLOR_KINESIS, 2.0)
+	create_bending_air_gust(get_turf(H), GLOW_COLOR_KINESIS)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_tornado(mob/living/carbon/human/H, atom/target)
@@ -194,10 +207,13 @@
 		var/turf/pull_to = get_step(L, pull_dir)
 		if(pull_to)
 			L.forceMove(pull_to)
-		L.apply_damage(20, BRUTE, null, L.run_armor_check(null, "blunt", damage = 20))
+		L.apply_damage(round(20 * get_bending_flow_damage_mult(H)), BRUTE, null, L.run_armor_check(null, "blunt", damage = 20))
 		L.Knockdown(15)
 		L.visible_message(span_danger("[L] is caught in the tornado!"), span_userdanger("A tornado whips me around!"))
-	new /obj/effect/temp_visual/gravpush(T)
+	// VFX: expanding air ring + gust
+	create_bending_impact_ring(T, GLOW_COLOR_KINESIS, 2.5)
+	create_bending_air_gust(T, GLOW_COLOR_KINESIS)
+	consume_bending_flow(H, 2)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_air_suffocate(mob/living/carbon/human/H, atom/target)
@@ -210,12 +226,14 @@
 		return FALSE
 	H.visible_message(span_warning("[H] clenches a fist at [L], and the air around them vanishes!"), span_notice("I pull the air from [L]'s lungs!"))
 	playsound(get_turf(L), 'sound/magic/vlightning.ogg', 50, TRUE)
-	L.apply_damage(45, OXY, null, forced = TRUE)
-	L.apply_damage(15, BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
+	L.apply_damage(round(45 * get_bending_flow_damage_mult(H)), OXY, null, forced = TRUE)
+	L.apply_damage(round(15 * get_bending_flow_damage_mult(H)), BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.silent = max(C.silent, 50)
 	L.visible_message(span_danger("[L] gasps and clutches their throat, unable to breathe!"), span_userdanger("The air is pulled from my lungs — I can't breathe!"))
+	// VFX: air gust swirling around the target
+	create_bending_air_gust(get_turf(L), GLOW_COLOR_KINESIS)
 	return TRUE
 
 /datum/action/cooldown/spell/airbending/proc/cast_cloud_ride(mob/living/carbon/human/H)

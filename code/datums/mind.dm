@@ -55,6 +55,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/list/spell_list = list()
 	/// Whether this mind has arcyne momentum (persists through death)
 	var/has_arcyne_momentum = FALSE
+	/// Bending combo tracker — stores recent form casts for combo matching
+	var/datum/bending_combo_tracker/bending_combo_tracker
 
 	var/list/major_aspects
 	var/list/minor_aspects

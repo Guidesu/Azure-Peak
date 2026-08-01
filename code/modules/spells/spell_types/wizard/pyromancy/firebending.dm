@@ -86,6 +86,12 @@
 	if(!istype(H))
 		return FALSE
 	var/list/form = forms[form_index]
+	// ── Bending Flow: gain flow stacks on cast ──
+	add_bending_flow(H, BENDING_ELEMENT_FIRE, 1)
+	// ── Bending Combo: register form cast for combo tracking ──
+	register_bending_form_cast(H, BENDING_ELEMENT_FIRE, form["label"])
+	// ── VFX: cast burst on caster ──
+	create_bending_cast_burst(get_turf(H), GLOW_COLOR_FIRE)
 	switch(form["label"])
 		if("Fire Bolt")
 			return cast_fire_bolt(H, cast_on)
@@ -115,9 +121,11 @@
 	H.visible_message(span_warning("[H] thrusts a palm forward, launching a bolt of fire!"), span_notice("I hurl a bolt of fire!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 60, TRUE)
 	var/obj/projectile/magic/spitfire/proj = new /obj/projectile/magic/spitfire(get_turf(H))
-	proj.damage = 40
-	proj.range = 12
+	proj.damage = round(40 * get_bending_flow_damage_mult(H))
+	proj.range = 12 + get_bending_flow_range_bonus(H)
 	proj.fire(dir2angle(dir))
+	// VFX: impact ring at target
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_impact_ring, T, GLOW_COLOR_FIRE, 1.0), 0.3 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_fire_stream(mob/living/carbon/human/H, atom/target)
@@ -127,12 +135,15 @@
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 70, TRUE)
 	// Fire 5 projectiles in a cone
 	var/base_angle = dir2angle(dir)
+	var/flow_mult = get_bending_flow_damage_mult(H)
 	for(var/i in 1 to 5)
 		var/obj/projectile/magic/spitfire/proj = new /obj/projectile/magic/spitfire(get_turf(H))
-		proj.damage = 20
-		proj.range = 6
+		proj.damage = round(20 * flow_mult)
+		proj.range = 6 + get_bending_flow_range_bonus(H)
 		var/spread = (i - 3) * 15
 		proj.fire(base_angle + spread)
+	// VFX: fire trail along the cone
+	create_bending_effect_line(get_turf(H), T, GLOW_COLOR_FIRE, "fire")
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_fire_bomb(mob/living/carbon/human/H, atom/target)
@@ -143,9 +154,11 @@
 	H.visible_message(span_warning("[H] hurls a roaring sphere of fire that explodes on impact!"), span_notice("I lob a fire bomb!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 80, TRUE)
 	var/obj/projectile/magic/aoe/fireball/rogue/proj = new /obj/projectile/magic/aoe/fireball/rogue(get_turf(H))
-	proj.damage = 60
-	proj.range = 10
+	proj.damage = round(60 * get_bending_flow_damage_mult(H))
+	proj.range = 10 + get_bending_flow_range_bonus(H)
 	proj.fire(Get_Angle(H, T))
+	// VFX: impact ring at target
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/create_bending_impact_ring, T, GLOW_COLOR_FIRE, 2.0), 0.5 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_flame_whip(mob/living/carbon/human/H, atom/target)
@@ -158,6 +171,7 @@
 	// Damage along the line and pull enemies
 	var/turf/current = get_turf(H)
 	var/dir = get_dir(H, T)
+	var/flow_mult = get_bending_flow_damage_mult(H)
 	for(var/i in 1 to 5)
 		current = get_step(current, dir)
 		if(!current)
@@ -165,14 +179,15 @@
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(25, BURN, null, L.run_armor_check(null, "fire", damage = 25))
+			L.apply_damage(round(25 * flow_mult), BURN, null, L.run_armor_check(null, "fire", damage = 25))
 			L.visible_message(span_danger("[L] is lashed by the flame whip!"), span_userdanger("A whip of fire lashes around me and yanks me forward!"))
 			// Pull toward caster
 			var/pull_dir = get_dir(L, H)
 			var/turf/pull_to = get_step(L, pull_dir)
 			if(pull_to)
 				L.forceMove(pull_to)
-		new /obj/effect/temp_visual/fire(current)
+		// VFX: fire trail along the whip line
+		create_bending_fire_trail(current)
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_fire_shield(mob/living/carbon/human/H)
@@ -203,12 +218,15 @@
 		current = get_step(current, dir)
 		if(!current)
 			break
-		new /obj/effect/temp_visual/fire(current)
+		// VFX: procedural fire trail (burns people who cross it)
+		create_bending_fire_trail(current)
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(15, BURN, null, L.run_armor_check(null, "fire", damage = 15))
+			L.apply_damage(round(15 * get_bending_flow_damage_mult(H)), BURN, null, L.run_armor_check(null, "fire", damage = 15))
 	H.forceMove(T)
+	// VFX: impact burst at destination
+	create_bending_cast_burst(T, GLOW_COLOR_FIRE)
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_fire_blade(mob/living/carbon/human/H)
@@ -231,18 +249,23 @@
 /datum/action/cooldown/spell/firebending/proc/cast_inferno(mob/living/carbon/human/H)
 	H.visible_message(span_warning("[H] throws their arms wide and erupts in a massive inferno!"), span_notice("I release an inferno in all directions!"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 100, TRUE)
-	for(var/mob/living/L in range(5, H))
+	var/flow_mult = get_bending_flow_damage_mult(H)
+	var/range_bonus = get_bending_flow_range_bonus(H)
+	var/aoe_range = 5 + round(range_bonus / 2)
+	for(var/mob/living/L in range(aoe_range, H))
 		if(L == H)
 			continue
 		var/dist = get_dist(H, L)
-		var/damage = max(60 - (dist * 10), 20)
+		var/damage = max(round((60 - (dist * 10)) * flow_mult), 20)
 		L.apply_damage(damage, BURN, null, L.run_armor_check(null, "fire", damage = damage))
 		L.visible_message(span_danger("[L] is consumed by the inferno!"), span_userdanger("A wave of fire engulfs me!"))
-		var/push_dir = get_dir(H, L)
-		var/turf/push_to = get_step(L, push_dir)
-		if(push_to)
-			L.forceMove(push_to)
+		// VFX: animated push with effect
+		bending_push_mob(L, get_turf(H), 1, 0, BURN, "fire")
+	// VFX: massive expanding ring
+	create_bending_impact_ring(get_turf(H), GLOW_COLOR_FIRE, 3.0)
 	new /obj/effect/temp_visual/explosion(get_turf(H))
+	// Consume some flow for the ultimate
+	consume_bending_flow(H, 2)
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/proc/cast_smoke_veil(mob/living/carbon/human/H, atom/target)
