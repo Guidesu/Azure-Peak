@@ -1917,21 +1917,13 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 		return
 
 	var/title = get_free_soul_safe_class_name(choice["title"])
-	var/resident_advjob_type = choice["path"]
 	var/applied_name = title
 
-	if(resident_advjob_type)
-		var/datum/advclass/advclass = get_tat_resident_advclass_datum(resident_advjob_type)
-		if(advclass)
-			applied_name = get_free_soul_safe_class_name(advclass.name, title)
-			if(H.mind)
-				H.mind.picked_advclass = advclass
-		else
-			advclass = new resident_advjob_type
-			if(advclass)
-				applied_name = get_free_soul_safe_class_name(advclass.name, title)
-				qdel(advclass)
-
+	// Only set the display name (advjob). Do NOT overwrite picked_advclass —
+	// the TAT class must remain the active advclass so that TAT-owned stats,
+	// skills, and traits are the sole authority. Overwriting picked_advclass
+	// with a towner subclass caused downstream systems (character flaws,
+	// contract gates, etc.) to read the wrong class's stats/restrictions.
 	if(!length(applied_name))
 		return
 
