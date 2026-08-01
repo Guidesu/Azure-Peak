@@ -348,9 +348,9 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		return FALSE
 
 	//Flavor messages for cursing certain god's faithful.
-	//Dendor works in mysterious ways.
+	//Ignatius works in mysterious ways.
 	if (istype(H.patron, /datum/patron/severance/ignatius))
-		to_chat(src, span_warning("The mad god Dendor is felt strongly. The wolf in this one balks and trashes as it is faintly restrained."))
+		to_chat(src, span_warning("The mad god Ignatius is felt strongly. The wolf in this one balks and trashes as it is faintly restrained."))
 		//If we check this here there's no need to apply this trait preemtively to a bunch of people, and allows for greater fluff feedback.
 		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
 
@@ -535,9 +535,9 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 		return
 
 	var/list/curse_choices = list(
-		"Curse of Astrata" = /datum/curse/auxentius,
+		"Curse of Auxentius" = /datum/curse/auxentius,
 		"Curse of Noc" = /datum/curse/miluse,
-		"Curse of Ravox" = /datum/curse/auxentius,
+		"Curse of Auxentius" = /datum/curse/auxentius,
 		"Curse of Necra" = /datum/curse/morwenna,
 		"Curse of Xylix" = /datum/curse/viator,
 		)

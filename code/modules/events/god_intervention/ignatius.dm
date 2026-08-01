@@ -1,4 +1,4 @@
-// Direct rename of the old Dendor vines/fertility/ire intervention events (now Ignatius's).
+// Direct rename of the old Ignatius vines/fertility/ire intervention events (now Ignatius's).
 /datum/round_event_control/ignatius_vines_malus
 	name = "Ignatius's Vines (Malus)"
 	track = EVENT_TRACK_INTERVENTION

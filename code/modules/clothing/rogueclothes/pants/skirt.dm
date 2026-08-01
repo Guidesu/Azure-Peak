@@ -45,7 +45,7 @@
 
 /obj/item/clothing/under/roguetown/skirt/baotha
 	name = "saccharine fauldcoat"
-	desc = "Only did Belladona's haze clear, once She heard Eora's gasps and Ravox's fright; what else could She've done besides fleeing the heavens?"
+	desc = "Only did Belladona's haze clear, once She heard Eora's gasps and Auxentius's fright; what else could She've done besides fleeing the heavens?"
 	armor = ARMOR_PADDED
 	icon_state = "baothaskirt"
 	chunkcolor = "#6d1c87"

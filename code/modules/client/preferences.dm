@@ -118,6 +118,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/phobia = "spiders"
 	var/shake = TRUE
 	var/sexable = FALSE
+	/// Ported from Ratwood: when TRUE, the player opted into orgasm denial (try_resist_orgasm).
+	var/edging = FALSE
 	var/compliance_notifs = TRUE
 
 	var/list/custom_names = list()

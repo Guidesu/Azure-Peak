@@ -105,7 +105,7 @@
 	name = "sacred tree"
 	desc = "A blessed primordial tree, ancient beyond years. Said to be an emanation of the \
 	Tree Father himself, whose presence imbues druids with wild energies. It is wildly taboo \
-	among Dendorites to fell a tree through which their God is peering."
+	among Ignatians to fell a tree through which their God is peering."
 	icon_state = "mystical"
 	max_integrity = 400
 	var/activated = FALSE

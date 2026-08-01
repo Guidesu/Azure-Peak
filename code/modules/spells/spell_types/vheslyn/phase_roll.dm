@@ -102,7 +102,7 @@
 /*
 Vague lore note guideline for adding spells ->
 
-When the SYON, was sent down by Psydon to topple Vheslyn, the world was met with a blinding light and then silence...
+When the SYON, was sent down by Praecursor to topple Vheslyn, the world was met with a blinding light and then silence...
 Just like that, a great evil slain. However the surviving cultists, fragments of the Earth Mover's lingering corruption were not detered,
 for yills, centuries they waited until Her ascension shattered the world and with one of the Leylines permanently severed.
 

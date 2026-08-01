@@ -348,7 +348,7 @@
 			beltl = /obj/item/repair_kit/bad
 		if(prob(15))
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/aalloy
-		var/amulet_choice = rand(1, 2) //Cultist look so, no Psydon choice
+		var/amulet_choice = rand(1, 2) //Cultist look so, no Praecursor choice
 		switch(amulet_choice)
 			if(1)
 				id = /obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy //ZIZO. ZIZO. ZIZO.

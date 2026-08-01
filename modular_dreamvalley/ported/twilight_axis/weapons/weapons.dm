@@ -15,9 +15,9 @@
 //   weapons below are ported as straightforward cursed/heretical-flavor items using this repo's own
 //   pre-existing cabal infrastructure - no rename needed, and nothing new needed to make them
 //   function (no dependency on Twilight-Axis's specific 13-god pantheon or job-role system).
-// - TA's "psyrapier" ("psydonian rapier", flavor text referencing the TA-specific deity "Psydon")
-//   was renamed to "gilded rapier" and its lore text reworked to drop the Psydon reference, since
-//   this repo has no Psydon patron and no SILVER_PSYDONIAN silver-type define (only
+// - TA's "psyrapier" ("psydonian rapier", flavor text referencing the TA-specific deity "Praecursor")
+//   was renamed to "gilded rapier" and its lore text reworked to drop the Praecursor reference, since
+//   this repo has no Praecursor patron and no SILVER_PSYDONIAN silver-type define (only
 //   SILVER_VAELTIAN exists here, code/__DEFINES/silverblessing.dm). Mechanically it's still a
 //   silver-infused rapier via the same /datum/component/silverbless this repo's own
 //   sword/rapier/psy already uses, just built on SILVER_VAELTIAN/BLESSING_NONE like the vanilla

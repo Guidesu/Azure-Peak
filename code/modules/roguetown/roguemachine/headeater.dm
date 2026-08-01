@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/headeater
 	name = "HEADEATER"
-	desc = "A machine that indulges in humenity's oldest profession; killing. The heads of Dendor's creechers, goblins, and brigands go in, and the bounty is credited \
+	desc = "A machine that indulges in humenity's oldest profession; killing. The heads of Ignatius's creechers, goblins, and brigands go in, and the bounty is credited \
 	directly to the bearer's account - less the Crown's Headeater Levy, of course."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "headeater"

@@ -27,7 +27,7 @@
 
 /datum/roguestock/stockpile/dendor_essence
 	name = "Essence of Wilderness"
-	desc = "Distilled Dendorian essence."
+	desc = "Distilled Ignatian essence."
 	item_type = /obj/item/natural/cured/essence
 	trade_good_id = TRADE_GOOD_IGNATIUS_ESSENCE
 	importexport_amt = 3

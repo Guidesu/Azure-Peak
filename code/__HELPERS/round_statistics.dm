@@ -125,7 +125,7 @@
 
 // Influence related statistics
 
-//Psydon
+//Praecursor
 #define STATS_HUMEN_DEATHS "humen_deaths"
 #define STATS_PSYCROSS_USERS "people_wearing_psycross"
 #define STATS_LUX_HARVESTED "lux_harvested"
@@ -166,14 +166,14 @@
 #define STATS_ROT_CURED "rot_cured"
 #define STATS_FOOD_ROTTED "food_rotted"
 
-//Dendor
+//Ignatius
 #define STATS_TREES_CUT "trees_cut"
 #define STATS_PLANTS_HARVESTED "plants_harvested"
 #define STATS_ANIMALS_TAMED "animals_tamed"
 #define STATS_WEREVOLVES "werevolves"
 #define STATS_FOREST_DEATHS "forest_deaths"
 
-//Ravox
+//Auxentius
 #define STATS_COMBAT_SKILLS "combat_skills"
 #define STATS_PARRIES "parries"
 #define STATS_WARCRIES "warcries"

@@ -703,7 +703,7 @@
 /obj/item/rogueweapon/stoneaxe/battle/coral
 	name = "heartstone nsapo"
 	desc = "An ornate nsapo carved out of heartstone, intended for ceremonies over combat. As gemstoned items were - and still are - seen as talismans that \
-	can invoke divine attention, it's only fitting that these hatchets serve a pivotal part in settling ancient feuds; through the rite of Ravox."
+	can invoke divine attention, it's only fitting that these hatchets serve a pivotal part in settling ancient feuds; through the rite of Auxentius."
 	icon = 'icons/roguetown/gems/gem_coral.dmi'
 	icon_state = "nsapo_coral"
 	max_integrity = 75
@@ -824,7 +824,7 @@
 /obj/item/rogueweapon/sword/amber
 	name = "amber kaskara"
 	desc = "A resplendant kaskara carved out of amber, intended for ceremonies over combat. It's believed that each piece of amber contains \
-	a sliver of Astrata's divine warmth; something that once made it invaluable to decorating the reigns of Vaeltis's earliest kings."
+	a sliver of Auxentius's divine warmth; something that once made it invaluable to decorating the reigns of Vaeltis's earliest kings."
 	icon = 'icons/roguetown/gems/gem_amber.dmi'
 	icon_state = "kaskara_amber"
 	max_integrity = 75

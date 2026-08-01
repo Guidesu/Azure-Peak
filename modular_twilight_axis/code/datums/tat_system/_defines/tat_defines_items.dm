@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(tat_donation_access_all_ckeys, TAT_DONATION_ACCESS_ALL_CKEYS)
 
 #define TAT_AVAILABLE_ITEMS_LIST \
 	/obj/item/clothing/neck/roguetown/psicross/silver = TAT_ITEM_ENTRY("Silver Psycross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"),\
-	/obj/item/clothing/neck/roguetown/psicross/silver/auxentius = TAT_ITEM_ENTRY("Silver Astrata Cross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"),\
+	/obj/item/clothing/neck/roguetown/psicross/silver/auxentius = TAT_ITEM_ENTRY("Silver Auxentius Cross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/silver/custodius = TAT_ITEM_ENTRY("Silver Tennite cross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/silver/morwenna = TAT_ITEM_ENTRY("Silver Necra Cross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/silver/miluse = TAT_ITEM_ENTRY("Silver Noc Cross", 1, "misc", "weapon_supply", TAT_SUPPLY_SILVER, "cross"), \
@@ -593,15 +593,15 @@ GLOBAL_LIST_INIT(tat_donation_access_all_ckeys, TAT_DONATION_ACCESS_ALL_CKEYS)
 	/obj/item/clothing/neck/roguetown/psicross/volkovoi = TAT_ITEM_ENTRY("Graggar Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/hausvette = TAT_ITEM_ENTRY("Baotha Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/custodius = TAT_ITEM_ENTRY("Tennit Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
-	/obj/item/clothing/neck/roguetown/psicross/auxentius = TAT_ITEM_ENTRY("Astrata Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
+	/obj/item/clothing/neck/roguetown/psicross/auxentius = TAT_ITEM_ENTRY("Auxentius Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/wulfric = TAT_ITEM_ENTRY("Abyssor Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/ignatius = TAT_ITEM_ENTRY("Ignatius Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/morwenna = TAT_ITEM_ENTRY("Necra Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/handwerra = TAT_ITEM_ENTRY("Pestra Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
-	/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox = TAT_ITEM_ENTRY("Ravox Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
+	/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox = TAT_ITEM_ENTRY("Auxentius Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/aurelian/bronze = TAT_ITEM_ENTRY("Bronze Zizo Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
-	/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze = TAT_ITEM_ENTRY("Bronze Ravox Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
-	/obj/item/clothing/neck/roguetown/psicross/auxentius/bronze = TAT_ITEM_ENTRY("Bronze Astrata Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
+	/obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze = TAT_ITEM_ENTRY("Bronze Auxentius Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
+	/obj/item/clothing/neck/roguetown/psicross/auxentius/bronze = TAT_ITEM_ENTRY("Bronze Auxentius Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/handwerra/malum/bronze = TAT_ITEM_ENTRY("Bronze Malum Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/volkovoi/bronze = TAT_ITEM_ENTRY("Bronze Graggar Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_BRONZE, "cross"),\
 	/obj/item/clothing/neck/roguetown/psicross/handwerra = TAT_ITEM_ENTRY("Malum Amulet", 0, "misc", "weapon_supply", TAT_SUPPLY_IRON, "cross"),\
@@ -729,8 +729,8 @@ GLOBAL_LIST_INIT(tat_donation_access_all_ckeys, TAT_DONATION_ACCESS_ALL_CKEYS)
 	/obj/item/clothing/cloak/tabard/devotee/xylix = TAT_ITEM_ENTRY("Eoran Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
 	/obj/item/clothing/cloak/tabard/stabard/crusader/undivided = TAT_ITEM_ENTRY("Undivided Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
 	/obj/item/clothing/cloak/eastcloak1 = TAT_DONATION_ITEM_ENTRY("Leather Cloak", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak", TAT_DONATION_TIER_TWO), \
-	/obj/item/clothing/cloak/tabard/praecursortabard = TAT_ITEM_ENTRY("Psydon Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
-	/obj/item/clothing/cloak/tabard/praecursortabard/black = TAT_ITEM_ENTRY("Psydon Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
+	/obj/item/clothing/cloak/tabard/praecursortabard = TAT_ITEM_ENTRY("Praecursor Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
+	/obj/item/clothing/cloak/tabard/praecursortabard/black = TAT_ITEM_ENTRY("Praecursor Tabard", 0, "clothing", "armor_family", TAT_ARMOR_CLOTH, "cloak"), \
 	/obj/item/rogueweapon/handclaw/steel = TAT_ITEM_ENTRY("Steel Mantis Claws", 3, "weapon", "weapon_supply", TAT_SUPPLY_STEEL, "unarmed"), \
 	/obj/item/storage/magebag = TAT_ITEM_ENTRY("Scholar's Pouch", 1, "weapon", "weapon_supply", TAT_SUPPLY_IRON, "magic"), \
 	/obj/item/clothing/head/roguetown/spellcasterhat = TAT_ITEM_ENTRY("Spellsinger Hat", 1, "clothing", "armor_family", TAT_ARMOR_LEATHER, "head"), \

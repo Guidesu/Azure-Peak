@@ -10,7 +10,7 @@
 	is_subrace = TRUE
 	desc_title = "Tiefling"
 	desc = "The offspring of demons with mortal races, a consequence of demonic incursions into the mortal realm and dark pacts. \
-	Their origins dating back to the demonic invasion of Archdevil Vheslyn who pillaged and ravaged the mortal lands and its people before being stopped by Psydon. \
+	Their origins dating back to the demonic invasion of Archdevil Vheslyn who pillaged and ravaged the mortal lands and its people before being stopped by Praecursor. \
 	These offspring of demon and mortal races came to be known as 'Tieflings', largely despised by most people for centuries for their unnatural origins and appearances. \
 	It was only recently that they became more tolerated, even if the Church still watches them with a weary eye. \
 	When a Tiefling has offspring, no matter the race of their partner, the child would always be a pureblooded Tiefling. \

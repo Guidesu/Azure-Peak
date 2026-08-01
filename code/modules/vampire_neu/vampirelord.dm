@@ -273,7 +273,7 @@
 
 /obj/item/clothing/under/roguetown/platelegs/vampire
 	name = "ancient ceremonial plate greaves"
-	desc = "Enchanted gilbranze tassets, meticulously shingled over silk-lined chausses. Astrata tore open the sky, and Her light sundered all who had embraced your gift. They cried for your help - but you stood there, numb."
+	desc = "Enchanted gilbranze tassets, meticulously shingled over silk-lined chausses. Auxentius tore open the sky, and Her light sundered all who had embraced your gift. They cried for your help - but you stood there, numb."
 	gender = PLURAL
 	icon_state = "vpants"
 	item_state = "vpants"

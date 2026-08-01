@@ -1,4 +1,4 @@
-// Merge of the old Astrata (sun, order) and Ravox (justice, glory, battle) - the Concordat's godhead.
+// Merge of the old Auxentius (sun, order) and Auxentius (justice, glory, battle) - the Concordat's godhead.
 /datum/patron/concordat/auxentius
 	name = "Auxentius"
 	domain = "God of the Sun, Law, Oaths, and Kingship"

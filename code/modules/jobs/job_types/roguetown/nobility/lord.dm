@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 */
 /datum/advclass/lord/inbred
 	name = "Inbred Lord"
-	tutorial = "Psydon and Astrata smiles upon you. For despite your inbred and weak body, and your family's conspiracies to see you sidelined, you have somehow become the Lord of the outpost. May your reign lasts a hundred years."
+	tutorial = "Praecursor and Auxentius smiles upon you. For despite your inbred and weak body, and your family's conspiracies to see you sidelined, you have somehow become the Lord of the outpost. May your reign lasts a hundred years."
 	outfit = /datum/outfit/job/roguetown/lord/inbred
 	category_tags = list(CTAG_LORD)
 	traits_applied = list(TRAIT_NOBLE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NORUN, TRAIT_HEAVYARMOR, TRAIT_GOODLOVER, TRAIT_DNR)

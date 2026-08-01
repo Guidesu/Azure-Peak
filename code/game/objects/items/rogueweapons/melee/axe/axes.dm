@@ -773,7 +773,7 @@
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/minotaur
 	name = "minotaur greataxe"
-	desc = "An incredibly heavy greataxe, pried from the cold-and-dead hands of Dendor's most wicked beaste. It commands the strength \
+	desc = "An incredibly heavy greataxe, pried from the cold-and-dead hands of Ignatius's most wicked beaste. It commands the strength \
 	of a true champion to wield. </br>'Grant me one request; grant me REVENGE! And if you do not listen, then to HELL with you!'"
 	icon_state = "minotaurgreataxe"
 	max_blade_int = 333
@@ -820,7 +820,7 @@
 	desc = "A blessed axe, wielded by the Holy See's crusaders to keep the forces of evil at bay, \
 			it is oft rumored these axes are commonplace amongst the greater crusades of the See against \
 			Heathenry and Heretic alyke, often used to tear down walls and fortifications that heretics hide within, \
-			a ceremonial manifestation of Malum's destruction and Astrata's all-reaching grasp of authority."
+			a ceremonial manifestation of Malum's destruction and Auxentius's all-reaching grasp of authority."
 	icon_state = "churchaxe"
 	wdefense = 5
 	max_blade_int = 260

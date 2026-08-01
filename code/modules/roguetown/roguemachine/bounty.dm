@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/bounty
 	name = "EXCIDIUM"
-	desc = "A device hungering for flesh and souls of the wicked. While favored by Astratan orders and tolerated by Ravoxian sects, it is seen as nothing more than a barbaric implement for turbulent tymes by anyone else. This one allows to meditate upon those who need to be brought to justice."
+	desc = "A device hungering for flesh and souls of the wicked. While favored by Auxentian orders and tolerated by Auxentian sects, it is seen as nothing more than a barbaric implement for turbulent tymes by anyone else. This one allows to meditate upon those who need to be brought to justice."
 	icon = 'icons/roguetown/topadd/statue1.dmi'
 	icon_state = "baldguy"
 	density = FALSE

@@ -29,7 +29,7 @@
 	if(quality > ITEM_QUALITY_STANDARD)
 		return pick(
 			"Mermaids are leaping out of the water for this cargo!",
-			"Surely, Psydon will return to observe the quality of your cargo.",
+			"Surely, Praecursor will return to observe the quality of your cargo.",
 			"The Captain is most pleased.",
 			"Tis was worth the trip to the outpost.",
 			"The Company appreciates your efforts.",

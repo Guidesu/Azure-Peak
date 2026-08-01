@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 	TRAIT_EASYDISMEMBER = TAT_TRAIT_ENTRY("Easy Dismemberment", -3, "Your limbs are much easier to dismember."), \
 	TRAIT_PERMAMUTE = TAT_TRAIT_ENTRY("Permanent Mute", -2, "You are permanently mute and cannot speak."), \
 	TRAIT_NODEF = TAT_TRAIT_ENTRY("No Defense", -4, "You expose yourself completely in battle."), \
-	TAT_TRAIT_ACCURSED = TAT_TRAIT_ENTRY("Dendor's Curse", -1, "You're cursed by the Sleeping Volf. Now you're shapshift to lesser creachure every nite.")
+	TAT_TRAIT_ACCURSED = TAT_TRAIT_ENTRY("Ignatius's Curse", -1, "You're cursed by the Sleeping Volf. Now you're shapshift to lesser creachure every nite.")
 
 #define TAT_TRAIT_STAT_POINT_RULES list( \
 	TAT_TRAIT_BONUS_STAT_POOL = TAT_BUILD_STAT_BONUS_EXTRA_STATS, \

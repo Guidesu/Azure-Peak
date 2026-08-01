@@ -15,7 +15,7 @@
 /// Tag reserved for combat logic (unused by gods)
 #define TAG_COMBAT "combat"
 
-/// Tag used for raid events, associated with Ravox
+/// Tag used for raid events, associated with Auxentius
 #define TAG_RAID "raid"
 
 /// Tag representing trade interactions, used by Abyssor and Matthios
@@ -33,7 +33,7 @@
 /// Tag for alchemy-related actions or systems, belonging to Pestra
 #define TAG_ALCHEMY "alchemy"
 
-/// Tag for nature-related events, tied to Pestra and Dendor
+/// Tag for nature-related events, tied to Pestra and Ignatius
 #define TAG_NATURE "nature"
 
 /// Tag representing work-related actions or influence, used by Malum

@@ -37,7 +37,7 @@
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver)
 
 /datum/supply_pack/rogue/luxury/silverastcross
-	name = "Silver Amulet of Astrata"
+	name = "Silver Amulet of Auxentius"
 	cost = 250
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/auxentius)
 

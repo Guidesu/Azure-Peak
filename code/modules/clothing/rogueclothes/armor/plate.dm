@@ -570,7 +570,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/baotha
 	name = "saccharine plate armor"
-	desc = "Is it not obvious what Ravox would've chosen? Yet upon the dae of His choice, She refused to gift any chance to Her sister.."
+	desc = "Is it not obvious what Auxentius would've chosen? Yet upon the dae of His choice, She refused to gift any chance to Her sister.."
 	icon_state = "baothaplate"
 	item_state = "baothaplate"
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG - 350 //Halved durability, compared to traditional Ascendant-tier armor.
@@ -802,7 +802,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/holysee
 	name = "holy see cuirass"
-	desc = "A blessed steel cuirass, fitted with tassets for additional coverage. Noc's holy silver, and Astratan gold are woven into the fluting. \
+	desc = "A blessed steel cuirass, fitted with tassets for additional coverage. Noc's holy silver, and Auxentian gold are woven into the fluting. \
 			When the world was ending, and hunger of the nite ravenous, Templars one and all remember the radiance of the blessed metals, \
 			and the warmth of home. Then and forever, the Ten have not forgotten their faithful."
 	icon_state = "seecuirass"

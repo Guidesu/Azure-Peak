@@ -415,7 +415,7 @@
 
 /obj/item/rogueweapon/sword/long/ravox_spirit
 	name = "\"Adjudicator\""
-	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Ten against the encroaching darkness. The crossguard \
+	desc = "A blessed longsword of Auxentius, held by the devout crusaders in service to the Divine Ten against the encroaching darkness. The crossguard \
 	bears motif of the Justicar, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'...And upon the \
 	Lands came the DIVINE. In PRAECURSOR's absence, so came the TRUE GODS from their rest. So were THEIR gifts spread across the breadth of the \
 	world.' </br>'...It was the Justicar's hand that stayed the blade, for He objected to the execution, and demanded that Justice overcome where \
@@ -922,7 +922,7 @@
 	name = "silver longsword"
 	desc = "A longsword with a blade of pure silver. The weight doesn't just burden your hand, but your very soul as well; an unspoken oath, to stand \
 	against the horrors that lurk within the nite. </br>'Swing with precision and purpose, levyman o' the Gods. The nite is long and many-an-evil cur \
-	would engineer civilization's destruction, while Astrata's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.'"
+	would engineer civilization's destruction, while Auxentius's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.'"
 	icon_state = "silverlongsword"
 	sheathe_icon = "silverlongsword"
 	force = 20
@@ -1143,7 +1143,7 @@
 
 /obj/item/rogueweapon/sword/short/gladius/decorated
 	name = "decorated gladius"
-	desc = "A beautiful depiction of justice, beflowered and besilked. The crimson engravings along its blade pay tribute to the ancient epics of Ravox's \
+	desc = "A beautiful depiction of justice, beflowered and besilked. The crimson engravings along its blade pay tribute to the ancient epics of Auxentius's \
 	ascent to godlihood; for it was His wounding of the Sinistar's tentacled heart that forced the Archdevil to pause - first in disbelief, then in fascination."
 	icon_state = "gladiusdec"
 	sheathe_icon = "decgladius"
@@ -2178,7 +2178,7 @@
 
 /obj/item/rogueweapon/sword/long/undivided/absolutio
 	name = "absolutio"
-	desc = "This sword remains a testament to Astrata's all-encompassing radiance, rumor has it these blades are often ritualistically \
+	desc = "This sword remains a testament to Auxentius's all-encompassing radiance, rumor has it these blades are often ritualistically \
 			burned in a funeral pyre with their former wielder. If the blade's metal survives the pyre then it is by her divine decree; \
 			\"worthy to serve yet again\"."
 	icon_state = "astratalongsword"

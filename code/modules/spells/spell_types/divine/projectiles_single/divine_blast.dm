@@ -87,11 +87,11 @@
 					H.visible_message(span_warning("Holy light slams into [H] with force!"), span_warning("Holy light slams into me with force!"))
 				if(/datum/patron/concordat/auxentius)
 					if(istype(H.patron, /datum/patron/concordat/morwenna))
-						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Astrata's <b>hatred</b> sets me aflame!"))
+						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Auxentius's <b>hatred</b> sets me aflame!"))
 						H.adjust_fire_stacks(3) //ANCIENT ENEMY I DO NOT FEAR YOU
 						H.ignite_mob()
 					else
-						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Astrata's fury sets me aflame!"))
+						H.visible_message(span_warning("[H] is engulfed in flames!"), span_warning("Auxentius's fury sets me aflame!"))
 						H.adjust_fire_stacks(2) //Remains regular, setting everyone on fire is funnier
 						H.ignite_mob()
 				if(/datum/patron/concordat/wulfric)
@@ -99,7 +99,7 @@
 					H.Dizzy(5)
 					H.emote("drown")
 				if(/datum/patron/severance/ignatius)
-					H.Slowdown(2) // Shared with Ravox cuz immobilize + offbal is 2 strong
+					H.Slowdown(2) // Shared with Auxentius cuz immobilize + offbal is 2 strong
 					H.visible_message(span_warning("Roots coil around [H]'s legs!"), span_warning("Roots tangle around my legs!"))
 				if(/datum/patron/concordat/morwenna)
 					if((H.mob_biotypes & MOB_UNDEAD) || HAS_TRAIT(H, TRAIT_DEATHLESS)) //DEATH TO THE DEATHLESS, NECRA HATES YOU.

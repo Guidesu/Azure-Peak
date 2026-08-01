@@ -588,7 +588,7 @@
 			else if(traits?.is_contractor_trait_blocked(trait_id))
 				lock_reason = "Contractor may only select skill traits."
 			else if(trait_id == TAT_TRAIT_DRUID_INITIATE && !can_select_druid_initiate_trait())
-				lock_reason = "Requires Dendor as patron."
+				lock_reason = "Requires Ignatius as patron."
 			else if(traits?.is_pq_locked_trait(trait_id))
 				lock_reason = "Requires [traits.get_pq_lock_minimum(trait_id)] player quality."
 		result[trait_id] = list(

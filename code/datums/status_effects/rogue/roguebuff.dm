@@ -1429,7 +1429,7 @@
 
 /datum/status_effect/buff/lesserwolf/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("I feel Dendor's blessing leave my body..."))
+	to_chat(owner, span_warning("I feel Ignatius's blessing leave my body..."))
 	REMOVE_TRAIT(owner, TRAIT_LONGSTRIDER, id)
 	REMOVE_TRAIT(owner, TRAIT_STRONGBITE, id)
 

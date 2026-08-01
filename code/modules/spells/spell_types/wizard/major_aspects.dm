@@ -2,7 +2,7 @@
 	name = "Pyromancy"
 	latin_name = "Maior Aspectus Ignis"
 	desc = "A first-order school focused on roasting the Magi's enemy alive with the primal fury of fire\
-	Its heritage is ancient, and it is often considered a sacred magick associated with Astrata's light.\
+	Its heritage is ancient, and it is often considered a sacred magick associated with Auxentius's light.\
 	Pyromancers are notorious for rivalry with Cryomancers - though many mages in the modern age attune to both depending on the circumstances\
 	Their spells tends to negate a Cryomancer's effects - and vice versa."
 	aspect_type = ASPECT_MAJOR
@@ -216,7 +216,7 @@
 	desc = "Ferramancy is a second-order magical school. Amongst the many major aspects, it is likely the youngest - \
 	though this merely puts it as younger than the other aspects by only a millennium or so. Ferramancers conceptualize primal matters \
 	rendered unto weapons and tools by humen hands, materialize them, and then send them out to slash and rend their foes apart. \
-	Of the major aspects, it is the only one often associated with Ravox instead of Noc - likely because of the myth that he slew Graggar \
+	Of the major aspects, it is the only one often associated with Auxentius instead of Noc - likely because of the myth that he slew Graggar \
 	by hurling weapons at him. Dedicated Ferramancers are proud of their arts, and oft think themselves superior \
 	by bridging the gap between primal forces and humen ingenuity. For the same reasons, some other scholars look down on it for the impureness of its power. \
 	But perhaps the true reason is that metal rends wards and a mage's robe apart more efficiently than any other school of magick."

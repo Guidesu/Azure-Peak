@@ -49,7 +49,7 @@
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
-	domesticated by the children of Psydon and remain the key livestock to pastoralist communities across the known world."
+	domesticated by the children of Praecursor and remain the key livestock to pastoralist communities across the known world."
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -203,7 +203,7 @@
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
-	domesticated by the children of Psydon and remain the key livestock to pastoralist communities across the known world."
+	domesticated by the children of Praecursor and remain the key livestock to pastoralist communities across the known world."
 	icon_state = "goatmale"
 	icon_living = "goatmale"
 	icon_dead = "goatmale_dead"

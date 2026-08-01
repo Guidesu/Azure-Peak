@@ -122,7 +122,7 @@ a.choose-btn:hover {
 <div class="chant-container">
 <h2>The Way of the Fist</h2>
 <div class="chant-text">
-<p><em>I am a fist of Psydon - His will, made manifest.</em></p>
+<p><em>I am a fist of Praecursor - His will, made manifest.</em></p>
 <p><em>My body a weapon! My will a flame!</em></p>
 <p><em>Where my fists fall short, my wits prevail.</em></p>
 <p><em>Where my magyck falters, my fists answer.</em></p>
@@ -132,9 +132,9 @@ a.choose-btn:hover {
 <div class="abilities">
 <h4>Abilities</h4>
 <ul>
-<li><b>Fist of Psydon</b> — Targeted 3x3 ground slam up to 5 paces. 40 blunt damage. At 3+ momentum: consumes 3 to double damage to 80.</li>
-<li><b>Grasp of Psydon</b> — Targeted AoE yank, pulling enemies toward you. At 3+ momentum: consumes 3 to deal 40 additional blunt damage.</li>
-<li><b>Storm of Psydon</b> — Leap toward a distant target and unleash a storm of blows. Requires 7 momentum: 3 punches + 1 kick. At 10 momentum: 9 punches + 1 kick. Cannot be parried or dodged — only Defend stance can interrupt. Consumes all momentum.</li>
+<li><b>Fist of Praecursor</b> — Targeted 3x3 ground slam up to 5 paces. 40 blunt damage. At 3+ momentum: consumes 3 to double damage to 80.</li>
+<li><b>Grasp of Praecursor</b> — Targeted AoE yank, pulling enemies toward you. At 3+ momentum: consumes 3 to deal 40 additional blunt damage.</li>
+<li><b>Storm of Praecursor</b> — Leap toward a distant target and unleash a storm of blows. Requires 7 momentum: 3 punches + 1 kick. At 10 momentum: 9 punches + 1 kick. Cannot be parried or dodged — only Defend stance can interrupt. Consumes all momentum.</li>
 <li><b>Empower Weapon</b> — Requires 5+ momentum. Burns ALL momentum to empower your next melee attack, bypassing parry and dodge. 30s cooldown.</li>
 </ul>
 </div>
@@ -145,8 +145,8 @@ a.choose-btn:hover {
 <li><b>Spending</b> — Fist and Grasp consume 3 for empowered versions. Storm requires 7+ to cast.</li>
 <li><b>Decay</b> — Starts decaying 10 seconds after your last strike, losing 1 stack every 6 seconds.</li>
 <li><b>Disruption</b> — You lose ALL momentum when knocked down or stunned.</li>
-<li><b>Overcharge (7+)</b> — Storm of Psydon becomes available. If overcharged Momentum decays, ALL of it discharges at once, straining you - briefly slowed and left Vulnerable.</li>
-<li><b>Maximum (10)</b> — Storm of Psydon becomes fully empowered: 9 punches + 1 kick.</li>
+<li><b>Overcharge (7+)</b> — Storm of Praecursor becomes available. If overcharged Momentum decays, ALL of it discharges at once, straining you - briefly slowed and left Vulnerable.</li>
+<li><b>Maximum (10)</b> — Storm of Praecursor becomes fully empowered: 9 punches + 1 kick.</li>
 </ul>
 </div>
 <div class="sidearm-row">

@@ -78,7 +78,7 @@
 				if(/datum/patron/concordat/morwenna)
 					if(HAS_TRAIT(H, TRAIT_NOBLE))
 						damage += 10 
-						H.adjust_fire_stacks(4) //ditto to Astrata
+						H.adjust_fire_stacks(4) //ditto to Auxentius
 						H.visible_message(span_warning("[H]'s blue blood burns bright!"), span_warning("My body burns-- my blood is being transacted into fire!"))
 					else
 						H.visible_message(span_warning("[H] is set aflame with gilded flames!"), span_warning("Gilded flame engulfs me!"))
@@ -110,7 +110,7 @@
 						H.ignite_mob()
 						H.visible_message(span_warning("Seething ambition sears [H]'s flesh aflame!"), span_warning("Visions of progress and ambition sears my flesh, mynd and sets me aflame!"))
 						H.Slowdown(3)
-					if(HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/concordat/morwenna)) //EXCEPT WEREWOLVES... Fuck Dendor. Specifically within werebeast form, hense the trait, not the antag check.
+					if(HAS_TRAIT(H, TRAIT_LYCANRESILENCE) && !istype(H.patron, /datum/patron/concordat/morwenna)) //EXCEPT WEREWOLVES... Fuck Ignatius. Specifically within werebeast form, hense the trait, not the antag check.
 						H.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine) //Less cause this is an actual antag, UNLESS they worship Necra in which case you kind of deserve this.
 						H.ignite_mob()
 						H.visible_message(span_warning("[H] is churned by unholy spite!"), span_warning("Zizo's seething <b>hatred</b> rebukes me!"))

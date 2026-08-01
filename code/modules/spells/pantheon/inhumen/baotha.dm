@@ -472,7 +472,7 @@
 	)
 	return TRUE
 
-//Numbing Pleasure - T3, halves pain from target for a period of time. (Similar to Ravox's without any blood-clotting and better pain suppression + good mood buff.)
+//Numbing Pleasure - T3, halves pain from target for a period of time. (Similar to Auxentius's without any blood-clotting and better pain suppression + good mood buff.)
 /obj/effect/proc_holder/spell/invoked/painkiller
 	name = "Numbing Pleasure"
 	desc = "Numbs the targets pain and improves their mood."

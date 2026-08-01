@@ -1090,7 +1090,7 @@
 //Ryebread's donator item - estoc
 /obj/item/rogueweapon/estoc/worttrager
 	name = "Wortträger"
-	desc = "An imported Grenzelhoftian panzerstecher, a superbly crafted implement devoid of armory marks- merely bearing a maker's mark and the Zenitstadt seal. This one has a grip of walnut wood, and a pale saffira set within the crossguard. The ricasso is engraved with Ravoxian scripture."
+	desc = "An imported Grenzelhoftian panzerstecher, a superbly crafted implement devoid of armory marks- merely bearing a maker's mark and the Zenitstadt seal. This one has a grip of walnut wood, and a pale saffira set within the crossguard. The ricasso is engraved with Auxentian scripture."
 	icon_state = "mansa"
 	icon = 'icons/obj/items/donor_weapons_64.dmi'
 
@@ -1369,7 +1369,7 @@
 	name = "archaic ceremonial valkyrhelm"
 	desc = "A winged and angular helm of archaic design, tracing its lineage back to the Celestial Empire's fall. \
 		House Timbermere makes sole use of its design in these parts, claiming it as their heritage right. \
-		This one has been gilded by Astrata's own colors, with a hand-woven plume atop to bear heraldic colors."
+		This one has been gilded by Auxentius's own colors, with a hand-woven plume atop to bear heraldic colors."
 	icon_state = "valkyrhelm"
 	icon = 'icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
@@ -1403,7 +1403,7 @@
 	name = "archaic ceremonial cuirass"
 	desc = "A cuirass and tasset set of archaic design, tracing its lineage back to the Celestial Empire's fall. \
 		House Timbermere makes sole use of its design in these parts, claiming it as their heritage right. \
-		This one has been gilded by Astrata's own colors atop a sleeved surcoat to bear heraldic colors."
+		This one has been gilded by Auxentius's own colors atop a sleeved surcoat to bear heraldic colors."
 	icon = 'icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
 	icon_state = "archaiccuirass"
@@ -2015,7 +2015,7 @@ As Excaliber."
 	Inscribed on the leaf patterned staff is a single word in Elvish. \
 	Amdir- Look Up. Along one of the braces is a psycross, dangling, jangling \
 	and shining with a defiant light.\n\n\
-	\"Look up. Do you not hope to see the stars? Astrata's light? Noc's gaze? Look up. \
+	\"Look up. Do you not hope to see the stars? Auxentius's light? Noc's gaze? Look up. \
 	To do that, is to hope.\""
 	icon = 'icons/obj/items/donor_weapons_64.dmi'
 	icon_state = "amdir"

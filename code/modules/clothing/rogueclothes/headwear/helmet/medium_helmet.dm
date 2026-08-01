@@ -132,7 +132,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/kettle/wide
 	name = "wide kettle helmet"
-	desc = "A wider variant of the humble 'kettle helmet', for those who prefer to keep Astrata's glare from blighting their eyes."
+	desc = "A wider variant of the humble 'kettle helmet', for those who prefer to keep Auxentius's glare from blighting their eyes."
 	icon_state = "kettlewide"
 
 /obj/item/clothing/head/roguetown/helmet/kettle/attackby(obj/item/W, mob/living/user, params)
@@ -730,7 +730,7 @@
 	name = "bronze murmillo"
 	desc = "A bronze helmet that veils the wearer's face behind a perforated visor; a distant ancestor to both the sallet and sayovard, \
 	providing excellent coverage while ensuring one doesn't suffocate on their own adrenal huffs. </br>Out of all actorial labors, none surpass \
-	the reenactment of Ravox's duel against Graggar atop Ur-Syon's ruins - mythologized not as a tentacled star, but as a towering doppelganger-champion; \
+	the reenactment of Auxentius's duel against Graggar atop Ur-Syon's ruins - mythologized not as a tentacled star, but as a towering doppelganger-champion; \
 	sculpted by the Archdevil to be the inverse to all who stood for justice and chivalry."
 	armor = ARMOR_BRONZE
 	max_integrity = ARMOR_INT_HELMET_HEAVY_BRONZE - 100

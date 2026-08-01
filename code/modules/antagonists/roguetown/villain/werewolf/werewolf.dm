@@ -118,7 +118,7 @@
 		return
 
 /datum/antagonist/werewolf/greet()
-	to_chat(owner.current, span_userdanger("Since a bite long, long ago, Dendor's Madness has welled within me. Before the Moonlight, I will sate my hallowed Hunger."))
+	to_chat(owner.current, span_userdanger("Since a bite long, long ago, Ignatius's Madness has welled within me. Before the Moonlight, I will sate my hallowed Hunger."))
 	var/picked_sound = pick(dendor_cries)
 	owner.current.playsound_local(get_turf(owner.current), picked_sound, 100)
 	var/mob/living/carbon/human/H = owner.current

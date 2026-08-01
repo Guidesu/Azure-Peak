@@ -130,4 +130,4 @@
 	valid_animal_types = list(/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast)
 	color = COLOR_WHITE
 	detail_types = list("Quad" = "quad")
-	symbol_types = list("Psycross" = "psycross", "Astrata" = "astrata")
+	symbol_types = list("Psycross" = "psycross", "Auxentius" = "astrata")

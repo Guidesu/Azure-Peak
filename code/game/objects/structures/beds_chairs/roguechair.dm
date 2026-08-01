@@ -235,9 +235,9 @@
 	. = ..()
 	if(tag)
 		switch(tag)
-			if("gen") 
+			if("gen")
 				return list("shrink" = 0.7,"sx" = -1,"sy" = 0,"nx" = 11,"ny" = 1,"wx" = 0,"wy" = 1,"ex" = 4,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 15,"sturn" = 0,"wturn" = 0,"eturn" = 39,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 8)
-			if("wielded") 
+			if("wielded")
 				return list("shrink" = 0.7,"sx" = -9,"sy" = 4,"nx" = -7,"ny" = 0,"wx" = -7,"wy" = 2,"ex" = 8,"ey" = 5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -42,"sturn" = 190,"wturn" = -170,"eturn" = -10,"nflip" = -8,"sflip" = 1,"wflip" = 1,"eflip" = 0)
 
 /obj/structure/chair/wood/rogue/CanPass(atom/movable/mover, turf/target)
@@ -375,9 +375,9 @@
 	. = ..()
 	if(tag)
 		switch(tag)
-			if("gen") 
+			if("gen")
 				return list("shrink" = 0.7,"sx" = -1,"sy" = 0,"nx" = 11,"ny" = 1,"wx" = 0,"wy" = 1,"ex" = 4,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 15,"sturn" = 0,"wturn" = 0,"eturn" = 39,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 8)
-			if("wielded") 
+			if("wielded")
 				return list("shrink" = 0.7, "sx" = -12, "sy" = -8, "nx" = 13, "ny" = -7, "wx" = -10, "wy" = -5, "ex" = 7, "ey" = -6, "northabove" = 0, "southabove" = 1, "eastabove" = 1, "westabove" = 0, "nturn" = -13, "sturn" = 110, "wturn" = -60, "eturn" = -30, "nflip" = 1, "sflip" = 1, "wflip" = 8, "eflip" = 1)
 
 /obj/structure/bed/rogue
@@ -390,6 +390,27 @@
 	debris = list(/obj/item/grown/log/tree/small = 1)
 	hidingspot = TRUE
 	var/mob/living/hiddenguy = null // So we can find them with fixed eye search
+	/// Bed damage from sexcon: once broken_percentage hits 100 the mattress is ruined and sleepy drops to 1.
+	var/broken_matress = FALSE
+	var/broken_percentage = 0
+	var/broken_rate = 1.0
+
+/// Called by /datum/sex_controller/do_thrust_animate to gradually wear out the bed during sex.
+/obj/structure/bed/rogue/proc/damage_bed(dam_value)
+	if(broken_matress)
+		playsound(src, pick(list('sound/misc/mat/table (1).ogg','sound/misc/mat/table (2).ogg','sound/misc/mat/table (3).ogg','sound/misc/mat/table (4).ogg')), 30, TRUE, ignore_walls = FALSE)
+		return
+	if(sleepy <= 2) // the bed is already pretty awful and broken (i.e: straw bed/bedroll), so don't break it even further
+		return
+	broken_percentage += (dam_value * broken_rate)
+	if(broken_percentage >= 100) // bed broken
+		broken_percentage = 100 // clamp
+		broken_matress = TRUE
+		sleepy = 1 //Worse than a bedroll, better than nothing
+		visible_message(span_warning("\The [src] gives an violent snap. It looks broken!"))
+		playsound(src, 'sound/misc/mat/bed break.ogg', 50, TRUE, ignore_walls = FALSE)
+	else if(broken_percentage > 10)
+		playsound(src, 'sound/misc/mat/bed damage.ogg', broken_percentage>>2, TRUE, ignore_walls = FALSE)
 
 /obj/structure/bed/rogue/get_mechanics_examine(mob/user)
 	. = ..()

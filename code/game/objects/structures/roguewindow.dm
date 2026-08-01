@@ -65,7 +65,7 @@
 
 /obj/structure/roguewindow/stained/silver
 	name = "vaeltic stained glass window"
-	desc = "A stained glass window bearing the cross of Psydon, the Weeping God, creator of the world. \
+	desc = "A stained glass window bearing the cross of Praecursor, the Weeping God, creator of the world. \
 	Either as a venerated martyr or a still-living deity, His imagery features often in both churches of the Ten \
 	and those of the Otavan Orthodoxy. Despite their differences, they share a common origin."
 	icon_state = "stained-silver"
@@ -73,7 +73,7 @@
 
 /obj/structure/roguewindow/stained/yellow
 	name = "astratan stained glass window"
-	desc = "A stained glass window bearing the symbolism of Astrata, the Tyrant Sister Sun that reigns over the Divine \
+	desc = "A stained glass window bearing the symbolism of Auxentius, the Tyrant Sister Sun that reigns over the Divine \
 	Pantheon of Ten. Her uniquely vaunted position earns her symbol's common usage in all churches of the Ten, whereas \
 	She is reduced to the status of a saint by the Otavan Orthodoxy."
 	icon_state = "stained-yellow"
@@ -81,7 +81,7 @@
 
 /obj/structure/roguewindow/stained/zizo
 	name = "ecclesial stained glass window"
-	desc = "A stained glass window bearing an inverted cross of Psydon, usually used as a symbol of the Ascendant Goddess Zizo, \
+	desc = "A stained glass window bearing an inverted cross of Praecursor, usually used as a symbol of the Ascendant Goddess Zizo, \
 	Lady of Progress, Harbinger of Undeath, and a deity condemned in almost realm of the world. All the same, Her followers \
 	construct such intricate things in Her honor, even knowing that they may so soon be shattered."
 	icon_state = "stained-zizo"

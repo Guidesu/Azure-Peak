@@ -21,13 +21,13 @@
 	sort_category = "Triumphs"
 
 /datum/loadout_item/psicross/auxentius/ravox/bronze
-	name = "Bronze Amulet of Ravox"
+	name = "Bronze Amulet of Auxentius"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
 
 /datum/loadout_item/psicross/auxentius/bronze
-	name = "Bronze Amulet of Astrata"
+	name = "Bronze Amulet of Auxentius"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/bronze
 	triumph_cost = 1
 	sort_category = "Triumphs"
@@ -197,7 +197,7 @@
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_astcross
-	name = "Golden Astratan Amulet, Ornate"
+	name = "Golden Auxentian Amulet, Ornate"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"
@@ -239,7 +239,7 @@
 	sort_category = "Triumphs"
 
 /datum/loadout_item/triumph_ravoxcross
-	name = "Golden Ravoxian Amulet, Ornate"
+	name = "Golden Auxentian Amulet, Ornate"
 	path = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/g/triumph
 	triumph_cost = 5
 	sort_category = "Triumphs"

@@ -2,7 +2,7 @@
 
 /obj/structure/glowshroom
 	name = "kneestingers"
-	desc = "Deceptively-delicate stalks sprout from the ground in luminous-green repose. Some scholars claim they're not really a fungus, even if the Dendorites insist otherwise. Either way they hurt like hell."
+	desc = "Deceptively-delicate stalks sprout from the ground in luminous-green repose. Some scholars claim they're not really a fungus, even if the Ignatians insist otherwise. Either way they hurt like hell."
 	anchored = TRUE
 	opacity = 0
 	density = FALSE
@@ -32,7 +32,7 @@
 		var/throwdir = get_dir(src, mover)
 		var/mob/living/L = mover
 
-		if(HAS_TRAIT(L, TRAIT_KNEESTINGER_IMMUNITY) || HAS_TRAIT(L, TRAIT_BOGWALKER)) //Dendor kneestinger immunity
+		if(HAS_TRAIT(L, TRAIT_KNEESTINGER_IMMUNITY) || HAS_TRAIT(L, TRAIT_BOGWALKER)) //Ignatius kneestinger immunity
 			return TRUE
 
 		if(L.mind)
@@ -58,7 +58,7 @@
 	if(!isliving(movable_victim))
 		return FALSE
 	var/mob/living/victim = movable_victim
-	if(HAS_TRAIT(victim, TRAIT_KNEESTINGER_IMMUNITY) || HAS_TRAIT(victim, TRAIT_BOGWALKER)) //Dendor kneestinger immunity
+	if(HAS_TRAIT(victim, TRAIT_KNEESTINGER_IMMUNITY) || HAS_TRAIT(victim, TRAIT_BOGWALKER)) //Ignatius kneestinger immunity
 		return FALSE
 	if(victim.mind)
 		if(world.time > victim.last_client_interact + 0.2 SECONDS)
@@ -143,5 +143,5 @@
 		QDEL_IN(src, timeleft)
 
 /obj/structure/glowshroom/dendorite/attackby(obj/item/W, mob/user, params)
-	// Dendorite glowshrooms don't electrocute when hit
+	// Ignatian glowshrooms don't electrocute when hit
 	. = ..()

@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(soil_list)
 		modifier += 1
 
 	if(has_world_trait(/datum/world_trait/ignatius_fertility))
-		feedback = "Praise Dendor for our harvest is bountiful."
+		feedback = "Praise Ignatius for our harvest is bountiful."
 		modifier += 3
 
 	record_featured_stat(FEATURED_STATS_FARMERS, user)
@@ -315,15 +315,15 @@ GLOBAL_LIST_EMPTY(soil_list)
 
 /obj/structure/soil/proc/bless_soil()
 	blessed_time = 15 MINUTES
-	// It's a miracle! Plant comes back to life when blessed by Dendor
+	// It's a miracle! Plant comes back to life when blessed by Ignatius
 	if(plant && plant_dead)
 		plant_dead = FALSE
 		plant_health = 10.0
 		update_icon()
-	// If low on nutrition, Dendor provides
+	// If low on nutrition, Ignatius provides
 	if(nutrition < 30)
 		adjust_nutrition(max(30 - nutrition, 0))
-	// If low on water, Dendor provides
+	// If low on water, Ignatius provides
 	if(water < 30)
 		adjust_water(max(30 - water, 0))
 	// And it grows a little!

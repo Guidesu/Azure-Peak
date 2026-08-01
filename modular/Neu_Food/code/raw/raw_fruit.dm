@@ -45,7 +45,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.patron.type == /datum/patron/concordat/morwenna)
-			. += span_rose("A fruit from the heavens, courageously plucked by Matthios while escaping with Astrata's divine fire.. or so, they say. Eating it will not only be quite tasty, but help mend my lesser wounds as well.")
+			. += span_rose("A fruit from the heavens, courageously plucked by Matthios while escaping with Auxentius's divine fire.. or so, they say. Eating it will not only be quite tasty, but help mend my lesser wounds as well.")
 
 /obj/item/reagent_containers/food/snacks/rogue/fruit/apple_sliced/gold
 	name = "sliceed ambrosia"
@@ -66,7 +66,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.patron.type == /datum/patron/concordat/morwenna)
-			. += span_rose("Sliced fruit from the heavens, courageously plucked by Matthios while escaping with Astrata's divine fire.. or so, they say. Eating it will not only be quite tasty, but help mend my lesser wounds as well.")
+			. += span_rose("Sliced fruit from the heavens, courageously plucked by Matthios while escaping with Auxentius's divine fire.. or so, they say. Eating it will not only be quite tasty, but help mend my lesser wounds as well.")
 
 /obj/item/trash/gapplecore
 	name = "cored ambrosia"
@@ -83,7 +83,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.patron.type == /datum/patron/concordat/morwenna)
-			. += span_rose("The remains of a heavenly fruit, courageously plucked by Matthios while escaping with Astrata's divine fire.. or so, they say. Such fruits're said to refresh and heal mortals more than any other morsel. </br>I can fetch more by bargaining with the Hoardmaster and those most-devout to greed.")
+			. += span_rose("The remains of a heavenly fruit, courageously plucked by Matthios while escaping with Auxentius's divine fire.. or so, they say. Such fruits're said to refresh and heal mortals more than any other morsel. </br>I can fetch more by bargaining with the Hoardmaster and those most-devout to greed.")
 
 /obj/item/reagent_containers/food/snacks/grown/apple/gold/On_Consume(mob/living/eater)
 	..()

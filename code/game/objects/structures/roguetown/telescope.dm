@@ -53,7 +53,7 @@
 				H.update_damage_overlays()
 		
 		// DUSK. 
-		// ZURANUS only appears in the Dusk hours, while Astrata is lowering but Noc still isnt fully awakened.
+		// ZURANUS only appears in the Dusk hours, while Auxentius is lowering but Noc still isnt fully awakened.
 		// If ZURANUS is not visible... IDK. Stars, I guess.
 		else if(GLOB.tod == "dusk")
 			var/see_zuranus = rand(0,2)
@@ -83,7 +83,7 @@
 			switch(what_do_see)
 				if(0) // hey jimmy, get me a pizza wit nothin. nothin?
 					var/star_audio = pick(star_sounds)
-					picked_message = span_info("NOC is performing his final rotations... Astrata is rising, a GLORIOUS MORNING...") // https://www.youtube.com/watch?v=7T_YtklLyyo
+					picked_message = span_info("NOC is performing his final rotations... Auxentius is rising, a GLORIOUS MORNING...") // https://www.youtube.com/watch?v=7T_YtklLyyo
 					H.playsound_local(H, star_audio, 40, TRUE)
 				if(1) // good luck! kytheria!
 					picked_message = span_rose("Kytheria's golden clouds swirl with blessed strife...")
@@ -133,7 +133,7 @@
 					picked_message = pick(wonders_of_the_stars)
 				if(3) // HERMES
 					H.apply_status_effect(/datum/status_effect/buff/hermes_trismegistus)
-					picked_message = span_info("Hermes' swift orbit graces a shadow between Astrata and Noc...")
+					picked_message = span_info("Hermes' swift orbit graces a shadow between Auxentius and Noc...")
 					H.playsound_local('sound/items/write.ogg', 40, TRUE)
 				if(4) // NEPOLX OR NEOPLX or NEOPETS
 					picked_message = span_info("Nepolx's saffiric glow wounds the heart with a sense of sudden somberness...")

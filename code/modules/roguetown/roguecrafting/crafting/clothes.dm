@@ -399,7 +399,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/woodastratacross
-	name = "wooden amulet of Astrata"
+	name = "wooden amulet of Auxentius"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/psicross/auxentius/wood
@@ -429,7 +429,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/wooddendorcross
-	name = "wooden amulet of Dendor"
+	name = "wooden amulet of Ignatius"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/psicross/ignatius/wood
@@ -459,7 +459,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/woodravoxcross
-	name = "wooden amulet of Ravox"
+	name = "wooden amulet of Auxentius"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/wood

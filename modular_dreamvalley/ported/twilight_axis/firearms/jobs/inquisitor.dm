@@ -22,12 +22,12 @@
 
 /datum/advclass/inquisitor/blackpowder
 	name = "Blackpowder Réprimer"
-	tutorial = "A truly rare specimen among the ranks of the Inquisition - an agent of the Blackpowder Order now serving as an Ordinator, hunting down Psydon's many enemies, set upon this task by Marshal Inquisitionis himself. There are many mistakes a heretic can commit over their lifespan, but when facing a Blackpowder Marksman, their final error tends to be the fact that they brought a sword to a gunfight."
+	tutorial = "A truly rare specimen among the ranks of the Inquisition - an agent of the Blackpowder Order now serving as an Ordinator, hunting down Praecursor's many enemies, set upon this task by Marshal Inquisitionis himself. There are many mistakes a heretic can commit over their lifespan, but when facing a Blackpowder Marksman, their final error tends to be the fact that they brought a sword to a gunfight."
 	outfit = /datum/outfit/job/roguetown/inquisitor/blackpowder
 	subclass_languages = list(/datum/language/vergenmarkian)
 	cmode_music = 'modular_dreamvalley/sound/twilight_firearms/music/combat_blackpowder.ogg'
 	category_tags = list(CTAG_INQUSITOR)
-	classes = list("Vanguard" = "You are an experienced commander who has served in the Blackpowder Order long enough to earn honor and glory on the battlefield. Few can rival your willpower, your shoulders bear the deadly weapons of the new era, capable of killing a God. No heretic or beast can escape Psydon's wrath.",
+	classes = list("Vanguard" = "You are an experienced commander who has served in the Blackpowder Order long enough to earn honor and glory on the battlefield. Few can rival your willpower, your shoulders bear the deadly weapons of the new era, capable of killing a God. No heretic or beast can escape Praecursor's wrath.",
 	"Runed Volf" = "Many of your brothers died in horrible ways. Someone's body couldn't withstand the new power and tear itself apart, someone was killed on suicidal missions deep behind enemy lines. But you survived and were commissioned as an experienced commander of your order, capable of finding your prey anywhere.")
 	traits_applied = list(
 		TRAIT_STEELHEARTED,
@@ -65,7 +65,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE
 	)
 	subclass_stashed_items = list(
-		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy,
+		"Tome of Praecursor" = /obj/item/book/rogue/bibble/psy,
 	)
 	extra_context = "This subclass can choose between two roles: Vanguard with the Doomsdae runic rifle and 'Medium Armor' trait and Runed Volf with the Umbra, silent arquebus pistol, rune magyck and the 'Dodge Expert' trait."
 

@@ -88,7 +88,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/warden/upgraded
 	name = "forester's brigandine"
-	desc = "A hardened leather harness with a large pauldron worn over a tasseted brigandine, imbued with Dendor's essence."
+	desc = "A hardened leather harness with a large pauldron worn over a tasseted brigandine, imbued with Ignatius's essence."
 	icon_state = "forestbrig"
 	armor = ARMOR_BRIGANDINE//is actually a brigandine now
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 50
@@ -163,7 +163,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
 	name = "confessional coat"
-	desc = "A sturdy raincoat draped atop of a tightly-fastened boiled leather cuirass. Saint Astratan youths often fashion little pieces of memorabilia and stitch it on the inner pockets of the coat to remind the confessors that their cause is virtuous, and that they mustn't lose sight of what matters."
+	desc = "A sturdy raincoat draped atop of a tightly-fastened boiled leather cuirass. Saint Auxentian youths often fashion little pieces of memorabilia and stitch it on the inner pockets of the coat to remind the confessors that their cause is virtuous, and that they mustn't lose sight of what matters."
 	icon_state = "confessorcoat"
 	item_state = "confessorcoat"
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
@@ -416,7 +416,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/tailcoat
 	name = "tailcoat"
-	desc = "A finely-sewn tailcoat often worn by those on the brink of the upper echelons of Astratan caste."
+	desc = "A finely-sewn tailcoat often worn by those on the brink of the upper echelons of Auxentian caste."
 	icon_state = "butlercoat"
 	item_state = "butlercoat"
 	detail_tag = "_detail"

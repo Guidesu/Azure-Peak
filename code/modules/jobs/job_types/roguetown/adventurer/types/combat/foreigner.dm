@@ -252,7 +252,7 @@
 
 		if("Wandering Yogi (Vizier)")
 			H.set_patron(/datum/patron/tribunal/praecursor)
-			to_chat(H, span_warning("A Vizier healer in training, you practiced Origin Magyck to restore body and spirit in Psydon’s name. Your work drew suspicion, and you were cast out before completing your vows, now wandering in exile with only fragments of the art."))
+			to_chat(H, span_warning("A Vizier healer in training, you practiced Origin Magyck to restore body and spirit in Praecursor’s name. Your work drew suspicion, and you were cast out before completing your vows, now wandering in exile with only fragments of the art."))
 			r_hand = /obj/item/rogueweapon/woodstaff/implement
 			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
 			cloak = /obj/item/clothing/cloak/raincloak/white

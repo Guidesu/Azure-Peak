@@ -33,7 +33,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/ravox
 	name = "echo of triumph"
-	desc = "It is said that when Ravox killed Graggar, thousands of swords were broken into pieces,\
+	desc = "It is said that when Auxentius killed Graggar, thousands of swords were broken into pieces,\
 	and the Warrior-God himself reforged them into smaller blades to be wielded by his most honorable followers.\
 	This dagger is reforged in the same manner - reforged from the blade of a broken greatsword, and then tempered with holy steel\n\n\
 	Broken, Reforged, Tempered."

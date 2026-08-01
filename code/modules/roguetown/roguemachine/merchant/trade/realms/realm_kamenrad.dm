@@ -6,7 +6,7 @@
 	ship_name_words = list(
 		"Yarlsnik", "Koprivka", "Diethelm", "Tomorzh", "Khairin",
 		"Wardenpact", "Hetman", "Saiga", "Bloodaxe", "Ironmask",
-		"Potentate", "Astrava", "Ravox", "Zogiin", "Hussar",
+		"Potentate", "Astrava", "Auxentius", "Zogiin", "Hussar",
 	)
 	captain_first_names = list(
 		"Bjorn", "Yakiv", "Tomasz", "Lubomir", "Radek",

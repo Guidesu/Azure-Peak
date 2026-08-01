@@ -82,7 +82,7 @@
 	sellprice = 77
 
 /obj/item/clothing/neck/roguetown/psicross/auxentius/ravox/g/triumph
-	name = "ornate amulet of Ravox"
+	name = "ornate amulet of Auxentius"
 	sellprice = 77
 
 /obj/item/clothing/neck/roguetown/psicross/handwerra/malum/g/triumph

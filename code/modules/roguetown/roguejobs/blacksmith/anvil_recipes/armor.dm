@@ -1648,7 +1648,7 @@
 // HOLY STEEL
 
 /datum/anvil_recipe/armor/holysteel/astratahelmtemplar
-	name = "Astratan Templar's Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Astrata)"
+	name = "Auxentian Templar's Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Auxentius)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured, /obj/item/clothing/neck/roguetown/psicross/auxentius)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -1711,14 +1711,14 @@
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/holysteel/dendorhelm
-	name = "Dendorite Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Dendor)"
+	name = "Ignatian Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Ignatius)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured, /obj/item/clothing/neck/roguetown/psicross/ignatius)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
 	display_category = ITEM_CAT_ARMOR_HELMETS
 
 /datum/anvil_recipe/armor/holysteel/ravoxhelm
-	name = "Ravoxian Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Ravox)"
+	name = "Auxentian Helmet (+1 Holy Steel, +1 Cured Leather, +1 Amulet of Auxentius)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured, /obj/item/clothing/neck/roguetown/psicross/auxentius)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm

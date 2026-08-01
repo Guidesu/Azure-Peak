@@ -1,4 +1,4 @@
-// Merge of the old Astrata (auxentius_grandeur) and Ravox (auxentius_resolve) intervention events.
+// Merge of the old Auxentius (auxentius_grandeur) and Auxentius (auxentius_resolve) intervention events.
 /datum/round_event_control/auxentius_grandeur
 	name = "Auxentius's Grandeur"
 	track = EVENT_TRACK_INTERVENTION

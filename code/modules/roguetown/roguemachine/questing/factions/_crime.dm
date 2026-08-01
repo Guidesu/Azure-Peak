@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 		"murder by stealth and ambush",
 		"the slaying of free folk by hidden hand",
 		"slaughter wrought in the dark, that no man might cry hue",
-		"the slaying of free folk by hidden hand, a slaughter that Ravox's law abhors",
+		"the slaying of free folk by hidden hand, a slaughter that Auxentius's law abhors",
 	)
 
 /datum/quest_crime/murder_watch
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"the slaying of a herald bearing a sealed writ",
 		"the breaking of safe conduct, and bloodshed upon a messenger of the Duke",
-		"the breaking of safe conduct sworn under Ravox's hilt, and bloodshed upon a messenger of the Duke",
+		"the breaking of safe conduct sworn under Auxentius's hilt, and bloodshed upon a messenger of the Duke",
 	)
 
 /datum/quest_crime/arson_night
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"arson of a steading by night",
 		"the kindling of fire upon a sleeping household's roof",
-		"the kindling of fire upon a sleeping household, that the day peace of Astrata be torn into Noc's hours",
+		"the kindling of fire upon a sleeping household, that the day peace of Auxentius be torn into Noc's hours",
 	)
 
 /datum/quest_crime/granary_burning
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"the burning of a granary in time of want",
 		"setting torch to common stores, that hunger fall upon the folk",
-		"the burning of a granary in time of want, that Astrata's grain burns into ash before hungry mouths",
+		"the burning of a granary in time of want, that Auxentius's grain burns into ash before hungry mouths",
 	)
 
 /datum/quest_crime/burglary
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"cattle lifting, and the driving off of beasts from common pasture",
 		"the reiving of kine from honest holders",
-		"the reiving of kine from honest holders, a robbery of Dendor's bounty unto a thieving keeping",
+		"the reiving of kine from honest holders, a robbery of Ignatius's bounty unto a thieving keeping",
 	)
 
 /datum/quest_crime/horse_theft
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_POACHING_LAND
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
-		"the slaying of beasts in excess of need, leaving carcasses to rot, a crime against Dendor's bounty",
+		"the slaying of beasts in excess of need, leaving carcasses to rot, a crime against Ignatius's bounty",
 		"the hunting of wood and field beyond reasonable want, that good meat was left for crows",
 	)
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_FALSE_RELICS
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
-		"the selling of false relics, peddling Astrata's name for mammon",
+		"the selling of false relics, peddling Auxentius's name for mammon",
 		"the hawking of forged bones and chains, that the holy were named upon trinkets",
 	)
 
@@ -319,15 +319,15 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"treason against the lord to whom they had sworn faith",
 		"the betrayal of those whose bread they had eaten",
-		"treason against the lord to whom they had sworn faith before Ravox's altar",
+		"treason against the lord to whom they had sworn faith before Auxentius's altar",
 	)
 
 /datum/quest_crime/oath_breaking
 	id = CRIME_OATH_BREAKING
 	tier = CRIME_TIER_OATH
 	phrasings = list(
-		"the breaking of the oath sworn before Ravox upon hilt and altar",
-		"forswearing of vow taken in the hearing of Ravox",
+		"the breaking of the oath sworn before Auxentius upon hilt and altar",
+		"forswearing of vow taken in the hearing of Auxentius",
 	)
 
 /datum/quest_crime/desertion
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"desertion from the Duke's levy in time of war",
 		"the casting down of arms while the foe yet stood",
-		"desertion from the Duke's levy, casting down arms in the hour Ravox would have them stand",
+		"desertion from the Duke's levy, casting down arms in the hour Auxentius would have them stand",
 	)
 
 /datum/quest_crime/foreign_pay
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"compassing the death of a sworn officer of the Duke",
 		"the imagining and counsel of murder against the Duke's own men",
-		"compassing the death of a sworn officer of the Duke, an evil Ravox knows by its scent",
+		"compassing the death of a sworn officer of the Duke, an evil Auxentius knows by its scent",
 	)
 
 /datum/quest_crime/adhering_enemies
@@ -376,8 +376,8 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_OATH_BETRAYAL
 	tier = CRIME_TIER_OATH
 	phrasings = list(
-		"the betrayal of an oathed companion in the hour of need, that Ravox's sworn faith was made coin",
-		"the abandonment of one whose hand had been clasped in oath, against Ravox's measure",
+		"the betrayal of an oathed companion in the hour of need, that Auxentius's sworn faith was made coin",
+		"the abandonment of one whose hand had been clasped in oath, against Auxentius's measure",
 	)
 
 /datum/quest_crime/marriage_vow_broken
@@ -402,7 +402,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"the slaying of a priest before their own altar",
 		"shedding of holy blood within the precinct of the Tens",
-		"the slaying of a priest before their own altar, the blood of Astrata's servant cried out from the stones",
+		"the slaying of a priest before their own altar, the blood of Auxentius's servant cried out from the stones",
 	)
 
 /datum/quest_crime/shrine_robbery
@@ -419,7 +419,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"the defiling of consecrated ground",
 		"the working of unclean act upon earth blessed unto the Tens",
-		"the defiling of consecrated ground, an unclean act upon earth Dendor blessed",
+		"the defiling of consecrated ground, an unclean act upon earth Ignatius blessed",
 	)
 
 /datum/quest_crime/sanctuary_breaking

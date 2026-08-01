@@ -18,7 +18,7 @@
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonastrata
-	name = "Astratan Amulet"
+	name = "Auxentian Amulet"
 	cost = 10
 	contains = list(
 					/obj/item/clothing/neck/roguetown/psicross/auxentius,
@@ -37,7 +37,7 @@
 					/obj/item/clothing/neck/roguetown/psicross/miluse,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonravox
-	name = "Ravox Amulet"
+	name = "Auxentius Amulet"
 	cost = 10
 	contains = list(
 					/obj/item/clothing/neck/roguetown/psicross/auxentius,)
@@ -55,7 +55,7 @@
 					/obj/item/clothing/neck/roguetown/psicross/morwenna,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheondendor
-	name = "Dendor Amulet"
+	name = "Ignatius Amulet"
 	cost = 10
 	contains = list(
 					/obj/item/clothing/neck/roguetown/psicross/ignatius,)

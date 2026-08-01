@@ -104,7 +104,7 @@
 
 	//Werewolf deconversion
 	if(Were && !Wereless) //The roundstart elder/alpha werewolf, it cannot be saved
-		to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. Dendor's blessing shall not be quit of me so easily."))
+		to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. Ignatius's blessing shall not be quit of me so easily."))
 		user.visible_message(span_danger("The quicksilver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
 		M.Stun(30)
 		M.Knockdown(30)

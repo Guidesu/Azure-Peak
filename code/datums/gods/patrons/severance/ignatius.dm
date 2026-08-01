@@ -1,4 +1,4 @@
-// Direct successor to Dendor (earth and nature) - re-themed as the active/growth half of the Severance (see
+// Direct successor to Ignatius (earth and nature) - re-themed as the active/growth half of the Severance (see
 // Ognica's origin_desc: "Ignatius, god of growth, change, risk, and fire"). The more prayer-friendly, active
 // godhead of the two - Kamenka is the quieter co-equal.
 /datum/patron/severance/ignatius

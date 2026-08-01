@@ -835,7 +835,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/fire
 	name = "fire dagger"
-	desc = "A dagger enchanted with lost arcyne arts to render it as Astrata's wrath, but only for a short duration."
+	desc = "A dagger enchanted with lost arcyne arts to render it as Auxentius's wrath, but only for a short duration."
 	icon_state = "fdagger"
 	sheathe_icon = "fdagger"
 	smeltresult = null

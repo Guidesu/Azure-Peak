@@ -1,4 +1,4 @@
-// Bush Sapling & Flower Sprout — Dendor Content
+// Bush Sapling & Flower Sprout — Ignatius Content
 #define BUSHSAP_STAGE_SAPLING 1
 #define BUSHSAP_STAGE_BUDDING 2
 #define BUSHSAP_STAGE_MATURE  3

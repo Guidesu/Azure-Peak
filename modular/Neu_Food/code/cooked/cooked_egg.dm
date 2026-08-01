@@ -13,7 +13,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/friedegg/fried //so fried-egg specific shit stops getting inherited
 	name = "fried egg"
-	desc = "Some Astratans enjoy their eggs sunny-side up."
+	desc = "Some Auxentians enjoy their eggs sunny-side up."
 
 /*	.............   Twin fried eggs   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/friedegg/two

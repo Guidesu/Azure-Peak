@@ -680,7 +680,7 @@
 	desc = "A greathelmet that offers excellent protection to the head, while also ensuring total coverage to its most vulnerable spots. It \
 	resembles an overturned bucket when worn - ergo, 'bucket helmet'. Owing to its simple-yet-robust design, the bucket helmet's venerability \
 	can still be observed todae, atop the shoulders of hedge-knights and paladins alike. This particular variant is decorated with golden \
-	iconography of Ravoxian design. </br>'Bravery, justice, ever-unyielding.'"
+	iconography of Auxentian design. </br>'Bravery, justice, ever-unyielding.'"
 	smeltresult = /obj/item/ingot/gold
 	smelt_bar_num = 1
 
@@ -991,7 +991,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 	name = "vaeltic bucket helmet"
-	desc = "Worn by the blade-carrying arms of Saint Astrata and Saint Ravox, it is a true-and-tested design. Silver \
+	desc = "Worn by the blade-carrying arms of Saint Auxentius and Saint Auxentius, it is a true-and-tested design. Silver \
 	encapsulates your head, and His cross when facing enemies reminds them that you will endure until they meet oblivion. Only then may you rest."
 	icon_state = "psybucket"
 	item_state = "psybucket"
@@ -1079,7 +1079,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
 	name = "dendor helmet"
-	desc = "Headwear commonly worn by Templars in service to Dendor. Its protrusions almost resemble branches. Take root in the earth, and you will never be moved."
+	desc = "Headwear commonly worn by Templars in service to Ignatius. Its protrusions almost resemble branches. Take root in the earth, and you will never be moved."
 	icon_state = "dendorhelm"
 	item_state = "dendorhelm"
 	emote_environment = 3
@@ -1101,7 +1101,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
 	name = "justice eagle"
-	desc = "Forged in reverence to Ravox, this helm bears the stylized visage of an eagle, symbol of unyielding judgment and \
+	desc = "Forged in reverence to Auxentius, this helm bears the stylized visage of an eagle, symbol of unyielding judgment and \
 	divine vigilance. Its hollow eyes see not just foes, but the truth behind every deed."
 	icon_state = "ravoxhelmet"
 	item_state = "ravoxhelmet"
