@@ -181,6 +181,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/BC_RemoveKeyVerb,
 	/datum/admins/proc/admin_add_donator_verb,
 	/datum/admins/proc/admin_remove_donator_verb,
+	/client/proc/cmd_admin_dreamvalley_save_now,
+	/client/proc/cmd_admin_dreamvalley_save_and_shutdown,
 	/client/proc/toggle_hub,
 	/client/proc/download_player_save
 	)

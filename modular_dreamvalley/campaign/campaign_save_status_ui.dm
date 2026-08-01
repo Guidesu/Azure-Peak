@@ -41,10 +41,11 @@
 
 	switch(action)
 		if("force_checkpoint")
+			var/parked_count = manager.auto_park_connected_characters()
 			var/generation = manager.request_durable_checkpoint()
 			if(isnum(generation))
-				to_chat(usr, span_notice("Forced a checkpoint - now at generation [generation]."))
-				log_admin("[key_name(usr)] forced a DreamValley campaign checkpoint (generation [generation]).")
+				to_chat(usr, span_notice("Forced a checkpoint - now at generation [generation]. Parked [parked_count] connected character(s)."))
+				log_admin("[key_name(usr)] forced a DreamValley campaign checkpoint (generation [generation], [parked_count] connected characters parked).")
 			else
 				to_chat(usr, span_warning("Checkpoint write failed - see server log."))
 			return TRUE

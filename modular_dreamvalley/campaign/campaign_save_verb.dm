@@ -17,14 +17,15 @@
 		to_chat(usr, span_boldwarning("The DreamValley campaign system is not enabled on this server."))
 		return
 
+	var/parked_count = GLOB.dreamvalley_campaign.auto_park_connected_characters()
 	var/generation = GLOB.dreamvalley_campaign.request_durable_checkpoint()
 	if(!isnum(generation))
 		to_chat(usr, span_boldwarning("Checkpoint failed to write to disk - check the server log."))
 		return
 
-	log_admin("[key_name(usr)] forced a manual DreamValley checkpoint (generation [generation]).")
-	message_admins("[key_name_admin(usr)] forced a manual campaign save (checkpoint [generation]).")
-	to_chat(usr, span_notice("Checkpoint [generation] saved to data/dreamvalley/save.json."))
+	log_admin("[key_name(usr)] forced a manual DreamValley checkpoint (generation [generation], [parked_count] connected characters parked).")
+	message_admins("[key_name_admin(usr)] forced a manual campaign save (checkpoint [generation], [parked_count] connected characters parked).")
+	to_chat(usr, span_notice("Checkpoint [generation] saved to data/dreamvalley/save.json. Parked [parked_count] connected character(s)."))
 
 /**
  * Read-only visibility into the campaign save state - what's saved, where,
@@ -58,3 +59,36 @@
 		"Persistent objects tracked: [status["persistent_objects"]]",
 	)
 	to_chat(usr, span_notice(lines.Join("<br>")))
+
+/client/proc/cmd_admin_dreamvalley_save_and_shutdown()
+	set category = "Server"
+	set name = "Save Campaign and Shutdown"
+	set desc = "Park all connected characters, save the campaign, and shut down the world."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/datum/dreamvalley_campaign_manager/manager = GLOB.dreamvalley_campaign
+	if(!manager?.enabled)
+		to_chat(usr, span_boldwarning("The DreamValley campaign system is not enabled on this server."))
+		return
+	if(manager.save_and_shutdown_in_progress)
+		to_chat(usr, span_warning("A save-and-shutdown operation is already in progress."))
+		return
+	if(alert(usr, "Park every connected character, write the campaign checkpoint, and shut down the world?", "Save Campaign and Shutdown", "Save and shutdown", "Cancel") != "Save and shutdown")
+		return
+
+	manager.save_and_shutdown_in_progress = TRUE
+	var/parked_count = manager.auto_park_connected_characters()
+	var/generation = manager.request_durable_checkpoint()
+	if(!isnum(generation))
+		manager.save_and_shutdown_in_progress = FALSE
+		to_chat(usr, span_boldwarning("Campaign checkpoint failed. The server will remain running; check the server log."))
+		return
+
+	to_chat(world, span_boldannounce("Campaign checkpoint [generation] saved. Parked [parked_count] connected character(s). The server is shutting down."))
+	log_admin("[key_name(usr)] saved campaign checkpoint [generation], parked [parked_count] connected character(s), and shut down the world.")
+	message_admins("[key_name_admin(usr)] initiated a campaign save-and-shutdown at checkpoint [generation] ([parked_count] connected characters parked).")
+	sleep(1 SECONDS)
+	Master.Shutdown()
+	world.Del()

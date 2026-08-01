@@ -64,6 +64,7 @@
 	/// The transaction still performs preflight and a shadow-body round trip;
 	/// unsupported character state cancels safely before staging a checkpoint.
 	var/character_parking_ready = TRUE
+	var/save_and_shutdown_in_progress = FALSE
 
 /datum/dreamvalley_campaign_manager/proc/configure(new_campaign_id)
 	if(!istext(new_campaign_id) || !length(new_campaign_id))
