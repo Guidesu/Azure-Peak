@@ -200,6 +200,59 @@ HTML_PAGE = """<!DOCTYPE html>
   .hint { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
   .z-select-wrap { display: flex; gap: 8px; align-items: center; }
   .divider { height: 1px; background: var(--border); margin: 16px 0; }
+  .dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 48px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .dropzone:hover { border-color: var(--accent); background: rgba(233,69,96,0.05); }
+  .dropzone.dragover {
+    border-color: var(--accent);
+    background: rgba(233,69,96,0.1);
+    transform: scale(1.01);
+  }
+  .dropzone-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  .dropzone-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .dropzone-hint {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .dropzone input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .or-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+  }
+  .or-divider::before, .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .or-divider span { padding: 0 12px; }
 </style>
 </head>
 <body>
@@ -210,12 +263,18 @@ HTML_PAGE = """<!DOCTYPE html>
   <!-- Step 1: Load JSON -->
   <div class="card">
     <h2>1 &middot; Load JSON</h2>
+    <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+      <div class="dropzone-icon">&#128193;</div>
+      <div class="dropzone-text" id="dropzoneText">Drop roguetown.json here</div>
+      <div class="dropzone-hint">or click to browse</div>
+      <input type="file" id="fileInput" accept=".json" onchange="onFileSelected(this)" />
+    </div>
+    <div class="or-divider"><span>or enter path manually</span></div>
     <div class="file-input-wrap">
       <input type="text" id="jsonPath" placeholder="Path to roguetown.json ..." />
-      <button class="btn btn-secondary btn-browse" onclick="browseFile()">Browse</button>
       <button class="btn" onclick="loadJson()" id="loadBtn">Load</button>
     </div>
-    <p class="hint">Enter the full path to the OpenDream compiled JSON file (e.g. C:\\...\\roguetown.json)</p>
+    <p class="hint">Drag &amp; drop the OpenDream compiled JSON, click to browse, or enter the path above</p>
     <div class="map-info" id="mapInfo"></div>
     <div class="status" id="loadStatus"></div>
   </div>
@@ -287,12 +346,59 @@ function clearStatus(id) {
   el.innerHTML = '';
 }
 
-async function browseFile() {
-  // We can't open a native file picker from a web page for arbitrary paths,
-  // but we can prompt the user.
-  const path = prompt('Enter the full path to the OpenDream JSON file:');
-  if (path) document.getElementById('jsonPath').value = path;
+// ─── Drag & Drop ────────────────────────────────────────────────────────────
+
+const dropzone = document.getElementById('dropzone');
+
+['dragenter','dragover'].forEach(ev => {
+  dropzone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.add('dragover'); });
+});
+['dragleave','drop'].forEach(ev => {
+  dropzone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.remove('dragover'); });
+});
+
+dropzone.addEventListener('drop', e => {
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    handleFile(files[0]);
+  }
+});
+
+// Also allow dropping anywhere on the page
+['dragenter','dragover'].forEach(ev => {
+  document.body.addEventListener(ev, e => { e.preventDefault(); });
+});
+document.body.addEventListener('drop', e => {
+  e.preventDefault();
+  const files = e.dataTransfer.files;
+  if (files.length > 0) handleFile(files[0]);
+});
+
+function onFileSelected(input) {
+  if (input.files.length > 0) handleFile(input.files[0]);
 }
+
+async function handleFile(file) {
+  document.getElementById('dropzoneText').textContent = file.name;
+  setStatus('loadStatus', '<span class="spinner"></span>Uploading ' + file.name + ' ...', 'loading');
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const resp = await fetch('/api/upload', { method: 'POST', body: formData });
+    const data = await resp.json();
+    if (data.error) {
+      setStatus('loadStatus', 'Error: ' + data.error, 'error');
+      document.getElementById('mapInfo').className = 'map-info';
+      return;
+    }
+    onJsonLoaded(data, file.name);
+  } catch(e) {
+    setStatus('loadStatus', 'Error: ' + e.message, 'error');
+  }
+}
+
+// ─── Path-based load (manual entry) ─────────────────────────────────────────
 
 async function loadJson() {
   const path = document.getElementById('jsonPath').value.trim();
@@ -313,36 +419,43 @@ async function loadJson() {
       document.getElementById('mapInfo').className = 'map-info';
       return;
     }
-    mapBounds = data;
-    const info = document.getElementById('mapInfo');
-    info.className = 'map-info show';
-    info.innerHTML = `Map: <span>${data.maxx}</span> x <span>${data.maxy}</span> x <span>${data.maxz}</span> &middot; <span>${data.cellCount}</span> cell definitions &middot; <span>${data.fileSize}</span>`;
-    setStatus('loadStatus', 'Loaded successfully!', 'success');
-
-    // Populate z-level dropdown
-    const zSelect = document.getElementById('zLevel');
-    zSelect.innerHTML = '<option value="">All z-levels</option>';
-    for (let z = 1; z <= data.maxz; z++) {
-      zSelect.innerHTML += `<option value="${z}">Z-level ${z}</option>`;
-    }
-
-    // Enable options
-    const card = document.getElementById('optionsCard');
-    card.style.opacity = '1';
-    card.style.pointerEvents = 'auto';
-    document.getElementById('exportBtn').disabled = false;
-    ['minX','maxX','minY','maxY'].forEach(id => document.getElementById(id).disabled = false);
-
-    // Set default region values
-    document.getElementById('minX').placeholder = '1';
-    document.getElementById('maxX').placeholder = data.maxx;
-    document.getElementById('minY').placeholder = '1';
-    document.getElementById('maxY').placeholder = data.maxy;
+    document.getElementById('dropzoneText').textContent = path.split(/[\\\\/]/).pop();
+    onJsonLoaded(data, path);
   } catch(e) {
     setStatus('loadStatus', 'Error: ' + e.message, 'error');
   } finally {
     document.getElementById('loadBtn').disabled = false;
   }
+}
+
+// ─── Common: JSON loaded successfully ───────────────────────────────────────
+
+function onJsonLoaded(data, name) {
+  mapBounds = data;
+  const info = document.getElementById('mapInfo');
+  info.className = 'map-info show';
+  info.innerHTML = `Map: <span>${data.maxx}</span> x <span>${data.maxy}</span> x <span>${data.maxz}</span> &middot; <span>${data.cellCount}</span> cell definitions &middot; <span>${data.fileSize}</span>`;
+  setStatus('loadStatus', 'Loaded ' + name + ' successfully!', 'success');
+
+  // Populate z-level dropdown
+  const zSelect = document.getElementById('zLevel');
+  zSelect.innerHTML = '<option value="">All z-levels</option>';
+  for (let z = 1; z <= data.maxz; z++) {
+    zSelect.innerHTML += `<option value="${z}">Z-level ${z}</option>`;
+  }
+
+  // Enable options
+  const card = document.getElementById('optionsCard');
+  card.style.opacity = '1';
+  card.style.pointerEvents = 'auto';
+  document.getElementById('exportBtn').disabled = false;
+  ['minX','maxX','minY','maxY'].forEach(id => document.getElementById(id).disabled = false);
+
+  // Set default region values
+  document.getElementById('minX').placeholder = '1';
+  document.getElementById('maxX').placeholder = data.maxx;
+  document.getElementById('minY').placeholder = '1';
+  document.getElementById('maxY').placeholder = data.maxy;
 }
 
 function onZChange() {}
@@ -441,6 +554,10 @@ class Handler(BaseHTTPRequestHandler):
             self.handle_load()
             return
 
+        if parsed.path == "/api/upload":
+            self.handle_upload()
+            return
+
         self.send_response(404)
         self.end_headers()
 
@@ -479,6 +596,98 @@ class Handler(BaseHTTPRequestHandler):
             })
         except Exception as e:
             self.send_json({"error": str(e)})
+            loaded_data = None
+
+    def handle_upload(self):
+        """Handle file upload via multipart/form-data (drag & drop)."""
+        global loaded_data, loaded_path
+        content_type = self.headers.get("Content-Type", "")
+        if "multipart/form-data" not in content_type:
+            self.send_json({"error": "Expected multipart/form-data"})
+            return
+
+        content_length = int(self.headers.get("Content-Length", 0))
+
+        # Extract boundary
+        boundary = None
+        for part in content_type.split(";"):
+            part = part.strip()
+            if part.startswith("boundary="):
+                boundary = part[len("boundary="):].strip('"')
+                break
+        if not boundary:
+            self.send_json({"error": "No boundary in multipart data"})
+            return
+
+        try:
+            # Read the full body, then parse multipart manually
+            body = self.rfile.read(content_length)
+            boundary_bytes = ("--" + boundary).encode()
+
+            # Find the file part (the one with filename=)
+            idx = body.find(b'filename=')
+            if idx == -1:
+                self.send_json({"error": "No filename found in upload"})
+                return
+
+            # Find the start of this boundary
+            b_start = body.rfind(boundary_bytes, 0, idx)
+            if b_start == -1:
+                self.send_json({"error": "Could not find boundary before filename"})
+                return
+
+            # Find headers end (\r\n\r\n after the boundary line)
+            header_start = b_start + len(boundary_bytes)
+            # Skip the \r\n after boundary
+            if body[header_start:header_start+2] == b"\r\n":
+                header_start += 2
+            header_end = body.find(b"\r\n\r\n", header_start)
+            if header_end == -1:
+                self.send_json({"error": "Could not find end of headers"})
+                return
+
+            # Parse filename from headers
+            header_str = body[header_start:header_end].decode("utf-8", errors="replace")
+            filename = "uploaded.json"
+            for line in header_str.split("\r\n"):
+                if "filename=" in line:
+                    fn_start = line.find('filename="')
+                    if fn_start != -1:
+                        fn_start += len('filename="')
+                        fn_end = line.find('"', fn_start)
+                        if fn_end != -1:
+                            filename = line[fn_start:fn_end]
+
+            # File data starts after \r\n\r\n
+            data_start = header_end + 4
+
+            # Find the end boundary
+            end_boundary = boundary_bytes + b"--"
+            data_end = body.find(b"\r\n" + boundary_bytes, data_start)
+            if data_end == -1:
+                data_end = len(body)
+
+            file_data = body[data_start:data_end]
+
+            loaded_data = json.loads(file_data.decode("utf-8"))
+            loaded_path = os.path.basename(filename)
+            if "Maps" not in loaded_data or not loaded_data["Maps"]:
+                self.send_json({"error": "No maps found in JSON"})
+                loaded_data = None
+                return
+            m = loaded_data["Maps"][0]
+            size = len(file_data)
+            size_str = f"{size / 1024 / 1024:.1f} MB" if size > 1024*1024 else f"{size / 1024:.0f} KB"
+            self.send_json({
+                "maxx": m["MaxX"],
+                "maxy": m["MaxY"],
+                "maxz": m["MaxZ"],
+                "cellCount": len(m["CellDefinitions"]),
+                "fileSize": size_str,
+            })
+        except Exception as e:
+            import traceback
+            self.send_json({"error": str(e), "trace": traceback.format_exc()})
             loaded_data = None
 
     def handle_export(self, params):
