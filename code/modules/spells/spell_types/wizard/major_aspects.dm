@@ -29,6 +29,7 @@
 	)
 	fixed_spells = list(
 		/datum/action/cooldown/spell/bending_stance/fire,
+		/datum/action/cooldown/spell/firebending,
 		/datum/action/cooldown/spell/projectile/spitfire,
 		/datum/action/cooldown/spell/telegraphed_strike/dragons_breath,
 		/datum/action/cooldown/spell/projectile/fireball/barrage,
@@ -69,6 +70,7 @@
 	)
 	fixed_spells = list(
 		/datum/action/cooldown/spell/bending_stance/water,
+		/datum/action/cooldown/spell/waterbending,
 		/datum/action/cooldown/spell/projectile/frost_bolt,
 		/datum/action/cooldown/spell/projectile/rimecast,
 		/datum/action/cooldown/spell/forcewall/ice,
@@ -77,6 +79,7 @@
 	)
 	spell_order = list(
 		/datum/action/cooldown/spell/bending_stance/water,
+		/datum/action/cooldown/spell/waterbending,
 		/datum/action/cooldown/spell/projectile/frost_bolt,
 		/datum/action/cooldown/spell/projectile/rimecast,
 		/datum/action/cooldown/spell/forcewall/ice,
@@ -195,6 +198,7 @@
 	)
 	fixed_spells = list(
 		/datum/action/cooldown/spell/bending_stance/air,
+		/datum/action/cooldown/spell/airbending,
 		/datum/action/cooldown/spell/projectile/basic_offensive,
 		/datum/action/cooldown/spell/crush,
 		/datum/action/cooldown/spell/gravity,
