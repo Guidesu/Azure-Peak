@@ -1,6 +1,6 @@
 // Anatomy profiles for the simple mob critical wounds system, with design exaplanation per profile.
 
-/* Trash quadruped, wounds are not really core to fighting these animals, and it is just 
+/* Trash quadruped, wounds are not really core to fighting these animals, and it is just
  there to provide player a tangible sense of progress.
 */
 /datum/anatomy/quadruped
@@ -86,9 +86,9 @@ zone, which is the payoff for aiming instead of flailing.
 /* Tough biped, taller than a human. Head is gated by reach, and is an instant kill with
 less hp than their global HP pool. It also stop it from reanimating. Guts is a part that allows you to kill them by disembowelment. Legs will topple it. Arms will weaken its attacks.
 Aiming legs should be nearly guaranteed due to their profile
-*/ 
+*/
 /datum/anatomy/biped/tough/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_LONG, melee_hit_bonus = -10, ranged_hit_bonus = -15) // Better build up that PER chudling
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -15) // Better build up that PER chudling
 	add_zone(BODY_ZONE_PRECISE_STOMACH, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 150, break_wound = /datum/wound/cripple/guts, hint = "gut")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
@@ -96,11 +96,10 @@ Aiming legs should be nearly guaranteed due to their profile
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
 
 /* Deadite tough biped. Mirrors the living profile - a reach-gated head that kills and bars
-reanimation, legs that topple, arms that weaken - minus the guts: an undead has nothing left to
-spill that would stop it.
+reanimation, legs that topple, arms that weaken. No guts zone: an undead has nothing left to spill that would stop it.
 */
 /datum/anatomy/biped/tough/undead/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_LONG, melee_hit_bonus = -10, ranged_hit_bonus = -15)
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -15)
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
