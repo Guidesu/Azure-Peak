@@ -188,6 +188,10 @@
 					prob2defend = prob2defend + (H.get_skill_level(/datum/skill/combat/unarmed) * 10)
 					if(U.STASPD > L.STASPD) //unarmed is inherently swift
 						prob2defend = prob2defend - ((U.STASPD - L.STASPD) * 10)
+			else if(U.skills)
+				var/datum/intent/attacker_intent = U.used_intent
+				var/attacker_skill_type = attacker_intent?.masteritem?.associated_skill || /datum/skill/combat/unarmed
+				prob2defend = prob2defend - (U.get_skill_level(attacker_skill_type) * 10)
 
 
 		
