@@ -523,7 +523,7 @@
 	name = "guard studded hood"
 	desc = "A padded hood splinted across creating a cocooon for whoever wears it - won't protect your face however. This one bears the heraldry of the local lord."
 	detail_tag = "_detail"
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_color = CLOTHING_WHITE
 
 /obj/item/clothing/head/roguetown/roguehood/studded/ComponentInitialize()

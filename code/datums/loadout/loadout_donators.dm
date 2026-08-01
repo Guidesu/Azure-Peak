@@ -1,5 +1,5 @@
 //Donator Section
-//All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
+//All these items are stored in the donator_fluff.dm in the modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
 //Please make sure to NOT create a subtype of donator_x/item unless there's a parent type, else it will show up as parent loadout datum due to the implicitly defined parent
 
@@ -16,19 +16,19 @@
 
 /datum/loadout_item/donator/universal/azurosa
 	name = "Gift - Lunara Flower"
-	path = /obj/item/alch/rosa/azure
+	path = /obj/item/alch/rosa/lunara
 
-/datum/loadout_item/donator/universal/azurosa_seeds
+/datum/loadout_item/donator/universal/lunara_seeds
 	name = "Gift - Lunara Flower, Seeds"
-	path = /obj/item/storage/belt/rogue/pouch/azurosa_seeds
+	path = /obj/item/storage/belt/rogue/pouch/lunara_seeds
 
 /datum/loadout_item/donator/universal/azurosa_crown
 	name = "Gift - Lunara Flowers, Crown"
-	path = /obj/item/flowercrown/rosa/azure
+	path = /obj/item/flowercrown/rosa/lunara
 
 /datum/loadout_item/donator/universal/azurosa_bouquet
 	name = "Gift - Lunara Flowers, Bouquet"
-	path = /obj/item/bouquet/rosa/azure
+	path = /obj/item/bouquet/rosa/lunara
 
 /datum/loadout_item/donator/universal/cackledagger
 	name = "Gift - Kit, Cackledagger"

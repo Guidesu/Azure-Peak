@@ -152,7 +152,7 @@
 	sewrepair = TRUE
 	flags_inv = HIDEEARS
 	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	altdetail_color = CLOTHING_WHITE
 
 /obj/item/clothing/head/roguetown/jester/update_icon()

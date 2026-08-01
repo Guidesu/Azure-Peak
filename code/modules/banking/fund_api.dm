@@ -57,7 +57,7 @@
 		return amount
 	var/skim = min(amount, banditry_debt)
 	banditry_debt -= skim
-	GLOB.azure_round_stats[STATS_BANDITRY_DEBT_OUTSTANDING] = banditry_debt
+	GLOB.round_stats[STATS_BANDITRY_DEBT_OUTSTANDING] = banditry_debt
 	log_fund_entry(new /datum/treasury_entry("burn", to_fund, null, skim, "Banditry debt repayment"))
 	return amount - skim
 
@@ -71,7 +71,7 @@
 		return amount
 	var/skim = min(amount_above_floor, treasury_debt)
 	treasury_debt -= skim
-	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
+	GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
 	record_round_statistic(STATS_TREASURY_DEBT_REPAID, skim)
 	var/reason
 	if(treasury_state == TREASURY_BANKRUPTCY)

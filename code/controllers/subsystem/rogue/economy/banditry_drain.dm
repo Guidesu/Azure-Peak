@@ -36,7 +36,7 @@
 	if(shortfall > 0)
 		SStreasury.banditry_debt += shortfall
 	record_round_statistic(STATS_BANDITRY_LOSSES, total_drain)
-	GLOB.azure_round_stats[STATS_BANDITRY_DEBT_OUTSTANDING] = SStreasury.banditry_debt
+	GLOB.round_stats[STATS_BANDITRY_DEBT_OUTSTANDING] = SStreasury.banditry_debt
 	if(daily_report_diff)
 		daily_report_diff["banditry_drain_total"] = total_drain
 		daily_report_diff["banditry_drain_burned"] = burn_now

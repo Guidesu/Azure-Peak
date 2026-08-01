@@ -40,5 +40,5 @@
 
 /datum/config_entry/string/storage_cdn_iframe
 	protection = CONFIG_ENTRY_LOCKED
-	// Note: We can use vorestation's without overlap so long as we keep storage.ts's KEY_NAME = "azure"
+	// Note: We can use vorestation's without overlap so long as we keep storage.ts's KEY_NAME matching.
 	default = "https://vorestation.github.io/byond-client-storage/iframe.html"

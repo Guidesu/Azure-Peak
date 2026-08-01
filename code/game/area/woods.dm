@@ -26,8 +26,8 @@
 	first_time_text = "Middle of Nowhere"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
-	threat_region = THREAT_REGION_AZURE_GROVE
-	detail_text = DETAIL_TEXT_AZURE_GROVE
+	threat_region = THREAT_REGION_WHISPERING_GROVE
+	detail_text = DETAIL_TEXT_WHISPERING_GROVE
 
 /area/rogue/indoors/shelter/woods
 	name = "The Grove"
@@ -35,7 +35,7 @@
 	droning_sound = 'sound/music/area/forest.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/forestnight.ogg'
-	threat_region = THREAT_REGION_AZURE_GROVE
+	threat_region = THREAT_REGION_WHISPERING_GROVE
 	deathsight_message = "somewhere in the wilds"
 
 
@@ -50,7 +50,7 @@
 		/mob/living/carbon/human/species/goblin/npc/archer = 7,
 		/mob/living/carbon/human/species/hobgoblin/npc/ambush = 15,
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
-	threat_region = THREAT_REGION_AZURE_GROVE
+	threat_region = THREAT_REGION_WHISPERING_GROVE
 
 /area/rogue/outdoors/woods/northeast
 	name = "The Grove - Northeast"
@@ -65,7 +65,7 @@
 			/mob/living/carbon/human/species/goblin/npc/sea = 10,
 			/mob/living/carbon/human/species/hobgoblin/npc/ambush = 12,
 			/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
-	threat_region = THREAT_REGION_AZURE_GROVE
+	threat_region = THREAT_REGION_WHISPERING_GROVE
 
 /area/rogue/outdoors/woods/southeast
 	name = "The Grove - Southeast"

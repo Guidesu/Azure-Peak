@@ -451,7 +451,7 @@
 	color = "#2C9DAF"
 	quality = DRINK_FANTASTIC
 
-// Azure Drinks
+// Regional Drinks
 /datum/reagent/consumable/ethanol/jagdtrunk // JÄGERMEISTER!!!!
 	name = "Jagdtrunk"
 	boozepwr = 55  // gotta be stronk

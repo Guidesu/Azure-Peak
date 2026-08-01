@@ -1,4 +1,4 @@
-// Ported from upstream Azure-Peak: purely cosmetic claw-style reskins of the
+// Ported from upstream: purely cosmetic claw-style reskins of the
 // unarmed punch intent for claw-bearing species. Mechanically identical to
 // PUNCH in every respect (damage/armor/timing/wounds) — only name, verbs,
 // animation, and sound change. Chosen once via a chargen-style verb.

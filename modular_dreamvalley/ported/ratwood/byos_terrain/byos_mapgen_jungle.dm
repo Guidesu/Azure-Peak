@@ -59,7 +59,7 @@
 
 /datum/mapGeneratorModule/junglesand
 	clusterCheckFlags = CLUSTER_CHECK_NONE
-	allowed_turfs = list(/turf/open/floor/rogue/AzureSand, /turf/open/floor/rogue/dunes)
+	allowed_turfs = list(/turf/open/floor/rogue/DesertSand, /turf/open/floor/rogue/dunes)
 	spawnableAtoms = list(/obj/item/natural/stone = 10, /obj/item/grown/log/tree/stick = 10)
 	allowed_areas = list(/area/rogue/outdoors/jungle)
 

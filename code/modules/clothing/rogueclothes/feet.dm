@@ -618,7 +618,7 @@
 	resistance_flags = null
 	sewrepair = TRUE
 	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/cloth
 

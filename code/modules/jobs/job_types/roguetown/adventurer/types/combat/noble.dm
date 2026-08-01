@@ -72,9 +72,9 @@
 					pants = /obj/item/clothing/under/roguetown/trou/beltpants
 					shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 				if(should_wear_femme_clothes(H))
-					shirt = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress/triumph/azure
+					shirt = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress/triumph/blue
 					shoes = /obj/item/clothing/shoes/roguetown/boots
-				cloak = /obj/item/clothing/cloak/half/azure
+				cloak = /obj/item/clothing/cloak/half/blue
 				head = /obj/item/clothing/head/roguetown/chaperon/noble
 				gloves = /obj/item/clothing/gloves/roguetown/leather/black
 				backl = /obj/item/storage/backpack/rogue/satchel/black

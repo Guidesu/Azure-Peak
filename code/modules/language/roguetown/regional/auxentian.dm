@@ -8,7 +8,7 @@
 	space_chance = 20
 	default_priority = 75
 	icon_state = "oldazure"
-	spans = list(SPAN_OLDAZURE)
+	spans = list(SPAN_OLDASCENDANT)
 	syllables = list(
 "to",
 "ost",

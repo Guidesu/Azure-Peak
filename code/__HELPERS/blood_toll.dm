@@ -26,7 +26,7 @@
 
 /proc/render_blood_toll_chronicle()
 	var/list/data = list()
-	var/list/stats = GLOB.azure_round_stats
+	var/list/stats = GLOB.round_stats
 
 	var/highwaymen = stats[STATS_KILLED_HIGHWAYMEN]
 	var/bogmen = stats[STATS_KILLED_BOGMEN]

@@ -2318,7 +2318,7 @@
 	if(tat_build_handles_preference_loadout(character, player))
 		return TRUE
 
-	var/triumph_discount_remaining = 0 // Azure Peak's loadout uses its own donor discount path.
+	var/triumph_discount_remaining = 0 // Loadout uses its own donor discount path.
 	if(player.prefs.gear_list)
 		for(var/key in player.prefs.gear_list)
 			var/datum/loadout_item/item = GLOB.loadout_items_by_name[key]

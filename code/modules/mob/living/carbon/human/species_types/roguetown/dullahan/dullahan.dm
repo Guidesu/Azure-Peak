@@ -193,7 +193,7 @@
 /datum/species/dullahan/get_skin_list()
 	return list(
 		"Timber-Gronn" = SKIN_COLOR_TIMBER_GRONN,
-		"Giza-Azure" = SKIN_COLOR_GIZA_AZURE,
+		"Giza-Amber" = SKIN_COLOR_GIZA_AMBER,
 		"Walnut-Stine" = SKIN_COLOR_WALNUT_STINE,
 		"Etrustcan-Dandelion" = SKIN_COLOR_ETRUSTCAN_DANDELION,
 		"Naledi-Born" = SKIN_COLOR_NALEDI_BORN,
@@ -203,7 +203,7 @@
 		"Etrusca-Lirvas" = SKIN_COLOR_ETRUSCA_LIRVAS,
 		"Free Roamers" = SKIN_COLOR_FREE_FOLK,
 		"Aavnic"	= SKIN_COLOR_AVAR_BORNE,
-		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_AZURE,
+		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_AMBER,
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
 		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
 		"Grezel-Aavnic" = SKIN_COLOR_GRENZEL_AVAR,

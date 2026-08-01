@@ -1,5 +1,5 @@
 // Names and paths which exist on Twilight Axis' newer base but not on the
-// Azure Peak revision used by DreamValley. Unsupported choices are filtered by
+// DreamValley revision used by DreamValley. Unsupported choices are filtered by
 // the integration layer; these declarations keep the imported engine's type
 // references valid while preserving its upstream file layout.
 

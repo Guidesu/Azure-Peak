@@ -104,7 +104,7 @@
 	color = CLOTHING_SCARLET
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/guard/Initialize()
 	. = ..()
@@ -214,7 +214,7 @@
 	icon_state = "noblecoat"
 	sleevetype = "noblecoat"
 	detail_tag = "_detail"
-	detail_color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLUE
 	color = CLOTHING_WHITE
 	boobed = TRUE
 
@@ -296,7 +296,7 @@
 	desc = "A gold-embroidered dress shirt tailored for the right hand man."
 	icon_state = "prince"
 	boobed = TRUE
-	detail_color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLUE
 
 /obj/item/clothing/suit/roguetown/shirt/dress/royal/hand_f
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -304,7 +304,7 @@
 	desc = "A flowy, intricate dress made by the finest tailors in the land for the right hand man."
 	icon_state = "princess"
 	boobed = TRUE
-	detail_color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLUE
 
 /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 	name = "silky dress"
@@ -660,7 +660,7 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	flags_inv = HIDECROTCH|HIDEBOOB
 	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	altdetail_color = CLOTHING_WHITE
 
 

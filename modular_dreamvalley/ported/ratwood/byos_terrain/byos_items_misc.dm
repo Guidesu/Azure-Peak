@@ -220,11 +220,11 @@
 
 // ---------------------------------------------------------------------------
 // Unfinished spellbook (obj/item/spellbook_unfinished/pre_arcyne)
-// Source: Ratwood-2.0 modular_azurepeak/code/game/objects/items/spellbooks.dm
+// Source: Ratwood-2.0 modular_dreamvalley/code/game/objects/items/spellbooks.dm
 // The full source chain (blank scroll -> bound tome -> pre_arcyne -> finished
 // /obj/item/book/spellbook via arcyne-gem crafting) belongs to a
-// modular_azurepeak crafting feature that isn't present in this codebase at
-// all (no /obj/item/book/spellbook, no modular_azurepeak folder). The map
+// modular_dreamvalley crafting feature that isn't present in this codebase at
+// all (no /obj/item/book/spellbook, no modular_dreamvalley folder). The map
 // only places a single static pre_arcyne tome as set dressing (byos.dmm line
 // 3457), so only the appearance is needed here — the interactive crafting
 // attackby() chain is left out rather than resurrecting an unrelated

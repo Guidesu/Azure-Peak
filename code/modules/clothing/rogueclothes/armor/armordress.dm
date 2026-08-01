@@ -57,7 +57,7 @@
 	armor = ARMOR_CLOTHING
 	grid_height = 64
 
-/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/triumph/azure
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/triumph/blue
 	detail_color = COLOR_WHITE
 	color = COLOR_WHITE
 

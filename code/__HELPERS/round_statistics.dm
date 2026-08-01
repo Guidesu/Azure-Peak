@@ -77,7 +77,7 @@
 #define STATS_MAMMONS_DEPOSITED "mammons_deposited"
 #define STATS_MAMMONS_WITHDRAWN "mammons_withdrawn"
 #define STATS_STARTING_TREASURY "starting_treasury"
-#define STATS_RURAL_TAXES_COLLECTED "rural_taxes_collected" // Azure only. Lowpop safety
+#define STATS_RURAL_TAXES_COLLECTED "rural_taxes_collected" // Lowpop safety
 #define STATS_LOANS_ISSUED "loans_issued"
 #define STATS_LOANS_DEFAULTED "loans_defaulted"
 #define STATS_POLL_TAX_COLLECTED "poll_tax_collected"
@@ -258,7 +258,7 @@
 #define STATS_CONTRACTS_COMPLETED_RUMOR "contracts_completed_rumor"
 #define STATS_CONTRACTS_COMPLETED_DEFENSE "contracts_completed_defense"
 
-GLOBAL_LIST_INIT(azure_round_stats, list(
+GLOBAL_LIST_INIT(round_stats, list(
 	STATS_DEATHS = 0,
 	STATS_NOBLE_DEATHS = 0,
 	STATS_MOAT_FALLERS = 0,
@@ -688,19 +688,19 @@ GLOBAL_LIST_EMPTY(chronicle_stats)
 /proc/record_round_statistic(name, amount = 1)
 	if(SSticker.current_state == GAME_STATE_FINISHED)
 		return
-	if(!name || isnull(GLOB.azure_round_stats[name]))
+	if(!name || isnull(GLOB.round_stats[name]))
 		return
 
-	GLOB.azure_round_stats[name] += amount
+	GLOB.round_stats[name] += amount
 
 /// Force set a value of a specific round statistic to a given value
 /proc/force_set_round_statistic(name, value)
 	if(SSticker.current_state == GAME_STATE_FINISHED)
 		return
-	if(!name || isnull(GLOB.azure_round_stats[name]))
+	if(!name || isnull(GLOB.round_stats[name]))
 		return
 
-	GLOB.azure_round_stats[name] = value
+	GLOB.round_stats[name] = value
 
 /proc/format_top_stats(stat_category)
 	var/list/stat_data = GLOB.featured_stats[stat_category]

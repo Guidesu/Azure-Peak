@@ -539,7 +539,7 @@ GLOBAL_DATUM_INIT(economic_panel, /datum/economic_panel, new)
 				to_chat(usr, span_warning("Treasury is already solvent."))
 				return TRUE
 			SStreasury.treasury_debt = 0
-			GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = 0
+			GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = 0
 			SStreasury.clear_treasury_debt_state()
 			admin_log_fiscal("force-cleared treasury debt and recovered solvency", "Force Recovery")
 			return TRUE

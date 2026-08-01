@@ -35,7 +35,7 @@
 
 // DONATOR
 /datum/stew_recipe/azurosa_tea
-	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/azure)
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/lunara)
 	output = /datum/reagent/consumable/azurosa_tea
 	cooktime = STEW_COOKING_TIME / 4
 

@@ -66,7 +66,7 @@
 
 /datum/mapGeneratorModule/beachsand
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
-	allowed_turfs = list(/turf/open/floor/rogue/AzureSand)
+	allowed_turfs = list(/turf/open/floor/rogue/DesertSand)
 	spawnableAtoms = list(/obj/item/natural/stone = 15,
 							/obj/item/grown/log/tree/stick = 20,
 							/obj/structure/flora/rock = 5,

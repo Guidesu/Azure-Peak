@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(ai_item_flags, list(
 	AI_ITEM_QUIVER,
 ))
 
-// Azure equip signals and get_item_by_slot() speak small-int SLOT_* ids, not ITEM_SLOT_* bitflags.
+// Equip signals and get_item_by_slot() speak small-int SLOT_* ids, not ITEM_SLOT_* bitflags.
 #define AI_INVENTORY_WATCHED_SLOTS list(SLOT_BELT, SLOT_BELT_L, SLOT_BELT_R, SLOT_BACK, SLOT_BACK_L, \
 	SLOT_BACK_R, SLOT_ARMOR, SLOT_PANTS, SLOT_SHIRT, SLOT_CLOAK, SLOT_NECK, SLOT_WRISTS)
 

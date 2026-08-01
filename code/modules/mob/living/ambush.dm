@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(melee_combat_skills, list( \
 	if(!always && prob(100 - GLOB.ambush_chance_pct))
 		return FALSE
 	if(!always)
-		if(HAS_TRAIT(src, TRAIT_AZURENATIVE))
+		if(HAS_TRAIT(src, TRAIT_NATIVEBORN))
 			return FALSE
 		if(HAS_TRAIT(src, TRAIT_NOPVE))
 			return FALSE

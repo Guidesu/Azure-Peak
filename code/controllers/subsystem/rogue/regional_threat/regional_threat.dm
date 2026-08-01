@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(regionthreat)
 	// Additive group drain: 5-man party drains at 3x/player_factor efficiency (0.5x per extra player).s
 	var/list/threat_regions = list(
 		new /datum/threat_region(
-			_region_name = THREAT_REGION_AZURE_BASIN,
+			_region_name = THREAT_REGION_GREENVALLEY_BASIN,
 			_latent_ambush = 150,
 			_min_ambush = 0,
 			_max_ambush = 375,
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(regionthreat)
 			_allowed_quest_types = list(QUEST_KILL_EASY, QUEST_CLEAR_OUT, QUEST_COURIER, QUEST_RETRIEVAL, QUEST_RECOVERY),
 		),
 		new /datum/threat_region(
-			_region_name = THREAT_REGION_AZURE_GROVE,
+			_region_name = THREAT_REGION_WHISPERING_GROVE,
 			_latent_ambush = 375,
 			_min_ambush = 0,
 			_max_ambush = 750,
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(regionthreat)
 		),
 		// Coast & Decap stay somewhat dangerous no matter what
 		new /datum/threat_region(
-			_region_name = THREAT_REGION_AZUREAN_COAST,
+			_region_name = THREAT_REGION_SUNKEN_COAST,
 			_latent_ambush = 500,
 			_min_ambush = 225,
 			_max_ambush = 800,

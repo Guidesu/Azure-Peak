@@ -71,8 +71,8 @@
 #define CLOTHING_BLUE				"#173266"
 #define CLOTHING_YELLOW				"#ffcd43"
 #define CLOTHING_TEAL				"#249589"
-#define CLOTHING_AZURE				"#007fff"
-#define CLOTHING_AZUROSA			"#5e50e9"
+#define CLOTHING_BLUE				"#007fff"
+#define CLOTHING_LUNARA			"#5e50e9"
 #define CLOTHING_WHITE				"#ffffff"
 #define CLOTHING_ORANGE				"#df8405"
 #define CLOTHING_MAGENTA			"#962e5c"
@@ -128,8 +128,8 @@
 	"Blue" = CLOTHING_BLUE,			\
 	"Yellow" = CLOTHING_YELLOW,		\
 	"Teal" = CLOTHING_TEAL,			\
-	"Azure" = CLOTHING_AZURE,		\
-	"Azurosa" = CLOTHING_AZUROSA,	\
+	"Blue" = CLOTHING_BLUE,		\
+	"Azurosa" = CLOTHING_LUNARA,	\
 	"White" = CLOTHING_WHITE,		\
 	"Orange" = CLOTHING_ORANGE,		\
 	"Magenta" = CLOTHING_MAGENTA	\

@@ -104,7 +104,7 @@
 	cost = 400
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/elfblue)
 
-//AZURE DRINKS
+//REGIONAL DRINKS
 /datum/supply_pack/rogue/alcohol/jagdtrunk
 	name = "Jagdtrunk Herbal Schnapps"
 	cost = 80

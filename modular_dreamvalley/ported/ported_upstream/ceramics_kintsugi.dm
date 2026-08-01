@@ -1,4 +1,4 @@
-// Ported from upstream Azure-Peak PR #8146 ("Kintsugi Pottery and Glazeable
+// Ported from upstream PR #8146 ("Kintsugi Pottery and Glazeable
 // wearables + More Clay Stuff"). Only the net-new statuette items are ported
 // here — the Kintsugi (gold-seam) glaze finish itself was intentionally left
 // out of dyer.dm to avoid touching the shared cooking.dmi sheet this fork has

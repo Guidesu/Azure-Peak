@@ -237,7 +237,7 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/elfblue = 50)
 	desc = "A bottle gilded with a golden cork-seal. This is the legendary Valmora Blue from the Vineyard of Valmora, headed by a sainted Dark-Elf swordsmaster. This bottle would swoon Gods over!"
 
-//AZURE DRINKS
+//REGIONAL DRINKS
 /obj/item/reagent_containers/glass/bottle/rogue/beer/jagdtrunk
 	name = "bottle of Jagdtrunk Herbal Schnapps"
 	icon_state = "red_wine"

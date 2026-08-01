@@ -15,7 +15,7 @@
 	converted_type = /area/rogue/outdoors/exposed/town
 	town_area = TRUE
 	deathsight_message = "the outpost and all its bustling souls"
-	detail_text = DETAIL_TEXT_AZURE_PEAK
+	detail_text = DETAIL_TEXT_REALM
 
 /area/rogue/outdoors/exposed/town
 	icon_state = "town"
@@ -262,7 +262,7 @@
 	droning_sound_night = null
 	first_time_text = "GUILD OF CRAFT"
 	converted_type = /area/rogue/outdoors/exposed/dwarf
-	detail_text = DETAIL_TEXT_AZUREAN_GUILD_OF_CRAFT
+	detail_text = DETAIL_TEXT_GUILD_OF_CRAFT
 
 /area/rogue/outdoors/exposed/dwarf
 	icon_state = "dwarf"

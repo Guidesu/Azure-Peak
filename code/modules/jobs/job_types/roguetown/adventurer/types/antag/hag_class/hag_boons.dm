@@ -98,7 +98,7 @@
 		/datum/hag_boon/trait/hard_dismember,
 		/datum/hag_boon/trait/no_pain,
 		/datum/hag_boon/trait/dark_vision,
-		/datum/hag_boon/trait/azure_native,
+		/datum/hag_boon/trait/native_born,
 		/datum/hag_boon/trait/matthios_eyes,
 		/datum/hag_boon/trait/wood_walker,
 		/datum/hag_boon/trait/bogwalker,

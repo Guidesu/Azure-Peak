@@ -206,7 +206,7 @@
 /obj/item/clothing/head/roguetown/chaperon/noble/hand
 	name = "hand's chaperon"
 	desc = "A noble's chaperon made for the right hand man. \"Heavy is the head that bears the crown.\""
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_color = CLOTHING_WHITE
 
 /obj/item/clothing/head/roguetown/chaperon/councillor
@@ -499,7 +499,7 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
-// azure addition - random wizard hats
+// random wizard hats
 
 /obj/item/clothing/head/roguetown/wizhat/random/Initialize()
 	icon_state = pick("wizardhatred", "wizardhatyellow", "wizardhatgreen", "wizardhat")

@@ -59,7 +59,7 @@
 /obj/structure/closet/crate/chest/steward/saigabuck/Initialize()
 	. = ..()
 	new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled(src)
-	new /obj/item/caparison/azure(src)
+	new /obj/item/caparison/blue(src)
 
 /datum/crown_import/cow
 	name = "Cow"

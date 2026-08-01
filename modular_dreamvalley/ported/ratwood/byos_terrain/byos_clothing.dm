@@ -44,7 +44,7 @@
 /obj/item/clothing/cloak/stabard/guard
 	name = "guard tabard"
 	desc = "A tabard with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_spl"
 	detail_color = CLOTHING_WHITE
 	// This repo's own /obj/item/clothing/cloak/stabard base dropped the
@@ -112,7 +112,7 @@
 
 /obj/item/clothing/cloak/stabard/surcoat/guard
 	desc = "A surcoat with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_quad"
 	detail_color = CLOTHING_WHITE
 	var/picked = FALSE
@@ -169,7 +169,7 @@
 /obj/item/clothing/cloak/stabard/guardhood
 	name = "guard hood"
 	desc = "A hood with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_spl"
 	detail_color = CLOTHING_WHITE
 	icon_state = "guard_hood"

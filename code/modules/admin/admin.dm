@@ -110,7 +110,7 @@
 			idstatus += "<b>Age Verified</b> by [vetadmin]"
 		body += idstatus
 
-		//Azure port. Incompatibility.
+		//Port. Incompatibility.
 		/*var/curse_string = ""
 		if(ishuman(M))
 			var/mob/living/carbon/human/living = M

@@ -4,22 +4,22 @@
 // UNIVERSAL     //
 ///////////////////
 
-/obj/item/herbseed/rosa/azure
+/obj/item/herbseed/rosa/lunara
 	name = "lunara seeds"
 	seed_identity = "lunara seeds"
-	makes_herb = /obj/structure/flora/roguegrass/herb/rosa/azure
+	makes_herb = /obj/structure/flora/roguegrass/herb/rosa/lunara
 
-/obj/item/storage/belt/rogue/pouch/azurosa_seeds
+/obj/item/storage/belt/rogue/pouch/lunara_seeds
 	name = "pouch of lunara seeds"
 	desc = "A pouch that's been filled with seeds of the Lunara flower, freshly harvested from the highest plateaus overlooking the outpost."
 	populate_contents = list(
-	/obj/item/herbseed/rosa/azure,
-	/obj/item/herbseed/rosa/azure,
-	/obj/item/herbseed/rosa/azure,
-	/obj/item/herbseed/rosa/azure,
+	/obj/item/herbseed/rosa/lunara,
+	/obj/item/herbseed/rosa/lunara,
+	/obj/item/herbseed/rosa/lunara,
+	/obj/item/herbseed/rosa/lunara,
 	)
 
-/obj/structure/flora/roguegrass/herb/rosa/azure
+/obj/structure/flora/roguegrass/herb/rosa/lunara
 	name = "lunara"
 	desc = "A prickly, blueish mutation of the common Rosa found uniquely in a handful of \
 	far-off highland plains, this flower rarely grows this close to the coast. Its sight here means only \
@@ -27,9 +27,9 @@
 	icon_state = "azurosa_plant"
 	icon = 'icons/obj/items/donor_objects.dmi'
 
-	herbtype = /obj/item/alch/rosa/azure
+	herbtype = /obj/item/alch/rosa/lunara
 
-/obj/item/alch/rosa/azure
+/obj/item/alch/rosa/lunara
 	name = "lunara"
 	icon_state = "azurosa"
 	item_state = "azurosa"
@@ -43,12 +43,12 @@
 	spitoutmouth = FALSE
 	muteinmouth = FALSE
 	alternate_worn_layer  = 8.9 //On top of helmet
-	mill_result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/azure
+	mill_result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/lunara
 	major_pot = /datum/alch_cauldron_recipe/lck_potion
 	med_pot = /datum/alch_cauldron_recipe/antidote
 	minor_pot = /datum/alch_cauldron_recipe/restoration_potion
 
-/obj/item/alch/rosa/azure/equipped(mob/living/carbon/human/user, slot)
+/obj/item/alch/rosa/lunara/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_MOUTH)
 		icon_state = "azurosa_mouth"
@@ -57,7 +57,7 @@
 		icon_state = "azurosa"
 		user.update_icon()
 
-/obj/item/flowercrown/rosa/azure
+/obj/item/flowercrown/rosa/lunara
 	name = "crown of lunara"
 	desc = "A crown formed of azurosas, freshly plucked from distant highland plains. Often worn during \
 	the many festivals and holidaes that're celebrated throughout the yil, as a sign of pride and propserity."
@@ -66,7 +66,7 @@
 	item_state = "azurosa_crown"
 	icon_state = "azurosa_crown"
 
-/obj/item/bouquet/rosa/azure
+/obj/item/bouquet/rosa/lunara
 	name = "lunara bouquet"
 	desc = "Sweetheart's affections bundled together in string, most popularly seen in the grand tournmanets that're \
 	hosted, every yil, at the summer's solstice. Should a jousting knight successfully catch such a bouquet during \
@@ -76,7 +76,7 @@
 	item_state = "azurosa_bouquet"
 	icon_state = "azurosa_bouquet"
 
-/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/azure
+/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/lunara
 	name = "fresh lunara petals"
 	desc = "Crushed azurosa petals, teeming with a sweet fragrance. Long ago, the first settlers to reach these highlands used these herbs \
 	as an antiquated treatment for poisonings and sickness. Though alchemical solutions are more popular nowadaes, those who \
@@ -89,7 +89,7 @@
 	rotprocess = null
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/azure
+/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/lunara
 	name = "dried azurosa petals"
 	desc = "Dried azurosa petals, fragrant and fragile. When dried out on a tanning rack and steeped in \
 	boiling water for long enough, these petals brew into a bright herbal tea; a cultural delight, commonly \
@@ -133,8 +133,8 @@
 
 /datum/crafting_recipe/roguetown/dryazurrosa
 	name = "dry azurosa petals"
-	result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/azure
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/azure = 1)
+	result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried/lunara
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/lunara = 1)
 	structurecraft = /obj/machinery/tanningrack
 	time = 2 SECONDS
 	verbage_simple = "dry"
@@ -145,9 +145,9 @@
 /datum/crafting_recipe/roguetown/survival/flowercrown_azurosa
 	name = "azurosa crown"
 	category = "Clothes"
-	result = /obj/item/flowercrown/rosa/azure
+	result = /obj/item/flowercrown/rosa/lunara
 	reqs = list(
-		/obj/item/alch/rosa/azure = 4,
+		/obj/item/alch/rosa/lunara = 4,
 		/obj/item/natural/fibers = 2,
 		)
 	craftdiff = 0
@@ -156,8 +156,8 @@
 
 /datum/crafting_recipe/roguetown/bouquet_azurosa
 	name = "lunara bouquet"
-	result = /obj/item/bouquet/rosa/azure
-	reqs = list(/obj/item/alch/rosa/azure = 4,
+	result = /obj/item/bouquet/rosa/lunara
+	reqs = list(/obj/item/alch/rosa/lunara = 4,
 				/obj/item/natural/fibers = 2,
 				/obj/item/paper/scroll = 1)
 	craftdiff = 0
@@ -616,7 +616,7 @@
 	detail_tag = "_detail"
 	altdetail_tag = "_detailalt"
 	detail_color = CLOTHING_SCARLET
-	altdetail_color = CLOTHING_AZUROSA
+	altdetail_color = CLOTHING_LUNARA
 
 /obj/item/clothing/head/roguetown/decoration/orle/donator_dyeable/Initialize()
 	. = ..()

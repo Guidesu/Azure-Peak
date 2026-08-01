@@ -58,8 +58,8 @@ SUBSYSTEM_DEF(elastic)
 	for(var/patron_name in GLOB.patron_follower_counts)
 		round_data["[patron_name]_followers"] = GLOB.patron_follower_counts[patron_name]
 
-	for(var/stat in GLOB.azure_round_stats)
-		round_data[stat] = GLOB.azure_round_stats[stat]
+	for(var/stat in GLOB.round_stats)
+		round_data[stat] = GLOB.round_stats[stat]
 
 	return round_data
 

@@ -206,7 +206,7 @@
 	dir = 10
 
 
-/turf/open/floor/rogue/AzureSand
+/turf/open/floor/rogue/DesertSand
 	name = "sand"
 	desc = "Warm sand that, sadly, has been mixed with dirt."
 	icon_state = "grimshart"
@@ -218,14 +218,14 @@
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
 	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/AzureSand,)
+	canSmoothWith = list(/turf/open/floor/rogue/DesertSand,)
 	neighborlay = "grimshartedge"
 
-/turf/open/floor/rogue/AzureSand/Initialize()
+/turf/open/floor/rogue/DesertSand/Initialize()
 	dir = pick(GLOB.cardinals)
 	. = ..()
 
-/turf/open/floor/rogue/AzureSand/cardinal_smooth(adjacencies)
+/turf/open/floor/rogue/DesertSand/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)
 
 /turf/open/floor/rogue/snow
@@ -480,7 +480,7 @@
 						/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
 						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand)
+						/turf/open/floor/rogue/DesertSand)
 	neighborlay = "dirtedge"
 	var/muddy = FALSE
 	var/bloodiness = 20
@@ -618,7 +618,7 @@
 						/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
 						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand,)
+						/turf/open/floor/rogue/DesertSand,)
 	neighborlay = "roadedge"
 	slowdown = 0
 
@@ -1164,7 +1164,7 @@
 						/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
 						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand)
+						/turf/open/floor/rogue/DesertSand)
 
 /turf/open/floor/rogue/cobble/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)

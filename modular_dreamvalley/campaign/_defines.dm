@@ -1,4 +1,4 @@
-/// Far Travel was not handled by DreamValley; Azure may use its normal path.
+/// Far Travel was not handled by DreamValley; other codebases may use their own path.
 #define DREAMVALLEY_TRAVEL_UNHANDLED 0
 /// DreamValley consumed the Far Travel request, either by parking or safely refusing it.
 #define DREAMVALLEY_TRAVEL_HANDLED 1

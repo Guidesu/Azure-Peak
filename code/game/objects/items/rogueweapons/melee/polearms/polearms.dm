@@ -462,8 +462,8 @@
 	icon_state = "short_spear"
 	wlength = WLENGTH_LONG
 
-// ---- Azurean Shortspear intents ----
-/datum/intent/spear/thrust/azurean
+// ---- Spellblade Shortspear intents ----
+/datum/intent/spear/thrust/spellblade
 	name = "thrust"
 	desc = "A quick, nimble two-handed thrust. Keeps reach but lacks the power to pierce armor."
 	reach = 2
@@ -473,7 +473,7 @@
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
 
-/datum/intent/spear/thrust/azurean/oneh
+/datum/intent/spear/thrust/spellblade/oneh
 	name = "one-handed thrust"
 	desc = "A rapid jab from one hand. Fast with long range, but unable to penetrate armor."
 	reach = 2
@@ -483,7 +483,7 @@
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
 
-/datum/intent/spear/thrust/azurean/pick
+/datum/intent/spear/thrust/spellblade/pick
 	name = "pick"
 	icon_state = "inpick"
 	desc = "A shortspear is nimble enough to handle when two-handed and gripped toward the blade. Grasps it near the end and drive it into the weak point of your opponent's armor - hard to pull off but can be devastating if successful."
@@ -510,8 +510,8 @@
 		And with this measure we shall gain great respect henceforth.' - Unknown Grandmaster of the Spellblade Order, 900 AP."
 	force = 20
 	force_wielded = 25
-	possible_item_intents = list(/datum/intent/spear/thrust/azurean/oneh)
-	gripped_intents = list(/datum/intent/spear/thrust/azurean, /datum/intent/spear/thrust/azurean/pick, SPEAR_BASH)
+	possible_item_intents = list(/datum/intent/spear/thrust/spellblade/oneh)
+	gripped_intents = list(/datum/intent/spear/thrust/spellblade, /datum/intent/spear/thrust/spellblade/pick, SPEAR_BASH)
 	wlength = WLENGTH_LONG
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 7
@@ -610,7 +610,7 @@
 									to_chat(user, "<span class='warning'>Pull 'em in!</span>")
 									user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE)
 									record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
-									GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+									GLOB.round_stats[STATS_FISH_CAUGHT]++
 									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
 							else
 								to_chat(user, "<span class='warning'>Damn, it got away... I should <b>pull away</b> next time.</span>")

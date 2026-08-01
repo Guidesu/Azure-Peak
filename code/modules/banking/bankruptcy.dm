@@ -15,7 +15,7 @@
 	var/loan_amount = max(TREASURY_ARREARS_LOAN, shortfall)
 	treasury_state = TREASURY_IN_ARREARS
 	treasury_debt += loan_amount
-	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
+	GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
 	record_round_statistic(STATS_ARREARS_DECLARED, 1)
 	// Direct credit so the loan itself isn't immediately skimmed against the debt we just registered.
 	discretionary_fund.balance += loan_amount
@@ -49,7 +49,7 @@
 	// so the Crown doesn't escape the smaller obligation by failing harder.
 	var/new_debt = BANKRUPTCY_DEBT_FLAT
 	treasury_debt += new_debt
-	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
+	GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
 	treasury_state = TREASURY_BANKRUPTCY
 
 	suspend_charters_for_bankruptcy()
@@ -106,7 +106,7 @@
 	// Trade configuration intentionally NOT restored - re-tuning it is part of the cost of failure.
 	bankruptcy_concession_picks = BANKRUPTCY_CONCESSION_PICKS
 	atc_loan_arrears_consumed = FALSE
-	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = 0
+	GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = 0
 
 	priority_announce(
 		"[SSticker.faction_name || "The Stewardry"] releases the outpost's commerce. The settlement's leader may restore up to [BANKRUPTCY_CONCESSION_PICKS] of the suspended Charters at once; all others must wait the customary span between proclamations.",
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(atc_seizure_inventory, list(
 	amount = clamp(round(amount), ATC_LOAN_MIN_AMOUNT, ATC_LOAN_MAX_AMOUNT)
 	var/debt_owed = round(amount * (1 + ATC_LOAN_INTEREST_RATE))
 	treasury_debt += debt_owed
-	GLOB.azure_round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
+	GLOB.round_stats[STATS_TREASURY_DEBT_OUTSTANDING] = treasury_debt
 	atc_loans_drawn_this_round += 1
 	atc_loan_arrears_consumed = TRUE
 	// Direct credit so the principal isn't immediately skimmed against the debt we just registered.

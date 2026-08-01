@@ -1,7 +1,7 @@
 // Ported from Vanderlin (OpenKeep): code/__DEFINES/enchantments.dm
 // and gem quality constants scattered across Vanderlin's gem/runeword code.
 //
-// SCOPE NOTE: DreamValley-AzurePeak has no mana system (no /datum/mana,
+// SCOPE NOTE: DreamValley has no mana system (no /datum/mana,
 // no /datum/component/use_mana, no mob.mana_pool) at the time of this port.
 // Vanderlin's mana_capacity/mana_regeneration enchantments and the
 // mana_drain rune effect are therefore OMITTED from this port rather than

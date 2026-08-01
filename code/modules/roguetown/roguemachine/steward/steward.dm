@@ -628,22 +628,22 @@
 			contents += "<b><font color='#5cb85c'>CROWN REVENUE THIS WEEK</font></b>"
 			contents += "<table width='100%' cellspacing='0' cellpadding='2'>"
 			contents += "<tr><td>Rural Tax</td><td align='right'><font color='#5cb85c'>[SStreasury.total_rural_tax]m</font></td>"
-			contents += "<td>Fines</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_FINES_INCOME]]m</font></td></tr>"
-			contents += "<tr><td>Poll Tax</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_POLL_TAX_COLLECTED]]m</font></td>"
+			contents += "<td>Fines</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_FINES_INCOME]]m</font></td></tr>"
+			contents += "<tr><td>Poll Tax</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_POLL_TAX_COLLECTED]]m</font></td>"
 			contents += "<td>Deposit Tax</td><td align='right'><font color='#5cb85c'>[SStreasury.total_deposit_tax]m</font></td></tr>"
-			contents += "<tr><td>Contract Levy</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_REVENUE_CONTRACT_LEVY]]m</font></td>"
-			contents += "<td>Headeater Levy</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_REVENUE_HEADEATER_LEVY]]m</font></td></tr>"
-			contents += "<tr><td>Import Tariff</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_REVENUE_IMPORT_TARIFF]]m</font></td>"
-			contents += "<td>Export Duty</td><td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_REVENUE_EXPORT_DUTY]]m</font></td></tr>"
+			contents += "<tr><td>Contract Levy</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_REVENUE_CONTRACT_LEVY]]m</font></td>"
+			contents += "<td>Headeater Levy</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_REVENUE_HEADEATER_LEVY]]m</font></td></tr>"
+			contents += "<tr><td>Import Tariff</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_REVENUE_IMPORT_TARIFF]]m</font></td>"
+			contents += "<td>Export Duty</td><td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_REVENUE_EXPORT_DUTY]]m</font></td></tr>"
 			contents += "</table><br>"
 
 			// Forgone Revenue (two-column, muted - what the Crown *could* have collected)
-			var/exempt_contract = GLOB.azure_round_stats[STATS_EXEMPTED_CONTRACT_LEVY]
-			var/exempt_headeater = GLOB.azure_round_stats[STATS_EXEMPTED_HEADEATER_LEVY]
-			var/exempt_import = GLOB.azure_round_stats[STATS_EXEMPTED_IMPORT_TARIFF]
-			var/exempt_export = GLOB.azure_round_stats[STATS_EXEMPTED_EXPORT_DUTY]
-			var/exempt_fine = GLOB.azure_round_stats[STATS_EXEMPTED_FINE]
-			var/exempt_poll = GLOB.azure_round_stats[STATS_EXEMPTED_POLL_TAX]
+			var/exempt_contract = GLOB.round_stats[STATS_EXEMPTED_CONTRACT_LEVY]
+			var/exempt_headeater = GLOB.round_stats[STATS_EXEMPTED_HEADEATER_LEVY]
+			var/exempt_import = GLOB.round_stats[STATS_EXEMPTED_IMPORT_TARIFF]
+			var/exempt_export = GLOB.round_stats[STATS_EXEMPTED_EXPORT_DUTY]
+			var/exempt_fine = GLOB.round_stats[STATS_EXEMPTED_FINE]
+			var/exempt_poll = GLOB.round_stats[STATS_EXEMPTED_POLL_TAX]
 			var/exempt_total = exempt_contract + exempt_headeater + exempt_import + exempt_export + exempt_fine + exempt_poll
 			contents += "<b><font color='#8f7a5a'>FORGONE REVENUE (tax exempted)</font></b>"
 			contents += "<table width='100%' cellspacing='0' cellpadding='2'>"
@@ -672,8 +672,8 @@
 			// Expenses (two-column, red)
 			contents += "<b><font color='#d9534f'>EXPENSES THIS WEEK</font></b>"
 			contents += "<table width='100%' cellspacing='0' cellpadding='2'>"
-			contents += "<tr><td>Wages Paid</td><td align='right'><font color='#d9534f'>-[GLOB.azure_round_stats[STATS_WAGES_PAID]]m</font></td>"
-			contents += "<td>Treasury Transfers</td><td align='right'><font color='#d9534f'>-[GLOB.azure_round_stats[STATS_DIRECT_TREASURY_TRANSFERS]]m</font></td></tr>"
+			contents += "<tr><td>Wages Paid</td><td align='right'><font color='#d9534f'>-[GLOB.round_stats[STATS_WAGES_PAID]]m</font></td>"
+			contents += "<td>Treasury Transfers</td><td align='right'><font color='#d9534f'>-[GLOB.round_stats[STATS_DIRECT_TREASURY_TRANSFERS]]m</font></td></tr>"
 			contents += "<tr><td>Stockpile Imports <font size='1'><i>(see Trade)</i></font></td><td align='right'><font color='#d9534f'>-[SStreasury.total_import]m</font></td>"
 			contents += "<td></td><td></td></tr>"
 			contents += "</table><br>"
@@ -730,21 +730,21 @@
 			contents += "<table width='100%' cellspacing='0' cellpadding='2'>"
 			contents += "<tr><td></td><td align='right'><b>Issued</b></td><td align='right'><b>Taken</b></td><td align='right'><b>Completed</b></td></tr>"
 			contents += "<tr><td>Guild</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_GENERATED_POOL]]</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_TAKEN_POOL]]</td>"
-			contents += "<td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_CONTRACTS_COMPLETED_POOL]]</font></td></tr>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_GENERATED_POOL]]</td>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_TAKEN_POOL]]</td>"
+			contents += "<td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_CONTRACTS_COMPLETED_POOL]]</font></td></tr>"
 			contents += "<tr><td>Tavern</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_GENERATED_RUMOR]]</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_TAKEN_RUMOR]]</td>"
-			contents += "<td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_CONTRACTS_COMPLETED_RUMOR]]</font></td></tr>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_GENERATED_RUMOR]]</td>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_TAKEN_RUMOR]]</td>"
+			contents += "<td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_CONTRACTS_COMPLETED_RUMOR]]</font></td></tr>"
 			contents += "<tr><td>Crown</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_GENERATED_DEFENSE]]</td>"
-			contents += "<td align='right'>[GLOB.azure_round_stats[STATS_CONTRACTS_TAKEN_DEFENSE]]</td>"
-			contents += "<td align='right'><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_CONTRACTS_COMPLETED_DEFENSE]]</font></td></tr>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_GENERATED_DEFENSE]]</td>"
+			contents += "<td align='right'>[GLOB.round_stats[STATS_CONTRACTS_TAKEN_DEFENSE]]</td>"
+			contents += "<td align='right'><font color='#5cb85c'>[GLOB.round_stats[STATS_CONTRACTS_COMPLETED_DEFENSE]]</font></td></tr>"
 			contents += "<tr><td><b>Total</b></td>"
-			contents += "<td align='right'><b>[GLOB.azure_round_stats[STATS_CONTRACTS_GENERATED]]</b></td>"
-			contents += "<td align='right'><b>[GLOB.azure_round_stats[STATS_CONTRACTS_TAKEN]]</b></td>"
-			contents += "<td align='right'><b><font color='#5cb85c'>[GLOB.azure_round_stats[STATS_CONTRACTS_COMPLETED]]</font></b></td></tr>"
+			contents += "<td align='right'><b>[GLOB.round_stats[STATS_CONTRACTS_GENERATED]]</b></td>"
+			contents += "<td align='right'><b>[GLOB.round_stats[STATS_CONTRACTS_TAKEN]]</b></td>"
+			contents += "<td align='right'><b><font color='#5cb85c'>[GLOB.round_stats[STATS_CONTRACTS_COMPLETED]]</font></b></td></tr>"
 			contents += "</table>"
 	if(!canread)
 		contents = stars(contents)

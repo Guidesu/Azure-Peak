@@ -549,7 +549,7 @@
 
 /obj/item/clothing/cloak/tabard/retinue
 	desc = "A tabard with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_quad"
 	detail_color = CLOTHING_WHITE
 
@@ -715,7 +715,7 @@
 /obj/item/clothing/cloak/tabard/stabard/guard
 	name = "guard tabard"
 	desc = "A tabard with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_quad"
 	detail_color = CLOTHING_WHITE
 
@@ -821,7 +821,7 @@
 
 /obj/item/clothing/cloak/tabard/stabard/surcoat/guard
 	desc = "A surcoat with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_quad"
 	detail_color = CLOTHING_WHITE
 
@@ -861,7 +861,7 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	detail_tag = "_det"
-	detail_color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLUE
 	cold_protection = CHEST | GROIN | ARM_RIGHT | ARM_LEFT
 	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
 	heat_protection = null
@@ -1126,7 +1126,7 @@
 	color = CLOTHING_WHITE
 
 /obj/item/clothing/cloak/cape/guard
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 
 /obj/item/clothing/cloak/cape/red
 	color = CLOTHING_RED
@@ -1316,8 +1316,8 @@
 /obj/item/clothing/cloak/half/red
 	color = CLOTHING_RED
 
-/obj/item/clothing/cloak/half/azure
-	color = CLOTHING_AZURE
+/obj/item/clothing/cloak/half/blue
+	color = CLOTHING_BLUE
 
 /obj/item/clothing/cloak/half/orange
 	color = CLOTHING_ORANGE
@@ -1325,7 +1325,7 @@
 /obj/item/clothing/cloak/half/rider
 	name = "rider cloak"
 	icon_state = "guardcloak"
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	inhand_mod = FALSE
@@ -1339,7 +1339,7 @@
 /obj/item/clothing/cloak/half/vet
 	name = "town watch cloak"
 	icon_state = "guardcloak"
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	inhand_mod = FALSE
@@ -1596,7 +1596,7 @@
 /obj/item/clothing/cloak/tabard/stabard/guardhood
 	name = "guard hood"
 	desc = "A hood with the lord's heraldic colors."
-	color = CLOTHING_AZURE
+	color = CLOTHING_BLUE
 	detail_tag = "_spl"
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_NECK|ITEM_SLOT_MASK|ITEM_SLOT_CLOAK
 	detail_color = CLOTHING_WHITE

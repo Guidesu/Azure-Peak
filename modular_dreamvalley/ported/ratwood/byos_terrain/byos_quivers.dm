@@ -1,7 +1,7 @@
 // Quiver/ammo-pouch variants used by byos.dmm.
 // This repo's quiver.dm (code/game/objects/items/quiver.dm) already has a
 // heavily reorganized, expanded quiver system (mechanized quivers, /bolt
-// singular family, etc) compared to Ratwood's modular_azurepeak/quiver.dm.
+// singular family, etc) compared to Ratwood's modular_dreamvalley/quiver.dm.
 // Only leaves genuinely absent from this repo's own quiver.dm are ported.
 
 /obj/item/quiver/ancient

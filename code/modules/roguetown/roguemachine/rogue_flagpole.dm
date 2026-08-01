@@ -154,7 +154,7 @@
 /obj/item/mini_flagpole/duke
 	name = "duke miniature flagpole"
 	controlled_role = "duke"
-	flag_color = "#007FFF" // Azure
+	flag_color = "#007FFF" // Blue
 
 /obj/item/mini_flagpole/apothecary
 	name = "apothecary miniature flagpole"

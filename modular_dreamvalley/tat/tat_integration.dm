@@ -1,4 +1,4 @@
-// Azure Peak-facing hooks for TAT. Continue deliberately does not use any of
+// DreamValley-facing hooks for TAT. Continue deliberately does not use any of
 // these procs: a parked body is restored from its exact character graph.
 
 /datum/preferences

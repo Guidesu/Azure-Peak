@@ -35,7 +35,6 @@ GLOBAL_LIST_INIT(chastity_standard_traits, list(
 // form the full /obj/item/chastity type; this split is purely a compile-order requirement.
 /obj/item/chastity
 	name = "chastity belt"
-	always_show_examine_link = TRUE
 	desc = "A unisex metal device designed to prevent penetrative sex. It has a lock on the front, and encloses the groin area behind robust iron bars. For the devout."
 	icon = 'modular/icons/obj/lewd/chastity.dmi'
 	icon_state = "cage_belt"
@@ -65,7 +64,6 @@ GLOBAL_LIST_INIT(chastity_standard_traits, list(
 	var/sprite_acc = /datum/sprite_accessory/chastity/full // overlay for chastity items on the sprite, function in a similar vein to underwear in that they aren't traditional equipped clothing items, instead going in a snowflake slot
 	lefthand_file = 'modular/icons/mob/inhands/lewd/items_lefthand.dmi'
 	righthand_file = 'modular/icons/mob/inhands/lewd/items_righthand.dmi'
-	nudist_approved = TRUE
 
 // Ensure each chastity item has a unique lockhash used by matching keys.
 /obj/item/chastity/Initialize()

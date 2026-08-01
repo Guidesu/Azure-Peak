@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	subtitle = "The Farmlands, Grain and Orchard of the River"
 	blockade_replenish_eligible = FALSE
 	description = "A stretch of rich farmland along a river some ten miles across, home to scattered agricultural settlements, hamlets, and market towns with no crown or count over them - just farmers, orchardists, and herbalists who trade what they grow. It produces most of the grain, meat, dairy, fruit, and orchard herbs that reach the outpost's trade contacts, and takes back finished goods, ore, and salt in return. Kingsfield apple brandy has a modest but real reputation beyond its own hills."
-	threat_region_id = THREAT_REGION_AZURE_GROVE
+	threat_region_id = THREAT_REGION_WHISPERING_GROVE
 	produces = list(
 		TRADE_GOOD_GRAIN = TG_SUPPLY_LOCAL_GRAIN,
 		TRADE_GOOD_OATS = TG_SUPPLY_FOREIGN_GRAIN,
@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	name = "Rosawood"
 	subtitle = "The Wildwood Enclave, Timber and Bog-Craft of the Coast"
 	description = "A close-knit enclave on a cold coastal peninsula, its people mostly kin to an old elven lineage. Access is largely by sea, and its growing season is short, but its wilds are generous in other ways: timber, hide, and fiber from its forests, and stranger goods - silk, viscera, and rare bog-essence - traded up from the marsh at its edge. No lord answers for it to anyone; it trades on its own terms, at its own pace, wary of outsiders but not unwelcoming to those who deal fairly."
-	threat_region_id = THREAT_REGION_AZURE_GROVE
+	threat_region_id = THREAT_REGION_WHISPERING_GROVE
 	produces = list(
 		TRADE_GOOD_WOOD = TG_SUPPLY_CHEAP_RAW_MAT,
 		TRADE_GOOD_FIBERS = TG_SUPPLY_FIBERS,
@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	name = "Saltwick"
 	subtitle = "The Coastal Town, Fisheries of the Free Coast"
 	description = "A small coastal town built around curing houses and salt farms, its harbor worked by fishing families whose boats range the shallows for whatever the season offers. Salt comes in from Daftsmarch to preserve the day's catch, and both leave together on whatever ship or cart is heading out. It answers to no one but its own harbormaster, and asks the same of anyone it trades with."
-	threat_region_id = THREAT_REGION_AZUREAN_COAST
+	threat_region_id = THREAT_REGION_SUNKEN_COAST
 	produces = list(
 		TRADE_GOOD_FISH_FILET = TG_SUPPLY_FISH_BULK,
 		TRADE_GOOD_FISH_MINCE = TG_SUPPLY_FISH_MINCE,

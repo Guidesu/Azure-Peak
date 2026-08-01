@@ -2269,7 +2269,7 @@ SUBSYSTEM_DEF(gamemode)
 		return
 
 	var/influence = 0
-	var/stat_value = GLOB.azure_round_stats[statistic]
+	var/stat_value = GLOB.round_stats[statistic]
 	var/list/factors = initalized_storyteller.influence_factors[statistic]
 	var/modifier = factors["points"]
 	var/capacity = factors["capacity"]

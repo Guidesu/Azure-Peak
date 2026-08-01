@@ -700,6 +700,22 @@
 	ui_loadout_cache = result
 	return result
 
+/// Build the list of available role title choices for the Free Soul / TAT class.
+/// Returns a list of display strings the UI can show as a dropdown.
+/datum/tat_build/proc/build_ui_free_soul_role_choices()
+	if(!traits)
+		return list()
+	var/list/display_to_title = traits.build_free_soul_role_title_choices()
+	if(!length(display_to_title))
+		return list()
+	var/list/result = list()
+	for(var/display in display_to_title)
+		result += list(list(
+			"display" = display,
+			"title" = display_to_title[display],
+		))
+	return result
+
 /datum/tat_build/proc/build_ui_tat_slot(slot_id)
 	var/datum/tat_slot/slot = get_tat_slot(slot_id)
 	var/list/build_data = slot.get_build_data()
@@ -871,6 +887,8 @@
 		"last_json_error" = last_json_error,
 		"last_json_notice" = last_json_notice,
 		"dirty" = dirty,
+		"free_soul_role_title" = get_magic_value("free_soul_selected_role_title"),
+		"free_soul_role_choices" = build_ui_free_soul_role_choices(),
 	)
 	_ui_data_cache_dirty = FALSE
 	return _cached_ui_data
@@ -931,6 +949,14 @@
 			return set_active_tat_slot(text2num(params["slot_id"]))
 		if("rename_tat_slot")
 			return rename_tat_slot(text2num(params["slot_id"]), params["name"])
+		if("set_free_soul_role_title")
+			/// Let the player explicitly pick their displayed class title
+			/// from the available role choices, instead of auto-detecting.
+			var/title = params["title"]
+			if(!istext(title) || !length(title))
+				return FALSE
+			set_magic_value("free_soul_selected_role_title", title)
+			return TRUE
 		if("reset_all")
 			return reset_build()
 		if("reset_stats")

@@ -154,9 +154,9 @@
 	desc = "Allows one to see in the dark."
 	points = 10
 
-/datum/hag_boon/trait/azure_native
+/datum/hag_boon/trait/native_born
 	name = "Trait - Hard To Ambush"
-	trait_to_apply = TRAIT_AZURENATIVE
+	trait_to_apply = TRAIT_NATIVEBORN
 	desc = "Prevents the bearer from triggering ambushes unless sprinting."
 	points = 50
 

@@ -5,9 +5,9 @@
 #define DANGER_LEVEL_DANGEROUS "Dangerous"
 #define DANGER_LEVEL_BLEAK "Bleak"
 
-#define THREAT_REGION_AZURE_BASIN "Greenvalley Basin"
-#define THREAT_REGION_AZURE_GROVE "Whispering Grove"
-#define THREAT_REGION_AZUREAN_COAST "Sunken Coast"
+#define THREAT_REGION_GREENVALLEY_BASIN "Greenvalley Basin"
+#define THREAT_REGION_WHISPERING_GROVE "Whispering Grove"
+#define THREAT_REGION_SUNKEN_COAST "Sunken Coast"
 #define THREAT_REGION_MOUNT_DECAP "Mount Cull"
 #define THREAT_REGION_TERRORBOG "Terrorbog"
 #define THREAT_REGION_UNDERDARK "Underdark"

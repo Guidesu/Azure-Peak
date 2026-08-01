@@ -15,8 +15,8 @@
 	converted_type = /area/rogue/indoors/shelter/rtfield
 	deathsight_message = "somewhere in the wilds, next to towering walls"
 	warden_area = TRUE
-	threat_region = THREAT_REGION_AZURE_BASIN
-	detail_text = DETAIL_TEXT_AZURE_BASIN
+	threat_region = THREAT_REGION_GREENVALLEY_BASIN
+	detail_text = DETAIL_TEXT_GREENVALLEY_BASIN
 
 /area/rogue/druidsgrove
 	name = "Druid's Grove"

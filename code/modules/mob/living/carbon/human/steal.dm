@@ -62,7 +62,7 @@
 							SEND_SIGNAL(user_human, COMSIG_ITEM_STOLEN, target_human)
 							record_featured_stat(FEATURED_STATS_THIEVES, user_human)
 							record_featured_stat(FEATURED_STATS_CRIMINALS, user_human)
-							GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]++
+							GLOB.round_stats[STATS_ITEMS_PICKPOCKETED]++
 						user.sate_addiction(/datum/charflaw/addiction/kleptomaniac)
 					else
 						exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion

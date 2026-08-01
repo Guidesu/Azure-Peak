@@ -1,5 +1,5 @@
 // DreamValley's only integration include in roguetown.dme.
-// Keep implementation files under this folder so upstream Azure Peak updates
+// Keep implementation files under this folder so upstream upstream updates
 // remain straightforward to merge.
 
 #include "campaign\_defines.dm"
@@ -34,11 +34,11 @@
 #include "ported\ratwood\byos_terrain\byos_mapgen_island.dm"
 #include "ported\ratwood\byos_terrain\byos_mapgen_jungle.dm"
 
-// Content ported in from sibling codebases (Azure-Peak upstream sync,
+// Content ported in from sibling codebases (upstream sync,
 // Twilight-Axis, Ratwood-2.0, Vanderlin) — see modular_dreamvalley/ported/
 // for per-source notes on what was and wasn't carried over.
-#include "ported\azurepeak_upstream\ceramics_kintsugi.dm"
-#include "ported\azurepeak_upstream\cosmetic_claws.dm"
+#include "ported\ported_upstream\ceramics_kintsugi.dm"
+#include "ported\ported_upstream\cosmetic_claws.dm"
 #include "ported\twilight_axis\trophy_hunter.dm"
 #include "ported\twilight_axis\trophy_flaws.dm"
 #include "ported\twilight_axis\vampiric_striker.dm"

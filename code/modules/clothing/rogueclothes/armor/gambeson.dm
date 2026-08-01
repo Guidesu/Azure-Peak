@@ -20,9 +20,9 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	chunkcolor = "#978151"
 	material_category = ARMOR_MAT_LEATHER
-	cold_protection = CHEST|GROIN|ARMS|LEGS
+	cold_protection = COVERAGE_ALL_BUT_HANDFEET
 	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
-	heat_protection = null
+	heat_protection = COVERAGE_ALL_BUT_HANDFEET
 	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 	var/shiftable = TRUE
 	var/shifted = FALSE
@@ -72,9 +72,9 @@
 	allowed_sex = list(MALE, FEMALE)
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER //50 more integ than a gamberson, at the cost of leg protection
 	shiftable = FALSE
-	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	cold_protection = COVERAGE_ALL_BUT_HANDLEGS
 	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
-	heat_protection = null
+	heat_protection = COVERAGE_ALL_BUT_HANDLEGS
 	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/lord/light
@@ -128,9 +128,9 @@
 	color = "#976E6B"
 	shiftable = TRUE
 	shifted = FALSE
-	cold_protection = CHEST | ARM_RIGHT | ARM_LEFT
+	cold_protection = COVERAGE_ALL_BUT_HANDLEGS
 	min_cold_protection_temperature = BODYTEMP_COLD_LEVEL_ONE_MAX
-	heat_protection = null
+	heat_protection = COVERAGE_ALL_BUT_HANDLEGS
 	max_heat_protection_temperature = BODYTEMP_NORMAL_MAX
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/squire
