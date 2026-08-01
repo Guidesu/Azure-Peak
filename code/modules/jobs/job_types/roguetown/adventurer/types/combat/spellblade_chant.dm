@@ -310,8 +310,8 @@ a.choose-btn:hover {
 <div class="abilities">
 <h4>Abilities</h4>
 <ul>
-<li><b>Azurean Phalanx</b> — Prime your next melee strike with arcyne force. On hit, pierces through enemies in a line behind the target. Empowered (3 momentum): deeper, more damaging pierce.</li>
-<li><b>Azurean Pilum</b> — Hurl an icy phantom pilum that applies 2 frost stacks on hit. Empowered: applies 3 stacks, guaranteeing a freeze on any frosted target. No slowdown while charging.</li>
+<li><b>Royal Phalanx</b> — Prime your next melee strike with arcyne force. On hit, pierces through enemies in a line behind the target. Empowered (3 momentum): deeper, more damaging pierce.</li>
+<li><b>Royal Pilum</b> — Hurl an icy phantom pilum that applies 2 frost stacks on hit. Empowered: applies 3 stacks, guaranteeing a freeze on any frosted target. No slowdown while charging.</li>
 <li><b>Advance!</b> — Leap forward up to 4 tiles, passing through enemies, then stab ahead on landing. Brief chargeup before leaping. Empowered: doubles damage.</li>
 <li><b>Gate of Reckoning</b> — Summon two phantom spears that flank you in formation. For 12 seconds, each melee hit sends the spears thrusting in a 3-wide line ahead of you. Shield-blockable. Overcharged: 6 charges instead of 3.</li>
 </ul>
@@ -359,14 +359,14 @@ a.choose-btn:hover {
 </div>
 <div class="preamble">
 <p>O! Blade of Tarichea!</p>
-<p>There was once a great city. On the foot of this very mountain, over the Azure Sea.</p>
+<p>There was once a great city. On the foot of this very mountain, over the Great Sea.</p>
 <p>It prospered, and in its midst, our warriors practiced their art, combining the arcyne with blades.</p>
 <p>We were masters! Our skills, unmatched! Our techniques, unparalleled! Envy of the world!</p>
 <p>No Ranesheni bladedancers, or Kazengunese bladesmen, or Grenzelhoftian mercenaries, could match our prowess!</p>
 <p>Mages! Knights! Demons! All fell before our blade.</p>
 <p class="loud">THEN — SHE ASCENDED, ALL WAS LOST.</p>
 <p class="loud">OR WAS IT?</p>
-<p>O! Blade of Azurea!</p>
+<p>O! Blade of the Realm!</p>
 <p class="closing">[preamble_closing]</p>
 </div>
 </div>

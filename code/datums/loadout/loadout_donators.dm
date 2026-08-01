@@ -15,19 +15,19 @@
 	donator_unlocked = TRUE
 
 /datum/loadout_item/donator/universal/azurosa
-	name = "Gift - Azurosa Flower"
+	name = "Gift - Lunara Flower"
 	path = /obj/item/alch/rosa/azure
 
 /datum/loadout_item/donator/universal/azurosa_seeds
-	name = "Gift - Azurosa Flower, Seeds"
+	name = "Gift - Lunara Flower, Seeds"
 	path = /obj/item/storage/belt/rogue/pouch/azurosa_seeds
 
 /datum/loadout_item/donator/universal/azurosa_crown
-	name = "Gift - Azurosa Flowers, Crown"
+	name = "Gift - Lunara Flowers, Crown"
 	path = /obj/item/flowercrown/rosa/azure
 
 /datum/loadout_item/donator/universal/azurosa_bouquet
-	name = "Gift - Azurosa Flowers, Bouquet"
+	name = "Gift - Lunara Flowers, Bouquet"
 	path = /obj/item/bouquet/rosa/azure
 
 /datum/loadout_item/donator/universal/cackledagger
@@ -119,7 +119,7 @@
 	path = /obj/item/enchantingkit/heroicleathercuirass
 
 /datum/loadout_item/donator/universal/armor_triheartfelt
-	name = "Gift - Kit, Azurosa Plate Armor"
+	name = "Gift - Kit, Lunara Plate Armor"
 	path = /obj/item/enchantingkit/triheartfelt
 
 /datum/loadout_item/donator/universal/headpiece_decoration
@@ -729,7 +729,7 @@
 	ckeywhitelist = list("ollanius")
 
 /datum/loadout_item/donator/ollanius_sword
-	name = "Donator Kit - Azurosa-Wrapped Sword"
+	name = "Donator Kit - Lunara-Wrapped Sword"
 	path = /obj/item/enchantingkit/weapon/ollanius
 	ckeywhitelist = list("ollanius")
 
@@ -749,7 +749,7 @@
 	ckeywhitelist = list("spartanbobby")
 
 /datum/loadout_item/donator/ollanius_sword
-	name = "Donator Kit - Azurosa-Wrapped Sword"
+	name = "Donator Kit - Lunara-Wrapped Sword"
 	path = /obj/item/enchantingkit/weapon/ollanius
 	ckeywhitelist = list("ollanius")
 

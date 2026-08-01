@@ -1,6 +1,6 @@
 /datum/advclass/wretch/ancient_spellblade
-	name = "Unbound Ancient Azurcaephan"
-	tutorial = "You were once an Azurcaephan - a Spellblade from aeons past, perhaps from even the day of Tarichea. You remember your chant, your oath, every move of your blade and the flow of the arcyne. Intellect and will, unlike most other skeletons. Yet, you are without a purpose, without a master. Why do you fight? You do not know. But fight you shall. The world sees you as an abomination. Seek your own path."
+	name = "Unbound Ancient Spellblade"
+	tutorial = "You were once a Spellblade from aeons past, perhaps from even the day of Tarichea. You remember your chant, your oath, every move of your blade and the flow of the arcyne. Intellect and will, unlike most other skeletons. Yet, you are without a purpose, without a master. Why do you fight? You do not know. But fight you shall. The world sees you as an abomination. Seek your own path."
 	allowed_sexes = list(MALE, FEMALE)
 	
 	outfit = /datum/outfit/job/roguetown/wretch/ancient_spellblade
@@ -49,7 +49,7 @@
 	if(H.mind)
 		H.mind.add_antag_datum(new /datum/antagonist/skeleton())
 
-	H.choose_name_popup("Ancient Azurcaephan")
+	H.choose_name_popup("Ancient Spellblade")
 
 	H.cmode_music = 'sound/music/combat_weird.ogg'
 

@@ -488,7 +488,7 @@
 	color_key_names = list("Snout", "Inner")
 
 /*
----- azure snouts below this ----
+---- beast snouts below this ----
 */
 
 /datum/sprite_accessory/snout/shortnosed

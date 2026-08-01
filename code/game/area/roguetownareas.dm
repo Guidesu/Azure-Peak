@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(list(/area/rogue/indoors
 	deathsight_message = "a twisted tangle of soaring peaks"
 
 /area/rogue/outdoors/rtfield
-	name = "Azure Basin"
+	name = "Greenvalley Basin"
 	icon_state = "rtfield"
 	soundenv = 19
 	ambush_times = list("night")

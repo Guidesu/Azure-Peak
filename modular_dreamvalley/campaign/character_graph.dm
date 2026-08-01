@@ -1,5 +1,5 @@
 /**
- * Azure Peak character graph capture and restoration.
+ * Character graph capture and restoration.
  *
  * This layer uses the codebase's native APIs for species, limbs, organs,
  * wounds, skills, aspects, spells, traits, and status effects. Records remain

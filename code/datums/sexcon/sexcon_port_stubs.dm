@@ -1,24 +1,24 @@
 // ==========================================================================================
-// SEXCON PORT - stubs for Ratwood-specific paths that don't exist in Azure Peak.
+// SEXCON PORT - stubs for Ratwood-specific paths that don't exist in this codebase.
 //
 // The sexcon code was ported from Ratwood-2.0 and references several datums/types that are
-// named differently or don't exist in Azure Peak's god-rename scheme. Rather than silently
+// named differently or don't exist in this codebase's god-rename scheme. Rather than silently
 // deleting every reference (which would silently disable features and make the port harder
 // to diff against upstream), we define minimal stubs here so the code compiles and the logic
 // remains intact. Where a Ratwood god was renamed (Xylix->Viator, Baotha->Hausvette), the stub
-// re-routes to the Azure Peak equivalent. Where a status effect or stress event doesn't exist
+// re-routes to the equivalent. Where a status effect or stress event doesn't exist
 // at all, the stub is a no-op so the feature is inert but the code paths are preserved for
 // future porting.
 // ==========================================================================================
 
 // --- Missing charflaws ---------------------------------------------------------
 
-/// Ratwood had a "malodorous" (bad smell) character flaw; Azure Peak doesn't. Stub so
+/// Ratwood had a "malodorous" (bad smell) character flaw; this codebase doesn't. Stub so
 /// has_flaw() returns FALSE (the type exists but no mob will ever have it assigned).
 /datum/charflaw/malodorous
 	name = "Malodorous (stub)"
 
-/// Ratwood had a "baothamarked" addiction flaw tied to the Baotha patron. Azure Peak
+/// Ratwood had a "baothamarked" addiction flaw tied to the Baotha patron. this codebase
 /// renamed Baotha to Hausvette; the addiction flaw wasn't ported. Stub for compile.
 /datum/charflaw/addiction/baothamarked
 	name = "Baotha-Marked (stub)"
@@ -79,7 +79,7 @@
 // --- Missing proc: start_sex_session -------------------------------------------
 
 /// Ported from Ratwood: opens the sex UI for the user targeting another mob.
-/// Azure Peak's sexcon controller has show_ui() and start() procs; this wraps them.
+/// this codebase's sexcon controller has show_ui() and start() procs; this wraps them.
 /mob/living/proc/start_sex_session(mob/living/carbon/human/target)
 	if(!ishuman(src))
 		return
@@ -90,7 +90,7 @@
 	H.sexcon.show_ui()
 
 // --- Cursed collar path alias and stub -----------------------------------------
-// Azure Peak has the cursed collar at /obj/item/clothing/neck/roguetown/gorget/cursed_collar
+// this codebase has the cursed collar at /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 // but chastity_helpers.dm references /obj/item/clothing/neck/roguetown/cursed_collar (without
 // gorget). This alias ensures the reference resolves. Also adds the record_nonself_ejaculation
 // proc that chastity_helpers.dm calls on the collar.
@@ -101,13 +101,13 @@
 /obj/item/clothing/neck/roguetown/cursed_collar/proc/record_nonself_ejaculation(mob/living/carbon/human/source, mob/living/carbon/human/wearer)
 	return
 
-/// Ratwood tracks knotting stats separately for lupians vs non-lupians. Azure Peak doesn't
+/// Ratwood tracks knotting stats separately for lupians vs non-lupians. this codebase doesn't
 /// distinguish, so this just aliases the existing STATS_KNOTTED counter.
 #define STATS_KNOTTED_NOT_LUPIANS STATS_KNOTTED
 
 // --- Missing mob vars ----------------------------------------------------------
 
-// Ratwood tracks whether a mob was scented by a gnoll this round. Azure Peak has no gnolls,
+// Ratwood tracks whether a mob was scented by a gnoll this round. this codebase has no gnolls,
 // so this is a no-op var that lives on /mob/living/carbon/human and is always FALSE.
 /mob/living/carbon/human
 	/// Ported from Ratwood: tracks gnoll scent exposure for sexcon stinky_contact logic. Always FALSE here (no gnolls).
@@ -115,35 +115,35 @@
 
 // --- Missing item var ---------------------------------------------------------
 
-// Ratwood has a bellsound var on /obj/item for jingle-bell collars. Azure Peak's bell collar
+// Ratwood has a bellsound var on /obj/item for jingle-bell collars. this codebase's bell collar
 // uses a movement rustle component instead, but sexcon checks collar.bellsound. Stub it here.
 /obj/item
-	/// Ported from Ratwood: TRUE if this item jingles when moved (bell collar). Always FALSE in Azure Peak.
+	/// Ported from Ratwood: TRUE if this item jingles when moved (bell collar). Always FALSE in this codebase.
 	var/bellsound = FALSE
 
 // --- Missing procs -------------------------------------------------------------
 
-/// Ported from Ratwood's /mob/proc/check_handholding. Azure Peak has no handholding mechanic,
+/// Ported from Ratwood's /mob/proc/check_handholding. this codebase has no handholding mechanic,
 /// so this always returns FALSE (no handholding to check).
 /mob/proc/check_handholding()
 	return FALSE
 
 /// Ported from Ratwood's /datum/sex_controller/proc/eora_register_consensual_pair.
-/// Azure Peak has no Eora consensual-pair tracking, so this is a no-op.
+/// this codebase has no Eora consensual-pair tracking, so this is a no-op.
 /datum/sex_controller/proc/eora_register_consensual_pair(mob/living/carbon/human/a, mob/living/carbon/human/b)
 	return
 
 // --- Patron path aliases -------------------------------------------------------
-// Azure Peak renamed Xylix -> Viator (under /datum/patron/concordat/) and Baotha -> Hausvette.
+// this codebase renamed Xylix -> Viator (under /datum/patron/concordat/) and Baotha -> Hausvette.
 // The sexcon code references the old paths directly. Rather than editing every call site
 // (and breaking the diff against upstream), we define type aliases that point to the new patrons.
 
-/// Azure Peak's Viator patron is the renamed Xylix. This alias lets sexcon's Xylix-specific
+/// this codebase's Viator patron is the renamed Xylix. This alias lets sexcon's Xylix-specific
 /// prank logic compile and resolve to the right patron.
 /datum/patron/divine/xylix
 	parent_type = /datum/patron/concordat/viator
 
-/// Azure Peak's Hausvette patron is the renamed Baotha. This alias lets sexcon's
+/// this codebase's Hausvette patron is the renamed Baotha. This alias lets sexcon's
 /// Baotha-specific emberwine/knotting logic compile and resolve to the right patron.
 /datum/patron/inhumen/baotha
 	parent_type = /datum/patron/oldkin/hausvette

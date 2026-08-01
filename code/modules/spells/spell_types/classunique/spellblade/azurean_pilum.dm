@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/projectile/azurean_pilum
-	name = "Azurean Pilum"
-	desc = "A borrowed art - spellblades of the Azurean tradition learned to imbue their throw with ice essence, \
+	name = "Royal Pilum"
+	desc = "A borrowed art - spellblades of the ancient tradition learned to imbue their throw with ice essence, \
 		flash-chilling the target on impact. Applies 2 frost stacks on hit. \
 		At 3+ momentum: consumes 3 for a heavier throw that applies 3 stacks, guaranteeing a freeze on any frosted target. \
 		Toggle arc mode (Shift+G) to arc over allies."
@@ -17,7 +17,7 @@
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
-	invocations = list("Pilum Azureum!")
+	invocations = list("Pilum!")
 	invocation_type = INVOCATION_SHOUT
 
 	charge_required = TRUE
@@ -71,7 +71,7 @@
 	to_fire.damage = cached_damage
 
 /obj/projectile/energy/azurean_pilum
-	name = "Azurean Pilum"
+	name = "Royal Pilum"
 	icon = 'icons/obj/magic_projectiles.dmi'
 	icon_state = "air_blade_stab"
 	color = "#88BFFF"
@@ -100,17 +100,17 @@
 			log_combat(firer, L, "pilum-struck")
 
 /obj/projectile/energy/azurean_pilum/empowered
-	name = "Empowered Azurean Pilum"
+	name = "Empowered Royal Pilum"
 	icon_state = "youreyesonly"
 	color = "#4CADEE"
 	frost_stacks = 3
 
 /obj/projectile/energy/azurean_pilum/arc
-	name = "Arced Azurean Pilum"
+	name = "Arced Royal Pilum"
 	damage = 26
 	arcshot = TRUE
 
 /obj/projectile/energy/azurean_pilum/empowered/arc
-	name = "Empowered Arced Azurean Pilum"
+	name = "Empowered Arced Royal Pilum"
 	damage = 26
 	arcshot = TRUE

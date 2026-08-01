@@ -1034,7 +1034,7 @@
 			icon_state = "rotten"
 		if(2)
 			name = "blemished pomegranate"
-			desc = "A blemished pomegranate, it's blue like azure."
+			desc = "A blemished pomegranate, it's blue like the sky."
 			icon_state = "blemished"
 		if(3)
 			desc = "A vibrant pomegranate pulsing with inner light. It radiates warmth."

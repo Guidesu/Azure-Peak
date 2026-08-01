@@ -212,10 +212,10 @@
 
 /*
 /datum/advclass/wapprentice/spellblade
-	name = "Azurcaephan Associate"
+	name = "Spellblade Associate"
 	maximum_possible_slots = 2
 	tutorial = "You are an Azurcaephan Associate — a Spellblade, carrier of the five hundred yils tradition \
-		originating in Azurea. You are employed under the University \
+		originating in antiquity. You are employed under the University \
 		as a fellow Magos. The arcyne arts are dangerous, \
 		and you are to protect your peers from their own recklessness. \
 		You are not a member of the retinue - though the Crown may pay you a salary. \

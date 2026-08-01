@@ -1,7 +1,7 @@
 /**
  * Campaign Far Travel boundary.
  *
- * Azure's original Far Travel path deletes the body, forgets known people,
+ * The original Far Travel path deletes the body, forgets known people,
  * removes bounties and bank records, and forfeits some balances. A campaign
  * character must never enter that path - this reroutes it into an exact
  * character-graph capture that parks the body until its checkpoint is

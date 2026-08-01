@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(vagabond_severities, list(
 GLOBAL_LIST_INIT(bandit_severities, list(
 	"FISH" = "Small Fish",
 	"BUTCHER" = "Bay Butcher",
-	"BOOGEYMAN" = "Azurean Boogeyman"
+	"BOOGEYMAN" = "The Boogeyman"
 ))
 
 GLOBAL_LIST_INIT(vagabond_bounty_severities, list(
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(bandit_bounty_severities, list(
 		"max" = 500
 	),
 	"BOOGEYMAN" = list(
-		"name" = "Azurean Boogeyman",
+		"name" = "The Boogeyman",
 		"min" = 500,
 		"max" = 600
 	)

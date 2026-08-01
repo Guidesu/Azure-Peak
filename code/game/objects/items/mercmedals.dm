@@ -27,7 +27,7 @@
 			if(user.mind.assigned_role == "Mercenary")
 				to_chat(user, "<span class='warning'>...have I really stooped so low as to sign my own commendation?</span>")
 				return
-			if(user.mind.assigned_role != "Mercenary") // AZURE: anyone can hire a mercenary
+			if(user.mind.assigned_role != "Mercenary") // NOTE: anyone can hire a mercenary
 				signee = user.real_name
 				signeejob = user.mind.assigned_role
 				visible_message("<span class='warning'>[user] writes their name down on the token.</span>")
@@ -59,7 +59,7 @@
 
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/blackoak
 	name = "guardian's seedpouch"
-	desc = "A pouch, sealed tight, bearing the acorn of an oak native to the Azure Basin. May your end be a new beginning for Azurea."
+	desc = "A pouch, sealed tight, bearing the acorn of an oak native to the Greenvalley Basin. May your end be a new beginning for the realm."
 	icon_state = "blackoak_pouch"
 
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/condottiero

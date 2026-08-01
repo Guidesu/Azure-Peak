@@ -1,6 +1,6 @@
 // Areas for Mount Decap
 /area/rogue/outdoors/mountains/decap
-	name = "Mount Decapitation"
+	name = "Mount Cull"
 	loot_budget = LOOT_BUDGET_MOUNT_DECAP
 	icon_state = "decap"
 	ambush_mobs = list(
@@ -23,7 +23,7 @@
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	first_time_text = "MOUNT DECAPITATION"
+	first_time_text = "MOUNT CULL"
 	ambush_times = list("night","dawn","dusk","day")
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	deathsight_message = "a twisted tangle of soaring peaks"
@@ -31,7 +31,7 @@
 	detail_text = DETAIL_TEXT_DECAP
 
 /area/rogue/indoors/shelter/mountains/decap
-	name = "Mount Decapitation"
+	name = "Mount Cull"
 	icon_state = "decap"
 	loot_budget = LOOT_BUDGET_DECAP_SHELTERS
 	loot_pool_key = "decap_shelters"

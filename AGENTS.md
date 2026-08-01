@@ -1,4 +1,4 @@
-# Azure Peak (DreamValley) — Agent Notes
+# DreamValley — Agent Notes
 
 ## Build / Compile
 
@@ -18,7 +18,7 @@ The `roguetown.json` output is the compiled game file.
 ## Sexcon / Chastity Port
 
 The sexcon system was ported from Ratwood-2.0. Ratwood-specific paths that
-don't exist in Azure Peak are stubbed in
+don't exist in this codebase are stubbed in
 `code/datums/sexcon/sexcon_port_stubs.dm` so the ported code compiles without
 editing every call site. Key stub categories:
 
@@ -35,5 +35,5 @@ accessory, bodypart feature) lives under
 `code/game/objects/items/rogueitems/keys_chastity.dm`.
 
 Chastity-related defines are in `code/__DEFINES/sexcon_defines.dm`
-(TRAIT_CHASTITY_*, CHASTITY_* constants, BODYPART_FEATURE_CHASTITY,
+(TRAIT_CHASTITY__, CHASTITY__ constants, BODYPART_FEATURE_CHASTITY,
 COMSIG_CARBON_LOSE_CHASTITY).

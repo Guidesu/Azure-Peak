@@ -1,6 +1,6 @@
 /datum/advclass/templar/noc_spellblade
-	name = "Noccite Azurcaephan"
-	tutorial = "You are a Noccite Azurcaephan - A devotee of the Azurean Church\
+	name = "Noccite Spellblade"
+	tutorial = "You are a Noccite Spellblade - A devotee of the Church\
 	Other templars clad themselves in heavy armor and relies on their miracles and their cone\
 	But you know Noc's true teaching - he granted knowledge so we, humen, may seize upon it and uses magyck\
 	to seize our own destiny. With steel in one hand, sorcery in the other, and Noc's blessing in your heart\

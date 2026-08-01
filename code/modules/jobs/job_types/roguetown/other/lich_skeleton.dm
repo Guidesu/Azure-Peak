@@ -597,8 +597,8 @@ LICH SKELETONS
 // Spellblade skeleton. Rarest of the bunch - a true Azurcaephan from the ancient era.
 // Medium armor, high INT, same chant/spells as regular spellblade. No miracles.
 /datum/advclass/greater_skeleton/lich/spellblade
-	name = "Venerated Azurcaephan"
-	tutorial = "Swerve, parry, cast. Your bones have dried, and your flesh have withered. But your wits, and the flow of the arcyne remains untamed. Fuse gilbranze and sorcery, let the legends of the Azurcaephan be known again. Azurea, reborn in arcyne fyre! No! Tarichea! Tarichea! Tarichea! Long may she live! Long may she reign! Tarichea forevermore! My blade undulled, my chant unbroken, my wits untarnished!"
+	name = "Venerated Spellblade"
+	tutorial = "Swerve, parry, cast. Your bones have dried, and your flesh have withered. But your wits, and the flow of the arcyne remains untamed. Fuse gilbranze and sorcery, let the legends of the Spellblade be known again. The realm, reborn in arcyne fyre! No! Tarichea! Tarichea! Tarichea! Long may she live! Long may she reign! Tarichea forevermore! My blade undulled, my chant unbroken, my wits untarnished!"
 	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/spellblade
 	maximum_possible_slots = 1
 	category_tags = list(CTAG_LSKELETON)

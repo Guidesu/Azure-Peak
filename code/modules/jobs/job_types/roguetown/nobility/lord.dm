@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	Mage armor and no armor training.
 
 
-	King's addition: Porting this to Azure after a long time. May adjust later to compromise with other vision for the role. Also gave them a fucking satchel.
+	King's addition: Ported after a long time. May adjust later to compromise with other vision for the role. Also gave them a fucking satchel.
 */
 /datum/advclass/lord/mage
 	name = "Mage Lord"

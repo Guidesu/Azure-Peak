@@ -17,7 +17,7 @@
 
 /datum/skill/combat/twilight_firearms
 	name = "Firearms (unavailable)"
-	desc = "Reserved for a future Azure Peak firearms port."
+	desc = "Reserved for a future firearms port."
 	learnable_in_sleep = FALSE
 	max_skillbook_level = 0
 

@@ -5,13 +5,13 @@
 ///////////////////
 
 /obj/item/herbseed/rosa/azure
-	name = "azurosa seeds"
-	seed_identity = "azurosa seeds"
+	name = "lunara seeds"
+	seed_identity = "lunara seeds"
 	makes_herb = /obj/structure/flora/roguegrass/herb/rosa/azure
 
 /obj/item/storage/belt/rogue/pouch/azurosa_seeds
-	name = "pouch of azurosa seeds"
-	desc = "A pouch that's been filled with seeds of the Azurosa flower, freshly harvested from the highest plateaus overlooking the outpost."
+	name = "pouch of lunara seeds"
+	desc = "A pouch that's been filled with seeds of the Lunara flower, freshly harvested from the highest plateaus overlooking the outpost."
 	populate_contents = list(
 	/obj/item/herbseed/rosa/azure,
 	/obj/item/herbseed/rosa/azure,
@@ -20,7 +20,7 @@
 	)
 
 /obj/structure/flora/roguegrass/herb/rosa/azure
-	name = "azurosa"
+	name = "lunara"
 	desc = "A prickly, blueish mutation of the common Rosa found uniquely in a handful of \
 	far-off highland plains, this flower rarely grows this close to the coast. Its sight here means only \
 	one thing: a donation from beyond the outpost's shores."
@@ -30,7 +30,7 @@
 	herbtype = /obj/item/alch/rosa/azure
 
 /obj/item/alch/rosa/azure
-	name = "azurosa"
+	name = "lunara"
 	icon_state = "azurosa"
 	item_state = "azurosa"
 	desc = "A reminder, hued blue, that happiness is always worth fighting for."
@@ -58,7 +58,7 @@
 		user.update_icon()
 
 /obj/item/flowercrown/rosa/azure
-	name = "crown of azurosa"
+	name = "crown of lunara"
 	desc = "A crown formed of azurosas, freshly plucked from distant highland plains. Often worn during \
 	the many festivals and holidaes that're celebrated throughout the yil, as a sign of pride and propserity."
 	icon = 'icons/obj/items/donor_objects.dmi'
@@ -67,7 +67,7 @@
 	icon_state = "azurosa_crown"
 
 /obj/item/bouquet/rosa/azure
-	name = "azurosa bouquet"
+	name = "lunara bouquet"
 	desc = "Sweetheart's affections bundled together in string, most popularly seen in the grand tournmanets that're \
 	hosted, every yil, at the summer's solstice. Should a jousting knight successfully catch such a bouquet during \
 	their charge, they're surely to be blessed with incoming fortune by a higher power; that, or they might just \
@@ -77,7 +77,7 @@
 	icon_state = "azurosa_bouquet"
 
 /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals/azure
-	name = "fresh azurosa petals"
+	name = "fresh lunara petals"
 	desc = "Crushed azurosa petals, teeming with a sweet fragrance. Long ago, the first settlers to reach these highlands used these herbs \
 	as an antiquated treatment for poisonings and sickness. Though alchemical solutions are more popular nowadaes, those who \
 	grew up chewing on these leaves in their youngest yils might still remember it, to riposte fell humors."
@@ -155,7 +155,7 @@
 	verbage = "ties"
 
 /datum/crafting_recipe/roguetown/bouquet_azurosa
-	name = "azurosa bouquet"
+	name = "lunara bouquet"
 	result = /obj/item/bouquet/rosa/azure
 	reqs = list(/obj/item/alch/rosa/azure = 4,
 				/obj/item/natural/fibers = 2,
@@ -1577,7 +1577,7 @@
 
 /obj/item/rogueweapon/koruu/kukri
 	name = "leachwhacker"
-	desc = "A curved blade proudly made of Azurean Origin. Forged for wading through the hellish Terrorbog, it is a symbol of Azurean Tenacity. \
+	desc = "A curved blade proudly made of northern origin. Forged for wading through the hellish Terrorbog, it is a symbol of northern tenacity. \
 	It is said that the name is derived from old rituals of severing the leaves of a westleach bush while the iron is still hot to bless it. \
 	The bane of Maneaters, Brigands, and Invaders."
 	icon_state = "koruu_kukri"
@@ -1586,9 +1586,9 @@
 
 /obj/item/rogueweapon/koruu/kukri/warden
 	name = "warden's leachwhacker"
-	desc = "A curved blade proudly made of Azurean Origin. Forged for wading through the hellish Terrorbog, it is a symbol of Azurean Tenacity. \
+	desc = "A curved blade proudly made of northern origin. Forged for wading through the hellish Terrorbog, it is a symbol of northern tenacity. \
 	It is said that the name is derived from old rituals of severing the leaves of a westleach bush while the iron is still hot to bless it. \
-	The bane of Maneaters, Brigands, and Invaders. An azure cloth could be seen wrapped around the handle."
+	The bane of Maneaters, Brigands, and Invaders. A blue cloth could be seen wrapped around the handle."
 	icon_state = "koruu_kukri_warden"
 	icon = 'icons/obj/items/donor_weapons.dmi'
 	sheathe_icon = "koruu_kukri_warden"
@@ -1689,7 +1689,7 @@ As Excaliber."
 
 /obj/item/rogueweapon/drd/shield
 	name = "kite shield"
-	desc = "The heraldry of the near-fallen House Woerden: Argent and celestial-azure, per bend, in fess point a deer head erased affronty gray."
+	desc = "The heraldry of the near-fallen House Woerden: Argent and celestial-blue, per bend, in fess point a deer head erased affronty gray."
 	icon_state = "drd_shield"
 	icon = 'icons/obj/items/donor_weapons.dmi'
 

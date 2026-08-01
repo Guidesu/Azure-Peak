@@ -260,7 +260,7 @@
 	droning_sound = 'sound/music/area/dwarf.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	first_time_text = "AZUREAN GUILD OF CRAFT"
+	first_time_text = "GUILD OF CRAFT"
 	converted_type = /area/rogue/outdoors/exposed/dwarf
 	detail_text = DETAIL_TEXT_AZUREAN_GUILD_OF_CRAFT
 

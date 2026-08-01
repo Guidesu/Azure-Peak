@@ -503,11 +503,11 @@
 /obj/item/rogueweapon/spear/spellblade
 	name = "dory"
 	icon_state = "short_spear"
-	desc = "A shortened spear, six feet long and balanced. Favored by Azurean Spellblades \
+	desc = "A shortened spear, six feet long and balanced. Favored by Spellblades \
 		who found the traditional long spear ill-suited for their flashy, individualistic fighting style. \
 		Designed to thrust quickly from one hand but maneuver nimbly in two.<BR><BR> \
 		'From this dae on, we shall name ourselves naught spearman, but phalangite, and our spear, the dory, not a shortspear. \
-		And with this measure we shall gain great respect henceforth.' - Unknown Grandmaster of the Azurean Spellblade Order, 900 AP."
+		And with this measure we shall gain great respect henceforth.' - Unknown Grandmaster of the Spellblade Order, 900 AP."
 	force = 20
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/spear/thrust/azurean/oneh)

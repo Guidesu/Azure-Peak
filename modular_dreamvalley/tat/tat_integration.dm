@@ -52,7 +52,7 @@
 	var/rank = dreamvalley_tat_rank_for_bucket(build.get_role_bucket())
 	var/datum/job/job = SSjob?.GetJob(rank)
 	if(!rank || !job)
-		to_chat(player, span_warning("That TAT direction does not have an Azure Peak spawn role yet."))
+		to_chat(player, span_warning("That TAT direction does not have a spawn role yet."))
 		return FALSE
 
 	build.save_current_to_active_slot()

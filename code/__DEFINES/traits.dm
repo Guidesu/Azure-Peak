@@ -280,7 +280,7 @@
 #define TRAIT_NOCSHADES "Nocshaded"
 #define TRAIT_LIGHT_STEP	"Light Step"
 #define TRAIT_HARDSOLE		"Hard Sole"
-#define TRAIT_AZURENATIVE "Azure Native"
+#define TRAIT_AZURENATIVE "Native Born"
 #define TRAIT_BOGWALKER "Bogwalker"
 #define TRAIT_NOPVE "Natural Accord"
 #define TRAIT_SLEUTH	"Sleuth"
@@ -305,7 +305,7 @@
 #define TRAIT_ASSASSIN	"Assassin"
 #define TRAIT_EQUESTRIAN "Equestrian"
 #define TRAIT_REGROW_LIMBS "Regrow Limbs"
-#define TRAIT_LEVY "Azurean Militia"
+#define TRAIT_LEVY "Levy Militia"
 #define TRAIT_MUSES_GRACE	"Muses Grace"
 #define TRAIT_SUNLIGHT_SENSITIVE "Sunlight Sensitivity"
 // ARMOR / CLOTHING GIVEN TRAITS (GIVEN BY WEARING CLOTHES/ARMOR PIECES)
