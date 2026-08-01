@@ -339,7 +339,25 @@ GLOBAL_LIST_INIT(tat_virtue_choice_trait_rules, TAT_VIRTUE_CHOICE_TRAIT_RULES)
 	TRAIT_EASYDISMEMBER = TAT_TRAIT_ENTRY("Easy Dismemberment", -3, "Your limbs are much easier to dismember."), \
 	TRAIT_PERMAMUTE = TAT_TRAIT_ENTRY("Permanent Mute", -2, "You are permanently mute and cannot speak."), \
 	TRAIT_NODEF = TAT_TRAIT_ENTRY("No Defense", -4, "You expose yourself completely in battle."), \
-	TAT_TRAIT_ACCURSED = TAT_TRAIT_ENTRY("Ignatius's Curse", -1, "You're cursed by the Sleeping Volf. Now you're shapshift to lesser creachure every nite.")
+	TAT_TRAIT_ACCURSED = TAT_TRAIT_ENTRY("Ignatius's Curse", -1, "You're cursed by the Sleeping Volf. Now you're shapshift to lesser creachure every nite."), \
+	TRAIT_LONGSWORDSMAN = TAT_TRAIT_ENTRY("Master Longswordman", 3, "You fight like a Master when wielding any longsword, though master strikes require a perfectly balanced basket-hilted or reformist longsword."), \
+	TRAIT_SABRIST = TAT_TRAIT_ENTRY("Renowned Sabrist", 2, "You've learned all there is to know about the Southern curve. When using a sabre, you fight like a Master. Your swings are innately more accurate when targeting hands and arms."), \
+	TRAIT_FIREARMS_MARKSMAN = TAT_TRAIT_ENTRY("Firearms Marksman", 2, "You are a trained marksman with firearms."), \
+	TRAIT_WEBWALK = TAT_TRAIT_ENTRY("Webwalker", 1, "You can move freely between webs without getting stuck."), \
+	TRAIT_LONGSTRIDER = TAT_TRAIT_ENTRY("Longstrider", 1, "Each of your steps finds its footing no matter how treacherous the terrain is."), \
+	TRAIT_HARDSOLE = TAT_TRAIT_ENTRY("Hard Sole", 1, "Your feet are hardened. You can walk on thorns and sharp terrain without injury."), \
+	TRAIT_EXTEROCEPTION = TAT_TRAIT_ENTRY("Exteroception", 1, "You can see others' hunger and thirst. Pairs well with Empath."), \
+	TRAIT_GOODWRITER = TAT_TRAIT_ENTRY("Great Writer", 1, "You're proficient at writing. Any skillbooks made by you will allow the reader to learn the subject more quickly."), \
+	TRAIT_BLOOD_RESISTANCE = TAT_TRAIT_ENTRY("Thick Blooded", 1, "Your body is taut and your blood runs slower. You bleed far less than others."), \
+	TRAIT_JOURNEYS_END = TAT_TRAIT_ENTRY("Journey's End", 2, "As life ebbs from your veins, your resolve hardens to push through. Do not go quietly into that good night."), \
+	TRAIT_CURSE_RESIST = TAT_TRAIT_ENTRY("Curse Resistance", 1, "You have a tendency to resist curses placed upon you."), \
+	TRAIT_FEARLESS = TAT_TRAIT_ENTRY("Fearless", 1, "You feel no fear, standing firm against terrifying foes."), \
+	TRAIT_LEECHIMMUNE = TAT_TRAIT_ENTRY("Unleechable", 1, "Leeches are reluctant to bite you."), \
+	TRAIT_LEECHRESIST = TAT_TRAIT_ENTRY("Leech Awareness", 1, "You can safely remove leeches without injury, and always feel when one latches onto you. You have a chance of avoiding them."), \
+	TRAIT_SHOCKIMMUNE = TAT_TRAIT_ENTRY("Shock Immunity", 1, "You are immune to electrical shocks."), \
+	TRAIT_ANTISCRYING = TAT_TRAIT_ENTRY("Non-Detection", 2, "You are immune to most forms of magical divination and scrying."), \
+	TRAIT_IGNORESLOWDOWN = TAT_TRAIT_ENTRY("Ignore Slow", 2, "Nothing stops this carriage! You are immune to slowdown effects."), \
+	TRAIT_IGNOREDAMAGESLOWDOWN = TAT_TRAIT_ENTRY("Relentless", 2, "Hits slow you down no longer. You fight through injuries without losing speed.")
 
 #define TAT_TRAIT_STAT_POINT_RULES list( \
 	TAT_TRAIT_BONUS_STAT_POOL = TAT_BUILD_STAT_BONUS_EXTRA_STATS, \
