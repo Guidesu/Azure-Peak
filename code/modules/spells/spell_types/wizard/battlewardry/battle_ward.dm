@@ -4,7 +4,7 @@
 /datum/action/cooldown/spell/battle_ward
 	button_icon = 'icons/mob/actions/mage_battlewardry.dmi'
 	name = "Battle Ward"
-	desc = "Channel arcyne energy to inscribe a pattern of five rune wards in an X formation on a targeted area. The runes are fragile and last for one minute before fading. In addition, Battle Wards are indiscriminate unlike permanent Rune Wards, and will hit the caster and their allies. They can be circumvented by jumping or flying over them, or destroyed with a few solid hits. The type of rune placed depends on your current ward mode.\n\
+	desc = "Channel chi energy to inscribe a pattern of five rune wards in an X formation on a targeted area. The runes are fragile and last for one minute before fading. In addition, Battle Wards are indiscriminate unlike permanent Rune Wards, and will hit the caster and their allies. They can be circumvented by jumping or flying over them, or destroyed with a few solid hits. The type of rune placed depends on your current ward mode.\n\
 	Use the Alt Mode keybind to cycle between Stun, Fire, Chill, and Damage."
 	button_icon_state = "battle_ward"
 	sound = 'sound/magic/charging.ogg'

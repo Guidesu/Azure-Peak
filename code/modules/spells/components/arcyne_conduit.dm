@@ -57,6 +57,6 @@
 
 /datum/component/arcyne_conduit/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("This weapon pulses with faint arcyne energy. It is bound as an arcyne conduit, to be used by a skilled spellblade.")
+	examine_list += span_notice("This weapon pulses with faint chi energy. It is bound as a chi conduit, to be used by a skilled spellblade.")
 
 #undef CONDUIT_FILTER

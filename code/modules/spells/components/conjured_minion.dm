@@ -69,7 +69,7 @@
 	if(!summoner || summoner.stat == DEAD)
 		return
 	if(untether_strain > 0 || summoner.z != source.z || get_dist(source, summoner) > leash_range)
-		to_chat(summoner, span_warning("A dull ache echoes down the leyline - [source] has perished beyond the tether's reach."))
+		to_chat(summoner, span_warning("A dull ache echoes down the spirit line - [source] has perished beyond the tether's reach."))
 		return
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(apply_conjure_recoil), summoner, recoil_energy_floor, recoil_severity, 1, TRUE, recoil_stamina_only)
 
@@ -127,7 +127,7 @@
 	untether_strain++
 	var/mob/living/summoner = summoner_ref?.resolve()
 	if(untether_strain == 1)
-		M.visible_message(span_warning("[M] flickers, its form straining against the distant leyline."))
+		M.visible_message(span_warning("[M] flickers, its form straining against the distant spirit line."))
 		if(summoner)
 			to_chat(summoner, span_warning("I feel the tether to [M] strain - my servant is beyond my reach."))
 	M.alpha = max(50, M.alpha - 12)
@@ -139,7 +139,7 @@
 	if(M.ckey)
 		untether_strain = untether_max
 		return
-	M.visible_message(span_warning("[M] loses all cohesion, unraveling as the leyline tether snaps."))
+	M.visible_message(span_warning("[M] loses all cohesion, unraveling as the spirit line tether snaps."))
 	dismiss_conjured_minion(M)
 
 /datum/component/conjured_minion/proc/relax_tether(mob/living/M)

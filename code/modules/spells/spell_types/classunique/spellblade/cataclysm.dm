@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/cataclysm
 	name = "Cataclysm"
-	desc = "Let the mountain fall. Conjure a hammer of pure arcyne force and hurl it at a target area. \
+	desc = "Let the mountain fall. Conjure a hammer of pure chi force and hurl it at a target area. \
 		On impact it explodes, crushing everyone in a 5x5 area for 75 blunt damage and leaving them Vulnerable. \
 		Requires 7 momentum. Overcharged at 10 momentum: 135 damage. \
 		Same level only. Can be blocked by Defend stance."
@@ -91,7 +91,7 @@
 	H.say("RUINA CAELI!", forced = "spell", language = /datum/language/common)
 
 	playsound(start, pick('sound/combat/ground_smash1.ogg', 'sound/combat/ground_smash2.ogg', 'sound/combat/ground_smash3.ogg'), 100, TRUE)
-	H.visible_message(span_boldwarning("[H] conjures a massive hammer out of arcyne force!"))
+	H.visible_message(span_boldwarning("[H] conjures a massive hammer out of chi force!"))
 
 	for(var/turf/affected_turf in get_hear(area_of_effect, T))
 		new /obj/effect/temp_visual/blade_storm_telegraph(affected_turf)
@@ -154,7 +154,7 @@
 	icon = 'icons/roguetown/weapons/blunt32.dmi'
 	icon_state = "iwarhammer"
 	name = "arcyne hammer"
-	desc = "A hammer of pure arcyne force."
+	desc = "A hammer of pure chi force."
 	layer = FLY_LAYER
 	plane = GAME_PLANE_UPPER
 	randomdir = FALSE

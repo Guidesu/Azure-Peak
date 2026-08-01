@@ -88,13 +88,20 @@
 #define TRAIT_GOODTRAINER "Good Trainer"
 #define TRAIT_BADTRAINER "Bad Trainer"
 #define TRAIT_OUTDOORSMAN "Outdoorsman"
-/// DISABLED: an elemental-bending combat system (Fire/Water/Earth/Air) was scaffolded here but was
-/// out-of-scope, unrequested content added during an unrelated porting pass, and has been removed
-/// (the files under modular_dreamvalley/bending/ were deleted before ever being committed - not
-/// recoverable from git history). This trait define is left in place, unused, in case the system
-/// is deliberately rebuilt later; it currently has no granters and no effect.
-#define TRAIT_BENDER "Bender"
 #define TRAIT_SEA_DRINKER "Denizen of the Deep"
+/// Bending stance traits — granted by /datum/action/cooldown/spell/bending_stance
+#define TRAIT_STANCE_AGGRESSIVE "stance_aggressive"
+#define TRAIT_STANCE_FLOWING "stance_flowing"
+#define TRAIT_STANCE_ROOTED "stance_rooted"
+#define TRAIT_STANCE_EVASIVE "stance_evasive"
+#define TRAIT_STANCE_NEUTRAL "stance_neutral"
+/// Divine stance traits — granted by /datum/action/cooldown/spell/miracle_stance
+#define TRAIT_STANCE_DEVOUT "stance_devout"
+#define TRAIT_STANCE_ZEALOUS "stance_zealous"
+#define TRAIT_STANCE_MERCIFUL "stance_merciful"
+#define TRAIT_STANCE_JUDGEMENT "stance_judgement"
+#define TRAIT_STANCE_MARTYR "stance_martyr"
+#define TRAIT_STANCE_TEMPO "stance_tempo"
 #define TRAIT_STUDENT		"Student"
 #define TRAIT_INTELLECTUAL "Intellectual"
 #define TRAIT_GRAVEROBBER "Experienced Grave Robber"

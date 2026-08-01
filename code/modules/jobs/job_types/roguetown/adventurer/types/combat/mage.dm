@@ -283,7 +283,7 @@
 
 /datum/advclass/mage/spellfist
 	name = "Spellfist"
-	tutorial = "You are a Spellfist, an unarmed warrior who combines martial prowess with arcyne magyck. Your art descends from the Pontifexes of Naledi, warrior-monks who first learned to channel arcyne power through their fists, though the technique has since spread across the world — especially to Lingyuese Vaeltites in the east. You eschew most weapons in favor of using magyck to accelerate and strengthen your own body, striking enemies with blows from afar and storms of fists up close."
+	tutorial = "You are a Spellfist, an unarmed warrior who combines martial prowess with chi bending. Your art descends from the Pontifexes of Naledi, warrior-monks who first learned to channel arcyne power through their fists, though the technique has since spread across the world — especially to Lingyuese Vaeltites in the east. You eschew most weapons in favor of using bending to accelerate and strengthen your own body, striking enemies with blows from afar and storms of fists up close."
 	outfit = /datum/outfit/job/roguetown/adventurer/spellfist
 	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_ARCYNE)
 	subclass_stats = list(
@@ -373,7 +373,7 @@
 
 /datum/advclass/mage/spellthief
 	name = "Arcyne Trickster"
-	tutorial = "You are an Arcyne Trickster, a thief and hooligan gifted in the arcyne arts."
+	tutorial = "You are an Arcyne Trickster, a thief and hooligan gifted in the chi flow arts."
 	outfit = /datum/outfit/job/roguetown/adventurer/spellthief
 	subclass_languages = list(/datum/language/thievescant)
 	cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
@@ -402,7 +402,7 @@
 
 /datum/outfit/job/roguetown/adventurer/spellthief/pre_equip(mob/living/carbon/human/H)
 	..()
-	to_chat(H, span_warning("You are an Arcyne Trickster, a thief and hooligan gifted in the arcyne arts."))
+	to_chat(H, span_warning("You are an Arcyne Trickster, a thief and hooligan gifted in the chi flow arts."))
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	backl = /obj/item/storage/backpack/rogue/satchel

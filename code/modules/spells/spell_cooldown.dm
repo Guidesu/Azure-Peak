@@ -669,7 +669,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_NOC_CURSE))
 		if(feedback)
-			owner.balloon_alert(owner, "My magicka has left me...")
+			owner.balloon_alert(owner, "My bendinga has left me...")
 		return FALSE
 
 	var/mob/living/living_owner = owner

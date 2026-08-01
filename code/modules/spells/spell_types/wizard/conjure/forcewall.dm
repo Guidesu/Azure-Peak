@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/forcewall
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
 	name = "Forcewall"
-	desc = "Conjure a 5x1 wall of arcyne force in front of you, preventing anyone and anything from moving through it.\n\
+	desc = "Conjure a 5x1 wall of chi force in front of you, preventing anyone and anything from moving through it.\n\
 	The wall lasts for 20 seconds or until destroyed."
 	button_icon_state = "forcewall"
 	sound = 'sound/magic/whiteflame.ogg'
@@ -64,14 +64,14 @@
 		new telegraph_type(affected_turf)
 		addtimer(CALLBACK(src, PROC_REF(spawn_wall), affected_turf, H), 1 SECONDS)
 
-	H.visible_message("[H] mutters an incantation and a wall of arcyne force manifests out of thin air!")
+	H.visible_message("[H] mutters an incantation and a wall of chi force manifests out of thin air!")
 	return TRUE
 
 /datum/action/cooldown/spell/forcewall/proc/spawn_wall(turf/target, mob/caster)
 	new /obj/structure/forcefield_weak(target, caster)
 
 /obj/structure/forcefield_weak
-	desc = "A wall of pure arcyne force."
+	desc = "A wall of pure chi force."
 	name = "Arcyne Wall"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "arcynewall"

@@ -44,7 +44,7 @@
 
 	var/datum/beam/tether = H.Beam(target, "purple_lightning", time = channel_time)
 
-	H.visible_message(span_warning("[H] reaches toward [target], arcyne force arcing between them!"), span_notice("I lock onto [target] and begin to reel them in..."))
+	H.visible_message(span_warning("[H] reaches toward [target], chi force arcing between them!"), span_notice("I lock onto [target] and begin to reel them in..."))
 	to_chat(target, span_warning("Arcyne force coils around you - [H] is wrenching you toward them! Ready yourself."))
 	target.balloon_alert_to_viewers("<font color='[spell_color]'>grasping!</font>")
 

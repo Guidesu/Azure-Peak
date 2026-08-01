@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/arrow_ward
 	button_icon = 'icons/mob/actions/mage_battlewardry.dmi'
 	name = "Arrow Ward"
-	desc = "Conjure a wide barrier of arcyne force in front of you. The barrier blocks incoming projectiles from the front but allows allies and the caster to shoot and walk through freely."
+	desc = "Conjure a wide barrier of chi force in front of you. The barrier blocks incoming projectiles from the front but allows allies and the caster to shoot and walk through freely."
 	button_icon_state = "arrow_ward"
 	sound = 'sound/magic/whiteflame.ogg'
 	spell_color = GLOW_COLOR_WARD
@@ -76,7 +76,7 @@
 
 /obj/structure/arrow_ward
 	name = "arrow ward"
-	desc = "A shimmering wall of arcyne force. Projectiles cannot pass through from the front."
+	desc = "A shimmering wall of chi force. Projectiles cannot pass through from the front."
 	icon = 'icons/roguetown/misc/arrow_ward.dmi'
 	icon_state = "arrow_ward"
 	opacity = FALSE

@@ -76,7 +76,7 @@
 			balloon_alert(user, "Lance CD:[CEILING(COOLDOWN_TIMELEFT(src, lance_cd) * 0.1, 1)]s remaining")
 			return FALSE
 		if(user.energy < lance_energy)
-			to_chat(user, span_warning("I haven't the arcyne energy to loose the lance!"))
+			to_chat(user, span_warning("I haven't the chi flow energy to loose the lance!"))
 			return FALSE
 		user.energy_add(-lance_energy)
 		COOLDOWN_START(src, lance_cd, lance_cooldown)
@@ -125,8 +125,8 @@
 		playsound(loc, 'sound/foley/nockarrow.ogg', 50, TRUE)
 
 /obj/item/ammo_casing/caseless/rogue/bolt/ferramancy
-	name = "arcyne bolt"
-	desc = "A bolt of condensed arcyne light, drawn from raw mana. It will unravel the instant it strikes home."
+	name = "chi bolt"
+	desc = "A bolt of condensed arcyne light, drawn from raw chi. It will unravel the instant it strikes home."
 	color = GLOW_COLOR_ARCANE
 	projectile_type = /obj/projectile/bullet/reusable/bolt/ferramancy
 
@@ -148,7 +148,7 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/ferramancy
 	name = "arcyne crossbow"
-	desc = "A crossbow of condensed arcyne light, conjured from raw mana by a Ferramancer's will. It bears no quiver - drawing the \
+	desc = "A crossbow of condensed arcyne light, conjured from raw chi by a metal-bender's will. It bears no quiver - drawing the \
 	string taut coaxes a bolt of pure energy into being, ready to loose. It draws upon the wielder's own reserves in place of ammunition."
 	color = GLOW_COLOR_ARCANE
 	minstr = 0
@@ -163,7 +163,7 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/ferramancy/get_mechanics_examine(mob/user)
 	. = ..()
-	. += span_info("Drawing the string conjures a bolt of arcyne energy, spending <b>[conjure_cost]</b> of your own energy. It accepts no other ammunition.")
+	. += span_info("Drawing the string conjures a bolt of chi energy, spending <b>[conjure_cost]</b> of your own energy. It accepts no other ammunition.")
 	. += span_info("Its draw and aim answer to my <b>Arcyne Armament</b>, not any common crossbow drill.")
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/ferramancy/attack_self(mob/living/user)
@@ -174,7 +174,7 @@
 		update_icon()
 		return
 	if(user.energy < conjure_cost)
-		to_chat(user, span_warning("I haven't the arcyne energy to charge [src]!"))
+		to_chat(user, span_warning("I haven't the chi flow energy to charge [src]!"))
 		return
 	to_chat(user, span_info("I step on the stirrup and draw [src] taut..."))
 	if(!do_after(user, max(1, reloadtime - user.STASTR - user.get_skill_level(ranged_skill)), target = user))
@@ -187,16 +187,16 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/ferramancy/attackby(obj/item/A, mob/user, params)
 	if(istype(A, /obj/item/ammo_box) || istype(A, /obj/item/ammo_casing))
-		to_chat(user, span_warning("[src] draws only upon my own arcyne energy - it will not accept a common bolt."))
+		to_chat(user, span_warning("[src] draws only upon my own chi energy - it will not accept a common bolt."))
 		return
 	return ..()
 
-/// Spend the wielder's energy to conjure a fresh arcyne bolt and chamber it.
+/// Spend the wielder's energy to conjure a fresh chi bolt and chamber it.
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/ferramancy/proc/conjure_bolt(mob/living/user)
 	if(!magazine)
 		return FALSE
 	if(user.energy < conjure_cost)
-		to_chat(user, span_warning("My arcyne energy fails me at the last moment!"))
+		to_chat(user, span_warning("My chi energy fails me at the last moment!"))
 		return FALSE
 	user.energy_add(-conjure_cost)
 	if(!chambered && !magazine.ammo_count())

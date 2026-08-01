@@ -16,7 +16,7 @@
 // Phase Roll - brief phasing roll inspired by the dagger special, albeit with some tweaks to make it super obvious.
 /obj/effect/proc_holder/spell/self/vheslyn/vheslyn_phase_roll
 	name = "Phase Roll"
-	desc = "Invoke corrupted magicka with dodging techniques to enhance yourself to effortlessly phase through flesh and steel alyke."
+	desc = "Invoke corrupted bendinga with dodging techniques to enhance yourself to effortlessly phase through flesh and steel alyke."
 	action_icon = 'icons/mob/actions/vheslynspells.dmi'
 	overlay_icon = 'icons/mob/actions/vheslynspells.dmi'
 	overlay_state = "phaseroll"
@@ -106,7 +106,7 @@ When the SYON, was sent down by Praecursor to topple Vheslyn, the world was met 
 Just like that, a great evil slain. However the surviving cultists, fragments of the Earth Mover's lingering corruption were not detered,
 for yills, centuries they waited until Her ascension shattered the world and with one of the Leylines permanently severed.
 
-she unknowingly brought forth unstable magicka to channel, those whom bare Vheslyn's corruption can channel and further corrupt this to make
+she unknowingly brought forth unstable bendinga to channel, those whom bare Vheslyn's corruption can channel and further corrupt this to make
 unspeakable spells unbound by restrictions of coventional laws of magic to create but a pale imitation of their long lost divine spark
 once granted by Vheslyn. Although lethal to most in the long-term and highly destructive,
 the cultists of the Earth Moverare unphased by this drawback.

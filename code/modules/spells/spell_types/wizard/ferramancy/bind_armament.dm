@@ -66,12 +66,12 @@
 		to_chat(H, span_warning("[weapon] is not something my arts can guide."))
 		return FALSE
 	if(weapon.GetComponent(/datum/component/skill_bind))
-		to_chat(H, span_warning("[weapon] already carries an arcyne bond."))
+		to_chat(H, span_warning("[weapon] already carries a chi bond."))
 		return FALSE
 	release_bind()
 	weapon.AddComponent(/datum/component/skill_bind, bind_skill, H)
 	bound = weapon
-	to_chat(H, span_notice("I lay an arcyne bond on [weapon]; it answers to my conjurer's training now."))
+	to_chat(H, span_notice("I lay a chi bond on [weapon]; it answers to my conjurer's training now."))
 	playsound(get_turf(H), 'sound/magic/charged.ogg', 50, TRUE)
 	H.visible_message(span_notice("[H] passes a hand over [weapon], which glows faintly."))
 	return TRUE

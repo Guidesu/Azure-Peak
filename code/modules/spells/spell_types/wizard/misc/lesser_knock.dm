@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/lesser_knock
 	button_icon = 'icons/mob/actions/roguespells.dmi'
 	name = "Lesser Knock"
-	desc = "A simple spell used to focus the arcyne into an instrument for lockpicking. Can be dispelled by using it on anything that isn't a locked/unlocked door."
+	desc = "A simple spell used to focus the chi flow into an instrument for lockpicking. Can be dispelled by using it on anything that isn't a locked/unlocked door."
 	button_icon_state = "knock"
 	sound = 'sound/magic/whiteflame.ogg'
 	spell_color = GLOW_COLOR_ARCANE
@@ -40,7 +40,7 @@
 
 /obj/item/melee/touch_attack/lesserknock
 	name = "Spectral Lockpick"
-	desc = "A faintly glowing lockpick that appears to be held together by the mysteries of the arcyne. To dispel it, simply use it on anything that isn't a door."
+	desc = "A faintly glowing lockpick that appears to be held together by the mysteries of the chi flow. To dispel it, simply use it on anything that isn't a door."
 	catchphrase = null
 	possible_item_intents = list(/datum/intent/use)
 	icon = 'icons/roguetown/items/keys.dmi'

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/leyline_anchor
 	name = "Leyline Anchor"
-	desc = "Anchor an arcyne tether to the leyline beneath your feet. Recast to recall. \
+	desc = "Anchor a chi tether to the leyline beneath your feet. Recast to recall. \
 		The tether has 75 health and lasts 20 seconds. \
 		7 tile maximum recall range. Same level only. \
 		Cannot recall while grabbed, restrained, or buckled. \

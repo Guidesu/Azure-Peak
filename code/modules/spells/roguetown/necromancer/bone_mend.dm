@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/bonemend
 	name = "Bone Mend"
-	desc = "Mend the chosen target's bones with a burst of necrotic magick. Requires standing still for a few seconds."
+	desc = "Mend the chosen target's bones with a burst of necrotic bending. Requires standing still for a few seconds."
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "skeleton"
 	cast_range = 2

@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/touch/rune_ward
 	button_icon = 'icons/mob/actions/mage_utilities.dmi'
 	name = "Rune Ward"
-	desc = "Channel arcyne energy through ash to inscribe protective runes upon the ground. The runes trigger when trespassers cross them - but can be circumvented by jumping or flying over them. Includes the following modes:\n \
+	desc = "Channel chi energy through ash to inscribe protective runes upon the ground. The runes trigger when trespassers cross them - but can be circumvented by jumping or flying over them. Includes the following modes:\n \
 	<b>Draw</b>: Draw a rune on the ground using ash from your off-hand. Choose from Stun, Fire, Chill, Damage, or Alarm types.\n \
 	<b>Clean</b>: Scrub an existing rune from the ground. Skilled mages can do this silently.\n \
 	<b>Use</b>: Memorize or forget allies - memorized people will not trigger your runes."

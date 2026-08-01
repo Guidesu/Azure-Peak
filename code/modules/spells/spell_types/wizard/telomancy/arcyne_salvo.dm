@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/projectile/arcyne_salvo
 	button_icon = 'icons/mob/actions/mage_telomancy.dmi'
 	name = "Arcyne Salvo"
-	desc = "Loose three heavy arcyne bolts in a wide spread toward a single target. Each bolt strikes hard on its own, and if all three converge on the same foe the payoff is devastating. \
+	desc = "Loose three heavy chi bolts in a wide spread toward a single target. Each bolt strikes hard on its own, and if all three converge on the same foe the payoff is devastating. \
 	The spread is wide enough that only a Telomancer willing to close the distance will land the full salvo. \
 	Toggle arc mode (Shift+G) to lob the bolts over obstacles at reduced damage."
 	button_icon_state = "arcyne_salvo"
@@ -49,7 +49,7 @@
 		to_fire.woundclass = null
 
 /obj/projectile/magic/arcyne_salvo
-	name = "arcyne bolt"
+	name = "chi bolt"
 	icon = 'icons/obj/magic_projectiles.dmi'
 	icon_state = "arcyne_bolt"
 	damage = 30
@@ -74,7 +74,7 @@
 	ricochet_decay_damage = 1
 
 /obj/projectile/magic/arcyne_salvo/arc
-	name = "arced arcyne bolt"
+	name = "arced chi bolt"
 	damage = 23
 	arcshot = TRUE
 

@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.AddComponent(/datum/component/wise_tree_alert)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
+	grant_miracle_stance(H)
 
 	add_verb(H, /mob/living/carbon/human/proc/coronate_lord)
 	add_verb(H, /mob/living/carbon/human/proc/churchannouncement)
@@ -404,7 +405,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		return TRUE
 
 	if (inputty in GLOB.excommunicated_players)
-		return //No stacking	
+		return //No stacking
 
 	if (H.real_name == inputty)
 		if (!COOLDOWN_FINISHED(src, priest_apostasy))

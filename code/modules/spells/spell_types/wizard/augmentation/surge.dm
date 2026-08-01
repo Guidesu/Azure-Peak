@@ -47,6 +47,6 @@
 	target.balloon_alert_to_viewers("<font color='[spell_color]'>surge!</font>")
 	target.visible_message(span_warning("[target] surges back up, wreathed in energy!"), span_notice("Arcyne energy floods my body - I rise!"))
 	if(target != caster)
-		to_chat(caster, span_notice("I flood [target] with arcyne vigor, hauling them back to their feet!"))
+		to_chat(caster, span_notice("I flood [target] with chi vigor, hauling them back to their feet!"))
 	new /obj/effect/temp_visual/spell_impact(get_turf(target), spell_color, spell_impact_intensity)
 	return TRUE

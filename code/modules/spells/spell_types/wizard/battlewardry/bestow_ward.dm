@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/bestow_ward
 	name = "Bestow Ward"
-	desc = "Channel arcyne energy to wrap an ally in a protective ward. The ward covers their entire body with light armor, \
+	desc = "Channel chi energy to wrap an ally in a protective ward. The ward covers their entire body with light armor, \
 	layering coverage over any real armor they wear. The ward lasts for 3 minutes or until destroyed. \
 	Cannot override an existing ward of equal or greater strength. "
 	button_icon = 'icons/mob/actions/mage_battlewardry.dmi'
@@ -85,14 +85,14 @@
 				if(time_penalty > (time_remaining / 2))
 					newward.set_duration(ward_duration)
 
-					target.visible_message(span_notice("[target]'s arcyne ward is completely rebuilt in a surge of arcyne power!"))
+					target.visible_message(span_notice("[target]'s chi ward is completely rebuilt in a surge of arcyne power!"))
 					to_chat(caster, span_notice("I rebuild [target]'s ward from scratch."))
 				else
 					var/new_duration = max(10 SECONDS, time_remaining - time_penalty)
 
 					newward.set_duration(new_duration)
 
-					target.visible_message(span_notice("[target]'s damaged arcyne ward is restored to full strength!"))
+					target.visible_message(span_notice("[target]'s damaged chi ward is restored to full strength!"))
 					to_chat(caster, span_notice("I restore [target]'s ward at the cost of some of its remaining duration."))
 
 				return TRUE
@@ -100,7 +100,7 @@
 			// Undamaged ward: extend duration.
 			B.extend_duration(ward_duration)
 
-			target.visible_message(span_notice("[target]'s arcyne ward brightens as its duration is extended!"))
+			target.visible_message(span_notice("[target]'s chi ward brightens as its duration is extended!"))
 			to_chat(caster, span_notice("I reinforce [target]'s ward."))
 			return TRUE
 
@@ -109,13 +109,13 @@
 	ward.setup_ward(target)
 	ward.set_duration(ward_duration)
 
-	target.visible_message(span_notice("An arcyne ward shimmers into existence around [target]!"))
-	to_chat(caster, span_notice("I bestow an arcyne ward upon [target]."))
+	target.visible_message(span_notice("An chi ward shimmers into existence around [target]!"))
+	to_chat(caster, span_notice("I bestow a chi ward upon [target]."))
 	return TRUE
 
 /obj/item/clothing/suit/roguetown/armor/manual/arcyne_ward/bestowed
 	name = "bestowed ward"
-	desc = "An arcyne ward placed by another mage. It cannot be dismissed - it must be weathered or destroyed."
+	desc = "An chi ward placed by another mage. It cannot be dismissed - it must be weathered or destroyed."
 	max_integrity = 200
 	arcyne_armor_tier = ARCYNE_WARD_TIER_OTHER
 	ward_color = GLOW_COLOR_WARD

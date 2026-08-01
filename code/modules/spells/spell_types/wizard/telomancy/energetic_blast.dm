@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/energetic_blast
 	button_icon = 'icons/mob/actions/mage_telomancy.dmi'
 	name = "Energetic Blast"
-	desc = "Channel a wave of raw arcyne energy in a 4-tile line in front of you, striking foes for blunt damage and hurling them back 3 paces. \
+	desc = "Channel a wave of raw chi energy in a 4-tile line in front of you, striking foes for blunt damage and hurling them back 3 paces. \
 	Can be blocked by a shield, stopping the blast from propagating further."
 	button_icon_state = "energetic_blast"
 	sound = 'sound/magic/vlightning.ogg'
@@ -103,9 +103,9 @@
 			I.throw_at(get_ranged_target_turf(I, toss_dir, push_dist), push_dist, 2)
 
 	if(length(already_hit))
-		H.visible_message(span_danger("[H] unleashes a wave of raw arcyne force, hurling [english_list(already_hit)] back!"))
+		H.visible_message(span_danger("[H] unleashes a wave of raw chi force, hurling [english_list(already_hit)] back!"))
 	else
-		H.visible_message(span_danger("[H] unleashes a wave of raw arcyne force!"))
+		H.visible_message(span_danger("[H] unleashes a wave of raw chi force!"))
 
 	return TRUE
 

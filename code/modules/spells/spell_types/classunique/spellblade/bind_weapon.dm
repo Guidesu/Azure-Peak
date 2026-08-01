@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/bind_weapon
 	name = "Bind Weapon"
-	desc = "Bind your held weapon as an arcyne conduit. Successful strikes with bound weapons build arcyne momentum, fueling your abilities. \
+	desc = "Bind your held weapon as a chi conduit. Successful strikes with bound weapons build arcyne momentum, fueling your abilities. \
 		It can also be recalled to your hand from anywhere with Recall Weapon. \
 		The weapon must match your chant - Blade requires a sword or dagger, Phalangite a polearm, Macebearer a mace or warhammer. \
 		You can rebind to restore a lost Arcyne Momentum status, or bind a new weapon if your old one was destroyed. \

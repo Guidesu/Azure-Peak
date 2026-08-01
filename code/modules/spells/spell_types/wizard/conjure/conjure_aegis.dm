@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure_aegis
 	name = "Arcyne Aegis"
-	desc = "Project a shield of arcyne force into my offhand. It answers to my Arcyne Armament rather than the shieldwall's drill, and holds its shape until dispelled, shattered, or I am parted from it. Cast again with a free offhand to renew it."
+	desc = "Project a shield of chi force into my offhand. It answers to my Arcyne Armament rather than the shieldwall's drill, and holds its shape until dispelled, shattered, or I am parted from it. Cast again with a free offhand to renew it."
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
 	button_icon_state = "conjure_aegis"
 	sound = 'sound/magic/whiteflame.ogg'
@@ -62,7 +62,7 @@
 
 /obj/item/rogueweapon/shield/arcyne_aegis
 	name = "arcyne aegis"
-	desc = "A rare hunk of arcyne energy projected in front of the caster. Slower and more deliberate movement by blades and melee weapons easily pierce through to the squishy Magi behind."
+	desc = "A rare hunk of chi energy projected in front of the caster. Slower and more deliberate movement by blades and melee weapons easily pierce through to the squishy Magi behind."
 	icon = 'icons/roguetown/weapons/prismatic_weapons64.dmi'
 	icon_state = "moonlight_shield"
 	pixel_x = -16

@@ -367,7 +367,7 @@
 
 /obj/effect/reversion_marker
 	name = "temporal mark"
-	desc = "A shimmering imprint of origin magick lingers here."
+	desc = "A shimmering imprint of origin bending lingers here."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "blessed"
 	layer = ABOVE_OPEN_TURF_LAYER

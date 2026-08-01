@@ -584,13 +584,13 @@
 	name = "WEEP"
 	action_icon = 'icons/mob/actions/psydonmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/psydonmiracles.dmi'
-	overlay_state = "WEEP" //Absolver-exclusive. Classified as 'lux-magicka', rather than a traditional miracle. Same line of thought as the Naledians.
+	overlay_state = "WEEP" //Absolver-exclusive. Classified as 'lux-bendinga', rather than a traditional miracle. Same line of thought as the Naledians.
 	releasedrain = 33
 	chargedrain = 0
 	chargetime = 0
 	range = 3
 	warnie = "sydwarning"
-	desc = "Lesser lux-magicka. Endure the wounds of another, for their sake. </br>‎  </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
+	desc = "Lesser lux-bendinga. Endure the wounds of another, for their sake. </br>‎  </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psydonbleeds.ogg'
 	associated_skill = /datum/skill/magic/holy
@@ -788,8 +788,8 @@
 	name = "ABSOLVE"
 	action_icon = 'icons/mob/actions/psydonmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/psydonmiracles.dmi'
-	overlay_state = "ABSOLVE" //Absolver-exclusive. Classified as 'lux-magicka', rather than a traditional miracle. Same line of thought as the Naledians.
-	desc = "Greater lux-magicka. Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
+	overlay_state = "ABSOLVE" //Absolver-exclusive. Classified as 'lux-bendinga', rather than a traditional miracle. Same line of thought as the Naledians.
+	desc = "Greater lux-bendinga. Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
 	releasedrain = 50
 	chargedrain = 0
 	chargetime = 0

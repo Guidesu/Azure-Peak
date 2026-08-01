@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/arcyne_fortress
 	button_icon = 'icons/mob/actions/mage_battlewardry.dmi'
 	name = "Arcyne Fortress"
-	desc = "Channel an immense surge of arcyne energy to erect a 5x5 fortress of arrow wards around yourself. \
+	desc = "Channel an immense surge of chi energy to erect a 5x5 fortress of arrow wards around yourself. \
 	Each wall segment blocks incoming projectiles from the outside while allowing you and allies to shoot out freely. \
 	The fortress lasts until its cooldown expires or until the walls are destroyed."
 	button_icon_state = "arcyne_fortress"
@@ -68,7 +68,7 @@
 	if(!length(perimeter_data))
 		return FALSE
 
-	H.visible_message(span_boldwarning("[H] channels a massive ward inscription - the air crackles with arcyne energy!"), span_notice("I erect the Arcyne Fortress!"))
+	H.visible_message(span_boldwarning("[H] channels a massive ward inscription - the air crackles with chi energy!"), span_notice("I erect the Arcyne Fortress!"))
 	playsound(center, 'sound/magic/whiteflame.ogg', 80, TRUE, 5)
 
 	for(var/list/entry in perimeter_data)

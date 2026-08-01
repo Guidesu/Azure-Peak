@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/air_strike
 	name = "Air Strike"
-	desc = "Your blade passes into the immaterial and the leyline carries it forth, striking up to 4 tiles away. \
+	desc = "Your blade passes into the immaterial and the spirit line carries it forth, striking up to 4 tiles away. \
 	Brief telegraph before the strike lands - aim where they will be. \
 	At 3+ momentum: consumes 3 to double damage. \
 	Strikes your aimed bodypart. Adaptable to intent: \
@@ -160,9 +160,9 @@
 			hit_count++
 
 	if(hit_count)
-		H.visible_message(span_danger("[H] thrusts [weapon.name] forward, sending an arcyne lance through the air!"))
+		H.visible_message(span_danger("[H] thrusts [weapon.name] forward, sending a chi lance through the air!"))
 	else
-		H.visible_message(span_notice("[H] thrusts [weapon.name] forward, sending an arcyne lance through empty air!"))
+		H.visible_message(span_notice("[H] thrusts [weapon.name] forward, sending a chi lance through empty air!"))
 	if(hit_count >= 2)
 		var/datum/status_effect/buff/arcyne_momentum/surge = H.has_status_effect(/datum/status_effect/buff/arcyne_momentum)
 		if(surge)
@@ -203,7 +203,7 @@
 		arcyne_strike(H, victim, weapon, round(damage / 2), def_zone, BCLASS_BLUNT, spell_name = "Air Strike (Blunt)")
 	else
 		arcyne_strike(H, victim, weapon, damage, def_zone, BCLASS_BLUNT, spell_name = "Air Strike (Blunt)")
-	H.visible_message(span_danger("[H] slams [weapon.name] down, focusing all arcyne force into [victim]!"))
+	H.visible_message(span_danger("[H] slams [weapon.name] down, focusing all chi force into [victim]!"))
 
 /datum/action/cooldown/spell/air_strike/proc/get_perpendicular_line(turf/center, facing)
 	var/list/turfs = list()

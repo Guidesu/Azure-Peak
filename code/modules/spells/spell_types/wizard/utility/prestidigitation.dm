@@ -5,7 +5,7 @@
 
 /datum/action/cooldown/spell/touch/prestidigitation
 	name = "Prestidigitation"
-	desc = "A few basic tricks many apprentices use to practice basic manipulation of the arcyne. Except for light, cooldown is decreased by 10% per point of Int above 10 up to 50%. Includes the following modes:\n \
+	desc = "A few basic tricks many apprentices use to practice basic manipulation of the chi flow. Except for light, cooldown is decreased by 10% per point of Int above 10 up to 50%. Includes the following modes:\n \
 	<b>Clean</b>: Use your arcyne powers to scrub an object or something clean, like using soap. Also known as the Apprentice's Woe.\n \
 	<b>Spark</b>: Will forth a spark on an item of your choosing (or in front of you, if used on the ground) to ignite flammable items and things like torches, lanterns or campfires. \n \
 	<b>Light</b>: Conjure forth an orbiting mote of magelight to light your way. Starts at 5 tiles light range and get one more per Int above 10 up to 15.\n \

@@ -45,7 +45,7 @@ by Arcyne user after a duration
 
 /datum/component/conjured_item/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "This item crackles with faint arcyne energy. It seems to be conjured."
+	examine_list += "This item crackles with faint chi energy. It seems to be conjured."
 
 /datum/component/conjured_item/proc/on_moved(datum/source)
 	SIGNAL_HANDLER

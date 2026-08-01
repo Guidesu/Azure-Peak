@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/bonechill
 	name = "Bone Chill"
-	desc = "Chill the chosen target with a burst of necrotic magicka. Applies a strong slowdown effect to the chosen target, alongside further reducing their Strength and Speed."
+	desc = "Chill the chosen target with a burst of necrotic bendinga. Applies a strong slowdown effect to the chosen target, alongside further reducing their Strength and Speed."
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "bonechill"
 	cast_range = 7

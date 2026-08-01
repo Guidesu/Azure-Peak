@@ -2,7 +2,7 @@
 
 /datum/action/cooldown/spell/spellblade_phalanx
 	name = "Royal Phalanx"
-	desc = "Prime your next melee strike with arcyne force. On hit, the blow pierces through, \
+	desc = "Prime your next melee strike with chi force. On hit, the blow pierces through, \
 		striking enemies in a line behind the target. Builds 1 momentum on hit. \
 		At 3+ momentum: consumes 3 for a deeper, more damaging pierce."
 	button_icon = 'icons/mob/actions/classuniquespells/spellblade.dmi'
@@ -62,7 +62,7 @@
 		effect.empowered = empowered
 
 	H.visible_message(
-		span_notice("[H] primes [H.p_their()] weapon with a surge of arcyne force."),
+		span_notice("[H] primes [H.p_their()] weapon with a surge of chi force."),
 		span_notice("My thrust is primed - the next strike will pierce through."))
 	playsound(get_turf(H), 'sound/magic/antimagic.ogg', 60, TRUE)
 	return TRUE
@@ -115,7 +115,7 @@
 	var/deflected = FALSE
 	var/list/already_hit = list()
 
-	// Hit the original struck target with the arcyne strike (they already took the normal weapon hit)
+	// Hit the original struck target with the chi flow strike (they already took the normal weapon hit)
 	if(!QDELETED(struck) && struck.stat != DEAD)
 		if(spell_guard_check(struck, FALSE, user))
 			deflected = TRUE

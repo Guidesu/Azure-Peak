@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/readomen
 	name = "Read Omen"
-	desc = "Casting this spell, you draw upon the leylines themselves to reveal secrets of fate itself. \n\
+	desc = "Casting this spell, you draw upon the spirit lines themselves to reveal secrets of fate itself. \n\
 	(Casting it gives you a vague explanation of which god currently holds sway over the land. If they are your patron, the explanation is less vague.)"
 	button_icon = 'icons/mob/actions/mage_augmentation.dmi'
 	button_icon_state = "readomen"

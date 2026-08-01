@@ -8,7 +8,7 @@
 	fluff_desc = "Before the first men learned to refine metal, men fought with sharpened stones - particularly obsidian from the foot of volcanos. \
 	It is said that Mount Golgotha had the best obsidian in all the world, sharp enough to cut flesh with ease. \
 	Malice, energy, and the imagination of the Magi cutting someone apart with Obsidian. \
-	Thus was born the first spell that would lead to Ferramancy, when men could imagine themselves smelting metal and forging tools - and after it, using magyck to replicate the very same thing."
+	Thus was born the first spell that would lead to Ferramancy, when men could imagine themselves smelting metal and forging tools - and after it, using bending to replicate the very same thing."
 	button_icon_state = "stygian"
 	sound = 'sound/magic/scrapeblade.ogg'
 	spell_color = GLOW_COLOR_METAL
@@ -30,7 +30,7 @@
 	invocation_type = INVOCATION_SHOUT
 
 	charge_required = TRUE
-	weapon_cast_penalized = TRUE // Use it with an arcyne armament noob 
+	weapon_cast_penalized = TRUE // Use it with a chi armament noob 
 	charge_time = CHARGETIME_MINOR
 	charge_swingdelay_type = SWINGDELAY_CANCEL
 	hold_drain = 1

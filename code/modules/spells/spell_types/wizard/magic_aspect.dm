@@ -1,7 +1,7 @@
 /datum/magic_aspect
-	var/name = "Aspect"
+	var/name = "Discipline"
 	var/latin_name = ""
-	var/desc = "An arcyne discipline."
+	var/desc = "A chi discipline — the art of channeling one's inner energy to manipulate the natural world through stance, breath, and will."
 	var/aspect_type = ASPECT_MAJOR
 	/// Appended to implements when attuned: "Fire" -> "Staff of Fire"
 	var/attuned_name = ""
@@ -22,9 +22,10 @@
 	var/list/variants = list()
 	var/applied_variant
 	var/school_color
-	/// Major: Latin, English, Latin. Minor: Latin, English.
-	var/list/binding_chants = list()
-	var/list/unbinding_chants = list()
+	/// Physical gestures performed when assuming/releasing the discipline.
+	/// Each entry is a visible emote shown to nearby players.
+	var/list/binding_gestures = list()
+	var/list/unbinding_gestures = list()
 	/// The choice spell that was actually picked during attunement. Set by grant_choice_spell().
 	var/chosen_spell
 
@@ -158,15 +159,17 @@
 	spell_instance.refundable = FALSE
 	spell_instance.source_aspect = type
 
-/// Perform the binding or unbinding chant. Returns TRUE if completed, FALSE if interrupted.
-/// Each line is spoken aloud with a 2-second do_after between them.
-/datum/magic_aspect/proc/perform_chant(mob/living/chanter, binding = TRUE)
-	var/list/chant_lines = binding ? binding_chants : unbinding_chants
-	if(!length(chant_lines) || chant_lines[1] == "TODO")
+/// Perform the physical gestures for assuming or releasing a discipline.
+/// Returns TRUE if completed, FALSE if interrupted.
+/// Each gesture is a visible emote performed with a brief do_after between them —
+/// no spoken words, only stance and motion, like a martial arts form.
+/datum/magic_aspect/proc/perform_gestures(mob/living/bender, binding = TRUE)
+	var/list/gestures = binding ? binding_gestures : unbinding_gestures
+	if(!length(gestures))
 		return TRUE
-	for(var/line in chant_lines)
-		chanter.say(line, forced = "spell", language = /datum/language/common)
-		if(!do_after(chanter, 2 SECONDS, target = chanter))
+	for(var/gesture in gestures)
+		bender.visible_message(span_notice("[bender] [gesture]"), span_notice("You [gesture]"))
+		if(!do_after(bender, 2 SECONDS, target = bender))
 			return FALSE
 	return TRUE
 

@@ -42,7 +42,7 @@
 	var/list/modes = list(
 		list("name" = "Cascade", "tag" = "CASC", "fire" = "stream", "proj" = /obj/projectile/magic/greater_arcyne_bolt/flurry, "per_fire" = 1, "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Telum Magistri!", "icon" = "arcyne_bolt"),
 		list("name" = "Seeker", "tag" = "SEEK", "fire" = "homing", "proj" = /obj/projectile/magic/seeker_orb/greater, "per_fire" = 5, "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Sequere, Telum!", "icon" = "seeker"),
-		list("name" = "Soulshot", "tag" = "SOUL", "fire" = "single", "proj" = /obj/projectile/magic/soulshot, "per_fire" = 1, "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 10 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/soulshot.ogg', "invocation" = "Animus Ictus!", "icon" = "soulshot"), // Soulshot mode is a bit cheaper than basic offensive magyck for their budget
+		list("name" = "Soulshot", "tag" = "SOUL", "fire" = "single", "proj" = /obj/projectile/magic/soulshot, "per_fire" = 1, "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 10 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/soulshot.ogg', "invocation" = "Animus Ictus!", "icon" = "soulshot"), // Soulshot mode is a bit cheaper than basic offensive bending for their budget
 	)
 
 /datum/action/cooldown/spell/projectile/arcyne_volley/Grant(mob/grant_to)
@@ -147,7 +147,7 @@
 	return stats
 
 /obj/projectile/magic/greater_arcyne_bolt/flurry
-	name = "arcyne bolt"
+	name = "chi bolt"
 	damage = 20
 	flag = "piercing"
 	woundclass = BCLASS_PIERCE

@@ -7,7 +7,7 @@
 
 /datum/action/cooldown/spell/great_shelter
 	name = "Great Shelter"
-	desc = "Conjure a cramped but functional shelter from arcyne force.\n\
+	desc = "Conjure a cramped but functional shelter from chi force.\n\
 	Contains a bed, a hearth, and an oven. Bring your own cooking tools.\n\
 	The shelter lasts for 15 minutes. Door always faces south."
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
@@ -75,7 +75,7 @@
 	var/list/offsets = build_shelter_offsets()
 
 	playsound(center, 'sound/spellbooks/crystal.ogg', 100, TRUE)
-	H.visible_message(span_warning("[H] conjures a shelter from arcyne force!"))
+	H.visible_message(span_warning("[H] conjures a shelter from chi force!"))
 
 	// Place structures
 	for(var/list/offset in offsets)
@@ -112,7 +112,7 @@
 
 /obj/structure/forcefield_weak/shelter_wall
 	name = "arcyne wall"
-	desc = "A shimmering wall of arcyne force. It hums faintly."
+	desc = "A shimmering wall of chi force. It hums faintly."
 	max_integrity = 200
 	timeleft = 0 // Disable parent's 20s auto-delete, we use SHELTER_DURATION instead
 	opacity = TRUE
@@ -129,7 +129,7 @@
 
 /obj/structure/bed/rogue/conjured
 	name = "arcyne bed"
-	desc = "A bed conjured from arcyne force. It looks uncomfortable, but functional."
+	desc = "A bed conjured from chi force. It looks uncomfortable, but functional."
 	color = "#6495ED"
 
 /obj/structure/bed/rogue/conjured/Initialize(mapload)
@@ -147,7 +147,7 @@
 
 /obj/machinery/light/rogue/oven/conjured
 	name = "arcyne oven"
-	desc = "An oven conjured from arcyne force. It glows with a faint blue heat."
+	desc = "An oven conjured from chi force. It glows with a faint blue heat."
 	color = "#6495ED"
 
 /obj/machinery/light/rogue/oven/conjured/Initialize()

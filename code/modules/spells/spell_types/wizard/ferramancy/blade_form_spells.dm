@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/form_blade
 	name = "Form Blade"
-	desc = "Conjure an arcyne weapon shaped by your will and mana alone. Cycle the form with Shift+G. Only one conjured form may exist at a time."
+	desc = "Conjure a chi weapon shaped by your will and mana alone. Cycle the form with Shift+G. Only one conjured form may exist at a time."
 	button_icon = 'icons/mob/actions/mage_ferramancy.dmi'
 	button_icon_state = "form_blade"
 	spell_color = GLOW_COLOR_METAL

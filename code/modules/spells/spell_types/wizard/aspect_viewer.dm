@@ -63,7 +63,7 @@
 
 /obj/item/book/arcyne_compendium
 	name = "Arcyne Compendium"
-	desc = "A comprehensive reference tome cataloguing all known arcyne disciplines, aspects, and utility spells. Its pages shimmer faintly with residual magic."
+	desc = "A comprehensive reference tome cataloguing all known chi disciplines, aspects, and utility spells. Its pages shimmer faintly with residual magic."
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "book4_0"
 	unique = TRUE

@@ -47,12 +47,12 @@
 	if(istype(I))
 		I.visible_message(span_warning("The arcyne bond on [I] flickers and dies as it changes hands."))
 		if(taker)
-			to_chat(taker, span_notice("[I] shudders in my grip as an arcyne bond sloughs off of it."))
+			to_chat(taker, span_notice("[I] shudders in my grip as a chi bond sloughs off of it."))
 	qdel(src)
 
 /datum/component/skill_bind/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "An arcyne bond guides this weapon; it answers to a conjurer's training."
+	examine_list += "An arcyne bond guides this weapon; it answers to a spirit-bender's training."
 
 /datum/component/skill_bind/Destroy()
 	var/obj/item/I = parent

@@ -8,7 +8,7 @@
 	if(minion)
 		minion.dismissing = TRUE
 	M.ai_controller?.set_ai_status(AI_STATUS_OFF)
-	M.visible_message(span_notice("[M] unravels, dissolving back into the leyline."))
+	M.visible_message(span_notice("[M] unravels, dissolving back into the spirit line."))
 	animate(M, alpha = 0, time = CONJURE_DISMISS_FADE_TIME)
 	QDEL_IN(M, CONJURE_DISMISS_FADE_TIME)
 
@@ -192,7 +192,7 @@
 		return
 	if(stamina_only)
 		summoner.stamina_add(round(summoner.max_stamina * 0.5 * scale))
-		to_chat(summoner, span_warning("The leyline snaps taut and tears the wind from me as my primordial unravels."))
+		to_chat(summoner, span_warning("The spirit line snaps taut and tears the wind from me as my primordial unravels."))
 		scale *= 0.5
 		block = FALSE
 	if(severity == CONJURE_RECOIL_LIGHT)
@@ -263,6 +263,6 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/debuff/conjure_backlash
-	name = "Conjurer's Backlash"
+	name = "Spirit-bender's Backlash"
 	desc = "The unbinding of my conjured servant recoils upon me - the more grievously it was hurt, the deeper the toll. My body and focus are sapped until it passes."
 	icon_state = "debuff"

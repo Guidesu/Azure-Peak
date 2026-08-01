@@ -2,7 +2,7 @@
 /datum/action/cooldown/spell/conjure_dismiss
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
 	name = "Dismiss Conjuration"
-	desc = "Channel briefly to release your conjured servants back to the leyline. They vanish without violent shock, but the more hurt your servants are, the more of a backlash you will suffer. You are left open while you channel."
+	desc = "Channel briefly to release your conjured servants back to the spirit line. They vanish without violent shock, but the more hurt your servants are, the more of a backlash you will suffer. You are left open while you channel."
 	button_icon_state = "dismiss_conjure"
 	sound = null
 	spell_color = GLOW_COLOR_ARCANE
@@ -56,7 +56,7 @@
 			dismiss_conjured_minion(M)
 			count++
 	if(count)
-		to_chat(owner, span_notice("I begin to release my conjured servants back to the leyline."))
+		to_chat(owner, span_notice("I begin to release my conjured servants back to the spirit line."))
 		if(total_scale > 0 && isliving(owner))
 			apply_conjure_recoil(owner, energy_floor, severity, clamp(total_scale, 0, 1), FALSE, stamina_only)
 	else

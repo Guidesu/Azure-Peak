@@ -1,6 +1,6 @@
 /obj/item/rogueweapon/sword/sabre/ferramancy
 	name = "arcyne khopesh"
-	desc = "A khopesh of condensed arcyne energy, conjured from raw mana by a Ferramancer's will."
+	desc = "A khopesh of condensed chi energy, conjured from raw chi by a metal-bender's will."
 	color = "#3b5bdb"
 	icon_state = "akhopesh"
 	sheathe_icon = "akhopesh"
@@ -12,7 +12,7 @@
 
 /obj/item/rogueweapon/sword/rapier/ferramancy
 	name = "arcyne rapier"
-	desc = "A rapier of condensed arcyne energy, conjured from raw mana by a Ferramancer's will."
+	desc = "A rapier of condensed chi energy, conjured from raw chi by a metal-bender's will."
 	color = "#3b5bdb"
 	minstr = 0
 	unenchantable = TRUE
@@ -22,7 +22,7 @@
 
 /obj/item/rogueweapon/greatsword/ferramancy
 	name = "arcyne greatsword"
-	desc = "A greatsword of condensed arcyne energy, conjured from raw mana by a Ferramancer's will."
+	desc = "A greatsword of condensed chi energy, conjured from raw chi by a metal-bender's will."
 	color = "#3b5bdb"
 	minstr = 0
 	unenchantable = TRUE
@@ -32,7 +32,7 @@
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/ferramancy
 	name = "arcyne greataxe"
-	desc = "A twin-headed greataxe of condensed arcyne energy, conjured from raw mana by a Ferramancer's will."
+	desc = "A twin-headed greataxe of condensed chi energy, conjured from raw chi by a metal-bender's will."
 	color = "#3b5bdb"
 	minstr = 0
 	unenchantable = TRUE
@@ -42,7 +42,7 @@
 
 /obj/item/rogueweapon/halberd/ferramancy
 	name = "arcyne halberd"
-	desc = "A halberd of condensed arcyne energy, conjured from raw mana by a Ferramancer's will."
+	desc = "A halberd of condensed chi energy, conjured from raw chi by a metal-bender's will."
 	color = "#3b5bdb"
 	minstr = 0
 	unenchantable = TRUE

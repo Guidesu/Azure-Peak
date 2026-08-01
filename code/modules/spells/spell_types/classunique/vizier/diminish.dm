@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/diminish
 	name = "Diminish"
-	desc = "Diminishes all targets in an area through origin magick, reducing their ability to parry and dodge by 20% and sapping their physical faculties. Applies -2 to STR and CON."
+	desc = "Diminishes all targets in an area through origin bending, reducing their ability to parry and dodge by 20% and sapping their physical faculties. Applies -2 to STR and CON."
 	releasedrain = 60
 	chargedrain = 1
 	chargetime = 1 SECONDS
@@ -56,13 +56,13 @@
 			continue
 		for(var/mob/living/L in affected_turf.contents)
 			if(L.anti_magic_check())
-				L.visible_message(span_warning("The origin magick dissipates around [L]!"))
+				L.visible_message(span_warning("The origin bending dissipates around [L]!"))
 				playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 				continue
 			if(spell_guard_check(L, TRUE))
-				L.visible_message(span_warning("[L] resists the diminishing magick!"))
+				L.visible_message(span_warning("[L] resists the diminishing bending!"))
 				continue
-			L.visible_message(span_warning("Origin magick diminishes [L]'s instincts!"), span_warning("My instincts feel sluggish and predictable!"))
+			L.visible_message(span_warning("Origin bending diminishes [L]'s instincts!"), span_warning("My instincts feel sluggish and predictable!"))
 			L.apply_status_effect(/datum/status_effect/debuff/diminish)
 
 	return TRUE

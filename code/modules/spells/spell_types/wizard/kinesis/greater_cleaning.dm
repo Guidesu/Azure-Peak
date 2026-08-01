@@ -41,7 +41,7 @@
 	if(!target_turf)
 		return FALSE
 
-	owner.visible_message(span_notice("[owner] gestures forcefully. A wave of arcyne force ripples outward, scouring the area clean."), span_notice("I unleash a wave of kinetic force, purging the area of filth."))
+	owner.visible_message(span_notice("[owner] gestures forcefully. A wave of chi force ripples outward, scouring the area clean."), span_notice("I unleash a wave of kinetic force, purging the area of filth."))
 
 	var/washed = 0
 	var/max_washes = 75

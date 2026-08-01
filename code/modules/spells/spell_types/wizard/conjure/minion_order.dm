@@ -15,7 +15,7 @@
 
 /datum/action/cooldown/spell/minion_mark
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
-	name = "Conjurer's Mark"
+	name = "Spirit-bender's Mark"
 	desc = "Cast on someone to mark them friendly to your conjured servants, or strip an existing mark."
 	button_icon_state = "primordial_mark"
 	sound = null
@@ -76,7 +76,7 @@
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
 	button_icon_state = "order_servants"
 	name = "Recall Servants"
-	desc = "Wrench every conjured servant through the leyline to your side, wherever they have strayed - even across floors or a piloted body's leash."
+	desc = "Wrench every conjured servant through the spirit line to your side, wherever they have strayed - even across floors or a piloted body's leash."
 	sound = 'sound/magic/magnet.ogg'
 	spell_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -132,6 +132,6 @@
 		to_chat(user, span_warning("None of my servants answer the pull."))
 		reset_spell_cooldown()
 		return FALSE
-	to_chat(user, span_notice("I draw the leyline taut, and my servants are dragged to my side."))
+	to_chat(user, span_notice("I draw the spirit line taut, and my servants are dragged to my side."))
 	playsound(user, 'sound/magic/magnet.ogg', 60, TRUE)
 	return TRUE

@@ -64,11 +64,11 @@
 #define SPELLCOST_MAJOR_AOE          30
 #define SPELLCOST_SINGLE_CC          30
 #define SPELLCOST_UTILITY_BUFF       20 // We want actual cost
-#define SPELLCOST_STAT_BUFF          20 // We want actual cost 
+#define SPELLCOST_STAT_BUFF          20 // We want actual cost
 #define SPELLCOST_BRUSH 			 50 // For blood rush spells, which I don't want to become an overly easy trade for stamina
 #define SPELLCOST_SURGE 			 65 // For surge spells, which is pretty damn powerful
 #define SPELLCOST_AUGURY             10 // Augury card is cheap
-#define SPELLCOST_CONJURE            20	
+#define SPELLCOST_CONJURE            20
 #define SPELLCOST_TELEPORT           15
 #define SPELLCOST_MINOR_SUMMON       30
 #define SPELLCOST_MAJOR_SUMMON       50
@@ -162,7 +162,7 @@
 #define RUNE_WARD_ICON_DAMAGE "rune_damage"
 #define RUNE_WARD_ICON_ALARM "rune_alarm"
 
-// Magic Aspect system - default slot counts (overridden by mage_aspect_config per class)
+// Chi Discipline system - default slot counts (overridden by discipline_config per class)
 #define MAX_MAJOR_ASPECTS 1
 #define MAX_MINOR_ASPECTS 2
 #define ASPECT_MAJOR "major"
@@ -175,16 +175,17 @@
 #define TELEGRAPH_AREA_DENIAL 16 // Very Slow - AOE or ground targeted, requires setup to avoid
 #define TELEGRAPH_ULTIMATE 20 // Supremely slow. Getting hit is your own fault
 
-#define ASPECT_NAME_PYROMANCY   "Fire"
-#define ASPECT_NAME_CRYOMANCY   "Frost"
-#define ASPECT_NAME_FULGURMANCY "Storms"
-#define ASPECT_NAME_GEOMANCY    "Stone"
-#define ASPECT_NAME_KINESIS     "Force"
-#define ASPECT_NAME_FERRAMANCY  "Metal"
-#define ASPECT_NAME_AUGMENTATION "Enhancement"
-#define ASPECT_NAME_BATTLEWARDRY "Wards"
-#define ASPECT_NAME_TELOMANCY   "Trajectory"
-#define ASPECT_NAME_CONJURATION "Summoning"
+// Element names (display names for the 4 main elements + 2 auxiliary)
+#define ASPECT_NAME_PYROMANCY   "Fire"      // Firebending
+#define ASPECT_NAME_CRYOMANCY   "Water"     // Waterbending
+#define ASPECT_NAME_GEOMANCY    "Earth"     // Earthbending
+#define ASPECT_NAME_KINESIS     "Air"       // Airbending
+#define ASPECT_NAME_FULGURMANCY "Lightning" // Fire sub-skill (lightning generation)
+#define ASPECT_NAME_FERRAMANCY  "Metal"     // Earth sub-skill (metalbending)
+#define ASPECT_NAME_AUGMENTATION "Spirit"   // Auxiliary: Spirit discipline
+#define ASPECT_NAME_BATTLEWARDRY "Void"     // Auxiliary: Void discipline
+#define ASPECT_NAME_TELOMANCY   "Wind"      // Air sub-skill (projectile trajectory)
+#define ASPECT_NAME_CONJURATION "Summoning" // Spirit sub-skill
 
 // Arcyne ward tier hierarchy - higher tier wards override lower, equal or lower cannot override
 #define ARCYNE_WARD_TIER_OTHER   1 // Other Ward (cast on allies)

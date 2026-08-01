@@ -76,7 +76,7 @@
 			H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/divine)
 			H.ignite_mob()
 		if(H.has_status_effect(/datum/status_effect/debuff/necran_cross))
-			// Undead weakened by a blessed necran cross are more fragile to divine magycks
+			// Undead weakened by a blessed necran cross are more fragile to divine bendings
 			damage += 30
 		var/mob/living/carbon/human/caster
 		if (ishuman(firer))

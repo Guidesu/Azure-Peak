@@ -3,7 +3,7 @@
 /datum/action/cooldown/spell/projectile/arcyne_barrage
 	button_icon = 'icons/mob/actions/mage_telomancy.dmi'
 	name = "Arcyne Barrage"
-	desc = "The Ultimate Reason of a Telomancer - barrage a direction with pulses of piercing, ricocheting arcyne bolts for ten seconds. The bolts can pierce up to five targets. \
+	desc = "The Ultimate Reason of a Telomancer - barrage a direction with pulses of piercing, ricocheting chi bolts for ten seconds. The bolts can pierce up to five targets. \
 	You can walk while channeling but you are greatly slowed down and cannot change your direction. \
 	Being stunned, knocked down, or grabbed will break the channeling."
 	button_icon_state = "arcyne_barrage"
@@ -67,7 +67,7 @@
 	var/end_time = world.time + channel_duration
 	var/pulse_index = 0
 
-	H.visible_message(span_danger("<b>[H] unleashes a storm of arcyne bolts!</b>"))
+	H.visible_message(span_danger("<b>[H] unleashes a storm of chi bolts!</b>"))
 	playsound(get_turf(H), 'sound/magic/vlightning.ogg', 100, TRUE)
 	H.add_movespeed_modifier(ARCYNE_BARRAGE_SLOWDOWN_ID, update = TRUE, priority = 100, multiplicative_slowdown = channel_slowdown, movetypes = GROUND)
 
@@ -126,7 +126,7 @@
 	bolt.fire()
 
 /obj/projectile/magic/arcyne_barrage_bolt
-	name = "greater arcyne bolt"
+	name = "greater chi bolt"
 	icon = 'icons/obj/magic_projectiles.dmi'
 	icon_state = "arcyne_bolt"
 	damage = 45

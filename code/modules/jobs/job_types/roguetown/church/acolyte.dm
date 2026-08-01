@@ -217,6 +217,7 @@
 	// -- End of section for god specific bonuses --
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
+	grant_miracle_stance(H)
 	if(H.mind)
 		SStreasury.grant_savings(ECONOMIC_LOWER_MIDDLE_CLASS, H)
 

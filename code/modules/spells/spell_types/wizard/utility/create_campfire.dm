@@ -71,6 +71,6 @@
 
 /obj/machinery/light/rogue/campfire/create_campfire/onkick(mob/user)
 	var/mob/living/L = user
-	L.visible_message(span_info("[L] kicks \the [src], the arcyne fire dissipating."))
+	L.visible_message(span_info("[L] kicks \the [src], the chi flow fire dissipating."))
 	burn_out()
 	qdel(src)

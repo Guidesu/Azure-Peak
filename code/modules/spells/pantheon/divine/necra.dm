@@ -132,7 +132,7 @@
 
 /atom/movable/screen/alert/status_effect/churned
 	name = "Churning Essence"
-	desc = "The magicks that bind me into being are being disrupted! I should get away from the source as soon as I can!"
+	desc = "The bendings that bind me into being are being disrupted! I should get away from the source as soon as I can!"
 	icon_state = "stressvb"
 
 /datum/status_effect/churned

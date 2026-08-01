@@ -7,7 +7,7 @@
 /datum/action/cooldown/spell/ley_lines
 	name = "Ley Lines"
 	desc = "Creates a circle of arcyne power. Standing within it greatly enhances your spellcasting, increasing your intellect and reducing the cooldown of your spells. If you are not in Combat Mode, the ley lines instead restore your energy at a rapid pace.<br><br>While standing in a Leyline, you cannot defend yourself.<br><br>This will also grant a spell that makes you quickly move back to your Leylines."
-	fluff_desc = "'No! My Ley Lines!' is a common cry among Hierophants the moment they are dragged even an inch away from their carefully prepared nexus of power. Within its bounds, arcane formulae seem effortless, threads of mana unravel before the mind's eye, and complex spellwork flows with the precision of an auto-smither. Outside of it, reality becomes frustratingly ordinary once more. Most Magos give stern warnings this sensation can be addictive, and even dangerous. Hierophants take it as a suggestion."
+	fluff_desc = "'No! My Ley Lines!' is a common cry among Hierophants the moment they are dragged even an inch away from their carefully prepared nexus of power. Within its bounds, arcane formulae seem effortless, threads of chi unravel before the mind's eye, and complex spellwork flows with the precision of an auto-smither. Outside of it, reality becomes frustratingly ordinary once more. Most Magos give stern warnings this sensation can be addictive, and even dangerous. Hierophants take it as a suggestion."
 	button_icon_state = "rune2"
 	charge_sound = 'sound/magic/chargingold.ogg'
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_NO_MOVE

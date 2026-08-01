@@ -83,7 +83,7 @@
 		effect.create_spear_overlays()
 
 	H.visible_message(
-		span_boldwarning("[H] tears open a leyline rift - three phantom spears materialize around [H.p_them()]!"),
+		span_boldwarning("[H] tears open a spirit line rift - three phantom spears materialize around [H.p_them()]!"),
 		span_notice("Three phantom spears answer my call!"))
 	playsound(get_turf(H), 'sound/misc/portalactivate.ogg', 70, TRUE)
 	playsound(get_turf(H), 'sound/magic/antimagic.ogg', 60, TRUE)

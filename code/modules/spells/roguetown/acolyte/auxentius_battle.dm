@@ -408,13 +408,13 @@
 	S.AddComponent(/datum/component/conjured_item, null, TRUE, H, src)
 	H.put_in_hands(S)
 	conjured_shield = S
-	H.visible_message("[H] conjures a shimmering shield of arcyne energy!")
+	H.visible_message("[H] conjures a shimmering shield of chi energy!")
 	return TRUE
 
 // The conjured shield item
 /obj/item/rogueweapon/shield/auxentius_aegis
 	name = "justicar's aegis"
-	desc = "A rare hunk of arcyne energy projected in front of the caster. Slower and more deliberate movement by blades and melee weapons easily pierce through to the squishy Magi behind."
+	desc = "A rare hunk of chi energy projected in front of the caster. Slower and more deliberate movement by blades and melee weapons easily pierce through to the squishy Magi behind."
 	icon_state = "ravox_aegis"
 	wdefense = 7
 	coverage = 70

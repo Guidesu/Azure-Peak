@@ -15,7 +15,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	antimagic_allowed = FALSE //can you use it if you are antimagicked?
+	antimagic_allowed = FALSE //can you use it if you are antibendinged?
 	spell_tier = 2
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
 	invocations = list("Tabificus!")

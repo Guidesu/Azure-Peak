@@ -206,7 +206,7 @@
 		electricity_overlay = mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 		electricity_overlay.appearance_flags = RESET_COLOR
 	owner.add_overlay(electricity_overlay)
-	to_chat(owner, span_boldwarning("Electricity crackles across my body as arcyne energy overloads!"))
+	to_chat(owner, span_boldwarning("Electricity crackles across my body as chi energy overloads!"))
 
 /datum/status_effect/buff/arcyne_momentum/proc/exit_overcharge()
 	is_overcharged = FALSE

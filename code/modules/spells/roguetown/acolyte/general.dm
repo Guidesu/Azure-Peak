@@ -148,7 +148,7 @@
 		break
 
 	if(!no_embeds)
-		spelltarget.visible_message("The wounds tear and rip around the embedded objects!", "Agonising pain shoots through your body as magycks try to sew around the embedded objects!")
+		spelltarget.visible_message("The wounds tear and rip around the embedded objects!", "Agonising pain shoots through your body as bendings try to sew around the embedded objects!")
 		spelltarget.adjustBruteLoss(20)
 		playsound(spelltarget, 'sound/combat/dismemberment/dismem (2).ogg', 100)
 		spelltarget.emote("agony")

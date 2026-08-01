@@ -1,9 +1,9 @@
 /datum/action/cooldown/spell/aetherknife
 	button_icon = 'icons/mob/actions/mage_conjure.dmi'
 	name = "Aetherknife"
-	desc = "Congeal magickal energies into a blade which gains a bonus to power based on INT.\n\
+	desc = "Congeal bendingal energies into a blade which gains a bonus to power based on INT.\n\
 	The blade lasts until a new one is summoned or the spell is forgotten. Deals physical damage."
-	fluff_desc = "Invented by a mage who felt that the magician's brick was too crude, but still wanted a way to bypass magical defenses."
+	fluff_desc = "Invented by a bender who felt that the magician's brick was too crude, but still wanted a way to bypass magical defenses."
 	button_icon_state = "aetherknife"
 	sound = 'sound/magic/whiteflame.ogg'
 	spell_color = GLOW_COLOR_ARCANE
@@ -59,7 +59,7 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife/aetherknife
 	name = "aetherknife"
-	desc = "A knife formed out of congealed magickal energies. Makes for a very deadly melee and throwing weapon."
+	desc = "A knife formed out of congealed bendingal energies. Makes for a very deadly melee and throwing weapon."
 	icon_state = "throw_knifecorrupt"
 	force = 15
 	throwforce = 20

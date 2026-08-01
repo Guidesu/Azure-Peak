@@ -31,7 +31,7 @@
 	new /obj/effect/temp_visual/origin_restoration_burst(user_turf, SOUTHEAST)
 	new /obj/effect/temp_visual/origin_restoration_burst(user_turf, SOUTHWEST)
 
-	target.visible_message(span_blue("Origin magicks skip [target]'s body ahead in time!"), span_blue("My form is thrown ahead of the present!"))
+	target.visible_message(span_blue("Origin bendings skip [target]'s body ahead in time!"), span_blue("My form is thrown ahead of the present!"))
 	target.apply_status_effect(/datum/status_effect/buff/accel)
 
 	return TRUE

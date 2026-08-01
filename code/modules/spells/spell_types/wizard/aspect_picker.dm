@@ -21,7 +21,7 @@
 	var/max_utilities = 0
 	/// Aspect type paths that are pre-bound and cannot be removed
 	var/list/locked_aspects = list()
-	/// TRUE while performing binding/unbinding chants — prevents ui_close from qdel'ing
+	/// TRUE while performing binding/unbinding gestures — prevents ui_close from qdel'ing
 	var/chanting = FALSE
 	/// Assoc list of variant overrides from class config: aspect_path = variant_name (e.g. /datum/magic_aspect/pyromancy = "gefechtsgelehrter")
 	var/list/variant_overrides
@@ -73,7 +73,7 @@
 /datum/aspect_picker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "GrimoireAspectPicker", "Grimoire", 860, 580)
+		ui = new(user, src, "GrimoireAspectPicker", "Chi Disciplines", 860, 580)
 		ui.open()
 
 /datum/aspect_picker/ui_static_data(mob/user)
@@ -207,7 +207,7 @@
 	// Collect spent budget per aspect. We report every aspect with a pointbuy
 	// budget - both aspects with staged selections AND live attuned aspects that
 	// have owned pointbuy spells - so the UI shows the correct used total when
-	// reopening the picker via spellbook.
+	// reopening the picker via focus.
 	var/list/spent_budgets = list()
 	var/list/budget_aspects = list()
 	for(var/aspect_path_str in pointbuy_selections)
@@ -496,7 +496,7 @@
 			if(spell_path in selections)
 				// Block deselecting a pointbuy spell the player already owns from a live aspect.
 				// Removing it here would free budget they can't actually refund without unbinding
-				// the whole aspect, enabling infinite re-picks across spellbook sessions.
+				// the whole aspect, enabling infinite re-picks across focus sessions.
 				if(!initial_setup)
 					var/resolved_aspect = text2path(aspect_path)
 					var/resolved_spell = text2path(spell_path)
@@ -566,9 +566,9 @@
 			INVOKE_ASYNC(src, PROC_REF(perform_confirm), max_majors, max_minors_resolved)
 			return TRUE
 
-/// Async confirm handler - performs chants then applies all staged changes.
-/// Chanting only happens when there are unbinds (i.e. reshaping, not initial setup).
-/// If interrupted, already-applied changes stand; reopening the spellbook starts a fresh picker.
+/// Async confirm handler - performs gestures then applies all staged changes.
+/// Gestures only happen when there are unbinds (i.e. reshaping, not initial setup).
+/// If interrupted, already-applied changes stand; reopening the focus starts a fresh picker.
 /datum/aspect_picker/proc/perform_confirm(max_majors, max_minors_resolved)
 	var/major_unbinds = 0
 	var/minor_unbinds = 0
@@ -595,7 +595,7 @@
 	chanting = TRUE
 	var/has_unbinds = length(staged_unbind_aspects) || length(staged_unbind_utilities)
 
-	// Close the UI before chanting begins
+	// Close the UI before gestures begin
 	SStgui.close_uis(src)
 
 	if(has_unbinds)
@@ -632,7 +632,7 @@
 		for(var/spell_path_str in staged_utilities)
 			surviving_spells |= text2path(spell_path_str)
 
-		// Perform unbinding chants for staged aspect unbinds (not utility unbinds)
+		// Perform releasing gestures for staged aspect unbinds (not utility unbinds)
 		for(var/unbind_path in staged_unbind_aspects)
 			var/datum/magic_aspect/target
 			for(var/datum/magic_aspect/A in owner.mind.major_aspects)
@@ -646,8 +646,8 @@
 						break
 			if(!target)
 				continue
-			if(!target.perform_chant(owner, binding = FALSE))
-				to_chat(owner, span_warning("The unbinding chant was interrupted. I can try again."))
+			if(!target.perform_gestures(owner, binding = FALSE))
+				to_chat(owner, span_warning("The releasing form was interrupted. I can try again."))
 				chanting = FALSE
 				qdel(src)
 				return
@@ -666,14 +666,14 @@
 					continue
 				owner.mind.RemoveSpell(unbind_spell)
 
-	// Apply new aspect attunements - chant only if reshaping (has_unbinds)
+	// Apply new aspect attunements - gestures only if reshaping (has_unbinds)
 	for(var/path in staged_majors)
 		if(owner.mind.has_aspect(path))
 			continue
 		var/datum/magic_aspect/aspect = new path
 		if(has_unbinds)
-			if(!aspect.perform_chant(owner, binding = TRUE))
-				to_chat(owner, span_warning("The binding chant was interrupted. I can try again."))
+			if(!aspect.perform_gestures(owner, binding = TRUE))
+				to_chat(owner, span_warning("The assuming form was interrupted. I can try again."))
 				qdel(aspect)
 				chanting = FALSE
 				qdel(src)
@@ -690,8 +690,8 @@
 			continue
 		var/datum/magic_aspect/aspect = new path
 		if(has_unbinds)
-			if(!aspect.perform_chant(owner, binding = TRUE))
-				to_chat(owner, span_warning("The binding chant was interrupted. I can try again."))
+			if(!aspect.perform_gestures(owner, binding = TRUE))
+				to_chat(owner, span_warning("The assuming form was interrupted. I can try again."))
 				qdel(aspect)
 				chanting = FALSE
 				qdel(src)
@@ -771,12 +771,12 @@
 	var/current_majors = LAZYLEN(owner.mind.major_aspects)
 	var/current_minors = LAZYLEN(owner.mind.minor_aspects)
 	if((current_majors < max_majors) || (current_minors < max_minors_resolved))
-		to_chat(owner, span_notice("Aspects applied. You have remaining slots - use your spellbook to continue selecting."))
+		to_chat(owner, span_notice("Disciplines applied. You have remaining slots - use your focus to continue selecting."))
 	qdel(src)
 
 /// Check if a spell conflicts with one already selected in a different aspect's pointbuy,
 /// choice, or fixed spells - either the exact same spell, or one sharing its exclusive_group
-/// (e.g. arcyne ward variants, which all occupy the same skin slot). Returns the conflict
+/// (e.g. chi ward variants, which all occupy the same skin slot). Returns the conflict
 /// reason ("duplicate"/"exclusive") for use with selection_conflict_warning(), or FALSE.
 /datum/aspect_picker/proc/is_spell_selected_elsewhere(spell_path, exclude_aspect_path)
 	var/conflict
@@ -854,7 +854,7 @@
 
 /// Get total points spent in an aspect's pointbuy selections.
 /// Counts staged selections plus already-owned pointbuy spells sourced from this
-/// aspect (identified via spell.source_aspect) so editing via spellbook cannot
+/// aspect (identified via spell.source_aspect) so editing via focus cannot
 /// refund points the player has already spent. Aspects staged for unbinding
 /// refund their owned spells since confirm will revoke them.
 /datum/aspect_picker/proc/get_pointbuy_spent(aspect_path_str, datum/magic_aspect/aspect)

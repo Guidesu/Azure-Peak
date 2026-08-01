@@ -11,9 +11,9 @@
 	advclass_cat_rolls = list(CTAG_WAPPRENTICE = 20)
 
 	tutorial = "Yils of study have led you to the outpost's University. The Divine heals and protects. \
-	The arcyne arts, though useful, are far more suited to death and destruction. The Steward knows this, \
+	The chi arts, though useful, are far more suited to death and destruction. The Steward knows this, \
 	and provides a stipend to fund your studies and just as much your complacency, to not turn your \
-	magicks against the outpost. A comfortable tenure, a stipend, and a place to undergo your study. \
+	bendings against the outpost. A comfortable tenure, a stipend, and a place to undergo your study. \
 	What more could a Mage ask for?"
 
 	outfit = /datum/outfit/job/roguetown/wapprentice
@@ -44,10 +44,10 @@
 
 /datum/advclass/wapprentice/associate
 	name = "Magician's Associate"
-	tutorial = "No one could truly master the entirety of the arcyne arts. But commanding the fundamentals \
+	tutorial = "No one could truly master the entirety of the chi flow arts. But commanding the fundamentals \
 	is quite achievable. Deemed competent by your peers and mentor, you have become an Associate, paid \
 	a stipend to wield your power in the name of the Crown, or at least not against them. The Crown might \
-	want a bolt of lightning in their enemies back - after all, what else is the arcyne good for but war \
+	want a bolt of lightning in their enemies back - after all, what else is the chi flow good for but war \
 	and destruction? But as many mages knows, wisdom and whimsy is the true calling of the Magi who has \
 	mastered the arts. The choice is yours."
 	outfit = /datum/outfit/job/roguetown/wapprentice/associate
@@ -164,7 +164,7 @@
 	singed hair, and summoning gone wrong. Expenses and death alike, it is not a path for the pauper \
 	or the coward. You, however, were given a place as an apprentice in the outpost's University. \
 	Under the watchful gaze of the Court Magician, and their fellow associates, you may yet live \
-	to become a master of the arcyne arts."
+	to become a master of the chi flow arts."
 	outfit = /datum/outfit/job/roguetown/wapprentice/apprentice
 
 	category_tags = list(CTAG_WAPPRENTICE)
@@ -216,7 +216,7 @@
 	maximum_possible_slots = 2
 	tutorial = "You are an Azurcaephan Associate — a Spellblade, carrier of the five hundred yils tradition \
 		originating in antiquity. You are employed under the University \
-		as a fellow Magos. The arcyne arts are dangerous, \
+		as a fellow Magos. The chi arts are dangerous, \
 		and you are to protect your peers from their own recklessness. \
 		You are not a member of the retinue - though the Crown may pay you a salary. \
 		It is not your job to wield your power in the Crown's name. \
@@ -310,7 +310,7 @@
 			if("blade")
 				H.mind.AddSpell(new /datum/action/cooldown/spell/caedo)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/air_strike)
-				H.mind.AddSpell(new /datum/action/cooldown/spell/leyline_anchor)
+				H.mind.AddSpell(new /datum/action/cooldown/spell/spirit line_anchor)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/projectile/blade_storm)
 			if("phalangite")
 				H.mind.AddSpell(new /datum/action/cooldown/spell/spellblade_phalanx)

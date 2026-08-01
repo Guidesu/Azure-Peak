@@ -56,7 +56,7 @@
 		to_chat(H, span_notice("[momentum_cost] momentum released - empowered strike!"))
 
 /datum/action/cooldown/spell/telegraphed_strike/spellblade/on_antimagic_block(mob/living/L)
-	L.visible_message(span_warning("The arcyne force scatters as it nears [L]!"))
+	L.visible_message(span_warning("The chi force scatters as it nears [L]!"))
 	playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 
 /datum/action/cooldown/spell/telegraphed_strike/spellblade/on_hit_target(mob/living/carbon/human/H, mob/living/L, facing)

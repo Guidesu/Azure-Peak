@@ -2,7 +2,7 @@
 	name = "Monk"
 	tutorial = "You are a wandering acolyte, versed in both miracles and martial arts. You forego the hauberk that paladins wear in favor of humbling your foes through bloodless strikes. Your satchel hangs heavy, too, with ample provisions for the pilgrimage you're upon."
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	vampcompat = FALSE
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
@@ -64,6 +64,7 @@
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles. Better passive regeneration.
+	grant_miracle_stance(H)
 	if(H.mind)
 		var/weapons = list("Penance - Unarmored","Discipline - Unarmed","Katar","Knuckledusters","Quarterstaff")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -256,7 +257,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	backpack_contents = list(
-		/obj/item/flashlight/flare/torch/metal = 1, 
+		/obj/item/flashlight/flare/torch/metal = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		)
@@ -368,7 +369,7 @@
 				l_hand = /obj/item/needle/thorn/cleric //Unique to the Cleric. Far worse than a traditional iron needle, but better than a regular thorn needle - with 10 uses, instead of 5 (or 20, in the former's case).
 				beltl = /obj/item/reagent_containers/glass/bottle/rogue/healthpot //No cloth, but a basic potion of lifeblood - similar to the Sorcerer's manna potion. Take the 'Physician's Apprentice' virtue for that, uncapped skills, and more.
 			if("Crusader - Unique Longsword + Surcoat")
-				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE) 
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				beltl = /obj/item/rogueweapon/sword/long/cleric //Essentially, a silver longsword without the ability to sunder antagonists. Should it deal lesser sunder to mindless unholy foes, later? Perhaps.
 				switch(H.patron?.type)
 					if(/datum/patron/tribunal/praecursor)
@@ -778,7 +779,7 @@
 			H.adjust_skillrank(/datum/skill/combat/staves, SKILL_LEVEL_NOVICE, TRUE) //On par with an Adventuring Monk. Seems quite fitting.
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		if(/datum/patron/unveiled/aurelian)
-			cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/minion_order)
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/gravemark)

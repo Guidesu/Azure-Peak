@@ -2,11 +2,11 @@
 	button_icon = 'icons/mob/actions/classuniquespells/spellfist.dmi'
 	button_icon_state = "fist_of_psydon"
 	name = "Fist of Praecursor"
-	desc = "Slam your fist downward, sending arcyne force crashing into a 3x3 target area up to 5 paces away. \
+	desc = "Slam your fist downward, sending chi force crashing into a 3x3 target area up to 5 paces away. \
 		Brief telegraph before the strike lands. Deals blunt damage to the aimed bodypart. \
 		At 3+ momentum: consumes 3 to double damage. \
 		Can be deflected by Defend stance.\n\n\
-		'Step forward, rotating your fist into the punch. And, as you strike, envision yourself repeating the same strike in your mynd, and open the arcyne conduit of your arms, but close that of your legs, so that all of your body's weight is behind the strike. Then, at the very last moment, close the conduit of your arms as well, and thus arrest the strike before it come out, and you shall strike as if the fist of Praecursor Himself were behind the blow.'"
+		'Step forward, rotating your fist into the punch. And, as you strike, envision yourself repeating the same strike in your mynd, and open the chi flow conduit of your arms, but close that of your legs, so that all of your body's weight is behind the strike. Then, at the very last moment, close the conduit of your arms as well, and thus arrest the strike before it come out, and you shall strike as if the fist of Praecursor Himself were behind the blow.'"
 
 	spell_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -90,7 +90,7 @@
 	H.emote("attack", forced = TRUE)
 
 	if(hit_count)
-		H.visible_message(span_danger("[H] slams [H.p_their()] fist down, sending a shockwave of arcyne force crashing into the ground!"))
+		H.visible_message(span_danger("[H] slams [H.p_their()] fist down, sending a shockwave of chi force crashing into the ground!"))
 	else
 		H.visible_message(span_notice("[H] slams [H.p_their()] fist down, sending a shockwave into empty ground!"))
 

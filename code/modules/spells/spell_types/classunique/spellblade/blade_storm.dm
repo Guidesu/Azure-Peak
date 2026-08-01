@@ -4,7 +4,7 @@
 		and unleash a storm of slashes on them and around yourself.\
 		Requires 7 Momentum: 3 strikes at 30 damage each. \
 		Overcharged at 10 Momentum: 5 strikes at 30 damage each. \
-		If reflected onto yourself, the arcyne energy tears into your own chest. \
+		If reflected onto yourself, the chi flow energy tears into your own chest. \
 		The blade has no eyes - it does not distinguish friend from foe. Let not your foe deflect it into your ally."
 	button_icon = 'icons/mob/actions/classuniquespells/spellblade.dmi'
 	button_icon_state = "blade_storm"
@@ -139,7 +139,7 @@
 		new /obj/effect/temp_visual/blade_storm_telegraph(T)
 	playsound(center, 'sound/magic/blade_burst.ogg', 80, TRUE)
 
-	user.visible_message(span_boldwarning("[user] raises [held_weapon.name] - arcyne energy surges toward the [span_combatsecondarybp(parse_zone(def_zone))]!"))
+	user.visible_message(span_boldwarning("[user] raises [held_weapon.name] - chi energy surges toward the [span_combatsecondarybp(parse_zone(def_zone))]!"))
 
 	storm_deflected = FALSE
 	for(var/cut_num in 1 to aoe_cuts)
