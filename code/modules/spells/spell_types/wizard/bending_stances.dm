@@ -157,7 +157,10 @@
 			return stance.get_damage_mult()
 	for(var/datum/action/cooldown/spell/miracle_stance/stance in L.mind.spell_list)
 		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
-			return stance.get_damage_mult()
+			// For miracles, also apply faith flow damage multiplier
+			var/miracle_dmg = stance.get_damage_mult()
+			var/flow_mult = get_bending_flow_damage_mult(L)
+			return miracle_dmg * flow_mult
 	return 1.0
 
 /// Global helper — find the active bending OR miracle stance and return its cost multiplier

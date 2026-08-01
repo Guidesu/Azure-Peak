@@ -674,6 +674,11 @@
 	if(stance_cost_mult != 1.0)
 		new_cost *= stance_cost_mult
 
+	// Faith/bending flow cost multiplier
+	var/flow_cost_mult = get_bending_flow_cost_mult(living_owner)
+	if(flow_cost_mult != 1.0)
+		new_cost *= flow_cost_mult
+
 	return max(new_cost, 0.1)
 
 /// Checks if the owner of the spell can currently cast it.
