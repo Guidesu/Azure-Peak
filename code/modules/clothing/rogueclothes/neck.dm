@@ -515,7 +515,11 @@
 	icon_state = "psycross"
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	// RING and GLOVES are as legitimate for amulets as NECK/WRISTS - the ring slot is called out in
+	// get_mechanics_examine() below, and sanctified_tree.dm accepts an amulet in any of
+	// NECK/WRISTS/RING/GLOVES. They used to be missing here and mob_can_equip() below papered over
+	// it by returning TRUE unconditionally, which allowed a psycross into *every* slot.
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING|ITEM_SLOT_GLOVES
 	possible_item_intents = list(/datum/intent/use)
 	experimental_onhip = TRUE
 	anvilrepair = /datum/skill/craft/armorsmithing
@@ -524,8 +528,15 @@
 	/// Used to see whether or not we display the wrist icon or the neck icon regardless.
 	var/wrist_display = FALSE
 
+// This used to throw away ..() and `return TRUE` for every slot, which defeated the slot_flags
+// check entirely: quick-equip walks the whole slot priority list in
+// /mob/proc/equip_to_appropriate_slot, so a fully-dressed barefoot character quick-equipping an
+// amulet got it stuffed into the shoes slot. /datum/component/footstep then read
+// .stepnoise_flag off it every single step - 162 runtimes from one player in one round.
 /obj/item/clothing/neck/roguetown/psicross/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	..()
+	. = ..()
+	if(!.)
+		return
 
 	if(slot == SLOT_WRISTS || (wrist_display && slot != SLOT_NECK))
 		mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
@@ -533,8 +544,6 @@
 	else
 		mob_overlay_icon = initial(mob_overlay_icon)
 		sleeved = initial(sleeved)
-
-	return TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/attack_right(mob/user)
 	if(!ismob(loc))

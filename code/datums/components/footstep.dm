@@ -134,7 +134,9 @@
 	used_sound = pick(used_footsteps - last_sound) || last_sound
 	last_sound = used_sound
 
-	if(humshoes)
+	// istype(), not truthiness: `shoes` is only loosely typed, so anything that slips into the slot
+	// (a mis-slotted amulet, say) would otherwise reach .stepnoise_flag and runtime on every step.
+	if(istype(humshoes))
 		var/datum/component/item_equipped_movement_rustle/RSTL = humshoes.GetComponent(/datum/component/item_equipped_movement_rustle)
 		var/override_sound = FALSE
 		if(humshoes.stepnoise_flag & STEPNOISE_HEELS)	// Bit shoddy workaround, but this will still reveal all the footsteps to keen ears.
