@@ -18,7 +18,6 @@
 	health = 40
 	maxHealth = 40
 	move_to_delay = 5
-	d_intent = INTENT_DODGE
 	minbodytemp = 180
 	lose_patience_timeout = 150
 	vision_range = 5
@@ -43,8 +42,6 @@
 
 	var/deaggroprob = 10
 	var/eat_forever
-
-	candodge = TRUE
 
 	var/summon_tier = 0 // Tier of summoning
 	var/summon_primer = null // The message they get when summoned

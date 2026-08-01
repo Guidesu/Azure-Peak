@@ -26,7 +26,6 @@
 	attack_verb_continuous = "hacks"
 	attack_verb_simple = "hack"
 	attack_sound = 'sound/blank.ogg'
-	canparry = TRUE
 	d_intent = INTENT_DODGE
 	defprob = 20
 	speak_emote = list("growls")
