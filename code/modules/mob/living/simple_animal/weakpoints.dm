@@ -6,7 +6,7 @@
 	var/last_damage_stage = 0
 	var/last_hit_part
 
-/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon)
+/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
 	return
 
 /mob/living/proc/get_zone_melee_hit_bonus(zone)
@@ -60,7 +60,7 @@
 		return 0
 	return hit_zone.ranged_hit_bonus
 
-/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon)
+/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
 	if(damage <= 0 || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return
 	var/datum/anatomy/profile = get_anatomy()
@@ -69,7 +69,7 @@
 	var/datum/anatomy_zone/hit_zone = profile.get_zone(zone)
 	if(!hit_zone || !hit_zone.break_wound)
 		return
-	if(hit_zone.min_wlength && !is_prone())
+	if(hit_zone.min_wlength && !ranged && !is_prone())
 		var/wlength = weapon?.wlength || WLENGTH_NORMAL
 		if(wlength < hit_zone.min_wlength)
 			return

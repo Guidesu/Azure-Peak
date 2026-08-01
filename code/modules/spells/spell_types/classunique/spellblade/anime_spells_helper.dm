@@ -99,7 +99,7 @@ without going through the click pipeline, so spells can deliver weapon-style str
 					if(dismember_chance && prob(dismember_chance))
 						affecting.dismember(damage_type, blade_class, user, def_zone)
 			else
-				target.simple_woundcritroll(blade_class, wound_damage, user, def_zone, crit_message = TRUE)
+				target.simple_woundcritroll(blade_class, wound_damage, user, def_zone, crit_message = TRUE, ranged = TRUE)
 
 	var/attack_verb = "strikes"
 	var/hit_sound
