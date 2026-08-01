@@ -44,8 +44,8 @@
 			var/parked_count = manager.auto_park_connected_characters()
 			var/generation = manager.request_durable_checkpoint()
 			if(isnum(generation))
-				to_chat(usr, span_notice("Forced a checkpoint - now at generation [generation]. Parked [parked_count] connected character(s)."))
-				log_admin("[key_name(usr)] forced a DreamValley campaign checkpoint (generation [generation], [parked_count] connected characters parked).")
+				to_chat(usr, span_notice("Forced a checkpoint - now at generation [generation]. Parked [parked_count] connected character(s); capture failures: [manager.last_auto_park_failures]."))
+				log_admin("[key_name(usr)] forced a DreamValley campaign checkpoint (generation [generation], [parked_count] connected characters parked, [manager.last_auto_park_failures] failures).")
 			else
 				to_chat(usr, span_warning("Checkpoint write failed - see server log."))
 			return TRUE

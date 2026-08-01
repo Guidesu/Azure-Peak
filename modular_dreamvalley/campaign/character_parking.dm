@@ -211,14 +211,19 @@
  * Shutdown()).
  */
 /datum/dreamvalley_campaign_manager/proc/auto_park_connected_characters()
+	last_auto_park_failures = 0
+	last_auto_park_candidates = 0
 	if(!enabled)
 		return 0
 	var/parked_count = 0
 	for(var/mob/living/carbon/human/H as anything in GLOB.human_list)
 		if(!H.client)
 			continue
+		last_auto_park_candidates++
 		var/record_key = character_record_key(H.client)
 		if(!record_key)
+			last_auto_park_failures++
+			log_world("DreamValley auto-park at shutdown found no character record key for [key_name(H)].")
 			continue
 		// A character already durably parked (via a completed Far Travel)
 		// has no live body left to capture - nothing to do here.
@@ -229,6 +234,7 @@
 		var/list/record = capture_character_draft(H)
 		var/list/issues = record?["validation_issues"]
 		if(!islist(record) || length(issues))
+			last_auto_park_failures++
 			log_world("DreamValley auto-park at shutdown failed validation for [key_name(H)]: [islist(issues) ? issues.Join(", ") : "capture returned null"]")
 			continue
 

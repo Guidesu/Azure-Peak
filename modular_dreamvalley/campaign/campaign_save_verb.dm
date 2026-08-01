@@ -23,9 +23,10 @@
 		to_chat(usr, span_boldwarning("Checkpoint failed to write to disk - check the server log."))
 		return
 
-	log_admin("[key_name(usr)] forced a manual DreamValley checkpoint (generation [generation], [parked_count] connected characters parked).")
-	message_admins("[key_name_admin(usr)] forced a manual campaign save (checkpoint [generation], [parked_count] connected characters parked).")
-	to_chat(usr, span_notice("Checkpoint [generation] saved to data/dreamvalley/save.json. Parked [parked_count] connected character(s)."))
+	var/failure_text = GLOB.dreamvalley_campaign.last_auto_park_failures ? " [GLOB.dreamvalley_campaign.last_auto_park_failures] character(s) failed capture; see server log." : ""
+	log_admin("[key_name(usr)] forced a manual DreamValley checkpoint (generation [generation], [parked_count] connected characters parked, [GLOB.dreamvalley_campaign.last_auto_park_failures] failures).")
+	message_admins("[key_name_admin(usr)] forced a manual campaign save (checkpoint [generation], [parked_count] connected characters parked, [GLOB.dreamvalley_campaign.last_auto_park_failures] failures).")
+	to_chat(usr, span_notice("Checkpoint [generation] saved to data/dreamvalley/save.json. Parked [parked_count] connected character(s).[failure_text]"))
 
 /**
  * Read-only visibility into the campaign save state - what's saved, where,
@@ -80,6 +81,10 @@
 
 	manager.save_and_shutdown_in_progress = TRUE
 	var/parked_count = manager.auto_park_connected_characters()
+	if(manager.last_auto_park_failures)
+		manager.save_and_shutdown_in_progress = FALSE
+		to_chat(usr, span_boldwarning("Shutdown cancelled: [manager.last_auto_park_failures] connected character(s) could not be captured. Check the server log, resolve the character save errors, and try again."))
+		return
 	var/generation = manager.request_durable_checkpoint()
 	if(!isnum(generation))
 		manager.save_and_shutdown_in_progress = FALSE
