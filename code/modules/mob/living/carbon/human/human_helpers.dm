@@ -150,6 +150,16 @@
 			return 50
 
 	damage += dna.species.punch_damage
+
+	// Tempo: being swarmed by foes focuses the mind, increasing unarmed damage
+	var/tempo_dmg_mult = get_tempo_bonus(TEMPO_TAG_MELEE_DAMAGE)
+	if(tempo_dmg_mult > 1.0)
+		damage = round(damage * tempo_dmg_mult, 1)
+	// Stance damage multiplier (bending/miracle stances)
+	var/stance_dmg_mult = get_any_stance_damage_mult(src)
+	if(stance_dmg_mult != 1.0)
+		damage = round(damage * stance_dmg_mult, 1)
+
 	return damage
 
 /mob/living/carbon/human/is_floor_hazard_immune()

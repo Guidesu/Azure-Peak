@@ -620,6 +620,11 @@
 	if(tempo_cd_bonus > 0)
 		newcd = max(newcd - tempo_cd_bonus, 0.5 SECONDS)
 
+	// Stance cooldown multiplier (bending/miracle stances)
+	var/stance_cd_mult = get_any_stance_cooldown_mult(living_owner)
+	if(stance_cd_mult != 1.0)
+		newcd *= stance_cd_mult
+
 	return newcd
 
 /// Returns the armor cooldown penalty multiplier for this spell and caster.
@@ -663,6 +668,11 @@
 	var/tempo_cost_mult = living_owner.get_tempo_bonus(TEMPO_TAG_SPELL_COST)
 	if(tempo_cost_mult < 1.0)
 		new_cost *= tempo_cost_mult
+
+	// Stance cost multiplier (bending/miracle stances)
+	var/stance_cost_mult = get_any_stance_cost_mult(living_owner)
+	if(stance_cost_mult != 1.0)
+		new_cost *= stance_cost_mult
 
 	return max(new_cost, 0.1)
 

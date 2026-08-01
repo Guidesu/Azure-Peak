@@ -158,7 +158,7 @@
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(35, BRUTE, null, run_armor_check = TRUE)
+			L.apply_damage(35, BRUTE, null, L.run_armor_check(null, "blunt", damage = 35))
 			L.visible_message(span_danger("A rock spike impales [L]!"), span_userdanger("A rock spike erupts beneath me and impales my leg!"))
 			L.Knockdown(10)
 		// Visual effect
@@ -227,7 +227,7 @@
 	for(var/mob/living/L in T)
 		if(L == H)
 			continue
-		L.apply_damage(20, BRUTE, run_armor_check = TRUE)
+		L.apply_damage(20, BRUTE, null, L.run_armor_check(null, "blunt", damage = 20))
 		L.Knockdown(30)
 		L.Immobilize(50)
 		L.visible_message(span_danger("[L] plunges into a sinkhole!"), span_userdanger("The ground opens beneath me and I fall into a pit!"))
@@ -269,7 +269,7 @@
 			continue
 		var/dist = get_dist(H, L)
 		var/damage = max(30 - (dist * 5), 10)
-		L.apply_damage(damage, BRUTE, run_armor_check = TRUE)
+		L.apply_damage(damage, BRUTE, null, L.run_armor_check(null, "blunt", damage = damage))
 		L.Knockdown(15)
 		L.visible_message(span_danger("[L] is caught in the tremor!"), span_userdanger("The ground heaves beneath me!"))
 
@@ -303,7 +303,7 @@
 		for(var/mob/living/L in current)
 			if(L == H)
 				continue
-			L.apply_damage(15, BRUTE, run_armor_check = TRUE)
+			L.apply_damage(15, BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
 			L.Knockdown(10)
 			L.visible_message(span_danger("[H] slams through [L] on a slab of stone!"), span_userdanger("A slab of stone slams into me!"))
 
@@ -326,7 +326,7 @@
 	)
 	playsound(get_turf(L), 'sound/foley/stone_scrape.ogg', 60, TRUE)
 
-	L.apply_damage(15, BRUTE, run_armor_check = TRUE)
+	L.apply_damage(15, BRUTE, null, L.run_armor_check(null, "blunt", damage = 15))
 	L.Immobilize(20)
 
 	// Pull the target toward the caster

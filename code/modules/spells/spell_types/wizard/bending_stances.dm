@@ -118,6 +118,72 @@
 		REMOVE_TRAIT(owner, TRAIT_TEMPO, "bending_stance")
 	return ..()
 
+/// Get the damage multiplier from the currently active stance (1.0 if no stance)
+/datum/action/cooldown/spell/bending_stance/proc/get_damage_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["damage_mult"] || 1.0
+
+/// Get the cost multiplier from the currently active stance
+/datum/action/cooldown/spell/bending_stance/proc/get_cost_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["cost_mult"] || 1.0
+
+/// Get the cooldown multiplier from the currently active stance
+/datum/action/cooldown/spell/bending_stance/proc/get_cooldown_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["cooldown_mult"] || 1.0
+
+/// Global helper — find the active bending stance on a mob and return its damage multiplier
+/proc/get_stance_damage_mult(mob/living/L)
+	if(!L?.mind)
+		return 1.0
+	for(var/datum/action/cooldown/spell/bending_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_damage_mult()
+	return 1.0
+
+/// Global helper — find the active bending OR miracle stance and return its damage multiplier
+/proc/get_any_stance_damage_mult(mob/living/L)
+	if(!L?.mind)
+		return 1.0
+	for(var/datum/action/cooldown/spell/bending_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_damage_mult()
+	for(var/datum/action/cooldown/spell/miracle_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_damage_mult()
+	return 1.0
+
+/// Global helper — find the active bending OR miracle stance and return its cost multiplier
+/proc/get_any_stance_cost_mult(mob/living/L)
+	if(!L?.mind)
+		return 1.0
+	for(var/datum/action/cooldown/spell/bending_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_cost_mult()
+	for(var/datum/action/cooldown/spell/miracle_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_cost_mult()
+	return 1.0
+
+/// Global helper — find the active bending OR miracle stance and return its cooldown multiplier
+/proc/get_any_stance_cooldown_mult(mob/living/L)
+	if(!L?.mind)
+		return 1.0
+	for(var/datum/action/cooldown/spell/bending_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_cooldown_mult()
+	for(var/datum/action/cooldown/spell/miracle_stance/stance in L.mind.spell_list)
+		if(stance.active_stance_trait && stance.active_stance_trait != TRAIT_STANCE_NEUTRAL)
+			return stance.get_cooldown_mult()
+	return 1.0
+
 // ═══════════════════════════════════════════════════════════════════
 // FIRE STANCES — Northern Shaolin style
 // Aggressive, forward-moving, fast strikes. Firebending is about

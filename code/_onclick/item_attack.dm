@@ -502,6 +502,17 @@
 
 	newforce = CLAMP(newforce, user.used_intent.min_intent_damage, user.used_intent.max_intent_damage)
 
+	// Tempo: being swarmed by foes focuses the mind, increasing melee damage
+	if(isliving(user))
+		var/mob/living/L = user
+		var/tempo_dmg_mult = L.get_tempo_bonus(TEMPO_TAG_MELEE_DAMAGE)
+		if(tempo_dmg_mult > 1.0)
+			newforce = round(newforce * tempo_dmg_mult, 1)
+		// Stance damage multiplier (bending/miracle stances)
+		var/stance_dmg_mult = get_any_stance_damage_mult(L)
+		if(stance_dmg_mult != 1.0)
+			newforce = round(newforce * stance_dmg_mult, 1)
+
 	return newforce
 
 /obj/attacked_by(obj/item/I, mob/living/user)

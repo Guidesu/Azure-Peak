@@ -135,6 +135,34 @@
 		REMOVE_TRAIT(owner, TRAIT_TEMPO, "miracle_stance")
 	return ..()
 
+/// Get the damage multiplier from the currently active stance (1.0 if no stance)
+/datum/action/cooldown/spell/miracle_stance/proc/get_damage_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["damage_mult"] || 1.0
+
+/// Get the heal multiplier from the currently active stance
+/datum/action/cooldown/spell/miracle_stance/proc/get_heal_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["heal_mult"] || 1.0
+
+/// Get the cost multiplier from the currently active stance
+/datum/action/cooldown/spell/miracle_stance/proc/get_cost_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["cost_mult"] || 1.0
+
+/// Get the cooldown multiplier from the currently active stance
+/datum/action/cooldown/spell/miracle_stance/proc/get_cooldown_mult()
+	if(!active_stance_trait || active_stance_trait == TRAIT_STANCE_NEUTRAL)
+		return 1.0
+	var/list/stance = stances[stance_index]
+	return stance["cooldown_mult"] || 1.0
+
 // ═══════════════════════════════════════════════════════════════════
 // AUXENTIUS — Sun, Law, Oaths, Kingship
 // Solar stances: judgement, radiance, and protective light

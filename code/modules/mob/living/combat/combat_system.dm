@@ -453,6 +453,16 @@
 				return 10 SECONDS
 			if(has_status_effect(/datum/status_effect/buff/tempo_three))
 				return 15 SECONDS
+		//Melee/unarmed damage multiplier — tempo makes you hit harder in melee too
+		if(TEMPO_TAG_MELEE_DAMAGE)
+			if(has_status_effect(/datum/status_effect/buff/tempo_one))
+				return 1.1	//+10% melee damage
+			if(has_status_effect(/datum/status_effect/buff/tempo_two))
+				return 1.2	//+20% melee damage
+			if(has_status_effect(/datum/status_effect/buff/tempo_three))
+				return 1.35	//+35% melee damage
+			else
+				return 1.0
 		//Bonus parry CDR. Note that default is 1.2 SECONDS
 		if(TEMPO_TAG_PARRYCD_BONUS)
 			if(has_status_effect(/datum/status_effect/buff/tempo_one))

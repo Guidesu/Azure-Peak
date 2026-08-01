@@ -68,10 +68,9 @@
 #define CLOTHING_BROWN				"#61462c"
 #define CLOTHING_GREEN				"#428138"
 #define CLOTHING_DARK_GREEN			"#264d26"
-#define CLOTHING_BLUE				"#173266"
+#define CLOTHING_BLUE				"#007fff"
 #define CLOTHING_YELLOW				"#ffcd43"
 #define CLOTHING_TEAL				"#249589"
-#define CLOTHING_BLUE				"#007fff"
 #define CLOTHING_LUNARA			"#5e50e9"
 #define CLOTHING_WHITE				"#ffffff"
 #define CLOTHING_ORANGE				"#df8405"
@@ -128,12 +127,11 @@
 	"Blue" = CLOTHING_BLUE,			\
 	"Yellow" = CLOTHING_YELLOW,		\
 	"Teal" = CLOTHING_TEAL,			\
-	"Blue" = CLOTHING_BLUE,		\
 	"Azurosa" = CLOTHING_LUNARA,	\
 	"White" = CLOTHING_WHITE,		\
 	"Orange" = CLOTHING_ORANGE,		\
 	"Magenta" = CLOTHING_MAGENTA	\
-)	
+)
 /* Extended */
 #define EXTENDED_COLOR_MAP list(					\
 	"Burlap" = CLOTHING_BURLAP,						\

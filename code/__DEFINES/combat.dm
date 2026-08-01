@@ -414,6 +414,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define TEMPO_TAG_SPELL_POWER "spellpower"		//Bonus spell/miracle power multiplier at each tempo tier
 #define TEMPO_TAG_SPELL_COST "spellcost"		//Devotion/chi cost reduction multiplier at each tempo tier
 #define TEMPO_TAG_SPELL_COOLDOWN "spellcooldown"	//Cooldown reduction for spells/miracles at each tempo tier
+#define TEMPO_TAG_MELEE_DAMAGE "meleedamage"		//Melee/unarmed damage multiplier at each tempo tier
 
 #define TEMPO_FACTION_KEEP (1 << 0)
 #define TEMPO_FACTION_WRETCH (1 << 1)
