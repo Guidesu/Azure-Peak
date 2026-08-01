@@ -6,6 +6,12 @@
 	icon_state = null
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	unenchantable = TRUE
+	// Skin armors are magical hide, not cloth or metal. They provide no
+	// thermal insulation beyond what bare skin would.
+	heat_protection = NONE
+	cold_protection = NONE
+	max_heat_protection_temperature = null
+	min_cold_protection_temperature = null
 
 	/// Feedback messages
 	var/repairmsg_begin = "My armour begins to slowly mend its abuse.."
@@ -148,7 +154,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/regenerating/proc/setup_auto_repair()
 	repair_time = (max_integrity / auto_repair_mode_base) * auto_repair_mode_time
-	
+
 	// Ensure relative mode is on to respect the new calculated repair_time
 	relative_repair_mode = TRUE
 	auto_repair_mode_triggered = TRUE

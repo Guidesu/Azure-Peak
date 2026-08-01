@@ -56,6 +56,11 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	material_category = ARMOR_MAT_CHAINMAIL
+	// Chainmail: metal links conduct heat/cold but cover most of the body.
+	heat_protection = COVERAGE_ALL_BUT_HANDLEGS
+	cold_protection = COVERAGE_ALL_BUT_HANDLEGS
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/ComponentInitialize()
 	. = ..()

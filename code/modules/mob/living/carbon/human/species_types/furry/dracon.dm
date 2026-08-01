@@ -11,6 +11,7 @@
 	desc_title = "Drakian"
 	desc = "Mighty scaled individuals who claim to be descendants of the dragons of yore."
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)
+	inherent_traits = list(TRAIT_RESISTHEAT) // Scales resist heat (draconic heritage)
 	possible_ages = ALL_AGES_LIST
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mta.dmi'

@@ -22,6 +22,7 @@
 		HAIR,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	inherent_traits = list(TRAIT_RESISTCOLD) // Fur coat provides natural cold resistance
 	use_skintones = TRUE
 	attack_verb = "slash"
 	liked_food = GROSS | MEAT | FRIED

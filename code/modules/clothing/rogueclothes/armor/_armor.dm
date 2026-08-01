@@ -72,6 +72,13 @@
 	flags_inv = HIDEBOOB|HIDECROTCH
 	grid_width = 64
 	grid_height = 96
+	// Thermal protection defaults: armor covers the chest, so it insulates
+	// that area against both heat and cold. Subtypes can override these
+	// for better/worse protection (e.g. plate = better, skin armor = none).
+	heat_protection = CHEST
+	cold_protection = CHEST
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 
 	var/attachment_component = /datum/component/storage/concrete/roguetown/armor
 

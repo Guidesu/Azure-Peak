@@ -22,6 +22,7 @@
 		HAIR,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	inherent_traits = list(TRAIT_RESISTCOLD) // Fur coat provides natural cold resistance
 	attack_verb = "slash"
 	liked_food = GROSS | MEAT | FRIED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT

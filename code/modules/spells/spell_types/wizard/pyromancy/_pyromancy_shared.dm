@@ -37,6 +37,13 @@
 			continue
 		target.apply_status_effect(/datum/status_effect/debuff/scorched1)
 		final_tier = max(final_tier, 1)
+	// Fire spells heat up the target's body. More stacks = more heat.
+	// This connects pyromancy to the body temperature system: standing in
+	// fire or getting hit by fire spells will actively raise bodytemperature,
+	// potentially pushing into heat exhaustion territory.
+	if(iscarbon(target))
+		var/heat_amount = 5 * stacks
+		target.adjust_bodytemperature(heat_amount)
 	switch(final_tier)
 		if(1)
 			target.balloon_alert_to_viewers("<font color='#ff8a3d'>scorched I</font>")

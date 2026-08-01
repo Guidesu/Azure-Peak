@@ -18,6 +18,11 @@
 	boobed_detail = FALSE
 	chunkcolor = "#7d9097"
 	material_category = ARMOR_MAT_PLATE
+	// Brigandine: plate cuirass with leather exterior. Good insulation.
+	heat_protection = COVERAGE_ALL_BUT_HANDLEGS
+	cold_protection = COVERAGE_ALL_BUT_HANDLEGS
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/Initialize()
 	. = ..()

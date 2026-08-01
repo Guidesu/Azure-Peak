@@ -11,6 +11,7 @@
 	desc_title = "Kobold"
 	desc = "Short in stature and typically scrawny, these little lizards make up for it in their natural agility. People typically stereotype them as thieves, though..."
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)
+	inherent_traits = list(TRAIT_RESISTHEAT) // Scales resist heat
 	possible_ages = ALL_AGES_LIST
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/mob/species/anthro_small_malea.dmi'

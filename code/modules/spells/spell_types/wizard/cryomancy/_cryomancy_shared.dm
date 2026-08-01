@@ -37,6 +37,13 @@
 			continue
 		target.apply_status_effect(/datum/status_effect/debuff/frosted1)
 		final_tier = max(final_tier, 1)
+	// Frost spells cool down the target's body. More stacks = more cooling.
+	// This connects cryomancy to the body temperature system: getting hit by
+	// frost spells will actively lower bodytemperature, potentially pushing
+	// into hypothermia territory.
+	if(iscarbon(target))
+		var/cold_amount = -5 * stacks
+		target.adjust_bodytemperature(cold_amount)
 	// Single alert for the final tier reached (burst handles its own alert)
 	switch(final_tier)
 		if(1)

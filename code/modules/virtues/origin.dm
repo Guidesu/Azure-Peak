@@ -153,3 +153,24 @@
 
 /datum/virtue/origin/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.dna.species.origin = origin_name
+	// Temperature adaptation choice: lets the player pick a climate their
+	// character is acclimated to. Species with inherent resistance (furred
+	// = cold, scaled = heat) keep their natural resistance regardless of
+	// this choice; this is for everyone else, or for stacking with a
+	// species that already has one (e.g. a Lupian from Ognica could pick
+	// heat on top of their natural cold resistance).
+	var/static/list/climate_choices = list(
+		"None (Default)" = "none",
+		"Heat Acclimated (resist heat)" = "heat",
+		"Cold Acclimated (resist cold)" = "cold",
+	)
+	var/climate = tgui_input_list(recipient, "What climate is your character acclimated to?", "Climate Adaptation", climate_choices)
+	if(!climate)
+		climate = "None (Default)"
+	switch(climate_choices[climate])
+		if("heat")
+			ADD_TRAIT(recipient, TRAIT_RESISTHEAT, TRAIT_VIRTUE)
+			to_chat(recipient, span_notice("You are acclimated to heat."))
+		if("cold")
+			ADD_TRAIT(recipient, TRAIT_RESISTCOLD, TRAIT_VIRTUE)
+			to_chat(recipient, span_notice("You are acclimated to cold."))

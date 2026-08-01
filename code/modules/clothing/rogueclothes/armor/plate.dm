@@ -22,6 +22,11 @@
 	smelt_bar_num = 3
 	chunkcolor = "#a9c1ca"
 	material_category = ARMOR_MAT_PLATE
+	// Plate armor: well-padded, covers full torso. Good thermal protection.
+	heat_protection = COVERAGE_TORSO
+	cold_protection = COVERAGE_TORSO
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/roguetown/armor/plate/ComponentInitialize()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP, 12)
@@ -46,7 +51,7 @@
 	body_parts_covered = CHEST|GROIN
 	icon_state = "ihalfplatekini"
 	item_state = "ihalfplatekini"
-	max_integrity = ARMOR_INT_CHEST_MEDIUM_IRON	
+	max_integrity = ARMOR_INT_CHEST_MEDIUM_IRON
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
@@ -69,7 +74,7 @@
 	name = "bronze cuirass"
 	desc = "A chiseled breastplate of bronze, further padded with hide to comfort its championing bod. The plates have been carefully \
 	forged to mimic the statuesque physiques of Vaeltis's ancient heroes. Wearing it bolsters you with determination."
-	body_parts_covered = CHEST | VITALS | LEGS 
+	body_parts_covered = CHEST | VITALS | LEGS
 	icon_state = "bronzecuirass"
 	armor = ARMOR_BRONZE
 	smeltresult = /obj/item/ingot/bronze
@@ -280,7 +285,7 @@
 	name = "fluted half-plate"
 	desc = "An ornate steel cuirass, fitted with tassets and pauldrons for additional coverage. This lightweight deviation of 'plate \
 	armor' is favored by cuirassiers all across Vaeltis, alongside fledging barons who've - up until now - waged their fiercest \
-	battles upon a chamberpot." 
+	battles upon a chamberpot."
 	icon_state = "ornatehalfplate"
 
 	equip_delay_self = 6 SECONDS
@@ -482,7 +487,7 @@
 	desc = "Blessed silver flutings trace across steel plate-and-maille, while the undercarriage lies heavily padded. Few \
 	could hope to pierce this mantle; fewer could truly be seen as worthy enough to don it. <br> These relics are oft-purported \
 	to have survived the Grenzelhoft-Otavan wars of yore - now, refurbished and repurposed to be worn against the Archenemy in His name."
-	icon_state = "ordinatorplate"	
+	icon_state = "ordinatorplate"
 	is_silver = TRUE
 	is_lesser_silver = TRUE
 
@@ -1024,7 +1029,7 @@
 	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Vaeltic Inquisition's finest. Where \
 	the longcoat parts, a surprise awaits; an ornate steel cuirass, worn beneath the leathers to ward off crippling blows."
 	sewrepair = FALSE
-	smeltresult = /obj/item/ingot/steel 
+	smeltresult = /obj/item/ingot/steel
 	icon_state = "inqcoata"
 	item_state = "inqcoata"
 	equip_delay_self = 4 SECONDS
@@ -1045,7 +1050,7 @@
 	smeltresult = /obj/item/ingot/gold
 	desc = "An ornate steel chestplate, decorated with golden fluting. For when you need to bring a little bit of regal style to that upcoming duel with your lyfe's greatest adversary."
 	smelt_bar_num = 1
-	
+
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/decorated
 	name = "decorated cuirass"
 	icon_state = "gildedcuirass"

@@ -20,6 +20,7 @@
 	skin_tone_wording = "Fur Colors"
 	use_skin_tone_wording_for_examine = FALSE
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE, MUTCOLORS)
+	inherent_traits = list(TRAIT_RESISTCOLD) // Fur coat provides natural cold resistance
 	possible_ages = ALL_AGES_LIST
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mta.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fma.dmi'
