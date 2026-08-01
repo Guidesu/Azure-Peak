@@ -164,17 +164,18 @@ def build_grid(blocks: list, cell_defs: dict, maxx: int, maxy: int, maxz: int,
         max_y = maxy
 
     key_len = len(next(iter(cell_defs.keys()))) if cell_defs else 2
-    width = max_x - min_x + 1
 
+    # DMM/TGM grid format: each (x,y,z) entry is a COLUMN (x fixed, keys span Y).
+    # X increments first, Y starts at min_y and goes UP.
+    # Keys within each entry go from y=min_y to y=max_y (bottom to top).
     lines = []
     for z in zs:
-        for y in range(max_y, min_y - 1, -1):  # DMM is top-to-bottom (high y first)
-            coord = f"({min_x},{y},{z})"
+        for x in range(min_x, max_x + 1):
+            coord = f"({x},{min_y},{z})"
             lines.append(f'{coord} = {{"')
 
-            # DMM grid format: one key per line, width lines total
-            for x in range(min_x, max_x + 1):
-                key = grid.get((x, y, z), "aa")  # default to empty cell
+            for y in range(min_y, max_y + 1):
+                key = grid.get((x, y, z), "aa")
                 lines.append(key)
 
             lines.append('"}')
@@ -188,16 +189,15 @@ def write_dmm(output_path: str, cell_defs: dict, types: list, grid_lines: list[s
     print(f"Writing {output_path} ...")
 
     with open(output_path, "w", encoding="utf-8", newline="\n") as f:
-        # Header
+        # Header (no blank line after, matching dmm2tgm.py format)
         f.write("//MAP CONVERTED BY opendream_to_dmm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE\n")
-        f.write("\n")
 
-        # Cell definitions (TGM format)
+        # Cell definitions (TGM format, no blank lines between entries)
         for key in sorted(cell_defs.keys()):
             cell = cell_defs[key]
             cell_str = build_cell_string(cell, types)
             f.write(f'"{key}" = (\n')
-            f.write(f'{cell_str})\n\n')
+            f.write(f'{cell_str})\n')
 
         # Grid
         for line in grid_lines:

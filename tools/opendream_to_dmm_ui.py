@@ -2,9 +2,6 @@
 """
 opendream_to_dmm_ui.py — Web UI for converting OpenDream JSON to .dmm map files.
 
-Starts a local web server, opens a browser, and provides a graphical interface
-for selecting the JSON file, setting export options, and downloading the result.
-
 Usage:
     python tools/opendream_to_dmm_ui.py [port]
 
@@ -16,494 +13,224 @@ import os
 import sys
 import threading
 import webbrowser
+import tempfile
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, unquote
 from pathlib import Path
 
-# Reuse the core logic from the CLI tool
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from opendream_to_dmm import (
     format_value, format_var_overrides, build_cell_string, build_grid
 )
 
-# ─── State ───────────────────────────────────────────────────────────────────
-
 loaded_data = None
 loaded_path = None
+tempfile_dir = tempfile.mkdtemp(prefix="dmm_export_")
 
-# ─── HTML/CSS/JS ─────────────────────────────────────────────────────────────
+# ─── HTML ────────────────────────────────────────────────────────────────────
 
-HTML_PAGE = """<!DOCTYPE html>
+HTML_PAGE = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpenDream → DMM Converter</title>
+<title>OpenDream to DMM</title>
 <style>
-  :root {
-    --bg: #1a1a2e;
-    --surface: #16213e;
-    --surface2: #0f3460;
-    --accent: #e94560;
-    --accent2: #533483;
-    --text: #eee;
-    --text-dim: #999;
-    --border: #333;
-    --success: #4ecca3;
-    --error: #e94560;
-    --radius: 8px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .container {
-    max-width: 720px;
-    width: 100%;
-  }
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 4px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 24px; }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .card h2 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-dim);
-    margin-bottom: 16px;
-  }
-  .file-input-wrap {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  input[type="text"], select {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 10px 14px;
-    font-size: 0.9rem;
-    width: 100%;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  input[type="text"]:focus, select:focus { border-color: var(--accent); }
-  input[type="number"] {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 8px 12px;
-    font-size: 0.85rem;
-    width: 80px;
-    outline: none;
-  }
-  input[type="number"]:focus { border-color: var(--accent); }
-  .btn {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 24px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    font-weight: 600;
-  }
-  .btn:hover { opacity: 0.9; }
-  .btn:active { transform: scale(0.97); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-secondary {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-  }
-  .btn-browse {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .row { display: flex; gap: 12px; margin-bottom: 12px; align-items: center; }
-  .row label { font-size: 0.85rem; color: var(--text-dim); min-width: 100px; }
-  .checkbox-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .checkbox-row input[type="checkbox"] {
-    width: 18px; height: 18px; accent-color: var(--accent);
-  }
-  .checkbox-row label { color: var(--text); font-size: 0.85rem; cursor: pointer; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
-  .status {
-    padding: 12px 16px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    margin-top: 12px;
-    display: none;
-  }
-  .status.show { display: block; }
-  .status.success { background: rgba(78,204,163,0.15); border: 1px solid var(--success); color: var(--success); }
-  .status.error { background: rgba(233,69,96,0.15); border: 1px solid var(--error); color: var(--error); }
-  .status.loading { background: rgba(83,52,131,0.15); border: 1px solid var(--accent2); color: var(--text); }
-  .map-info {
-    background: var(--surface2);
-    border-radius: 6px;
-    padding: 14px 16px;
-    margin-top: 12px;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    display: none;
-  }
-  .map-info.show { display: block; }
-  .map-info span { color: var(--text); font-weight: 600; }
-  .download-link {
-    display: inline-block;
-    margin-top: 12px;
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  .download-link:hover { text-decoration: underline; }
-  .spinner {
-    display: inline-block;
-    width: 14px; height: 14px;
-    border: 2px solid var(--text-dim);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hint { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
-  .z-select-wrap { display: flex; gap: 8px; align-items: center; }
-  .divider { height: 1px; background: var(--border); margin: 16px 0; }
-  .dropzone {
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 48px 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-bottom: 16px;
-    position: relative;
-  }
-  .dropzone:hover { border-color: var(--accent); background: rgba(233,69,96,0.05); }
-  .dropzone.dragover {
-    border-color: var(--accent);
-    background: rgba(233,69,96,0.1);
-    transform: scale(1.01);
-  }
-  .dropzone-icon {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
-    opacity: 0.5;
-  }
-  .dropzone-text {
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .dropzone-hint {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-  .dropzone input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
-  .or-divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 16px 0;
-    color: var(--text-dim);
-    font-size: 0.75rem;
-  }
-  .or-divider::before, .or-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .or-divider span { padding: 0 12px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#1a1a2e;color:#eee;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.c{max-width:640px;width:100%}
+h1{font-size:1.5rem;margin-bottom:4px;background:linear-gradient(135deg,#e94560,#533483);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{color:#999;font-size:.85rem;margin-bottom:20px}
+.card{background:#16213e;border:1px solid #333;border-radius:8px;padding:20px;margin-bottom:14px}
+.card h2{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:14px}
+.dz{border:2px dashed #444;border-radius:8px;padding:40px 20px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:12px}
+.dz:hover{border-color:#e94560;background:rgba(233,69,96,.05)}
+.dz.over{border-color:#e94560;background:rgba(233,69,96,.12)}
+.dz-ic{font-size:2rem;margin-bottom:8px;opacity:.4}
+.dz-tx{font-size:.95rem;margin-bottom:2px}
+.dz-hn{font-size:.75rem;color:#666}
+input[type=text],select{background:#0f3460;border:1px solid #333;border-radius:6px;color:#eee;padding:10px 12px;font-size:.9rem;width:100%;outline:none}
+input[type=text]:focus,select:focus{border-color:#e94560}
+input[type=number]{background:#0f3460;border:1px solid #333;border-radius:6px;color:#eee;padding:8px 10px;font-size:.85rem;width:100%;outline:none}
+input[type=number]:focus{border-color:#e94560}
+input[type=checkbox]{width:18px;height:18px;accent-color:#e94560}
+.btn{background:linear-gradient(135deg,#e94560,#533483);color:#fff;border:none;border-radius:6px;padding:10px 22px;font-size:.9rem;cursor:pointer;font-weight:600;transition:.15s}
+.btn:hover{opacity:.88}.btn:active{transform:scale(.97)}.btn:disabled{opacity:.35;cursor:not-allowed}
+.row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.row label{font-size:.85rem;color:#999;min-width:80px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
+.cb{display:flex;align-items:center;gap:8px;margin:10px 0}
+.cb label{font-size:.85rem;cursor:pointer}
+.st{padding:10px 14px;border-radius:6px;font-size:.85rem;margin-top:10px;display:none}
+.st.show{display:block}
+.st.ok{background:rgba(78,204,163,.12);border:1px solid #4ecca3;color:#4ecca3}
+.st.err{background:rgba(233,69,96,.12);border:1px solid #e94560;color:#e94560}
+.st.load{background:rgba(83,52,131,.12);border:1px solid #533483;color:#ccc}
+.mi{background:#0f3460;border-radius:6px;padding:12px 14px;margin-top:10px;font-size:.8rem;color:#999;display:none}
+.mi.show{display:block}
+.mi b{color:#eee;font-weight:600}
+.dl{display:inline-block;margin-top:10px;color:#e94560;text-decoration:none;font-size:.9rem;font-weight:600}
+.dl:hover{text-decoration:underline}
+.sp{display:inline-block;width:14px;height:14px;border:2px solid #555;border-top-color:#e94560;border-radius:50%;animation:sp .7s linear infinite;margin-right:6px;vertical-align:middle}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hn{font-size:.75rem;color:#555;margin-top:4px}
+.or{display:flex;align-items:center;text-align:center;margin:12px 0;color:#555;font-size:.75rem}
+.or::before,.or::after{content:'';flex:1;height:1px;background:#333}
+.or span{padding:0 10px}
+.div{height:1px;background:#333;margin:14px 0}
+.fw{display:flex;gap:10px}
+.fw input{flex:1}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>OpenDream &rarr; DMM Converter</h1>
-  <p class="subtitle">Export saved world state from OpenDream's compiled JSON to an editable .dmm map file</p>
+<div class="c">
+  <h1>OpenDream &rarr; DMM</h1>
+  <p class="sub">Convert compiled JSON to an editable .dmm map file</p>
 
-  <!-- Step 1: Load JSON -->
   <div class="card">
     <h2>1 &middot; Load JSON</h2>
-    <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
-      <div class="dropzone-icon">&#128193;</div>
-      <div class="dropzone-text" id="dropzoneText">Drop roguetown.json here</div>
-      <div class="dropzone-hint">or click to browse</div>
-      <input type="file" id="fileInput" accept=".json" onchange="onFileSelected(this)" />
+    <div class="dz" id="dz">
+      <div class="dz-ic">&#128193;</div>
+      <div class="dz-tx" id="dzTx">Drop roguetown.json here</div>
+      <div class="dz-hn">or click to browse</div>
     </div>
-    <div class="or-divider"><span>or enter path manually</span></div>
-    <div class="file-input-wrap">
-      <input type="text" id="jsonPath" placeholder="Path to roguetown.json ..." />
-      <button class="btn" onclick="loadJson()" id="loadBtn">Load</button>
+    <input type="file" id="fi" accept=".json,application/json" style="display:none">
+    <div class="or"><span>or paste path</span></div>
+    <div class="fw">
+      <input type="text" id="jp" placeholder="C:\...\roguetown.json">
+      <button class="btn" id="lb">Load</button>
     </div>
-    <p class="hint">Drag &amp; drop the OpenDream compiled JSON, click to browse, or enter the path above</p>
-    <div class="map-info" id="mapInfo"></div>
-    <div class="status" id="loadStatus"></div>
+    <div class="mi" id="mi"></div>
+    <div class="st" id="ls"></div>
   </div>
 
-  <!-- Step 2: Export Options -->
-  <div class="card" id="optionsCard" style="opacity:0.4; pointer-events:none;">
-    <h2>2 &middot; Export Options</h2>
-
+  <div class="card" id="oc" style="opacity:.35;pointer-events:none">
+    <h2>2 &middot; Export</h2>
     <div class="row">
       <label>Z-level</label>
-      <div class="z-select-wrap">
-        <select id="zLevel" onchange="onZChange()">
-          <option value="">All z-levels</option>
-        </select>
-      </div>
+      <select id="zl"><option value="">All</option></select>
     </div>
-
-    <div class="divider"></div>
-
-    <div class="row">
-      <label>Region</label>
-      <div style="font-size:0.8rem; color:var(--text-dim);">Leave blank to export the full map</div>
+    <div class="div"></div>
+    <div class="row"><label>Region</label><span style="font-size:.8rem;color:#666">Leave blank for full map</span></div>
+    <div class="g4">
+      <div><input type="number" id="x1" placeholder="Min X" disabled><div class="hn">Min X</div></div>
+      <div><input type="number" id="x2" placeholder="Max X" disabled><div class="hn">Max X</div></div>
+      <div><input type="number" id="y1" placeholder="Min Y" disabled><div class="hn">Min Y</div></div>
+      <div><input type="number" id="y2" placeholder="Max Y" disabled><div class="hn">Max Y</div></div>
     </div>
-    <div class="grid-4">
-      <div>
-        <input type="number" id="minX" placeholder="Min X" disabled />
-        <div class="hint">Min X</div>
-      </div>
-      <div>
-        <input type="number" id="maxX" placeholder="Max X" disabled />
-        <div class="hint">Max X</div>
-      </div>
-      <div>
-        <input type="number" id="minY" placeholder="Min Y" disabled />
-        <div class="hint">Min Y</div>
-      </div>
-      <div>
-        <input type="number" id="maxY" placeholder="Max Y" disabled />
-        <div class="hint">Max Y</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="checkbox-row">
-      <input type="checkbox" id="noObjects" />
-      <label for="noObjects">Skip objects (movables) &mdash; export only turfs and areas</label>
-    </div>
-
-    <div class="status" id="exportStatus"></div>
-    <div style="margin-top:16px;">
-      <button class="btn" onclick="exportDmm()" id="exportBtn" disabled>Export to .dmm</button>
-      <a class="download-link" id="downloadLink" style="display:none;" href="#" download>&#8595; Download .dmm</a>
+    <div class="div"></div>
+    <div class="cb"><input type="checkbox" id="no"><label for="no">Skip objects (turfs/areas only)</label></div>
+    <div class="st" id="es"></div>
+    <div style="margin-top:12px">
+      <button class="btn" id="eb" disabled>Export to .dmm</button>
+      <a class="dl" id="dl" style="display:none">&#8595; Download</a>
     </div>
   </div>
 </div>
 
 <script>
-let mapBounds = null;
+const $ = id => document.getElementById(id);
+let mb = null;
 
-function setStatus(id, msg, type) {
-  const el = document.getElementById(id);
-  el.className = 'status show ' + type;
-  el.innerHTML = msg;
-}
-function clearStatus(id) {
-  const el = document.getElementById(id);
-  el.className = 'status';
-  el.innerHTML = '';
-}
+function st(id, m, t) { const e = $(id); e.className = 'st show ' + t; e.innerHTML = m; }
 
-// ─── Drag & Drop ────────────────────────────────────────────────────────────
+// ─── File input (hidden, triggered by dropzone click) ───────────────────────
+const dz = $('dz');
+const fi = $('fi');
 
-const dropzone = document.getElementById('dropzone');
+dz.addEventListener('click', () => fi.click());
 
-['dragenter','dragover'].forEach(ev => {
-  dropzone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.add('dragover'); });
-});
-['dragleave','drop'].forEach(ev => {
-  dropzone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); dropzone.classList.remove('dragover'); });
+fi.addEventListener('change', () => {
+  if (fi.files.length) handleFile(fi.files[0]);
 });
 
-dropzone.addEventListener('drop', e => {
-  const files = e.dataTransfer.files;
-  if (files.length > 0) {
-    handleFile(files[0]);
-  }
-});
+// ─── Drag & drop on dropzone ────────────────────────────────────────────────
+['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('over'); }));
+['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
+dz.addEventListener('drop', e => { if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
 
-// Also allow dropping anywhere on the page
-['dragenter','dragover'].forEach(ev => {
-  document.body.addEventListener(ev, e => { e.preventDefault(); });
-});
-document.body.addEventListener('drop', e => {
+// ─── Drag & drop anywhere on page (prevent browser from opening the file) ──
+['dragover'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+document.addEventListener('drop', e => {
   e.preventDefault();
-  const files = e.dataTransfer.files;
-  if (files.length > 0) handleFile(files[0]);
+  if (e.dataTransfer.files.length && !dz.contains(e.target)) handleFile(e.dataTransfer.files[0]);
 });
 
-function onFileSelected(input) {
-  if (input.files.length > 0) handleFile(input.files[0]);
-}
-
+// ─── Handle a file (from input or drag-drop) ────────────────────────────────
 async function handleFile(file) {
-  document.getElementById('dropzoneText').textContent = file.name;
-  setStatus('loadStatus', '<span class="spinner"></span>Uploading ' + file.name + ' ...', 'loading');
-
+  $('dzTx').textContent = file.name;
+  st('ls', '<span class="sp"></span>Uploading ' + file.name + ' (' + (file.size/1024/1024).toFixed(1) + ' MB)...', 'load');
   try {
-    const formData = new FormData();
-    formData.append('file', file);
-    const resp = await fetch('/api/upload', { method: 'POST', body: formData });
-    const data = await resp.json();
-    if (data.error) {
-      setStatus('loadStatus', 'Error: ' + data.error, 'error');
-      document.getElementById('mapInfo').className = 'map-info';
-      return;
-    }
-    onJsonLoaded(data, file.name);
-  } catch(e) {
-    setStatus('loadStatus', 'Error: ' + e.message, 'error');
-  }
+    const fd = new FormData();
+    fd.append('file', file);
+    const r = await fetch('/api/upload', { method: 'POST', body: fd });
+    const d = await r.json();
+    if (d.error) { st('ls', 'Error: ' + d.error, 'err'); return; }
+    loaded(d, file.name);
+  } catch(e) { st('ls', 'Error: ' + e.message, 'err'); }
 }
 
-// ─── Path-based load (manual entry) ─────────────────────────────────────────
+// ─── Load by path ───────────────────────────────────────────────────────────
+$('lb').addEventListener('click', loadPath);
+$('jp').addEventListener('keydown', e => { if (e.key === 'Enter') loadPath(); });
 
-async function loadJson() {
-  const path = document.getElementById('jsonPath').value.trim();
-  if (!path) { setStatus('loadStatus', 'Please enter a JSON file path.', 'error'); return; }
-
-  setStatus('loadStatus', '<span class="spinner"></span>Loading JSON (this may take a moment for large files)...', 'loading');
-  document.getElementById('loadBtn').disabled = true;
-
+async function loadPath() {
+  const p = $('jp').value.trim();
+  if (!p) { st('ls', 'Enter a path first.', 'err'); return; }
+  st('ls', '<span class="sp"></span>Loading...', 'load');
+  $('lb').disabled = true;
   try {
-    const resp = await fetch('/api/load', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({path: path})
-    });
-    const data = await resp.json();
-    if (data.error) {
-      setStatus('loadStatus', 'Error: ' + data.error, 'error');
-      document.getElementById('mapInfo').className = 'map-info';
-      return;
-    }
-    document.getElementById('dropzoneText').textContent = path.split(/[\\\\/]/).pop();
-    onJsonLoaded(data, path);
-  } catch(e) {
-    setStatus('loadStatus', 'Error: ' + e.message, 'error');
-  } finally {
-    document.getElementById('loadBtn').disabled = false;
-  }
+    const r = await fetch('/api/load', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({path:p}) });
+    const d = await r.json();
+    if (d.error) { st('ls', 'Error: ' + d.error, 'err'); return; }
+    $('dzTx').textContent = p.split(/[\\\/]/).pop();
+    loaded(d, p);
+  } catch(e) { st('ls', 'Error: ' + e.message, 'err'); }
+  finally { $('lb').disabled = false; }
 }
 
-// ─── Common: JSON loaded successfully ───────────────────────────────────────
+// ─── Common: data loaded ────────────────────────────────────────────────────
+function loaded(d, name) {
+  mb = d;
+  $('mi').className = 'mi show';
+  $('mi').innerHTML = 'Map: <b>' + d.maxx + '</b> x <b>' + d.maxy + '</b> x <b>' + d.maxz + '</b> &middot; <b>' + d.cellCount + '</b> cells &middot; <b>' + d.fileSize + '</b>';
+  st('ls', 'Loaded ' + name, 'ok');
 
-function onJsonLoaded(data, name) {
-  mapBounds = data;
-  const info = document.getElementById('mapInfo');
-  info.className = 'map-info show';
-  info.innerHTML = `Map: <span>${data.maxx}</span> x <span>${data.maxy}</span> x <span>${data.maxz}</span> &middot; <span>${data.cellCount}</span> cell definitions &middot; <span>${data.fileSize}</span>`;
-  setStatus('loadStatus', 'Loaded ' + name + ' successfully!', 'success');
+  let opts = '<option value="">All</option>';
+  for (let z = 1; z <= d.maxz; z++) opts += '<option value="' + z + '">Z-level ' + z + '</option>';
+  $('zl').innerHTML = opts;
 
-  // Populate z-level dropdown
-  const zSelect = document.getElementById('zLevel');
-  zSelect.innerHTML = '<option value="">All z-levels</option>';
-  for (let z = 1; z <= data.maxz; z++) {
-    zSelect.innerHTML += `<option value="${z}">Z-level ${z}</option>`;
-  }
-
-  // Enable options
-  const card = document.getElementById('optionsCard');
-  card.style.opacity = '1';
-  card.style.pointerEvents = 'auto';
-  document.getElementById('exportBtn').disabled = false;
-  ['minX','maxX','minY','maxY'].forEach(id => document.getElementById(id).disabled = false);
-
-  // Set default region values
-  document.getElementById('minX').placeholder = '1';
-  document.getElementById('maxX').placeholder = data.maxx;
-  document.getElementById('minY').placeholder = '1';
-  document.getElementById('maxY').placeholder = data.maxy;
+  const c = $('oc');
+  c.style.opacity = '1'; c.style.pointerEvents = 'auto';
+  $('eb').disabled = false;
+  ['x1','x2','y1','y2'].forEach(id => $(id).disabled = false);
+  $('x1').placeholder = '1'; $('x2').placeholder = d.maxx;
+  $('y1').placeholder = '1'; $('y2').placeholder = d.maxy;
 }
 
-function onZChange() {}
+// ─── Export ─────────────────────────────────────────────────────────────────
+$('eb').addEventListener('click', async () => {
+  if (!mb) return;
+  const p = new URLSearchParams();
+  const z = $('zl').value; if (z) p.set('z', z);
+  if ($('x1').value) p.set('minX', $('x1').value);
+  if ($('x2').value) p.set('maxX', $('x2').value);
+  if ($('y1').value) p.set('minY', $('y1').value);
+  if ($('y2').value) p.set('maxY', $('y2').value);
+  if ($('no').checked) p.set('noObjects', '1');
 
-async function exportDmm() {
-  if (!mapBounds) return;
-
-  const z = document.getElementById('zLevel').value;
-  const minX = document.getElementById('minX').value;
-  const maxX = document.getElementById('maxX').value;
-  const minY = document.getElementById('minY').value;
-  const maxY = document.getElementById('maxY').value;
-  const noObjects = document.getElementById('noObjects').checked;
-
-  const params = new URLSearchParams();
-  if (z) params.set('z', z);
-  if (minX) params.set('minX', minX);
-  if (maxX) params.set('maxX', maxX);
-  if (minY) params.set('minY', minY);
-  if (maxY) params.set('maxY', maxY);
-  if (noObjects) params.set('noObjects', '1');
-
-  setStatus('exportStatus', '<span class="spinner"></span>Converting to DMM...', 'loading');
-  document.getElementById('exportBtn').disabled = true;
-  document.getElementById('downloadLink').style.display = 'none';
-
+  st('es', '<span class="sp"></span>Converting...', 'load');
+  $('eb').disabled = true; $('dl').style.display = 'none';
   try {
-    const resp = await fetch('/api/export?' + params.toString());
-    const data = await resp.json();
-    if (data.error) {
-      setStatus('exportStatus', 'Error: ' + data.error, 'error');
-      return;
-    }
-    setStatus('exportStatus', `Done! Generated <span style="color:var(--success)">${data.size}</span> (${data.cells} cells, ${data.rows} grid rows)`, 'success');
-    const dl = document.getElementById('downloadLink');
-    dl.href = '/api/download/' + encodeURIComponent(data.filename);
-    dl.download = data.filename;
-    dl.style.display = 'inline-block';
-  } catch(e) {
-    setStatus('exportStatus', 'Error: ' + e.message, 'error');
-  } finally {
-    document.getElementById('exportBtn').disabled = false;
-  }
-}
-
-// Enter key on path input triggers load
-document.getElementById('jsonPath').addEventListener('keydown', e => {
-  if (e.key === 'Enter') loadJson();
+    const r = await fetch('/api/export?' + p);
+    const d = await r.json();
+    if (d.error) { st('es', 'Error: ' + d.error, 'err'); return; }
+    st('es', 'Done! <b>' + d.size + '</b> (' + d.cells + ' cells, ' + d.rows + ' rows)', 'ok');
+    $('dl').href = '/api/download/' + encodeURIComponent(d.filename);
+    $('dl').download = d.filename;
+    $('dl').style.display = 'inline-block';
+  } catch(e) { st('es', 'Error: ' + e.message, 'err'); }
+  finally { $('eb').disabled = false; }
 });
 </script>
 </body>
@@ -512,32 +239,36 @@ document.getElementById('jsonPath').addEventListener('keydown', e => {
 # ─── Server ──────────────────────────────────────────────────────────────────
 
 class Handler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def log_message(self, fmt, *args):
-        pass  # suppress default logging
+        pass
 
     def do_GET(self):
         parsed = urlparse(self.path)
 
-        if parsed.path == "/" or parsed.path == "/index.html":
+        if parsed.path in ("/", "/index.html"):
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(HTML_PAGE.encode("utf-8"))))
             self.end_headers()
             self.wfile.write(HTML_PAGE.encode("utf-8"))
             return
 
         if parsed.path.startswith("/api/download/"):
-            from urllib.parse import unquote
             filename = unquote(parsed.path[len("/api/download/"):])
             output_path = os.path.join(tempfile_dir, filename)
             if not os.path.exists(output_path):
-                self.send_json({"error": "File not found: " + filename})
+                self._json({"error": "File not found: " + filename})
                 return
+            with open(output_path, "rb") as f:
+                data = f.read()
             self.send_response(200)
             self.send_header("Content-Type", "application/octet-stream")
             self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+            self.send_header("Content-Length", str(len(data)))
             self.end_headers()
-            with open(output_path, "rb") as f:
-                self.wfile.write(f.read())
+            self.wfile.write(data)
             return
 
         if parsed.path == "/api/export":
@@ -545,157 +276,139 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         self.send_response(404)
+        self.send_header("Content-Length", "0")
         self.end_headers()
 
     def do_POST(self):
         parsed = urlparse(self.path)
-
         if parsed.path == "/api/load":
             self.handle_load()
             return
-
         if parsed.path == "/api/upload":
             self.handle_upload()
             return
-
         self.send_response(404)
+        self.send_header("Content-Length", "0")
         self.end_headers()
 
-    def send_json(self, obj):
+    def _json(self, obj):
+        data = json.dumps(obj).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
         self.end_headers()
-        self.wfile.write(json.dumps(obj).encode("utf-8"))
+        self.wfile.write(data)
 
     def handle_load(self):
         global loaded_data, loaded_path
-        content_length = int(self.headers.get("Content-Length", 0))
-        body = self.rfile.read(content_length)
+        cl = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(cl)
         try:
             req = json.loads(body)
             path = req.get("path", "").strip()
             if not path or not os.path.exists(path):
-                self.send_json({"error": f"File not found: {path}"})
+                self._json({"error": f"File not found: {path}"})
                 return
             loaded_path = path
             with open(path, "r", encoding="utf-8") as f:
                 loaded_data = json.load(f)
             if "Maps" not in loaded_data or not loaded_data["Maps"]:
-                self.send_json({"error": "No maps found in JSON"})
+                self._json({"error": "No maps found in JSON"})
                 loaded_data = None
                 return
             m = loaded_data["Maps"][0]
             size = os.path.getsize(path)
-            size_str = f"{size / 1024 / 1024:.1f} MB" if size > 1024*1024 else f"{size / 1024:.0f} KB"
-            self.send_json({
-                "maxx": m["MaxX"],
-                "maxy": m["MaxY"],
-                "maxz": m["MaxZ"],
-                "cellCount": len(m["CellDefinitions"]),
-                "fileSize": size_str,
-            })
+            sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
+            self._json({"maxx": m["MaxX"], "maxy": m["MaxY"], "maxz": m["MaxZ"],
+                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz})
         except Exception as e:
-            self.send_json({"error": str(e)})
+            self._json({"error": str(e)})
             loaded_data = None
 
     def handle_upload(self):
-        """Handle file upload via multipart/form-data (drag & drop)."""
         global loaded_data, loaded_path
-        content_type = self.headers.get("Content-Type", "")
-        if "multipart/form-data" not in content_type:
-            self.send_json({"error": "Expected multipart/form-data"})
+        ct = self.headers.get("Content-Type", "")
+        if "multipart/form-data" not in ct:
+            self._json({"error": "Expected multipart/form-data"})
             return
 
-        content_length = int(self.headers.get("Content-Length", 0))
+        cl = int(self.headers.get("Content-Length", 0))
 
         # Extract boundary
         boundary = None
-        for part in content_type.split(";"):
+        for part in ct.split(";"):
             part = part.strip()
             if part.startswith("boundary="):
                 boundary = part[len("boundary="):].strip('"')
                 break
         if not boundary:
-            self.send_json({"error": "No boundary in multipart data"})
+            self._json({"error": "No boundary"})
             return
 
         try:
-            # Read the full body, then parse multipart manually
-            body = self.rfile.read(content_length)
-            boundary_bytes = ("--" + boundary).encode()
+            body = self.rfile.read(cl)
+            bb = ("--" + boundary).encode()
 
-            # Find the file part (the one with filename=)
-            idx = body.find(b'filename=')
-            if idx == -1:
-                self.send_json({"error": "No filename found in upload"})
+            # Find filename= in the body
+            fn_idx = body.find(b'filename=')
+            if fn_idx == -1:
+                self._json({"error": "No file in upload"})
                 return
 
-            # Find the start of this boundary
-            b_start = body.rfind(boundary_bytes, 0, idx)
+            # Find the boundary line before the filename
+            b_start = body.rfind(bb, 0, fn_idx)
             if b_start == -1:
-                self.send_json({"error": "Could not find boundary before filename"})
+                self._json({"error": "Boundary not found"})
                 return
 
-            # Find headers end (\r\n\r\n after the boundary line)
-            header_start = b_start + len(boundary_bytes)
-            # Skip the \r\n after boundary
-            if body[header_start:header_start+2] == b"\r\n":
-                header_start += 2
-            header_end = body.find(b"\r\n\r\n", header_start)
-            if header_end == -1:
-                self.send_json({"error": "Could not find end of headers"})
+            # Find headers end
+            hs = b_start + len(bb)
+            if body[hs:hs+2] == b"\r\n":
+                hs += 2
+            he = body.find(b"\r\n\r\n", hs)
+            if he == -1:
+                self._json({"error": "Headers not found"})
                 return
 
-            # Parse filename from headers
-            header_str = body[header_start:header_end].decode("utf-8", errors="replace")
+            # Parse filename
+            hdr = body[hs:he].decode("utf-8", errors="replace")
             filename = "uploaded.json"
-            for line in header_str.split("\r\n"):
+            for line in hdr.split("\r\n"):
                 if "filename=" in line:
-                    fn_start = line.find('filename="')
-                    if fn_start != -1:
-                        fn_start += len('filename="')
-                        fn_end = line.find('"', fn_start)
-                        if fn_end != -1:
-                            filename = line[fn_start:fn_end]
+                    i = line.find('filename="')
+                    if i != -1:
+                        i += len('filename="')
+                        j = line.find('"', i)
+                        if j != -1:
+                            filename = line[i:j]
 
-            # File data starts after \r\n\r\n
-            data_start = header_end + 4
-
-            # Find the end boundary
-            end_boundary = boundary_bytes + b"--"
-            data_end = body.find(b"\r\n" + boundary_bytes, data_start)
-            if data_end == -1:
-                data_end = len(body)
-
-            file_data = body[data_start:data_end]
+            # File data between headers and next boundary
+            ds = he + 4
+            de = body.find(b"\r\n" + bb, ds)
+            if de == -1:
+                de = len(body)
+            file_data = body[ds:de]
 
             loaded_data = json.loads(file_data.decode("utf-8"))
             loaded_path = os.path.basename(filename)
             if "Maps" not in loaded_data or not loaded_data["Maps"]:
-                self.send_json({"error": "No maps found in JSON"})
+                self._json({"error": "No maps in JSON"})
                 loaded_data = None
                 return
             m = loaded_data["Maps"][0]
             size = len(file_data)
-            size_str = f"{size / 1024 / 1024:.1f} MB" if size > 1024*1024 else f"{size / 1024:.0f} KB"
-            self.send_json({
-                "maxx": m["MaxX"],
-                "maxy": m["MaxY"],
-                "maxz": m["MaxZ"],
-                "cellCount": len(m["CellDefinitions"]),
-                "fileSize": size_str,
-            })
+            sz = f"{size/1024/1024:.1f} MB" if size > 1024*1024 else f"{size/1024:.0f} KB"
+            self._json({"maxx": m["MaxX"], "maxy": m["MaxY"], "maxz": m["MaxZ"],
+                        "cellCount": len(m["CellDefinitions"]), "fileSize": sz})
         except Exception as e:
-            import traceback
-            self.send_json({"error": str(e), "trace": traceback.format_exc()})
+            self._json({"error": str(e)})
             loaded_data = None
 
     def handle_export(self, params):
         global loaded_data, loaded_path
         if loaded_data is None:
-            self.send_json({"error": "No JSON loaded"})
+            self._json({"error": "No JSON loaded"})
             return
-
         try:
             m = loaded_data["Maps"][0]
             types = loaded_data["Types"]
@@ -703,79 +416,56 @@ class Handler(BaseHTTPRequestHandler):
             blocks = m["Blocks"]
             maxx, maxy, maxz = m["MaxX"], m["MaxY"], m["MaxZ"]
 
-            z = params.get("z", [None])[0]
-            z = int(z) if z else None
+            z = int(params["z"][0]) if params.get("z", [None])[0] else None
             min_x = int(params["minX"][0]) if params.get("minX", [None])[0] else None
             max_x = int(params["maxX"][0]) if params.get("maxX", [None])[0] else None
             min_y = int(params["minY"][0]) if params.get("minY", [None])[0] else None
             max_y = int(params["maxY"][0]) if params.get("maxY", [None])[0] else None
             no_objects = params.get("noObjects", ["0"])[0] == "1"
 
-            # Clone cell_defs if we need to filter objects
             if no_objects:
-                cell_defs = {k: {**v, "Objects": None} for k, v in cell_defs.items()}
-                cell_defs = {k: v for k, v in cell_defs.items() if "Objects" in v}
-                # Actually just remove objects from each cell
-                cell_defs = {}
+                cd = {}
                 for k, v in m["CellDefinitions"].items():
-                    cell = dict(v)
-                    cell.pop("Objects", None)
-                    cell_defs[k] = cell
+                    c = dict(v)
+                    c.pop("Objects", None)
+                    cd[k] = c
+                cell_defs = cd
 
-            grid_lines = build_grid(
-                blocks, cell_defs, maxx, maxy, maxz,
-                z_filter=z, min_x=min_x, max_x=max_x,
-                min_y=min_y, max_y=max_y
-            )
+            grid_lines = build_grid(blocks, cell_defs, maxx, maxy, maxz,
+                                    z_filter=z, min_x=min_x, max_x=max_x,
+                                    min_y=min_y, max_y=max_y)
 
-            # Generate output filename
             stem = Path(loaded_path).stem if loaded_path else "map"
             suffix = f"_z{z}" if z else ""
-            suffix += f"_crop" if any([min_x, max_x, min_y, max_y]) else ""
+            suffix += "_crop" if any([min_x, max_x, min_y, max_y]) else ""
             suffix += "_noobj" if no_objects else ""
             filename = f"{stem}{suffix}.dmm"
-            output_path = os.path.join(tempfile_dir, filename)
+            out = os.path.join(tempfile_dir, filename)
 
-            # Write DMM
-            with open(output_path, "w", encoding="utf-8", newline="\n") as f:
-                f.write("//MAP CONVERTED BY opendream_to_dmm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE\n\n")
+            with open(out, "w", encoding="utf-8", newline="\n") as f:
+                f.write("//MAP CONVERTED BY opendream_to_dmm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE\n")
                 for key in sorted(cell_defs.keys()):
                     cell = cell_defs[key]
-                    cell_str = build_cell_string(cell, types)
-                    f.write(f'"{key}" = (\n')
-                    f.write(f'{cell_str})\n\n')
+                    cs = build_cell_string(cell, types)
+                    f.write(f'"{key}" = (\n{cs})\n')
                 for line in grid_lines:
                     f.write(line + "\n")
 
-            size = os.path.getsize(output_path)
-            size_str = f"{size / 1024:.0f} KB" if size > 1024 else f"{size} B"
-
-            self.send_json({
-                "filename": filename,
-                "size": size_str,
-                "cells": len(cell_defs),
-                "rows": len(grid_lines),
-            })
+            size = os.path.getsize(out)
+            sz = f"{size/1024:.0f} KB" if size > 1024 else f"{size} B"
+            self._json({"filename": filename, "size": sz,
+                        "cells": len(cell_defs), "rows": len(grid_lines)})
         except Exception as e:
-            import traceback
-            self.send_json({"error": str(e), "trace": traceback.format_exc()})
+            self._json({"error": str(e)})
 
-
-# ─── Main ────────────────────────────────────────────────────────────────────
-
-import tempfile
-tempfile_dir = tempfile.mkdtemp(prefix="dmm_export_")
 
 def main():
-    port = 8477
-    if len(sys.argv) > 1:
-        port = int(sys.argv[1])
-
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8477
     server = HTTPServer(("127.0.0.1", port), Handler)
     url = f"http://127.0.0.1:{port}"
     print(f"DMM Converter UI running at {url}")
-    print(f"Output files saved to: {tempfile_dir}")
-    print("Press Ctrl+C to stop.")
+    print(f"Output dir: {tempfile_dir}")
+    print("Ctrl+C to stop.")
     threading.Timer(0.5, lambda: webbrowser.open(url)).start()
     try:
         server.serve_forever()
