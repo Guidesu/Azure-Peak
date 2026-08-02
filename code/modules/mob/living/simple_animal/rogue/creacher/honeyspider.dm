@@ -72,8 +72,8 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 2,
 					/obj/item/reagent_containers/food/snacks/rogue/honey/spider = 1,
 					/obj/item/natural/hide = 1)
-	health = 130
-	maxHealth = 130
+	health = HONEYSPIDER_MUTATED_HEALTH
+	maxHealth = HONEYSPIDER_MUTATED_HEALTH
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/Initialize()
 	. = ..()

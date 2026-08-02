@@ -203,15 +203,15 @@
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur"
 	icon_living = "wminotaur"
-	health = 400	//Regular is 600.
-	maxHealth = 400
+	health = MINOTAUR_WOUNDED_HEALTH
+	maxHealth = MINOTAUR_WOUNDED_HEALTH
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/wounded
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur_axe"
 	icon_living = "wminotaur_axe"
-	health = 400	//Regular is 600.
-	maxHealth = 400
+	health = MINOTAUR_WOUNDED_HEALTH
+	maxHealth = MINOTAUR_WOUNDED_HEALTH
 
 //Same as usual wounded, unique for orc dungeon. Prisoner-minotaur, doesn't attack orcs for dungeon related stuff.
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained

@@ -41,8 +41,8 @@
 						/obj/item/alch/viscera = 2)
 	head_butcher = /obj/item/natural/head/saiga
 	base_intents = list(/datum/intent/simple/headbutt/saiga)
-	health = 400
-	maxHealth = 400
+	health = SAIGA_HEALTH
+	maxHealth = SAIGA_HEALTH
 	food_type = list(
 				/obj/item/reagent_containers/food/snacks/grown/wheat,
 				/obj/item/reagent_containers/food/snacks/grown/oat,
@@ -87,10 +87,10 @@
 					/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 					/obj/item/natural/bone = 3,
 					)
-	health = 20
+	health = SAIGA_CALF_HEALTH
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	maxHealth = 20
+	maxHealth = SAIGA_CALF_HEALTH
 	melee_damage_lower = 1
 	melee_damage_upper = 6
 	STACON = 5

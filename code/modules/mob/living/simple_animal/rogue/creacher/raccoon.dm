@@ -36,8 +36,8 @@
 	faction = list(FACTION_WOLFS, FACTION_ZOMBIE)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	remains_type = /obj/effect/decal/remains/raccoon
-	health = 85
-	maxHealth = 85
+	health = RACCOON_HEALTH
+	maxHealth = RACCOON_HEALTH
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	vision_range = 7

@@ -17,8 +17,8 @@
 	animal_species = null
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 3, /obj/item/natural/bone = 3)
 	base_intents = list(/datum/intent/simple/bite/mirespider_lurker)
-	health = 660
-	maxHealth = 660
+	health = DRIDER_HEALTH
+	maxHealth = DRIDER_HEALTH
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	milkies = FALSE

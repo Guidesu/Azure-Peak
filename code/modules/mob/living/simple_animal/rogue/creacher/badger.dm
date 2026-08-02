@@ -35,8 +35,8 @@
 	faction = list(FACTION_WOLFS, FACTION_ZOMBIE)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	remains_type = /obj/effect/decal/remains/badger
-	health = 90
-	maxHealth = 90
+	health = BADGER_HEALTH
+	maxHealth = BADGER_HEALTH
 	melee_damage_lower = 15
 	melee_damage_upper = 22
 	vision_range = 7

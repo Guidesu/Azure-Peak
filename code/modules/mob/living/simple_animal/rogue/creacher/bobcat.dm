@@ -36,8 +36,8 @@
 	faction = list(FACTION_WOLFS, FACTION_ZOMBIE)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	remains_type = /obj/effect/decal/remains/bobcat
-	health = 100
-	maxHealth = 100
+	health = BOBCAT_HEALTH
+	maxHealth = BOBCAT_HEALTH
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 	vision_range = 7

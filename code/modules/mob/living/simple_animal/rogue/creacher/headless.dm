@@ -25,8 +25,8 @@
 						/obj/item/alch/bone = 1)
 	faction = list(FACTION_ORCS)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
-	health = 350
-	maxHealth = 350
+	health = HEADLESS_HEALTH
+	maxHealth = HEADLESS_HEALTH
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	vision_range = 9

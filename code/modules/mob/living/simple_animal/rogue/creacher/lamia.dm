@@ -25,8 +25,8 @@
 						/obj/item/natural/hide = 1)
 	faction = list(FACTION_ORCS)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
-	health = 200
-	maxHealth = 200
+	health = LAMIA_HEALTH
+	maxHealth = LAMIA_HEALTH
 	melee_damage_lower = 35
 	melee_damage_upper = 50
 	vision_range = 9

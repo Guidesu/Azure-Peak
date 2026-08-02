@@ -24,8 +24,8 @@
 	head_butcher = null
 	faction = list("zombie")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = WOLF_HEALTH
-	maxHealth = WOLF_HEALTH
+	health = OOZE_BLOB_HEALTH
+	maxHealth = OOZE_BLOB_HEALTH
 	melee_damage_lower = 19
 	melee_damage_upper = 29
 	vision_range = 7

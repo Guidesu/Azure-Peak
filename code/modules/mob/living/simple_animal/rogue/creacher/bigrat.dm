@@ -39,8 +39,8 @@
 	ambush_faction = "wildlife"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	attack_sound = 'sound/combat/wooshes/punch/punchwoosh (2).ogg'
-	health = 65
-	maxHealth = 65
+	health = RAT_HEALTH
+	maxHealth = RAT_HEALTH
 	melee_damage_lower = 17
 	melee_damage_upper = 21
 	environment_smash = ENVIRONMENT_SMASH_NONE

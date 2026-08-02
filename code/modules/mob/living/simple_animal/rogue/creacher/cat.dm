@@ -15,8 +15,8 @@
 	turns_per_move = 5
 
 	// Combat setup
-	health = 50
-	maxHealth = 50
+	health = CAT_HEALTH
+	maxHealth = CAT_HEALTH
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	obj_damage = 10

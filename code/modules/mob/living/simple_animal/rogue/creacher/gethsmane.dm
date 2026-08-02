@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane
 	name = "fretensis"
-	health = 100
-	maxHealth = 100
+	health = GETHSMANE_HEALTH
+	maxHealth = GETHSMANE_HEALTH
 	STASTR = 8
 	STASPD = 13
 	retreat_health = 0
