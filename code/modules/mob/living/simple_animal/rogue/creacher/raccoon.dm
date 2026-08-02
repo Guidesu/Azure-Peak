@@ -56,7 +56,6 @@
 	STASPD = 18
 	simple_detect_bonus = 30
 	deaggroprob = 0
-	defprob = 40
 	del_on_deaggro = 44 SECONDS
 	retreat_health = 0.3
 	food = 0

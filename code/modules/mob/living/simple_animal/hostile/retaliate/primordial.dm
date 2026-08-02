@@ -196,7 +196,6 @@
 	STASTR = 10
 	STASPD = 13
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
-	defprob = 30
 	retreat_health = 0
 	food = 0
 	next_ability_use
@@ -285,7 +284,6 @@
 	STASTR = 10
 	STASPD = 8
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
-	defprob = 20
 	retreat_health = 0
 	food = 0
 
@@ -385,7 +383,6 @@
 	STASTR = 10
 	STASPD = 13
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
-	defprob = 40
 	retreat_health = 0
 	food = 0
 

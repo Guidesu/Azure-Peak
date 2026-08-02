@@ -99,7 +99,6 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 2
-	defprob = 50
 	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/swine
 
 /mob/living/simple_animal/hostile/retaliate/rogue/swine/simple_limb_hit(zone)

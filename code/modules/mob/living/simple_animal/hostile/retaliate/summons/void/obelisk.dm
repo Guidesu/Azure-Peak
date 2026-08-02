@@ -61,7 +61,6 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	deaggroprob = 0
-	defprob = 35
 	retreat_health = 0
 	food = 0
 	dodgetime = 17

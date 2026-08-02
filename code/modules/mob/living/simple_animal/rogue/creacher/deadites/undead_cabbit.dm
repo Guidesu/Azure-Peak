@@ -12,7 +12,6 @@
 	health = CABBIT_HEALTH_UNDEAD
 	maxHealth = CABBIT_HEALTH_UNDEAD
 	head_butcher = /obj/item/natural/head/cabbit/undead
-	defprob = 10
 	dodgetime = 1
 	dodge_prob = 90
 	aggressive = 1

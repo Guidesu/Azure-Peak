@@ -29,7 +29,6 @@
 	attack_verb_simple = "hack"
 	attack_sound = 'sound/blank.ogg'
 	d_intent = INTENT_PARRY
-	defprob = 50
 	speak_emote = list("grunts")
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/skull)
 	faction = list(FACTION_UNDEAD)

@@ -38,7 +38,6 @@
 	minbodytemp = 0
 	faction = list(FACTION_UNDEAD)
 	footstep_type = null
-	defprob = 50 //decently skilled
 	retreat_health = null
 	var/obj/structure/bonepile/slavepile
 

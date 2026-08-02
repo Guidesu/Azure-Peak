@@ -96,7 +96,6 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	defprob = 50
 	pixel_x = -16
 	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/saiga
 	tame = TRUE

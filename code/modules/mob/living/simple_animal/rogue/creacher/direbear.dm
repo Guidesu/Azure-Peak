@@ -56,7 +56,6 @@
 	STASPD = 9
 	simple_detect_bonus = 40	//No sneaking by our boy..
 	deaggroprob = 0
-	defprob = 40
 	del_on_deaggro = FALSE //we dont despawn, our boy chills
 	food = 0
 	remains_type = /obj/effect/decal/remains/bear

@@ -58,7 +58,6 @@
 	STASTR = 9
 	STASPD = 10
 	deaggroprob = 0
-	defprob = 40
 	attack_same = 1
 	retreat_health = 0.3
 	aggressive = 1

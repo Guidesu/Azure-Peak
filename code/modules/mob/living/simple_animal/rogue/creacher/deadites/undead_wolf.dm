@@ -52,7 +52,6 @@
 	STASPD = 12
 	simple_detect_bonus = 20
 	deaggroprob = 0
-	defprob = 40
 	del_on_deaggro = 44 SECONDS
 	aggressive = 1
 	remains_type = /obj/effect/decal/remains/wolf

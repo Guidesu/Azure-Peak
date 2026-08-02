@@ -47,7 +47,6 @@
 	STASTR = 7
 	STASPD = 13
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
-	defprob = 40
 	retreat_health = 0
 	food = 0
 

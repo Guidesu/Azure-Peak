@@ -38,7 +38,6 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/combat/wooshes/punch/punchwoosh (1).ogg'
 	d_intent = INTENT_DODGE
-	defprob = 50
 	speak_emote = list("burbles")
 	faction = list(FACTION_DEEPONE)
 	threat_point = THREAT_HIGH

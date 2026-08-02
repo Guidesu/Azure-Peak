@@ -67,7 +67,6 @@
 	STASTR = 15
 	STASPD = 13
 	deaggroprob = 0
-	defprob = 40
 	retreat_health = 0.3
 	food = 0
 	attack_sound = list('sound/vo/mobs/vw/attack (1).ogg','sound/vo/mobs/boar/boar_attack.ogg','sound/vo/mobs/boar/boar_charge.ogg')

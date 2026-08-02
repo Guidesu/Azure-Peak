@@ -40,7 +40,6 @@
 	)
 	pooptype = null
 	deaggroprob = 0
-	defprob = 40
 	del_on_deaggro = 10 SECONDS
 	retreat_health = 0
 	food = 0

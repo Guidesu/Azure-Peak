@@ -29,7 +29,6 @@
 	attack_verb_simple = "hack"
 	attack_sound = 'sound/blank.ogg'
 	d_intent = INTENT_PARRY
-	defprob = 50
 	speak_emote = list("grunts")
 	speak = list("WAAAGH!", "KRUSH AND KILL!", "Never should have come here!", "Slaughter them all!", "Kill everything!", "Hahaha! Die!")
 	loot = list(/obj/effect/mob_spawn/human/orc/corpse/savageorc,

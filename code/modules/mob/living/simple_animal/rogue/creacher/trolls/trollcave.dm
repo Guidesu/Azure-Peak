@@ -8,7 +8,6 @@
 	ai_controller = /datum/ai_controller/troll_cave
 	head_butcher = /obj/item/natural/head/troll/cave
 
-	defprob = 15
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/cave/Initialize(mapload)
 	. = ..()

@@ -5,7 +5,6 @@
 	STASTR = 8
 	STASPD = 13
 	retreat_health = 0
-	defprob = 20
 	color = "#485775"
 	attack_same = 0
 

@@ -41,7 +41,6 @@
 	STASTR = 11
 	STASPD = 12
 	deaggroprob = 0
-	defprob = 35
 	del_on_deaggro = 999 SECONDS
 	retreat_health = 0.1
 	food = 0

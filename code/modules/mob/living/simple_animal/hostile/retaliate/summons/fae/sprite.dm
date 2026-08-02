@@ -41,7 +41,6 @@
 	STASPD = 17
 	simple_detect_bonus = 20
 	deaggroprob = 0
-	defprob = 40
 	candodge = TRUE
 	// del_on_deaggro = 44 SECONDS
 	retreat_health = 0

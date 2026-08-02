@@ -27,7 +27,6 @@
 	attack_verb_simple = "hack"
 	attack_sound = 'sound/blank.ogg'
 	d_intent = INTENT_DODGE
-	defprob = 20
 	speak_emote = list("growls")
 	footstep_type = null
 	del_on_death = TRUE

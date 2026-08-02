@@ -41,7 +41,6 @@
 	// Behavior
 	faction = list(FACTION_ROGUEANIMAL)
 	deaggroprob = 15
-	defprob = 30
 	dodgetime = 10
 	del_on_deaggro = 99 SECONDS
 
