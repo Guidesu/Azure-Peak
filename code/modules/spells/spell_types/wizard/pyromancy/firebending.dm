@@ -79,9 +79,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/firebending/cast(atom/cast_on)
-	. = ..()
-	if(!.)
-		return FALSE
+	..()
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
 		return FALSE
