@@ -57,6 +57,28 @@
 	misscost = 0
 
 /obj/item/reagent_containers/glass/attack(mob/M, mob/user, obj/target)
+	if(istype(M) && user.used_intent.type == /datum/intent/fill)
+		if(ishuman(M))
+			var/mob/living/carbon/human/humanized = M
+			if(get_location_accessible(humanized, BODY_ZONE_CHEST))
+				if(humanized.has_breasts() && humanized.getorganslot(ORGAN_SLOT_BREASTS)?.lactating)
+					var/obj/item/organ/breasts/breasts = humanized.getorganslot(ORGAN_SLOT_BREASTS)
+					if(breasts.milk_stored > 0)
+						if(reagents.total_volume < volume)
+							var/milk_to_take = min(breasts.milk_stored, max(breasts.breast_size, 1), volume - reagents.total_volume)
+							if(do_after(user, 20, target = M))
+								reagents.add_reagent(/datum/reagent/consumable/milk, milk_to_take)
+								breasts.milk_stored -= milk_to_take
+								user.visible_message(span_notice("[user] milks [M] using \the [src]."), span_notice("I milk [M] using \the [src]."))
+						else
+							to_chat(user, span_warning("[src] is full."))
+					else
+						to_chat(user, span_warning("[M] is out of milk!"))
+				else
+					to_chat(user, span_warning("[M] cannot be milked!"))
+			else
+				to_chat(user, span_warning("[M]'s chest is covered."))
+		return
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty!"))
 		return
