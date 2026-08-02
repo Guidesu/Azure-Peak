@@ -60,7 +60,7 @@
 /datum/outfit/job/roguetown/wretch/pariah/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/elven
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	shoes = /obj/item/clothing/shoes/roguetown/boots/elven_boots
 	cloak = /obj/item/clothing/cloak/forrestercloak
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -70,7 +70,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hatanga
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/elvish
+	beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
@@ -147,7 +147,7 @@
 					r_hand = /obj/item/rogueweapon/greatsword/elvish
 					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Elvish Dirk")
-					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/elvish
+					beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 					backr = /obj/item/rogueweapon/shield/wood
 			if(weapon_choice == "Elvish Dirk")
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)

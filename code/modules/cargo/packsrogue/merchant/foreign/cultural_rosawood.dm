@@ -27,7 +27,7 @@
 /datum/supply_pack/rogue/rosawood/elvish_dirk
 	name = "Elvish Dirk"
 	cost = 45
-	contains = list(/obj/item/rogueweapon/huntingknife/idagger/steel/elvish)
+	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver/elvish)
 
 /datum/supply_pack/rogue/rosawood/woad_helm
 	name = "Woad Elven Helm"

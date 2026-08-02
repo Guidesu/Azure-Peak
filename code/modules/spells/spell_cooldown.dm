@@ -617,7 +617,7 @@
 	var/newcd = base
 
 	// Dominant faith adjust
-	if(istype(living_owner) && (primary_resource_type == SPELL_COST_DEVOTION || secondary_resource_type == SPELL_COST_DEVOTION) && !ispath(living_owner.patron.associated_faith, /datum/faith/old_god) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/old_god))
+	if(istype(living_owner) && (primary_resource_type == SPELL_COST_DEVOTION || secondary_resource_type == SPELL_COST_DEVOTION) && !ispath(living_owner.patron.associated_faith, /datum/faith/tribunal) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/tribunal))
 		if(living_owner.patron.associated_faith == GLOB.dominant_faith_tracker.dominant_faith)
 			newcd -= base * DOMINANT_FAITH_ADJUST
 		else
@@ -1696,7 +1696,7 @@
 	var/base = cooldown_time
 	var/stat_value = get_caster_stat(user)
 	var/stat_label = get_stat_label()
-	if((primary_resource_type == SPELL_COST_DEVOTION || secondary_resource_type == SPELL_COST_DEVOTION) && !ispath(user.patron.associated_faith, /datum/faith/old_god) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/old_god))
+	if((primary_resource_type == SPELL_COST_DEVOTION || secondary_resource_type == SPELL_COST_DEVOTION) && !ispath(user.patron.associated_faith, /datum/faith/tribunal) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/tribunal))
 		if(user.patron.associated_faith == GLOB.dominant_faith_tracker.dominant_faith)
 			breakdown += span_smallgreen("  Dominant faith: -[DisplayTimeText(base * DOMINANT_FAITH_ADJUST)]")
 		else

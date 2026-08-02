@@ -92,7 +92,7 @@
 
 // we love undivided and how much snowflake code it needs
 /proc/get_god_name(datum/patron/to_check)
-	return (istype(to_check, /datum/patron/divine/undivided) ? "the Ten" : to_check.name)
+	return (istype(to_check, /datum/patron/concordat) ? "the Ten" : to_check.name)
 
 /obj/item/melee/new_touch_attack/orison/MiddleClick(mob/living/user, params)
 	. = ..()
@@ -434,22 +434,22 @@
 		to_chat(caster, span_info("I'll need to find a container that can hold water."))
 
 GLOBAL_LIST_INIT(convert_incantations, list(
-		/datum/patron/divine/undivided = "Ten above, bring this wayward soul into thy embrace!!",
-		/datum/patron/divine/astrata = "O great Overtyrant, grant order to this wayward soul!!",
-		/datum/patron/divine/noc = "O wise Moonbrother, grant wisdom to this wayward soul!!",
-		/datum/patron/divine/dendor = "O great Treefather, grant this wayward soul the nature of the wyld!!",
-		/datum/patron/divine/abyssor = "O great Dreamer, induct this wayward soul into the mysteries of the deep!!",
-		/datum/patron/divine/ravox = "O great Justiciar, grant justice to this wayward soul!!",
-		/datum/patron/divine/necra = "Undermaiden, grant peace to this wayward soul!!",
-		// /datum/patron/divine/xylix = "", nah. we do a little trolling with xylix
-		/datum/patron/divine/pestra = "Lady of Pestilence, bring clarity to this wayward soul!!",
-		/datum/patron/divine/malum = "O great Forgefather, bring diligence to this wayward soul!!",
-		/datum/patron/divine/eora = "Great Mother, show mercy to this wayward soul!!", // because just "love" is too tacky
-		/datum/patron/old_god = "Embrace the truth; PSYDON lyves!!", // psydon doesn't hear you, so you're talking to the other person here
-		/datum/patron/inhumen/zizo = "Dame of Progress, show this one the truth of the world!", // culty, progressive, quieter than tennite invocations. all the Four are, except Graggar, because there's more of a usecase for being subtle
-		/datum/patron/inhumen/graggar = "SHATTER THE BINDS OF MIND AND SOUL! SMASH THE CAGE OF LIES! GRAGGAR GRAGGAR GRAGGAR!!", // the ten's order is a cage. shatter the bars, claw free to the truth. in other words: they're larping. also, loud.
-		/datum/patron/inhumen/matthios = "O Lorde, grant camaraderie to this wayward soul!", // similar to astrata's on purpose. and linked to matthios's free-men/comrades/siblings-in-arms thing. yes the title portion IS based entirely on how avarice refers to matthios why do you ask
-		/datum/patron/inhumen/baotha = "Lady of Heartbreak, grant mercy to this wounded soul!" // once more, similar to eora's. emphasizes the "mercy" baotha grants to the broken
+		/datum/patron/concordat = "Ten above, bring this wayward soul into thy embrace!!",
+		/datum/patron/concordat/auxentius = "O great Overtyrant, grant order to this wayward soul!!",
+		/datum/patron/concordat/miluse = "O wise Moonbrother, grant wisdom to this wayward soul!!",
+		/datum/patron/oldkin/volkovoi = "O great Treefather, grant this wayward soul the nature of the wyld!!",
+		/datum/patron/concordat/wulfric = "O great Dreamer, induct this wayward soul into the mysteries of the deep!!",
+		/datum/patron/concordat/handwerra = "O great Justiciar, grant justice to this wayward soul!!",
+		/datum/patron/concordat/morwenna = "Undermaiden, grant peace to this wayward soul!!",
+		// /datum/patron/concordat/viator = "", nah. we do a little trolling with xylix
+		/datum/patron/oldkin/trnava = "Lady of Pestilence, bring clarity to this wayward soul!!",
+		/datum/patron/severance/ignatius = "O great Forgefather, bring diligence to this wayward soul!!",
+		/datum/patron/concordat/miluse = "Great Mother, show mercy to this wayward soul!!", // because just "love" is too tacky
+		/datum/patron/tribunal/praecursor = "Embrace the truth; PSYDON lyves!!", // psydon doesn't hear you, so you're talking to the other person here
+		/datum/patron/unveiled/aurelian = "Dame of Progress, show this one the truth of the world!", // culty, progressive, quieter than tennite invocations. all the Four are, except Graggar, because there's more of a usecase for being subtle
+		/datum/patron/oldkin/klokner = "SHATTER THE BINDS OF MIND AND SOUL! SMASH THE CAGE OF LIES! GRAGGAR GRAGGAR GRAGGAR!!", // the ten's order is a cage. shatter the bars, claw free to the truth. in other words: they're larping. also, loud.
+		/datum/patron/oldkin/hausvette = "O Lorde, grant camaraderie to this wayward soul!", // similar to astrata's on purpose. and linked to matthios's free-men/comrades/siblings-in-arms thing. yes the title portion IS based entirely on how avarice refers to matthios why do you ask
+		/datum/patron/oldkin/hausvette = "Lady of Heartbreak, grant mercy to this wounded soul!" // once more, similar to eora's. emphasizes the "mercy" baotha grants to the broken
 		))
 
 /mob/living/carbon/human/proc/convert_other(atom/victim)
@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 		to_chat(caster, span_info("They don't seem like they'll be receptive to my proselytizing..."))
 		return FALSE
 
-	if(istype(new_convert.patron, /datum/patron/vheslyn)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
+	if(istype(new_convert.patron, /datum/patron/concordat/miluse)) //UNFORGIVABLE SIN, UNFORGIVABLE, DIE. DIE. DIE.
 		to_chat(caster, span_userdanger("[new_convert] is UNFORGIVABLE, my attempt to convert them violently sunders my lux!"))
 		if(!HAS_TRAIT(caster, TRAIT_NOPAIN))
 			caster.emote("agony")
@@ -503,19 +503,19 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 
 	visible_message(span_info("[src] whispers rapid prayers, performing a rite to bring [new_convert] before their patron's gaze..."), span_info("You whisper prayers to [get_god_name(caster.patron)], casting their gaze upon [new_convert]..."))
 	var/convert_message
-	if(istype(caster.patron, /datum/patron/old_god))
+	if(istype(caster.patron, /datum/patron/tribunal/praecursor))
 		convert_message = "[caster.real_name] is trying to guide you onto PSYDON's path. Will you embrace Him, and forswear any lesser 'gods'?"
 	else if(is_tennite)
 		convert_message = "[caster.real_name] is trying to bring you into the Ten's embrace. Will you bask in Their light?"
 	else
 		switch(caster.patron.type)
-			if(/datum/patron/inhumen/zizo)
+			if(/datum/patron/unveiled/aurelian)
 				convert_message = "[caster.real_name] is trying to teach you the ways of ZIZO. Will you learn?"
-			if(/datum/patron/inhumen/matthios)
+			if(/datum/patron/oldkin/hausvette)
 				convert_message = "[caster.real_name] is offering you membership of the free men. Will you join?"
-			if(/datum/patron/inhumen/graggar)
+			if(/datum/patron/oldkin/klokner)
 				convert_message = "[caster.real_name] is offering you Graggar's anointment. Will you break free?"
-			if(/datum/patron/inhumen/baotha)
+			if(/datum/patron/oldkin/hausvette)
 				convert_message = "[caster.real_name] is trying to offer you Baotha's mercy. Will you indulge?"
 			else // this should not happen but if people add more gods and don't update this it's good to have a fallback
 				convert_message = "[caster.real_name] is trying to convert you to [get_god_name(caster.patron)]. Will you accept?"
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 	var/datum/patron/old_patron = new_convert.patron
 	if(is_tennite) // tennites can convert to any tennite faith, since they're a package deal; inhumen are much more individualized
 		var/list/patrons_named = list()
-		for(var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
+		for(var/path as anything in GLOB.patrons_by_faith[/datum/faith/concordat])
 			var/datum/patron/patron = GLOB.patronlist[path]
 			if(!patron.name)
 				continue
@@ -550,7 +550,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 			patrons_named[patron.name] = patron.type
 		new_patron = patrons_named[input(new_convert, "Which of the Ten calls to you most?", "THE GODS SMILE") as anything in patrons_named]
 
-	if(ispath(new_patron, /datum/patron/divine/xylix))
+	if(ispath(new_patron, /datum/patron/concordat/viator))
 		caster.say(pick_assoc(GLOB.convert_incantations)) // just like torturing a xylixian has random lines from all the other gods, converting someone TO xylix will troll you as well
 		playsound(new_convert, 'sound/magic/mockery.ogg', 60, FALSE, -1) // so they know it didn't just bug out and this is, in fact, xylix playing a prank on you
 	else
@@ -605,7 +605,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 	if(!istype(new_convert.patron, /datum/patron/inhumen) && new_convert.mind.has_spell(/datum/action/cooldown/spell/convert_heretic))
 		new_convert.mind.RemoveSpell(/datum/action/cooldown/spell/convert_heretic)
 
-	if(was_cleric && !istype(new_convert.patron, /datum/patron/old_god)) // psydonites don't get new miracles, since psydonite "miracles" don't work like real miracles
+	if(was_cleric && !istype(new_convert.patron, /datum/patron/tribunal/praecursor)) // psydonites don't get new miracles, since psydonite "miracles" don't work like real miracles
 		// Grant new devotion
 		var/datum/devotion/new_devotion = new /datum/devotion(new_convert, new_convert.patron)
 		new_convert.devotion = new_devotion
@@ -614,7 +614,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 			var/blast_to_grant = (istype(new_convert.patron, /datum/patron/inhumen) ? /obj/effect/proc_holder/spell/invoked/projectile/unholyblast : /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 			new_convert.mind.AddSpell(new blast_to_grant)
 		// why are you like this
-		if(saved_level >= 3 && istype(new_convert.patron, /datum/patron/inhumen/zizo) && !new_convert.mind.has_spell(/datum/action/cooldown/spell/gravemark))
+		if(saved_level >= 3 && istype(new_convert.patron, /datum/patron/unveiled/aurelian) && !new_convert.mind.has_spell(/datum/action/cooldown/spell/gravemark))
 			new_convert.mind.AddSpell(new /datum/action/cooldown/spell/gravemark)
 			new_convert.mind.AddSpell(new /datum/action/cooldown/spell/minion_order)
 	else if(was_cleric)
@@ -622,7 +622,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 		ADD_TRAIT(new_convert, TRAIT_PSYDONITE, ROUNDSTART_TRAIT)
 
 	// give a small mood buff to both parties, identical to prayer; psydonites get the same thing but with more ambiguous wording
-	if(istype(new_convert.patron, /datum/patron/old_god))
+	if(istype(new_convert.patron, /datum/patron/tribunal/praecursor))
 		caster.add_stress(/datum/stressevent/convert/psydon)
 	else
 		caster.add_stress(/datum/stressevent/convert)
@@ -631,7 +631,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 	message_admins("CONVERSION: [caster.real_name] ([caster.ckey]) has converted [new_convert.real_name] ([new_convert.ckey]) to [new_convert.patron.name]")
 	log_game("CONVERSION: [caster.real_name] ([caster.ckey]) converted [new_convert.real_name] ([new_convert.ckey]) to [new_convert.patron.name]")
 	to_chat(caster, span_danger("You've converted [new_convert.name] to follow [get_god_name(new_convert.patron)]!"))
-	if(istype(new_convert.patron, /datum/patron/old_god))
+	if(istype(new_convert.patron, /datum/patron/tribunal/praecursor))
 		to_chat(new_convert, span_danger("You feel divine energies shift as [get_god_name(old_patron)]'s blessings forsake you!")) // woe is you, blessed fool
 	else
 		to_chat(new_convert, span_danger("You feel divine energies shift as [get_god_name(old_patron)]'s blessings forsake you, and [get_god_name(new_convert.patron)]'s embrace envelops you!"))

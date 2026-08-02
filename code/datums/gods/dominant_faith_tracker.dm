@@ -3,49 +3,49 @@
 	var/conversion_penalty = 25 // how many points are taken away from the faith of origin when a psydonite converts a tennite/ascendent
 	// adjust these to make characters belonging to this faith count more or less towards the score ranking
 	var/list/weights = list(
-		/datum/faith/divine = 1,
-		/datum/faith/inhumen = 3,
-		/datum/faith/old_god = 1
+		/datum/faith/concordat = 1,
+		/datum/faith/unveiled = 3,
+		/datum/faith/tribunal = 1
 	)
 	// caching these because we only have to do a full recalc very rarely
 	var/list/totals = list(
-		/datum/faith/divine = 0,
-		/datum/faith/inhumen = 0,
-		/datum/faith/old_god = 0
+		/datum/faith/concordat = 0,
+		/datum/faith/unveiled = 0,
+		/datum/faith/tribunal = 0
 	)
 	// these three are purely for round end statistic viewing
 	var/list/influence_conversion = list(
-		/datum/faith/divine = 0,
-		/datum/faith/inhumen = 0,
-		/datum/faith/old_god = 0
+		/datum/faith/concordat = 0,
+		/datum/faith/unveiled = 0,
+		/datum/faith/tribunal = 0
 	)
 	var/list/influence_conversion_neg = list(
-		/datum/faith/divine = 0,
-		/datum/faith/inhumen = 0
+		/datum/faith/concordat = 0,
+		/datum/faith/unveiled = 0
 	)
 	var/list/influence_followers = list(
-		/datum/faith/divine = 0,
-		/datum/faith/inhumen = 0
+		/datum/faith/concordat = 0,
+		/datum/faith/unveiled = 0
 	)
 	// these are shown to people of a given pantheon (the first index) when a given pantheon (the second index) ascends
 	var/list/reign_messages = list(
-		/datum/faith/divine = list(
-			/datum/faith/divine = "$patron shines bright in your Lux! The Ten are in their rightful place.",
-			/datum/faith/inhumen = "The firmament feels thick. The Ten's influence wanes; the Inhumen rise.",
-			/datum/faith/old_god = "The world is quiet. A soft wind blows. The divines rest, for now.",
+		/datum/faith/concordat = list(
+			/datum/faith/concordat = "$patron shines bright in your Lux! The Ten are in their rightful place.",
+			/datum/faith/unveiled = "The firmament feels thick. The Ten's influence wanes; the Inhumen rise.",
+			/datum/faith/tribunal = "The world is quiet. A soft wind blows. The divines rest, for now.",
 		),
-		/datum/faith/inhumen = list(
-			/datum/faith/inhumen = "$patron outshines the mendacity of The Ten! Mortalkind ascend!",
-			/datum/faith/divine = "The firmanent feels thick. The Ten's influence is overpowering!",
-			/datum/faith/old_god = "The world is quiet. A soft wind blows. The divines rest, for now.",
+		/datum/faith/unveiled = list(
+			/datum/faith/unveiled = "$patron outshines the mendacity of The Ten! Mortalkind ascend!",
+			/datum/faith/concordat = "The firmanent feels thick. The Ten's influence is overpowering!",
+			/datum/faith/tribunal = "The world is quiet. A soft wind blows. The divines rest, for now.",
 		),
-		/datum/faith/old_god = list( // psydonites can only tell whether they're dominant or not, here
-			/datum/faith/divine = "The world is quiet. The wind has an ominous twinge.",
-			/datum/faith/inhumen = "The world is quiet. The wind has an ominous twinge.",
-			/datum/faith/old_god = "The world is quiet. The wind is calm and reassuring.",
+		/datum/faith/tribunal = list( // psydonites can only tell whether they're dominant or not, here
+			/datum/faith/concordat = "The world is quiet. The wind has an ominous twinge.",
+			/datum/faith/unveiled = "The world is quiet. The wind has an ominous twinge.",
+			/datum/faith/tribunal = "The world is quiet. The wind is calm and reassuring.",
 		)
 	)
-	var/datum/faith/dominant_faith = /datum/faith/old_god
+	var/datum/faith/dominant_faith = /datum/faith/tribunal
 	var/last_announce_time = 0
 
 /mob/living/carbon/human/proc/debug_faiths(recalc = FALSE)
@@ -62,12 +62,12 @@
 	var/datum/faith/old_dominant = dominant_faith
 	if(force)
 		full_recalculate()
-	if((totals[/datum/faith/inhumen] > totals[/datum/faith/divine]) && (totals[/datum/faith/inhumen] > totals[/datum/faith/old_god]))
-		dominant_faith = /datum/faith/inhumen
-	else if((totals[/datum/faith/divine] > totals[/datum/faith/inhumen]) && (totals[/datum/faith/divine] > totals[/datum/faith/old_god]))
-		dominant_faith = /datum/faith/divine
+	if((totals[/datum/faith/unveiled] > totals[/datum/faith/concordat]) && (totals[/datum/faith/unveiled] > totals[/datum/faith/tribunal]))
+		dominant_faith = /datum/faith/unveiled
+	else if((totals[/datum/faith/concordat] > totals[/datum/faith/unveiled]) && (totals[/datum/faith/concordat] > totals[/datum/faith/tribunal]))
+		dominant_faith = /datum/faith/concordat
 	else // either psydonians are coping so hard they won, or the ten and inhumen are at an impasse
-		dominant_faith = /datum/faith/old_god
+		dominant_faith = /datum/faith/tribunal
 
 	if(old_dominant == dominant_faith) // we only want to announce actual changes
 		return
@@ -81,10 +81,10 @@
 		return // no announcement spam
 	for(var/mob/i in GLOB.player_list)
 		var/mob/living/carbon/human/H = i
-		if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/mossmother) || ispath(H.patron.associated_faith, /datum/faith/godless) || !H.devotion)
+		if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/godless) || !H.devotion)
 			continue
 		to_chat(H, span_info("As the balance of faith shifts, the power of miracles waxes and wanes, favoring the pantheon dominant in the region..."))
-		if(ispath(dominant_faith, /datum/faith/old_god)) // psydon messages are always 'neutral'
+		if(ispath(dominant_faith, /datum/faith/tribunal)) // psydon messages are always 'neutral'
 			to_chat(H, span_blue(replacetext(reign_messages[H.patron.associated_faith][dominant_faith], "$patron", get_god_name(H.patron))))
 		else if(ispath(H.patron.associated_faith, dominant_faith))
 			to_chat(H, span_boldgreen(replacetext(reign_messages[H.patron.associated_faith][dominant_faith], "$patron", get_god_name(H.patron))))
@@ -98,21 +98,21 @@
 /datum/dominant_faith_tracker/proc/full_recalculate()
 	for(var/mob/i in GLOB.player_list)
 		var/mob/living/carbon/human/H = i
-		if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/mossmother) || ispath(H.patron.associated_faith, /datum/faith/godless))
+		if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/godless))
 			continue
 		totals[H.patron.associated_faith] += weights[H.patron.associated_faith]
 		influence_followers[H.patron.associated_faith] += weights[H.patron.associated_faith]
 
 // helper procs. call these when someone enters/leaves the round to update the totals accordingly
 /datum/dominant_faith_tracker/proc/handle_addition(mob/living/carbon/human/H)
-	if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/mossmother) || ispath(H.patron.associated_faith, /datum/faith/godless))
+	if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/godless))
 		return
 	totals[H.patron.associated_faith] += weights[H.patron.associated_faith]
 	influence_followers[H.patron.associated_faith] += weights[H.patron.associated_faith]
 	calculate_dominant_faith()
 
 /datum/dominant_faith_tracker/proc/handle_removal(mob/living/carbon/human/H)
-	if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/mossmother) || ispath(H.patron.associated_faith, /datum/faith/godless))
+	if(!istype(H) || !H.patron || ispath(H.patron.associated_faith, /datum/faith/godless))
 		return
 	totals[H.patron.associated_faith] -= weights[H.patron.associated_faith]
 	influence_followers[H.patron.associated_faith] -= weights[H.patron.associated_faith]
@@ -128,7 +128,7 @@
 	totals[H.patron.associated_faith] += weights[H.patron.associated_faith]
 	influence_followers[H.patron.associated_faith] += weights[H.patron.associated_faith]
 	// apply a bonus for conversion, to make them feel more impactful
-	if(!ispath(H.patron.associated_faith, /datum/faith/old_god))
+	if(!ispath(H.patron.associated_faith, /datum/faith/tribunal))
 		totals[H.patron.associated_faith] += conversion_bonus
 		influence_conversion[H.patron.associated_faith] += conversion_bonus
 	else

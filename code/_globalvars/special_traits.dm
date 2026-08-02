@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 			if(!LI)
 				continue
 			character.mind.special_items[LI.name] = LI.path
-		character.mind.special_items_metadata[LI.name] = player.prefs.gear_list[item_name]
+			character.mind.special_items_metadata[LI.name] = player.prefs.gear_list[item_name]
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
 	if(assigned_job)
 		assigned_job.clamp_stats(character)
@@ -67,11 +67,11 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 		REMOVE_TRAIT(H, TRAIT_EASYDISMEMBER, null) // Doesn't care for source, they ARE getting canceled
 		REMOVE_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, null)
 		to_chat(H, span_warning("My limbs are too frail and my body too tough... the contradiction leaves me unable to resist critical wounds."))
-		
+
 	var/datum/advclass/advclass = H.get_advclass_datum()
 	if(advclass?.tempo_capable && H.mind.assigned_role != "Court Agent" && H.mind.assigned_role != "Adventurer" && H.mind.assigned_role != "Towner") // (Easier to filter these out than apply the bool to every subclass)
 		if(!H.mind.has_antag_datum(/datum/antagonist/skeleton) && !H.mind.has_antag_datum(/datum/antagonist/lich) && !H.mind.has_antag_datum(/datum/antagonist/vampire) && !H.mind.has_antag_datum(/datum/antagonist/vampire/lord))
-			ADD_TRAIT(H, TRAIT_TEMPO, SPECIES_TRAIT)		
+			ADD_TRAIT(H, TRAIT_TEMPO, SPECIES_TRAIT)
 	return TRUE
 
 /proc/apply_voicepacks(mob/living/carbon/human/character, client/player)
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	var/bonus = player.prefs.race_bonus
 	if(!(bonus in character.dna.species.custom_selection))
 		return
-	var/full_bonus 
+	var/full_bonus
 	full_bonus = character.dna.species.custom_selection[bonus]
 	if(!full_bonus)
 		return

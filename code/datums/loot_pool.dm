@@ -1,6 +1,8 @@
 GLOBAL_LIST_EMPTY(loot_pools)
 GLOBAL_LIST_EMPTY(loot_spawners_pending)
 GLOBAL_LIST_EMPTY(loot_chests_pending)
+GLOBAL_LIST_EMPTY(loot_pools_deferred_keys)
+GLOBAL_LIST_EMPTY(loot_pools_deferred_finalized)
 
 /datum/loot_pool
 	/// Pool key identifier (area type or shared key string)
@@ -172,7 +174,6 @@ GLOBAL_LIST_EMPTY(loot_chests_pending)
 		var/datum/loot_pool/pool = GLOB.loot_pools[pool_key]
 		pool.process_pool()
 		CHECK_TICK
-<<<<<<< HEAD
 
 /**
  * Process a deferred pool by key once its source generation is complete (e.g. dungeon generator finishing).
@@ -227,5 +228,3 @@ GLOBAL_LIST_EMPTY(loot_chests_pending)
 	pool.process_pool()
 	GLOB.loot_pools -= key
 	qdel(pool)
-=======
->>>>>>> e68861eee5 (Merge pull request #8249 from WeNeedMorePhoron/kill-alotheos)

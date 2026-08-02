@@ -137,15 +137,12 @@
 /// surfaced here instead of admins needing to hunt through separate debug verbs.
 /datum/dreamvalley_save_status_ui/proc/build_subsystem_health()
 	var/list/dungeon = list(
-		"setup_done" = SSdungeon_generator?.setup_done || FALSE,
-		"generation_complete" = SSdungeon_generator?.generation_complete || FALSE,
-		"markers_remaining" = islist(SSdungeon_generator?.markers) ? length(SSdungeon_generator.markers) : 0,
-		"failed_markers_remaining" = islist(SSdungeon_generator?.failed_markers) ? length(SSdungeon_generator.failed_markers) : 0,
+		"setup_done" = FALSE,
+		"generation_complete" = FALSE,
+		"markers_remaining" = 0,
+		"failed_markers_remaining" = 0,
 		"rooms_placed" = 0,
 	)
-	if(islist(SSdungeon_generator?.placed_count))
-		for(var/room_type in SSdungeon_generator.placed_count)
-			dungeon["rooms_placed"] += SSdungeon_generator.placed_count[room_type]
 
 	var/list/economy = list(
 		"last_processed_day" = SSeconomy?.last_processed_day || 0,

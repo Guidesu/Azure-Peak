@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/get_cooldown_breakdown(mob/living/user)
 	var/list/breakdown = list()
-	if(miracle && !ispath(user.patron.associated_faith, /datum/faith/old_god) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/old_god))
+	if(miracle && !ispath(user.patron.associated_faith, /datum/faith/tribunal) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/tribunal))
 		if(user.patron.associated_faith == GLOB.dominant_faith_tracker.dominant_faith)
 			breakdown += span_smallgreen("  Dominant faith: -[DisplayTimeText(initial(recharge_time) * DOMINANT_FAITH_ADJUST)]")
 		else
@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/base = initial(recharge_time)
 	var/newcd = base
 	// Dominant faith adjust
-	if(miracle && !ispath(user.patron.associated_faith, /datum/faith/old_god) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/old_god))
+	if(miracle && !ispath(user.patron.associated_faith, /datum/faith/tribunal) && !ispath(GLOB.dominant_faith_tracker.dominant_faith, /datum/faith/tribunal))
 		if(user.patron.associated_faith == GLOB.dominant_faith_tracker.dominant_faith)
 			newcd -= base * DOMINANT_FAITH_ADJUST
 		else

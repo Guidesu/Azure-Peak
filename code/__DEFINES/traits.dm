@@ -264,6 +264,10 @@
 #define TRAIT_UNSEEMLY "Ugly"
 #define TRAIT_HERETIC_SEER "Heretic Seer"
 #define TRAIT_DUALWIELDER "Dual Wielder"
+#define TRAIT_UNCONVERTIBLE "Unconvertible"
+#define TRAIT_FOOD_STIPEND "Royal Subsidy"
+#define TRAIT_PSYDONITE "Psydonic Devotion"
+#define TRAIT_RECENT_CONVERT "Recent Convert" // Legacy alias, renamed to TRAIT_ROYAL_SUBSIDY in upstream
 #define TRAIT_SENTINELOFWITS "Sentinel of Wits"
 #define TRAIT_KEENEARS "Keen Ears"
 #define TRAIT_CICERONE "Cicerone"

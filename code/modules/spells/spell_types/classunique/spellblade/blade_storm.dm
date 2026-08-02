@@ -1,3 +1,7 @@
+// Legacy alias for code that references /spell/blade_storm instead of /spell/projectile/blade_storm
+/datum/action/cooldown/spell/blade_storm
+	parent_type = /datum/action/cooldown/spell/projectile/blade_storm
+
 /datum/action/cooldown/spell/projectile/blade_storm
 	source_aspect = /datum/magic_aspect/pseudo/spellblade
 	name = "Blade Storm"

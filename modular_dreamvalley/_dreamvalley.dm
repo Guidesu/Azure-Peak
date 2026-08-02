@@ -41,7 +41,6 @@
 #include "ported\ported_upstream\cosmetic_claws.dm"
 #include "ported\twilight_axis\trophy_hunter.dm"
 #include "ported\twilight_axis\trophy_flaws.dm"
-#include "ported\twilight_axis\vampiric_striker.dm"
 #include "ported\twilight_axis\helmkleinods.dm"
 #include "ported\twilight_axis\combo_core.dm"
 #include "ported\twilight_axis\soundbreaker.dm"
