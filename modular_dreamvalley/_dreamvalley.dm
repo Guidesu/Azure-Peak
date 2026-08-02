@@ -38,7 +38,6 @@
 // Twilight-Axis, Ratwood-2.0, Vanderlin) — see modular_dreamvalley/ported/
 // for per-source notes on what was and wasn't carried over.
 #include "ported\ported_upstream\ceramics_kintsugi.dm"
-#include "ported\ported_upstream\cosmetic_claws.dm"
 #include "ported\twilight_axis\trophy_hunter.dm"
 #include "ported\twilight_axis\trophy_flaws.dm"
 #include "ported\twilight_axis\helmkleinods.dm"

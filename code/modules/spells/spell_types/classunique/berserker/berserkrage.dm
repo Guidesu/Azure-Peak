@@ -17,7 +17,6 @@
 	return ragedmgbuff
 
 /obj/effect/proc_holder/spell/self/rage
-	source_aspect = /datum/magic_aspect/pseudo/berserker
 	name = "RAGE"
 	desc = "GETTING HURT MAKES YOU ANGRY, MAKE THEM HURT BACK- MORE HURT IS MORE ANGRY!"
 	antimagic_allowed = TRUE
@@ -30,7 +29,7 @@
 	. = ..()
 	if(!ishuman(user))
 		revert_cast()
-		return FALSE		
+		return FALSE
 	user.apply_status_effect(/datum/status_effect/buff/rage)
 	if(get_buff_value(user) >= 1)
 		user.apply_status_effect(/datum/status_effect/buff/rage_stamina)
@@ -112,7 +111,7 @@
 	. = ..()
 	if(!ishuman(user))
 		revert_cast()
-		return FALSE		
+		return FALSE
 	user.apply_status_effect(/datum/status_effect/buff/ragebad)
 	return TRUE
 
