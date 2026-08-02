@@ -109,7 +109,7 @@
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
 
-	log_game("[name] loaded at [T.x],[T.y],[T.z]")
+	log_mapping("[name] loaded at [T.x],[T.y],[T.z]")
 	return bounds
 
 /datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE)

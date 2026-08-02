@@ -4,6 +4,7 @@
 /datum/log_category/debug_asset
 	category = LOG_CATEGORY_DEBUG_ASSET
 	master_category = /datum/log_category/debug
+	config_flag = /datum/config_entry/flag/log_asset_debug
 
 /datum/log_category/debug_job
 	category = LOG_CATEGORY_DEBUG_JOB
