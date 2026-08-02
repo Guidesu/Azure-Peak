@@ -1,6 +1,7 @@
 //the saiga
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga
+	anatomy_type = /datum/anatomy/quadruped/standard
 	attack_aim = MOB_AIM_HIGH
 	name = "saiga doe"
 	desc = "Chiefly reputed friends of man, the saiga is the most ubiqutous beast of burden in the known world. They are driven to haul caravans and ploughs, ridden by mounted warriors on the field, and are much beloved by all."

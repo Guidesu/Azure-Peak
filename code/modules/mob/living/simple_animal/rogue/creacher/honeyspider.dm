@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider
+	anatomy_type = /datum/anatomy/spider
 	attack_aim = MOB_AIM_GROUND
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
 	name = "beespider"

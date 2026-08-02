@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/drider //lol
+	anatomy_type = /datum/anatomy/spider
 	icon = 'icons/roguetown/mob/monster/drider.dmi'
 	name = "drider spider"
 	desc = "A monstrously large spider utilised by drow as mounts, better suited \

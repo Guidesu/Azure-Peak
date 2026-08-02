@@ -168,8 +168,9 @@
 /datum/wound/cripple/decapitate
 	name = "destroyed head"
 	crit_message = list(
-		"The head is torn from the shoulders!",
-		"The skull bursts apart in a shower of gore!",
+		"THE HEAD IS TORN FROM THE SHOULDERS!",
+		"THE SKULL BURSTS APART IN A SHOWER OF GORE!",
+		"THE HEAD FLIES OFF IN AN ARC!",
 	)
 	break_alert = "HEAD DESTROYED!"
 	// Don't leave it at 3
@@ -200,8 +201,9 @@
 /datum/wound/cripple/guts
 	name = "spilled guts"
 	crit_message = list(
-		"The belly splits, spilling its guts across the ground!",
-		"The entrails burst free in a gout of blood!",
+		"THE BELLY SPLITS, SPILLING ITS GUTS!",
+		"THE ENTRAILS BURST FREE!",
+		"THE GUT IS OPENED IN A MAGNIFICENT WAY!",
 	)
 	break_alert = "GUTS SPILLED!"
 
@@ -242,3 +244,63 @@
 	)
 	break_alert = "leg broken!"
 	attack_delay_mult = 1.25
+
+/datum/wound/cripple/limb/core
+	name = "ruptured core"
+	crit_message = list(
+		"The core is burst apart!",
+		"The core is pierced!",
+		"The mass is torn open!",
+	)
+	break_alert = "core ruptured!"
+
+/datum/wound/cripple/maw/fangs
+	name = "shattered fangs"
+	crit_message = list(
+		"The fangs are snapped off!",
+		"The mouthparts are torn away!",
+		"The fangs are sheared off!",
+	)
+	break_alert = "fangs broken!"
+
+/datum/wound/cripple/spinneret
+	name = "burst spinnerets"
+	crit_message = list(
+		"The spinnerets are torn open!",
+		"The abdomen is split!",
+		"The silk glands are burst!",
+	)
+	break_alert = "spinnerets burst!"
+	var/removed_ranged = FALSE
+
+/datum/wound/cripple/spinneret/on_mob_gain(mob/living/affected)
+	. = ..()
+	var/mob/living/simple_animal/hostile/beast = affected
+	if(istype(beast) && beast.ranged)
+		beast.ranged = FALSE
+		removed_ranged = TRUE
+
+/datum/wound/cripple/spinneret/on_mob_loss(mob/living/affected)
+	. = ..()
+	var/mob/living/simple_animal/hostile/beast = affected
+	if(removed_ranged && istype(beast))
+		beast.ranged = TRUE
+	removed_ranged = FALSE
+
+/datum/wound/cripple/arm/tentacle
+	name = "severed tentacle"
+	crit_message = list(
+		"The tentacle is severed!",
+		"The tentacle is cut!",
+		"The tentacle flies off in an arc!",
+	)
+	break_alert = "tentacle severed!"
+
+/datum/wound/cripple/maw/tongue
+	name = "severed tongue"
+	crit_message = list(
+		"The tongue is cut!",
+		"The tongue is severed!",
+		"The tongue flies off in an arc!",
+	)
+	break_alert = "tongue severed!"

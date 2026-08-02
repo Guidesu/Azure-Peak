@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/lamia
+	anatomy_type = /datum/anatomy/biped/lamia
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
 	name = "lamia"
 	desc = "This slithering monstrosity has a human torso, a large snake tail, and four bladed arms."

@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/rogue/dreamfiend
+	anatomy_type = /datum/anatomy/aberrant
 	icon = 'icons/mob/abyssal_small.dmi'
 	desc = "A dizzying sight ripped violently from a distant dream and brought where it never belonged. It folds in on itself in ways impossible, and seems to move without moving."
 	name = "minor dream fiend"

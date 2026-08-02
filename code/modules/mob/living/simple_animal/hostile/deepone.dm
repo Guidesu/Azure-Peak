@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/rogue/deepone
+	anatomy_type = /datum/anatomy/biped
 	name = "Deep One"
 	desc = "It is said that, when the world was young and Abyssor did not yet dream, he took a mass of humenity \
 	in his hand and brought them to the abyss, sculpting from them speechless men in his own image."

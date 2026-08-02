@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/boar
+	anatomy_type = /datum/anatomy/quadruped/standard
 	attack_aim = MOB_AIM_LEVEL
 	icon = 'icons/roguetown/mob/monster/boar.dmi'
 	name = "bramblesnout"
