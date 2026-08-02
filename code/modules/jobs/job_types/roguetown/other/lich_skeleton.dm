@@ -344,7 +344,7 @@ LICH SKELETONS
 	H.energy = H.max_energy
 
 // Fragile Non-Combat crafter/demolishing artificer goon with a seige-use cavet. Worse weapons + very little armor but does base-building. Fortnite.
-// Has a unique extra varient calcic outburst choice that destroys walls and does a huge amount of damage on exploding but takes 8 seconds to prime, on top of their regular varient. 
+// Has a unique extra varient calcic outburst choice that destroys walls and does a huge amount of damage on exploding but takes 8 seconds to prime, on top of their regular varient.
 /datum/advclass/greater_skeleton/lich/sapper
 	name = "Ancient 'Broken Bone' Sapper"
 	tutorial = "Simple. Obedient. Like an ant in a colony. Toil, fortify, smelt, labor and destroy to the tune of your master's whims. After all; what good is an army if it hasn't a sword-nor-shield to wield?"
@@ -856,7 +856,7 @@ LICH SKELETONS
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
 	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
 	gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted/lich //Second weak spot, hands.
-	id = /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy //UP THE Z
+	id = /obj/item/clothing/neck/roguetown/psicross/aurelian/paalloy //UP THE Z
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded/dark
 	pants = /obj/item/clothing/under/roguetown/trou/leather/mourning
 
@@ -867,7 +867,7 @@ LICH SKELETONS
 
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/aalloy/mid = 1, //Hilarious
-		/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy = 4 //SPREAD HER INFLUENCE. ZIZO. ZIZO. ZIZO. (or just wear them all to aurafarm on the Psydonites, IDK)
+		/obj/item/clothing/neck/roguetown/psicross/aurelian/aalloy = 4 //SPREAD HER INFLUENCE. ZIZO. ZIZO. ZIZO. (or just wear them all to aurafarm on the Psydonites, IDK)
 	)
 
 	H.adjust_blindness(-3)

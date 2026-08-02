@@ -173,6 +173,37 @@
 			return FALSE
 	return TRUE
 
+// Pseudo aspect - not a real aspect, used for gating purposes
+/datum/magic_aspect/pseudo
+	aspect_type = ASPECT_PSEUDO
+
+/datum/magic_aspect/pseudo/wards
+	name = "Warding"
+
+/datum/magic_aspect/pseudo/spellblade
+	name = "Spellblade"
+
+/datum/magic_aspect/pseudo/spellfist
+	name = "Spellfist"
+
+/datum/magic_aspect/pseudo/bardic
+	name = "Bardic"
+
+/datum/magic_aspect/pseudo/vizier
+	name = "Vizier"
+
+/datum/magic_aspect/pseudo/hierophant
+	name = "Hierophant"
+
+/datum/magic_aspect/pseudo/luminary
+	name = "Luminary"
+
+/datum/magic_aspect/pseudo/desertrider
+	name = "Desert Rider"
+
+/datum/magic_aspect/pseudo/berserker
+	name = "Berserker"
+
 GLOBAL_LIST_INIT(magic_aspects_major, init_magic_aspects(ASPECT_MAJOR))
 GLOBAL_LIST_INIT(magic_aspects_minor, init_magic_aspects(ASPECT_MINOR))
 GLOBAL_LIST_INIT(magic_aspect_singletons, init_magic_aspect_singletons())
