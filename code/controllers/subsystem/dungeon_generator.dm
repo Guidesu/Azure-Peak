@@ -8,12 +8,12 @@ SUBSYSTEM_DEF(dungeon_generator)
 	wait = 0.5 SECONDS
 
 	var/list/parent_types = list()
-	var/list/templates_by_category = list() 
+	var/list/templates_by_category = list()
 	var/list/templates_by_connection = list()
 	var/list/templates_by_connection_and_depth = list()
 	var/list/filler_templates_by_connection = list()
-	var/list/markers = list() 
-	var/list/failed_markers = list() 
+	var/list/markers = list()
+	var/list/failed_markers = list()
 	var/list/placed_count = list()
 
 	var/generation_stage = STAGE_EXPANSION
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 	for(var/path in subtypesof(/datum/map_template/dungeon))
 		var/datum/map_template/dungeon/path_type = path
 		if(initial(path_type.abstract_type) == path || ispath(path, /datum/map_template/dungeon/entry))
-			continue 
+			continue
 
 		var/datum/map_template/dungeon/T = new path
 		if(!T || !T.mappath) continue
@@ -68,10 +68,10 @@ SUBSYSTEM_DEF(dungeon_generator)
 		dungeon_templates += T
 		cache_template_connections(T)
 
-	
+
 	templates_by_category[/datum/map_template/dungeon] = dungeon_templates
 
-	addtimer(CALLBACK(src, .proc/find_initial_map_data), 50) 
+	addtimer(CALLBACK(src, .proc/find_initial_map_data), 50)
 	return ..()
 
 /**
@@ -96,12 +96,12 @@ SUBSYSTEM_DEF(dungeon_generator)
 			if(level.name == "Dungeon Map")
 				target_z = level.z_value
 		if(target_z)
-			log_world("DUNGEON_DEBUG: target_z resolved to [target_z] (world.maxz=[world.maxz]), allowed_z_range=[allowed_z_range.Join(",")] via 'Dungeon Map' z_list lookup.")
+			log_mapping("DUNGEON_DEBUG: target_z resolved to [target_z] (world.maxz=[world.maxz]), allowed_z_range=[allowed_z_range.Join(",")] via 'Dungeon Map' z_list lookup.")
 
 	if(!target_z)
 		setup_attempts++
 		if(setup_attempts >= max_setup_attempts)
-			log_world("DUNGEON_DEBUG: giving up after [setup_attempts] attempts - no z_list entry named 'Dungeon Map' ever appeared. z_list names: [dungeon_debug_zlist_names()]")
+			log_mapping("DUNGEON_DEBUG: giving up after [setup_attempts] attempts - no z_list entry named 'Dungeon Map' ever appeared. z_list names: [dungeon_debug_zlist_names()]")
 			generation_complete = TRUE
 			can_fire = FALSE
 			return
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 		addtimer(CALLBACK(src, .proc/find_initial_map_data), 50)
 		return
 
-	log_world("DUNGEON_DEBUG: found [length(found_points)] dungeon_directional_helper marker(s) on target_z=[target_z].")
+	log_mapping("DUNGEON_DEBUG: found [length(found_points)] dungeon_directional_helper marker(s) on target_z=[target_z].")
 
 	if(length(found_points) >= 4)
 		var/obj/F = found_points[1]
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 		var/idx = rand(1, length(markers))
 		var/obj/effect/dungeon_directional_helper/helper = markers[idx]
 		markers.Cut(idx, idx + 1)
-		
+
 		if(helper && !QDELETED(helper))
 			if(!try_grow_at_marker(helper))
 				failed_markers |= helper
@@ -193,11 +193,11 @@ SUBSYSTEM_DEF(dungeon_generator)
 
 	var/list/area_dims = scan_free_area(start_step, direction)
 	var/max_dist = area_dims["h"]
-	if(max_dist < 4) return FALSE 
+	if(max_dist < 4) return FALSE
 
 	var/opp_dir = reverse_direction(direction)
 	var/list/checking_list = get_candidate_templates(opp_dir, max_dist)
-	
+
 	for(var/datum/map_template/dungeon/T in checking_list)
 		var/offset = T.get_dir_offset(opp_dir)
 		if(offset == null) continue
@@ -229,7 +229,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 		var/turf/T = get_step_dist(start_T, dir, i)
 		if(!T || !is_strictly_void(T) || is_protected(T.x, T.y)) break
 		depth = i
-	return list("h" = depth) 
+	return list("h" = depth)
 
 /datum/controller/subsystem/dungeon_generator/proc/get_step_dist(turf/start, dir, dist)
 	var/tx = start.x; var/ty = start.y
@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(dungeon_generator)
 		var/cz = target_z + z_off
 		if(cz > world.maxz) return FALSE
 		if(length(allowed_z_range) && !(cz in allowed_z_range))
-			log_world("DUNGEON_DEBUG: REFUSED placement of [T.type] at z=[cz] (outside allowed_z_range=[allowed_z_range.Join(",")]) - this would have overlapped a station map.")
+			log_mapping("DUNGEON_DEBUG: REFUSED placement of [T.type] at z=[cz] (outside allowed_z_range=[allowed_z_range.Join(",")]) - this would have overlapped a station map.")
 			return FALSE
 		for(var/turf/test in block(locate(start_T.x, start_T.y, cz), locate(ex, ey, cz)))
 			if(z_off == 0)
@@ -350,14 +350,14 @@ SUBSYSTEM_DEF(dungeon_generator)
 			// losing even one or two of those 4 to a bad template roll can mean the entire
 			// dungeon interior never gets seeded at all.
 			if(!try_spawn_filler(helper.dir, get_turf(helper)))
-				log_world("DUNGEON_DEBUG: try_spawn_filler FAILED for marker at [get_turf(helper)] dir=[helper.dir] - this seed is lost with nothing built there.")
+				log_mapping("DUNGEON_DEBUG: try_spawn_filler FAILED for marker at [get_turf(helper)] dir=[helper.dir] - this seed is lost with nothing built there.")
 			qdel(helper)
 		processed++
 
 /datum/controller/subsystem/dungeon_generator/proc/try_spawn_filler(direction, turf/target_turf)
 	var/opp_dir = reverse_direction(direction)
 	var/list/checking_list = shuffle(filler_templates_by_connection[direction_key(opp_dir)])
-	
+
 	for(var/datum/map_template/dungeon/T in checking_list)
 		var/offset = T.get_dir_offset(opp_dir)
 		if(offset == null) continue

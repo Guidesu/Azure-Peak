@@ -90,7 +90,6 @@
 	var/datum/mana_pool/mob/pool = get_mana_pool_lazy()
 	if(istype(pool))
 		pool.recalculate_from_skill()
-		log_world("MANA_DEBUG: [type] post-recalc amount=[pool.amount] max=[pool.maximum_mana_capacity] overload_threshold=[pool.mana_overload_threshold]")
 
 /// A mana pool belonging to a living mob. Scales its max capacity and regen rate with the mob's /datum/skill/magic/arcane level.
 /datum/mana_pool/mob
