@@ -203,6 +203,14 @@
 	if((I.is_silver || I.smeltresult == /obj/item/ingot/silver) && !I.is_lesser_silver && (HAS_TRAIT(src, TRAIT_SILVER_WEAK) &&  !has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
 		var/datum/antagonist/vampire/V_lord = mind?.has_antag_datum(/datum/antagonist/vampire)
 		if(!istype(V_lord) || V_lord?.generation < GENERATION_METHUSELAH)
+			// Check if wearing gloves — allows holding silver but with heavy discomfort
+			var/obj/item/clothing/gloves = get_item_by_slot(SLOT_GLOVES)
+			if(gloves)
+				to_chat(src, span_boldwarning("The silver burns even through my gloves! I can barely stand to hold it!"))
+				adjustFireLoss(5)
+				adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder)
+				add_stress(/datum/stressevent/lesser_silver)
+				return TRUE
 			to_chat(src, span_userdanger("I can't pick up the silver, it is my BANE!"))
 			Knockdown(10)
 			Paralyze(10)
