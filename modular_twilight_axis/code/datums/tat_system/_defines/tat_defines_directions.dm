@@ -1,4 +1,4 @@
-#define TAT_DIRECTION_POINTS 60
+#define TAT_DIRECTION_POINTS 80
 
 #define TAT_FOUNDATION_SETTLED "settled"
 // Wanderer foundation removed: retain the old token as an alias so legacy TAT

@@ -124,7 +124,7 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
-	
+
 	var/mob/living/L = src
 	if(L?.wallpressed && L.m_intent == MOVE_INTENT_SNEAK && !istype(L.loc, /turf/open/transparent/openspace))
 		to_chat(src, span_warning("You need to step away from the wall first."))
@@ -532,7 +532,12 @@
 			else if(istype(rmb_intent, /datum/rmb_intent/swift))
 				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
-		
+
+		// Dual wielder: build combo on unarmed attacks too
+		if(HAS_TRAIT(src, TRAIT_DUALWIELDER) && istype(src, /mob/living))
+			var/mob/living/L = src
+			L.process_dualwield(A, null, params)
+
 		UnarmedAttack(A,1,params)
 
 	var/invis_timer = mob_timers[MT_INVISIBILITY]

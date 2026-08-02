@@ -73,6 +73,10 @@
 /proc/song_check_instrument(mob/living/carbon/human/owner)
 	if(!owner || !owner.inspiration)
 		return FALSE
+	// Vocal singing doesn't require an instrument
+	var/datum/status_effect/buff/playing_melody/melody = locate(/datum/status_effect/buff/playing_melody) in owner.status_effects
+	if(melody?.vocal_singing)
+		return TRUE
 	for(var/obj/item/held in owner.held_items)
 		if(istype(held, /obj/item/rogue/instrument))
 			return TRUE
@@ -97,6 +101,7 @@
 	duration = -1
 	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_melodyt1
 	var/energytodrain = SONG_SUSTAIN_COST
+	var/vocal_singing = FALSE // If TRUE, this song is being sung without an instrument
 
 
 /atom/movable/screen/alert/status_effect/buff/playing_melody
