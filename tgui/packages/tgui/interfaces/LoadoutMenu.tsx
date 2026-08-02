@@ -182,6 +182,25 @@ const ItemDetailPanel = (props: {
               icon_state={item.icon_state}
               width={64}
               height={64}
+              fallback={
+                <Box
+                  width={64}
+                  height={64}
+                  align="center"
+                  verticalAlign="middle"
+                  fontSize={0.8}
+                  color="label"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    textAlign: 'center',
+                  }}
+                >
+                  {item.name.slice(0, 10)}
+                </Box>
+              }
             />
             <Box>
               <Box bold fontSize={1.1}>
@@ -592,6 +611,25 @@ const LoadoutDisplay = () => {
                             icon_state={item.icon_state}
                             width={48}
                             height={48}
+                            fallback={
+                              <Box
+                                width={48}
+                                height={48}
+                                align="center"
+                                verticalAlign="middle"
+                                fontSize={0.7}
+                                color="label"
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  overflow: 'hidden',
+                                  textAlign: 'center',
+                                }}
+                              >
+                                {item.name.slice(0, 8)}
+                              </Box>
+                            }
                           />
                           {(meta?.color ||
                             meta?.detail_color ||

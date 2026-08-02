@@ -56,8 +56,8 @@
 		if(LI.name == "Parent loadout datum")
 			continue
 
-		var/item_icon = ispath(LI.path, /obj/item) ? initial(target.icon) : null
-		var/item_icon_state = ispath(LI.path, /obj/item) ? initial(target.icon_state) : null
+		var/item_icon = ispath(LI.path, /obj/item) ? "[initial(target.icon)]" : null
+		var/item_icon_state = ispath(LI.path, /obj/item) ? "[initial(target.icon_state)]" : null
 
 		items += list(list(
 			"name" = LI.name,
