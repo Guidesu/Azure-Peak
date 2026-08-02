@@ -3260,7 +3260,8 @@
 /obj/effect/decal/remains/bear,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/lich_start/lich_lair)
-"YV" = (/area/rogue/underworld/dream)
+"YV" = (/turf/open/floor/rogue/naturalstone,
+/area/rogue/underworld/dream)
 "Za" = (
 /obj/structure/flora/rogueshroom/happy,
 /turf/open/floor/rogue/dirt,
