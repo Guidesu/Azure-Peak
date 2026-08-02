@@ -4,8 +4,8 @@
 /datum/species/aasimar
 	name = "Aasimar"
 	id = "aasimar"
-	origin_default = /datum/virtue/origin/otava
-	origin = "Otava"
+	origin_default = /datum/virtue/origin/ostrovia
+	origin = "Ostrovia"
 	base_name = "Godtouched"
 	desc_title = "Aasimar"
 	desc = "Creations of the gods and their angels, most Aasimar bear bindings and compulsions, placed \
