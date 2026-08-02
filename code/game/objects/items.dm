@@ -981,7 +981,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(!disable_warning)
 				to_chat(M, span_boldwarning("The silver burns even through my gloves! I can barely stand to hold it!"))
 			M.adjustFireLoss(5)
-			M.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder)
 			M.add_stress(/datum/stressevent/lesser_silver)
 			return TRUE
 

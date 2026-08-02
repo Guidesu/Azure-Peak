@@ -208,7 +208,6 @@
 			if(gloves)
 				to_chat(src, span_boldwarning("The silver burns even through my gloves! I can barely stand to hold it!"))
 				adjustFireLoss(5)
-				adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder)
 				add_stress(/datum/stressevent/lesser_silver)
 				return TRUE
 			to_chat(src, span_userdanger("I can't pick up the silver, it is my BANE!"))
