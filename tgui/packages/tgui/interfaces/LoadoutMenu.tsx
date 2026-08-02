@@ -180,12 +180,12 @@ const ItemDetailPanel = (props: {
             <DmIcon
               icon={item.icon}
               icon_state={item.icon_state}
-              width={64}
-              height={64}
+              width={4}
+              height={4}
               fallback={
                 <Box
-                  width={64}
-                  height={64}
+                  width={4}
+                  height={4}
                   align="center"
                   verticalAlign="middle"
                   fontSize={0.8}
@@ -423,7 +423,9 @@ const LoadoutDisplay = () => {
               />
               <Box mt={0.5}>
                 Triumphs:{' '}
-                {is_donator && triumph_discount > 0 && total_triumph_cost > 0 ? (
+                {is_donator &&
+                triumph_discount > 0 &&
+                total_triumph_cost > 0 ? (
                   <>
                     {total_triumph_cost}
                     <Box inline color="green" ml={0.5}>
@@ -609,12 +611,12 @@ const LoadoutDisplay = () => {
                           <DmIcon
                             icon={item.icon}
                             icon_state={item.icon_state}
-                            width={48}
-                            height={48}
+                            width={3}
+                            height={3}
                             fallback={
                               <Box
-                                width={48}
-                                height={48}
+                                width={3}
+                                height={3}
                                 align="center"
                                 verticalAlign="middle"
                                 fontSize={0.7}
@@ -635,7 +637,9 @@ const LoadoutDisplay = () => {
                             meta?.detail_color ||
                             meta?.altdetail_color) && (
                             <Box mt={0.2}>
-                              {meta?.color && <ColorSwatch color={meta.color} />}
+                              {meta?.color && (
+                                <ColorSwatch color={meta.color} />
+                              )}
                               {meta?.detail_color && (
                                 <ColorSwatch color={meta.detail_color} />
                               )}
