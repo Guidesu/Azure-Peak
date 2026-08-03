@@ -852,11 +852,7 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 
 /datum/tat_traits/proc/sanitize()
 	for(var/trait_id in selected.Copy())
-		if(owner_build?.directions?.is_direction_trait(trait_id))
-			var/direction = owner_build.directions.get_trait_direction(trait_id)
-			if(!owner_build.directions.trait_requirements_met(trait_id) || owner_build.directions.get_remaining_trait_points(direction) < 0)
-				selected -= trait_id
-				continue
+		// Freeform: no direction point or requirement checks during sanitize
 		if(!can_select_trait(trait_id, is_revalidation = TRUE))
 			selected -= trait_id
 			continue
