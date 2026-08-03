@@ -178,8 +178,8 @@ const ItemDetailPanel = (props: {
             }}
           >
             <DmIcon
-              icon={item.icon}
-              icon_state={item.icon_state}
+              icon={item.icon ?? ''}
+              icon_state={item.icon_state ?? ''}
               width={4}
               height={4}
               fallback={
@@ -609,8 +609,8 @@ const LoadoutDisplay = () => {
                           onClick={() => setDetailItem(item.name)}
                         >
                           <DmIcon
-                            icon={item.icon}
-                            icon_state={item.icon_state}
+                            icon={item.icon ?? ''}
+                            icon_state={item.icon_state ?? ''}
                             width={3}
                             height={3}
                             fallback={

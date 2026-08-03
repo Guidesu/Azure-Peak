@@ -771,20 +771,7 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 /datum/tat_traits/proc/are_traits_mutually_exclusive(trait_a, trait_b)
 	if(!trait_a || !trait_b || trait_a == trait_b)
 		return null
-
-	if(has_trait(TAT_TRAIT_WANTED))
-		if((trait_a == TRAIT_NOPAINSTUN && (trait_b == TAT_TRAIT_MAGE_INITIATE || trait_b == TAT_TRAIT_DIVINE_BOON_2)) || (trait_b == TRAIT_NOPAINSTUN && (trait_a == TAT_TRAIT_MAGE_INITIATE || trait_a == TAT_TRAIT_DIVINE_BOON_2)))
-			return null
-	// Wretch-specific exclusions removed in single-archetype build.
-	var/list/conflicts = get_trait_conflict_map()
-	var/list/a_conflicts = conflicts[trait_a]
-	if(islist(a_conflicts) && (trait_b in a_conflicts))
-		return "\"[get_trait_display_name(trait_a)]\" conflicts with \"[get_trait_display_name(trait_b)]\"."
-	var/list/b_conflicts = conflicts[trait_b]
-	if(islist(b_conflicts) && (trait_a in b_conflicts))
-		return "\"[get_trait_display_name(trait_a)]\" conflicts with \"[get_trait_display_name(trait_b)]\"."
-	if(((trait_a == TAT_TRAIT_DIVINE_BOON_3 || trait_b == TAT_TRAIT_DIVINE_BOON_3) && has_defensive_trait_lockout()) && !(has_full_heretic_unlock() || has_trait(TAT_TRAIT_WANTED)))
-		return "\"[get_trait_display_name(TAT_TRAIT_DIVINE_BOON_3)]\" conflicts with current defensive trait setup or lack wanted/heretic traits."
+	// All TAT trait restrictions removed — freeform selection, any trait with any other.
 	return null
 
 /datum/tat_traits/proc/has_invalid_trait_dependencies()
@@ -797,8 +784,7 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 		if(trait_requirement_is_met(rule))
 			continue
 		issues += (rule["message"] || "Trait has unmet requirements.")
-	if((has_trait(TAT_TRAIT_MAGE_MAJOR_SLOT) || has_trait(TAT_TRAIT_MAGE_MINOR_SLOT_1) || has_trait(TAT_TRAIT_MAGE_UTILITY_SLOT)) && !has_trait(TAT_TRAIT_MAGE_INITIATE))
-		issues += "Mage spell slots require \"[get_trait_display_name(TAT_TRAIT_MAGE_INITIATE)]\"."
+	// Freeform: mage spell slots no longer require Mage Initiate.
 	var/list/effective_traits = get_effective_trait_counts()
 	for(var/trait_a in effective_traits)
 		for(var/trait_b in effective_traits)

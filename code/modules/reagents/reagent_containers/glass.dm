@@ -61,8 +61,8 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/humanized = M
 			if(get_location_accessible(humanized, BODY_ZONE_CHEST))
-				if(humanized.has_breasts() && humanized.getorganslot(ORGAN_SLOT_BREASTS)?.lactating)
-					var/obj/item/organ/breasts/breasts = humanized.getorganslot(ORGAN_SLOT_BREASTS)
+				var/obj/item/organ/breasts/breasts = humanized.getorganslot(ORGAN_SLOT_BREASTS)
+				if(humanized.has_breasts() && breasts?.lactating)
 					if(breasts.milk_stored > 0)
 						if(reagents.total_volume < volume)
 							var/milk_to_take = min(breasts.milk_stored, max(breasts.breast_size, 1), volume - reagents.total_volume)

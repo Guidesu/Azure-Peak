@@ -310,7 +310,7 @@
 	if(!caster || !caster.client || !overlay)
 		return
 	overlay.fade_out()
-	addtimer(CALLBACK(src, .proc/remove_overlay_from_client, caster.client, overlay), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_overlay_from_client, caster.client, overlay), 0.5 SECONDS)
 
 /proc/remove_overlay_from_client(client/C, atom/movable/screen/overlay)
 	if(!C || !overlay)

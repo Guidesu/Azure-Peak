@@ -179,7 +179,9 @@
 /datum/tat_directions/proc/get_trait_rule(trait_id)
 	var/list/rule = GLOB.tat_direction_trait_rules[trait_id]
 	if(islist(rule))
-		return rule
+		// Freeform: all traits spend from the shared Ordinary pool regardless
+		// of their original direction. No direction-specific requirements.
+		return list("direction" = TAT_DIRECTION_ORDINARY, "requirements" = list(), "tier" = 0)
 	// The single Starter archetype deliberately removed the old web of
 	// role/foundation gates. Every normal TAT trait, including the virtue
 	// adapters, therefore spends from the shared Ordinary direction pool.
