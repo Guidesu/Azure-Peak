@@ -179,9 +179,7 @@
 /datum/tat_directions/proc/get_trait_rule(trait_id)
 	var/list/rule = GLOB.tat_direction_trait_rules[trait_id]
 	if(islist(rule))
-		// Freeform: all traits spend from the shared Ordinary pool regardless
-		// of their original direction. No direction-specific requirements.
-		return list("direction" = TAT_DIRECTION_ORDINARY, "requirements" = list(), "tier" = 0)
+		return rule
 	// The single Starter archetype deliberately removed the old web of
 	// role/foundation gates. Every normal TAT trait, including the virtue
 	// adapters, therefore spends from the shared Ordinary direction pool.
@@ -233,35 +231,12 @@
 	return islist(requirements) ? requirements.Copy() : null
 
 /datum/tat_directions/proc/trait_requirements_met(trait_id)
-	var/list/rule = get_trait_rule(trait_id)
-	if(!rule)
-		return TRUE
-	var/list/requirements = rule["requirements"]
-	if(!islist(requirements))
-		return TRUE
-	for(var/direction in requirements)
-		if(direction == TAT_DIRECTION_ORDINARY)
-			if(get_trait_tier(trait_id) < round(requirements[direction] || 0))
-				return FALSE
-			continue
-		if(get_points(direction) < round(requirements[direction] || 0))
-			return FALSE
+	// Freeform: all direction requirements removed
 	return TRUE
 
 /datum/tat_directions/proc/get_trait_requirement_text(trait_id)
-	var/list/rule = get_trait_rule(trait_id)
-	if(!rule)
-		return null
-	if(rule["direction"] == TAT_DIRECTION_ORDINARY)
-		return null
-	var/list/requirements = rule["requirements"]
-	if(!islist(requirements) || !length(requirements))
-		return null
-	var/list/parts = list()
-	for(var/direction in requirements)
-		var/name = GLOB.tat_direction_names[direction] || direction
-		parts += "[name] [requirements[direction]]"
-	return parts.Join(", ")
+	// Freeform: no requirement text
+	return null
 
 /datum/tat_directions/proc/get_spent_trait_points(direction)
 	direction = normalize_direction(direction)
@@ -283,30 +258,13 @@
 /datum/tat_directions/proc/can_select_trait(trait_id)
 	if(!is_direction_trait(trait_id))
 		return TRUE
-	if(!trait_requirements_met(trait_id))
-		return FALSE
-	var/direction = get_trait_direction(trait_id)
-	if(direction == TAT_DIRECTION_ORDINARY)
-		if(owner_build?.traits?.has_trait(trait_id))
-			return get_remaining_points() >= 0
-		return get_remaining_points() >= get_trait_cost(trait_id)
-	if(owner_build?.traits?.has_trait(trait_id))
-		return TRUE
-	return get_remaining_trait_points(direction) >= get_trait_cost(trait_id)
+	// Freeform: no direction point requirements, any trait can be selected
+	return TRUE
 
 /datum/tat_directions/proc/get_trait_block_reason(trait_id)
 	if(!is_direction_trait(trait_id))
 		return null
-	var/requirement_text = get_trait_requirement_text(trait_id)
-	if(requirement_text && !trait_requirements_met(trait_id))
-		return "Requires [requirement_text]."
-	var/direction = get_trait_direction(trait_id)
-	if(direction == TAT_DIRECTION_ORDINARY)
-		if(get_remaining_points() < get_trait_cost(trait_id))
-			return "Not enough unspent direction points."
-		return null
-	if(get_remaining_trait_points(direction) < get_trait_cost(trait_id))
-		return "Not enough unspent [GLOB.tat_direction_names[direction] || direction] direction points."
+	// Freeform: no direction point requirements or block reasons
 	return null
 
 /datum/tat_directions/proc/sanitize()
