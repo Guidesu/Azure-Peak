@@ -2278,7 +2278,7 @@ const DirectionTraitTree = ({
       const groupKey = isOrdinary ? groupLabel.toLowerCase() : 'talents';
       if (!result[groupKey]) {
         result[groupKey] = {
-          order: isOrdinary ? (groupLabel === 'Negative' ? 0 : 1) : tier,
+          order: isOrdinary ? (groupLabel === 'Negative' ? 0 : 1) : 0,
           label: groupLabel,
           subtitle: isOrdinary ? 'Ordinary' : DIRECTION_LABELS[direction],
           entries: [],
