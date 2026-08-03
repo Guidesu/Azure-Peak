@@ -1,5 +1,4 @@
-﻿import { memo, useEffect, useMemo, useState } from 'react';
-import { ReactNode } from 'react';
+﻿import { memo, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -128,10 +127,7 @@ type TatSlotEntry = {
   pq_lock_text?: string | null;
 };
 
-type SkillDomainKey =
-  | 'combat'
-  | 'labour'
-  | 'misc';
+type SkillDomainKey = 'combat' | 'labour' | 'misc';
 
 type DirectionKey =
   | 'combat'
@@ -177,21 +173,28 @@ type Data = {
   skill_points_remaining_by_domain?: Partial<Record<SkillDomainKey, number>>;
   skill_free_points_by_domain?: Partial<Record<SkillDomainKey, number>>;
   skill_trait_points_by_domain?: Partial<Record<SkillDomainKey, number>>;
-  skill_point_breakdown_by_domain?: Partial<Record<SkillDomainKey, {
-    base?: number;
-    trait?: number;
-    expert?: number;
-    master?: number;
-    converted?: number;
-    normal_total?: number;
-    normal_spent?: number;
-    normal_remaining?: number;
-    expert_master_total?: number;
-    expert_master_spent?: number;
-    expert_master_remaining?: number;
-  }>>;
+  skill_point_breakdown_by_domain?: Partial<
+    Record<
+      SkillDomainKey,
+      {
+        base?: number;
+        trait?: number;
+        expert?: number;
+        master?: number;
+        converted?: number;
+        normal_total?: number;
+        normal_spent?: number;
+        normal_remaining?: number;
+        expert_master_total?: number;
+        expert_master_spent?: number;
+        expert_master_remaining?: number;
+      }
+    >
+  >;
   skill_conversion_pool?: number;
-  skill_conversion_state?: Partial<Record<SkillDomainKey, SkillConversionDomainState>>;
+  skill_conversion_state?: Partial<
+    Record<SkillDomainKey, SkillConversionDomainState>
+  >;
 
   directions?: {
     foundation?: string;
@@ -199,13 +202,18 @@ type Data = {
     points_total?: number;
     points_spent?: number;
     points_remaining?: number;
-    directions?: Partial<Record<DirectionKey, {
-      points?: number;
-      spent?: number;
-      remaining?: number;
-      next_cost?: number;
-      name?: string;
-    }>>;
+    directions?: Partial<
+      Record<
+        DirectionKey,
+        {
+          points?: number;
+          spent?: number;
+          remaining?: number;
+          next_cost?: number;
+          name?: string;
+        }
+      >
+    >;
     foundation_names?: Record<string, string>;
     foundation_role_choices?: Record<string, string[]>;
     role_choice_names?: Record<string, string>;
@@ -227,7 +235,14 @@ type Data = {
 type TabKey = 'control' | 'stats' | 'skills' | 'traits' | 'items' | 'loadout';
 
 const TAT_TAB_STORAGE_KEY = 'dreamvalley_tat_build_tab';
-const TAT_TAB_VALUES: TabKey[] = ['control', 'stats', 'skills', 'traits', 'items', 'loadout'];
+const TAT_TAB_VALUES: TabKey[] = [
+  'control',
+  'stats',
+  'skills',
+  'traits',
+  'items',
+  'loadout',
+];
 
 // BYOND's embedded browser can remount the whole TGUI page on window
 // refocus (e.g. after alt-tab), which resets all useState - including which
@@ -287,11 +302,7 @@ const SKILL_DOMAIN_TITLES: Record<SkillDomainKey, string> = {
   misc: 'Misc',
 };
 
-const SKILL_DOMAIN_ORDER: SkillDomainKey[] = [
-  'combat',
-  'labour',
-  'misc',
-];
+const SKILL_DOMAIN_ORDER: SkillDomainKey[] = ['combat', 'labour', 'misc'];
 
 const normalizeSearch = (value: unknown): string =>
   String(value ?? '')
@@ -308,7 +319,7 @@ const matchesSearch = (search: string, ...parts: Array<unknown>): boolean => {
 
 const normalizeTatSlots = (
   raw: Data['tat_slots'],
-  activeSlotId?: number
+  activeSlotId?: number,
 ): TatSlotEntry[] => {
   const makeSummary = (summary?: SlotSummary): SlotSummary => ({
     stats: Number(summary?.stats) || 0,
@@ -317,7 +328,10 @@ const normalizeTatSlots = (
     items: Number(summary?.items) || 0,
   });
 
-  const makeSlot = (slot: TatSlotEntry | undefined, id: number): TatSlotEntry => ({
+  const makeSlot = (
+    slot: TatSlotEntry | undefined,
+    id: number,
+  ): TatSlotEntry => ({
     id,
     name: String(slot?.name || `Slot ${id}`),
     active: Number(activeSlotId) === id || !!slot?.active,
@@ -344,7 +358,9 @@ const normalizeTatSlots = (
   }
 
   return Object.entries(raw)
-    .map(([key, slot], index) => makeSlot(slot, Number(slot?.id) || Number(key) || index + 1))
+    .map(([key, slot], index) =>
+      makeSlot(slot, Number(slot?.id) || Number(key) || index + 1),
+    )
     .sort((a, b) => a.id - b.id);
 };
 
@@ -471,9 +487,9 @@ const formatDomainPoints = (data: Data, domain: SkillDomainKey) => {
     if (Number.isFinite(normalTotal) && Number.isFinite(normalRemaining)) {
       const normalText = `${normalRemaining} / ${normalTotal}`;
       if (
-        Number.isFinite(restrictedTotal)
-        && Number.isFinite(restrictedRemaining)
-        && restrictedTotal > 0
+        Number.isFinite(restrictedTotal) &&
+        Number.isFinite(restrictedRemaining) &&
+        restrictedTotal > 0
       ) {
         return `${normalText} (${restrictedRemaining} / ${restrictedTotal})`;
       }
@@ -522,7 +538,11 @@ const getTraitAmount = (data: Data, traitId: string): number => {
   return (data.traits || []).filter((id) => id === traitId).length;
 };
 
-const canAddTrait = (data: Data, traitId: string, entry: TraitEntry): boolean => {
+const canAddTrait = (
+  data: Data,
+  traitId: string,
+  entry: TraitEntry,
+): boolean => {
   const state = data.traits_state?.[traitId];
   if (state?.can_add === false || entry.can_add === false) {
     return false;
@@ -540,10 +560,6 @@ const canAddTrait = (data: Data, traitId: string, entry: TraitEntry): boolean =>
     return false;
   }
 
-  if (entry.direction && amount <= 0 && entry.direction_locked_reason) {
-    return false;
-  }
-
   return true;
 };
 
@@ -558,25 +574,177 @@ type LoadoutDollSlot = {
 };
 
 const LOADOUT_DOLL_SLOTS: LoadoutDollSlot[] = [
-  { id: 'mask', label: 'Mask', shortLabel: 'Mask', top: '16px', left: '24px', width: '88px', height: '88px' },
-  { id: 'head', label: 'Head', shortLabel: 'Head', top: '16px', left: '144px', width: '88px', height: '88px' },
-  { id: 'mouth', label: 'Mouth', shortLabel: 'Mouth', top: '16px', left: '264px', width: '88px', height: '88px' },
-  { id: 'shoulder_r', label: 'Right Shoulder', shortLabel: 'R Sh', top: '114px', left: '24px', width: '88px', height: '88px' },
-  { id: 'cloak', label: 'Cloak', shortLabel: 'Cloak', top: '114px', left: '144px', width: '88px', height: '88px' },
-  { id: 'shoulder_l', label: 'Left Shoulder', shortLabel: 'L Sh', top: '114px', left: '264px', width: '88px', height: '88px' },
-  { id: 'neck', label: 'Neck', shortLabel: 'Neck', top: '212px', left: '24px', width: '88px', height: '88px' },
-  { id: 'armor', label: 'Armor', shortLabel: 'Armor', top: '212px', left: '144px', width: '88px', height: '88px' },
-  { id: 'wrists', label: 'Wrists', shortLabel: 'Wrst', top: '212px', left: '264px', width: '88px', height: '88px' },
-  { id: 'ring', label: 'Ring', shortLabel: 'Ring', top: '310px', left: '24px', width: '88px', height: '88px' },
-  { id: 'suit', label: 'Suit', shortLabel: 'Suit', top: '310px', left: '144px', width: '88px', height: '88px' },
-  { id: 'gloves', label: 'Gloves', shortLabel: 'Glv', top: '310px', left: '264px', width: '88px', height: '88px' },
-  { id: 'belt_r', label: 'Right Belt Pocket', shortLabel: 'R Belt', top: '408px', left: '24px', width: '88px', height: '88px' },
-  { id: 'belt', label: 'Belt', shortLabel: 'Belt', top: '408px', left: '144px', width: '88px', height: '88px' },
-  { id: 'belt_l', label: 'Left Belt Pocket', shortLabel: 'L Belt', top: '408px', left: '264px', width: '88px', height: '88px' },
-  { id: 'hand_r', label: 'Right Hand', shortLabel: 'R Hand', top: '506px', left: '24px', width: '88px', height: '88px' },
-  { id: 'legs', label: 'Legs', shortLabel: 'Legs', top: '506px', left: '144px', width: '88px', height: '88px' },
-  { id: 'hand_l', label: 'Left Hand', shortLabel: 'L Hand', top: '506px', left: '264px', width: '88px', height: '88px' },
-  { id: 'boots', label: 'Boots', shortLabel: 'Boots', top: '604px', left: '144px', width: '88px', height: '88px' },
+  {
+    id: 'mask',
+    label: 'Mask',
+    shortLabel: 'Mask',
+    top: '16px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'head',
+    label: 'Head',
+    shortLabel: 'Head',
+    top: '16px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'mouth',
+    label: 'Mouth',
+    shortLabel: 'Mouth',
+    top: '16px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'shoulder_r',
+    label: 'Right Shoulder',
+    shortLabel: 'R Sh',
+    top: '114px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'cloak',
+    label: 'Cloak',
+    shortLabel: 'Cloak',
+    top: '114px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'shoulder_l',
+    label: 'Left Shoulder',
+    shortLabel: 'L Sh',
+    top: '114px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'neck',
+    label: 'Neck',
+    shortLabel: 'Neck',
+    top: '212px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'armor',
+    label: 'Armor',
+    shortLabel: 'Armor',
+    top: '212px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'wrists',
+    label: 'Wrists',
+    shortLabel: 'Wrst',
+    top: '212px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'ring',
+    label: 'Ring',
+    shortLabel: 'Ring',
+    top: '310px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'suit',
+    label: 'Suit',
+    shortLabel: 'Suit',
+    top: '310px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'gloves',
+    label: 'Gloves',
+    shortLabel: 'Glv',
+    top: '310px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'belt_r',
+    label: 'Right Belt Pocket',
+    shortLabel: 'R Belt',
+    top: '408px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'belt',
+    label: 'Belt',
+    shortLabel: 'Belt',
+    top: '408px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'belt_l',
+    label: 'Left Belt Pocket',
+    shortLabel: 'L Belt',
+    top: '408px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'hand_r',
+    label: 'Right Hand',
+    shortLabel: 'R Hand',
+    top: '506px',
+    left: '24px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'legs',
+    label: 'Legs',
+    shortLabel: 'Legs',
+    top: '506px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'hand_l',
+    label: 'Left Hand',
+    shortLabel: 'L Hand',
+    top: '506px',
+    left: '264px',
+    width: '88px',
+    height: '88px',
+  },
+  {
+    id: 'boots',
+    label: 'Boots',
+    shortLabel: 'Boots',
+    top: '604px',
+    left: '144px',
+    width: '88px',
+    height: '88px',
+  },
 ];
 
 const getLoadoutValidSlots = (entry?: LoadoutViewEntry): string[] => {
@@ -586,22 +754,29 @@ const getLoadoutValidSlots = (entry?: LoadoutViewEntry): string[] => {
   return entry.valid_slots.map((slot) => String(slot));
 };
 
-const entryCanUseLoadoutSlot = (entry: LoadoutViewEntry, slotId: string): boolean =>
-  getLoadoutValidSlots(entry).includes(slotId);
+const entryCanUseLoadoutSlot = (
+  entry: LoadoutViewEntry,
+  slotId: string,
+): boolean => getLoadoutValidSlots(entry).includes(slotId);
 
-const entryIsAssignedToLoadoutSlot = (entry: LoadoutViewEntry, slotId: string): boolean =>
-  !!entry.slots?.[slotId];
+const entryIsAssignedToLoadoutSlot = (
+  entry: LoadoutViewEntry,
+  slotId: string,
+): boolean => !!entry.slots?.[slotId];
 
 const getAssignedEntryForLoadoutSlot = (
   entries: Array<[string, LoadoutViewEntry]>,
-  slotId: string
+  slotId: string,
 ): [string, LoadoutViewEntry] | null => {
-  return entries.find(([, entry]) => entryIsAssignedToLoadoutSlot(entry, slotId)) || null;
+  return (
+    entries.find(([, entry]) => entryIsAssignedToLoadoutSlot(entry, slotId)) ||
+    null
+  );
 };
 
 const getLoadoutSlotCounts = (
   entries: Array<[string, LoadoutViewEntry]>,
-  slot: LoadoutDollSlot
+  slot: LoadoutDollSlot,
 ) => {
   return entries.reduce(
     (acc, [, entry]) => {
@@ -616,7 +791,7 @@ const getLoadoutSlotCounts = (
       acc.stash += Number(entry.stash) || 0;
       return acc;
     },
-    { total: 0, equip: 0, bag: 0, stash: 0 }
+    { total: 0, equip: 0, bag: 0, stash: 0 },
   );
 };
 
@@ -659,10 +834,14 @@ const getLoadoutPaintText = (entry: LoadoutViewEntry): string => {
 };
 
 const groupEntriesByCategoryAndSlot = <
-  T extends { slot_group?: string | null; category?: string | null; name?: string },
+  T extends {
+    slot_group?: string | null;
+    category?: string | null;
+    name?: string;
+  },
 >(
   entries: Record<string, T>,
-  matcher: (path: string, entry: T) => boolean
+  matcher: (path: string, entry: T) => boolean,
 ) => {
   const grouped: Record<string, Record<string, Array<[string, T]>>> = {};
 
@@ -684,7 +863,9 @@ const groupEntriesByCategoryAndSlot = <
 
   Object.values(grouped).forEach((slotGroups) => {
     Object.values(slotGroups).forEach((items) => {
-      items.sort((a, b) => (a[1].name || a[0]).localeCompare(b[1].name || b[0]));
+      items.sort((a, b) =>
+        (a[1].name || a[0]).localeCompare(b[1].name || b[0]),
+      );
     });
   });
 
@@ -698,14 +879,16 @@ const groupEntriesByCategoryAndSlot = <
       return getCategoryLabel(catA).localeCompare(getCategoryLabel(catB));
     })
     .map(([categoryKey, slotGroups]) => {
-      const sortedSlots = Object.entries(slotGroups).sort(([slotA], [slotB]) => {
-        const aOrder = SLOT_ORDER[slotA] ?? SLOT_ORDER.other;
-        const bOrder = SLOT_ORDER[slotB] ?? SLOT_ORDER.other;
-        if (aOrder !== bOrder) {
-          return aOrder - bOrder;
-        }
-        return getSlotLabel(slotA).localeCompare(getSlotLabel(slotB));
-      });
+      const sortedSlots = Object.entries(slotGroups).sort(
+        ([slotA], [slotB]) => {
+          const aOrder = SLOT_ORDER[slotA] ?? SLOT_ORDER.other;
+          const bOrder = SLOT_ORDER[slotB] ?? SLOT_ORDER.other;
+          if (aOrder !== bOrder) {
+            return aOrder - bOrder;
+          }
+          return getSlotLabel(slotA).localeCompare(getSlotLabel(slotB));
+        },
+      );
 
       return [categoryKey, sortedSlots] as const;
     });
@@ -722,7 +905,8 @@ const TileIcon = ({ icon, name }: { icon?: string | null; name: string }) => {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-      }}>
+      }}
+    >
       {icon ? (
         <img
           src={`data:image/png;base64,${icon}`}
@@ -764,15 +948,22 @@ const HoverCard = ({ data }: { data: HoverCardData | null }) => {
         boxShadow: '0 8px 20px rgba(0,0,0,0.45)',
         zIndex: 1000,
         pointerEvents: 'none',
-      }}>
+      }}
+    >
       <Stack>
         <Stack.Item grow basis="55%">
-          <Box bold style={{ fontSize: '15px', marginBottom: '6px', color: '#f0c35a' }}>
+          <Box
+            bold
+            style={{ fontSize: '15px', marginBottom: '6px', color: '#f0c35a' }}
+          >
             {data.name}
           </Box>
 
           {!!data.desc && (
-            <Box mb={0.75} style={{ opacity: 0.9, lineHeight: 1.35, whiteSpace: 'pre-line' }}>
+            <Box
+              mb={0.75}
+              style={{ opacity: 0.9, lineHeight: 1.35, whiteSpace: 'pre-line' }}
+            >
               {data.desc}
             </Box>
           )}
@@ -800,7 +991,6 @@ const HoverCard = ({ data }: { data: HoverCardData | null }) => {
               <b>Bonus:</b> +{data.bonus}
             </Box>
           )}
-
         </Stack.Item>
 
         <Stack.Item grow basis="45%">
@@ -830,8 +1020,8 @@ const HoverCard = ({ data }: { data: HoverCardData | null }) => {
 
           {typeof data.bag === 'number' && typeof data.equip === 'number' && (
             <Box style={{ opacity: 0.9 }}>
-              <b>Bag:</b> {data.bag} | <b>Stash:</b> {data.stash || 0} | <b>Equip:</b>{' '}
-              {data.equip}
+              <b>Bag:</b> {data.bag} | <b>Stash:</b> {data.stash || 0} |{' '}
+              <b>Equip:</b> {data.equip}
             </Box>
           )}
 
@@ -854,9 +1044,7 @@ const HoverCard = ({ data }: { data: HoverCardData | null }) => {
           )}
 
           {!!data.rightHelp && (
-            <Box style={{ color: '#d7d7d7' }}>
-              {data.rightHelp}
-            </Box>
+            <Box style={{ color: '#d7d7d7' }}>{data.rightHelp}</Box>
           )}
         </Stack.Item>
       </Stack>
@@ -909,7 +1097,9 @@ const ItemTile = ({
           width: '88px',
           height: '88px',
           borderRadius: '6px',
-          background: disabled ? 'rgba(80,80,80,0.08)' : 'rgba(255,255,255,0.03)',
+          background: disabled
+            ? 'rgba(80,80,80,0.08)'
+            : 'rgba(255,255,255,0.03)',
           border: disabled
             ? '1px solid rgba(255,255,255,0.04)'
             : '1px solid rgba(255,255,255,0.08)',
@@ -918,7 +1108,8 @@ const ItemTile = ({
           userSelect: 'none',
           overflow: 'hidden',
           opacity: disabled ? 0.55 : 1,
-        }}>
+        }}
+      >
         <div
           style={{
             position: 'absolute',
@@ -927,57 +1118,67 @@ const ItemTile = ({
             alignItems: 'center',
             justifyContent: 'center',
             pointerEvents: 'none',
-          }}>
+          }}
+        >
           <TileIcon icon={icon} name={name} />
         </div>
 
-        {topRightText !== undefined && topRightText !== null && topRightText !== '' && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '4px',
-              right: '6px',
-              fontWeight: 700,
-              fontSize: '11px',
-              color: '#f0c35a',
-              textShadow: '0 1px 2px rgba(0,0,0,0.95)',
-              pointerEvents: 'none',
-            }}>
-            {topRightText}
-          </div>
-        )}
+        {topRightText !== undefined &&
+          topRightText !== null &&
+          topRightText !== '' && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '4px',
+                right: '6px',
+                fontWeight: 700,
+                fontSize: '11px',
+                color: '#f0c35a',
+                textShadow: '0 1px 2px rgba(0,0,0,0.95)',
+                pointerEvents: 'none',
+              }}
+            >
+              {topRightText}
+            </div>
+          )}
 
-        {bottomLeftText !== undefined && bottomLeftText !== null && bottomLeftText !== '' && (
-          <div
-            style={{
-              position: 'absolute',
-              left: '6px',
-              bottom: '4px',
-              fontWeight: 700,
-              fontSize: '11px',
-              color: '#d9d9d9',
-              textShadow: '0 1px 2px rgba(0,0,0,0.95)',
-              pointerEvents: 'none',
-            }}>
-            {bottomLeftText}
-          </div>
-        )}
+        {bottomLeftText !== undefined &&
+          bottomLeftText !== null &&
+          bottomLeftText !== '' && (
+            <div
+              style={{
+                position: 'absolute',
+                left: '6px',
+                bottom: '4px',
+                fontWeight: 700,
+                fontSize: '11px',
+                color: '#d9d9d9',
+                textShadow: '0 1px 2px rgba(0,0,0,0.95)',
+                pointerEvents: 'none',
+              }}
+            >
+              {bottomLeftText}
+            </div>
+          )}
 
-        {bottomRightText !== undefined && bottomRightText !== null && bottomRightText !== '' && (
-          <div
-            style={{
-              position: 'absolute',
-              right: '6px',
-              bottom: '4px',
-              fontWeight: 700,
-              fontSize: '11px',
-              color: '#9fd6a8',
-              textShadow: '0 1px 2px rgba(0,0,0,0.95)',
-              pointerEvents: 'none',
-            }}>
-            {bottomRightText}
-          </div>
-        )}
+        {bottomRightText !== undefined &&
+          bottomRightText !== null &&
+          bottomRightText !== '' && (
+            <div
+              style={{
+                position: 'absolute',
+                right: '6px',
+                bottom: '4px',
+                fontWeight: 700,
+                fontSize: '11px',
+                color: '#9fd6a8',
+                textShadow: '0 1px 2px rgba(0,0,0,0.95)',
+                pointerEvents: 'none',
+              }}
+            >
+              {bottomRightText}
+            </div>
+          )}
       </div>
     </Box>
   );
@@ -1002,7 +1203,13 @@ const SectionTitleWithMeta = ({
   );
 };
 
-const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) => {
+const SlotCards = ({
+  slots,
+  act,
+}: {
+  slots: TatSlotEntry[];
+  act: BackendAct;
+}) => {
   const [renameDrafts, setRenameDrafts] = useState<Record<number, string>>({});
 
   useEffect(() => {
@@ -1035,26 +1242,46 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
         <Box style={{ opacity: 0.8, fontSize: '12px' }}>
           Activate = load slot into current build
         </Box>
-      }>
+      }
+    >
       {!slots.length ? (
         <NoticeBox>No slot data received from backend.</NoticeBox>
       ) : (
         <Stack wrap>
           {slots.map((slot) => {
-            const draftName = renameDrafts[slot.id] ?? slot.name ?? `Slot ${slot.id}`;
-            const summary = slot.summary || { stats: 0, skills: 0, traits: 0, items: 0 };
-            const roleText = slot.pq_locked && slot.pq_lock_text ? slot.pq_lock_text : slot.role_text;
+            const draftName =
+              renameDrafts[slot.id] ?? slot.name ?? `Slot ${slot.id}`;
+            const summary = slot.summary || {
+              stats: 0,
+              skills: 0,
+              traits: 0,
+              items: 0,
+            };
+            const roleText =
+              slot.pq_locked && slot.pq_lock_text
+                ? slot.pq_lock_text
+                : slot.role_text;
 
             return (
-              <Stack.Item key={slot.id} grow basis="31%" style={{ minWidth: '220px', maxWidth: '32%' }}>
+              <Stack.Item
+                key={slot.id}
+                grow
+                basis="31%"
+                style={{ minWidth: '220px', maxWidth: '32%' }}
+              >
                 <Box
                   style={{
                     minHeight: '112px',
                     padding: '6px',
                     borderRadius: '6px',
-                    background: slot.active ? 'rgba(120, 180, 120, 0.08)' : 'rgba(255,255,255,0.02)',
-                    border: slot.active ? '1px solid rgba(120, 180, 120, 0.45)' : '1px solid rgba(255,255,255,0.08)',
-                  }}>
+                    background: slot.active
+                      ? 'rgba(120, 180, 120, 0.08)'
+                      : 'rgba(255,255,255,0.02)',
+                    border: slot.active
+                      ? '1px solid rgba(120, 180, 120, 0.45)'
+                      : '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
                   <Stack justify="space-between" align="center">
                     <Stack.Item>
                       <Box bold>{slot.name}</Box>
@@ -1065,7 +1292,8 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                             fontSize: '11px',
                             color: slot.pq_locked ? '#e8a0a0' : '#9fd6a8',
                             opacity: slot.pq_locked ? 1 : 0.9,
-                          }}>
+                          }}
+                        >
                           {roleText}
                         </Box>
                       )}
@@ -1082,7 +1310,8 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                             fontSize: '10px',
                             fontWeight: 700,
                             letterSpacing: '0.3px',
-                          }}>
+                          }}
+                        >
                           ACTIVE
                         </Box>
                       ) : null}
@@ -1090,8 +1319,8 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                   </Stack>
 
                   <Box mt={0.5} style={{ fontSize: '11px', opacity: 0.88 }}>
-                    Spent: Stats - {summary.stats} | Skills - {summary.skills} | Traits -{' '}
-                    {summary.traits} | Items - {summary.items}
+                    Spent: Stats - {summary.stats} | Skills - {summary.skills} |
+                    Traits - {summary.traits} | Items - {summary.items}
                   </Box>
 
                   <Box mt={0.75}>
@@ -1099,7 +1328,10 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                       fluid
                       value={draftName}
                       onChange={(value) =>
-                        setRenameDrafts((prev) => ({ ...prev, [slot.id]: String(value) }))
+                        setRenameDrafts((prev) => ({
+                          ...prev,
+                          [slot.id]: String(value),
+                        }))
                       }
                     />
                   </Box>
@@ -1110,7 +1342,10 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                         fluid
                         selected={slot.active}
                         color={slot.active ? 'good' : undefined}
-                        onClick={() => act('activate_tat_slot', { slot_id: slot.id })}>
+                        onClick={() =>
+                          act('activate_tat_slot', { slot_id: slot.id })
+                        }
+                      >
                         Activate
                       </Button>
                     </Stack.Item>
@@ -1120,9 +1355,14 @@ const SlotCards = ({ slots, act }: { slots: TatSlotEntry[]; act: BackendAct }) =
                         onClick={() =>
                           act('rename_tat_slot', {
                             slot_id: slot.id,
-                            name: String(renameDrafts[slot.id] ?? slot.name ?? `Slot ${slot.id}`).trim(),
+                            name: String(
+                              renameDrafts[slot.id] ??
+                                slot.name ??
+                                `Slot ${slot.id}`,
+                            ).trim(),
                           })
-                        }>
+                        }
+                      >
                         Rename
                       </Button>
                     </Stack.Item>
@@ -1162,21 +1402,29 @@ const JsonExchangePanel = ({
       buttons={
         <Stack>
           <Stack.Item>
-            <Button onClick={() => act('export_json')}>Export current build</Button>
+            <Button onClick={() => act('export_json')}>
+              Export current build
+            </Button>
           </Stack.Item>
           <Stack.Item>
-            <Button color="good" disabled={!jsonDraft.trim()} onClick={() => act('import_json', { json: jsonDraft })}>
+            <Button
+              color="good"
+              disabled={!jsonDraft.trim()}
+              onClick={() => act('import_json', { json: jsonDraft })}
+            >
               Import from text
             </Button>
           </Stack.Item>
         </Stack>
-      }>
+      }
+    >
       {!!lastJsonNotice && <NoticeBox color="good">{lastJsonNotice}</NoticeBox>}
       {!!lastJsonError && <NoticeBox color="bad">{lastJsonError}</NoticeBox>}
 
       <Box mb={0.75} style={{ opacity: 0.85 }}>
-        Export creates a portable JSON build. Import rebuilds the current build through backend
-        validation, so invalid or outdated entries should be sanitized by the server.
+        Export creates a portable JSON build. Import rebuilds the current build
+        through backend validation, so invalid or outdated entries should be
+        sanitized by the server.
       </Box>
 
       <TextArea
@@ -1194,7 +1442,9 @@ const JsonExchangePanel = ({
           </Button>
         </Stack.Item>
         <Stack.Item>
-          <Box style={{ opacity: 0.75, fontSize: '11px' }}>Length: {jsonDraft.length} chars</Box>
+          <Box style={{ opacity: 0.75, fontSize: '11px' }}>
+            Length: {jsonDraft.length} chars
+          </Box>
         </Stack.Item>
       </Stack>
     </Section>
@@ -1227,28 +1477,46 @@ const ControlTab = ({
   );
 };
 
-const StatsTab = ({ data, act, search }: { data: Data; act: BackendAct; search: string }) => {
+const StatsTab = ({
+  data,
+  act,
+  search,
+}: {
+  data: Data;
+  act: BackendAct;
+  search: string;
+}) => {
   const rows = useMemo(
     () =>
       Object.entries(data.available_stats || {}).filter(([statId, entry]) =>
-        matchesSearch(search, entry.name, statId)
+        matchesSearch(search, entry.name, statId),
       ),
-    [data.available_stats, search]
+    [data.available_stats, search],
   );
 
   return (
-    <Section title={<SectionTitleWithMeta title="Stats" meta={`Free: ${data.points_stats_remaining} / ${data.points_stats}`} />}>
+    <Section
+      title={
+        <SectionTitleWithMeta
+          title="Stats"
+          meta={`Free: ${data.points_stats_remaining} / ${data.points_stats}`}
+        />
+      }
+    >
       {!rows.length ? (
         <NoticeBox>No matches found.</NoticeBox>
       ) : (
         <div className="TATBuild__StatGrid">
           {rows.map(([statId, entry]) => {
             const value = data.stats?.[statId] ?? entry.base;
-            const disabledAdd = value >= entry.max || data.points_stats_remaining < entry.cost;
+            const disabledAdd =
+              value >= entry.max || data.points_stats_remaining < entry.cost;
             const disabledRemove = value <= 1;
             return (
               <div key={statId} className="TATBuild__StatBox">
-                <div className="TATBuild__StatBox__Label">{entry.name || statId}</div>
+                <div className="TATBuild__StatBox__Label">
+                  {entry.name || statId}
+                </div>
                 <div className="TATBuild__StatBox__Value">{value}</div>
                 <div className="TATBuild__StatBox__Meta">
                   Base {entry.base} · Floor {entry.min} · Max {entry.max}
@@ -1256,10 +1524,20 @@ const StatsTab = ({ data, act, search }: { data: Data; act: BackendAct; search: 
                   Cost/step: {entry.cost}
                 </div>
                 <div className="TATBuild__StatBox__Controls">
-                  <Button compact onClick={() => act('remove_stat', { id: statId, amount: 1 })} disabled={disabledRemove}>
+                  <Button
+                    compact
+                    onClick={() =>
+                      act('remove_stat', { id: statId, amount: 1 })
+                    }
+                    disabled={disabledRemove}
+                  >
                     -
                   </Button>
-                  <Button compact onClick={() => act('add_stat', { id: statId, amount: 1 })} disabled={disabledAdd}>
+                  <Button
+                    compact
+                    onClick={() => act('add_stat', { id: statId, amount: 1 })}
+                    disabled={disabledAdd}
+                  >
                     +
                   </Button>
                 </div>
@@ -1295,7 +1573,10 @@ const SkillRow = ({
   const displayValue = formatSkillDisplayValue(state);
 
   const disableRemove = invested <= 0;
-  const disableAdd = totalLevel >= cap || nextCost <= 0 || (domainRemaining !== null && domainRemaining < nextCost);
+  const disableAdd =
+    totalLevel >= cap ||
+    nextCost <= 0 ||
+    (domainRemaining !== null && domainRemaining < nextCost);
 
   return (
     <div
@@ -1314,11 +1595,17 @@ const SkillRow = ({
           rightHelp: 'Press - to refund',
         })
       }
-      onMouseLeave={() => setHoveredItem(null)}>
+      onMouseLeave={() => setHoveredItem(null)}
+    >
       <Stack
         align="center"
         justify="space-between"
-        style={{ padding: '4px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', minHeight: '34px' }}>
+        style={{
+          padding: '4px 0',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          minHeight: '34px',
+        }}
+      >
         <Stack.Item grow>
           <Box bold>{entry.name || skillPath}</Box>
           <Box style={{ opacity: 0.72, fontSize: '11px' }}>
@@ -1329,17 +1616,32 @@ const SkillRow = ({
         <Stack.Item>
           <Stack align="center">
             <Stack.Item>
-              <Button compact onClick={() => act('remove_skill', { path: skillPath, amount: 1 })} disabled={disableRemove}>
+              <Button
+                compact
+                onClick={() =>
+                  act('remove_skill', { path: skillPath, amount: 1 })
+                }
+                disabled={disableRemove}
+              >
                 -
               </Button>
             </Stack.Item>
             <Stack.Item>
-              <Box width="56px" textAlign="center" bold style={{ fontSize: '13px' }}>
+              <Box
+                width="56px"
+                textAlign="center"
+                bold
+                style={{ fontSize: '13px' }}
+              >
                 {displayValue}
               </Box>
             </Stack.Item>
             <Stack.Item>
-              <Button compact onClick={() => act('add_skill', { path: skillPath, amount: 1 })} disabled={disableAdd}>
+              <Button
+                compact
+                onClick={() => act('add_skill', { path: skillPath, amount: 1 })}
+                disabled={disableAdd}
+              >
                 +
               </Button>
             </Stack.Item>
@@ -1378,19 +1680,31 @@ const SkillDomainTitle = ({
               compact
               tooltip={conversion?.take_text}
               disabled={!canTake}
-              onClick={() => act('take_skill_domain_points', { domain, amount: 1 })}>
+              onClick={() =>
+                act('take_skill_domain_points', { domain, amount: 1 })
+              }
+            >
               -
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Stack vertical align="center">
               <Stack.Item>
-                <Box style={{ opacity: 0.9, fontSize: '12px', lineHeight: 1.05 }}>
+                <Box
+                  style={{ opacity: 0.9, fontSize: '12px', lineHeight: 1.05 }}
+                >
                   {formatDomainPoints(data, domain)}
                 </Box>
               </Stack.Item>
               <Stack.Item>
-                <Box style={{ opacity: 0.72, fontSize: '10px', lineHeight: 1.05, whiteSpace: 'nowrap' }}>
+                <Box
+                  style={{
+                    opacity: 0.72,
+                    fontSize: '10px',
+                    lineHeight: 1.05,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
                   {formatDomainPointBreakdown(data, domain)}
                 </Box>
               </Stack.Item>
@@ -1401,7 +1715,10 @@ const SkillDomainTitle = ({
               compact
               tooltip={conversion?.give_text}
               disabled={!canGive}
-              onClick={() => act('give_skill_domain_points', { domain, amount: 1 })}>
+              onClick={() =>
+                act('give_skill_domain_points', { domain, amount: 1 })
+              }
+            >
               +
             </Button>
           </Stack.Item>
@@ -1431,11 +1748,18 @@ const SkillsDomainPanel = ({
       <Section
         title={<SkillDomainTitle domain={domain} data={data} act={act} />}
         fill
-        style={{ height: '480px' }}>
+        style={{ height: '480px' }}
+      >
         {!rows.length ? (
           <NoticeBox>No skills in this group.</NoticeBox>
         ) : (
-          <Box style={{ maxHeight: '420px', overflowY: 'auto', paddingRight: '4px' }}>
+          <Box
+            style={{
+              maxHeight: '420px',
+              overflowY: 'auto',
+              paddingRight: '4px',
+            }}
+          >
             {rows.map(([skillPath, entry]) => (
               <SkillRow
                 key={skillPath}
@@ -1472,16 +1796,29 @@ const SkillsTab = ({
       misc: [],
     };
 
-    Object.entries(data.available_skills || {}).forEach(([skillPath, entry]) => {
-      if (!matchesSearch(search, skillPath, entry.name, entry.desc, entry.category, entry.is_combat ? 'combat' : 'non-combat')) {
-        return;
-      }
-      const domain = normalizeSkillDomain(entry.category);
-      byDomain[domain].push([skillPath, entry]);
-    });
+    Object.entries(data.available_skills || {}).forEach(
+      ([skillPath, entry]) => {
+        if (
+          !matchesSearch(
+            search,
+            skillPath,
+            entry.name,
+            entry.desc,
+            entry.category,
+            entry.is_combat ? 'combat' : 'non-combat',
+          )
+        ) {
+          return;
+        }
+        const domain = normalizeSkillDomain(entry.category);
+        byDomain[domain].push([skillPath, entry]);
+      },
+    );
 
     SKILL_DOMAIN_ORDER.forEach((domain) => {
-      byDomain[domain].sort((a, b) => (a[1].name || a[0]).localeCompare(b[1].name || b[0]));
+      byDomain[domain].sort((a, b) =>
+        (a[1].name || a[0]).localeCompare(b[1].name || b[0]),
+      );
     });
 
     return byDomain;
@@ -1496,13 +1833,21 @@ const SkillsTab = ({
           title="Skills"
           meta={`Conversion pool: ${data.skill_conversion_pool || 0}`}
         />
-      }>
+      }
+    >
       {!hasAny ? (
         <NoticeBox>No matches found.</NoticeBox>
       ) : (
         <Stack wrap align="stretch">
           {SKILL_DOMAIN_ORDER.map((domain) => (
-            <SkillsDomainPanel key={domain} domain={domain} rows={groups[domain]} data={data} act={act} setHoveredItem={setHoveredItem} />
+            <SkillsDomainPanel
+              key={domain}
+              domain={domain}
+              rows={groups[domain]}
+              data={data}
+              act={act}
+              setHoveredItem={setHoveredItem}
+            />
           ))}
         </Stack>
       )}
@@ -1549,7 +1894,8 @@ const TraitPill = ({
       }}
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
-      style={{ display: 'inline-block' }}>
+      style={{ display: 'inline-block' }}
+    >
       <Button
         selected={selected}
         color={selected ? 'good' : undefined}
@@ -1558,8 +1904,10 @@ const TraitPill = ({
           if (!disabledAdd) {
             onAdd();
           }
-        }}>
-        {title}{countText} ({cost})
+        }}
+      >
+        {title}
+        {countText} ({cost})
       </Button>
     </div>
   );
@@ -1616,17 +1964,6 @@ const SKILL_DOMAIN_ICONS: Record<SkillDomainKey, string> = {
   misc: 'scroll',
 };
 
-const getTraitRequirementText = (entry: TraitEntry) => {
-  if (entry.direction_requirements) {
-    return entry.direction_requirements;
-  }
-  const requirementMap = entry.direction_requirement_map || {};
-  const parts = Object.entries(requirementMap)
-    .filter(([, value]) => Number(value) > 0)
-    .map(([direction, value]) => `${DIRECTION_LABELS[direction as DirectionKey] || direction} ${value}`);
-  return parts.join(', ');
-};
-
 const DirectionsPanel = ({
   data,
   act,
@@ -1639,76 +1976,45 @@ const DirectionsPanel = ({
   setSelectedDirection: (direction: TraitTabKey) => void;
 }) => {
   const directions = data.directions;
-  const order = directions?.direction_order?.length ? directions.direction_order : DIRECTION_ORDER;
+  const order = directions?.direction_order?.length
+    ? directions.direction_order
+    : DIRECTION_ORDER;
   const hasOrdinaryDirection = order.includes('ordinary');
-  const pointsRemaining = Number(directions?.points_remaining) || 0;
-  const pointsSpent = Number(directions?.points_spent) || 0;
-  const pointsTotal = Number(directions?.points_total) || 20;
 
   return (
-    <Section title={<SectionTitleWithMeta title="Directions" meta={`${pointsRemaining} / ${pointsTotal} free`} />}>
+    <Section title="Categories">
       <Stack vertical>
-        <Stack align="center" justify="center">
-          <Stack.Item>
-            <Box color="label" style={{ fontSize: '12px' }}>
-              Invested: {pointsSpent}
-            </Box>
-          </Stack.Item>
-        </Stack>
-
         <Stack align="stretch" justify="center">
-          {order.filter((direction) => direction !== 'ordinary').map((direction) => {
-            const state = directions?.directions?.[direction] || {};
-            const points = Number(state.points) || 0;
-            const spent = Number(state.spent) || 0;
-            const remaining = Number(state.remaining) || 0;
-            const nextCost = Number(state.next_cost) || 1;
-            const label = state.name || DIRECTION_LABELS[direction] || direction;
-            const canAddDirectionPoint = pointsRemaining >= nextCost;
-            return (
-              <Stack.Item key={direction} basis="12%" grow>
-                <Box
-                  className={
-                    selectedDirection === direction
-                      ? 'TATBuild__DirectionBox TATBuild__DirectionBox--selected'
-                      : 'TATBuild__DirectionBox'
-                  }>
-                  <Box className="TATBuild__DirectionBox__Icon">
-                    <Icon name={DIRECTION_ICONS[direction]} size={1.3} />
+          {order
+            .filter((direction) => direction !== 'ordinary')
+            .map((direction) => {
+              const state = directions?.directions?.[direction] || {};
+              const label =
+                state.name || DIRECTION_LABELS[direction] || direction;
+              return (
+                <Stack.Item key={direction} basis="12%" grow>
+                  <Box
+                    className={
+                      selectedDirection === direction
+                        ? 'TATBuild__DirectionBox TATBuild__DirectionBox--selected'
+                        : 'TATBuild__DirectionBox'
+                    }
+                  >
+                    <Box className="TATBuild__DirectionBox__Icon">
+                      <Icon name={DIRECTION_ICONS[direction]} size={1.3} />
+                    </Box>
+                    <Button
+                      fluid
+                      compact
+                      selected={selectedDirection === direction}
+                      onClick={() => setSelectedDirection(direction)}
+                    >
+                      {label}
+                    </Button>
                   </Box>
-                  <Button
-                    fluid
-                    compact
-                    disabled={!canAddDirectionPoint && points <= 0}
-                    onClick={() => {
-                      if (canAddDirectionPoint) {
-                        act('add_direction_point', { direction });
-                      }
-                    }}
-                    onContextMenu={(event) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      if (points > 0) {
-                        act('remove_direction_point', { direction });
-                      }
-                    }}
-                    style={{ fontSize: '17px', lineHeight: 1, fontWeight: 700 }}>
-                    {points}
-                  </Button>
-                  <Button
-                    fluid
-                    compact
-                    selected={selectedDirection === direction}
-                    onClick={() => setSelectedDirection(direction)}>
-                    {label}
-                  </Button>
-                  <Box mt={0.25} style={{ opacity: 0.8, fontSize: '10px' }}>
-                    talents {spent}/{points} | free {remaining}{nextCost > 1 ? ` | next ${nextCost}` : ''}
-                  </Box>
-                </Box>
-              </Stack.Item>
-            );
-          })}
+                </Stack.Item>
+              );
+            })}
         </Stack>
 
         {!hasOrdinaryDirection && (
@@ -1717,7 +2023,8 @@ const DirectionsPanel = ({
               <Button
                 compact
                 selected={selectedDirection === 'ordinary'}
-                onClick={() => setSelectedDirection('ordinary')}>
+                onClick={() => setSelectedDirection('ordinary')}
+              >
                 <Icon name={DIRECTION_ICONS.ordinary} mr={1} />
                 Ordinary
               </Button>
@@ -1729,17 +2036,13 @@ const DirectionsPanel = ({
             </Stack.Item>
           </Stack>
         )}
-
       </Stack>
     </Section>
   );
 };
 
-const getOrdinaryGroupLabel = (entry: TraitEntry) => (
-  (Number(entry.direction_point_bonus) || 0) > 0 || entry.ordinary_group === 'negative'
-    ? 'Negative'
-    : 'Neutral'
-);
+const getOrdinaryGroupLabel = (entry: TraitEntry) =>
+  entry.ordinary_group === 'negative' ? 'Negative' : 'Neutral';
 
 const TraitNode = ({
   traitId,
@@ -1758,14 +2061,9 @@ const TraitNode = ({
 }) => {
   const amount = getTraitAmount(data, traitId);
   const canAdd = canAddTrait(data, traitId, entry);
-  const requirementText = getTraitRequirementText(entry);
-  const directionPointBonus = Number(entry.direction_point_bonus) || 0;
   const isOrdinary = entry.direction === 'ordinary';
-  const cost = entry.direction ? (entry.direction_cost || 0) : (entry.cost || 0);
+  const cost = entry.cost || 0;
   const selected = amount > 0;
-  const effectText = isOrdinary && directionPointBonus > 0
-    ? `Grants +${directionPointBonus} direction points`
-    : null;
 
   // Virtues with extra_choices (e.g. Nobility's 19 stashed-item picks) show a picker below
   // the main card once the virtue itself is selected - the backend gates each choice on the
@@ -1775,28 +2073,26 @@ const TraitNode = ({
   const selectedChildIds = (childEntries || [])
     .filter(([childId]) => getTraitAmount(data, childId) > 0)
     .map(([childId]) => childId);
-  const unselectedChildren = (childEntries || []).filter(([childId]) => getTraitAmount(data, childId) <= 0);
+  const unselectedChildren = (childEntries || []).filter(
+    ([childId]) => getTraitAmount(data, childId) <= 0,
+  );
 
   const hoverData: HoverCardData = {
     name: entry.name || traitId,
-    desc: [
-      entry.desc,
-      entry.direction_locked_reason ? `Locked: ${entry.direction_locked_reason}` : '',
-      effectText,
-      requirementText ? `Requires: ${requirementText}` : '',
-    ]
-      .filter(Boolean)
-      .join('\n'),
+    desc: entry.desc,
     category: isOrdinary
       ? `Ordinary - ${getOrdinaryGroupLabel(entry)}`
       : entry.direction
-        ? `${DIRECTION_LABELS[entry.direction] || entry.direction} tier ${entry.direction_tier ?? 1}`
+        ? `${DIRECTION_LABELS[entry.direction] || entry.direction}`
         : 'Trait',
-    costText: effectText || (entry.direction ? `${cost} ${DIRECTION_LABELS[entry.direction] || entry.direction}` : `${cost} pts`),
+    costText: `${cost} pts`,
     total: amount,
     canAdd,
     leftHelp: canAdd ? 'LMB: add trait / increase stack' : 'Cannot add more',
-    rightHelp: amount > 0 ? 'RMB: remove trait / decrease stack' : 'RMB: nothing to remove',
+    rightHelp:
+      amount > 0
+        ? 'RMB: remove trait / decrease stack'
+        : 'RMB: nothing to remove',
   };
 
   const card = (
@@ -1819,23 +2115,28 @@ const TraitNode = ({
         width: '188px',
         minHeight: '58px',
         padding: '6px 7px',
-        border: selected ? '1px solid rgba(145,207,104,0.8)' : canAdd ? '1px solid rgba(255,255,255,0.18)' : '1px solid rgba(255,255,255,0.08)',
-        background: selected ? 'rgba(80,125,58,0.34)' : canAdd ? 'rgba(255,255,255,0.045)' : 'rgba(255,255,255,0.02)',
+        border: selected
+          ? '1px solid rgba(145,207,104,0.8)'
+          : canAdd
+            ? '1px solid rgba(255,255,255,0.18)'
+            : '1px solid rgba(255,255,255,0.08)',
+        background: selected
+          ? 'rgba(80,125,58,0.34)'
+          : canAdd
+            ? 'rgba(255,255,255,0.045)'
+            : 'rgba(255,255,255,0.02)',
         opacity: canAdd || selected ? 1 : 0.52,
         cursor: canAdd || selected ? 'pointer' : 'default',
         userSelect: 'none',
-      }}>
+      }}
+    >
       <Box bold style={{ fontSize: '12px', lineHeight: 1.15 }}>
         {entry.name || traitId}
       </Box>
       <Box mt={0.25} style={{ opacity: 0.78, fontSize: '10px' }}>
-        {effectText || `Cost ${cost}${entry.repeatable && amount > 0 ? ` x${amount}` : ''}`}
+        Cost {cost}
+        {entry.repeatable && amount > 0 ? ` x${amount}` : ''}
       </Box>
-      {!!requirementText && (
-        <Box mt={0.25} style={{ opacity: 0.72, fontSize: '9px' }}>
-          Req: {requirementText}
-        </Box>
-      )}
     </div>
   );
 
@@ -1855,7 +2156,8 @@ const TraitNode = ({
             padding: '4px 5px',
             maxHeight: '160px',
             overflowY: 'auto',
-          }}>
+          }}
+        >
           <Box style={{ fontSize: '9px', opacity: 0.65, marginBottom: '3px' }}>
             Choices selected: {selectedChildIds.length}
           </Box>
@@ -1892,7 +2194,8 @@ const TraitNode = ({
                     rightHelp: '',
                   })
                 }
-                onMouseLeave={() => setHoveredItem(null)}>
+                onMouseLeave={() => setHoveredItem(null)}
+              >
                 {childEntry.name || childId}
               </Box>
             );
@@ -1925,11 +2228,14 @@ const TraitNode = ({
                     costText: `${childEntry.cost || 0} pts`,
                     total: 0,
                     canAdd: childCanAdd,
-                    leftHelp: childCanAdd ? 'LMB: pick this choice' : 'Cannot add more choices',
+                    leftHelp: childCanAdd
+                      ? 'LMB: pick this choice'
+                      : 'Cannot add more choices',
                     rightHelp: '',
                   })
                 }
-                onMouseLeave={() => setHoveredItem(null)}>
+                onMouseLeave={() => setHoveredItem(null)}
+              >
                 {childEntry.name || childId}
                 {(childEntry.cost || 0) > 0 ? ` (+${childEntry.cost})` : ''}
               </Box>
@@ -1957,17 +2263,19 @@ const DirectionTraitTree = ({
   setHoveredItem: (value: HoverCardData | null) => void;
 }) => {
   const tiers = useMemo(() => {
-    const result: Record<string, {
-      order: number;
-      label: string;
-      subtitle: string;
-      entries: Array<[string, TraitEntry]>;
-    }> = {};
+    const result: Record<
+      string,
+      {
+        order: number;
+        label: string;
+        subtitle: string;
+        entries: Array<[string, TraitEntry]>;
+      }
+    > = {};
     entries.forEach(([traitId, entry]) => {
-      const tier = entry.direction ? Math.max(0, Number(entry.direction_tier) || 0) : 1;
       const isOrdinary = direction === 'ordinary';
-      const groupLabel = isOrdinary ? getOrdinaryGroupLabel(entry) : `Level ${tier}`;
-      const groupKey = isOrdinary ? groupLabel.toLowerCase() : String(tier);
+      const groupLabel = isOrdinary ? getOrdinaryGroupLabel(entry) : 'Talents';
+      const groupKey = isOrdinary ? groupLabel.toLowerCase() : 'talents';
       if (!result[groupKey]) {
         result[groupKey] = {
           order: isOrdinary ? (groupLabel === 'Negative' ? 0 : 1) : tier,
@@ -1979,7 +2287,9 @@ const DirectionTraitTree = ({
       result[groupKey].entries.push([traitId, entry]);
     });
     Object.values(result).forEach((group) => {
-      group.entries.sort((a, b) => (a[1].name || a[0]).localeCompare(b[1].name || b[0]));
+      group.entries.sort((a, b) =>
+        (a[1].name || a[0]).localeCompare(b[1].name || b[0]),
+      );
     });
     return Object.values(result).sort((a, b) => a.order - b.order);
   }, [direction, entries]);
@@ -1988,32 +2298,45 @@ const DirectionTraitTree = ({
     <Stack vertical>
       {!tiers.length ? (
         <NoticeBox>No talents in this direction.</NoticeBox>
-      ) : tiers.map((group) => (
-        <Box key={group.label} mb={0.5} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '5px' }}>
-          <Stack align="stretch">
-            <Stack.Item basis="58px">
-              <Box bold style={{ opacity: 0.9, fontSize: '12px' }}>{group.label}</Box>
-              <Box style={{ opacity: 0.62, fontSize: '10px' }}>{group.subtitle}</Box>
-            </Stack.Item>
-            <Stack.Item grow>
-              <Stack wrap>
-                {group.entries.map(([traitId, entry]) => (
-                  <Stack.Item key={traitId}>
-                    <TraitNode
-                      traitId={traitId}
-                      entry={entry}
-                      childEntries={childrenByParent[traitId]}
-                      data={data}
-                      act={act}
-                      setHoveredItem={setHoveredItem}
-                    />
-                  </Stack.Item>
-                ))}
-              </Stack>
-            </Stack.Item>
-          </Stack>
-        </Box>
-      ))}
+      ) : (
+        tiers.map((group) => (
+          <Box
+            key={group.label}
+            mb={0.5}
+            style={{
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+              paddingBottom: '5px',
+            }}
+          >
+            <Stack align="stretch">
+              <Stack.Item basis="58px">
+                <Box bold style={{ opacity: 0.9, fontSize: '12px' }}>
+                  {group.label}
+                </Box>
+                <Box style={{ opacity: 0.62, fontSize: '10px' }}>
+                  {group.subtitle}
+                </Box>
+              </Stack.Item>
+              <Stack.Item grow>
+                <Stack wrap>
+                  {group.entries.map(([traitId, entry]) => (
+                    <Stack.Item key={traitId}>
+                      <TraitNode
+                        traitId={traitId}
+                        entry={entry}
+                        childEntries={childrenByParent[traitId]}
+                        data={data}
+                        act={act}
+                        setHoveredItem={setHoveredItem}
+                      />
+                    </Stack.Item>
+                  ))}
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          </Box>
+        ))
+      )}
     </Stack>
   );
 };
@@ -2029,8 +2352,12 @@ const TraitsTab = ({
   search: string;
   setHoveredItem: (value: HoverCardData | null) => void;
 }) => {
-  const [selectedDirection, setSelectedDirection] = useState<TraitTabKey>('combat');
-  const allEntries = useMemo(() => Object.entries(data.available_traits || {}), [data.available_traits]);
+  const [selectedDirection, setSelectedDirection] =
+    useState<TraitTabKey>('combat');
+  const allEntries = useMemo(
+    () => Object.entries(data.available_traits || {}),
+    [data.available_traits],
+  );
 
   // Virtue-choice children (e.g. "Nobility: Gold Ring") are grouped under their parent
   // virtue's card (see TraitNode's childEntries) instead of appearing as their own flat
@@ -2050,19 +2377,33 @@ const TraitsTab = ({
   }, [allEntries]);
 
   const entries = useMemo(
-    () => allEntries
-      .filter(([, entry]) => !entry.virtue_parent)
-      .filter(([traitId, entry]) => matchesSearch(search, traitId, entry.name, entry.desc, entry.direction)),
-    [allEntries, search]
+    () =>
+      allEntries
+        .filter(([, entry]) => !entry.virtue_parent)
+        .filter(([traitId, entry]) =>
+          matchesSearch(
+            search,
+            traitId,
+            entry.name,
+            entry.desc,
+            entry.direction,
+          ),
+        ),
+    [allEntries, search],
   );
   const visibleEntries = useMemo(
     () => entries.filter(([, entry]) => entry.direction === selectedDirection),
-    [entries, selectedDirection]
+    [entries, selectedDirection],
   );
 
   return (
     <Stack vertical>
-      <DirectionsPanel data={data} act={act} selectedDirection={selectedDirection} setSelectedDirection={setSelectedDirection} />
+      <DirectionsPanel
+        data={data}
+        act={act}
+        selectedDirection={selectedDirection}
+        setSelectedDirection={setSelectedDirection}
+      />
       <Section title="Traits">
         <Box mt={0.5}>
           <DirectionTraitTree
@@ -2100,14 +2441,28 @@ const ItemsTabInner = ({
     return groupEntriesByCategoryAndSlot(
       itemEntries || {},
       (itemPath, entry) =>
-        !!entry.unlocked
-        && matchesSearch(search, itemPath, entry.name, entry.category, entry.slot_group, entry.unlock_type, entry.unlock_key)
+        !!entry.unlocked &&
+        matchesSearch(
+          search,
+          itemPath,
+          entry.name,
+          entry.category,
+          entry.slot_group,
+          entry.unlock_type,
+          entry.unlock_key,
+        ),
     );
   }, [itemEntries, search]);
 
   return (
     <Section
-      title={<SectionTitleWithMeta title="Items" meta={`Free: ${pointsItemsRemaining} / ${pointsItems}`} />}>
+      title={
+        <SectionTitleWithMeta
+          title="Items"
+          meta={`Free: ${pointsItemsRemaining} / ${pointsItems}`}
+        />
+      }
+    >
       {!itemsAvailable ? (
         <NoticeBox>Loading items...</NoticeBox>
       ) : !groups.length ? (
@@ -2121,10 +2476,17 @@ const ItemsTabInner = ({
               </Box>
 
               {slotGroups.map(([slotKey, items]) => {
-                const visibleItems = items.slice(0, MAX_RENDERED_ITEMS_PER_SLOT);
+                const visibleItems = items.slice(
+                  0,
+                  MAX_RENDERED_ITEMS_PER_SLOT,
+                );
                 return (
                   <Box key={`${categoryKey}-${slotKey}`} mb={1}>
-                    <Box bold mb={0.5} style={{ fontSize: '14px', opacity: 0.9 }}>
+                    <Box
+                      bold
+                      mb={0.5}
+                      style={{ fontSize: '14px', opacity: 0.9 }}
+                    >
                       {getSlotLabel(slotKey)}
                     </Box>
 
@@ -2142,8 +2504,12 @@ const ItemsTabInner = ({
                             bottomRightText={!canAdd ? 'MAX' : undefined}
                             icon={entry.icon}
                             disabled={!canAdd}
-                            onLeftClick={() => act('add_item', { path: itemPath, amount: 1 })}
-                            onRightClick={() => act('remove_item', { path: itemPath, amount: 1 })}
+                            onLeftClick={() =>
+                              act('add_item', { path: itemPath, amount: 1 })
+                            }
+                            onRightClick={() =>
+                              act('remove_item', { path: itemPath, amount: 1 })
+                            }
                             onHoverStart={() =>
                               setHoveredItem({
                                 name: entry.name || itemPath,
@@ -2151,9 +2517,13 @@ const ItemsTabInner = ({
                                 category: getCategoryLabel(entry.category),
                                 costText: `${entry.cost || 0} pts`,
                                 total: amount,
-                                maximum: Number.isFinite(maximum) ? maximum : undefined,
+                                maximum: Number.isFinite(maximum)
+                                  ? maximum
+                                  : undefined,
                                 canAdd,
-                                leftHelp: canAdd ? 'LMB: add item' : 'Cannot add more',
+                                leftHelp: canAdd
+                                  ? 'LMB: add item'
+                                  : 'Cannot add more',
                                 rightHelp: 'RMB: remove item',
                               })
                             }
@@ -2164,7 +2534,10 @@ const ItemsTabInner = ({
                     </Stack>
 
                     {items.length > MAX_RENDERED_ITEMS_PER_SLOT && (
-                      <NoticeBox>Showing first {MAX_RENDERED_ITEMS_PER_SLOT} items. Use search to narrow results.</NoticeBox>
+                      <NoticeBox>
+                        Showing first {MAX_RENDERED_ITEMS_PER_SLOT} items. Use
+                        search to narrow results.
+                      </NoticeBox>
                     )}
                   </Box>
                 );
@@ -2194,18 +2567,28 @@ const LoadoutTabInner = ({
   search: string;
   setHoveredItem: (value: HoverCardData | null) => void;
 }) => {
-  const [selectedSlotId, setSelectedSlotId] = useState<string>(LOADOUT_DOLL_SLOTS[0].id);
+  const [selectedSlotId, setSelectedSlotId] = useState<string>(
+    LOADOUT_DOLL_SLOTS[0].id,
+  );
   const [chooserOpen, setChooserOpen] = useState<boolean>(false);
 
   const visibleEntries = useMemo(
     () =>
       Object.entries(loadoutEntries || {}).filter(([itemPath, entry]) =>
-        matchesSearch(search, itemPath, entry.name, entry.category, entry.slot_group)
+        matchesSearch(
+          search,
+          itemPath,
+          entry.name,
+          entry.category,
+          entry.slot_group,
+        ),
       ),
-    [loadoutEntries, search]
+    [loadoutEntries, search],
   );
 
-  const selectedSlot = LOADOUT_DOLL_SLOTS.find((slot) => slot.id === selectedSlotId) || LOADOUT_DOLL_SLOTS[0];
+  const selectedSlot =
+    LOADOUT_DOLL_SLOTS.find((slot) => slot.id === selectedSlotId) ||
+    LOADOUT_DOLL_SLOTS[0];
 
   const selectedSlotEntries = useMemo(
     () =>
@@ -2214,11 +2597,18 @@ const LoadoutTabInner = ({
           if (!entryCanUseLoadoutSlot(entry, selectedSlot.id)) {
             return false;
           }
-          return (Number(entry.bag) || 0) > 0 || entryIsAssignedToLoadoutSlot(entry, selectedSlot.id);
+          return (
+            (Number(entry.bag) || 0) > 0 ||
+            entryIsAssignedToLoadoutSlot(entry, selectedSlot.id)
+          );
         })
         .sort((a, b) => {
-          const assignedA = entryIsAssignedToLoadoutSlot(a[1], selectedSlot.id) ? 1 : 0;
-          const assignedB = entryIsAssignedToLoadoutSlot(b[1], selectedSlot.id) ? 1 : 0;
+          const assignedA = entryIsAssignedToLoadoutSlot(a[1], selectedSlot.id)
+            ? 1
+            : 0;
+          const assignedB = entryIsAssignedToLoadoutSlot(b[1], selectedSlot.id)
+            ? 1
+            : 0;
           if (assignedA !== assignedB) {
             return assignedB - assignedA;
           }
@@ -2228,7 +2618,7 @@ const LoadoutTabInner = ({
           }
           return (a[1].name || a[0]).localeCompare(b[1].name || b[0]);
         }),
-    [visibleEntries, selectedSlot]
+    [visibleEntries, selectedSlot],
   );
 
   const backpackEntries = useMemo(
@@ -2236,7 +2626,7 @@ const LoadoutTabInner = ({
       visibleEntries
         .filter(([, entry]) => (Number(entry.bag) || 0) > 0)
         .sort((a, b) => (a[1].name || a[0]).localeCompare(b[1].name || b[0])),
-    [visibleEntries]
+    [visibleEntries],
   );
 
   const stashEntries = useMemo(
@@ -2244,18 +2634,25 @@ const LoadoutTabInner = ({
       visibleEntries
         .filter(([, entry]) => (Number(entry.stash) || 0) > 0)
         .sort((a, b) => (a[1].name || a[0]).localeCompare(b[1].name || b[0])),
-    [visibleEntries]
+    [visibleEntries],
   );
 
   const hasAnyEntries = visibleEntries.length > 0;
-  const selectedAssignedEntry = getAssignedEntryForLoadoutSlot(visibleEntries, selectedSlot.id);
+  const selectedAssignedEntry = getAssignedEntryForLoadoutSlot(
+    visibleEntries,
+    selectedSlot.id,
+  );
 
   const openSlotChooser = (slotId: string) => {
     setSelectedSlotId(slotId);
     setChooserOpen(true);
   };
 
-  const buildInventoryHover = (itemPath: string, entry: LoadoutViewEntry, area: 'bag' | 'stash'): HoverCardData => {
+  const buildInventoryHover = (
+    itemPath: string,
+    entry: LoadoutViewEntry,
+    area: 'bag' | 'stash',
+  ): HoverCardData => {
     const amount = Number(entry.amount) || 0;
     const bag = Math.max(0, Math.min(Number(entry.bag) || 0, amount));
     const stash = Math.max(0, Math.min(Number(entry.stash) || 0, amount));
@@ -2277,12 +2674,18 @@ const LoadoutTabInner = ({
     };
   };
 
-  const renderInventoryRow = (itemPath: string, entry: LoadoutViewEntry, area: 'bag' | 'stash') => {
+  const renderInventoryRow = (
+    itemPath: string,
+    entry: LoadoutViewEntry,
+    area: 'bag' | 'stash',
+  ) => {
     const amount = Number(entry.amount) || 0;
     const bag = Math.max(0, Math.min(Number(entry.bag) || 0, amount));
     const stash = Math.max(0, Math.min(Number(entry.stash) || 0, amount));
     const equip = Math.max(0, Number(entry.equip) || 0);
-    const validSlotLabels = getLoadoutValidSlots(entry).map(getLoadoutSlotLabel).join(', ');
+    const validSlotLabels = getLoadoutValidSlots(entry)
+      .map(getLoadoutSlotLabel)
+      .join(', ');
     const sourceText = getLoadoutSourceText(entry);
     const paintText = getLoadoutPaintText(entry);
     const count = area === 'bag' ? bag : stash;
@@ -2291,14 +2694,19 @@ const LoadoutTabInner = ({
       <div
         key={`${area}-${itemPath}`}
         onClick={() =>
-          act(area === 'bag' ? 'move_item_to_stash' : 'move_item_to_bag', { path: itemPath, amount: 1 })
+          act(area === 'bag' ? 'move_item_to_stash' : 'move_item_to_bag', {
+            path: itemPath,
+            amount: 1,
+          })
         }
         onContextMenu={(event) => {
           event.preventDefault();
           event.stopPropagation();
           act('paint_loadout_item', { path: itemPath });
         }}
-        onMouseEnter={() => setHoveredItem(buildInventoryHover(itemPath, entry, area))}
+        onMouseEnter={() =>
+          setHoveredItem(buildInventoryHover(itemPath, entry, area))
+        }
         onMouseLeave={() => setHoveredItem(null)}
         style={{
           display: 'flex',
@@ -2308,26 +2716,61 @@ const LoadoutTabInner = ({
           padding: '6px 8px',
           marginBottom: '8px',
           borderRadius: '6px',
-          background: area === 'bag' ? 'rgba(80,110,170,0.12)' : 'rgba(150,120,70,0.12)',
-          border: area === 'bag' ? '1px solid rgba(130,160,220,0.4)' : '1px solid rgba(220,180,110,0.35)',
+          background:
+            area === 'bag' ? 'rgba(80,110,170,0.12)' : 'rgba(150,120,70,0.12)',
+          border:
+            area === 'bag'
+              ? '1px solid rgba(130,160,220,0.4)'
+              : '1px solid rgba(220,180,110,0.35)',
           cursor: 'pointer',
           userSelect: 'none',
-        }}>
-        <div style={{ width: '68px', height: '68px', flex: '0 0 68px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        }}
+      >
+        <div
+          style={{
+            width: '68px',
+            height: '68px',
+            flex: '0 0 68px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+        >
           <TileIcon icon={entry.icon} name={entry.name || itemPath} />
         </div>
 
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 700, fontSize: '13px' }}>{entry.name || itemPath}</div>
+          <div style={{ fontWeight: 700, fontSize: '13px' }}>
+            {entry.name || itemPath}
+          </div>
           <div style={{ fontSize: '11px', opacity: 0.78 }}>
             Bag {bag} · Stash {stash} · Equip {equip} · Total {amount}
           </div>
-          {!!validSlotLabels && <div style={{ fontSize: '10px', opacity: 0.62 }}>Slots: {validSlotLabels}</div>}
-          {!!sourceText && <div style={{ fontSize: '10px', opacity: 0.7 }}>{sourceText}</div>}
-          {!!paintText && <div style={{ fontSize: '10px', opacity: 0.72 }}>Paint: {paintText}</div>}
+          {!!validSlotLabels && (
+            <div style={{ fontSize: '10px', opacity: 0.62 }}>
+              Slots: {validSlotLabels}
+            </div>
+          )}
+          {!!sourceText && (
+            <div style={{ fontSize: '10px', opacity: 0.7 }}>{sourceText}</div>
+          )}
+          {!!paintText && (
+            <div style={{ fontSize: '10px', opacity: 0.72 }}>
+              Paint: {paintText}
+            </div>
+          )}
         </div>
 
-        <div style={{ textAlign: 'right', fontSize: '11px', lineHeight: 1.35, opacity: 0.9, minWidth: '84px' }}>
+        <div
+          style={{
+            textAlign: 'right',
+            fontSize: '11px',
+            lineHeight: 1.35,
+            opacity: 0.9,
+            minWidth: '84px',
+          }}
+        >
           <div>{count} here</div>
           <div>{area === 'bag' ? 'LMB: stash' : 'LMB: bag'}</div>
           <div>RMB: dye</div>
@@ -2341,9 +2784,23 @@ const LoadoutTabInner = ({
       {!hasAnyEntries ? (
         <NoticeBox>No matches found.</NoticeBox>
       ) : (
-        <div style={{ display: 'flex', alignItems: 'stretch', gap: '10px', flexWrap: 'nowrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: '10px',
+            flexWrap: 'nowrap',
+          }}
+        >
           <div style={{ flex: '0 0 414px', minWidth: '414px' }}>
-            <Section title={<SectionTitleWithMeta title="Paper Doll" meta="LMB slot: choose · RMB equipped item: dye" />}>
+            <Section
+              title={
+                <SectionTitleWithMeta
+                  title="Paper Doll"
+                  meta="LMB slot: choose · RMB equipped item: dye"
+                />
+              }
+            >
               <Box
                 style={{
                   position: 'relative',
@@ -2351,14 +2808,19 @@ const LoadoutTabInner = ({
                   height: '708px',
                   margin: '0 auto',
                   borderRadius: '10px',
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01))',
+                  background:
+                    'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01))',
                   border: '1px solid rgba(255,255,255,0.08)',
                   overflow: 'hidden',
-                }}>
+                }}
+              >
                 {LOADOUT_DOLL_SLOTS.map((slot) => {
                   const counts = getLoadoutSlotCounts(visibleEntries, slot);
                   const isSelected = selectedSlot.id === slot.id;
-                  const assigned = getAssignedEntryForLoadoutSlot(visibleEntries, slot.id);
+                  const assigned = getAssignedEntryForLoadoutSlot(
+                    visibleEntries,
+                    slot.id,
+                  );
                   const hasCompatible = counts.total > 0;
                   const hasEquipped = !!assigned;
 
@@ -2384,7 +2846,12 @@ const LoadoutTabInner = ({
                             bag: Number(assigned[1].bag) || 0,
                             stash: Number(assigned[1].stash) || 0,
                             equip: Number(assigned[1].equip) || 0,
-                            desc: [getLoadoutSourceText(assigned[1]), getLoadoutPaintText(assigned[1])].filter(Boolean).join('\n'),
+                            desc: [
+                              getLoadoutSourceText(assigned[1]),
+                              getLoadoutPaintText(assigned[1]),
+                            ]
+                              .filter(Boolean)
+                              .join('\n'),
                             leftHelp: `LMB: choose item for ${slot.label}`,
                             rightHelp: 'RMB: dye / repaint equipped item',
                           });
@@ -2424,25 +2891,78 @@ const LoadoutTabInner = ({
                               ? 'rgba(80,110,170,0.12)'
                               : 'rgba(20,26,38,0.65)',
                         cursor: 'pointer',
-                        boxShadow: isSelected ? '0 0 0 1px rgba(240,195,90,0.25)' : 'none',
+                        boxShadow: isSelected
+                          ? '0 0 0 1px rgba(240,195,90,0.25)'
+                          : 'none',
                         overflow: 'hidden',
-                      }}>
-                      <div style={{ position: 'absolute', inset: '0', display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: '0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          pointerEvents: 'none',
+                        }}
+                      >
                         {assigned ? (
-                          <div style={{ width: '72px', height: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                            <TileIcon icon={assigned[1].icon} name={assigned[1].name || assigned[0]} />
+                          <div
+                            style={{
+                              width: '72px',
+                              height: '72px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <TileIcon
+                              icon={assigned[1].icon}
+                              name={assigned[1].name || assigned[0]}
+                            />
                           </div>
                         ) : (
-                          <div style={{ fontSize: '11px', fontWeight: 700, opacity: 0.9 }}>{slot.shortLabel || slot.label}</div>
+                          <div
+                            style={{
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              opacity: 0.9,
+                            }}
+                          >
+                            {slot.shortLabel || slot.label}
+                          </div>
                         )}
                       </div>
 
-                      <div style={{ position: 'absolute', top: '4px', left: '5px', fontSize: '10px', fontWeight: 700, textShadow: '0 1px 2px rgba(0,0,0,0.95)', pointerEvents: 'none' }}>
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '4px',
+                          left: '5px',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          textShadow: '0 1px 2px rgba(0,0,0,0.95)',
+                          pointerEvents: 'none',
+                        }}
+                      >
                         {slot.shortLabel || slot.label}
                       </div>
 
                       {hasCompatible && (
-                        <div style={{ position: 'absolute', right: '5px', bottom: '3px', fontSize: '10px', fontWeight: 700, color: hasEquipped ? '#9fd6a8' : '#d9d9d9', textShadow: '0 1px 2px rgba(0,0,0,0.95)', pointerEvents: 'none' }}>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            right: '5px',
+                            bottom: '3px',
+                            fontSize: '10px',
+                            fontWeight: 700,
+                            color: hasEquipped ? '#9fd6a8' : '#d9d9d9',
+                            textShadow: '0 1px 2px rgba(0,0,0,0.95)',
+                            pointerEvents: 'none',
+                          }}
+                        >
                           {hasEquipped ? 'EQ' : counts.total}
                         </div>
                       )}
@@ -2463,76 +2983,132 @@ const LoadoutTabInner = ({
                       padding: '10px',
                       display: 'flex',
                       flexDirection: 'column',
-                    }}>
+                    }}
+                  >
                     <Stack align="center" justify="space-between">
                       <Stack.Item>
                         <Box bold>{selectedSlot.label}</Box>
-                        <Box style={{ opacity: 0.72, fontSize: '11px' }}>{selectedSlotEntries.length} compatible bag item(s)</Box>
+                        <Box style={{ opacity: 0.72, fontSize: '11px' }}>
+                          {selectedSlotEntries.length} compatible bag item(s)
+                        </Box>
                       </Stack.Item>
                       <Stack.Item>
                         <Stack>
                           {!!selectedAssignedEntry && (
                             <Stack.Item>
-                              <Button compact onClick={() => act('clear_loadout_slot', { slot_id: selectedSlot.id })}>
+                              <Button
+                                compact
+                                onClick={() =>
+                                  act('clear_loadout_slot', {
+                                    slot_id: selectedSlot.id,
+                                  })
+                                }
+                              >
                                 Clear slot
                               </Button>
                             </Stack.Item>
                           )}
                           <Stack.Item>
-                            <Button compact onClick={() => setChooserOpen(false)}>Close</Button>
+                            <Button
+                              compact
+                              onClick={() => setChooserOpen(false)}
+                            >
+                              Close
+                            </Button>
                           </Stack.Item>
                         </Stack>
                       </Stack.Item>
                     </Stack>
 
                     {!selectedSlotEntries.length ? (
-                      <NoticeBox mt={1}>No backpack items can be equipped into this slot.</NoticeBox>
+                      <NoticeBox mt={1}>
+                        No backpack items can be equipped into this slot.
+                      </NoticeBox>
                     ) : (
-                      <Box mt={1} style={{ flex: 1, overflowY: 'auto', display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', justifyContent: 'center' }}>
-                        {selectedSlotEntries.slice(0, MAX_RENDERED_ITEMS_PER_SLOT).map(([itemPath, entry]) => {
-                          const assigned = entryIsAssignedToLoadoutSlot(entry, selectedSlot.id);
-                          const bag = Number(entry.bag) || 0;
-                          const equip = Number(entry.equip) || 0;
-                          return (
-                            <ItemTile
-                              key={`chooser-${selectedSlot.id}-${itemPath}`}
-                              name={entry.name || itemPath}
-                              icon={entry.icon}
-                              topRightText={assigned ? 'EQ' : bag > 0 ? `B${bag}` : ''}
-                              bottomLeftText={equip > 0 ? `E${equip}` : ''}
-                              bottomRightText={assigned ? selectedSlot.shortLabel || 'SET' : ''}
-                              glow={assigned ? 'rgba(120,200,120,0.65)' : 'rgba(130,160,220,0.35)'}
-                              disabled={!assigned && bag <= 0}
-                              onLeftClick={() => {
-                                if (bag > 0 || assigned) {
-                                  act('assign_item_to_loadout_slot', { path: itemPath, slot_id: selectedSlot.id });
-                                  setChooserOpen(false);
+                      <Box
+                        mt={1}
+                        style={{
+                          flex: 1,
+                          overflowY: 'auto',
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          alignContent: 'flex-start',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {selectedSlotEntries
+                          .slice(0, MAX_RENDERED_ITEMS_PER_SLOT)
+                          .map(([itemPath, entry]) => {
+                            const assigned = entryIsAssignedToLoadoutSlot(
+                              entry,
+                              selectedSlot.id,
+                            );
+                            const bag = Number(entry.bag) || 0;
+                            const equip = Number(entry.equip) || 0;
+                            return (
+                              <ItemTile
+                                key={`chooser-${selectedSlot.id}-${itemPath}`}
+                                name={entry.name || itemPath}
+                                icon={entry.icon}
+                                topRightText={
+                                  assigned ? 'EQ' : bag > 0 ? `B${bag}` : ''
                                 }
-                              }}
-                              onRightClick={() => act('paint_loadout_item', { path: itemPath })}
-                              onHoverStart={() =>
-                                setHoveredItem({
-                                  name: entry.name || itemPath,
-                                  slot: selectedSlot.label,
-                                  category: getCategoryLabel(entry.category),
-                                  total: Number(entry.amount) || 0,
-                                  bag,
-                                  stash: Number(entry.stash) || 0,
-                                  equip,
-                                  desc: [getLoadoutSourceText(entry), getLoadoutPaintText(entry)].filter(Boolean).join('\n'),
-                                  leftHelp: bag > 0 ? `LMB: equip to ${selectedSlot.label}` : 'No copy in backpack',
-                                  rightHelp: 'RMB: dye / repaint item',
-                                })
-                              }
-                              onHoverEnd={() => setHoveredItem(null)}
-                            />
-                          );
-                        })}
+                                bottomLeftText={equip > 0 ? `E${equip}` : ''}
+                                bottomRightText={
+                                  assigned
+                                    ? selectedSlot.shortLabel || 'SET'
+                                    : ''
+                                }
+                                glow={
+                                  assigned
+                                    ? 'rgba(120,200,120,0.65)'
+                                    : 'rgba(130,160,220,0.35)'
+                                }
+                                disabled={!assigned && bag <= 0}
+                                onLeftClick={() => {
+                                  if (bag > 0 || assigned) {
+                                    act('assign_item_to_loadout_slot', {
+                                      path: itemPath,
+                                      slot_id: selectedSlot.id,
+                                    });
+                                    setChooserOpen(false);
+                                  }
+                                }}
+                                onRightClick={() =>
+                                  act('paint_loadout_item', { path: itemPath })
+                                }
+                                onHoverStart={() =>
+                                  setHoveredItem({
+                                    name: entry.name || itemPath,
+                                    slot: selectedSlot.label,
+                                    category: getCategoryLabel(entry.category),
+                                    total: Number(entry.amount) || 0,
+                                    bag,
+                                    stash: Number(entry.stash) || 0,
+                                    equip,
+                                    desc: [
+                                      getLoadoutSourceText(entry),
+                                      getLoadoutPaintText(entry),
+                                    ]
+                                      .filter(Boolean)
+                                      .join('\n'),
+                                    leftHelp:
+                                      bag > 0
+                                        ? `LMB: equip to ${selectedSlot.label}`
+                                        : 'No copy in backpack',
+                                    rightHelp: 'RMB: dye / repaint item',
+                                  })
+                                }
+                                onHoverEnd={() => setHoveredItem(null)}
+                              />
+                            );
+                          })}
                       </Box>
                     )}
 
                     <Box mt={0.5} style={{ opacity: 0.76, fontSize: '11px' }}>
-                      LMB item: equip from backpack. Clear slot: moves equipped item back to backpack. RMB item: dye.
+                      LMB item: equip from backpack. Clear slot: moves equipped
+                      item back to backpack. RMB item: dye.
                     </Box>
                   </div>
                 )}
@@ -2541,26 +3117,65 @@ const LoadoutTabInner = ({
           </div>
 
           <div style={{ flex: '1 1 auto', minWidth: '410px', height: '764px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                height: '100%',
+              }}
+            >
               <div style={{ flex: '2 1 0', minHeight: 0 }}>
-                <Section title={<SectionTitleWithMeta title="Backpack" meta={`${backpackEntries.length} item type(s) · LMB moves to stash`} />} fill>
+                <Section
+                  title={
+                    <SectionTitleWithMeta
+                      title="Backpack"
+                      meta={`${backpackEntries.length} item type(s) · LMB moves to stash`}
+                    />
+                  }
+                  fill
+                >
                   {!backpackEntries.length ? (
                     <NoticeBox>Backpack is empty.</NoticeBox>
                   ) : (
-                    <Box style={{ height: '100%', maxHeight: '456px', overflowY: 'auto' }}>
-                      {backpackEntries.map(([itemPath, entry]) => renderInventoryRow(itemPath, entry, 'bag'))}
+                    <Box
+                      style={{
+                        height: '100%',
+                        maxHeight: '456px',
+                        overflowY: 'auto',
+                      }}
+                    >
+                      {backpackEntries.map(([itemPath, entry]) =>
+                        renderInventoryRow(itemPath, entry, 'bag'),
+                      )}
                     </Box>
                   )}
                 </Section>
               </div>
 
               <div style={{ flex: '1 1 0', minHeight: 0 }}>
-                <Section title={<SectionTitleWithMeta title="Stash" meta={`${stashEntries.length} item type(s) · LMB moves to backpack`} />} fill>
+                <Section
+                  title={
+                    <SectionTitleWithMeta
+                      title="Stash"
+                      meta={`${stashEntries.length} item type(s) · LMB moves to backpack`}
+                    />
+                  }
+                  fill
+                >
                   {!stashEntries.length ? (
                     <NoticeBox>Stash is empty.</NoticeBox>
                   ) : (
-                    <Box style={{ height: '100%', maxHeight: '218px', overflowY: 'auto' }}>
-                      {stashEntries.map(([itemPath, entry]) => renderInventoryRow(itemPath, entry, 'stash'))}
+                    <Box
+                      style={{
+                        height: '100%',
+                        maxHeight: '218px',
+                        overflowY: 'auto',
+                      }}
+                    >
+                      {stashEntries.map(([itemPath, entry]) =>
+                        renderInventoryRow(itemPath, entry, 'stash'),
+                      )}
                     </Box>
                   )}
                 </Section>
@@ -2587,7 +3202,10 @@ export const TATBuild = () => {
   const [search, setSearch] = useState('');
   const [hoveredItem, setHoveredItem] = useState<HoverCardData | null>(null);
 
-  const tatSlots = useMemo<TatSlotEntry[]>(() => normalizeTatSlots(data.tat_slots, data.active_tat_slot), [data.tat_slots, data.active_tat_slot]);
+  const tatSlots = useMemo<TatSlotEntry[]>(
+    () => normalizeTatSlots(data.tat_slots, data.active_tat_slot),
+    [data.tat_slots, data.active_tat_slot],
+  );
 
   const itemEntries = useMemo<Record<string, ItemViewEntry>>(() => {
     const result: Record<string, ItemViewEntry> = {};
@@ -2640,135 +3258,245 @@ export const TATBuild = () => {
     return result;
   }, [data.available_items, data.loadout]);
 
-  const itemsAvailable = !!data.available_items && Object.keys(data.available_items).length > 0;
-  const searchPlaceholder = tab === 'control' ? 'Search legacy presets...' : `Search in ${tab}...`;
+  const itemsAvailable =
+    !!data.available_items && Object.keys(data.available_items).length > 0;
+  const searchPlaceholder =
+    tab === 'control' ? 'Search legacy presets...' : `Search in ${tab}...`;
 
   return (
     <Window title="TAT Build" width={1040} height={900}>
       <Window.Content scrollable>
         <Box className="TATBuild">
-        <Stack vertical>
-          <Section title="Search">
-            <Stack align="center">
-              <Stack.Item grow>
-                <Input fluid placeholder={searchPlaceholder} value={search} onChange={(value) => setSearch(String(value))} />
-              </Stack.Item>
-              <Stack.Item>
-                <Button disabled={!search} onClick={() => setSearch('')}>Clear</Button>
-              </Stack.Item>
-            </Stack>
-          </Section>
+          <Stack vertical>
+            <Section title="Search">
+              <Stack align="center">
+                <Stack.Item grow>
+                  <Input
+                    fluid
+                    placeholder={searchPlaceholder}
+                    value={search}
+                    onChange={(value) => setSearch(String(value))}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button disabled={!search} onClick={() => setSearch('')}>
+                    Clear
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
 
-          {data.dirty ? <NoticeBox>Build has unsaved changes.</NoticeBox> : <NoticeBox>Build is saved.</NoticeBox>}
+            {data.dirty ? (
+              <NoticeBox>Build has unsaved changes.</NoticeBox>
+            ) : (
+              <NoticeBox>Build is saved.</NoticeBox>
+            )}
 
-          {!data.can_save && (
-            <NoticeBox>
-              <Box bold mb={0.5}>Current build is invalid:</Box>
-              {data.validation_issues?.length ? (
-                <Stack vertical>
-                  {data.validation_issues.map((issue, index) => (
-                    <Box key={index}>• {issue}</Box>
-                  ))}
-                </Stack>
-              ) : (
-                <Box>Current build is invalid or exceeds available points.</Box>
-              )}
-            </NoticeBox>
-          )}
+            {!data.can_save && (
+              <NoticeBox>
+                <Box bold mb={0.5}>
+                  Current build is invalid:
+                </Box>
+                {data.validation_issues?.length ? (
+                  <Stack vertical>
+                    {data.validation_issues.map((issue, index) => (
+                      <Box key={index}>• {issue}</Box>
+                    ))}
+                  </Stack>
+                ) : (
+                  <Box>
+                    Current build is invalid or exceeds available points.
+                  </Box>
+                )}
+              </NoticeBox>
+            )}
 
-          <Section
-            title="Build"
-            buttons={<Box style={{ opacity: 0.8, fontSize: '12px' }}>Save writes current build into the active slot</Box>}>
-            <Tabs fluid>
-              <Tabs.Tab selected={tab === 'control'} onClick={() => setTab('control')}>
-                <Icon name={TAB_ICONS.control} mr={1} />Control
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 'stats'} onClick={() => setTab('stats')}>
-                <Icon name={TAB_ICONS.stats} mr={1} />Stats
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 'skills'} onClick={() => setTab('skills')}>
-                <Icon name={TAB_ICONS.skills} mr={1} />Skills
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 'traits'} onClick={() => setTab('traits')}>
-                <Icon name={TAB_ICONS.traits} mr={1} />Traits
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 'items'} onClick={() => setTab('items')}>
-                <Icon name={TAB_ICONS.items} mr={1} />Items
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 'loadout'} onClick={() => setTab('loadout')}>
-                <Icon name={TAB_ICONS.loadout} mr={1} />Loadout
-              </Tabs.Tab>
-            </Tabs>
-          </Section>
+            <Section
+              title="Build"
+              buttons={
+                <Box style={{ opacity: 0.8, fontSize: '12px' }}>
+                  Save writes current build into the active slot
+                </Box>
+              }
+            >
+              <Tabs fluid>
+                <Tabs.Tab
+                  selected={tab === 'control'}
+                  onClick={() => setTab('control')}
+                >
+                  <Icon name={TAB_ICONS.control} mr={1} />
+                  Control
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={tab === 'stats'}
+                  onClick={() => setTab('stats')}
+                >
+                  <Icon name={TAB_ICONS.stats} mr={1} />
+                  Stats
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={tab === 'skills'}
+                  onClick={() => setTab('skills')}
+                >
+                  <Icon name={TAB_ICONS.skills} mr={1} />
+                  Skills
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={tab === 'traits'}
+                  onClick={() => setTab('traits')}
+                >
+                  <Icon name={TAB_ICONS.traits} mr={1} />
+                  Traits
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={tab === 'items'}
+                  onClick={() => setTab('items')}
+                >
+                  <Icon name={TAB_ICONS.items} mr={1} />
+                  Items
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={tab === 'loadout'}
+                  onClick={() => setTab('loadout')}
+                >
+                  <Icon name={TAB_ICONS.loadout} mr={1} />
+                  Loadout
+                </Tabs.Tab>
+              </Tabs>
+            </Section>
 
-          {tab === 'control' && (
-            <ControlTab
-              slots={tatSlots}
-              act={act}
-              buildJson={data.build_json}
-              lastJsonError={data.last_json_error}
-              lastJsonNotice={data.last_json_notice}
-            />
-          )}
-          {tab === 'stats' && <StatsTab data={data} act={act} search={search} />}
-          {tab === 'skills' && <SkillsTab data={data} act={act} search={search} setHoveredItem={setHoveredItem} />}
-          {tab === 'traits' && <TraitsTab data={data} act={act} search={search} setHoveredItem={setHoveredItem} />}
-          {tab === 'items' && (
-            <ItemsTab
-              itemEntries={itemEntries}
-              act={act}
-              search={search}
-              setHoveredItem={setHoveredItem}
-              itemsAvailable={itemsAvailable}
-              pointsItemsRemaining={data.points_items_remaining}
-              pointsItems={data.points_items}
-            />
-          )}
-          {tab === 'loadout' && (
-            <LoadoutTab loadoutEntries={loadoutEntries} act={act} search={search} setHoveredItem={setHoveredItem} />
-          )}
+            {tab === 'control' && (
+              <ControlTab
+                slots={tatSlots}
+                act={act}
+                buildJson={data.build_json}
+                lastJsonError={data.last_json_error}
+                lastJsonNotice={data.last_json_notice}
+              />
+            )}
+            {tab === 'stats' && (
+              <StatsTab data={data} act={act} search={search} />
+            )}
+            {tab === 'skills' && (
+              <SkillsTab
+                data={data}
+                act={act}
+                search={search}
+                setHoveredItem={setHoveredItem}
+              />
+            )}
+            {tab === 'traits' && (
+              <TraitsTab
+                data={data}
+                act={act}
+                search={search}
+                setHoveredItem={setHoveredItem}
+              />
+            )}
+            {tab === 'items' && (
+              <ItemsTab
+                itemEntries={itemEntries}
+                act={act}
+                search={search}
+                setHoveredItem={setHoveredItem}
+                itemsAvailable={itemsAvailable}
+                pointsItemsRemaining={data.points_items_remaining}
+                pointsItems={data.points_items}
+              />
+            )}
+            {tab === 'loadout' && (
+              <LoadoutTab
+                loadoutEntries={loadoutEntries}
+                act={act}
+                search={search}
+                setHoveredItem={setHoveredItem}
+              />
+            )}
 
-          <Section>
-            <Stack justify="space-between" wrap>
-              <Stack.Item>
-                <Stack wrap>
-                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_stats')}>Reset Stats</Button></Stack.Item>
-                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_skills')}>Reset Skills</Button></Stack.Item>
-                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_directions')}>Reset Direction Points</Button></Stack.Item>
-                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_traits')}>Reset Traits</Button></Stack.Item>
-                  <Stack.Item><Button icon="arrow-rotate-left" onClick={() => act('reset_items')}>Reset Items</Button></Stack.Item>
-                </Stack>
-              </Stack.Item>
+            <Section>
+              <Stack justify="space-between" wrap>
+                <Stack.Item>
+                  <Stack wrap>
+                    <Stack.Item>
+                      <Button
+                        icon="arrow-rotate-left"
+                        onClick={() => act('reset_stats')}
+                      >
+                        Reset Stats
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="arrow-rotate-left"
+                        onClick={() => act('reset_skills')}
+                      >
+                        Reset Skills
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="arrow-rotate-left"
+                        onClick={() => act('reset_directions')}
+                      >
+                        Reset Direction Points
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="arrow-rotate-left"
+                        onClick={() => act('reset_traits')}
+                      >
+                        Reset Traits
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="arrow-rotate-left"
+                        onClick={() => act('reset_items')}
+                      >
+                        Reset Items
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                </Stack.Item>
 
-              <Stack.Item>
-                <Stack>
-                  <Stack.Item>
-                    <Button icon="arrows-rotate" color="average" onClick={() => act('reset_all')}>Reset All</Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      className="TATBuild__SealButton"
-                      icon="floppy-disk"
-                      disabled={!data.can_save}
-                      onClick={() => act('save')}>
-                      Save Active Slot
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      className="TATBuild__SealButton"
-                      icon="dungeon"
-                      bold
-                      disabled={!data.can_save}
-                      onClick={() => act('join')}>
-                      Save &amp; Join World
-                    </Button>
-                  </Stack.Item>
-                </Stack>
-              </Stack.Item>
-            </Stack>
-          </Section>
-        </Stack>
+                <Stack.Item>
+                  <Stack>
+                    <Stack.Item>
+                      <Button
+                        icon="arrows-rotate"
+                        color="average"
+                        onClick={() => act('reset_all')}
+                      >
+                        Reset All
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        className="TATBuild__SealButton"
+                        icon="floppy-disk"
+                        disabled={!data.can_save}
+                        onClick={() => act('save')}
+                      >
+                        Save Active Slot
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        className="TATBuild__SealButton"
+                        icon="dungeon"
+                        bold
+                        disabled={!data.can_save}
+                        onClick={() => act('join')}
+                      >
+                        Save &amp; Join World
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Stack>
         </Box>
 
         <HoverCard data={hoveredItem} />
@@ -2778,4 +3506,3 @@ export const TATBuild = () => {
 };
 
 export default TATBuild;
-
