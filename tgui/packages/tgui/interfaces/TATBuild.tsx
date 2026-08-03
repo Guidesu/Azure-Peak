@@ -44,12 +44,7 @@ type TraitEntry = {
   repeatable?: boolean;
   maximum?: number;
   direction?: DirectionKey | null;
-  direction_cost?: number;
-  direction_tier?: number;
-  direction_requirement_map?: Partial<Record<DirectionKey, number>>;
-  direction_requirements?: string | null;
-  direction_locked_reason?: string | null;
-  direction_point_bonus?: number;
+  conflict_reason?: string | null;
   ordinary_group?: string;
   // Set only on virtue-choice child traits (e.g. "Nobility: Gold Ring") - virtue_parent is
   // the parent virtue's own trait id (e.g. "tat_virtue_utility_noble"), so these can be
@@ -2079,7 +2074,12 @@ const TraitNode = ({
 
   const hoverData: HoverCardData = {
     name: entry.name || traitId,
-    desc: entry.desc,
+    desc: [
+      entry.desc,
+      entry.conflict_reason ? `Conflict: ${entry.conflict_reason}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n'),
     category: isOrdinary
       ? `Ordinary - ${getOrdinaryGroupLabel(entry)}`
       : entry.direction
@@ -2088,7 +2088,9 @@ const TraitNode = ({
     costText: `${cost} pts`,
     total: amount,
     canAdd,
-    leftHelp: canAdd ? 'LMB: add trait / increase stack' : 'Cannot add more',
+    leftHelp: canAdd
+      ? 'LMB: add trait / increase stack'
+      : entry.conflict_reason || 'Cannot add more',
     rightHelp:
       amount > 0
         ? 'RMB: remove trait / decrease stack'
@@ -2137,6 +2139,14 @@ const TraitNode = ({
         Cost {cost}
         {entry.repeatable && amount > 0 ? ` x${amount}` : ''}
       </Box>
+      {!!entry.conflict_reason && !canAdd && (
+        <Box
+          mt={0.25}
+          style={{ opacity: 0.8, fontSize: '9px', color: '#e74c3c' }}
+        >
+          {entry.conflict_reason}
+        </Box>
+      )}
     </div>
   );
 

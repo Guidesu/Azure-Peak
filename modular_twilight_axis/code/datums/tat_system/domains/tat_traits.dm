@@ -491,9 +491,6 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	// Role-gated traits are now selectable in the single archetype.
 	if(trait_id == TAT_TRAIT_WEAPON_TRAINING && owner_build?.has_built_in_weapon_training_foundation())
 		return FALSE
-	// Personal server: all trait restrictions removed (contractor, mrix-only,
-	// druid_initiate, PQ minimum, direction role-gate, contractor blocks)
-	// Foundation/role-gated traits disabled in single-archetype build.
 	if(owner_build?.directions && !owner_build.directions.can_select_trait(trait_id))
 		return FALSE
 	var/list/requirements = get_trait_requirement_map()
@@ -505,6 +502,14 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	// traits stay buyable: external traits must not satisfy requirement chains.
 	if(has_external_trait(trait_id) && get_base_cost(trait_id) < 0)
 		return FALSE
+	// Check genuine mutual exclusivity (same slot, same ability, etc.)
+	if(!is_revalidation)
+		var/list/conflicts = get_trait_conflict_map()
+		var/list/my_conflicts = conflicts[trait_id]
+		if(islist(my_conflicts))
+			for(var/conflicting_trait in my_conflicts)
+				if(has_trait(conflicting_trait))
+					return FALSE
 	return TRUE
 
 /datum/tat_traits/proc/add_trait(trait_id)
@@ -697,8 +702,37 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 /datum/tat_traits/proc/get_trait_conflict_map()
 	if(length(GLOB.tat_trait_conflict_map))
 		return GLOB.tat_trait_conflict_map
-	// All TAT restrictions removed — any trait can be selected with any other
-	GLOB.tat_trait_conflict_map = list()
+	// Only genuinely overlapping traits are mutually exclusive.
+	// Direction/cost restrictions are removed (freeform selection),
+	// but these pairs mechanically conflict (same slot, same ability, etc.).
+	GLOB.tat_trait_conflict_map = list(
+		// Skin traits: both equip regenerating skin to SLOT_ARMOR
+		TAT_TRAIT_SAVAGE_SKIN = list(TAT_TRAIT_BODYBUILDER_SKIN),
+		TAT_TRAIT_BODYBUILDER_SKIN = list(TAT_TRAIT_SAVAGE_SKIN),
+		// Rage traits: both grant rage abilities and add TRAIT_RAGE
+		TAT_TRAIT_SAVAGE_RAGE = list(TAT_TRAIT_BERSERKER_RAGE),
+		TAT_TRAIT_BERSERKER_RAGE = list(TAT_TRAIT_SAVAGE_RAGE),
+		// Ranged synergy: explicitly "choose one ranged synergy only"
+		TAT_TRAIT_RANGED_SYNERGY_BOWS = list(TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
+		TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
+		TAT_TRAIT_RANGED_SYNERGY_SLINGS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
+		TAT_TRAIT_RANGED_SYNERGY_FIREARMS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS),
+		// Hunter paths: explicitly "conflicts with [other] Hunter"
+		TAT_TRAIT_HUNTER_BEATER = list(TAT_TRAIT_HUNTER_SHOOTER),
+		TAT_TRAIT_HUNTER_SHOOTER = list(TAT_TRAIT_HUNTER_BEATER),
+		// Mage minor slots: functionally identical (+1 minor spell slot each)
+		TAT_TRAIT_MAGE_MINOR_SLOT_1 = list(TAT_TRAIT_MAGE_MINOR_SLOT_2),
+		TAT_TRAIT_MAGE_MINOR_SLOT_2 = list(TAT_TRAIT_MAGE_MINOR_SLOT_1),
+		// Handicraft cluster: apprentice conflicts with master
+		TAT_TRAIT_MASTER_OF_CRAFTING = list(TAT_TRAIT_HANDICRAFT_APPRENTICE),
+		TAT_TRAIT_HANDICRAFT_APPRENTICE = list(TAT_TRAIT_MASTER_OF_CRAFTING),
+		// Straying Soul cluster: apprentice conflicts with master
+		TAT_TRAIT_STRAYING_SOUL = list(TAT_TRAIT_STRAYING_SOUL_APPRENTICE),
+		TAT_TRAIT_STRAYING_SOUL_APPRENTICE = list(TAT_TRAIT_STRAYING_SOUL),
+		// Lootrat: tiered versions of the same bonus
+		TAT_TRAIT_LOOTRAT = list(TAT_TRAIT_LOOTRAT_2),
+		TAT_TRAIT_LOOTRAT_2 = list(TAT_TRAIT_LOOTRAT),
+	)
 	return GLOB.tat_trait_conflict_map
 
 /datum/tat_traits/proc/get_trait_requirement_map()
@@ -771,7 +805,14 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 /datum/tat_traits/proc/are_traits_mutually_exclusive(trait_a, trait_b)
 	if(!trait_a || !trait_b || trait_a == trait_b)
 		return null
-	// All TAT trait restrictions removed — freeform selection, any trait with any other.
+	// Only genuinely overlapping traits conflict (same slot, same ability, etc.)
+	var/list/conflicts = get_trait_conflict_map()
+	var/list/a_conflicts = conflicts[trait_a]
+	if(islist(a_conflicts) && (trait_b in a_conflicts))
+		return "\"[get_trait_display_name(trait_a)]\" conflicts with \"[get_trait_display_name(trait_b)]\"."
+	var/list/b_conflicts = conflicts[trait_b]
+	if(islist(b_conflicts) && (trait_a in b_conflicts))
+		return "\"[get_trait_display_name(trait_a)]\" conflicts with \"[get_trait_display_name(trait_b)]\"."
 	return null
 
 /datum/tat_traits/proc/has_invalid_trait_dependencies()

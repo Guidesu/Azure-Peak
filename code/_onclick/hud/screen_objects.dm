@@ -80,43 +80,16 @@
 	var/list/modifiers = params2list(params)
 
 	if(modifiers["right"])
-		var/ht
-		var/mob/living/L = usr
-		to_chat(L, "*----*")
+		// Right-click: open the tgui Skills & Traits window
 		if(ishuman(usr))
-			var/mob/living/carbon/human/M = usr
-			if(M.charflaws.len)
-				for(var/datum/charflaw/cf in M.charflaws)
-					var/datum/charflaw/addiction/ad_cf = null
-					if(istype(cf, /datum/charflaw/addiction))
-						ad_cf = cf
-					to_chat(M, span_danger("[cf.name] [ad_cf ? ad_cf.sated ? span_purple("SATED") : "" : ""]"))
-					to_chat(M, span_info("[cf.desc]"))
-				to_chat(M, "*----*")
-			if(M.mind)
-				if(M.mind.language_holder)
-					var/finn
-					for(var/X in M.mind.language_holder.languages)
-						if(!X || !ispath(X, /datum/language))
-							continue
-						var/datum/language/LA = new X()
-						finn = TRUE
-						to_chat(M, "<span class='info'>[LA.name] - ,[LA.key]</span>")
-					if(!finn)
-						to_chat(M, "<span class='warning'>I don't know any languages.</span>")
-					to_chat(M, "*----*")
-		for(var/X in GLOB.roguetraits)
-			if(HAS_TRAIT(L, X))
-				to_chat(L, "[X] - <span class='info'>[GLOB.roguetraits[X]]</span>")
-				ht = TRUE
-		if(!ht)
-			to_chat(L, "<span class='warning'>I have no special traits.</span>")
-		to_chat(L, "*----*")
+			var/mob/living/carbon/human/H = usr
+			H.open_skills_traits_ui()
 		return
 
 	if(ishuman(usr))
+		// Left-click: also open the tgui Skills & Traits window
 		var/mob/living/carbon/human/H = usr
-		H.print_levels(H)
+		H.open_skills_traits_ui()
 
 /atom/movable/screen/skills/should_click_on_mouse_up(var/atom/original_object)
 	return FALSE

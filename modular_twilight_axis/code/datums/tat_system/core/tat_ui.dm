@@ -581,8 +581,16 @@
 		if(!directions?.is_direction_trait(trait_id))
 			continue
 		var/can_add = traits?.can_select_trait(trait_id)
-		var/lock_reason = traits?.get_trait_requirement_block_reason(trait_id) || directions?.get_trait_block_reason(trait_id)
-		// Personal server: all trait lock reasons removed (contractor, druid, PQ)
+		// Check for genuine mutual exclusivity conflicts
+		var/conflict_reason = null
+		if(!can_add)
+			var/list/conflicts = traits?.get_trait_conflict_map()
+			var/list/my_conflicts = conflicts?[trait_id]
+			if(islist(my_conflicts))
+				for(var/conflicting_trait in my_conflicts)
+					if(traits?.has_trait(conflicting_trait))
+						conflict_reason = "Conflicts with \"[traits.get_trait_display_name(conflicting_trait)]\""
+						break
 		result[trait_id] = list(
 			"name" = entry["name"],
 			"cost" = get_trait_cost_display(trait_id),
@@ -592,12 +600,7 @@
 			"external" = traits?.has_external_trait(trait_id),
 			"can_add" = can_add,
 			"direction" = directions?.get_trait_direction(trait_id),
-			"direction_cost" = directions?.get_trait_cost(trait_id),
-			"direction_tier" = directions?.get_trait_tier(trait_id),
-			"direction_requirement_map" = directions?.get_trait_requirements(trait_id),
-			"direction_requirements" = directions?.get_trait_requirement_text(trait_id),
-			"direction_locked_reason" = lock_reason,
-			"direction_point_bonus" = traits?.get_oddity_direction_point_bonus(trait_id),
+			"conflict_reason" = conflict_reason,
 			"ordinary_group" = traits?.get_ordinary_trait_group(trait_id),
 			// Set only on virtue-choice child traits (see ensure_virtue_trait_entries() in
 			// tat_traits.dm) - lets the frontend group these under their parent virtue's card
