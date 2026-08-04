@@ -1,8 +1,8 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal
 	obj_damage = 75
 	blood_toll_bucket = STATS_KILLED_INFERNALS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/Initialize()
 	. = ..()
 	desc += span_bold(" It does not belong to this plane.") // To hint that they may be summoned.
 	ADD_TRAIT(src, TRAIT_NOFIRE, "[type]")
@@ -11,13 +11,13 @@
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	weather_immunities += "lava"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -59,7 +59,7 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/attackby(obj/item/I, mob/living/carbon/human/user, params)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/attackby(obj/item/I, mob/living/carbon/human/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		if(istype(magicmaterial, /obj/item/magic/infernal/ash))

@@ -21,7 +21,7 @@
 /area/rogue/under/tomb/cave)
 "bd" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat{
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat{
 	name = "Spoon Sharpener"
 	},
 /obj/effect/mapping_helpers/floor_clothing_equipper,

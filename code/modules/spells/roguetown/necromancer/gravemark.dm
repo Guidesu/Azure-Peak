@@ -37,7 +37,7 @@
 			if(M.mind?.current)
 				if(faction_tag in M.mind.current.faction)
 					allies += M.real_name
-			else if(istype(M, /mob/living/simple_animal))
+			else if(istype(M, /mob/living/carbon/simple_animal))
 				if(faction_tag in M.faction)
 					allies += M.name
 
@@ -52,7 +52,7 @@
 
 	if(target.mind?.current)
 		faction_list = target.mind.current.faction
-	else if(istype(target, /mob/living/simple_animal))
+	else if(istype(target, /mob/living/carbon/simple_animal))
 		faction_list = target.faction
 	else
 		return FALSE

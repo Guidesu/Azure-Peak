@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth
 	icon = 'icons/mob/summonable/32x64.dmi'
 	name = "earthen behemoth"
 	desc = "A large earthen construct of dirt and rock, lumbering with the strength of eons. \
@@ -55,17 +55,17 @@
 	var/yeet_cd
 	inherent_spells = list(/obj/effect/proc_holder/spell/invoked/ele_quake)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/AttackingTarget()
 	if(SEND_SIGNAL(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, target) & COMPONENT_HOSTILE_NO_PREATTACK)
 		return FALSE //but more importantly return before attack_animal called
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
@@ -84,7 +84,7 @@
 	duration = 1.5 SECONDS
 	layer = ABOVE_ALL_MOB_LAYER //this doesnt render above mobs? it really should
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
 	if(!target || !CanAttack(target))
 		LoseTarget()
@@ -129,8 +129,8 @@
 	chargetime = 0
 
 /obj/effect/proc_holder/spell/invoked/ele_quake/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/rockguy = user
+	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth))
+		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/rockguy = user
 		if(world.time >= rockguy.rock_cd + 20 SECONDS)
 			if(!rockguy.quake(targets[1]))
 				revert_cast()
@@ -139,7 +139,7 @@
 		else
 			revert_cast()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/quake(atom/target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/quake(atom/target)
 	if(!target)
 		return FALSE
 	var/turf/target_turf = target
@@ -160,7 +160,7 @@
 		QDEL_IN(giant_rock, 200)
 	return TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/yeet(target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/yeet(target)
 	var/atom/throw_target = get_edge_target_turf(src, get_dir(src, target)) //ill be real I got no idea why this worked.
 	if(isliving(target))
 		var/mob/living/L = target

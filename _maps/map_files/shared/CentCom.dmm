@@ -1001,7 +1001,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/vampire_manor)
 "ds" = (
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/dirt,
 /area/outdoors/woods_safe)
 "dt" = (
@@ -1231,7 +1231,7 @@
 	dir = 1;
 	icon_state = "largetable_mid"
 	},
-/mob/living/simple_animal/pet/cat/black{
+/mob/living/carbon/simple_animal/pet/cat/black{
 	name = "Kain"
 	},
 /turf/open/floor/carpet,
@@ -1962,7 +1962,7 @@
 	dir = 4;
 	pixel_y = -1
 	},
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/cobblerock,
 /area/outdoors)
 "jF" = (
@@ -2493,7 +2493,7 @@
 /area/outdoors)
 "nw" = (
 /obj/structure/flora/grass,
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/grass/yel,
 /area/outdoors)
 "nx" = (
@@ -4872,7 +4872,7 @@
 /turf/open/floor/twig,
 /area/indoors/lich)
 "CM" = (
-/mob/living/simple_animal/hostile/retaliate/bull,
+/mob/living/carbon/simple_animal/hostile/retaliate/bull,
 /turf/open/floor/grass/red,
 /area/outdoors/woods_safe)
 "CN" = (

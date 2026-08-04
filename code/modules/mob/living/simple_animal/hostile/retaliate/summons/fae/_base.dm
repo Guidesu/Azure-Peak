@@ -1,8 +1,8 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae
 	obj_damage = 75
 	blood_toll_bucket = STATS_KILLED_FAE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/Initialize()
 	. = ..()
 	desc += span_bold(" It does not belong to this plane.") // To hint that they may be summoned.
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC)
@@ -10,13 +10,13 @@
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	faction += "plants"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -58,7 +58,7 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/attackby(obj/item/I, mob/living/carbon/human/user, params)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/attackby(obj/item/I, mob/living/carbon/human/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		if(istype(magicmaterial, /obj/item/magic/fae))

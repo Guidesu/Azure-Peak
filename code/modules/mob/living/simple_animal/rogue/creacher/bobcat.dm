@@ -1,5 +1,5 @@
 //Bobcats are a faster, still hostile, predator — stronger than raccoons but weaker than volfs.
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat
 	icon = 'icons/roguetown/mob/monster/bobcat.dmi'
 	name = "lynx"
 	desc = "An adorable albiet hated creacher of the northern coast, hunting livestock and vulnerable people alike."
@@ -68,7 +68,7 @@
 	ai_controller = /datum/ai_controller/volf
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
@@ -83,7 +83,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/bobcat.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -96,19 +96,19 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

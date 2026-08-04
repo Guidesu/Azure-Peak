@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rogue/spirit_vengeance
+/mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance
 	name = "rancor spirit"
 	desc = "Death is no end, but a fascinating new beginning."
 	icon = 'icons/mob/spirit_vengeance.dmi'
@@ -37,7 +37,7 @@
 	ai_controller = /datum/ai_controller/spirit_vengeance
 	melee_cooldown = SKELETON_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/rogue/spirit_vengeance/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance/get_sound(input)
 	switch(input)
 		if("laugh")
 			return pick('sound/vo/mobs/ghost/laugh (1).ogg','sound/vo/mobs/ghost/laugh (2).ogg','sound/vo/mobs/ghost/laugh (3).ogg','sound/vo/mobs/ghost/laugh (4).ogg','sound/vo/mobs/ghost/laugh (5).ogg','sound/vo/mobs/ghost/laugh (6).ogg')
@@ -50,9 +50,9 @@
 		if("aggro")
 			return pick('sound/vo/mobs/ghost/aggro (1).ogg','sound/vo/mobs/ghost/aggro (2).ogg','sound/vo/mobs/ghost/aggro (3).ogg','sound/vo/mobs/ghost/aggro (4).ogg','sound/vo/mobs/ghost/aggro (5).ogg','sound/vo/mobs/ghost/aggro (6).ogg')
 
-/mob/living/simple_animal/hostile/rogue/spirit_vengeance/Initialize(mapload)
+/mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal, death), TRUE), 30 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/simple_animal, death), TRUE), 30 SECONDS)
 
 

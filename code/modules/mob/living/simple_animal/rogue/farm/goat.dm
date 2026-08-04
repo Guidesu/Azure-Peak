@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/Initialize()
 	. = ..()
 	GLOB.farm_animals++
 	if(tame)
@@ -6,18 +6,18 @@
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/Destroy()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/Destroy()
 	GLOB.farm_animals = max(GLOB.farm_animals - 1, 0)
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/find_food()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/find_food()
 	..()
 	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/tamed()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tamed()
 	..()
 	deaggroprob = 50
 	setup_mount(
@@ -26,7 +26,7 @@
 	)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -35,7 +35,7 @@
 
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/Life()
 	..()
 	if(stat == CONSCIOUS)
 		if(!pulledby)
@@ -45,7 +45,7 @@
 					if(locate(/obj/structure/vine) in step || locate(/obj/structure/glowshroom) in step)
 						Move(step, get_dir(src, step))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
@@ -62,7 +62,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	move_to_delay = 8
-	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale
+	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
 									/obj/item/reagent_containers/food/snacks/fat = 1,
 									/obj/item/alch/viscera = 1,
@@ -100,7 +100,7 @@
 	STASPD = 10
 	STACON = 8
 	STASTR = 12
-	childtype = list(/mob/living/simple_animal/hostile/retaliate/rogue/goat/goatlet = 90, /mob/living/simple_animal/hostile/retaliate/rogue/goat/goatletboy = 10)
+	childtype = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/goatlet = 90, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/goatletboy = 10)
 	can_buckle = TRUE
 	buckle_lying = 0
 	can_saddle = TRUE
@@ -111,16 +111,16 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic/goat //slightly more agressive retaliation
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tame
 	tame = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/tame/saddled/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tame/saddled/Initialize()
 	. = ..()
 	ssaddle = new /obj/item/natural/saddle(src)
 	// excuse me please fucking compile again thank you
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/goat/aggro (1).ogg','sound/vo/mobs/goat/aggro (2).ogg')
@@ -132,7 +132,7 @@
 			return pick('sound/vo/mobs/goat/idle (1).ogg','sound/vo/mobs/goat/idle (2).ogg','sound/vo/mobs/goat/idle (3).ogg')
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/goatlet
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/goatlet
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goatlet"
 	icon_state = "goatlet"
@@ -153,12 +153,12 @@
 	STASTR = 5
 	STASPD = 5
 	defprob = 50
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/goat
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat
 	can_buckle = FALSE
 	buckle_lying = 0
 	can_saddle = FALSE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -199,7 +199,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
@@ -265,22 +265,22 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tame
 	tame = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame/saddled/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tame/saddled/Initialize()
 	. = ..()
 	ssaddle = new /obj/item/natural/saddle(src)
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
 		add_saddleicon("saddle-above", "saddle")
 		add_ridericon("goatmale_mounted")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tamed()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tamed()
 	..()
 	deaggroprob = 20
 	setup_mount(
@@ -288,7 +288,7 @@
 		MOB_LAYER+0.1,
 	)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/Initialize()
 	. = ..()
 	GLOB.farm_animals++
 	if(tame)
@@ -296,11 +296,11 @@
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/Destroy()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/Destroy()
 	..()
 	GLOB.farm_animals = max(GLOB.farm_animals - 1, 0)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/goat/aggro (1).ogg','sound/vo/mobs/goat/aggro (2).ogg')
@@ -311,20 +311,20 @@
 		if("idle")
 			return pick('sound/vo/mobs/goat/idle (1).ogg','sound/vo/mobs/goat/idle (2).ogg','sound/vo/mobs/goat/idle (3).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/eat_plants()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/eat_plants()
 	..()
 	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/Life()
 	..()
 	if(stat == CONSCIOUS)
 		if(!pulledby)
@@ -334,7 +334,7 @@
 					if(locate(/obj/structure/vine) in step || locate(/obj/structure/glowshroom) in step)
 						Move(step, get_dir(src, step))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -375,7 +375,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/goatletboy
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/goatletboy
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goatlet"
 	gender = MALE
@@ -395,7 +395,7 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale
 	can_buckle = FALSE
 	buckle_lying = 0
 	can_saddle = FALSE

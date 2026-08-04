@@ -200,7 +200,7 @@
 	key_mode = KEY_MODE_TYPE
 	value_mode = VALUE_MODE_NUM
 	config_entry_value = list(			//DEFAULTS
-	/mob/living/simple_animal = 1,
+	/mob/living/carbon/simple_animal = 1,
 	)
 
 /datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()
@@ -245,7 +245,7 @@
 /datum/config_entry/number/outdated_movedelay/human_delay
 	movedelay_type = /mob/living/carbon/human
 /datum/config_entry/number/outdated_movedelay/animal_delay
-	movedelay_type = /mob/living/simple_animal
+	movedelay_type = /mob/living/carbon/simple_animal
 /////////////////////////////////////////////////
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.

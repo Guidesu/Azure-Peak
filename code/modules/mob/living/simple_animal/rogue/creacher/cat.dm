@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/cat
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat
 	name = "cat"
 	desc = "A ferocious little beast."
 	icon = 'icons/mob/pets.dmi'

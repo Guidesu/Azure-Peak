@@ -1,5 +1,5 @@
 //The vile Vore Monster
-/mob/living/simple_animal/hostile/retaliate/rogue/headless
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
 	name = "headless"
 	desc = "A horrible beast of gluttony. Its body is built like a barrel with a maw that opens only to darkness."
@@ -60,12 +60,12 @@
 	var/swallow_cooldown = 0
 	var/swallow_cooldown_delay = 30 SECONDS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, retreat_health)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/AttackingTarget()
 	//If its a carbon, your cooldown is up, and your above 30% health you can eat them
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
@@ -78,7 +78,7 @@
 			SwallowEnemy(target)
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/Life()
 	if(isliving(swallowed_mob))
 		//Vomit your captive if you take 40 damage since swallowing them
 		if(health < health_at_swallow - 40)
@@ -102,7 +102,7 @@
 	return ..()
 
 //Consume the corpses of allies code.
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/CanAttack(atom/the_target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/CanAttack(atom/the_target)
 	. = ..()
 	if(!.)
 		if(isliving(the_target))
@@ -112,10 +112,10 @@
 
 
 //Headless prefer to eat whole bodies
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/DismemberBody(mob/living/L)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/DismemberBody(mob/living/L)
 	SwallowEnemy(L)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -157,11 +157,11 @@
 			return "arm"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/death(gibbed)
 	SpitUp()
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/proc/SwallowEnemy(mob/living/L)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/proc/SwallowEnemy(mob/living/L)
 	if(swallowed_mob)
 		return
 	visible_message(span_notice("[src] grabs [L] and swallows them."))
@@ -170,7 +170,7 @@
 	swallowed_mob = L
 	health_at_swallow = health
 
-/mob/living/simple_animal/hostile/retaliate/rogue/headless/proc/SpitUp()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/proc/SpitUp()
 	if(swallowed_mob)
 		visible_message(span_notice("[src] vomits a disheveled [swallowed_mob]."))
 		playsound(loc, 'sound/vo/vomit.ogg', 25, TRUE)

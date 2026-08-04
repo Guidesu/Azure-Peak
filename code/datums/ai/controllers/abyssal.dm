@@ -42,7 +42,7 @@
 
 /datum/ai_behavior/basic_melee_attack/abyssal/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	var/retaliation_count = controller.blackboard[BB_RETALIATE_ATTACKS_LEFT]
-	var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
+	var/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 
 	if(retaliation_count <= 0)
 		controller.set_blackboard_key(BB_RETALIATE_ATTACKS_LEFT, 2)
@@ -104,7 +104,7 @@
 		var/mob/target = controller.blackboard[target_key]
 		var/mob/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(target_key)
-		var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
+		var/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 		if(main_target != null && target != main_target && main_target.stat == 0)
 			//We lost the person we really want to kill... keep trying to teleport to them and kill them.
 			dreamfiend.blink_to_target(target)
@@ -115,7 +115,7 @@
 /datum/ai_planning_subtree/blink_if_far
 
 /datum/ai_planning_subtree/blink_if_far/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
-	var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
+	var/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 	var/mob/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 	if(!target || get_dist(dreamfiend, target) <= 5 )
 		return
@@ -261,7 +261,7 @@
 		var/mob/target = controller.blackboard[target_key]
 		var/mob/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(target_key)
-		var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
+		var/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 		if(main_target != null && target != main_target && main_target.stat == 0)
 			//We lost the person we really want to kill... keep trying to teleport to them and kill them.
 			dreamfiend.blink_to_target(target)

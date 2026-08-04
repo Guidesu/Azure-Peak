@@ -135,8 +135,8 @@ GLOBAL_LIST_INIT(find_and_set_interested_atoms, typecacheof(list(/obj/item, /mob
 /datum/ai_behavior/find_and_set/dead_bodies/bog_troll/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
 	if(succeeded)
-		if(istype(controller.pawn, /mob/living/simple_animal/hostile/retaliate/rogue/troll))
-			var/mob/living/simple_animal/hostile/retaliate/rogue/troll/mob = controller.pawn
+		if(istype(controller.pawn, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll))
+			var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/mob = controller.pawn
 			mob.ambush()
 
 /datum/ai_behavior/find_and_set/dead_bodies/mimic/finish_action(datum/ai_controller/controller, succeeded, ...)
@@ -327,9 +327,9 @@ GLOBAL_LIST_INIT(find_and_set_interested_atoms, typecacheof(list(/obj/item, /mob
 // /datum/ai_behavior/find_and_set/cat_tresspasser/atom_allowed(atom/movable/checking, locate_path, atom/pawn)
 // 	if(checking == pawn)
 // 		return FALSE
-// 	if(!istype(checking, /mob/living/simple_animal/pet/cat))
+// 	if(!istype(checking, /mob/living/carbon/simple_animal/pet/cat))
 // 		return FALSE
-// 	var/mob/living/simple_animal/pet/cat/potential_enemy = checking
+// 	var/mob/living/carbon/simple_animal/pet/cat/potential_enemy = checking
 // 	if(potential_enemy.gender != MALE)
 // 		return FALSE
 // 	var/mob/living/living_pawn = pawn
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(find_and_set_interested_atoms, typecacheof(list(/obj/item, /mob
 // 		return FALSE
 
 // 	// Special handling for cat trespasser - set mutual targeting
-// 	var/mob/living/simple_animal/pet/cat/target_cat = pick(accepted_cats)
+// 	var/mob/living/carbon/simple_animal/pet/cat/target_cat = pick(accepted_cats)
 // 	var/datum/ai_controller/basic_controller/enemy_controller = target_cat.ai_controller
 // 	//u choose me and i choose u
 // 	enemy_controller.set_blackboard_key(BB_TRESSPASSER_TARGET, controller.pawn)
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(find_and_set_interested_atoms, typecacheof(list(/obj/item, /mob
 
 // /datum/ai_behavior/find_and_set/cat_tresspasser/search_tactic(datum/ai_controller/controller, locate_path, search_range)
 // 	var/list/ignore_types = controller.blackboard[BB_BABIES_CHILD_TYPES]
-// 	for(var/mob/living/simple_animal/pet/cat/potential_enemy in oview(search_range, controller.pawn))
+// 	for(var/mob/living/carbon/simple_animal/pet/cat/potential_enemy in oview(search_range, controller.pawn))
 // 		if(potential_enemy.gender != MALE)
 // 			continue
 // 		if(is_type_in_list(potential_enemy, ignore_types))

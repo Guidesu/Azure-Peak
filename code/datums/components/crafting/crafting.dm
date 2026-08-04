@@ -274,6 +274,10 @@
 			if(R.craftsound)
 				playsound(T, R.craftsound, 100, TRUE)
 			var/time2use = 10
+			if(isliving(user))
+				var/mob/living/L = user
+				time2use = round(time2use / L.get_crafting_speed_mult())
+				time2use = clamp(time2use, 3, 20)
 			for(var/i = 1 to 100)
 				if(do_after(user, time2use, target = user))
 					contents = get_surroundings(user)
@@ -297,6 +301,11 @@
 							prob2craft += 5
 						if(HAS_TRAIT(L, TRAIT_MALUMCHOSEN))
 							prob2craft += 20
+						// Stat integration: PER reduces mistakes, LCK grants fortune
+						var/per_mod = (L.STAPER - STAT_BASELINE) * 2
+						prob2craft += per_mod
+						if(L.goodluck(2))
+							prob2craft += 5
 					prob2craft = CLAMP(prob2craft, 0, 99)
 					if(i == 100 && prob2craft > 0)
 						prob2craft = 100
@@ -466,7 +475,7 @@
 						if(!B.stacktype || !ispath(B.stacktype, A))
 							continue
 						if(!R.subtype_reqs && (B.stacktype in subtypesof(A)))
-							continue 
+							continue
 						if(R.blacklist.Find(B.stacktype))
 							continue
 						found_bundle = TRUE
@@ -482,7 +491,7 @@
 									var/obj/item/new_item = new stacktype(old_loc)
 									if(ishuman(old_loc))
 										var/mob/living/carbon/human/H = old_loc
-										H.put_in_hands(new_item) 
+										H.put_in_hands(new_item)
 								if(0)
 									qdel(B)
 							amt = 0

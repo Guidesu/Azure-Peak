@@ -9,9 +9,9 @@
 	mob_types = list(
 		/mob/living/carbon/human/species/elf/dark/drowraider/ambush = 52,
 		/mob/living/carbon/human/species/elf/dark/drowraider/archer/ambush = 22, // ~30% of the drow line
-		/mob/living/simple_animal/hostile/retaliate/rogue/drider = 15,
-		/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave = 10,
-		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider = 15,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave = 10,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 5,
 	)
 	boss_mob_types = list(
 		/mob/living/carbon/human/species/elf/dark/drowraider/sword_test = 60,

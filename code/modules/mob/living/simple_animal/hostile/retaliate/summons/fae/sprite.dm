@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "sprite"
 	desc = "This is a sprite, a particularly small manner of fae-creature known often to surround \
@@ -54,17 +54,17 @@
 	var/drug_cd
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite/death(gibbed)
 	..()
 	update_icon()
 	spawn(1)
 		qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)

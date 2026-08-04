@@ -481,15 +481,15 @@
 				if(posttransformoutfit && istype(newmob))
 					newmob.equipOutfit(posttransformoutfit)
 			if("cat")
-				M.change_mob_type( /mob/living/simple_animal/pet/cat , null, null, delmob )
+				M.change_mob_type( /mob/living/carbon/simple_animal/pet/cat , null, null, delmob )
 			if("runtime")
-				M.change_mob_type( /mob/living/simple_animal/pet/cat/Runtime , null, null, delmob )
+				M.change_mob_type( /mob/living/carbon/simple_animal/pet/cat/Runtime , null, null, delmob )
 			if("corgi")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi , null, null, delmob )
+				M.change_mob_type( /mob/living/carbon/simple_animal/pet/dog/corgi , null, null, delmob )
 			if("ian")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi/Ian , null, null, delmob )
+				M.change_mob_type( /mob/living/carbon/simple_animal/pet/dog/corgi/Ian , null, null, delmob )
 			if("pug")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/pug , null, null, delmob )
+				M.change_mob_type( /mob/living/carbon/simple_animal/pet/dog/pug , null, null, delmob )
 
 	else if(href_list["boot2"])
 		if(!check_rights(R_BAN))
@@ -1424,7 +1424,7 @@
 							if(href_list["disable_ai"] && ismob(O))
 								var/mob/spawned_mob = O
 								if(isanimal(spawned_mob))
-									var/mob/living/simple_animal/SA = spawned_mob
+									var/mob/living/carbon/simple_animal/SA = spawned_mob
 									SA.toggle_ai(AI_OFF)
 									SA.can_have_ai = FALSE
 								if(spawned_mob.ai_controller)

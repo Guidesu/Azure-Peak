@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rogue/deepone
+/mob/living/carbon/simple_animal/hostile/rogue/deepone
 	name = "Deep One"
 	desc = "It is said that, when the world was young and Abyssor did not yet dream, he took a mass of humenity \
 	in his hand and brought them to the abyss, sculpting from them speechless men in his own image."
@@ -51,11 +51,11 @@
 
 	ai_controller = /datum/ai_controller/deepone
 
-/mob/living/simple_animal/hostile/rogue/deepone/Initialize()
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
-/mob/living/simple_animal/hostile/rogue/deepone/arm
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/arm
 	name = "Deep One"
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
 	icon_state = "deep1_arm"
@@ -67,7 +67,7 @@
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
 
-/mob/living/simple_animal/hostile/rogue/deepone/spit
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit
 	threat_point = THREAT_TOUGH
 	name = "Deep One"
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
@@ -83,7 +83,7 @@
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
 
-/mob/living/simple_animal/hostile/rogue/deepone/wiz
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/wiz
 	threat_point = THREAT_TOUGH
 	name = "Deep One Devout"
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
@@ -101,16 +101,16 @@
 	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/repel)	
 
 
-/mob/living/simple_animal/hostile/rogue/deepone/wiz/Shoot()
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/wiz/Shoot()
 	projectiletype = pick(allowed_projectile_types)
 	..()
-/mob/living/simple_animal/hostile/rogue/deepone/wiz/boss
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/wiz/boss
 	wander = FALSE
-/mob/living/simple_animal/hostile/rogue/deepone/spit/boss
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit/boss
 	wander = FALSE
-/mob/living/simple_animal/hostile/rogue/deepone/arm/boss
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/arm/boss
 	wander = FALSE
-/mob/living/simple_animal/hostile/rogue/deepone/boss
+/mob/living/carbon/simple_animal/hostile/rogue/deepone/boss
 	wander = FALSE
 /datum/intent/simple/claw/deepone_unarmed
 	attack_verb = list("claws", "strikes")

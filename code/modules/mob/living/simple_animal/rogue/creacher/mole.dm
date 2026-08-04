@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/mole
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole
 	icon = 'icons/roguetown/mob/monster/mole.dmi'
 	name = "mole"
 	desc = "A mighty giant mole, said by many dwarves to have been created at Malum's command to dig the first and oldest caverns of the world for his faithful to live in."
@@ -76,7 +76,7 @@
 	icon_state = "mole_bones"
 	icon = 'icons/roguetown/mob/monster/mole.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -85,11 +85,11 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/get_sound(input)//my media player does not work please add new .ogg
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/get_sound(input)//my media player does not work please add new .ogg
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -102,20 +102,20 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mole/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

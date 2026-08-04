@@ -57,7 +57,7 @@
 		/datum/skill/misc/climbing= SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading= SKILL_LEVEL_JOURNEYMAN,
 	)
-	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
+	horse = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 
 /datum/outfit/job/roguetown/adventurer/knighte_expert/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -153,7 +153,7 @@
 	category_tags = list(CTAG_KG_SQUIRE)
 	townie_contract_gate_exempt = TRUE
 	townie_contract_gate_hide_in_list = TRUE
-	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
+	horse = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_PER = 1,

@@ -176,7 +176,7 @@
 	dam = 80
 	cooldown = 25 SECONDS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/white_stag_corpse
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/white_stag_corpse
 	name = "White Stag"
 	desc = "A creature of legend, now slain."
 	icon = 'icons/mob/unique_shapeshifts/white_stag_shape.dmi'
@@ -288,7 +288,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/white_stag_corpse/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/white_stag_corpse/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_DNR, TRAIT_GENERIC)
 
@@ -316,7 +316,7 @@
 
 	var/mob/living/carbon/human/H = parent
 	var/turf/T = get_turf(H)
-	var/mob/living/simple_animal/hostile/retaliate/rogue/white_stag_corpse/C = new(T)
+	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/white_stag_corpse/C = new(T)
 	C.name = H.real_name
 	spawn(1)
 		C.death() // Immediately kill it so it's just a corpse

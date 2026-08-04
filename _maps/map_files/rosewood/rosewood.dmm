@@ -10,7 +10,7 @@
 /turf/closed/wall/mineral/stone,
 /area/indoors/town)
 "aao" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/dirt,
 /area/under/town/basement)
 "aav" = (
@@ -1881,7 +1881,7 @@
 /turf/open/floor/churchbrick,
 /area/indoors/town/shop)
 "aVD" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/town/sewer)
 "aVE" = (
@@ -2686,7 +2686,7 @@
 /turf/open/floor/wood/nosmooth,
 /area/indoors/villagegarrison)
 "bqP" = (
-/mob/living/simple_animal/pet/cat/black,
+/mob/living/carbon/simple_animal/pet/cat/black,
 /turf/open/floor/church,
 /area/indoors/town/clinic_large)
 "bqR" = (
@@ -3561,7 +3561,7 @@
 /turf/open/floor/cobblerock,
 /area/outdoors/town/noble_manor/blue)
 "bNm" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/stickyweb{
 	dir = 1
@@ -3617,7 +3617,7 @@
 /turf/open/floor/carpet,
 /area/indoors/town/clinic_large)
 "bOl" = (
-/mob/living/simple_animal/hostile/retaliate/bigrat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bigrat,
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
 "bOq" = (
@@ -4933,7 +4933,7 @@
 /turf/open/floor/cobble,
 /area/under/town/basement)
 "cre" = (
-/mob/living/simple_animal/pet/cat/inn{
+/mob/living/carbon/simple_animal/pet/cat/inn{
 	name = "Minx"
 	},
 /turf/open/floor/carpet/red,
@@ -7111,7 +7111,7 @@
 /turf/open/floor/ruinedwood/spiralfade,
 /area/indoors/town/theatre)
 "drB" = (
-/mob/living/simple_animal/hostile/retaliate/chicken{
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken{
 	name = "Nugget"
 	},
 /turf/open/floor/carpet,
@@ -9155,7 +9155,7 @@
 /turf/open/floor/cobblerock/alt,
 /area/outdoors/town)
 "etY" = (
-/mob/living/simple_animal/pet/cat/cabbit{
+/mob/living/carbon/simple_animal/pet/cat/cabbit{
 	name = "Tongs"
 	},
 /turf/open/floor/blocks,
@@ -12680,7 +12680,7 @@
 /turf/closed/wall/mineral/wooddark,
 /area/outdoors/town/keep)
 "geB" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/water/sewer,
 /area/under/town/sewer)
 "geE" = (
@@ -13039,7 +13039,7 @@
 /turf/open/floor/grass/cold,
 /area/indoors/town/tavern)
 "gpk" = (
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/grass/cold,
 /area/indoors/soilsons)
 "gpm" = (
@@ -16162,7 +16162,7 @@
 /turf/open/floor/hexstone,
 /area/under/town/basement)
 "hNp" = (
-/mob/living/simple_animal/hostile/retaliate/saiga/tame,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga/tame,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "hNr" = (
@@ -18078,7 +18078,7 @@
 /turf/open/floor/wood,
 /area/indoors/town/keep/magician)
 "iOT" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/greenstone,
 /area/under/town/sewer)
 "iOX" = (
@@ -21471,7 +21471,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/smithy)
 "kwK" = (
-/mob/living/simple_animal/hostile/retaliate/trufflepig,
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "kwL" = (
@@ -24656,7 +24656,7 @@
 /turf/open/floor/church,
 /area/indoors/town/church/chapel)
 "mcA" = (
-/mob/living/simple_animal/hostile/retaliate/troll/caerbannog{
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/caerbannog{
 	name = "Alexi Eater of Men"
 	},
 /turf/open/floor/blocks,
@@ -27019,7 +27019,7 @@
 /obj/structure/fluff/railing/wood{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/trufflepig/male{
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male{
 	name = "Jousting Pig";
 	desc = "A large hairy pig designed for jousting in the pits"
 	},
@@ -27050,7 +27050,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/indoors/town/dwarfin)
 "nkA" = (
-/mob/living/simple_animal/pet/giraffe,
+/mob/living/carbon/simple_animal/pet/giraffe,
 /turf/open/floor/ruinedwood/turned,
 /area/indoors/town/dwarfin)
 "nkJ" = (
@@ -27129,7 +27129,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/indoors/town)
 "nmF" = (
-/mob/living/simple_animal/hostile/retaliate/bull,
+/mob/living/carbon/simple_animal/hostile/retaliate/bull,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "nmI" = (
@@ -27796,7 +27796,7 @@
 /turf/open/floor/twig,
 /area/indoors/town/bath)
 "nBE" = (
-/mob/living/simple_animal/hostile/retaliate/troll/quiet{
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/quiet{
 	name = "Grigor"
 	},
 /turf/open/floor/blocks,
@@ -31328,7 +31328,7 @@
 /turf/open/floor/grass/cold,
 /area/outdoors/town/noble_manor/red)
 "pgr" = (
-/mob/living/simple_animal/hostile/retaliate/goatmale,
+/mob/living/carbon/simple_animal/hostile/retaliate/goatmale,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "pgz" = (
@@ -34901,7 +34901,7 @@
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/trufflepig/male{
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male{
 	name = "Jousting Pig";
 	desc = "A large hairy pig designed for jousting in the pits"
 	},
@@ -35572,7 +35572,7 @@
 /turf/open/floor/dirt,
 /area/indoors/town/keep/magician)
 "rqt" = (
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "rrI" = (
@@ -35964,7 +35964,7 @@
 /turf/closed/mineral,
 /area/outdoors/basin)
 "rAQ" = (
-/mob/living/simple_animal/pet/cat/black{
+/mob/living/carbon/simple_animal/pet/cat/black{
 	name = "Morticia"
 	},
 /turf/open/floor/dirt/road,
@@ -36420,7 +36420,7 @@
 /area/outdoors/exposed/church/graveyard)
 "rKp" = (
 /obj/machinery/light/fueled/wallfire/candle/blue,
-/mob/living/simple_animal/hostile/retaliate/bigrat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bigrat,
 /obj/structure/toilet/filled,
 /turf/open/floor/ruinedwood/chevron,
 /area/indoors/town/keep/magician)
@@ -37718,7 +37718,7 @@
 /area/indoors/town/tavern)
 "srj" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/water/clean,
 /area/under/town/sewer)
 "srk" = (
@@ -38579,7 +38579,7 @@
 /turf/open/floor/churchrough,
 /area/indoors/town/church/chapel)
 "sMk" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "sMl" = (
@@ -39235,7 +39235,7 @@
 /turf/open/floor/cobblerock/snow,
 /area/outdoors/town/keep)
 "tby" = (
-/mob/living/simple_animal/hostile/retaliate/saigabuck/tame/saddled,
+/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck/tame/saddled,
 /turf/open/floor/twig,
 /area/indoors/soilsons)
 "tbG" = (
@@ -39545,7 +39545,7 @@
 /turf/open/floor/church,
 /area/indoors/town/church/chapel)
 "tjO" = (
-/mob/living/simple_animal/pet/cat/cabbit{
+/mob/living/carbon/simple_animal/pet/cat/cabbit{
 	name = "Nelmen Destroyer of the Bog"
 	},
 /turf/open/floor/ruinedwood/spiralfade,
@@ -39889,7 +39889,7 @@
 /turf/open/floor/blocks/newstone/alt,
 /area/indoors/town/dwarfin)
 "tqH" = (
-/mob/living/simple_animal/hostile/retaliate/troll/quiet{
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/quiet{
 	name = "Alma"
 	},
 /turf/open/floor/blocks,
@@ -41241,7 +41241,7 @@
 /turf/open/floor/wood,
 /area/indoors/town)
 "ucs" = (
-/mob/living/simple_animal/hostile/retaliate/saigabuck/tame/saddled{
+/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck/tame/saddled{
 	name = "Royal Shitbeast"
 	},
 /turf/open/floor/twig,
@@ -42286,7 +42286,7 @@
 /turf/open/water/bath,
 /area/indoors/town/bath)
 "uHZ" = (
-/mob/living/simple_animal/pet/cat/cabbit{
+/mob/living/carbon/simple_animal/pet/cat/cabbit{
 	name = "Hammer"
 	},
 /turf/open/floor/herringbone,
@@ -45794,7 +45794,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/under/town/basement)
 "wqn" = (
-/mob/living/simple_animal/hostile/retaliate/goat,
+/mob/living/carbon/simple_animal/hostile/retaliate/goat,
 /turf/open/floor/dirt,
 /area/indoors/soilsons)
 "wqo" = (
@@ -47695,7 +47695,7 @@
 /turf/closed/mineral/bedrock,
 /area/under/cavewet)
 "xmR" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/water/clean,
 /area/under/town/sewer)
 "xnu" = (
@@ -48881,7 +48881,7 @@
 /area/indoors/town/tavern)
 "xTv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/pet/cat/inn,
+/mob/living/carbon/simple_animal/pet/cat/inn,
 /turf/open/floor/ruinedwood/turned,
 /area/indoors/town/tavern)
 "xTB" = (

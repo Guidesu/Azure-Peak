@@ -354,8 +354,8 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		if(istype(L, /mob/living/simple_animal/hostile/rogue/skeleton))
-			var/mob/living/simple_animal/hostile/rogue/skeleton/S = L
+		if(istype(L, /mob/living/carbon/simple_animal/hostile/rogue/skeleton))
+			var/mob/living/carbon/simple_animal/hostile/rogue/skeleton/S = L
 			if(S.summoner != owner.real_name)
 				continue
 			valid_skeletons += S

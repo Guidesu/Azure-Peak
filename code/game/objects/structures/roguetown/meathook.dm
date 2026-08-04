@@ -44,7 +44,7 @@
 			L.setDir(2)
 			buckle_mob(L, force=1)
 			var/matrix/rot = matrix(L.transform)
-			if(ispath(L, /mob/living/simple_animal))
+			if(ispath(L, /mob/living/carbon/simple_animal))
 				rot.Turn(90)
 				animate(L, transform = rot, time = 3)
 			else
@@ -96,7 +96,7 @@
 			if(ispath(item, /obj/item/reagent_containers/food/snacks))
 				M.guaranteed_butcher_results[item] -= 1
 	var/matrix/rot = matrix(M.transform)
-	if(ispath(M, /mob/living/simple_animal))
+	if(ispath(M, /mob/living/carbon/simple_animal))
 		rot.Turn(270)
 		animate(M, transform = rot, time = 3)
 	else

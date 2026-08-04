@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
 	name = "lamia"
 	desc = "This slithering monstrosity has a human torso, a large snake tail, and four bladed arms."
@@ -54,7 +54,7 @@
 	var/sneak_cooldown = 0
 	var/sneak_cooldown_delay = 30 SECONDS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/Initialize()
 	. = ..()
 	if(prob(20))
 		gender = MALE
@@ -62,12 +62,12 @@
 		icon_living = "lamia"
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/AttackingTarget()
 	if(sneaking)
 		break_sneak()
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/handle_automated_action()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/handle_automated_action()
 	if(!sneaking && world.time >= sneak_cooldown && isturf(loc) && light_check < world.time)
 		var/turf/ourlocation = get_turf(src)
 		var/light_amount = ourlocation.get_lumcount()
@@ -76,7 +76,7 @@
 			sneak_now()
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -118,12 +118,12 @@
 			return "tail"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/proc/sneak_now()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/proc/sneak_now()
 	if(!sneaking && world.time >= sneak_cooldown)
 		sneaking = TRUE
 		alpha = 100
 
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia/proc/break_sneak()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/proc/break_sneak()
 	sneaking = FALSE
 	alpha = 255
 	sneak_cooldown = world.time + sneak_cooldown_delay

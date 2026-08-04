@@ -62,9 +62,9 @@ GLOBAL_LIST_INIT(deadite_animal_migration_points, list())
 	var/lower_limit = 3 + ROUND_UP(players_amt / 10)
 	var/upper_limit = 5 + ROUND_UP(players_amt / 7)
 
-	var/mob/living/simple_animal/hostile/retaliate/rogue/animal = pick(animals)
+	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/animal = pick(animals)
 	for(var/i = 1 to rand(lower_limit, upper_limit))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/created = new animal(spawn_turf)
+		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/created = new animal(spawn_turf)
 		if(created.ai_controller)
 			var/list/migration_path = list()
 			var/list/ai_controller_paths = list()
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(deadite_animal_migration_points, list())
 //JUST undead wolves for now. Saigas are far too strong.
 /datum/round_event/deadite_migration/deadite
 	animals = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead,
 	)
 
 /datum/round_event_control/deadite_animal_migration/canSpawnEvent(players_amt, gamemode, fake_check)

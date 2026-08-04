@@ -13,14 +13,14 @@
 	//Minotaurs too strong for the lazy amount of places this area covers
 	ambush_mobs = list(
 				// Singles — budget filler across all factions present in the bog
-				/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = 20,
-				/mob/living/simple_animal/hostile/retaliate/rogue/spider = 40,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog = 20,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider = 40,
 				/mob/living/carbon/human/species/skeleton/npc/bogguard = 20,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30,
 				/mob/living/carbon/human/species/goblin/npc/archer/cave = 7,
 				/mob/living/carbon/human/species/human/northern/bog_deserters/ambush = 15,
 				/mob/living/carbon/human/species/human/northern/bog_deserters/better_gear/ambush = 10,
-				/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob = 5,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob = 5,
 				// Packs — big-ticket purchases for high budgets
 				new /datum/ambush_config/bog_guard_deserters = 50,
 				new /datum/ambush_config/bog_guard_deserters/hard = 25,

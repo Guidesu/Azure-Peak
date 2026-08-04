@@ -13,8 +13,8 @@
 		/mob/living/carbon/human/species/goblin/npc/bomber/moon = 6,
 		/mob/living/carbon/human/species/goblin/npc/large/moon = 5,
 		/mob/living/carbon/human/species/hobgoblin/npc/ambush = 15,
-		/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave = 10,
-		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 10,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave = 10,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 10,
 	)
 	boss_mob_types = list(
 		/mob/living/carbon/human/species/goblin/npc/large/moon = 100,

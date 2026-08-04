@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead
 	icon = 'icons/roguetown/mob/monster/deadites/fox_undead.dmi'
 	name = "deadite venard"
 	desc = "Once majestic, its gait is nowhere near as springy. At least, until it notices a piece of fresh meat."
@@ -25,7 +25,7 @@
 						/obj/item/natural/fur/fox = 1,
 						/obj/item/natural/bone = 4)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -43,6 +43,6 @@
 			return "stomach"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, 50, 50, "fox_downed")

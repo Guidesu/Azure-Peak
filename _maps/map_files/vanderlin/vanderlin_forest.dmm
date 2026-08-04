@@ -29,7 +29,7 @@
 "ai" = (
 /obj/structure/flora/grass/bush_meagre/yellow,
 /obj/structure/flora/grass,
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/grass/mixyel,
@@ -192,7 +192,7 @@
 /area/indoors/dungeon)
 "bi" = (
 /obj/machinery/light/fueled/wallfire/candle/l,
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile,
@@ -210,7 +210,7 @@
 /turf/open/floor/ruinedwood/turned/alt,
 /area/indoors/wilderness)
 "bo" = (
-/mob/living/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile/six,
@@ -291,7 +291,7 @@
 /turf/open/floor/tile,
 /area/indoors/dungeon)
 "bO" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/grass,
 /area/outdoors/wilderness)
 "bP" = (
@@ -423,7 +423,7 @@
 /turf/open/floor/ruinedwood/spiralfade,
 /area/indoors/wilderness/gallowband/garrison)
 "cC" = (
-/mob/living/simple_animal/hostile/retaliate/fox,
+/mob/living/carbon/simple_animal/hostile/retaliate/fox,
 /obj/effect/decal/cleanable/debris/stone,
 /turf/open/floor/naturalstone,
 /area/outdoors/wilderness)
@@ -942,7 +942,7 @@
 /turf/open/floor/ruinedwood/turned/alt,
 /area/indoors/dungeon)
 "fw" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/dirt,
 /area/outdoors/wilderness)
 "fx" = (
@@ -1040,7 +1040,7 @@
 /turf/open/floor/wood,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "fU" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /obj/structure/wild_plant/nospread/manabloom,
 /turf/open/floor/grass,
 /area/outdoors/wilderness)
@@ -1068,7 +1068,7 @@
 /turf/open/floor/cobble,
 /area/indoors/wilderness/gallowband)
 "gb" = (
-/mob/living/simple_animal/hostile/retaliate/fox,
+/mob/living/carbon/simple_animal/hostile/retaliate/fox,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/naturalstone,
 /area/outdoors/wilderness)
@@ -1153,7 +1153,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "gv" = (
-/mob/living/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Saint's Guardian";
 	faction = list("Undead")
 	},
@@ -1289,7 +1289,7 @@
 /turf/open/floor/sand,
 /area/outdoors/wilderness/beside_thatchwood)
 "hk" = (
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile/two,
@@ -1799,7 +1799,7 @@
 /area/indoors/wilderness/gallowband/garrison)
 "ki" = (
 /obj/structure/wild_plant/nospread/manabloom,
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/grass,
 /area/outdoors/wilderness)
 "kj" = (
@@ -1818,7 +1818,7 @@
 /area/outdoors/wilderness/safe)
 "kl" = (
 /obj/structure/wild_plant/nospread/manabloom,
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/dirt,
 /area/outdoors/wilderness)
 "km" = (
@@ -1986,7 +1986,7 @@
 /turf/open/floor/wood,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "ls" = (
-/mob/living/simple_animal/hostile/mirespider_paralytic/angry,
+/mob/living/carbon/simple_animal/hostile/mirespider_paralytic/angry,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "lt" = (
@@ -2077,7 +2077,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "md" = (
-/mob/living/simple_animal/hostile/retaliate/elemental/behemoth{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/behemoth{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile/six,
@@ -2182,7 +2182,7 @@
 /area/indoors/wilderness/garrison)
 "mE" = (
 /obj/structure/fluff/nest,
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/grass,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "mK" = (
@@ -2285,7 +2285,7 @@
 /turf/open/floor/grass,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "nz" = (
-/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "nA" = (
@@ -2370,7 +2370,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/wilderness/outpost/vanderlin)
 "ob" = (
-/mob/living/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Saint's Guardian";
 	faction = list("Undead")
 	},
@@ -2484,7 +2484,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "oU" = (
-/mob/living/simple_animal/hostile/mirespider_lurker/angry,
+/mob/living/carbon/simple_animal/hostile/mirespider_lurker/angry,
 /obj/structure/spider/stickyweb/mirespider,
 /turf/open/floor/naturalstone,
 /area/under/cave)
@@ -2805,7 +2805,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/wilderness/shop)
 "qP" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/water/marsh/deep,
 /area/outdoors/wilderness)
 "qQ" = (
@@ -2841,7 +2841,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/dungeon)
 "qZ" = (
-/mob/living/simple_animal/hostile/retaliate/raccoon,
+/mob/living/carbon/simple_animal/hostile/retaliate/raccoon,
 /obj/structure/fluff/nest,
 /turf/open/floor/naturalstone,
 /area/under/cave)
@@ -2850,7 +2850,7 @@
 /area/outdoors/wilderness/safe/gallowband_fort)
 "rc" = (
 /obj/structure/flora/grass/water/reeds,
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/water/marsh/deep,
 /area/outdoors/wilderness)
 "rf" = (
@@ -2918,7 +2918,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/wilderness)
 "rs" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /obj/item/candle/infinite{
 	anchored = 1;
 	pixel_x = 8;
@@ -4426,7 +4426,7 @@
 /area/indoors/dungeon)
 "yU" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/mid,
-/mob/living/simple_animal/hostile/retaliate/elemental/behemoth,
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/behemoth,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cobble,
 /area/indoors/dungeon)
@@ -4636,7 +4636,7 @@
 /turf/open/floor/sandstone_tile/six,
 /area/indoors/dungeon)
 "zV" = (
-/mob/living/simple_animal/hostile/retaliate/bat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bat,
 /turf/open/floor/naturalstone,
 /area/indoors/cave/late)
 "zW" = (
@@ -5298,7 +5298,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/wilderness/garrison)
 "DA" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "DB" = (
@@ -5589,7 +5589,7 @@
 /area/outdoors/wilderness/safe/gallowband_fort)
 "Ff" = (
 /obj/structure/spider/stickyweb/mirespider,
-/mob/living/simple_animal/hostile/mirespider_paralytic/angry,
+/mob/living/carbon/simple_animal/hostile/mirespider_paralytic/angry,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "Fg" = (
@@ -5714,7 +5714,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "FM" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /obj/structure/fluff/nest,
 /turf/open/floor/grass,
 /area/outdoors/wilderness/safe/gallowband_fort)
@@ -5767,7 +5767,7 @@
 /turf/open/water/marsh,
 /area/outdoors/wilderness)
 "FZ" = (
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile,
@@ -6179,7 +6179,7 @@
 "Ij" = (
 /obj/structure/flora/grass/herb/calendula,
 /obj/structure/flora/grass,
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/grass/yel,
@@ -6463,7 +6463,7 @@
 /turf/open/floor/sand,
 /area/outdoors/wilderness/safe)
 "JA" = (
-/mob/living/simple_animal/hostile/retaliate/direbear,
+/mob/living/carbon/simple_animal/hostile/retaliate/direbear,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "JB" = (
@@ -6523,7 +6523,7 @@
 /area/indoors/dungeon)
 "JW" = (
 /obj/structure/spider/stickyweb/mirespider,
-/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "JY" = (
@@ -6605,7 +6605,7 @@
 /turf/open/floor/cobble,
 /area/indoors/wilderness/gallowband)
 "Kt" = (
-/mob/living/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Saint's Guardian";
 	faction = list("Undead")
 	},
@@ -6744,7 +6744,7 @@
 /turf/open/floor/ruinedwood,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "Ln" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Undead");
 	name = "Loyal Hound"
 	},
@@ -6803,7 +6803,7 @@
 /area/indoors/cave/late)
 "LE" = (
 /obj/structure/spider/stickyweb/mirespider,
-/mob/living/simple_animal/hostile/mirespider_lurker/angry,
+/mob/living/carbon/simple_animal/hostile/mirespider_lurker/angry,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "LF" = (
@@ -7105,7 +7105,7 @@
 	},
 /area/indoors/wilderness/gallowband)
 "Nl" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/water/marsh/deep,
 /area/outdoors/wilderness/safe/gallowband_fort)
 "No" = (
@@ -7152,7 +7152,7 @@
 /turf/open/floor/ruinedwood/spiralfade,
 /area/indoors/wilderness/gallowband/garrison)
 "NG" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/dirt,
 /area/outdoors/wilderness)
 "NJ" = (
@@ -7476,7 +7476,7 @@
 	pixel_y = 1;
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
 	color = "#FFC000"
 	},
 /turf/open/floor/sandstone_tile/six,
@@ -7656,7 +7656,7 @@
 /turf/open/water/clean/dirt,
 /area/outdoors/wilderness)
 "Qx" = (
-/mob/living/simple_animal/hostile/retaliate/fox,
+/mob/living/carbon/simple_animal/hostile/retaliate/fox,
 /turf/open/floor/naturalstone,
 /area/outdoors/wilderness)
 "Qz" = (
@@ -7687,7 +7687,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/wilderness/garrison)
 "QF" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /obj/item/candle/infinite{
 	anchored = 1;
 	pixel_x = -5;
@@ -7950,7 +7950,7 @@
 /turf/open/floor/carpet/red,
 /area/indoors/dungeon)
 "Sq" = (
-/mob/living/simple_animal/hostile/retaliate/raccoon,
+/mob/living/carbon/simple_animal/hostile/retaliate/raccoon,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "St" = (
@@ -8926,7 +8926,7 @@
 /turf/open/floor/ruinedwood/spiralfade,
 /area/indoors/wilderness/gallowband/garrison)
 "Xo" = (
-/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/grass,
 /area/outdoors/wilderness)
 "Xp" = (

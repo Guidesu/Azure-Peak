@@ -44,7 +44,7 @@
 	var/windup_time = 0.5 SECONDS
 
 /datum/ai_behavior/boar_charge/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	var/mob/living/simple_animal/boar = controller.pawn
+	var/mob/living/carbon/simple_animal/boar = controller.pawn
 	var/atom/target = controller.blackboard[target_key]
 
 	if(QDELETED(target) || boar.buckled || boar.incapacitated())

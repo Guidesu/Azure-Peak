@@ -14,7 +14,7 @@
 		if(check_access(H.get_active_held_item()) || src.check_access(H.wear_ring))
 			return TRUE
 	else if(isanimal(M))
-		var/mob/living/simple_animal/A = M
+		var/mob/living/carbon/simple_animal/A = M
 		if(check_access(A.get_active_held_item()))
 			return TRUE
 	return FALSE

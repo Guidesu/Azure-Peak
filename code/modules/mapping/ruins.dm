@@ -22,7 +22,7 @@
 			var/turf/T = i
 			for(var/obj/structure/spawner/nest in T)
 				qdel(nest)
-			for(var/mob/living/simple_animal/monster in T)
+			for(var/mob/living/carbon/simple_animal/monster in T)
 				qdel(monster)
 
 		load(central_turf,centered = TRUE)

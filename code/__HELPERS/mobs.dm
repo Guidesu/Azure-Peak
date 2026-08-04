@@ -580,8 +580,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/static/list/mob_spawn_nicecritters = list() // and possible friendly mobs
 
 	if(mob_spawn_meancritters.len <= 0 || mob_spawn_nicecritters.len <= 0)
-		for(var/T in typesof(/mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = T
+		for(var/T in typesof(/mob/living/carbon/simple_animal))
+			var/mob/living/carbon/simple_animal/SA = T
 			switch(initial(SA.gold_core_spawnable))
 				if(HOSTILE_SPAWN)
 					mob_spawn_meancritters += T
@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		chosen = pick(mob_spawn_nicecritters)
 	else
 		chosen = pick(mob_spawn_meancritters)
-	var/mob/living/simple_animal/C = new chosen(spawn_location)
+	var/mob/living/carbon/simple_animal/C = new chosen(spawn_location)
 	return C
 
 /proc/passtable_on(target, source)

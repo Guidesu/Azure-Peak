@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/lizard
+/mob/living/carbon/simple_animal/hostile/lizard
 	name = "Lizard"
 	desc = ""
 	icon_state = "lizard"
@@ -26,16 +26,16 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	var/static/list/edibles = typecacheof(list(/mob/living/simple_animal/butterfly, /mob/living/simple_animal/cockroach)) //list of atoms, however turfs won't affect AI, but will affect consumption.
+	var/static/list/edibles = typecacheof(list(/mob/living/carbon/simple_animal/butterfly, /mob/living/carbon/simple_animal/cockroach)) //list of atoms, however turfs won't affect AI, but will affect consumption.
 
-/mob/living/simple_animal/hostile/lizard/CanAttack(atom/the_target)//Can we actually attack a possible target?
+/mob/living/carbon/simple_animal/hostile/lizard/CanAttack(atom/the_target)//Can we actually attack a possible target?
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
 		return FALSE
 	if(is_type_in_typecache(the_target,edibles))
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/lizard/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/lizard/AttackingTarget()
 	if(is_type_in_typecache(target,edibles)) //Makes sure player lizards only consume edibles.
 		visible_message(span_notice("[name] consumes [target] in a single gulp."), span_notice("I consume [target] in a single gulp."))
 		QDEL_NULL(target) //Nom
@@ -44,7 +44,7 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/hostile/lizard/space
+/mob/living/carbon/simple_animal/hostile/lizard/space
 	name = "Space Lizard"
 	desc = ""
 	icon_state = "lizard_space"

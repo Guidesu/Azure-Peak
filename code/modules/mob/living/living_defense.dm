@@ -263,7 +263,7 @@
 
 	var/on_hit_state = P.on_hit(src, armor)
 	var/actual_damage = P.damage
-	if(!mind && istype(src, /mob/living/simple_animal))
+	if(!mind && istype(src, /mob/living/carbon/simple_animal))
 		var/datum/component/saddleborn = GetComponent(/datum/component/precious_creature)
 		if(!saddleborn)
 			actual_damage *= P.npc_simple_damage_mult
@@ -552,7 +552,7 @@
 						span_danger("[user] tightens [user.p_their()] grip on me!"), span_hear("I hear aggressive shuffling!"), null, user)
 		to_chat(user, span_danger("I tighten my grip on [src]!"))
 
-/mob/living/attack_animal(mob/living/simple_animal/M)
+/mob/living/attack_animal(mob/living/carbon/simple_animal/M)
 	if(M.swinging)
 		return
 	M.swinging = TRUE
@@ -605,7 +605,7 @@
 
 	return TRUE
 
-/mob/living/proc/checkguard(mob/living/simple_animal/attacker)
+/mob/living/proc/checkguard(mob/living/carbon/simple_animal/attacker)
 	var/mob/living/carbon/human/target = src
 	if(!(ishuman(target) && target.has_status_effect(/datum/status_effect/buff/clash)))
 		return FALSE

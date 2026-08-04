@@ -1,5 +1,5 @@
 //Foxxy
-/mob/living/simple_animal/pet/fox
+/mob/living/carbon/simple_animal/pet/fox
 	name = "fox"
 	desc = ""
 	icon = 'icons/mob/pets.dmi'
@@ -25,7 +25,7 @@
 	footstep_type = FOOTSTEP_MOB_CLAW
 
 //Captain fox
-/mob/living/simple_animal/pet/fox/Renault
+/mob/living/carbon/simple_animal/pet/fox/Renault
 	name = "Renault"
 	desc = ""
 	gender = FEMALE

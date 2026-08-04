@@ -6,5 +6,5 @@
 	faction_tag = FACTION_BEARS
 	category = FACTION_CAT_BEAST
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 100,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 100,
 	)

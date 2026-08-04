@@ -11,7 +11,7 @@
 				/mob/living/carbon/human/species/human/northern/highwayman/sharpshooter = 4,
 				/mob/living/carbon/human/species/skeleton/npc/medium = 15,
 				/mob/living/carbon/human/species/skeleton/npc/hard = 10,
-				/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 10,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 10,
 				// Packs
 				new /datum/ambush_config/pair_of_direbear = 10,
 				new /datum/ambush_config/trio_of_highwaymen = 10,
@@ -57,7 +57,7 @@
 				/mob/living/carbon/human/species/human/northern/highwayman/sharpshooter = 3,
 				/mob/living/carbon/human/species/skeleton/npc/medium = 15,
 				/mob/living/carbon/human/species/skeleton/npc/hard = 10,
-				/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 10,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 10,
 				// Packs
 				new /datum/ambush_config/pair_of_direbear = 10,
 				new /datum/ambush_config/trio_of_highwaymen = 10,

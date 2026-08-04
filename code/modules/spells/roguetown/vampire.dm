@@ -21,7 +21,7 @@
 	cooldown_min = 50
 	die_with_shapeshifted_form =  FALSE
 	do_gib = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/bat
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/gaseousform
 	name = "Mist Form"
@@ -29,7 +29,7 @@
 	recharge_time = 50
 	cooldown_min = 50
 	die_with_shapeshifted_form =  FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/gaseousform
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/gaseousform
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/rat
 	name = "Rous Form"
@@ -38,7 +38,7 @@
 	cooldown_min = 5 SECONDS
 	die_with_shapeshifted_form = FALSE
 	do_gib = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/smallrat
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/smallrat
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/cabbit
 	name = "Cabbit Form"
@@ -47,7 +47,7 @@
 	cooldown_min = 5 SECONDS
 	die_with_shapeshifted_form = FALSE
 	do_gib = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit
 
 /obj/effect/proc_holder/spell/invoked/vampire_float
 	name = "Float"

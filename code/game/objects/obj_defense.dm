@@ -116,7 +116,7 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
 
-/obj/attack_animal(mob/living/simple_animal/M)
+/obj/attack_animal(mob/living/carbon/simple_animal/M)
 	if(!M.melee_damage_upper && !M.obj_damage)
 		M.emote("custom", message = "[M.friendly_verb_continuous] [src].")
 		return 0

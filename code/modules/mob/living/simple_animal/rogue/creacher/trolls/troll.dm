@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/troll
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
 	icon = 'icons/roguetown/mob/monster/trolls/trolls.dmi'
 	name = "troll"
 	desc = "Elven legends say these monsters were servants of Ignatius tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
@@ -27,7 +27,7 @@
 	botched_butcher_results = list (
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak/troll = 2,
 		/obj/item/natural/bundle/bone/full = 1,
-		/obj/item/alch/horn = 1, 
+		/obj/item/alch/horn = 1,
 		/obj/item/natural/hide = 2)
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak/troll = 3,
@@ -75,7 +75,7 @@
 	aggressive = TRUE
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/troll
-	
+
 	can_have_ai = FALSE //disable native ai
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/troll
@@ -83,20 +83,20 @@
 
 	var/critvuln = FALSE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
 	..()
 	update_icon()
 	if(!QDELETED(src))
 		src.AddComponent(/datum/component/deadite_animal_reanimation)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/troll/aggro1.ogg','sound/vo/mobs/troll/aggro2.ogg')
@@ -109,13 +109,13 @@
 		if("cidle")
 			return pick('sound/vo/mobs/troll/cidle1.ogg','sound/vo/mobs/troll/aggro2.ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Life()
 	..()
 	if(pulledby)
 		Retaliate()
@@ -123,31 +123,31 @@
 	if(has_status_effect(/datum/status_effect/fire_handler))
 		adjustHealth(-rand(20,35))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/proc/hide()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/proc/hide()
 	flick("troll_hiding", src)
 	sleep(1 SECONDS)
 	icon_state = "troll_hide"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/proc/ambush()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/proc/ambush()
 	flick("troll_ambush", src)
 	sleep(1 SECONDS)
 	icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()
 	..()
 	if(health > 0)
 		hide()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/Moved()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/Moved()
 	. = ..()
 	if(icon_state != initial(icon_state))
 		icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/GiveTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/GiveTarget()
 	..()
 	ambush()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -193,7 +193,7 @@
 	name = "remains"
 	gender = PLURAL
 	icon_state = "Trolld"
-	
+
 /datum/intent/unarmed/claw/troll
 	clickcd = TROLL_ATTACK_SPEED
 	penfactor = PEN_LIGHT

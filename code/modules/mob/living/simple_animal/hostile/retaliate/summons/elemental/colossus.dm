@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus
 	icon = 'icons/mob/summonable/64x64.dmi'
 	name = "earthen colossus"
 	desc = "This looks like a truly gigantic - and thereby truly ancient - elemental \
@@ -59,11 +59,11 @@
 
 	var/stomp_cd
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
 	if(!target || !CanAttack(target))
 		LoseTarget()
@@ -100,7 +100,7 @@
 		FindHidden()
 		return 1
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
@@ -114,12 +114,12 @@
 	ignore_los = 1 // this uses a different method of range
 
 /obj/effect/proc_holder/spell/self/colossus_stomp/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/rockguy = user
+	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus))
+		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/rockguy = user
 		if(world.time <= rockguy.stomp_cd + 25 SECONDS)
 			rockguy.stomp(rockguy)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/stomp(target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/stomp(target)
 	for (var/mob/living/stomped in view(1, src))
 		new	/obj/effect/temp_visual/stomp(stomped)
 		var/atom/throw_target = get_edge_target_turf(src, get_dir(src, stomped)) //ill be real I got no idea why this worked.
@@ -148,9 +148,9 @@
 
 /obj/projectile/earthenchunk/on_hit(target)
 	. = ..()
-	var/list/spawnLists = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler,
-	/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler,
-	 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler)
+	var/list/spawnLists = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler,
+	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler,
+	 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler)
 	var/reinforcement_count = 3
 	if(prob(20))
 		src.visible_message(span_notice("[src] breaks apart, scattering minor elementals about!"))

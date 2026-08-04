@@ -1,6 +1,6 @@
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf
 	icon = 'icons/roguetown/mob/monster/volf.dmi'
 	name = "volf"
 	desc = "A snarling beast of mangy fur and yellowed teeth. Volves are known to attack hapless travelers in the deep forests when prey is scarce."
@@ -76,7 +76,7 @@
 	ai_controller = /datum/ai_controller/volf
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/AttackingTarget() //7+1d6 vs con to knock ppl down
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/AttackingTarget() //7+1d6 vs con to knock ppl down
 	. = ..()
 
 	if(. && prob(8) && iscarbon(target))
@@ -104,7 +104,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/volf.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
@@ -119,14 +119,14 @@
 	icon_dead = "volf_[color]_dead"
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/death(gibbed)
 	..()
 	update_icon()
 	if(!QDELETED(src))
 		AddComponent(/datum/component/deadite_animal_reanimation)
 
 /* Eyes that glow in the dark. They float over kybraxor pits at the moment.
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -135,7 +135,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)*/
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -148,19 +148,19 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

@@ -184,7 +184,7 @@
 				//BP.set_disabled(BODYPART_DISABLED_WOUND)
 				// BP.add_wound(/datum/wound/fracture)
 			else if(snap && isanimal(L))
-				var/mob/living/simple_animal/SA = L
+				var/mob/living/carbon/simple_animal/SA = L
 				if(SA.mob_size <= MOB_SIZE_TINY) //don't close the trap if they're as small as a mouse.
 					snap = FALSE
 			if(snap)

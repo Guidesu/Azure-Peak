@@ -1,5 +1,5 @@
 //goat
-/mob/living/simple_animal/hostile/retaliate/goat
+/mob/living/carbon/simple_animal/hostile/retaliate/goat
 	name = "goat"
 	desc = ""
 	icon_state = "goat"
@@ -38,16 +38,16 @@
 
 	footstep_type = FOOTSTEP_MOB_SHOE
 
-/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/goat/Initialize()
 	udder = new()
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/Destroy()
+/mob/living/carbon/simple_animal/hostile/retaliate/goat/Destroy()
 	qdel(udder)
 	udder = null
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/goat/Life()
 	. = ..()
 	if(.)
 		//chance to go crazy and start wacking stuff
@@ -68,11 +68,11 @@
 					if(locate(/obj/structure/vine) in step || locate(/obj/structure/glowshroom) in step)
 						Move(step, get_dir(src, step))
 
-/mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
+/mob/living/carbon/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
 	src.visible_message(span_danger("[src] gets an evil-looking gleam in [p_their()] eye."))
 
-/mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user, params)
+/mob/living/carbon/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user, params)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		udder.milkAnimal(O, user)
 		return 1
@@ -80,7 +80,7 @@
 		return ..()
 
 //cow
-/mob/living/simple_animal/cow
+/mob/living/carbon/simple_animal/cow
 	name = "cow"
 	desc = ""
 	icon_state = "cow"
@@ -117,36 +117,36 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 	pooptype = /obj/item/natural/poo/cow
 
-/mob/living/simple_animal/cow/Initialize()
+/mob/living/carbon/simple_animal/cow/Initialize()
 	if(gender == FEMALE)
 		udder = new()
 	. = ..()
 
-/mob/living/simple_animal/cow/Destroy()
+/mob/living/carbon/simple_animal/cow/Destroy()
 	if(udder)
 		qdel(udder)
 		udder = null
 	return ..()
 
-/mob/living/simple_animal/cow/attackby(obj/item/O, mob/user, params)
+/mob/living/carbon/simple_animal/cow/attackby(obj/item/O, mob/user, params)
 	if(gender == FEMALE && stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		udder.milkAnimal(O, user)
 		return 1
 	else
 		return ..()
 
-/mob/living/simple_animal/cow/tamed()
+/mob/living/carbon/simple_animal/cow/tamed()
 	. = ..()
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	setup_mount()
 
-/mob/living/simple_animal/cow/Life()
+/mob/living/carbon/simple_animal/cow/Life()
 	. = ..()
 	if(stat == CONSCIOUS && gender == FEMALE)
 		udder.generateMilk()
 
-/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M)
+/mob/living/carbon/simple_animal/cow/attack_hand(mob/living/carbon/M)
 	if(gender == FEMALE && !stat && M.used_intent.type == INTENT_DISARM && icon_state != "[initial(icon_state)]_tip")
 		M.visible_message(span_warning("[M] tips over [src]."),
 			span_notice("I tip over [src]."))
@@ -172,7 +172,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/chick
+/mob/living/carbon/simple_animal/chick
 	name = "\improper chick"
 	desc = ""
 	icon_state = "chick"
@@ -208,26 +208,26 @@
 
 	footstep_type = FOOTSTEP_MOB_CLAW
 
-/mob/living/simple_animal/chick/Initialize()
+/mob/living/carbon/simple_animal/chick/Initialize()
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
-/mob/living/simple_animal/chick/Life()
+/mob/living/carbon/simple_animal/chick/Life()
 	. =..()
 	if(!.)
 		return
 	if(!stat && !ckey)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_animal/hostile/retaliate/rogue/chicken(src.loc)
+			new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken(src.loc)
 			qdel(src)
 
-/mob/living/simple_animal/chick/holo/Life()
+/mob/living/carbon/simple_animal/chick/holo/Life()
 	..()
 	amount_grown = 0
 
-/mob/living/simple_animal/chicken
+/mob/living/carbon/simple_animal/chicken
 	name = "\improper chicken"
 	desc = ""
 	gender = FEMALE
@@ -270,7 +270,7 @@
 
 	footstep_type = FOOTSTEP_MOB_CLAW
 
-/mob/living/simple_animal/chicken/Initialize()
+/mob/living/carbon/simple_animal/chicken/Initialize()
 	. = ..()
 	if(!body_color)
 		body_color = pick(validColors)
@@ -281,11 +281,11 @@
 	pixel_y = rand(0, 10)
 	++chicken_count
 
-/mob/living/simple_animal/chicken/Destroy()
+/mob/living/carbon/simple_animal/chicken/Destroy()
 	--chicken_count
 	return ..()
 
-/mob/living/simple_animal/chicken/attackby(obj/item/O, mob/user, params)
+/mob/living/carbon/simple_animal/chicken/attackby(obj/item/O, mob/user, params)
 	if(food_typecache?[O.type]) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
 			var/feedmsg = "[user] feeds [O] to [name]! [pick(feedMessages)]"
@@ -297,7 +297,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/chicken/Life()
+/mob/living/carbon/simple_animal/chicken/Life()
 	. =..()
 	if(!.)
 		return
@@ -319,7 +319,7 @@
 			amount_grown += rand(1,2)
 			if(amount_grown >= 100)
 				visible_message(span_notice("[src] hatches with a quiet cracking sound."))
-				new /mob/living/simple_animal/chick(get_turf(src))
+				new /mob/living/carbon/simple_animal/chick(get_turf(src))
 				STOP_PROCESSING(SSobj, src)
 				qdel(src)
 
@@ -359,7 +359,7 @@
 
 //grenchensnacker
 
-/mob/living/simple_animal/grenchensnacker
+/mob/living/carbon/simple_animal/grenchensnacker
 	name = "grenchensnacker"
 	desc = "Why is it smiling like that"
 	icon_state = "grenchen"

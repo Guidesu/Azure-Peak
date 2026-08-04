@@ -21,7 +21,7 @@
 			return
 
 	. = ..()
-	var/mob/living/simple_animal/basic_mob = controller.pawn
+	var/mob/living/carbon/simple_animal/basic_mob = controller.pawn
 	//targetting datum will kill the action if not real anymore
 	var/atom/target = controller.blackboard[target_key]
 	var/datum/targetting_datum/targetting_datum = controller.blackboard[targetting_datum_key]

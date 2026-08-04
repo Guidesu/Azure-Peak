@@ -399,6 +399,10 @@
 			success_prob *= (implements[implement_type]/100) || 1
 	success_prob *= get_location_modifier(target)
 	success_prob *= get_skill_modifier(user, target, target_zone, tool, intent)
+	// Stat integration: INT (knowledge) and PER (steady hands) affect success
+	if(isliving(user))
+		var/mob/living/L = user
+		success_prob += L.get_surgery_success_mod() * 100
 
 	return success_prob
 

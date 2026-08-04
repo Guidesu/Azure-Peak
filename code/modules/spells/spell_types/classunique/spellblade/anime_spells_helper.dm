@@ -77,7 +77,7 @@ without going through the click pipeline, so spells can deliver weapon-style str
 			return 0
 
 	// NPC damage multiplier (e.g. fireball's npc_simple_damage_mult)
-	if(npc_simple_damage_mult != 1 && istype(target, /mob/living/simple_animal))
+	if(npc_simple_damage_mult != 1 && istype(target, /mob/living/carbon/simple_animal))
 		damage = round(damage * npc_simple_damage_mult)
 
 	// Default intdamage factor: blunt gets 1.6x; everything else gets 1.0

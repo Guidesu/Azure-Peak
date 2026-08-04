@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/axe
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/axe
 	name = "troll skull-splitter"
 	desc = "This one seems smarter than the rest... And its axe could cut a man in two."
 	icon = 'icons/roguetown/mob/monster/trolls/troll_axe.dmi'

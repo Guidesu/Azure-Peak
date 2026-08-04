@@ -117,7 +117,7 @@
 	. = ..()
 	visible_message(span_green("[usr] soothes the beastblood with Ignatius's whisper."))
 	var/tamed = FALSE
-	for(var/mob/living/simple_animal/hostile/retaliate/animal in get_hearers_in_view(2, usr))
+	for(var/mob/living/carbon/simple_animal/hostile/retaliate/animal in get_hearers_in_view(2, usr))
 		if((animal.mob_biotypes & MOB_UNDEAD))
 			continue
 		if(faction_check(animal.faction, beast_tameable_factions))

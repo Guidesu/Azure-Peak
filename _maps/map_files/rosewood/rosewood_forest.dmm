@@ -224,7 +224,7 @@
 /turf/closed/basic,
 /area/under/cave)
 "ea" = (
-/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "eb" = (
@@ -314,7 +314,7 @@
 /turf/open/floor/metal/alt,
 /area/outdoors/mountains)
 "fo" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
 "fp" = (
@@ -335,7 +335,7 @@
 /turf/open/floor/naturalstone,
 /area/outdoors/wilderness)
 "fz" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "fA" = (
@@ -343,7 +343,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "fE" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /obj/structure/wild_plant/nospread/manabloom,
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
@@ -395,7 +395,7 @@
 /area/indoors)
 "gX" = (
 /obj/structure/flora/grass/herb/urtica,
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
 "gY" = (
@@ -451,7 +451,7 @@
 /turf/open/floor/metal/alt,
 /area/outdoors/mountains)
 "it" = (
-/mob/living/simple_animal/hostile/retaliate/fae/dryad,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/dryad,
 /obj/effect/spawner/map_spawner/loot/medium,
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
@@ -470,7 +470,7 @@
 /area/outdoors/wilderness)
 "iC" = (
 /obj/structure/flora/grass/herb/urtica,
-/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
 "iR" = (
@@ -656,7 +656,7 @@
 /turf/open/floor/woodturned/nosmooth/saiga,
 /area/indoors)
 "mT" = (
-/mob/living/simple_animal/hostile/retaliate/raccoon,
+/mob/living/carbon/simple_animal/hostile/retaliate/raccoon,
 /turf/open/floor/herringbone,
 /area/indoors)
 "mU" = (
@@ -716,7 +716,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "oI" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /obj/effect/falling_sakura,
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
@@ -849,7 +849,7 @@
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
 "qU" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sylph,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sylph,
 /obj/effect/spawner/map_spawner/loot/common,
 /obj/effect/falling_sakura,
 /turf/open/floor/snow,
@@ -930,7 +930,7 @@
 /turf/open/floor/wood/nosmooth/saiga,
 /area/indoors)
 "tn" = (
-/mob/living/simple_animal/hostile/retaliate/fae/dryad,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/dryad,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
 "ts" = (
@@ -950,7 +950,7 @@
 /turf/open/floor/ruinedwood,
 /area/outdoors/wilderness)
 "tP" = (
-/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
 "tV" = (
@@ -1073,7 +1073,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "wP" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/snow,
 /area/outdoors/wilderness)
 "wZ" = (
@@ -1324,7 +1324,7 @@
 /area/outdoors/wilderness)
 "BI" = (
 /obj/structure/flora/grass/herb/urtica,
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
 "BL" = (
@@ -1377,7 +1377,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/wilderness)
 "CS" = (
-/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
 "CU" = (
@@ -1407,7 +1407,7 @@
 /turf/closed/mineral/bedrock,
 /area/outdoors/wilderness)
 "DL" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /obj/effect/falling_sakura,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
@@ -1719,7 +1719,7 @@
 /turf/closed/mineral,
 /area/indoors/cave)
 "Kr" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /obj/structure/wild_plant/nospread/manabloom,
 /turf/open/floor/grass/cold,
 /area/outdoors/wilderness)
@@ -2430,7 +2430,7 @@
 /turf/closed/wall/mineral/decowood,
 /area/indoors/shelter/woods)
 "Zg" = (
-/mob/living/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/dirt,
 /area/outdoors/wilderness)
 "Zj" = (

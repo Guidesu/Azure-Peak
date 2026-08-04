@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead
 	// Icon credit openkeep troll, edited by Ketrai for undeath
 	icon = 'icons/roguetown/mob/monster/deadites/troll_undead.dmi'
 	name = "deadite troll"
@@ -38,11 +38,11 @@
 		/obj/item/alch/viscera = 3,
 		)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, 300, 200, "troll_downed", 0)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

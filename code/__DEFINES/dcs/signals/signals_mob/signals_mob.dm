@@ -21,7 +21,7 @@
 ///after attackingtarget has happened, source is the attacker and target is the attacked, extra argument for if the attackingtarget was successful
 #define COMSIG_HOSTILE_POST_ATTACKINGTARGET "hostile_post_attackingtarget"
 
-///Called when a /mob/living/simple_animal/hostile finds a new target: (atom/source, new_target)
+///Called when a /mob/living/carbon/simple_animal/hostile finds a new target: (atom/source, new_target)
 #define COMSIG_HOSTILE_FOUND_TARGET "comsig_hostile_found_target"
 
 

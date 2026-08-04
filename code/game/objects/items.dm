@@ -1275,7 +1275,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	return SEND_SIGNAL(src, COMSIG_ATOM_HITBY, AM, skipcatch, hitpush, blocked, throwingdatum, damage_flag)
 
-/obj/item/attack_animal(mob/living/simple_animal/M)
+/obj/item/attack_animal(mob/living/carbon/simple_animal/M)
 	if (obj_flags & CAN_BE_HIT)
 		return ..()
 	return 0
@@ -1742,6 +1742,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(crafter && skill_path)
 			skill_level = crafter.get_skill_level(skill_path)
 		var/roll = rand(1, 100)
+		// Stat integration: high INT/PER shifts the roll upward,
+		// producing better quality at the same skill level.
+		if(isliving(crafter))
+			var/mob/living/L = crafter
+			var/stat_bonus = 0
+			stat_bonus += (L.STAINT - STAT_BASELINE) * 2
+			stat_bonus += (L.STAPER - STAT_BASELINE) * 1
+			roll += stat_bonus
+			roll = clamp(roll, 1, 100)
 		switch(skill_level)
 			if(SKILL_LEVEL_NONE, SKILL_LEVEL_NOVICE)
 				if(roll <= 60)

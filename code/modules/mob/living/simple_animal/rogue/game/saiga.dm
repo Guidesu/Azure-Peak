@@ -1,6 +1,6 @@
 //the saiga
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga
 	name = "saiga doe"
 	desc = "Chiefly reputed friends of man, the saiga is the most ubiqutous beast of burden in the known world. They are driven to haul caravans and ploughs, ridden by mounted warriors on the field, and are much beloved by all."
 	icon = 'icons/roguetown/mob/monster/saiga.dmi'
@@ -16,7 +16,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	move_to_delay = 8//Fastest mount
-	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
+	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
 	botched_butcher_results = list(
 								/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 								/obj/item/natural/bone = 4,
@@ -63,8 +63,8 @@
 	STACON = 8
 	STASTR = 12
 	childtype = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigakid = 70,
-				/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy = 30,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigakid = 70,
+				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigaboy = 30,
 				)
 	pixel_x = -8
 	attack_sound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -75,7 +75,7 @@
 	aggressive = 1
 	remains_type = /obj/effect/decal/remains/saiga
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigakid
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigakid
 	name = "saiga calf"
 	icon_state = "saigakid"
 	icon_living = "saigakid"
@@ -97,13 +97,13 @@
 	STASPD = 5
 	defprob = 50
 	pixel_x = -16
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/saiga
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
 	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
 	name = "saiga buck"
 	icon_state = "buck"
 	icon_living = "buck"
@@ -134,7 +134,7 @@
 	remains_type = /obj/effect/decal/remains/saiga
 	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
 	name = "saiga calf"
 	desc = ""
 	gender = MALE
@@ -157,40 +157,40 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
 	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tame
 	tame = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame
 	tame = TRUE
 
 //the saiga's procs
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/find_food()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/find_food()
 	..()
 	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
 		add_saddleicon(gender == FEMALE ? "saddle-f-above" : "saddle-above", gender == FEMALE ? "saddle-f" : "saddle")
 		add_ridericon(gender == FEMALE ? "saiga_mounted" : "buck_mounted")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tamed()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tamed()
 	..()
 	deaggroprob = 30
 	setup_mount()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/death()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/death()
 	unbuckle_all_mobs()
 	. = ..()
 	if(!QDELETED(src))
@@ -198,7 +198,7 @@
 
 /// If we're a mount and are hit while sprinting, throw our rider off
 /// Also called if the rider is hit
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/proc/check_sprint_dismount()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/proc/check_sprint_dismount()
 	SIGNAL_HANDLER
 	for(var/mob/living/carbon/human/rider in buckled_mobs)
 		if(rider.m_intent != MOVE_INTENT_RUN)
@@ -208,19 +208,19 @@
 			continue
 		violent_dismount(rider)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/post_buckle_mob(mob/living/M)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/post_buckle_mob(mob/living/M)
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
 		RegisterSignal(src, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/post_unbuckle_mob(mob/living/M)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
 		UnregisterSignal(src, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
@@ -233,7 +233,7 @@
 	icon_state = "skele"
 	icon = 'icons/roguetown/mob/monster/saiga.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -244,7 +244,7 @@
 		if("idle")
 			return pick('sound/vo/mobs/saiga/idle (1).ogg','sound/vo/mobs/saiga/idle (2).ogg','sound/vo/mobs/saiga/idle (3).ogg','sound/vo/mobs/saiga/idle (4).ogg','sound/vo/mobs/saiga/idle (5).ogg','sound/vo/mobs/saiga/idle (6).ogg','sound/vo/mobs/saiga/idle (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -262,7 +262,7 @@
 			return "stomach"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
 	icon = 'icons/roguetown/mob/monster/saiga.dmi'
 	name = "saiga"
 	gender = MALE
@@ -283,25 +283,25 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tame
 	tame = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame
 	tame = TRUE
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S

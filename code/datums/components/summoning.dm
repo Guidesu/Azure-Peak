@@ -40,7 +40,7 @@
 		return
 	do_spawn_mob(get_turf(target), user)
 
-/datum/component/summoning/proc/hostile_attackingtarget(mob/living/simple_animal/hostile/attacker, atom/target)
+/datum/component/summoning/proc/hostile_attackingtarget(mob/living/carbon/simple_animal/hostile/attacker, atom/target)
 	do_spawn_mob(get_turf(target), attacker)
 
 /datum/component/summoning/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
@@ -55,9 +55,9 @@
 		return 0
 	last_spawned_time = world.time + spawn_delay
 	var/chosen_mob_type = pick(mob_types)
-	var/mob/living/simple_animal/L = new chosen_mob_type(spawn_location)
+	var/mob/living/carbon/simple_animal/L = new chosen_mob_type(spawn_location)
 	if(ishostile(L))
-		var/mob/living/simple_animal/hostile/H = L
+		var/mob/living/carbon/simple_animal/hostile/H = L
 		H.friends += summoner // do not attack our summon boy
 	spawned_mobs += L
 	if(faction != null)

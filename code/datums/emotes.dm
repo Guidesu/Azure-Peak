@@ -239,8 +239,8 @@
 				return used_sound
 		else
 			// familiars get to do emotes with their weird planar being anatomy, so that they can caw and such
-			if(istype(user, /mob/living/simple_animal/pet/familiar))
-				var/mob/living/simple_animal/pet/familiar/fam = user
+			if(istype(user, /mob/living/carbon/simple_animal/pet/familiar))
+				var/mob/living/carbon/simple_animal/pet/familiar/fam = user
 				if(!fam.voice_pack)
 					return
 				var/possible_sounds = fam.voice_pack.get_sound(key)

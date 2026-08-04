@@ -41,7 +41,7 @@
 	var/summon_windup = 0.5 SECONDS
 
 /datum/ai_behavior/summon_rat/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	var/mob/living/simple_animal/summoner = controller.pawn
+	var/mob/living/carbon/simple_animal/summoner = controller.pawn
 	var/atom/target = controller.blackboard[target_key]
 
 	if(QDELETED(target) || summoner.buckled || summoner.incapacitated())
@@ -72,7 +72,7 @@
 			spawn_turf = origin
 
 		// Initialize the phantom with our target mob, no rot path, and custom 5 second delay
-		new /obj/effect/temp_visual/hunting_phantom(spawn_turf, /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned, null, 5 SECONDS)
+		new /obj/effect/temp_visual/hunting_phantom(spawn_turf, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned, null, 5 SECONDS)
 	else
 		// We got cancelled by something, try again.
 		controller.set_blackboard_key(BB_RAT_SUMMON_READY, TRUE)

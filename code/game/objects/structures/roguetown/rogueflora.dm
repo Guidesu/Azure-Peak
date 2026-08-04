@@ -416,7 +416,9 @@
 		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish()
-			if(prob(50) && looty.len)
+			// Stat integration: PER and INT affect foraging success
+			var/forage_chance = 50 + L.get_foraging_success_mod() * 100
+			if(prob(forage_chance) && looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
 				var/obj/item/B = pick_n_take(looty)
@@ -910,7 +912,7 @@
 	static_debris = list(/obj/item/natural/fibers = 1,
 						 /obj/item/grown/log/tree/small = 1,
 						 /obj/item/reagent_containers/food/snacks/rogue/mushroom = 2)
-	rare_mush_bonus_drop = /mob/living/simple_animal/hostile/rogue/mirespider_lurker/mushroom
+	rare_mush_bonus_drop = /mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/mushroom
 	mush_animate = FALSE
 
 /obj/structure/flora/rogueshroom/happy/fat

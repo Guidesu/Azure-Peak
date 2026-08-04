@@ -63,7 +63,7 @@
 /datum/ai_planning_subtree/being_a_minion/mirespider/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
     . = ..()
     var/turf/travel = controller.blackboard[BB_TRAVEL_DESTINATION]
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/following = controller.blackboard[BB_FOLLOW_TARGET]
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/following = controller.blackboard[BB_FOLLOW_TARGET]
     var/mob/living/pawn = controller.pawn
 
     if (travel)  // Check if travel is defined
@@ -94,8 +94,8 @@
 
 /datum/ai_behavior/follow_friend/mirespider/setup(datum/ai_controller/controller, target_key)
     . = ..()
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target = controller.blackboard[target_key]
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/target = controller.blackboard[target_key]
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
     if (target_target)
         return FALSE
@@ -105,8 +105,8 @@
     set_movement_target(controller, target)
 
 /datum/ai_behavior/follow_friend/mirespider/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target = controller.blackboard[target_key]
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/target = controller.blackboard[target_key]
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
     if (target_target)
         return  // Stop following if the target has a target
@@ -133,7 +133,7 @@
                 controller.queue_behavior(/datum/ai_behavior/cocoon_target, BB_BASIC_MOB_COCOON_TARGET)
                 return SUBTREE_RETURN_FINISH_PLANNING
 
-    var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/lurker = controller.pawn
+    var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/lurker = controller.pawn
     if (lurker)
         lurker.clear_followers_if_any()
     
@@ -154,7 +154,7 @@
 
 /datum/ai_behavior/cocoon_target/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
     . = ..()
-    var/mob/living/simple_animal/pawn = controller.pawn
+    var/mob/living/carbon/simple_animal/pawn = controller.pawn
     var/mob/living/target = controller.blackboard[target_key]
     if (!target || QDELETED(target) || !isliving(target))
         finish_action(controller, FALSE, target_key)

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/hag_shapeshift
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hag_shapeshift
 	// Hopefully the type name will make mappers NOT use this.
 	// If you're a mapper and you've found your way here, ILU
 	icon = 'icons/mob/unique_shapeshifts/hag_shape.dmi'
@@ -56,11 +56,11 @@
 	ai_controller = null
 	melee_cooldown = MOSSBACK_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/hag_shapeshift/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hag_shapeshift/Initialize()
 	. = ..()
 	name = initial(name)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/hag_shapeshift/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hag_shapeshift/death(gibbed)
 	var/obj/shapeshift_holder/H = locate() in src
 	if(H && H.stored)
 		var/mob/living/carbon/human/hum = H.stored

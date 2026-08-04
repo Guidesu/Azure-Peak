@@ -1,5 +1,5 @@
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "earthen Warden"
 	desc = "An ever-watchful warden, a manner of earthen elemental dutiful in its protection \
@@ -53,11 +53,11 @@
 	STASTR = 10
 	STASPD = 6
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

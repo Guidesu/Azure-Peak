@@ -20,7 +20,7 @@
 		var/turf/target_turf = get_step_towards(movable_pawn, controller.current_movement_target)
 
 		if(target_turf?.can_traverse_safely(movable_pawn))
-			if(istype(movable_pawn, /mob/living/simple_animal))
+			if(istype(movable_pawn, /mob/living/carbon/simple_animal))
 				var/dir_to_target = get_dir(current_loc, target_turf)
 				var/turf/step_turf = get_step(movable_pawn, dir_to_target)
 				var/climbed = FALSE

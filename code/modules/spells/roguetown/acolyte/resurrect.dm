@@ -231,9 +231,9 @@
 /datum/status_effect/debuff/dreamfiend_curse/on_creation(mob/living/new_owner)
 	// Choose dreamfiend type from weighted list
 	var/list/dreamfiend_types = list(
-		/mob/living/simple_animal/hostile/rogue/dreamfiend = 50,
-		/mob/living/simple_animal/hostile/rogue/dreamfiend/major = 49,
-		/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient = 1
+		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend = 50,
+		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major = 49,
+		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient = 1
 	)
 	dreamfiend_type = pickweight(dreamfiend_types)
 
@@ -255,15 +255,15 @@
 	. = ..()
 
 	switch(dreamfiend_type)
-		if(/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient)
+		if(/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient)
 			linked_alert.icon_state = "dreamfiend_ancient"
 			linked_alert.name = "Grand Abyssal Curse."
 			linked_alert.desc = "A terrifying presence if felt fraying the edges of my mind. This is a threat I cannot face alone."
-		if(/mob/living/simple_animal/hostile/rogue/dreamfiend/major)
+		if(/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major)
 			linked_alert.icon_state = "dreamfiend_major"
 			linked_alert.name = "Major Abyssal Curse."
 			linked_alert.desc = "A great deamon is sapping my mind, a dangerous foe which I must summon to regain my faculties."
-		if(/mob/living/simple_animal/hostile/rogue/dreamfiend)
+		if(/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend)
 			linked_alert.icon_state = "dreamfiend"
 
 /atom/movable/screen/alert/status_effect/dreamfiend_curse

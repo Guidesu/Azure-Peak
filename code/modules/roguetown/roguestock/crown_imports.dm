@@ -58,7 +58,7 @@
 
 /obj/structure/closet/crate/chest/steward/saigabuck/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled(src)
 	new /obj/item/caparison/blue(src)
 
 /datum/crown_import/cow
@@ -70,7 +70,7 @@
 
 /obj/structure/closet/crate/chest/steward/cow/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/cow(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow(src)
 
 /datum/crown_import/bull
 	name = "Bull"
@@ -81,7 +81,7 @@
 
 /obj/structure/closet/crate/chest/steward/bull/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/bull(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull(src)
 
 /datum/crown_import/goat
 	name = "Doe Goat"
@@ -92,7 +92,7 @@
 
 /obj/structure/closet/crate/chest/steward/goat/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/goat(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat(src)
 
 /datum/crown_import/goatmale
 	name = "Billy Goat"
@@ -103,7 +103,7 @@
 
 /obj/structure/closet/crate/chest/steward/goatmale/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/goatmale(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale(src)
 
 /datum/crown_import/chicken
 	name = "Chicken"
@@ -114,7 +114,7 @@
 
 /obj/structure/closet/crate/chest/steward/chicken/Initialize()
 	. = ..()
-	new /mob/living/simple_animal/hostile/retaliate/rogue/chicken(src)
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken(src)
 
 /datum/crown_import/farmequip
 	name = "Farm Equipment Crate"

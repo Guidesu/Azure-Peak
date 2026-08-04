@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant
 	name = "revenant"
 	desc = "A shimmering, vengeful spirit anchored to the fog."
 	icon = 'icons/roguetown/mob/misc.dmi'
@@ -23,7 +23,7 @@
 	var/target_alpha = 150
 	var/fade_time = 1.5 SECONDS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/Initialize()
 	. = ..()
 	AddComponent(/datum/component/fog_entity)
 	appear_animated()
@@ -34,24 +34,24 @@
 	// We do not bleed.
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/proc/appear_animated()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/proc/appear_animated()
 	move_to_delay = fade_time // Basically can't move until the animation is done!
 	animate(src, alpha = target_alpha, time = fade_time, easing = EASE_IN)
 	addtimer(CALLBACK(src, PROC_REF(finish_appearing)), fade_time)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/proc/disappear_animated()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/proc/disappear_animated()
 	animate(src, alpha = 0, time = fade_time, easing = EASE_OUT)
 	addtimer(CALLBACK(src, PROC_REF(death)), fade_time)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/proc/finish_appearing()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/proc/finish_appearing()
 	move_to_delay = initial(move_to_delay)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/death(gibbed)
 	..()
 	qdel(src)
 
 // Horde fodder
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/weak
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/weak
 	health = 80
 	maxHealth = 80
 	melee_damage_lower = 15

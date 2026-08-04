@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "glimmerwing"
 	desc = "A middlingly-sized fae-creature, held aloft upon fluttering wings and glimmering with unearthly \
@@ -49,17 +49,17 @@
 	aggressive = 1
 	var/drug_cd
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/AttackingTarget()
 	if(SEND_SIGNAL(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, target) & COMPONENT_HOSTILE_NO_PREATTACK)
 		return FALSE //but more importantly return before attack_animal called
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)

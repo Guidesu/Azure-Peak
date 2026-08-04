@@ -1,8 +1,8 @@
-/* 
-	Helper(s) for getting cooking speed. 
+/*
+	Helper(s) for getting cooking speed.
 	Eventually a universal recipe system should be implemented instead of calling this proc everywhere
  	But for now this will do
-	+50% Cooking Speed (except -25% for lowest level) is super 
+	+50% Cooking Speed (except -25% for lowest level) is super
 */
 
 #define SKILL_LEVEL_NONE_DIVISOR 0.75
@@ -32,6 +32,21 @@
 		if(SKILL_LEVEL_LEGENDARY)
 			divisor = SKILL_LEVEL_LEGENDARY_DIVISOR
 
+	return divisor
+
+/// Stat-integrated cooking divisor. Wraps get_cooktime_divisor with
+/// stat-based speed bonuses from INT (technique) and SPD (efficiency).
+/proc/get_cooktime_divisor_stat(mob/user, skill_level)
+	if(!user)
+		return get_cooktime_divisor(skill_level)
+	var/divisor = get_cooktime_divisor(skill_level)
+	if(isliving(user))
+		var/mob/living/L = user
+		// Each point of INT above baseline adds 5% to the divisor
+		var/int_bonus = max(0, (L.STAINT - STAT_BASELINE) * 0.05)
+		// Each point of SPD above baseline adds 3% to the divisor
+		var/spd_bonus = max(0, (L.STASPD - STAT_BASELINE) * 0.03)
+		divisor += (int_bonus + spd_bonus)
 	return divisor
 
 #undef SKILL_LEVEL_NONE_DIVISOR

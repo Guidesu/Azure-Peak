@@ -14,7 +14,7 @@
 
 /datum/ai_behavior/eat_dead_body/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
-	var/mob/living/simple_animal/living_pawn = controller.pawn
+	var/mob/living/carbon/simple_animal/living_pawn = controller.pawn
 	//targetting datum will kill the action if not real anymore
 	var/mob/living/target = controller.blackboard[target_key]
 	var/datum/targetting_datum/targetting_datum = controller.blackboard[targetting_datum_key]
@@ -80,6 +80,6 @@
 /datum/ai_behavior/eat_dead_body/mimic/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
 	if(!succeeded)
-		var/mob/living/simple_animal/hostile/basic_mob = controller.pawn
+		var/mob/living/carbon/simple_animal/hostile/basic_mob = controller.pawn
 		if(!basic_mob.stat) // if the mimic's not dead
 			basic_mob.Aggro() // someone interrupted us! go get 'em!

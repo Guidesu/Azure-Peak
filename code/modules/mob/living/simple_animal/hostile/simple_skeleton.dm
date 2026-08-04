@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rogue/skeleton
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton
 	name = "Skeleton"
 	desc = "A shambling anatomy of bleached bones kept together only by necromantic forces."
 	icon = 'icons/mob/skeletons.dmi'
@@ -46,12 +46,12 @@
 	ai_controller = /datum/ai_controller/simple_skeleton
 	melee_cooldown = SKELETON_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine, is_summoned)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine, is_summoned)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/axe
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/axe
 	name = "Skeleton"
 	icon = 'icons/mob/skeletons.dmi'
 	base_intents = list(/datum/intent/simple/axe/skeleton)
@@ -60,7 +60,7 @@
 	icon_dead = ""
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/stoneaxe/woodcut, /obj/item/skull)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/spear
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/spear
 	name = "Skeleton"
 	icon = 'icons/mob/skeletons.dmi'
 	base_intents = list(/datum/intent/simple/spear/skeleton)
@@ -71,7 +71,7 @@
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/spear, /obj/item/skull)
 	ai_controller = /datum/ai_controller/skeleton_spear
 
-/mob/living/simple_animal/hostile/rogue/skeleton/guard
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/guard
 	name = "Skeleton"
 	icon = 'icons/mob/skeletons.dmi'
 	base_intents = list(/datum/intent/simple/axe/skeleton)
@@ -82,7 +82,7 @@
 	maxHealth = 200
 	health = 200
 
-/mob/living/simple_animal/hostile/rogue/skeleton/bow
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow
 	name = "Skeleton"
 	icon = 'icons/mob/skeletons.dmi'
 	icon_state = "skeleton_bow"
@@ -107,7 +107,7 @@
 			)
 	ai_controller = /datum/ai_controller/skeleton_ranged
 
-/mob/living/simple_animal/hostile/rogue/skeleton/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/skel/skeleton_rage (1).ogg','sound/vo/mobs/skel/skeleton_rage (2).ogg','sound/vo/mobs/skel/skeleton_rage (3).ogg')
@@ -118,7 +118,7 @@
 		if("idle")
 			return pick('sound/vo/mobs/skel/skeleton_idle (1).ogg','sound/vo/mobs/skel/skeleton_idle (2).ogg','sound/vo/mobs/skel/skeleton_idle (3).ogg')
 
-/mob/living/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
 	. = ..()
 
 	if(user)
@@ -141,13 +141,13 @@
 	damage_check = world.time
 
 	if(is_summoned)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), 1 MINUTES)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), 1 MINUTES)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/proc/deathtime()
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/proc/deathtime()
 	src.add_atom_colour(newcolor, ADMIN_COLOUR_PRIORITY)
 	start_take_damage = TRUE
 
-/mob/living/simple_animal/hostile/rogue/skeleton/Life(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/Life(mob/user)
 	. = ..()
 	if(!target)
 		if(prob(60))
@@ -156,12 +156,12 @@
 		if(world.time > damage_check + 5 SECONDS)
 			src.adjustFireLoss(8) //+- one minute for 100 HP (any skeleton) and two minute for guard skeleton (200 HP)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/taunted(mob/user)
 	emote("aggro")
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/rogue/skeleton/proc/can_control(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/proc/can_control(mob/user)
 	if(!(user.mind?.has_antag_datum(/datum/antagonist/lich)))
 		return FALSE
 	if (!(user.name in friends))
@@ -169,21 +169,21 @@
 
 	return TRUE
 
-/mob/living/simple_animal/hostile/rogue/skeleton/beckoned(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/beckoned(mob/user)
 	if (can_control(user))
-		for(var/mob/living/simple_animal/hostile/rogue/skeleton/target in viewers(user))
+		for(var/mob/living/carbon/simple_animal/hostile/rogue/skeleton/target in viewers(user))
 			target.LoseTarget()
 			target.search_objects = 2
 			target.add_overlay("peace_overlay")
 		return
 
-/mob/living/simple_animal/hostile/rogue/skeleton/shood(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/shood(mob/user)
 	if (can_control(user))
-		for(var/mob/living/simple_animal/hostile/rogue/skeleton/target in viewers(user))
+		for(var/mob/living/carbon/simple_animal/hostile/rogue/skeleton/target in viewers(user))
 			target.RegainSearchObjects()
 		return
 
-/mob/living/simple_animal/hostile/rogue/skeleton/RegainSearchObjects(value)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/RegainSearchObjects(value)
 	cut_overlay("peace_overlay")
 	. = ..()
 
@@ -218,23 +218,23 @@
 
 
 
-/mob/living/simple_animal/hostile/rogue/skeleton/axe/event
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/axe/event
 	ai_controller = /datum/ai_controller/simple_skeleton/event
-/mob/living/simple_animal/hostile/rogue/skeleton/spear/event
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/spear/event
 	ai_controller = /datum/ai_controller/skeleton_spear/event
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/event
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/guard/event
 	ai_controller = /datum/ai_controller/simple_skeleton/event
-/mob/living/simple_animal/hostile/rogue/skeleton/bow/event
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow/event
 	ai_controller = /datum/ai_controller/skeleton_ranged/event
 
-/mob/living/simple_animal/hostile/rogue/skeleton/axe/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/axe/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
     . = ..(mapload, user, cabal_affine, is_summoned)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/spear/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/spear/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
     . = ..(mapload, user, cabal_affine, is_summoned)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/guard/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
     . = ..(mapload, user, cabal_affine, is_summoned)
 
-/mob/living/simple_animal/hostile/rogue/skeleton/bow/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
     . = ..(mapload, user, cabal_affine, is_summoned)

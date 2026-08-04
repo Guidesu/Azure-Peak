@@ -56,7 +56,7 @@
 	return ..()
 
 /datum/ai_controller/hostile_friend/get_access()
-	var/mob/living/simple_animal/simple_pawn = pawn
+	var/mob/living/carbon/simple_animal/simple_pawn = pawn
 	if(!istype(simple_pawn))
 		return
 

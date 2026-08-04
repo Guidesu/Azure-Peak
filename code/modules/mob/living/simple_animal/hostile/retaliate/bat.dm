@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/bat
+/mob/living/carbon/simple_animal/hostile/retaliate/bat
 	name = "bat"
 	desc = ""
 	icon_state = "bat"
@@ -49,12 +49,12 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 
-/mob/living/simple_animal/hostile/retaliate/bat/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/Initialize()
 	. = ..()
-	add_verb(src, list(/mob/living/simple_animal/proc/fly_up,
-	/mob/living/simple_animal/proc/fly_down)) 
+	add_verb(src, list(/mob/living/carbon/simple_animal/proc/fly_up,
+	/mob/living/carbon/simple_animal/proc/fly_down)) 
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow
 	name = "zad"
 	desc = ""
 	icon = 'icons/roguetown/mob/monster/crow.dmi'
@@ -74,12 +74,12 @@
 	/// Whether the zad is perched (stationary sprite, cannot move) rather than flying.
 	var/sitting = FALSE
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/Initialize()
 	. = ..()
-	add_verb(src, list(/mob/living/simple_animal/hostile/retaliate/bat/crow/proc/change_stance,
-	/mob/living/simple_animal/hostile/retaliate/bat/crow/proc/emote_caw))
+	add_verb(src, list(/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/proc/change_stance,
+	/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/proc/emote_caw))
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/proc/change_stance()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/proc/change_stance()
 	set category = "RoleUnique.Winged Form"
 	set name = "Change Stance"
 	sitting = !sitting
@@ -88,25 +88,25 @@
 	setDir(EAST)
 	setDir(SOUTH)
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/update_icon_state()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/update_icon_state()
 	icon_state = sitting ? "crow" : "crow_flying"
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/Move()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/Move()
 	if(sitting)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/proc/emote_caw()
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/proc/emote_caw()
 	set category = "RoleUnique.Winged Form"
 	set name = "Caw"
 	emote("caw", intentional = TRUE, animal = TRUE)
 
-/mob/living/simple_animal/hostile/retaliate/bat/crow/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/get_sound(input)
 	if(input == "caw")
 		return pick('sound/vo/mobs/bird/CROW_01.ogg', 'sound/vo/mobs/bird/CROW_02.ogg', 'sound/vo/mobs/bird/CROW_03.ogg')
 
 // lets you wear them on your HEAD...
-/mob/living/simple_animal/hostile/retaliate/bat/crow/set_item_sprite(obj/item/mob_item/orb)
+/mob/living/carbon/simple_animal/hostile/retaliate/bat/crow/set_item_sprite(obj/item/mob_item/orb)
 	..()
 	orb.mob_overlay_icon = orb.icon
 	orb.worn_offsets = list("x" = 0, "y" = 22)

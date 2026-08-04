@@ -29,7 +29,7 @@
 	. = ..()
 	var/faction_tag = "[owner.mind.current.real_name]_faction"
 
-	if(ismob(cast_on) && (istype(cast_on, /mob/living/simple_animal) || HAS_TRAIT(cast_on, TRAIT_CONJURED_SUMMON)))
+	if(ismob(cast_on) && (istype(cast_on, /mob/living/carbon/simple_animal) || HAS_TRAIT(cast_on, TRAIT_CONJURED_SUMMON)))
 		var/mob/living/minion = cast_on
 		if(faction_tag in minion.faction)
 			process_minions(order_type = "toggle_stance", target = minion, faction_tag = faction_tag)
@@ -59,7 +59,7 @@
 	var/msg = ""
 
 	for(var/mob/other_mob in oview(order_range, owner))
-		if((istype(other_mob, /mob/living/simple_animal) || HAS_TRAIT(other_mob, TRAIT_CONJURED_SUMMON)) && !other_mob.client)
+		if((istype(other_mob, /mob/living/carbon/simple_animal) || HAS_TRAIT(other_mob, TRAIT_CONJURED_SUMMON)) && !other_mob.client)
 			var/mob/living/minion = other_mob
 			if(!minion.ai_controller)
 				continue

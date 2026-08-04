@@ -106,8 +106,8 @@
 	if(TU)
 		if(horse)
 			var/mob/horse_mob = new horse(TU)
-			if(istype(horse_mob, /mob/living/simple_animal/hostile/retaliate/rogue))
-				var/mob/living/simple_animal/hostile/retaliate/rogue/rogue_animal = horse_mob
+			if(istype(horse_mob, /mob/living/carbon/simple_animal/hostile/retaliate/rogue))
+				var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/rogue_animal = horse_mob
 				rogue_animal.owner = H
 				rogue_animal.friends |= H
 

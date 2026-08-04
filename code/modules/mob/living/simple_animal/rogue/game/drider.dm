@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/drider //lol
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider //lol
 	icon = 'icons/roguetown/mob/monster/drider.dmi'
 	name = "drider spider"
 	desc = "A monstrously large spider utilised by drow as mounts, better suited \
@@ -38,28 +38,28 @@
 	aggressive = 1
 	move_to_delay = 8
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/tame
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tame
 	tame = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOFALLDAMAGE2, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOFIRE, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
 		add_saddleicon("saddle-above", "saddle")
 		add_ridericon("drider_mounted")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/tamed()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tamed()
 	..()
 	deaggroprob = 20
 	setup_mount()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/spider/aggro (1).ogg','sound/vo/mobs/spider/aggro (2).ogg','sound/vo/mobs/spider/aggro (3).ogg')
@@ -70,20 +70,20 @@
 		if("idle")
 			return pick('sound/vo/mobs/spider/idle (1).ogg','sound/vo/mobs/spider/idle (2).ogg','sound/vo/mobs/spider/idle (3).ogg','sound/vo/mobs/spider/idle (4).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/eat_plants()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/eat_plants()
 	..()
 	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/Life()
 	..()
 	if(stat == CONSCIOUS)
 		if(!pulledby)
@@ -100,7 +100,7 @@
 			icon_state = "drider"
 			icon_living = "drider"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -140,7 +140,7 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S

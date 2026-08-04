@@ -344,7 +344,7 @@
 
 
 //Dextrous simple mobs can use hands!
-/mob/living/simple_animal/create_mob_hud()
+/mob/living/carbon/simple_animal/create_mob_hud()
 	if(dextrous)
 		hud_type = dextrous_hud_type
 	return ..()

@@ -151,7 +151,7 @@
 /turf/open/floor/mushroom,
 /area/under/cavelava)
 "aaG" = (
-/mob/living/simple_animal/hostile/retaliate/voiddragon/red{
+/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon/red{
 	dir = 4;
 	health = 625;
 	maxHealth = 625;
@@ -313,7 +313,7 @@
 /turf/open/floor/carpet/lord/right,
 /area/indoors/mountains/anvil/upperkeep)
 "abk" = (
-/mob/living/simple_animal/hostile/retaliate/voiddragon/red{
+/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon/red{
 	dir = 8;
 	health = 625;
 	maxHealth = 625;
@@ -367,7 +367,7 @@
 	},
 /area/indoors/mountains/anvil/upperkeep)
 "abv" = (
-/mob/living/simple_animal/hostile/retaliate/snapper,
+/mob/living/carbon/simple_animal/hostile/retaliate/snapper,
 /turf/open/floor/concrete,
 /area/indoors/town/clocktower)
 "abw" = (
@@ -678,7 +678,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "acV" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/naturalstone,
 /area/under/cave/spider)
 "acX" = (
@@ -959,7 +959,7 @@
 /turf/open/floor/tile/masonic/inverted,
 /area/indoors/mountains/anvil/upperkeep)
 "aen" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /turf/open/floor/dirt,
 /area/under/mountains/anvil/upper)
 "aeo" = (
@@ -1036,7 +1036,7 @@
 /turf/open/floor/church/purple,
 /area/indoors/town/church/inquisition)
 "aeO" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aeQ" = (
@@ -1541,7 +1541,7 @@
 /turf/open/floor/churchbrick,
 /area/indoors/town/church/inquisition)
 "ahn" = (
-/mob/living/simple_animal/hostile/gnome_homunculus,
+/mob/living/carbon/simple_animal/hostile/gnome_homunculus,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "aho" = (
@@ -1564,7 +1564,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/mountains/anvil/upperkeep)
 "ahs" = (
-/mob/living/simple_animal/hostile/retaliate/elemental/collossus{
+/mob/living/carbon/simple_animal/hostile/retaliate/elemental/collossus{
 	health = 800;
 	name = "Huber Shrok, The Crumbling Defence Construct";
 	faction = list("Orcs")
@@ -2318,7 +2318,7 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/outdoors/mountains/anvil/snowyforest)
 "ald" = (
-/mob/living/simple_animal/hostile/retaliate/troll,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll,
 /turf/open/floor/plasteel/maniac,
 /area/under/mountains/anvil/lower)
 "ale" = (
@@ -2580,7 +2580,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/mountains/anvil/upperkeep)
 "amn" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/cobblerock,
 /area/under/cavelava)
 "amo" = (
@@ -2914,7 +2914,7 @@
 	},
 /area/indoors/mountains/anvil/upperkeep)
 "anV" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "anW" = (
@@ -2969,7 +2969,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/mountains/anvil/upperkeep)
 "aok" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/volcanic,
 /area/under/cavelava)
 "aol" = (
@@ -3016,7 +3016,7 @@
 /turf/open/floor/metal/alt,
 /area/indoors/town/clocktower)
 "aou" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "aox" = (
@@ -3053,7 +3053,7 @@
 /turf/open/floor/sand,
 /area/indoors/mountains/anvil/keep)
 "aoL" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/dirt,
 /area/under/cavelava)
 "aoM" = (
@@ -3329,7 +3329,7 @@
 /turf/open/floor/plasteel/maniac/damaged,
 /area/under/mountains/anvil/lower)
 "aqi" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/volcanic,
 /area/under/mountains/anvil/lower)
 "aqj" = (
@@ -4078,7 +4078,7 @@
 /turf/open/floor/concrete,
 /area/indoors/town/clocktower)
 "atZ" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/fiend,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/fiend,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aua" = (
@@ -5752,7 +5752,7 @@
 /turf/open/floor/volcanic,
 /area/under/cavelava)
 "aBj" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/naturalstone,
 /area/under/cavelava)
 "aBk" = (
@@ -6210,7 +6210,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aDn" = (
-/mob/living/simple_animal/hostile/orc/ranged,
+/mob/living/carbon/simple_animal/hostile/orc/ranged,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aDo" = (
@@ -6421,7 +6421,7 @@
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "aEo" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/naturalstone,
 /area/under/cave)
@@ -6680,7 +6680,7 @@
 /turf/open/floor/church/rust,
 /area/indoors/mountains/anvil/keep)
 "aFD" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "aFE" = (
@@ -6695,7 +6695,7 @@
 /area/indoors/mountains/anvil/keep)
 "aFG" = (
 /obj/structure/chair/stool,
-/mob/living/simple_animal/hostile/skeleton/axe,
+/mob/living/carbon/simple_animal/hostile/skeleton/axe,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aFH" = (
@@ -6786,7 +6786,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aGg" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "aGj" = (
@@ -7049,7 +7049,7 @@
 /turf/open/floor/cobble/snow,
 /area/outdoors/mountains/anvil/snowyforest)
 "aHB" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/naturalstone,
 /area/under/cavelava)
 "aHC" = (
@@ -7243,7 +7243,7 @@
 /turf/open/floor/tile/masonic,
 /area/indoors/mountains/anvil/upperkeep)
 "aIG" = (
-/mob/living/simple_animal/hostile/retaliate/cow/cowlet{
+/mob/living/carbon/simple_animal/hostile/retaliate/cow/cowlet{
 	name = "Mooberry, Son of Mooberry"
 	},
 /turf/open/floor/naturalstone,
@@ -7297,7 +7297,7 @@
 /turf/open/floor/carpet/lord/right,
 /area/indoors/mountains/anvil/upperkeep)
 "aIW" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /turf/open/floor/snow,
 /area/under/cave)
 "aIX" = (
@@ -7371,7 +7371,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/mountains/anvil/upperkeep)
 "aJq" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aJr" = (
@@ -7431,7 +7431,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/mountains/anvil/upperkeep)
 "aJF" = (
-/mob/living/simple_animal/hostile/retaliate/troll/axe{
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/axe{
 	name = "Grumf Glorbo Ghalup, Doom of Dwarves";
 	base_speed = 6
 	},
@@ -7554,7 +7554,7 @@
 /turf/open/floor/cobblerock/alt,
 /area/indoors/mountains/anvil/upperkeep)
 "aKm" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/volcanic,
 /area/under/mountains/anvil/lower)
 "aKo" = (
@@ -7685,7 +7685,7 @@
 /turf/open/lava,
 /area/under/mountains/anvil/lower)
 "aKP" = (
-/mob/living/simple_animal/hostile/retaliate/minotaur/axe{
+/mob/living/carbon/simple_animal/hostile/retaliate/minotaur/axe{
 	health = 750;
 	name = "Mooberry, Pit Feeder"
 	},
@@ -8344,7 +8344,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/keep)
 "aOe" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/naturalstone{
 	dir = 8
 	},
@@ -8540,7 +8540,7 @@
 /turf/open/openspace,
 /area/outdoors/mountains/anvil/snowyforest)
 "aOX" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /turf/open/floor/grass/cold,
 /area/under/mountains/anvil/upper)
 "aOZ" = (
@@ -8993,7 +8993,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/clocktower)
 "aRn" = (
-/mob/living/simple_animal/hostile/retaliate/voiddragon/red{
+/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon/red{
 	health = 625;
 	maxHealth = 625;
 	name = "Ironwing"
@@ -9240,7 +9240,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/upperkeep)
 "aSk" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /obj/structure/spider/cocoon,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
@@ -10079,7 +10079,7 @@
 /turf/open/floor/naturalstone,
 /area/indoors/mountains/anvil/keep)
 "aWA" = (
-/mob/living/simple_animal/hostile/retaliate/bobcat,
+/mob/living/carbon/simple_animal/hostile/retaliate/bobcat,
 /turf/open/floor/snow/patchy,
 /area/under/mountains/anvil/upper)
 "aWD" = (
@@ -10323,7 +10323,7 @@
 	},
 /area/indoors/mountains/anvil/upperkeep)
 "aXH" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/volcanic,
 /area/indoors/mountains/anvil/keep)
 "aXI" = (
@@ -10500,7 +10500,7 @@
 /turf/open/floor/church/purple,
 /area/indoors/town/church/inquisition)
 "aYm" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobblerock,
 /area/under/cavelava)
 "aYn" = (
@@ -10544,7 +10544,7 @@
 /turf/open/floor/plasteel/maniac/damaged,
 /area/under/mountains/anvil/lower)
 "aYr" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/cobblerock,
 /area/under/cave/spider)
 "aYu" = (
@@ -10780,7 +10780,7 @@
 /turf/open/water/clean,
 /area/under/cavewet)
 "aZQ" = (
-/mob/living/simple_animal/hostile/retaliate/direbear,
+/mob/living/carbon/simple_animal/hostile/retaliate/direbear,
 /turf/open/floor/snow,
 /area/under/mountains/anvil/upper)
 "aZR" = (
@@ -11908,7 +11908,7 @@
 /turf/open/floor/cobble,
 /area/indoors/mountains/anvil/upperkeep)
 "gKB" = (
-/mob/living/simple_animal/hostile/orc/ranged,
+/mob/living/carbon/simple_animal/hostile/orc/ranged,
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/upper)
 "gLD" = (
@@ -13389,7 +13389,7 @@
 /turf/open/floor/blocks/newstone,
 /area/indoors/mountains/anvil/upperkeep)
 "pzd" = (
-/mob/living/simple_animal/hostile/retaliate/headless,
+/mob/living/carbon/simple_animal/hostile/retaliate/headless,
 /turf/open/floor/ruinedwood/turned/alt,
 /area/outdoors/mountains/anvil/snowyforest)
 "pFF" = (
@@ -13581,7 +13581,7 @@
 /turf/open/floor/cobblerock/alt,
 /area/indoors/mountains/anvil/upperkeep)
 "qOc" = (
-/mob/living/simple_animal/hostile/orc/ranged,
+/mob/living/carbon/simple_animal/hostile/orc/ranged,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/upper)
 "qRJ" = (
@@ -13654,7 +13654,7 @@
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/adv,
 /obj/effect/decal/cleanable/ritual_rune/arcyne/attunement,
 /obj/item/riddleofsteel,
-/mob/living/simple_animal/hostile/retaliate/voiddragon/red,
+/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon/red,
 /turf/open/floor/plasteel/maniac,
 /area/indoors/mountains/anvil/keep)
 "rlV" = (
@@ -14176,7 +14176,7 @@
 "ukG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/retaliate/headless,
+/mob/living/carbon/simple_animal/hostile/retaliate/headless,
 /obj/structure/fluff/walldeco/bath/wallpipes/innie{
 	pixel_y = 15;
 	layer = 3.0

@@ -88,6 +88,10 @@
 									"<span class='notice'>I cast a line.</span>")
 				playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
 				ft -= (sl * 20) //every skill lvl is -2 seconds
+				// Stat integration: PER reduces fishing wait time
+				if(isliving(user))
+					var/mob/living/L = user
+					ft = round(ft / L.get_stat_speed(STATKEY_PER))
 				ft = max(20,ft) //min of 2 seconds
 				if(do_after(user,ft, target = target))
 					if(baited)
@@ -103,6 +107,10 @@
 							else
 								fishchance -= bp // Deduct penalties from bait quality, if any
 								fishchance -= fpp // Deduct a penalty the lower our fishing level is (-0 at legendary)
+						// Stat integration: PER and LCK affect catch chance
+						if(isliving(user))
+							var/mob/living/L = user
+							fishchance += L.get_fishing_success_mod() * 100
 						var/mob/living/carbon/human/fisherman = user
 						modlist = baited.fishingMods.Copy()
 						if(prob(fishchance)) // Finally, roll the dice to see if we fish.
@@ -116,7 +124,7 @@
 									if(A in subtypesof(/mob/living))
 										var/mob/M = A
 										new M(target)
-										if (!(M.type == /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab))
+										if (!(M.type == /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab))
 											user.playsound_local(src, pick('sound/misc/jumpscare (1).ogg','sound/misc/jumpscare (2).ogg','sound/misc/jumpscare (3).ogg','sound/misc/jumpscare (4).ogg'), 100)
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT*2) // High risk high reward
 									else
@@ -136,7 +144,7 @@
 									if(getbaitlife(sl, baited, 100)) // Higher chance for it to flee with your bait.
 										to_chat(user, "<span class='warning'>...And took my bait, too.</span>")
 										qdel(baited)
-										baited = null													
+										baited = null
 						else
 							to_chat(user, "<span class='warning'>Not even a nibble...</span>")
 							user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT/2) // Pity XP.

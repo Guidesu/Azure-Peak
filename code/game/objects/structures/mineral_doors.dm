@@ -576,6 +576,8 @@
 		var/gildedeyes = HAS_TRAIT(user, TRAIT_GILDED_SIGHT)
 
 		picktime -= (pickskill * 10)
+		// Stat integration: SPD makes lockpicking faster
+		picktime = round(picktime / L.get_lockpick_speed_mult())
 		picktime = clamp(picktime, 10, 70)
 
 		moveup += (pickskill * 3)
@@ -583,6 +585,8 @@
 
 		pickchance += pickskill * 10
 		pickchance += perbonus
+		// Stat integration: PER and SPD affect success chance
+		pickchance += L.get_lockpick_success_mod() * 100
 		pickchance *= P.picklvl
 		pickchance = clamp(pickchance, 1, 95)
 
@@ -963,7 +967,7 @@
 // These are variants of the donjon doors for "high security" locations. They have stronger
 // locks. This SHOULD BE A VALUE BETWEEN 1-2, NOT HIGHER THAN 2. Level 3 doors are near
 // impossible to lockpick through. These should also NOT be placed everywhere, as even lockdiff 2
-// will break picks like no tomorrow. 
+// will break picks like no tomorrow.
 
 /obj/structure/mineral_door/wood/donjon/highsecurity
 	lockdifficulty = 1.8

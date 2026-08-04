@@ -10,7 +10,7 @@
 
 	var/max_mobs = 5
 	var/spawn_time = 300 //30 seconds default
-	var/mob_types = list(/mob/living/simple_animal/hostile/rogue/werewolf)
+	var/mob_types = list(/mob/living/carbon/simple_animal/hostile/rogue/werewolf)
 	var/spawn_text = "emerges from"
 	var/faction = list(FACTION_HOSTILE)
 	var/spawner_type = /datum/component/spawner
@@ -19,7 +19,7 @@
 	. = ..()
 	AddComponent(spawner_type, mob_types, spawn_time, faction, spawn_text, max_mobs)
 
-/obj/structure/spawner/attack_animal(mob/living/simple_animal/M)
+/obj/structure/spawner/attack_animal(mob/living/carbon/simple_animal/M)
 	if(faction_check(faction, M.faction, FALSE)&&!M.client)
 		return
 	..()

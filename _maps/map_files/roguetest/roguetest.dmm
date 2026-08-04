@@ -90,7 +90,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
 "cP" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat,
 /obj/machinery/light/rogue/candle/l,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
@@ -125,7 +125,7 @@
 	dir = 1;
 	icon_state = "borderfall"
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken{
 	gender = "male"
 	},
 /turf/open/floor/rogue/hay,
@@ -363,7 +363,7 @@
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "lS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "lY" = (
@@ -431,7 +431,7 @@
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town/physician)
 "nJ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "nN" = (
@@ -593,7 +593,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods/north)
 "rB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken{
 	gender = "male"
 	},
 /turf/open/floor/rogue/hay,
@@ -667,7 +667,7 @@
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors)
 "tt" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "tu" = (
@@ -685,7 +685,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "tT" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bull,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "tW" = (
@@ -1003,7 +1003,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "Br" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog,
 /turf/closed,
 /area)
 "BH" = (
@@ -1040,7 +1040,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
 "CB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "CQ" = (
@@ -1236,7 +1236,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "HT" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken{
 	gender = "male"
 	},
 /obj/structure/fluff/nest,
@@ -1435,7 +1435,7 @@
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town/physician)
 "Oj" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "Om" = (
@@ -1602,7 +1602,7 @@
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "UX" = (
@@ -1665,7 +1665,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "Wh" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "WK" = (

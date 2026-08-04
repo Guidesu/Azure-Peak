@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "sylph"
 	desc = "This creature shifts in the breeze as if it were constructed of fabric and \
@@ -57,14 +57,14 @@
 	min_range = 1
 	damage = 36
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the fiend
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the fiend
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/AttackingTarget()
 	if(SEND_SIGNAL(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, target) & COMPONENT_HOSTILE_NO_PREATTACK)
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
@@ -78,7 +78,7 @@
 		apply_frost_stack(L)
 		L.visible_message(span_danger("[src]'s frozen touch bites deep into [L]!"))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

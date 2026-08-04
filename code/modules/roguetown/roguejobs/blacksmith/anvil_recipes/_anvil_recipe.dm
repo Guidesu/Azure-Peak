@@ -111,6 +111,11 @@
 		proab = 10
 	else
 		proab = min(45 * skill_level, 100)
+	// Stat integration: PER helps aim strikes, LCK grants fortune
+	proab += (L.STAPER - STAT_BASELINE) * 2
+	if(L.goodluck(3))
+		proab += 5
+	proab = clamp(proab, 1, 100)
 	// Roll the dice to see if the hit actually causes to accumulate progress
 	if(prob(proab))
 		moveup += round((skill_level * 6 * L.STASTR/10) * (breakthrough == 1 ? 1.5 : 1))

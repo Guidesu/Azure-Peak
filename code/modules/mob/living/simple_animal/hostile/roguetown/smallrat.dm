@@ -121,7 +121,7 @@
 				if(prob(23))
 					var/turf/T = src.loc
 					if(T)
-						new /mob/living/simple_animal/hostile/retaliate/rogue/bigrat(T)
+						new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat(T)
 						dead = TRUE
 						qdel(src)
 				break

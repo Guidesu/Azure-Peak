@@ -6,7 +6,7 @@
 //Three differant types, air water and fire. Potential for unique effects/attacks for all three. Perhaps delineate between speed health and damage.
 //Might also be worth looking into a spell to adjust their 'modes' from melee to ranged, or a command for special abilities.
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/Initialize(mapload, mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/Initialize(mapload, mob/user)
 	if(user)
 		summoner_ref = WEAKREF(user)
 		if(user.mind && user.mind.current)
@@ -50,7 +50,7 @@
 	item_d_type = "slash"
 	clickcd = 12
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial
 	icon = 'icons/roguetown/mob/monster/primordial.dmi'
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
@@ -61,25 +61,25 @@
 	var/datum/weakref/summoner_ref
 	var/ability_ready_timer
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/death()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/death()
 	..()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/ability(turf/target_location, mob/living/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/proc/ability(turf/target_location, mob/living/user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/telegraph_turfs(list/turfs, telegraph_type = /obj/effect/temp_visual/trap/primordial, telegraph_time = 1 SECONDS)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/proc/telegraph_turfs(list/turfs, telegraph_type = /obj/effect/temp_visual/trap/primordial, telegraph_time = 1 SECONDS)
 	for(var/turf/T in turfs)
 		new telegraph_type(T, telegraph_time)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/mark_ability_used()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/proc/mark_ability_used()
 	next_ability_use = world.time + ability_cooldown
 	if(ability_ready_timer)
 		deltimer(ability_ready_timer)
 	ability_ready_timer = addtimer(CALLBACK(src, PROC_REF(announce_ability_ready)), ability_cooldown, TIMER_STOPPABLE)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/announce_ability_ready()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/proc/announce_ability_ready()
 	ability_ready_timer = null
 	if(stat == DEAD)
 		return
@@ -89,7 +89,7 @@
 	balloon_alert(caster, "special ready!")
 	to_chat(caster, span_notice("[src]'s special is ready."))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/cardinal_to(turf/target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/proc/cardinal_to(turf/target)
 	if(!target)
 		return dir
 	var/dx = target.x - x
@@ -100,7 +100,7 @@
 		return dx > 0 ? EAST : WEST
 	return dy > 0 ? NORTH : SOUTH
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/get_pilot_ability()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/get_pilot_ability()
 	return /datum/action/cooldown/spell/primordial_special
 
 /datum/action/cooldown/spell/primordial_special
@@ -128,7 +128,7 @@
 
 /datum/action/cooldown/spell/primordial_special/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/simple_animal/hostile/retaliate/rogue/primordial/P = owner
+	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P = owner
 	if(!istype(P))
 		return FALSE
 	var/turf/T = get_turf(cast_on)
@@ -163,7 +163,7 @@
 	color = "#c0e8ff"
 	light_color = "#c0e8ff"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire
 	name = "flame primordial"
 	desc = "Billowing heat strikes your face and threatens to singe your eyebrows! \
 	It may be wise not to touch it."
@@ -206,7 +206,7 @@
 	var/blast_vulnerable_time = 3 SECONDS
 	var/blast_range = 4
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire/ability(turf/target_location, mob/living/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire/ability(turf/target_location, mob/living/user)
 	if(!target_location)
 		return FALSE
 	visible_message(span_danger("[src] inhales, heat gathering about its form!"))
@@ -216,7 +216,7 @@
 	addtimer(CALLBACK(src, PROC_REF(do_fire_blast), turfs), 1 SECONDS)
 	return TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire/proc/do_fire_blast(list/turfs)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire/proc/do_fire_blast(list/turfs)
 	if(QDELETED(src) || stat == DEAD || !length(turfs))
 		return
 	visible_message(span_danger("[src] belches a searing blast of fire across the ground!"))
@@ -236,7 +236,7 @@
 			hit |= L
 			scorch_target(L)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire/proc/scorch_target(mob/living/L)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire/proc/scorch_target(mob/living/L)
 	if(HAS_TRAIT(L, TRAIT_NOFIRE))
 		return
 	if(L.guard_deflect_spell("the searing blast", FALSE, src))
@@ -248,7 +248,7 @@
 	if(dir)
 		L.safe_throw_at(get_ranged_target_turf(L, dir, blast_push), blast_push, 2, src, force = MOVE_FORCE_STRONG)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/water
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water
 	name = "water primordial"
 	desc = "A torrential flood, magically animated and bound to service. It seems \
 	to draw moisture from the ground it traverses."
@@ -291,7 +291,7 @@
 
 	ai_controller = /datum/ai_controller/water_primordial
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/water/ability(turf/target_location, mob/living/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water/ability(turf/target_location, mob/living/user)
 	var/turf/center = get_turf(src)
 	if(!center)
 		return FALSE
@@ -301,7 +301,7 @@
 	addtimer(CALLBACK(src, PROC_REF(do_deluge), turfs), 1 SECONDS)
 	return TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/water/proc/get_flood_turfs(turf/center)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water/proc/get_flood_turfs(turf/center)
 	var/list/turfs = list()
 	if(!center)
 		return turfs
@@ -311,7 +311,7 @@
 		turfs += T
 	return turfs
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/water/proc/do_deluge(list/turfs)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water/proc/do_deluge(list/turfs)
 	if(QDELETED(src) || stat == DEAD || !length(turfs))
 		return
 	visible_message(span_danger("[src] releases a surging flood across the ground!"))
@@ -347,7 +347,7 @@
 	turf_data.Cut()
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air
 	name = "air primordial"
 	desc = "Storm-winds whip at the air wherever this creature travels! \
 	It is scarcely even easy to keep one's footing while close."
@@ -392,7 +392,7 @@
 	ai_controller = /datum/ai_controller/air_primordial
 	var/gust_push = 3
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/ability(turf/target_location, mob/living/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air/ability(turf/target_location, mob/living/user)
 	if(!target_location)
 		return FALSE
 	visible_message(span_danger("[src] draws a whirl of stormwinds about itself!"))
@@ -406,7 +406,7 @@
 	addtimer(CALLBACK(src, PROC_REF(do_gust), wave_rows, dir_to_target), 1 SECONDS)
 	return TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/proc/get_gust_rows(dir_to_target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air/proc/get_gust_rows(dir_to_target)
 	var/list/wave_rows = list()
 	var/turf/current = get_step(get_turf(src), dir_to_target)
 	for(var/i = 1, i <= 3, i++)
@@ -420,7 +420,7 @@
 		current = get_step(current, dir_to_target)
 	return wave_rows
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/proc/do_gust(list/wave_rows, dir_to_target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air/proc/do_gust(list/wave_rows, dir_to_target)
 	if(QDELETED(src) || stat == DEAD || !length(wave_rows))
 		return
 	visible_message(span_danger("[src] exhales a violent gust of wind!"))
@@ -429,7 +429,7 @@
 	for(var/list/row in wave_rows)
 		gust_row(row, dir_to_target, hit)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/proc/gust_row(list/row, dir_to_target, list/hit)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air/proc/gust_row(list/row, dir_to_target, list/hit)
 	if(QDELETED(src) || stat == DEAD)
 		return
 	for(var/turf/T in row)
@@ -446,7 +446,7 @@
 			L.apply_status_effect(/datum/status_effect/buff/windswept)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/proc/knockback(mob/living/L, dir, distance)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air/proc/knockback(mob/living/L, dir, distance)
 	if(!L || !isturf(L.loc))
 		return
 	var/turf/target_turf = get_ranged_target_turf(L, dir, distance)

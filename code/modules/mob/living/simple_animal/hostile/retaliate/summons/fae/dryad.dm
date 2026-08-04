@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad	//Make this cause giant vine tangled messes
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad	//Make this cause giant vine tangled messes
 	icon = 'icons/mob/summonable/32x64.dmi'
 	name = "dryad"
 	desc = "A human-like figure formed of the flesh and bark of a tree, easier taller than a man. Guardians \
@@ -51,11 +51,11 @@
 	var/vine_cd
 	inherent_spells = list(/obj/effect/proc_holder/spell/self/create_vines)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Move(newloc)	//vine movespeed buff
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/Move(newloc)	//vine movespeed buff
 	.=..()
 	if(isturf(newloc))
 		var/turf/T = newloc
@@ -66,15 +66,15 @@
 			src.move_to_delay = 12
 			src.STASPD = 4
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/contains_vines(var/turf/T)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/contains_vines(var/turf/T)
 	for(var/obj/structure/vine/V in T)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
 	if(!target || !CanAttack(target))
 		LoseTarget()
@@ -112,13 +112,13 @@
 		FindHidden()
 		return 1
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/vine()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/vine()
 	visible_message(span_boldwarning("Vines spread out from [src]!"))
 	for(var/turf/turf as anything in RANGE_TURFS(2,src.loc))
 		if(!locate(/obj/structure/vine) in turf)
 			new /obj/structure/vine(turf)
 	src.vine_cd = world.time
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
 	..()
 	for(var/obj/structure/vine/V in view(src))
 		qdel(V)
@@ -134,8 +134,8 @@
 	overlay_state = "blesscrop"
 
 /obj/effect/proc_holder/spell/self/create_vines/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/treeguy = user
+	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad))
+		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/treeguy = user
 		if(world.time <= treeguy.vine_cd + 100)//shouldn't ever happen cuz the spell cd is the same as summon_cd but I'd rather it check with the internal cd just in case
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()

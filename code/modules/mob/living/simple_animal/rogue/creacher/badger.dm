@@ -1,5 +1,5 @@
 //Badgers are a little stronger than raccoons, but still weak compared to volfs and foxes.
-/mob/living/simple_animal/hostile/retaliate/rogue/badger
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger
 	icon = 'icons/roguetown/mob/monster/badger.dmi'
 	name = "bauson"
 	desc = "A hostile little thing, it can put some volfs to shame with its aggression."
@@ -67,7 +67,7 @@
 	ai_controller = /datum/ai_controller/volf
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/badger/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
@@ -82,7 +82,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/badger.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/badger/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -95,19 +95,19 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/badger/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/badger/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/badger/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

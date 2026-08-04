@@ -1,5 +1,5 @@
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow
 	icon = 'icons/roguetown/mob/monster/cow.dmi'
 	name = "cow"
 	desc = "Cattle are a staple of animal husbandry across the world, both for their milk and for their meat."
@@ -16,7 +16,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	move_to_delay = 8
-	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/bull
+	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2, /obj/item/alch/sinew = 2, /obj/item/natural/bone = 4, /obj/item/alch/viscera = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 4,
 						/obj/item/natural/hide=1, /obj/item/natural/bundle/bone/full = 1, /obj/item/alch/sinew = 3, /obj/item/alch/bone = 1, /obj/item/alch/viscera = 2)
@@ -39,7 +39,7 @@
 	STASPD = 2
 	STACON = 20
 	STASTR = 12
-	childtype = list(/mob/living/simple_animal/hostile/retaliate/rogue/cow/cowlet = 95, /mob/living/simple_animal/hostile/retaliate/rogue/cow/bullet = 5)
+	childtype = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/cowlet = 95, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/bullet = 5)
 	remains_type = /obj/effect/decal/remains/cow
 
 //new ai, old ai off
@@ -53,7 +53,7 @@
 	icon_state = "skele"
 	icon = 'icons/roguetown/mob/monster/cow.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/cow/aggro (1).ogg','sound/vo/mobs/cow/aggro (2).ogg','sound/vo/mobs/cow/aggro (3).ogg')
@@ -65,7 +65,7 @@
 			return pick('sound/vo/mobs/cow/idle (1).ogg','sound/vo/mobs/cow/idle (2).ogg','sound/vo/mobs/cow/idle (3).ogg','sound/vo/mobs/cow/idle (4).ogg','sound/vo/mobs/cow/idle (5).ogg')
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/cowlet
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/cowlet
 	name = "calf"
 	icon_state = "cowlet"
 	icon_living = "cowlet"
@@ -84,9 +84,9 @@
 	STASTR = 5
 	STASPD = 5
 	defprob = 50
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/cow
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -127,7 +127,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/attack_hand(mob/living/carbon/M)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/attack_hand(mob/living/carbon/M)
 	if(!stat && M.used_intent.type == INTENT_DISARM && icon_state != icon_dead && !has_buckled_mobs())
 		M.visible_message(span_warning("[M] tips over [src]."),
 			span_notice("I tip over [src]."))
@@ -140,7 +140,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bull
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull
 	icon = 'icons/roguetown/mob/monster/cow.dmi'
 	name = "bull"
 	desc = "Cattle are a staple of animal husbandry across the world, both for their milk and for their meat."
@@ -187,7 +187,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bull/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/cow/aggro (1).ogg','sound/vo/mobs/cow/aggro (2).ogg','sound/vo/mobs/cow/aggro (3).ogg')
@@ -198,13 +198,13 @@
 		if("idle")
 			return pick('sound/vo/mobs/cow/idle (1).ogg','sound/vo/mobs/cow/idle (2).ogg','sound/vo/mobs/cow/idle (3).ogg','sound/vo/mobs/cow/idle (4).ogg','sound/vo/mobs/cow/idle (5).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bull/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/bull/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/bull/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -244,17 +244,17 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/bull/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/bull/taunted(mob/user)
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bull/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/bullet
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/bullet
 	name = "calf"
 	gender = MALE
 	icon_state = "bullet"
@@ -273,9 +273,9 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/bull
+	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull
 
-/mob/living/simple_animal/hostile/retaliate/rogue/cow/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))

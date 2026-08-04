@@ -14,7 +14,7 @@
 
 /datum/ai_behavior/simple_rest_and_recuperate/perform(seconds_per_tick, datum/ai_controller/controller, heal_message, bleed_clot, brute_heal)
 	. = ..()
-	var/mob/living/simple_animal/pawn = controller.pawn
+	var/mob/living/carbon/simple_animal/pawn = controller.pawn
 	if(QDELETED(pawn) || pawn.doing) //if doing something then skip
 		return
 	

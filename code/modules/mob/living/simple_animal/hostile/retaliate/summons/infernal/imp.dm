@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp
 	threat_point = THREAT_LOW
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "infernal imp"
@@ -51,7 +51,7 @@
 	dodgetime = 30
 	aggressive = 1
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
@@ -73,20 +73,20 @@
 			return BULLET_ACT_BLOCK
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/death(gibbed)
 	..()
 	update_icon()
 	spawn(1)
 		qdel(src)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/Life()
 	..()
 	if(pulledby)
 		Retaliate()

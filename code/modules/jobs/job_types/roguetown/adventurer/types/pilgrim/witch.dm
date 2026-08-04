@@ -188,22 +188,22 @@
 	name = "Cat Form"
 	desc = ""
 	overlay_state = "cat_transform"
-	shapeshift_type = /mob/living/simple_animal/pet/cat/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/pet/cat/witch_shifted
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/cat/black
-	shapeshift_type = /mob/living/simple_animal/pet/cat/rogue/black/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/pet/cat/rogue/black/witch_shifted
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/lesser_wolf
 	name = "Lesser Volf Form"
 	desc = ""
 	overlay_state = "volf_transform"
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/wolf/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/witch_shifted
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/bat
 	name = "Bat Form"
 	desc = ""
 	overlay_state = "bat_transform"
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/bat
 	knockout_on_death = 30 SECONDS
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/crow
@@ -211,32 +211,32 @@
 	overlay_state = "zad"
 	desc = ""
 	knockout_on_death = 15 SECONDS
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat/crow
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/bat/crow
 	sound = 'sound/vo/mobs/bird/birdfly.ogg'
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/lesser_vernard
 	name = "Lesser Vernard Form"
 	desc = ""
 	overlay_state = "vernard_transform"
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/fox/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/witch_shifted
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/rous
 	name = "Small Rous Form"
 	desc = ""
 	overlay_state = "rous_transform"
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/smallrat/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/smallrat/witch_shifted
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/witch/cabbit
 	name = "Cabbit Form"
 	desc = ""
 	overlay_state = "cabbit_transform"
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/witch_shifted
+	shapeshift_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/witch_shifted
 
 /datum/intent/simple/claw/witch_cat
 	name = "scratch"
 	attack_verb = list("scratches", "claws")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/witch_shifted
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/witch_shifted
 	name = "lesser volf"
 	desc = "A smaller, runtier variant of the classic volf that hounds the woods nearby. Rarely seen around these parts, and doesn't look nearly as dangerous as its larger counterparts. This one has a peculiar intelligence in its yellow eyes..."
 	STASPD = 15
@@ -247,7 +247,7 @@
 	del_on_deaggro = null
 	defprob = 70
 
-/mob/living/simple_animal/pet/cat/witch_shifted
+/mob/living/carbon/simple_animal/pet/cat/witch_shifted
 	name = "aloof cat"
 	desc = "A bored-seeming feline. This one has a peculiar intelligence in its green eyes..."
 	defprob = 90
@@ -258,7 +258,7 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 5
 
-/mob/living/simple_animal/pet/cat/rogue/black/witch_shifted
+/mob/living/carbon/simple_animal/pet/cat/rogue/black/witch_shifted
 	name = "voidblack cat"
 	desc = "Supposedly sacred to Necra, and just as interested in rats as their lesser counterparts. This one has a strange intelligence behind its dark, wide eyes..."
 	defprob = 90
@@ -269,7 +269,7 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 5
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/witch_shifted
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/witch_shifted
 	name = "lesser vernard"
 	desc = "A smaller, runtier variant of the sneaky vernards that skulk the woods nearby. Rarely seen around these parts, and doesn't look nearly as dangerous as its larger counterparts. This one has a peculiar intelligence in its yellow eyes..."
 	defprob = 90
@@ -281,7 +281,7 @@
 	del_on_deaggro = null
 	defprob = 70
 
-/mob/living/simple_animal/hostile/retaliate/smallrat/witch_shifted
+/mob/living/carbon/simple_animal/hostile/retaliate/smallrat/witch_shifted
 	name = "small rous"
 	desc = "Supposedly sacred to Pestra, these small and occasionally pestilent creachurs are commonly found in pantries and ships. This one seems to be a bit more smarter than the others..."
 	defprob = 90
@@ -292,7 +292,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/witch_shifted
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/witch_shifted
 	name = "lesser cabbit"
 	desc = "Seeing one of these quick beasts is said to bring Xylix's fortune, along with their feet. It looks weak and innocent, and incredibly adorable."
 	defprob = 90

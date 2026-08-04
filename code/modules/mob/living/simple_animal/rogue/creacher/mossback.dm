@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback
 	icon = 'icons/roguetown/mob/monster/boglobster.dmi'
 	name = "mossback"
 	desc = "Much feared by all those who live on Vaeltis's coasts, these creatures are said to be the envoys of Abyssor. They engender respect for the ocean through the violence they inflict to the unwary, and provide rich meals to those able to hunt them; as the seas take from the unready, they give back to those deserving."
@@ -55,7 +55,7 @@
 	ai_controller = /datum/ai_controller/mossback
 	melee_cooldown = MOSSBACK_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
@@ -65,30 +65,30 @@
 			faction = list(FACTION_NEUTRAL, "[summoner]_faction")
 			tamed(user)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
 	switch(input)
 		if("idle")
 			return pick('sound/vo/mobs/crab/crab noise (1).ogg','sound/vo/mobs/crab/crab noise (2).ogg','sound/vo/mobs/crab/crab noise (3).ogg')
 		if("death")
 			return pick('sound/vo/mobs/crab/crab death.ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

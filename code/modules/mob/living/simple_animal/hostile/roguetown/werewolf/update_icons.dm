@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rogue/werewolf/regenerate_icons()
+/mob/living/carbon/simple_animal/hostile/rogue/werewolf/regenerate_icons()
 	if(gender == MALE)
 		icon_state = "wwolf_m"
 	else
@@ -6,7 +6,7 @@
 	update_inv_hands()
 	update_damage_overlays()
 
-/mob/living/simple_animal/hostile/rogue/werewolf/update_damage_overlays()
+/mob/living/carbon/simple_animal/hostile/rogue/werewolf/update_damage_overlays()
 	remove_overlay(DAMAGE_LAYER)
 
 	var/list/hands = list()

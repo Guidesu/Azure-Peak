@@ -13,7 +13,7 @@
 	Quick AI pictures idea for each of them : https://imgbox.com/g/MvanomKazA
 */
 
-/mob/living/simple_animal/pet/familiar
+/mob/living/carbon/simple_animal/pet/familiar
 	name = "Generic Wizard familiar"
 	desc = "The spirit of what makes a familiar (You shouldn't be seeing this.)"
 
@@ -54,7 +54,7 @@
 	held_items = list(null, null)
 	pooptype = null
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
-	var/obj/item/mouth = null
+	// mouth is inherited from /mob/living/carbon
 	var/tier = 0 // increments once per dae survived; gates the stronger abilities
 	var/mob/living/carbon/familiar_summoner = null
 	var/inherent_spell = null
@@ -76,16 +76,16 @@
 	desc = "Drawing energy from my home plane to restore myself."
 
 // slight perf gains over list iteration for all types
-/mob/living/simple_animal/pet/familiar/proc/is_aligned_leyline(obj/structure/leyline/ley)
+/mob/living/carbon/simple_animal/pet/familiar/proc/is_aligned_leyline(obj/structure/leyline/ley)
 	return FALSE
 
 //As far as I am aware, you cannot pat out fire as a familiar at least not in time for it to not kill you, this seems fair.
-/mob/living/simple_animal/pet/familiar/fire_act(added, maxstacks)
+/mob/living/carbon/simple_animal/pet/familiar/fire_act(added, maxstacks)
 	. = ..()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living, extinguish_mob)), 1 SECONDS)
 
 // leying down gives healing
-/mob/living/simple_animal/pet/familiar/Life()
+/mob/living/carbon/simple_animal/pet/familiar/Life()
 	. = ..()
 	if(!resting || !isturf(loc) || has_status_effect(/datum/status_effect/buff/healing/familiar))
 		return .
@@ -100,10 +100,10 @@
 		return .
 
 // if they are within the orb, they should not be able to commit recursion
-/mob/living/simple_animal/pet/familiar/restrained(ignore_grab)
+/mob/living/carbon/simple_animal/pet/familiar/restrained(ignore_grab)
 	return !isturf(src.loc)
 
-/mob/living/simple_animal/pet/familiar/become_item()
+/mob/living/carbon/simple_animal/pet/familiar/become_item()
 	var/obj/item/mob_item/orb = ..()
 	orb.slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_RING // little pendant-esque thing
 	orb.filters += filter(type = "drop_shadow", x=0, y=0, size=1, offset = 2, color = GLOW_COLOR_ARCANE)
@@ -112,7 +112,7 @@
 	orb.w_class = WEIGHT_CLASS_SMALL
 	return orb
 
-/mob/living/simple_animal/pet/familiar/Initialize()
+/mob/living/carbon/simple_animal/pet/familiar/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TINYPAWS, TRAIT_GENERIC)
@@ -127,7 +127,7 @@
 // there are a lot of languages we do not want to give like (checks) EAL holy shit why is that still in our code???
 // anyway the logic here is anything that's virtue-selectable, plus some more niche languages (undercommon, abyssal, zizochant) but not
 // thieves cant since it's not a language you learn so much as signals for a trade
-/mob/living/simple_animal/pet/familiar/proc/grant_languages()
+/mob/living/carbon/simple_animal/pet/familiar/proc/grant_languages()
 	var/static/list/familiar_languages = list(
 		/datum/language/elvish,
 		/datum/language/dwarvish,
@@ -152,7 +152,7 @@
 	for(var/L in familiar_languages)
 		grant_language(L)
 
-/mob/living/simple_animal/pet/familiar/death(gibbed)
+/mob/living/carbon/simple_animal/pet/familiar/death(gibbed)
 	. = ..(gibbed)
 	if(gibbed)
 		return .
@@ -161,32 +161,32 @@
 	src.forceMove(vestige)
 	vestige.desc = "The vestige of [src.name], a fallen [GLOB.familiar_display_names[src.type]]. Likely worth a lot to the magos that summoned [src.p_them()]!"
 
-/mob/living/simple_animal/pet/familiar/void/revive(full_heal, admin_revive)
+/mob/living/carbon/simple_animal/pet/familiar/void/revive(full_heal, admin_revive)
 	if(..()) // successful revive
 		if(essences_consumed.Find("fae")) // flight is lost on death
 			movement_type = FLYING
 		. = TRUE
 
-/mob/living/simple_animal/pet/familiar/proc/TryAddFlight()
+/mob/living/carbon/simple_animal/pet/familiar/proc/TryAddFlight()
 	if(movement_type & (FLYING | FLOATING))
-		add_verb(src, list(/mob/living/simple_animal/proc/fly_up,
-		/mob/living/simple_animal/proc/fly_down))
+		add_verb(src, list(/mob/living/carbon/simple_animal/proc/fly_up,
+		/mob/living/carbon/simple_animal/proc/fly_down))
 
 // they can wear pouches and amulets around their neck, for sovl
-/mob/living/simple_animal/pet/familiar/can_equip(obj/item/I, slot, disable_warning, bypass_equip_delay_self)
+/mob/living/carbon/simple_animal/pet/familiar/can_equip(obj/item/I, slot, disable_warning, bypass_equip_delay_self)
 	return slot == SLOT_NECK
 
-/mob/living/simple_animal/pet/familiar/proc/can_bite()
+/mob/living/carbon/simple_animal/pet/familiar/proc/can_bite()
 	for(var/obj/item/grabbing/grab in grabbedby) //Grabbed by the mouth
 		if(grab.sublimb_grabbed == BODY_ZONE_PRECISE_MOUTH)
 			return FALSE
 
 	return TRUE
 
-/mob/living/simple_animal/pet/familiar/is_literate()
+/mob/living/carbon/simple_animal/pet/familiar/is_literate()
 	return TRUE
 
-/mob/living/simple_animal/pet/familiar/proc/grant_tier_abilities(tier)
+/mob/living/carbon/simple_animal/pet/familiar/proc/grant_tier_abilities(tier)
 	if(tier==1 && length(t1_spell))
 		for(var/path in t1_spell)
 			var/spell_instance = new path
@@ -199,11 +199,11 @@
 				src.mind.AddSpell(spell_instance)
 	return
 
-/mob/living/simple_animal/pet/familiar/proc/debug_force_tierup()
+/mob/living/carbon/simple_animal/pet/familiar/proc/debug_force_tierup()
 	GLOB.tod="night"
 	do_time_change()
 
-/mob/living/simple_animal/pet/familiar/do_time_change()
+/mob/living/carbon/simple_animal/pet/familiar/do_time_change()
 	. = ..()
 	if(src.planar_origin!="void" && GLOB.tod == "night" && tier < 2)
 		tier++
@@ -212,18 +212,18 @@
 			to_chat(src, tierup_messages[tier])
 		grant_tier_abilities(tier)
 
-/mob/living/simple_animal/pet/familiar/death()
+/mob/living/carbon/simple_animal/pet/familiar/death()
 	. = ..()
 	emote("deathgasp")
 	if(familiar_summoner)
 		to_chat(familiar_summoner, span_warning("[src.name] has fallen, and your bond dims. They may be recalled yet, should you recover their vestige."))
 
-/mob/living/simple_animal/pet/familiar/Destroy()
+/mob/living/carbon/simple_animal/pet/familiar/Destroy()
     if(familiar_summoner && familiar_summoner.mind)
         familiar_summoner.mind.RemoveSpell(/datum/action/cooldown/spell/message_familiar)
     return ..()
 
-/mob/living/simple_animal/pet/familiar/attackby(obj/item/I, mob/user, params)
+/mob/living/carbon/simple_animal/pet/familiar/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		for(var/item_type in valid_healing_items)
@@ -240,7 +240,7 @@
 					return
 	. = ..()
 
-/mob/living/simple_animal/pet/familiar/examine(mob/user)
+/mob/living/carbon/simple_animal/pet/familiar/examine(mob/user)
 	var/list/ret = ..()
 	var/datum/familiar_prefs/prefs = src.client?.prefs?.familiar_prefs
 	if(!prefs)
@@ -255,7 +255,7 @@
 	return ret
 
 // mobility/utility focused. innocuous. can fly, and brew potions, but not much else
-/mob/living/simple_animal/pet/familiar/fae
+/mob/living/carbon/simple_animal/pet/familiar/fae
 	name = "Sprite"
 	desc = "One of the lowest of the lesser fae, these playful embodiments of nature are beloved of mages for their mobility and affinity for alchemy."
 	animal_species = "Sprite"
@@ -280,17 +280,17 @@
 	valid_healing_items = list(/obj/item/magic/fae)
 	planar_origin = "fae"
 
-/mob/living/simple_animal/pet/familiar/fae/Initialize()
+/mob/living/carbon/simple_animal/pet/familiar/fae/Initialize()
 	. = ..()
 	create_reagents(90, TRANSPARENT)
 	ADD_TRAIT(src, TRAIT_CICERONE, TRAIT_GENERIC) // alchemy familiar
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC) // they're literally nature spirits
 	ADD_TRAIT(src, TRAIT_KEENEARS, TRAIT_GENERIC) // to fit with their recon focus
 
-/mob/living/simple_animal/pet/familiar/fae/is_aligned_leyline(obj/structure/leyline/ley)
+/mob/living/carbon/simple_animal/pet/familiar/fae/is_aligned_leyline(obj/structure/leyline/ley)
 	return istype(ley, /obj/structure/leyline/normal/grove)
 
-/mob/living/simple_animal/pet/familiar/fae/examine(mob/user)
+/mob/living/carbon/simple_animal/pet/familiar/fae/examine(mob/user)
 	var/list/ret = ..()
 	if(!ret)
 		ret = list() // temp fix for a cascading runtime
@@ -320,7 +320,7 @@
 				ret.Insert(LAZYLEN(ret)-1, span_danger("[src]'s stomach is empty."))
 	return ret
 
-/mob/living/simple_animal/pet/familiar/fae/attackby(obj/item/I, mob/user, params)
+/mob/living/carbon/simple_animal/pet/familiar/fae/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers) && tier >= 1)
 		var/datum/reagents/container_reagents=I.reagents
 		if(istype(container_reagents) && user.used_intent.type == INTENT_POUR && container_reagents.total_volume>0 && !reagents.holder_full())
@@ -358,7 +358,7 @@
 		return TRUE
 	. = ..()
 
-/mob/living/simple_animal/pet/familiar/fae/attack_hand(mob/living/M)
+/mob/living/carbon/simple_animal/pet/familiar/fae/attack_hand(mob/living/M)
 	if(ingredients.len)
 		var/obj/item/I = ingredients[ingredients.len]
 		ingredients -= I
@@ -371,7 +371,7 @@
 		return
 	. = ..()
 
-/mob/living/simple_animal/pet/familiar/fae/Life()
+/mob/living/carbon/simple_animal/pet/familiar/fae/Life()
 	. = ..()
 	if(brewing && !ingredients.len)
 		brewing = 0
@@ -446,7 +446,7 @@
 				playsound(src,'sound/misc/smelter_fin.ogg', 30, FALSE)
 
 // this makes you kinda valid because it's, you know a demon, so it gets to be a bit stronger. cuddle the campfire dog
-/mob/living/simple_animal/pet/familiar/infernal
+/mob/living/carbon/simple_animal/pet/familiar/infernal
 	name = "Hellhound"
 	desc = "A caniform lesser infernal, the heat it radiates is almost comforting. Though daemon-binding is generally frowned upon, the power it grants is tempting to many."
 	summoning_emote = "Flame erupts in the center of the rune, coalescing into a hellish canid!"
@@ -467,7 +467,7 @@
 	planar_origin = "infernal"
 
 // they get to glow because they're on fire
-/mob/living/simple_animal/pet/familiar/infernal/Initialize()
+/mob/living/carbon/simple_animal/pet/familiar/infernal/Initialize()
 	. = ..()
 	src.set_light_range(LIGHT_RANGE_FIRE)
 	src.set_light_color(LIGHT_COLOR_FIRE)
@@ -479,12 +479,12 @@
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	weather_immunities += "lava"
 
-/mob/living/simple_animal/pet/familiar/infernal/is_aligned_leyline(obj/structure/leyline/ley)
+/mob/living/carbon/simple_animal/pet/familiar/infernal/is_aligned_leyline(obj/structure/leyline/ley)
 	return istype(ley, /obj/structure/leyline/normal/decap)
 
 // in case it wasn't obvious enough that this is license for people to be mad at you
 // update 2026-04-16: it wasn't obvious enough STILL. have some role-specific prodding to do some conflict
-/mob/living/simple_animal/pet/familiar/infernal/examine(mob/user)
+/mob/living/carbon/simple_animal/pet/familiar/infernal/examine(mob/user)
 	var/list/ret = ..()
 	ret.Insert(2,span_userdanger("A DAEMON...!"))
 	if(HAS_TRAIT(user, TRAIT_CLERGY))
@@ -493,7 +493,7 @@
 		ret.Insert(3, span_notice("Summoning daemons to kill is one thing. Bringing one to Vaeltis in full is blatant disrespect of His sacrifice! Brook not daemonbinders!"))
 	return ret
 
-/mob/living/simple_animal/pet/familiar/infernal/Life()
+/mob/living/carbon/simple_animal/pet/familiar/infernal/Life()
 	. = ..()
 	var/list/hearers_in_range = get_hearers_in_LOS(healing_range, src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 	for(var/mob/living/carbon/human/human in hearers_in_range)
@@ -519,7 +519,7 @@
 					to_chat(human, span_info("Settling in near [src.name]'s warmth lifts the burdens of the week."))
 				human.apply_status_effect(/datum/status_effect/buff/campfire)
 
-/mob/living/simple_animal/pet/familiar/infernal/attackby(obj/item/I, mob/living/user, params)
+/mob/living/carbon/simple_animal/pet/familiar/infernal/attackby(obj/item/I, mob/living/user, params)
 	var/datum/skill/craft/cooking/cs = user?.get_skill_level(/datum/skill/craft/cooking)
 	var/cooktime_divisor = get_cooktime_divisor(cs)
 	if(istype(I, /obj/item/reagent_containers/food/snacks))
@@ -563,10 +563,10 @@
 	. = ..()
 
 // the fuck did you expect
-/mob/living/simple_animal/pet/familiar/infernal/fire_act(added,max_stacks)
+/mob/living/carbon/simple_animal/pet/familiar/infernal/fire_act(added,max_stacks)
 	return
 
-/mob/living/simple_animal/pet/familiar/elemental
+/mob/living/carbon/simple_animal/pet/familiar/elemental
 	name = "Warden"
 	desc = "One of the smaller elementals, this strange being is hard and unyielding as stone, yet malleable as clay when it needs to be."
 	summoning_emote = "The ground begins to rumble as a pile of raw earth erupts, forming into the rough visage of a humanoid figure!"
@@ -586,17 +586,17 @@
 	planar_origin = "elemental"
 
 // so they can actually do repairs
-/mob/living/simple_animal/pet/familiar/elemental/Initialize()
+/mob/living/carbon/simple_animal/pet/familiar/elemental/Initialize()
 	. = ..()
 	src.adjust_skillrank_up_to(/datum/skill/craft/armorsmithing, SKILL_LEVEL_APPRENTICE)
 	src.adjust_skillrank_up_to(/datum/skill/craft/weaponsmithing, SKILL_LEVEL_APPRENTICE)
 	src.adjust_skillrank_up_to(/datum/skill/craft/blacksmithing, SKILL_LEVEL_APPRENTICE)
 	src.adjust_skillrank_up_to(/datum/skill/craft/sewing, SKILL_LEVEL_APPRENTICE)
 
-/mob/living/simple_animal/pet/familiar/elemental/is_aligned_leyline(obj/structure/leyline/ley)
+/mob/living/carbon/simple_animal/pet/familiar/elemental/is_aligned_leyline(obj/structure/leyline/ley)
 	return istype(ley, /obj/structure/leyline/normal/coast)
 
-/mob/living/simple_animal/pet/familiar/void
+/mob/living/carbon/simple_animal/pet/familiar/void
 	name = "Void Drakeling"
 	desc = "A small draconic being, gazing inquisitively at the world around it. It pulses with an unfamiliar power." // we don't put all the details here bcs this can be seen by nonmages
 	summoning_emote = "The drakeling opens its eyes... they gleam with a voracious hunger!" // not an actual summoning emote since that's handled in the aurafarm session
@@ -611,18 +611,18 @@
 	valid_healing_items = list(/obj/item/magic/fae, /obj/item/magic/elemental, /obj/item/magic/infernal) // hungy
 	planar_origin = "void"
 
-/mob/living/simple_animal/pet/familiar/void/is_aligned_leyline(obj/structure/leyline/ley)
+/mob/living/carbon/simple_animal/pet/familiar/void/is_aligned_leyline(obj/structure/leyline/ley)
 	return !istype(ley, /obj/structure/leyline/tamed)
 
-/mob/living/simple_animal/pet/familiar/void/fire_act(added, maxstacks)
+/mob/living/carbon/simple_animal/pet/familiar/void/fire_act(added, maxstacks)
 	if(essences_consumed.Find("infernal"))
 		return FALSE
 	. = ..()
 
-/mob/living/simple_animal/pet/familiar/void/examine(mob/user)
+/mob/living/carbon/simple_animal/pet/familiar/void/examine(mob/user)
 	var/list/ret = ..()
 	var/knows = FALSE
-	knows |= istype(user, /mob/living/simple_animal/pet/familiar)
+	knows |= istype(user, /mob/living/carbon/simple_animal/pet/familiar)
 	// kind of horrid but this ensures only "proper" casters get to be knowers
 	if(user.mind)
 		knows |= (user.mind.mage_aspect_config && user.mind.mage_aspect_config["major"])
@@ -631,7 +631,7 @@
 		ret[3] = "A fragment of a void abberant's power, torn away and fashioned into a familiar; its eyes shine with a voracious hunger. What work of hubris has been wrought, here? Who would—or even could—create such a thing?"
 	return ret
 
-/mob/living/simple_animal/pet/familiar/void/proc/grant_essence(type)
+/mob/living/carbon/simple_animal/pet/familiar/void/proc/grant_essence(type)
 	switch(type)
 		if("fae") // faerie movement, inherits spell
 			to_chat(src, span_notice("As you absorb the essence of the faewyld, you take on some of its nature. You can now fly, and you've gained the ability to retrieve objects at a distance."))
@@ -652,7 +652,7 @@
 			src.mind.AddSpell(new /datum/action/cooldown/spell/magicians_stone/elemental/void)
 			src.mind.AddSpell(new /datum/action/cooldown/spell/arcyne_forge/elemental/void)
 
-/mob/living/simple_animal/pet/familiar/elemental/pondstone_toad
+/mob/living/carbon/simple_animal/pet/familiar/elemental/pondstone_toad
     name = "Pondstone Toad"
     desc = "This damp, heavy toad pulses with unseen strength. Its skin is cool and lined with mineral veins."
     animal_species = "Pondstone Toad"
@@ -662,7 +662,7 @@
     icon_dead = "pondstone_dead"
     speak_emote = list("croaks low", "grumbles")
 
-/mob/living/simple_animal/pet/familiar/fae/mist_lynx
+/mob/living/carbon/simple_animal/pet/familiar/fae/mist_lynx
     name = "Mist Lynx"
     desc = "A ghostlike lynx, its eyes gleaming like twin moons. It never seems to blink, even when you're not looking."
     animal_species = "Mist Lynx"
@@ -673,7 +673,7 @@
     alpha = 150
     speak_emote = list("purrs softly", "whispers")
 
-/mob/living/simple_animal/pet/familiar/fae/rune_rat
+/mob/living/carbon/simple_animal/pet/familiar/fae/rune_rat
     name = "Rune Rat"
     desc = "This rat leaves fading runes in the air as it twitches. The smell of old paper clings to its fur."
     animal_species = "Rune Rat"
@@ -683,7 +683,7 @@
     icon_dead = "runerat_dead"
     speak_emote = list("squeaks", "chatters")
 
-/mob/living/simple_animal/pet/familiar/fae/vaporroot_wisp
+/mob/living/carbon/simple_animal/pet/familiar/fae/vaporroot_wisp
     name = "Vaporroot Wisp"
     desc = "This vaporroot wisp shimmers and shifts like smoke but feels solid enough to lean on."
     animal_species = "Vaporroot"
@@ -694,7 +694,7 @@
     alpha = 150
     speak_emote = list("whispers", "murmurs")
 
-/mob/living/simple_animal/pet/familiar/infernal/ashcoiler
+/mob/living/carbon/simple_animal/pet/familiar/infernal/ashcoiler
 	name = "Ashcoiler"
 	desc = "This long-bodied snake coils slowly, like a heated rope. Its breath carries a faint scent of burnt herbs. Though daemon-binding is generally frowned upon, the power it grants is tempting to many."
 	summoning_emote = "Dust rises and circles before coiling into a gray-scaled creature that radiates dry, residual warmth."
@@ -703,7 +703,7 @@
 	icon_living = "ashcoiler"
 	speak_emote = list("hisses", "rasps")
 
-/mob/living/simple_animal/pet/familiar/fae/glimmer_hare
+/mob/living/carbon/simple_animal/pet/familiar/fae/glimmer_hare
 	name = "Glimmer Hare"
 	desc = "A quick, nervy creature. Light bends strangely around its translucent body."
 	summoning_emote = "The air glints, and a translucent hare twitches into existence."
@@ -713,7 +713,7 @@
 	icon_living = "glimmer"
 	speak_emote = list("chatters quickly", "chirps")
 
-/mob/living/simple_animal/pet/familiar/fae/hollow_antlerling
+/mob/living/carbon/simple_animal/pet/familiar/fae/hollow_antlerling
 	name = "Hollow Antlerling"
 	desc = "A dog-sized deer with gleaming hollow antlers that emit flute-like sounds."
 	summoning_emote = "A musical chime sounds. A tiny deer with antlers like bone flutes steps gently into view."
@@ -722,7 +722,7 @@
 	icon_living = "antlerling"
 	speak_emote = list("chimes softly", "calls out")
 
-/mob/living/simple_animal/pet/familiar/elemental/gravemoss_serpent
+/mob/living/carbon/simple_animal/pet/familiar/elemental/gravemoss_serpent
 	name = "Gravemoss Serpent"
 	desc = "Its scales are flecked with lichen and grave-dust. Wherever it passes, roots twitch faintly in the soil."
 	summoning_emote = "The ground heaves faintly as a long, moss-veiled serpent uncoils from it."
@@ -731,7 +731,7 @@
 	icon_living = "gravemoss"
 	speak_emote = list("hisses low", "mutters")
 
-/mob/living/simple_animal/pet/familiar/fae/starfield_crow
+/mob/living/carbon/simple_animal/pet/familiar/fae/starfield_crow
 	name = "Starfield Zad"
 	desc = "Its glossy feathers shimmer with shifting constellations, eyes gleaming with uncanny awareness even in the darkest shadows."
 	summoning_emote = "A rift in the air reveals a fragment of the starry void, from which a sleek zad with feathers like the night sky takes flight."
@@ -740,7 +740,7 @@
 	icon_living = "crow_flying"
 	speak_emote = list("caws quietly", "croaks")
 
-/mob/living/simple_animal/pet/familiar/infernal/emberdrake
+/mob/living/carbon/simple_animal/pet/familiar/infernal/emberdrake
 	name = "Emberdrake"
 	desc = "Tiny and warm to the touch, this drake's wingbeats stir old memories. Runes flicker behind it like afterimages. Though daemon-binding is generally frowned upon, the power it grants is tempting to many."
 	summoning_emote = "A hush falls as glowing ash collects into a fluttering emberdrake."
@@ -749,7 +749,7 @@
 	icon_living = "emberdrake"
 	speak_emote = list("crackles", "speaks warmly")
 
-/mob/living/simple_animal/pet/familiar/fae/ripplefox
+/mob/living/carbon/simple_animal/pet/familiar/fae/ripplefox
 	name = "Ripplefox"
 	desc = "They flicker when not directly observed. Leaves no tracks. You're not always sure they're still nearby."
 	summoning_emote = "A ripple in the air becomes a sleek fox, their fur twitching between shades of color as they pads forth."
@@ -758,7 +758,7 @@
 	icon_living = "ripple"
 	speak_emote = list("whispers fast", "speaks quickly")
 
-/mob/living/simple_animal/pet/familiar/fae/whisper_stoat
+/mob/living/carbon/simple_animal/pet/familiar/fae/whisper_stoat
 	name = "Whisper Stoat"
 	desc = "Its gaze is too knowing. It tilts its head as if listening to something inside your skull."
 	summoning_emote = "A thought twists into form, a tiny stoat slinks into view."
@@ -767,7 +767,7 @@
 	icon_living = "whisper"
 	speak_emote = list("mutters", "speaks softly")
 
-/mob/living/simple_animal/pet/familiar/elemental/thornback_turtle
+/mob/living/carbon/simple_animal/pet/familiar/elemental/thornback_turtle
 	name = "Thornback Turtle"
 	desc = "It barely moves, but seems unshakable. Vines twist gently around its limbs."
 	summoning_emote = "The ground gives a slow rumble. A turtle with a bark-like shell emerges from the soil."
@@ -776,7 +776,7 @@
 	icon_living = "thornback"
 	speak_emote = list("rumbles", "speaks slowly")
 
-/mob/living/simple_animal/pet/familiar/elemental/brass_thrum
+/mob/living/carbon/simple_animal/pet/familiar/elemental/brass_thrum
     name = "Brass Thrum"
     desc = "A mechanical spider-like creature of brass and whirring gears, its movements precise and accompanied by a faint, rhythmic hum."
     animal_species = "Brass Thrum"
@@ -785,7 +785,7 @@
     icon_living = "drone_clock"
     summoning_emote = "A metallic clatter as a brass spider-like automaton unfolds itself."
 
-/mob/living/simple_animal/pet/familiar/elemental/gemspire_beetle
+/mob/living/carbon/simple_animal/pet/familiar/elemental/gemspire_beetle
     name = "Gemspire Beetle"
     desc = "A four-legged, spider-like automaton adorned with crystalline spires, blending arcane energy with intricate clockwork."
     animal_species = "Gemspire Beetle"
@@ -795,7 +795,7 @@
     summoning_emote = "A faint chime as a gem-encrusted mechanical beetle scuttles into view."
     speak_emote = "chimes"
 
-/mob/living/simple_animal/pet/familiar/infernal/armour
+/mob/living/carbon/simple_animal/pet/familiar/infernal/armour
 	name = "Infernal Armour"
 	desc = "A suit of accursed armour, its host long swallowed by infernal flames yet the form remains, restless and ready to serve yet another master."
 	summoning_emote = "A loud thud rings across as long dormant armour flashes with unlyfe."
@@ -804,7 +804,7 @@
 	icon_living = "infernal_armour"
 	speak_emote = list("crackles")
 
-/mob/living/simple_animal/pet/familiar/infernal/sword
+/mob/living/carbon/simple_animal/pet/familiar/infernal/sword
 	name = "Infernal Blade"
 	desc = "A sword once belonging to a hero lost in pits of the underworld upon his demise. It is said to feed upon souls of those who touch it - willing or not."
 	summoning_emote = "A blade raises from the deepest pits, singing against the wind."

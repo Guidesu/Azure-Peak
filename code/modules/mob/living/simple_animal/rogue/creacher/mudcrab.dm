@@ -1,5 +1,5 @@
 //Look Sir, free crabs!
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab
 	name = "mudcrab"
 	desc = "A large species of crab populous in both marine and freshwater habitats across the world. It is said that untold millions lurk in the depths, where no crabber could ever reach them! None but Abyssor himself may do more than guess at the contents of the abyss - but they are quite tasty once fried."
 	icon_state = "mudcrab"
@@ -37,19 +37,19 @@
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/mudcrab
 	
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 	
-/mob/living/simple_animal/mudcrabcrab/Life()
+/mob/living/carbon/simple_animal/mudcrabcrab/Life()
 	..()
 	//CRAB movement
 	if(!ckey && !stat)
 		if(isturf(loc) && !resting && !buckled)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/get_sound(input)
 	switch(input)
 		if("idle")
 			return pick('sound/vo/mobs/crab/crab noise (1).ogg','sound/vo/mobs/crab/crab noise (2).ogg','sound/vo/mobs/crab/crab noise (3).ogg')
@@ -80,7 +80,7 @@
 	if(!spawning)
 		return
 	spawning = FALSE
-	new /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab(get_turf(src))
+	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab(get_turf(src))
 	crabs++
 	update_icon()
 	if(crabs < maxcrabs)

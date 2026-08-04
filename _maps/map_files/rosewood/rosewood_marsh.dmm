@@ -285,7 +285,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "bw" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/cobble,
@@ -397,7 +397,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "ct" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/tile,
 /area/indoors/lich)
 "cu" = (
@@ -624,7 +624,7 @@
 	},
 /area/indoors/lich)
 "dD" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood,
 /area/indoors/cave)
 "dE" = (
@@ -921,7 +921,7 @@
 /turf/closed/mineral/bedrock/cold,
 /area/outdoors/bog)
 "fh" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
 "fj" = (
@@ -1071,7 +1071,7 @@
 /area/outdoors/bog)
 "fZ" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Undead")
 	},
 /turf/open/floor/cobble,
@@ -1220,7 +1220,7 @@
 /area/outdoors/bog)
 "gI" = (
 /obj/structure/bed/hay,
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/lich)
 "gK" = (
@@ -1259,7 +1259,7 @@
 "gP" = (
 /obj/structure/table/wood/counter,
 /obj/item/reagent_containers/glass/cup/wooden/crafted,
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood,
@@ -1402,7 +1402,7 @@
 /area/indoors/lich)
 "hr" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/water/swamp,
 /area/outdoors/bog)
 "ht" = (
@@ -1456,7 +1456,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/shelter/bog/witch)
 "hH" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/dirt,
 /area/indoors/lich)
 "hJ" = (
@@ -1560,7 +1560,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "im" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Undead")
 	},
 /turf/open/floor/tile/masonic/single,
@@ -1608,7 +1608,7 @@
 /obj/structure/spider/stickyweb{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "iu" = (
@@ -2138,7 +2138,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/mountains)
 "lL" = (
-/mob/living/simple_animal/hostile/retaliate/troll/quiet,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/quiet,
 /turf/open/floor/naturalstone,
 /area/indoors/cave)
 "lM" = (
@@ -2271,7 +2271,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "mr" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood/darker,
@@ -2354,7 +2354,7 @@
 /turf/open/floor/churchmarble,
 /area/outdoors/bog)
 "mU" = (
-/mob/living/simple_animal/hostile/retaliate/troll,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll,
 /turf/open/floor/grass/cold,
 /area/indoors/mountains)
 "mV" = (
@@ -2739,7 +2739,7 @@
 /turf/open/floor/cobble,
 /area/indoors/lich)
 "oV" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/watcher{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood,
@@ -2752,7 +2752,7 @@
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "pa" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /obj/structure/fluff/nest,
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
@@ -2789,7 +2789,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "pi" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "pk" = (
@@ -3051,7 +3051,7 @@
 /area/indoors/lich)
 "qR" = (
 /obj/structure/fluff/nest,
-/mob/living/simple_animal/hostile/retaliate/troll/axe,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/axe,
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "qS" = (
@@ -3136,7 +3136,7 @@
 /obj/structure/spider/stickyweb{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/water/swamp,
 /area/outdoors/bog)
 "ro" = (
@@ -3317,7 +3317,7 @@
 /area/outdoors/bog)
 "sm" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "sn" = (
@@ -3387,7 +3387,7 @@
 /turf/open/floor/dirt,
 /area/indoors/mountains)
 "sJ" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/grass/cold,
@@ -3479,7 +3479,7 @@
 /area/indoors/lich)
 "tf" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/ruinedwood,
 /area/outdoors/bog)
 "tg" = (
@@ -3582,7 +3582,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/mountains)
 "tG" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/naturalstone,
 /area/indoors/cave)
 "tH" = (
@@ -3745,8 +3745,8 @@
 /turf/open/floor/tile/kitchen,
 /area/indoors/lich)
 "uo" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/tile,
 /area/indoors/lich)
 "up" = (
@@ -3938,7 +3938,7 @@
 /turf/open/floor/naturalstone,
 /area/indoors/lich)
 "vn" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/tile/bath,
@@ -3976,7 +3976,7 @@
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "vv" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
 "vw" = (
@@ -4168,7 +4168,7 @@
 /turf/open/floor/churchmarble,
 /area/outdoors/bog)
 "wv" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/water/swamp/deep,
@@ -4204,7 +4204,7 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/indoors/lich)
 "wD" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood,
@@ -4584,7 +4584,7 @@
 /obj/structure/spider/stickyweb{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
 "yw" = (
@@ -4749,7 +4749,7 @@
 /turf/open/floor/dirt,
 /area/indoors/mountains)
 "zn" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "zr" = (
@@ -4821,7 +4821,7 @@
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
 "zK" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "zL" = (
@@ -5418,7 +5418,7 @@
 /turf/closed/wall/mineral/wood,
 /area/indoors/lich)
 "CA" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "CB" = (
@@ -5458,7 +5458,7 @@
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "CO" = (
-/mob/living/simple_animal/hostile/retaliate/poltergeist{
+/mob/living/carbon/simple_animal/hostile/retaliate/poltergeist{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood,
@@ -5526,7 +5526,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/cave)
 "Df" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "Dg" = (
@@ -5773,7 +5773,7 @@
 /area/indoors/lich)
 "Ev" = (
 /obj/structure/bed/inn,
-/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Undead")
 	},
 /turf/open/floor/carpet/royalblack,
@@ -6043,7 +6043,7 @@
 /obj/structure/rack/shelf/biggest,
 /obj/item/reagent_containers/food/snacks/cheese_wedge/aged,
 /obj/item/reagent_containers/food/snacks/cheese_wedge/aged,
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood/darker,
@@ -6065,7 +6065,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "Gf" = (
-/mob/living/simple_animal/hostile/retaliate/voiddragon{
+/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon{
 	name = "Dekseer the Dracolich";
 	desc = "This hulking abomination of rotting flesh and exposed bone shambles forward in Zizo's name. Dekseer the Dracolich in all his unholy glory stands before you, alive in his undeath and in forever servitude.";
 	health = 3500;
@@ -6107,7 +6107,7 @@
 /area/indoors/mountains)
 "Gn" = (
 /obj/machinery/light/fueled/oven/east,
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/tile/kitchen,
 /area/indoors/lich)
 "Go" = (
@@ -6148,7 +6148,7 @@
 /turf/open/openspace,
 /area/indoors/lich)
 "Gv" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/cave)
 "Gw" = (
@@ -6279,7 +6279,7 @@
 /turf/open/floor/tile/masonic/inverted,
 /area/indoors/lich)
 "Hc" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/herringbone,
@@ -6305,7 +6305,7 @@
 /turf/open/floor/cobble,
 /area/indoors/lich)
 "Hj" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/tile/masonic/inverted,
 /area/indoors/lich)
 "Hl" = (
@@ -6399,7 +6399,7 @@
 /area/indoors/mountains)
 "HM" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/ruinedwood/darker,
 /area/outdoors/bog)
 "HO" = (
@@ -6459,7 +6459,7 @@
 /turf/open/floor/dirt,
 /area/indoors/lich)
 "Ii" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "Il" = (
@@ -6494,7 +6494,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/lich)
 "Iv" = (
-/mob/living/simple_animal/hostile/retaliate/poltergeist{
+/mob/living/carbon/simple_animal/hostile/retaliate/poltergeist{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood/spiral,
@@ -6522,7 +6522,7 @@
 /turf/closed/mineral/bedrock/cold,
 /area/outdoors/bog)
 "ID" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/cobblerock,
@@ -6571,7 +6571,7 @@
 /turf/open/floor/naturalstone,
 /area/indoors/lich)
 "IT" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/effect/spawner/map_spawner/loot,
 /turf/open/floor/dirt,
 /area/outdoors/bog)
@@ -6876,7 +6876,7 @@
 /turf/open/floor/twig,
 /area/indoors/mountains)
 "Kw" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/ruinedwood,
 /area/indoors/mountains)
 "Kx" = (
@@ -7345,11 +7345,11 @@
 /turf/closed/wall/mineral/wooddark,
 /area/outdoors/bog/witch)
 "Ns" = (
-/mob/living/simple_animal/hostile/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/skeleton/bow,
 /turf/open/floor/ruinedwood,
 /area/indoors/mountains)
 "Nt" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/floor/ruinedwood/darker,
@@ -7621,7 +7621,7 @@
 /area/indoors/lich)
 "OO" = (
 /obj/effect/decal/remains/human,
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "OQ" = (
@@ -7963,7 +7963,7 @@
 /obj/structure/stairs/stone{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/ruinedwood/spiral,
 /area/indoors/lich)
 "QY" = (
@@ -7999,7 +7999,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "Rd" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/watcher{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher{
 	faction = list("Undead")
 	},
 /turf/open/water/blood,
@@ -8189,7 +8189,7 @@
 /turf/open/floor/grass/cold,
 /area/outdoors/bog)
 "Sx" = (
-/mob/living/simple_animal/hostile/retaliate/infernal/imp{
+/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp{
 	faction = list("Undead")
 	},
 /turf/open/water/hotspring,
@@ -8318,7 +8318,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "Tl" = (
-/mob/living/simple_animal/hostile/retaliate/troll/quiet,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/quiet,
 /turf/open/floor/volcanic,
 /area/indoors/cave)
 "Tm" = (
@@ -8498,7 +8498,7 @@
 /turf/open/floor/tile/masonic/inverted,
 /area/indoors/lich)
 "TZ" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/carpet/royalblack,
 /area/indoors/lich)
 "Ua" = (
@@ -8580,7 +8580,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/lich)
 "Up" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/lich)
 "Uq" = (
@@ -8965,7 +8965,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/outdoors/bog)
 "Wi" = (
-/mob/living/simple_animal/hostile/retaliate/shade,
+/mob/living/carbon/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/tile/masonic/single,
 /area/indoors/lich)
 "Wj" = (
@@ -9155,7 +9155,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/lich)
 "Xq" = (
-/mob/living/simple_animal/hostile/retaliate/blood,
+/mob/living/carbon/simple_animal/hostile/retaliate/blood,
 /turf/open/floor/tile/masonic/spiral,
 /area/indoors/lich)
 "Xr" = (
@@ -9297,7 +9297,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/mountains)
 "Yg" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave/ambush,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave/ambush,
 /turf/open/water/hotspring,
 /area/outdoors/bog)
 "Yj" = (
@@ -9496,7 +9496,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/mountains)
 "Zr" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/bog/witch)
 "Zu" = (
@@ -9565,7 +9565,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/mountains)
 "ZO" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /obj/structure/fluff/nest,
 /turf/open/floor/dirt,
 /area/outdoors/bog)

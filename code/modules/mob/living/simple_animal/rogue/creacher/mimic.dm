@@ -1,6 +1,6 @@
 //chest mimic, ported from ratwood
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic
 	name = "chest"
 	desc = "A wooden chest with a lid held on metal hinges."
 	icon = 'icons/roguetown/mob/monster/mimic.dmi'
@@ -52,7 +52,7 @@
 	var/obj/structure/closet/crate/chest/mimicking_chest = /obj/structure/closet/crate/chest
 	var/spooked = FALSE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/Initialize(mapload)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	if(mapload)//load objects into chest.
@@ -62,43 +62,43 @@
 	icon = mimicking_chest::icon
 	icon_state = mimicking_chest::icon_state
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/examine(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/examine(mob/user)
 	if(aggressive)
 		return ..() // we've gone mask-off!
 	. = list("[get_examine_string(user, TRUE)].[get_inspect_button()]")
 	if(mimicking_chest::desc)
 		. += span_info("[mimicking_chest::desc]")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/find_food()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/find_food()
 	. = ..()
 	if(!.)
 		return eat_bodies()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/attack_hand(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/attack_hand(mob/user)
 	..()
 	Retaliate(user)
 	GiveTarget(user)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/proc/disguise()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/proc/disguise()
 	if(stat)
 		return // can't disguise while unconscious or dead!
 	name = mimicking_chest::name
 	icon = mimicking_chest::icon
 	icon_state = mimicking_chest::icon_state
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/proc/undisguise()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/proc/undisguise()
 	name = "\improper MIMIC"
 	icon = initial(icon)
 	icon_state = (stat == DEAD) ? icon_dead : icon_living
 
 // SURPRISE MODAFUCKA
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/proc/spook()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/proc/spook()
 	if(spooked)
 		return
 	spooked = TRUE
@@ -114,25 +114,25 @@
 		if(!HAS_TRAIT(C, TRAIT_VAELTIAN_GRIT) && (!HAS_TRAIT(C, TRAIT_STEELHEARTED) || prob(50)))
 			C.freak_out_mimic(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/Aggro()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/Aggro()
 	..()
 	// go mask-off!
 	undisguise()
 	spook()
 	aggressive = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/death()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/death()
 	// Drop loot onto tile.
 	for(var/obj/O in src)
 		O.forceMove(loc)
 	..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/get_sound(input)
 	switch(input)
 		if("death")
 			return pick('sound/vo/mobs/mimic/mimic_death.ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/simple_limb_hit(zone)
 	if(!zone || !aggressive) // don't talk about bodyparts while disguised!
 		return ""
 	switch(zone)
@@ -154,7 +154,7 @@
 			return "tail"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/gold
 	mimicking_chest = /obj/structure/closet/crate/chest/gold
 
 //////
@@ -162,7 +162,7 @@
 //////
 
 /obj/effect/landmark/chest_or_mimic
-	var/mimic_type = /mob/living/simple_animal/hostile/retaliate/rogue/mimic
+	var/mimic_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic
 	var/chest_type = /obj/structure/closet/crate/chest
 
 /obj/effect/landmark/chest_or_mimic/Initialize()
@@ -172,7 +172,7 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/chest_or_mimic/gold
-	mimic_type = /mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
+	mimic_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/gold
 	chest_type = /obj/structure/closet/crate/chest/gold
 
 /obj/effect/landmark/chest_or_mimic/locked_or_trapped

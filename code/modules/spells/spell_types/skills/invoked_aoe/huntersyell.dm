@@ -17,7 +17,7 @@
 	. = ..()
 	visible_message(span_green("[usr] lets out a mighty yelp, driving away near by animals"))
 	var/scared = FALSE
-	for(var/mob/living/simple_animal/hostile/retaliate/animal in get_hearers_in_view(7, usr))
+	for(var/mob/living/carbon/simple_animal/hostile/retaliate/animal in get_hearers_in_view(7, usr))
 		//if((animal.mob_biotypes & MOB_UNDEAD))
 		//	continue
 		if(faction_check(animal.faction, scareable_factions))

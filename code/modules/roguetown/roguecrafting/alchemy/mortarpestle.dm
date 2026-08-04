@@ -89,8 +89,14 @@
 				for(var/i in 1 to foundrecipe.valid_outputs[output])
 					new output(get_turf(src))
 			if(foundrecipe.bonus_chance_outputs.len > 0)
+				// Stat integration: INT and WIL improve bonus output chance
+				var/alch_bonus = 0
+				if(isliving(user))
+					var/mob/living/L = user
+					alch_bonus = L.get_alchemy_quality_mod() * 5
 				for(var/i in 1 to foundrecipe.bonus_chance_outputs.len)
-					if(foundrecipe.bonus_chance_outputs[foundrecipe.bonus_chance_outputs[i]] >= roll(1,100))
+					var/bonus_threshold = foundrecipe.bonus_chance_outputs[foundrecipe.bonus_chance_outputs[i]] - alch_bonus
+					if(bonus_threshold <= roll(1,100))
 						var/obj/item/bonusduck = foundrecipe.bonus_chance_outputs[i]
 						new bonusduck(get_turf(user))
 			if(istype(to_grind,/obj/item/rogueore) || istype(to_grind,/obj/item/ingot))

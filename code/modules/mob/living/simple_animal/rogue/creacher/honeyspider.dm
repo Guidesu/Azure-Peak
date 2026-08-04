@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/spider
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
 	name = "beespider"
 	desc = "An invasive species of oversized spider known both for its dangerous venom and its production of bee-like honey. While occasionally domesticated in some parts of the world, feral specimens are reputedly dangerous and best avoided."
@@ -60,7 +60,7 @@
 	melee_cooldown = HONEYSPIDER_ATTACK_SPEED
 	stat_attack = UNCONSCIOUS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/mutated
 	threat_point = THREAT_HIGH
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
 	name = "skallax spider"
@@ -75,7 +75,7 @@
 	health = 130
 	maxHealth = 130
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -86,19 +86,19 @@
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
 		if(L.reagents)
 			L.reagents.add_reagent(/datum/reagent/toxin/venom, 1)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/death(gibbed)
 	..()
 	update_icon()
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -107,7 +107,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/spider/aggro (1).ogg','sound/vo/mobs/spider/aggro (2).ogg','sound/vo/mobs/spider/aggro (3).ogg')
@@ -118,13 +118,13 @@
 		if("idle")
 			return pick('sound/vo/mobs/spider/idle (1).ogg','sound/vo/mobs/spider/idle (2).ogg','sound/vo/mobs/spider/idle (3).ogg','sound/vo/mobs/spider/idle (4).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/Life()
 	..()
 	if(stat == CONSCIOUS)
 		if(!target)
@@ -141,7 +141,7 @@
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

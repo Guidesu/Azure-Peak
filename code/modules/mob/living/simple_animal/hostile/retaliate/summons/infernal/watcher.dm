@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher
 	threat_point = 70
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "infernal watcher"
@@ -53,14 +53,14 @@
 	projectiletype = /obj/projectile/magic/aoe/fireball/rogue
 	ranged_message = "stares"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

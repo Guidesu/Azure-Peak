@@ -26,7 +26,7 @@
 	if(user == O && isliving(O))
 		var/mob/living/L = O
 		if(isanimal(L))
-			var/mob/living/simple_animal/A = L
+			var/mob/living/carbon/simple_animal/A = L
 			if (!A.dextrous)
 				return
 		if(L.mobility_flags & MOBILITY_MOVE)
@@ -214,7 +214,7 @@
 							has_step_ladder = TRUE
 							break
 				if(!has_step_ladder)
-					for(var/mob/living/simple_animal/animal in L.loc)
+					for(var/mob/living/carbon/simple_animal/animal in L.loc)
 						if(animal == L)
 							continue
 						if(animal.tame && animal.mob_size >= MOB_SIZE_HUMAN)

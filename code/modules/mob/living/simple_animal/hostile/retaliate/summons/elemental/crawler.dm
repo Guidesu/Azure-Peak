@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "earthen crawler"
 	desc = "This is a relatively small elemental formed of dirt, rock, and clay. It \
@@ -50,11 +50,11 @@
 	STASTR = 8
 	STASPD = 8
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler/death(gibbed)
 	..()
 	update_icon()
 	spawn(1)

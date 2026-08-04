@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "fiend"
 	desc = "A much larger relative of the common infernal imp, this otherworldly creature stands to an impressive height \
@@ -57,17 +57,17 @@
 	inherent_spells = list(/obj/effect/proc_holder/spell/self/call_infernals,
 	/obj/effect/proc_holder/spell/invoked/fiend_meteor)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/OpenFire(atom/A)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
 	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
@@ -114,7 +114,7 @@
 		if(prob(20))
 			new /obj/effect/temp_visual/target(turf)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/proc/create_meteors(atom/target)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/proc/create_meteors(atom/target)
 	if(!target)
 		return
 	target.visible_message(span_boldwarning("Fire rains from the sky!"))
@@ -123,11 +123,11 @@
 		if(prob(20))
 			new /obj/effect/temp_visual/target(turf)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/proc/callforbackup()
-	var/list/spawnLists = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
-	/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
-	/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
-	/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/proc/callforbackup()
+	var/list/spawnLists = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp,
+	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp,
+	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
+	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
 	var/reinforcement_count = 3
 	src.visible_message(span_notice("[src] summons reinforcements from the infernal abyss."))
 	while(reinforcement_count > 0)
@@ -143,7 +143,7 @@
 		reinforcement_count--
 		continue
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the fiend
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the fiend
 	return
 
 /obj/effect/proc_holder/spell/self/call_infernals
@@ -153,8 +153,8 @@
 	overlay_state = "burning"
 
 /obj/effect/proc_holder/spell/self/call_infernals/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/demonguy = user
+	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend))
+		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/demonguy = user
 		if(world.time <= demonguy.summon_cd + 200)//shouldn't ever happen cuz the spell cd is the same as summon_cd but I'd rather it check with the internal cd just in case
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()

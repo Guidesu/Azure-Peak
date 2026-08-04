@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon
 	icon = 'modular/icons/mob/96x96/ratwood_dragon.dmi'
 	name = "half-drakkyn"
 	desc = "Descendent of descendent of descendent of greatness; degenerated to mortality through diluta of power, blood, and wealth."
@@ -70,7 +70,7 @@
 	limb_destroyer = TRUE
 //	stat_attack = UNCONSCIOUS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -103,13 +103,13 @@
 
 	//ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC) // Need a weakness
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/death(gibbed)
 	..()
 
 	update_icon()
 
 /* Eyes that glow in the dark. They float over kybraxor pits at the moment.
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -118,7 +118,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)*/
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -131,19 +131,19 @@
 		if("cidle")
 			return pick('sound/vo/mobs/wwolf/idle (2).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -210,7 +210,7 @@
     var/exp_fire = 3
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 	health = DRAGON_BROODMOTHER_HEALTH
 	maxHealth = DRAGON_BROODMOTHER_HEALTH
 	retreat_health = 0.05
@@ -235,14 +235,14 @@
 	head_butcher = /obj/item/natural/head/dragon/broodmother
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Initialize()
 	. = ..()
 
 	fire_breath = new(src)
 	fire_breath.Grant(src)
 	ai_controller.set_blackboard_key(BB_TARGETED_ACTION, fire_breath)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Destroy()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Destroy()
 	fire_breath.Remove(src)
 	QDEL_NULL(fire_breath)
 	return ..()

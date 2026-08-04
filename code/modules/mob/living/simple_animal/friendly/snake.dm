@@ -1,8 +1,8 @@
-/mob/living/simple_animal/hostile/retaliate/poison
+/mob/living/carbon/simple_animal/hostile/retaliate/poison
     var/poison_per_bite = 0
     var/poison_type = /datum/reagent/toxin
 
-/mob/living/simple_animal/hostile/retaliate/poison/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/poison/AttackingTarget()
     . = ..()
     if(. && isliving(target))
         var/mob/living/L = target
@@ -10,7 +10,7 @@
             L.reagents.add_reagent(poison_type, poison_per_bite)
         return .
 
-/mob/living/simple_animal/hostile/retaliate/poison/snake
+/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake
         name = "snake"
         desc = ""
         icon_state = "snake"
@@ -40,10 +40,10 @@
         environment_smash = ENVIRONMENT_SMASH_NONE
 
 
-/mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
+/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
 	. = hearers(vision_range, targets_from) - src //get list of things we can hear, instead of an expensive oview() scan
 	var/list/mice = list()
-	for(var/mob/living/simple_animal/mouse/mouse in .)
+	for(var/mob/living/carbon/simple_animal/mouse/mouse in .)
 		mice += mouse
 	//Yum a tasty mouse
 	if(length(mice))
@@ -51,8 +51,8 @@
 	// if no tasty mice to chase, lets chase any living mob enemies in our vision range
 	return . & resolve_enemies()
 
-/mob/living/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
-        if(istype(target, /mob/living/simple_animal/mouse))
+/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
+        if(istype(target, /mob/living/carbon/simple_animal/mouse))
                 visible_message(span_notice("[name] consumes [target] in a single gulp!"), span_notice("I consume [target] in a single gulp!"))
                 QDEL_NULL(target)
                 adjustBruteLoss(-2)

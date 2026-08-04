@@ -9,7 +9,7 @@
 	var/female_barding_state = "barding-f"
 	gender = NEUTER
 	var/list/valid_animal_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/saiga
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga
 	)
 	armor = ARMOR_PADDED
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
@@ -32,7 +32,7 @@
 		to_chat(user, span_warning("\The [src] cannot be used on [M]! It is only meant for specific animals."))
 		return
 
-	var/mob/living/simple_animal/animal = M
+	var/mob/living/carbon/simple_animal/animal = M
 	if(animal.adult_growth)
 		to_chat(user, span_warning("[animal] is a juvenile and cannot wear a bard!"))
 		return
@@ -58,8 +58,8 @@
 	user.visible_message(span_notice("[user] fits a bard onto [animal]."), span_notice("I fit a bard onto [animal]."))
 
 /obj/item/clothing/barding/obj_destruction(damage_flag)
-	if(istype(loc, /mob/living/simple_animal))
-		var/mob/living/simple_animal/A = loc
+	if(istype(loc, /mob/living/carbon/simple_animal))
+		var/mob/living/carbon/simple_animal/A = loc
 		if(A.bbarding == src)
 			A.bbarding = null
 			A.barding_speed_mult = 1
@@ -92,7 +92,7 @@
 	barding_state = "barding"
 	female_barding_state = "barding"
 	valid_animal_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast
 	)
 
 /obj/item/clothing/barding/fogbeast/chain

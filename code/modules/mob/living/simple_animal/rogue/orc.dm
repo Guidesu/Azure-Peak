@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/orc
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc
 	name = "Savage Orc"
 	desc = "A fierce, brutish looking creature."
 	icon = 'icons/mob/simple_orcs.dmi'
@@ -48,11 +48,11 @@
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/orc
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc2
 	icon_state = "savageorc2"
 	icon_living = "savageorc2"
 	icon_dead = "savageorc2"
@@ -60,7 +60,7 @@
 			/obj/item/rogueweapon/stoneaxe/boneaxe,
 			/obj/effect/decal/cleanable/blood)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder
 	name = "Orc Marauder"
 	icon_state = "orcmarauder"
 	icon_living = "orcmarauder"
@@ -76,7 +76,7 @@
 			/obj/item/rogueweapon/sword/short/messer/iron,
 			/obj/effect/decal/cleanable/blood)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear
 	icon_state = "orcmarauder_spear"
 	icon_living = "orcmarauder_spear"
 	icon_dead = "orcmarauder_spear"
@@ -86,7 +86,7 @@
 			/obj/item/rogueweapon/spear,
 			/obj/effect/decal/cleanable/blood)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager
 	icon_state = "orcravager"
 	icon_living = "orcravager"
 	icon_dead = "orcravager"
@@ -100,7 +100,7 @@
 			/obj/item/rogueweapon/halberd/bardiche,
 			/obj/effect/decal/cleanable/blood)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/spear
 	icon_state = "savageorc_spear"
 	icon_living = "savageorc_spear"
 	icon_dead = "savageorc_spear"
@@ -119,7 +119,7 @@
 
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/spear2
 	icon_state = "savageorc_spear2"
 	icon_living = "savageorc_spear2"
 	icon_dead = "savageorc_spear2"
@@ -136,7 +136,7 @@
 	clickcd = ORC_ATTACK_SPEED * 1.2
 	//slower swing timer because it has 2 reach
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/simple_orcs/orc_yell.ogg','sound/vo/mobs/simple_orcs/orc_yell2.ogg','sound/vo/mobs/simple_orcs/orc_yell3.ogg', 'sound/vo/mobs/simple_orcs/orc_yell4.ogg')
@@ -149,20 +149,20 @@
 			return pick('sound/vo/mobs/simple_orcs/orc_idle.ogg','sound/vo/mobs/simple_orcs/orc_idle2.ogg','sound/vo/mobs/simple_orcs/orc_idle3.ogg','sound/vo/mobs/simple_orcs/orc_idle4.ogg')
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/Life()
 	. = ..()
 	if(!target)
 		if(prob(3))
 			emote(pick("idle"), TRUE)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/taunted(mob/user)
 	emote("aggro")
 	GiveTarget(user)
 	return
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -204,7 +204,7 @@
 			return "left arm"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/ranged
 	name = "Savage Orc Archer"
 	desc = "A fierce, brutish looking creature. This one has a bow."
 	icon_state = "orcbow"
@@ -232,27 +232,27 @@
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/orc_ranged
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/ranged/Initialize()
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/orc/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/orc/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/event
 	ai_controller = /datum/ai_controller/orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc2/event
 	ai_controller = /datum/ai_controller/orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/event
 	ai_controller = /datum/ai_controller/orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear/event
 	ai_controller = /datum/ai_controller/elite_orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager/event
 	ai_controller = /datum/ai_controller/elite_orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/spear/event
 	ai_controller = /datum/ai_controller/orc/event
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/spear2/event
 	ai_controller = /datum/ai_controller/orc/event
 	
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged/event
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/orc/ranged/event
 	ai_controller = /datum/ai_controller/orc_ranged/event

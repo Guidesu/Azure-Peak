@@ -11,18 +11,18 @@
 	summon_noun = "primordial"
 	recoil_energy_floor = 150
 	modes = list(
-		list("name" = "Flame", "tag" = "FIRE", "path" = /mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire, "color" = GLOW_COLOR_FIRE, "invocation" = "Exsurge, ignis!"),
-		list("name" = "Water", "tag" = "WATER", "path" = /mob/living/simple_animal/hostile/retaliate/rogue/primordial/water, "color" = GLOW_COLOR_ICE, "invocation" = "Exsurge, unda!"),
-		list("name" = "Air", "tag" = "AIR", "path" = /mob/living/simple_animal/hostile/retaliate/rogue/primordial/air, "color" = "#cfe8ff", "invocation" = "Exsurge, ventus!"),
+		list("name" = "Flame", "tag" = "FIRE", "path" = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire, "color" = GLOW_COLOR_FIRE, "invocation" = "Exsurge, ignis!"),
+		list("name" = "Water", "tag" = "WATER", "path" = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water, "color" = GLOW_COLOR_ICE, "invocation" = "Exsurge, unda!"),
+		list("name" = "Air", "tag" = "AIR", "path" = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air, "color" = "#cfe8ff", "invocation" = "Exsurge, ventus!"),
 	)
 
 /datum/action/cooldown/spell/conjure_summon/primordial/spawn_summon(turf/T, mob/living/user)
 	var/mob_path = modes[current_mode]["path"]
-	var/mob/living/simple_animal/hostile/retaliate/rogue/primordial/conjured = new mob_path(T, user)
+	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/conjured = new mob_path(T, user)
 	scale_primordial(conjured, user)
 	return conjured
 
-/datum/action/cooldown/spell/conjure_summon/primordial/proc/scale_primordial(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P, mob/living/user)
+/datum/action/cooldown/spell/conjure_summon/primordial/proc/scale_primordial(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P, mob/living/user)
 	var/tier = get_summon_tier(user)
 	var/mult = 1 + (tier - 1) * 0.2
 	P.maxHealth = round(P.maxHealth * mult)

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane
 	name = "fretensis"
 	health = 100
 	maxHealth = 100
@@ -13,7 +13,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/fretensis
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target

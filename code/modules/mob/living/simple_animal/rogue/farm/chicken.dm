@@ -1,5 +1,5 @@
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken
 	icon = 'icons/roguetown/mob/monster/chicken.dmi'
 	name = "\improper chicken"
 	desc = "A domestic chicken, among the most common livestock in the known world. Reputed to lay eggs if fed."
@@ -66,7 +66,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken/get_sound(input)
 	switch(input)
 		if("pain")
 			return pick('sound/vo/mobs/chikn/pain (1).ogg','sound/vo/mobs/chikn/pain (2).ogg','sound/vo/mobs/chikn/pain (3).ogg')
@@ -76,7 +76,7 @@
 			return pick('sound/vo/mobs/chikn/idle (1).ogg','sound/vo/mobs/chikn/idle (2).ogg','sound/vo/mobs/chikn/idle (3).ogg','sound/vo/mobs/chikn/idle (4).ogg','sound/vo/mobs/chikn/idle (5).ogg','sound/vo/mobs/chikn/idle (6).ogg')
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -114,7 +114,7 @@
 			return "wing"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))
@@ -127,11 +127,11 @@
 	pixel_y = rand(0, 10)
 	++chicken_count
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken/Destroy()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken/Destroy()
 	--chicken_count
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken/Life()
 	..()
 	if(!stat && (production > 29) && egg_type && isturf(loc) && !enemies.len)
 

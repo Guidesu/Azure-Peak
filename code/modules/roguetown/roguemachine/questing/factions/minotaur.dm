@@ -6,8 +6,8 @@
 	faction_tag = FACTION_CAVES
 	category = FACTION_CAT_BEAST
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 70,
-		/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 15,
-		/mob/living/simple_animal/hostile/retaliate/rogue/troll/axe = 10,
-		/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 70,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 15,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/axe = 10,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave = 5,
 	)

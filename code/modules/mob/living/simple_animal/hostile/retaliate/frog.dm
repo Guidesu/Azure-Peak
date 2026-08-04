@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/frog
+/mob/living/carbon/simple_animal/hostile/retaliate/frog
 	name = "frog"
 	desc = "Ribbit! Ribbit! Croak!"
 	icon_state = "frog"
@@ -30,7 +30,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	var/stepped_sound = 'sound/blank.ogg'
 
-/mob/living/simple_animal/hostile/retaliate/frog/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/frog/Initialize()
 	. = ..()
 	if(prob(1))
 		name = "rare frog"
@@ -39,7 +39,7 @@
 		icon_living = "rare_frog"
 		icon_dead = "rare_frog_dead"
 
-/mob/living/simple_animal/hostile/retaliate/frog/Crossed(AM as mob|obj)
+/mob/living/carbon/simple_animal/hostile/retaliate/frog/Crossed(AM as mob|obj)
 	if(!stat && isliving(AM))
 		var/mob/living/L = AM
 		if(L.mob_size > MOB_SIZE_TINY)

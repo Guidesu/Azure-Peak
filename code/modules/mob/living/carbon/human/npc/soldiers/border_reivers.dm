@@ -382,7 +382,7 @@
 
 //Simple Mobs
 
-/mob/living/simple_animal/hostile/rogue/border_reiver_crossbow
+/mob/living/carbon/simple_animal/hostile/rogue/border_reiver_crossbow
 	name = "Reiver Crossbowman"
 	icon = 'icons/mob/border_reivers.dmi'
 	faction = list(FACTION_REIVER)
@@ -420,7 +420,7 @@
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	del_on_death = FALSE
 
-/mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider
+/mob/living/carbon/simple_animal/hostile/rogue/border_reiver_lance_rider
 	name = "Reiver Rider"
 	faction = list(FACTION_REIVER)
 	icon = 'icons/roguetown/mob/monster/reiver_rider.dmi'
@@ -455,7 +455,7 @@
 	del_on_death = FALSE
 	pixel_x = -16
 
-/mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider/sabre
+/mob/living/carbon/simple_animal/hostile/rogue/border_reiver_lance_rider/sabre
 	ai_controller = /datum/ai_controller/reiver_rider
 	base_intents = list(/datum/intent/simple/reiver_rider_sabre,)
 	icon_state = "sabre_rider"

@@ -158,9 +158,9 @@
 	blacklisted = FALSE
 	tier = 1
 	alignment = "infernal"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp)
 	chants = list(INFERNAL_LAT_1, INFERNAL_ENG_1, INFERNAL_CLIMAX, INFERNAL_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/infernal_t2
@@ -169,9 +169,9 @@
 	blacklisted = FALSE
 	tier = 2
 	alignment = "infernal"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp)
 	chants = list(INFERNAL_LAT_1, INFERNAL_ENG_1, INFERNAL_LAT_2, INFERNAL_ENG_2, INFERNAL_CLIMAX, INFERNAL_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/infernal_t3
@@ -181,11 +181,11 @@
 	tier = 3
 	req_invokers = 2
 	alignment = "infernal"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
 	base_primary_count = 2
 	base_secondary_count = 2
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp)
 	chants = list(INFERNAL_LAT_1, INFERNAL_ENG_1, INFERNAL_LAT_2, INFERNAL_ENG_2, INFERNAL_LAT_3, INFERNAL_ENG_3, INFERNAL_CLIMAX, INFERNAL_CTA)
 	secondary_chants = list(INFERNAL_RES_1, INFERNAL_RES_2, INFERNAL_RES_3, INFERNAL_RES_4, INFERNAL_RES_5, INFERNAL_RES_6, INFERNAL_CLIMAX, INFERNAL_CTA)
 
@@ -196,11 +196,11 @@
 	tier = 4
 	req_invokers = 3
 	alignment = "infernal"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher)
 	base_primary_count = 1
 	base_secondary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound)
 	chants = list(INFERNAL_LAT_1, INFERNAL_ENG_1, INFERNAL_LAT_2, INFERNAL_ENG_2, INFERNAL_LAT_3, INFERNAL_ENG_3, INFERNAL_LAT_4, INFERNAL_ENG_4, INFERNAL_CLIMAX, INFERNAL_CTA)
 	secondary_chants = list(INFERNAL_RES_1, INFERNAL_RES_2, INFERNAL_RES_3, INFERNAL_RES_4, INFERNAL_RES_5, INFERNAL_RES_6, INFERNAL_RES_7, INFERNAL_RES_8, INFERNAL_CLIMAX, INFERNAL_CTA)
 
@@ -212,9 +212,9 @@
 	blacklisted = FALSE
 	tier = 1
 	alignment = "fae"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite)
 	chants = list(FAE_LAT_1, FAE_ENG_1, FAE_CLIMAX, FAE_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/fae_t2
@@ -223,9 +223,9 @@
 	blacklisted = FALSE
 	tier = 2
 	alignment = "fae"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite)
 	chants = list(FAE_LAT_1, FAE_ENG_1, FAE_LAT_2, FAE_ENG_2, FAE_CLIMAX, FAE_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/fae_t3
@@ -235,11 +235,11 @@
 	tier = 3
 	req_invokers = 2
 	alignment = "fae"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
 	base_primary_count = 2
 	base_secondary_count = 2
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite)
 	chants = list(FAE_LAT_1, FAE_ENG_1, FAE_LAT_2, FAE_ENG_2, FAE_LAT_3, FAE_ENG_3, FAE_CLIMAX, FAE_CTA)
 	secondary_chants = list(FAE_RES_1, FAE_RES_2, FAE_RES_3, FAE_RES_4, FAE_RES_5, FAE_RES_6, FAE_CLIMAX, FAE_CTA)
 
@@ -250,11 +250,11 @@
 	tier = 4
 	req_invokers = 3
 	alignment = "fae"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad)
 	base_primary_count = 1
 	base_secondary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing)
 	chants = list(FAE_LAT_1, FAE_ENG_1, FAE_LAT_2, FAE_ENG_2, FAE_LAT_3, FAE_ENG_3, FAE_LAT_4, FAE_ENG_4, FAE_CLIMAX, FAE_CTA)
 	secondary_chants = list(FAE_RES_1, FAE_RES_2, FAE_RES_3, FAE_RES_4, FAE_RES_5, FAE_RES_6, FAE_RES_7, FAE_RES_8, FAE_CLIMAX, FAE_CTA)
 
@@ -266,9 +266,9 @@
 	blacklisted = FALSE
 	tier = 1
 	alignment = "elemental"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler)
 	chants = list(EARTHEN_LAT_1, EARTHEN_ENG_1, EARTHEN_CLIMAX, EARTHEN_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/earthen_t2
@@ -277,9 +277,9 @@
 	blacklisted = FALSE
 	tier = 2
 	alignment = "elemental"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler)
 	chants = list(EARTHEN_LAT_1, EARTHEN_ENG_1, EARTHEN_LAT_2, EARTHEN_ENG_2, EARTHEN_CLIMAX, EARTHEN_CTA)
 
 /datum/runeritual/summoning/leyline_encounter/earthen_t3
@@ -289,11 +289,11 @@
 	tier = 3
 	req_invokers = 2
 	alignment = "elemental"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden)
 	base_primary_count = 2
 	base_secondary_count = 2
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler)
 	chants = list(EARTHEN_LAT_1, EARTHEN_ENG_1, EARTHEN_LAT_2, EARTHEN_ENG_2, EARTHEN_LAT_3, EARTHEN_ENG_3, EARTHEN_CLIMAX, EARTHEN_CTA)
 	secondary_chants = list(EARTHEN_RES_1, EARTHEN_RES_2, EARTHEN_RES_3, EARTHEN_RES_4, EARTHEN_RES_5, EARTHEN_RES_6, EARTHEN_CLIMAX, EARTHEN_CTA)
 
@@ -304,11 +304,11 @@
 	tier = 4
 	req_invokers = 3
 	alignment = "elemental"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus)
-	secondary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus)
+	secondary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth)
 	base_primary_count = 1
 	base_secondary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden)
 	chants = list(EARTHEN_LAT_1, EARTHEN_ENG_1, EARTHEN_LAT_2, EARTHEN_ENG_2, EARTHEN_LAT_3, EARTHEN_ENG_3, EARTHEN_LAT_4, EARTHEN_ENG_4, EARTHEN_CLIMAX, EARTHEN_CTA)
 	secondary_chants = list(EARTHEN_RES_1, EARTHEN_RES_2, EARTHEN_RES_3, EARTHEN_RES_4, EARTHEN_RES_5, EARTHEN_RES_6, EARTHEN_RES_7, EARTHEN_RES_8, EARTHEN_CLIMAX, EARTHEN_CTA)
 
@@ -320,9 +320,9 @@
 	blacklisted = FALSE
 	tier = 2
 	alignment = "leyline"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/leylinelycan)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/leylinelycan)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/leylinelycan)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/leylinelycan)
 	chants = list(LEYLINE_LAT_1, LEYLINE_ENG_1, LEYLINE_LAT_2, LEYLINE_ENG_2, LEYLINE_CLIMAX, LEYLINE_CTA)
 
 // ----- Void (Fixed T2) — spawns mob form directly, no dormant obelisk phase -----
@@ -333,9 +333,9 @@
 	blacklisted = FALSE
 	tier = 2
 	alignment = "void"
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
 	base_primary_count = 3
-	gone_wrong_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
+	gone_wrong_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
 	chants = list(VOID_LAT_1, VOID_ENG_1_T2, VOID_LAT_2, VOID_ENG_2, VOID_CLIMAX, VOID_CTA_T2)
 
 // ----- Void Dragon (T5, requires Powerful leyline + day 5 + 5 runed artifacts) -----
@@ -351,7 +351,7 @@
 	req_invokers = 3
 	alignment = "void"
 	required_atoms = list(/obj/item/magic/artifact = 5, /obj/item/magic/fae/sylvanessence = 1, /obj/item/magic/infernal/flame = 1, /obj/item/magic/elemental/relic = 1, /obj/item/magic/voidstone = 3, /obj/item/magic/leyline = 3)
-	primary_mobs = list(/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon)
+	primary_mobs = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon)
 	base_primary_count = 1
 	gone_wrong_extra = 0
 	powerful_leyline_bonus = FALSE

@@ -1,5 +1,5 @@
 
-/mob/living/simple_animal/Topic(href, href_list)
+/mob/living/carbon/simple_animal/Topic(href, href_list)
 	. = ..()
 	if(href_list["inspect_animal"] && (isobserver(usr) || usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY)))
 		var/list/msg = list()
@@ -26,7 +26,7 @@
 		else
 			usr.visible_message(span_notice("[usr] rips [I] out of [src]!"), span_notice("I rip [I] from [src]."))
 
-/mob/living/simple_animal/pet/familiar/Topic(href, href_list)
+/mob/living/carbon/simple_animal/pet/familiar/Topic(href, href_list)
 	. = ..()
 	if(href_list["task"] == "view_fam_headshot") //please lord forgive me for the shitcode i am about to write
 		if(!ismob(usr))

@@ -120,7 +120,7 @@
 	if(user == O && isliving(O))
 		var/mob/living/L = O
 		if(isanimal(L))
-			var/mob/living/simple_animal/A = L
+			var/mob/living/carbon/simple_animal/A = L
 			if (!A.dextrous)
 				return
 		if(L.mobility_flags & MOBILITY_MOVE)

@@ -345,7 +345,7 @@
 /area/rogue/under/tomb/indoors)
 "gB" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/rogue/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb)
 "gC" = (
@@ -1555,7 +1555,7 @@
 	dir = 4;
 	pixel_x = 1
 	},
-/mob/living/simple_animal/hostile/rogue/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb)
 "FZ" = (
@@ -1780,7 +1780,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "JX" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow,
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
@@ -2136,7 +2136,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "Sj" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow,
 /obj/structure/fluff/railing/border{
 	dir = 4;
 	pixel_x = 0;

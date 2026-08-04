@@ -298,7 +298,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "bB" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/woodturned,
 /area/outdoors)
 "bD" = (
@@ -535,11 +535,11 @@
 /turf/open/floor/dirt/road,
 /area/under/cave)
 "cN" = (
-/mob/living/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/grass,
 /area/outdoors)
 "cO" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /obj/structure/flora/newbranch/leafless{
 	dir = 4
 	},
@@ -556,7 +556,7 @@
 /turf/open/floor/rooftop/green,
 /area/outdoors)
 "cT" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /obj/effect/decal/cobblerockedge{
 	dir = 9
 	},
@@ -799,7 +799,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "ej" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/effect/falling_sakura,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -885,7 +885,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "eF" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newtree{
 	icon_state = "tree2"
 	},
@@ -948,7 +948,7 @@
 /turf/open/floor/ruinedwood/spiralfade,
 /area/outdoors)
 "eU" = (
-/mob/living/simple_animal/hostile/retaliate/trufflepig/female,
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/female,
 /turf/open/floor/grass,
 /area/outdoors)
 "eV" = (
@@ -986,7 +986,7 @@
 /turf/open/water/marsh,
 /area/outdoors)
 "fd" = (
-/mob/living/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt,
 /area/outdoors)
 "ff" = (
@@ -1018,7 +1018,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "fp" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newtree{
 	icon_state = "tree2";
 	dir = 8
@@ -1061,7 +1061,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "fy" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/cobblerock,
 /area/under/cave)
 "fz" = (
@@ -1225,7 +1225,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "gq" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /obj/structure/flora/grass/tundra{
 	icon_state = "tundragrass2"
 	},
@@ -1359,7 +1359,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "gR" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
@@ -1500,7 +1500,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/under/cave)
 "hB" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/grass/herb/random,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -1588,7 +1588,7 @@
 /turf/open/floor/dirt,
 /area/under/cave)
 "hW" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /turf/open/floor/grass,
 /area/outdoors)
 "hX" = (
@@ -2096,7 +2096,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "kC" = (
-/mob/living/simple_animal/hostile/retaliate/mole,
+/mob/living/carbon/simple_animal/hostile/retaliate/mole,
 /turf/open/floor/grass,
 /area/outdoors)
 "kF" = (
@@ -2537,7 +2537,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "mW" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/wild_plant/nospread/strawberry{
 	name = "wild strawberry bush";
 	pixel_x = -4;
@@ -2698,7 +2698,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "nJ" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /turf/open/floor/dirt,
 /area/outdoors)
 "nL" = (
@@ -3356,7 +3356,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors)
 "ri" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
@@ -3466,7 +3466,7 @@
 /turf/open/water/clean/dirt,
 /area/outdoors)
 "rR" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newbranch/leafless,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -3493,8 +3493,8 @@
 /turf/open/floor/dirt,
 /area/under/cave)
 "sd" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "se" = (
@@ -3667,7 +3667,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "sT" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/dirt,
 /area/outdoors)
 "sW" = (
@@ -3678,7 +3678,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "sX" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/naturalstone,
 /area/under/cave)
@@ -3807,7 +3807,7 @@
 /turf/open/floor/grass,
 /area/under/cave)
 "tO" = (
-/mob/living/simple_animal/hostile/retaliate/cow/cowlet,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow/cowlet,
 /obj/structure/flora/grass{
 	icon_state = "grass5"
 	},
@@ -3834,7 +3834,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "tT" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/structure/spider/stickyweb,
 /obj/structure/minecart_rail,
 /turf/open/floor/naturalstone,
@@ -3983,7 +3983,7 @@
 /turf/open/floor/churchrough,
 /area/under/cave)
 "uC" = (
-/mob/living/simple_animal/hostile/retaliate/saigabuck,
+/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck,
 /turf/open/floor/dirt,
 /area/outdoors)
 "uD" = (
@@ -4013,7 +4013,7 @@
 /turf/open/floor/cobble/alt,
 /area/under/cave)
 "uJ" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "uK" = (
@@ -4060,7 +4060,7 @@
 /turf/open/floor/dirt/road,
 /area/under/cave)
 "uW" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/dirt/road,
 /area/under/cave)
 "uX" = (
@@ -4124,7 +4124,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/under/cave)
 "vl" = (
-/mob/living/simple_animal/hostile/retaliate/fae/dryad,
+/mob/living/carbon/simple_animal/hostile/retaliate/fae/dryad,
 /turf/open/floor/grass,
 /area/outdoors)
 "vm" = (
@@ -4678,7 +4678,7 @@
 	},
 /area/under/cave)
 "xX" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/naturalstone,
 /area/outdoors)
 "xZ" = (
@@ -4706,7 +4706,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "yf" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newtree{
 	icon_state = "tree1";
 	dir = 8
@@ -4739,7 +4739,7 @@
 /turf/open/floor/cobblerock,
 /area/under/cave)
 "yn" = (
-/mob/living/simple_animal/hostile/retaliate/goat,
+/mob/living/carbon/simple_animal/hostile/retaliate/goat,
 /obj/structure/flora/grass/herb/rosa,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -4893,7 +4893,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "zo" = (
-/mob/living/simple_animal/hostile/retaliate/goatmale,
+/mob/living/carbon/simple_animal/hostile/retaliate/goatmale,
 /turf/open/floor/dirt,
 /area/outdoors)
 "zs" = (
@@ -5100,7 +5100,7 @@
 /turf/open/floor/twig,
 /area/under/cave)
 "As" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/dirt,
 /area/outdoors)
 "Au" = (
@@ -5250,7 +5250,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "Bf" = (
-/mob/living/simple_animal/hostile/retaliate/trufflepig/male,
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male,
 /turf/open/floor/dirt,
 /area/outdoors)
 "Bg" = (
@@ -5318,7 +5318,7 @@
 /turf/open/floor/dirt,
 /area/under/cave)
 "Bz" = (
-/mob/living/simple_animal/hostile/retaliate/trufflepig/male,
+/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male,
 /obj/structure/wild_plant/nospread/turnip{
 	name = "wild turnip patch";
 	pixel_y = -3
@@ -5558,7 +5558,7 @@
 /turf/open/floor/cobble,
 /area/under/cave)
 "CT" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/effect/falling_sakura,
 /turf/open/water/swamp,
 /area/outdoors)
@@ -5630,7 +5630,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "Ds" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /obj/structure/flora/grass/bush_meagre{
 	icon_state = "bush3";
 	pixel_x = 3
@@ -5954,7 +5954,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "Fh" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/grass,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -6008,7 +6008,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "Fs" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "Fu" = (
@@ -6017,7 +6017,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "Fv" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newtree{
 	icon_state = "tree2";
 	dir = 8
@@ -6127,7 +6127,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "FZ" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/grass,
 /area/outdoors)
 "Gb" = (
@@ -6934,7 +6934,7 @@
 /turf/open/floor/cobble/alt,
 /area/under/cave)
 "Kl" = (
-/mob/living/simple_animal/hostile/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/skeleton/bow,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "Km" = (
@@ -7121,7 +7121,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "Lg" = (
-/mob/living/simple_animal/hostile/retaliate/goat,
+/mob/living/carbon/simple_animal/hostile/retaliate/goat,
 /turf/open/floor/grass,
 /area/outdoors)
 "Lj" = (
@@ -7451,7 +7451,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/under/cave)
 "MV" = (
-/mob/living/simple_animal/hostile/retaliate/troll/caerbannog,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/caerbannog,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "MW" = (
@@ -8396,7 +8396,7 @@
 /turf/open/floor/twig,
 /area/under/cave)
 "RV" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /obj/structure/flora/grass/pyroclasticflowers{
 	icon_state = "pyroflower2";
 	pixel_x = -1
@@ -8593,7 +8593,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/under/cave)
 "SS" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/grass/herb/urtica,
 /turf/open/floor/dirt,
 /area/outdoors)
@@ -8612,7 +8612,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "SX" = (
-/mob/living/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt/road,
 /area/outdoors)
 "Tb" = (
@@ -8661,7 +8661,7 @@
 /turf/open/floor/twig,
 /area/under/cave)
 "Tl" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /obj/structure/flora/newbranch/leafless{
 	icon_state = "branch-end2";
 	dir = 4
@@ -8958,7 +8958,7 @@
 /turf/open/floor/grass/eora,
 /area/outdoors)
 "US" = (
-/mob/living/simple_animal/hostile/retaliate/cow/cowlet/bullet,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow/cowlet/bullet,
 /obj/structure/flora/grass{
 	icon_state = "grass3"
 	},
@@ -8989,7 +8989,7 @@
 /turf/open/floor/hay,
 /area/indoors/town)
 "Vg" = (
-/mob/living/simple_animal/hostile/retaliate/chicken,
+/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors)
 "Vh" = (
@@ -9243,7 +9243,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "WG" = (
-/mob/living/simple_animal/hostile/retaliate/saiga,
+/mob/living/carbon/simple_animal/hostile/retaliate/saiga,
 /turf/open/floor/cobblerock,
 /area/outdoors)
 "WH" = (
@@ -9303,7 +9303,7 @@
 /turf/open/floor/dirt,
 /area/outdoors)
 "WW" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/grass,
 /area/outdoors)
 "WX" = (
@@ -9335,7 +9335,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors)
 "Xf" = (
-/mob/living/simple_animal/hostile/retaliate/cow,
+/mob/living/carbon/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/grass,
 /area/outdoors)
 "Xg" = (
@@ -9671,7 +9671,7 @@
 /turf/open/floor/grass,
 /area/outdoors)
 "Zg" = (
-/mob/living/simple_animal/hostile/retaliate/wolf,
+/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
 /obj/structure/flora/newbranch/leafless{
 	dir = 1
 	},

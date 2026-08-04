@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead
 	name = "deadite saiga"
 	desc = "A deadite saiga, its eyes glow with an eerie light."
 	icon = 'icons/roguetown/mob/monster/deadites/saiga_undead.dmi'
@@ -56,6 +56,6 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite)

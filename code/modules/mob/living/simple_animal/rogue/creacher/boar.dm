@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/boar
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar
 	icon = 'icons/roguetown/mob/monster/boar.dmi'
 	name = "bramblesnout"
 	desc = "The ever terrifying bramblesnout. Not just large, but its many tusks hook into flesh to create grievous wounds. Being charged is a surefire way to perish. It is a hulking mass of muscle, yet still nimble. Oft hunted in pairs, with at least one hunter getting their stomach gouged..."
@@ -16,31 +16,31 @@
 	base_intents = list(/datum/intent/simple/claw/boar)
 	// Like a pig, but some of the meat and fat drops are exchanged for hide instead.
 	botched_butcher_results = list(
-		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 2, 
-		/obj/item/alch/sinew = 2, 
-		/obj/item/natural/bone = 4, 
+		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 2,
+		/obj/item/alch/sinew = 2,
+		/obj/item/natural/bone = 4,
 		/obj/item/alch/viscera = 1,
 		/obj/item/natural/hide = 1,
 	)
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 4,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/pork_belly = 1,
-		/obj/item/reagent_containers/food/snacks/fat = 2, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 3, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 2,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 3,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/ham/boar = 2,
 		/obj/item/natural/hide = 2,
 	)
 	perfect_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 5,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/pork_belly = 2,
-		/obj/item/reagent_containers/food/snacks/fat = 3, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 4, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 3,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 4,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/ham/boar = 2,
 		/obj/item/natural/hide = 3,
 	)
@@ -59,7 +59,7 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat,
 	)
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	pooptype = null
@@ -77,7 +77,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/boar
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -86,11 +86,11 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('modular/Creechers/sound/pighangry.ogg')
@@ -101,12 +101,12 @@
 		if("idle")
 			return pick('modular/Creechers/sound/pig1.ogg','modular/Creechers/sound/pig2.ogg',)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/taunted(mob/user)
 	emote("aggro")
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -155,7 +155,7 @@
 	penfactor = PEN_HEAVY
 	blade_class = BCLASS_STAB
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/death()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/death()
 	. = ..()
 	if(!QDELETED(src))
 		src.AddComponent(/datum/component/deadite_animal_reanimation)

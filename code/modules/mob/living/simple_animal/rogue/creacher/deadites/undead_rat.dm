@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead
 	icon = 'icons/roguetown/mob/monster/deadites/rat_undead.dmi'
 	name = "deadite rous"
 	desc = "Death has only narrowed down its tastes. Chitters tell tales of your flesh."
@@ -30,7 +30,7 @@
 	ai_controller = /datum/ai_controller/rat/undead
 	undead_rat = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -48,9 +48,9 @@
 			return "stomach"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 4 MINUTES, 50, 50, "rat_downed", 0)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned
 	ai_controller = /datum/ai_controller/rat/undead/summoned

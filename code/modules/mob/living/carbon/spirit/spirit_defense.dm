@@ -70,7 +70,7 @@
 									span_danger("[M] disarms you!"), span_hear("I hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, M)
 					to_chat(M, span_danger("I disarm [src]!"))
 
-/mob/living/carbon/spirit/attack_animal(mob/living/simple_animal/M)
+/mob/living/carbon/spirit/attack_animal(mob/living/carbon/simple_animal/M)
 	. = ..()
 	if(.)
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)

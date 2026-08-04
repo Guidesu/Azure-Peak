@@ -7,6 +7,16 @@
 #define STAT_SPEED "speed"
 #define STAT_FORTUNE "fortune"
 
+/*STAT INTEGRATION DEFINES — quality tiers for stat_check()*/
+#define STAT_BASELINE 10
+#define STAT_CEILING 20
+#define STAT_QUALITY_FAILURE 0
+#define STAT_QUALITY_POOR 1
+#define STAT_QUALITY_AVERAGE 2
+#define STAT_QUALITY_GOOD 3
+#define STAT_QUALITY_EXCELLENT 4
+#define STAT_QUALITY_MASTERWORK 5
+
 // Weapon balance defines
 #define WBALANCE_NORMAL 0
 #define WBALANCE_HEAVY -1

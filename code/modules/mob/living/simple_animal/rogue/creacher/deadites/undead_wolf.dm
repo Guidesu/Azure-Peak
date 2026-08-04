@@ -1,6 +1,6 @@
 //I'm not calling this undead_volf I want code to be searchable kthx
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead
 //I'm not inhereting base wolf either because it uses cursed elements and AI.
 	icon = 'icons/roguetown/mob/monster/deadites/wolf_undead.dmi'
 	name = "deadite volf"
@@ -65,7 +65,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/undead/wolf
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/AttackingTarget() //7+1d6 vs con to knock ppl down
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead/AttackingTarget() //7+1d6 vs con to knock ppl down
 	. = ..()
 
 	if(. && prob(8) && iscarbon(target))
@@ -85,12 +85,12 @@
 				C.visible_message(span_danger("\The [src] fails to drag \the [C] down!"))
 		chomp_cd = world.time //this goes here i think? ...sure
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddComponent(/datum/component/deadite, 15 MINUTES, 100, 75, "wolf_downed")
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -103,7 +103,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

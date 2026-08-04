@@ -1,5 +1,5 @@
 ///For the Nosferatu Vampire Lord transformationn
-/mob/living/simple_animal/hostile/retaliate/smallrat
+/mob/living/carbon/simple_animal/hostile/retaliate/smallrat
 	name = "rat"
 	desc = ""
 	icon_state = "srat"

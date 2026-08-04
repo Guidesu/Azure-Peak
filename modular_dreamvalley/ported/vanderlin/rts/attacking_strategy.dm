@@ -8,7 +8,7 @@
 // COMPATIBILITY CHECK (done before porting this file, per the plan's
 // explicit request to verify proc names rather than assume the earlier
 // compatibility pass was exhaustive):
-//   - /mob/living/simple_animal/hostile/proc/AttackingTarget() (hostile.dm)
+//   - /mob/living/carbon/simple_animal/hostile/proc/AttackingTarget() (hostile.dm)
 //     EXISTS but with a different signature than Vanderlin expects: it takes
 //     NO arguments and reads its own `target`/`targets_from` vars instead of
 //     an explicit target parameter. Vanderlin's source calls
@@ -18,8 +18,8 @@
 //     `worker.AttackingTarget()` with no arguments, so the melee swing lands
 //     on our chosen target through the hostile mob's own existing attack
 //     path. This is safe because this port's worker_type default
-//     (/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite, see
-//     controller_mob.dm) is itself a /mob/living/simple_animal/hostile
+//     (/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite, see
+//     controller_mob.dm) is itself a /mob/living/carbon/simple_animal/hostile
 //     subtype, so `target`/`targets_from`/AttackingTarget() all resolve.
 //     Any future worker_type swapped in that ISN'T a simple_animal/hostile
 //     subtype won't have AttackingTarget() at all - can_attack_target() below
@@ -30,7 +30,7 @@
 //     params, spread) (code/modules/projectiles/projectile.dm) and
 //     /obj/projectile/proc/fire(angle, direct_target) (same file) match
 //     Vanderlin's expected calls exactly - confirmed against this repo's own
-//     /mob/living/simple_animal/hostile/proc/Shoot() (hostile.dm), which
+//     /mob/living/carbon/simple_animal/hostile/proc/Shoot() (hostile.dm), which
 //     builds and fires a projectile with the identical
 //     starting/firer/fired_from/yo/xo/original/preparePixelProjectile/fire()
 //     sequence used below. No adaptation needed for fire_projectile().
@@ -173,7 +173,7 @@
 // worker.target/targets_from and calls worker.AttackingTarget() with no
 // arguments, instead of Vanderlin's worker.AttackingTarget(current_target) -
 // this repo's AttackingTarget() (only declared on
-// /mob/living/simple_animal/hostile) takes no target parameter and swings at
+// /mob/living/carbon/simple_animal/hostile) takes no target parameter and swings at
 // whatever its own `target` var already points to. Guarded with
 // hascall()/istype() so a non-hostile worker_type just skips the swing
 // instead of runtiming on a missing proc.
@@ -191,8 +191,8 @@
 
 	reset_patience()
 	if(!spawning_projectile)
-		if(istype(worker, /mob/living/simple_animal/hostile))
-			var/mob/living/simple_animal/hostile/hostile_worker = worker
+		if(istype(worker, /mob/living/carbon/simple_animal/hostile))
+			var/mob/living/carbon/simple_animal/hostile/hostile_worker = worker
 			hostile_worker.target = current_target
 			if(!hostile_worker.targets_from)
 				hostile_worker.targets_from = hostile_worker

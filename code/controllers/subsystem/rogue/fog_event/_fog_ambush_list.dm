@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
 	// Revenant Human (Weak)
     var/datum/ambush_entry/mob/human_weak = new
-    human_weak.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant
+    human_weak.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant
     human_weak.unlock_score = 5
     human_weak.point_cost = 5
     human_weak.weight = 5
@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
     // Mire Crawler (Cheap, swarmable)
     var/datum/ambush_entry/mob/crawler = new
-    crawler.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider
+    crawler.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider
     crawler.unlock_score = 10
     crawler.point_cost = 10
     crawler.weight = 20
@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
     // Revenant Human (Standard)
     var/datum/ambush_entry/mob/human = new
-    human.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant
+    human.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant
     human.unlock_score = 15
     human.point_cost = 15
     human.weight = 20
@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
     // Volf Revenant
     var/datum/ambush_entry/mob/wolf = new
-    wolf.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf
+    wolf.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf
     wolf.unlock_score = 25
     wolf.point_cost = 25
     wolf.weight = 15
@@ -44,9 +44,9 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
     // Group: The Hunting Pack (2 Volves + 1 Human)
     var/datum/ambush_entry/group/pack = new
     pack.mob_types = list(
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf,
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf,
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf,
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf,
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant
     )
     pack.unlock_score = 50
     pack.point_cost = 50
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
     // Mire Lurker Revenant
     var/datum/ambush_entry/mob/lurker = new
-    lurker.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker
+    lurker.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker
     lurker.unlock_score = 40
     lurker.point_cost = 40
     lurker.weight = 10
@@ -66,10 +66,10 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
     // Group: Spider Swarm (1 Lurker + 3 Crawlers)
     var/datum/ambush_entry/group/swarm = new
     swarm.mob_types = list(
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker,
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider,
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider,
-        /mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker,
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider,
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider,
+        /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider
     )
     swarm.unlock_score = 65
     swarm.point_cost = 65
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(ambush_encounters, init_ambush_encounters())
 
     // The Dragon (Cannot Repeat)
     var/datum/ambush_entry/mob/dragon = new
-    dragon.mob_type = /mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon
+    dragon.mob_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/dragon
     dragon.unlock_score = 150 // Requires a large group or very long exposure
     dragon.point_cost = 150
     dragon.weight = 20

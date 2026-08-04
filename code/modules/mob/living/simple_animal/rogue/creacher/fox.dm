@@ -1,5 +1,5 @@
 //Subtype of wolf, but non-hostile until attacked instead of default hostile.
-/mob/living/simple_animal/hostile/retaliate/rogue/fox
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox
 	icon = 'icons/roguetown/mob/monster/fox.dmi'
 	name = "venard"
 	desc = "A majestic beast of Ignatius's realm, hopping through the local fauna."
@@ -74,7 +74,7 @@
 	ai_controller = /datum/ai_controller/volf
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
@@ -85,7 +85,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/fox.dmi'
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -98,7 +98,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/taunted(mob/user)
 	if(aggressive == FALSE)
 		return
 	else
@@ -107,7 +107,7 @@
 		GiveTarget(user)
 		return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/Life()
 	..()
 	if(aggressive == FALSE)
 		return
@@ -117,7 +117,7 @@
 			GiveTarget(pulledby)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -159,14 +159,14 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/guildpet
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/guildpet
 	name = "Mimi the Fox"
 	desc = "An adorable creechur adopted by the Guild of Craft as their mascot."
 	density = 0 // You can walk through them
 	aggressive = FALSE
 	ai_controller = /datum/ai_controller/generic
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/guildpet/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/guildpet/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -179,7 +179,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fox/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/death(gibbed)
 	. = ..()
 	if(!QDELETED(src) && !gibbed)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)

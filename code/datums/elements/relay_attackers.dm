@@ -46,7 +46,7 @@
 	SIGNAL_HANDLER
 	var/dmg = 10
 	if(isanimal(attacker))
-		var/mob/living/simple_animal/beast = attacker
+		var/mob/living/carbon/simple_animal/beast = attacker
 		dmg = round((beast.melee_damage_lower + beast.melee_damage_upper) * 0.5) || 10
 	relay_attacker(target, attacker, dmg)
 

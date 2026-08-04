@@ -52,14 +52,14 @@
 		revert_cast()
 		return
 	var/turf/T = get_turf(user)
-	new /mob/living/simple_animal/hostile/rogue/xylixdouble(T, user, clone_icon)
+	new /mob/living/carbon/simple_animal/hostile/rogue/xylixdouble(T, user, clone_icon)
 	animate(user, alpha = 0, time = 0 SECONDS, easing = EASE_IN)
 	user.mob_timers[MT_INVISIBILITY] = world.time + 7 SECONDS
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon/human, update_sneak_invis), TRUE), 7 SECONDS)
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[user] fades back into view."), span_notice("You become visible again.")), 7 SECONDS)
 	return TRUE
 
-/mob/living/simple_animal/hostile/rogue/xylixdouble
+/mob/living/carbon/simple_animal/hostile/rogue/xylixdouble
 	name = "Xylixian Double - You shouldnt be seeing this."
 	desc = ""
 	gender = NEUTER
@@ -82,9 +82,9 @@
 	playsound(loc, 'sound/magic/decoylaugh.ogg', 50)
 	explode()
 
-/mob/living/simple_animal/hostile/rogue/xylixdouble/Initialize(mapload, mob/living/carbon/human/copycat, icon/I)
+/mob/living/carbon/simple_animal/hostile/rogue/xylixdouble/Initialize(mapload, mob/living/carbon/human/copycat, icon/I)
 	. = ..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal, death), TRUE), 7 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/simple_animal, death), TRUE), 7 SECONDS)
 	icon = I
 	name = copycat.name
 	

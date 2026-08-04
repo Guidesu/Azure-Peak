@@ -50,7 +50,7 @@
 		reanim_timer_id = null
 	qdel(src)
 
-/datum/component/deadite/proc/on_apply_damage(mob/living/simple_animal/L, damage, damagetype, def_zone, blocked, forced)
+/datum/component/deadite/proc/on_apply_damage(mob/living/carbon/simple_animal/L, damage, damagetype, def_zone, blocked, forced)
 	SIGNAL_HANDLER
 
 	//to_chat(world, span_danger("Hit them in the [def_zone]")) uncomment for debugging
@@ -108,7 +108,7 @@
 			playsound(L, 'sound/combat/fracture/fracturedry (1).ogg', 100, TRUE)
 
 /datum/component/deadite/proc/reanimation()
-	var/mob/living/simple_animal/L = parent
+	var/mob/living/carbon/simple_animal/L = parent
 	if(QDELETED(L) || L.stat == DEAD)
 		return
 

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead
 	ai_controller = /datum/ai_controller/undead/cabbit
 	faction = list(FACTION_UNDEAD)
 
@@ -33,7 +33,7 @@
 							/obj/item/natural/rabbitsfoot = 1,
 							/obj/item/alch/viscera = 2)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -51,7 +51,7 @@
 			return "stomach"
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddComponent(/datum/component/deadite, 15 MINUTES, 30, 30, "cabbit_downed", 1)
@@ -63,7 +63,7 @@
 	penfactor = PEN_LIGHT
 	blade_class = BCLASS_CUT
 
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/attempt_dodge(datum/intent/intenty, mob/living/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/attempt_dodge(datum/intent/intenty, mob/living/user)
 	if(world.time < last_dodge + dodgetime)
 		return FALSE
 

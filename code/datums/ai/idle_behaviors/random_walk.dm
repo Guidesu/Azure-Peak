@@ -7,7 +7,7 @@
 	if(controller.blackboard[BB_BASIC_MOB_FOOD_TARGET]) // this means we are likely eating a corpse (maybe also moving)
 		return
 
-	var/mob/living/simple_animal/simple_mob = controller.pawn
+	var/mob/living/carbon/simple_animal/simple_mob = controller.pawn
 	if(istype(simple_mob) && simple_mob.binded)
 		return FALSE
 	var/mob/living/wanderer = controller.pawn

@@ -170,7 +170,7 @@
 			return mount.attackby(I, user, params)
 	return ..()
 
-/mob/living/carbon/human/attack_animal(mob/living/simple_animal/M)
+/mob/living/carbon/human/attack_animal(mob/living/carbon/simple_animal/M)
 	if(buckled && istype(buckled, /mob/living/carbon/human))
 		var/mob/living/carbon/human/mount = buckled
 		if(HAS_TRAIT(mount, TRAIT_MOUNTABLE))

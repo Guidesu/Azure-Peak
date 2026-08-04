@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur
 	icon = 'icons/mob/newminotaur.dmi'
 	name = "Minotaur"
 	desc = "An unusually giant relative of the more familiar manners of Wild-Kin. This one looks aggressive."
@@ -43,8 +43,8 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
-	//obj/item/bodypart, 
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat,
+	//obj/item/bodypart,
 	//obj/item/organ
 	)
 	footstep_type = FOOTSTEP_MOB_HEAVY
@@ -65,7 +65,7 @@
 
 //	stat_attack = UNCONSCIOUS
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	update_icon()
@@ -73,12 +73,12 @@
 	ADD_TRAIT(src, TRAIT_BASHDOORS, TRAIT_GENERIC)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/female
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/female
 	icon_state = "MinotaurFem"
 	icon_living = "MinotaurFem"
 	icon_dead = "MinotaurFem_dead"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"
@@ -87,28 +87,28 @@
 	melee_damage_upper = 85
 	limb_destroyer = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/female
 	icon_state = "MinotaurFem_Axe"
 	icon_living = "MinotaurFem_Axe"
 	icon_dead = "MinotaurFem_dead"
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/Life()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
@@ -120,7 +120,7 @@
 			return pick('sound/vo/mobs/minotaur/minoidle.ogg', 'sound/vo/mobs/minotaur/minoidle2.ogg')
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -189,23 +189,23 @@
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
-	reach = 2 
+	reach = 2
 	item_d_type = "stab"
 	clickcd = MINOTAUR_AXE_ATTACK_SPEED
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/original
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/original
 	AIStatus = AI_ON
 	can_have_ai = TRUE
 
 // Dungeon-taur - Less health then normal.
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/wounded
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur"
 	icon_living = "wminotaur"
 	health = 400	//Regular is 600.
 	maxHealth = 400
 
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/wounded
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/wounded
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur_axe"
 	icon_living = "wminotaur_axe"
@@ -213,7 +213,7 @@
 	maxHealth = 400
 
 //Same as usual wounded, unique for orc dungeon. Prisoner-minotaur, doesn't attack orcs for dungeon related stuff.
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained
 	name = "Chained Minotaur"
 	icon_state = "chainedminotaur"
 	icon_living = "chainedminotaur"

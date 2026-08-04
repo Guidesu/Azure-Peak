@@ -9,7 +9,7 @@
 	category = FACTION_CAT_ELEMENTAL
 	allowed_quest_types = list(QUEST_TOWNER_MINER_OREVEIN)
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler = 60,
-		/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden = 35,
-		/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler = 60,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden = 35,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth = 5,
 	)

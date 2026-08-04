@@ -32,8 +32,8 @@
 		/obj/item/ammo_casing/caseless/rogue/arrow = 1*trashMod,
 		/obj/item/reagent_containers/glass/bottle/rogue = 1*trashMod,
 		/obj/item/reagent_containers/food/snacks/smallrat = 1 + 15*cheeseMod, //That's not a fish...?
-		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
 	)
 	return counterlist_ceiling(weightList)
 
@@ -67,8 +67,8 @@
 		/obj/item/ammo_casing/caseless/rogue/arrow = 1*trashMod,
 		/obj/item/reagent_containers/glass/bottle/rogue = 1*trashMod,
 		/obj/item/reagent_containers/food/snacks/smallrat = 1 + 15*cheeseMod, //That's not a coastal fish...?
-		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
 	)
 	return counterlist_ceiling(weightList)
 
@@ -96,10 +96,10 @@
 		/obj/item/storage/belt/rogue/pouch/coins/rich = 15*ceruleanMod,
 		/obj/item/reagent_containers/glass/bottle/rogue = 1*trashMod,
 		/obj/item/reagent_containers/food/snacks/smallrat = 1 + 15*cheeseMod, //That's not a deep sea fish...?
-		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
 		/mob/living/carbon/human/species/goblin/npc/sea = 50*dangerMod,
-		/mob/living/simple_animal/hostile/rogue/deepone = 50*dangerMod,
-		/mob/living/simple_animal/hostile/rogue/deepone/spit = 50*dangerMod,
+		/mob/living/carbon/simple_animal/hostile/rogue/deepone = 50*dangerMod,
+		/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit = 50*dangerMod,
 	)
 	return counterlist_ceiling(weightList)
 
@@ -115,8 +115,8 @@
 		/obj/item/natural/worms/leech = 180*rareMod,
 		/obj/item/clothing/ring/gold = 1*treasureMod + 30*ceruleanMod,
 		/obj/item/reagent_containers/food/snacks/smallrat = 1 + 15*cheeseMod, //Thats one dirty... not a fish...?
-		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab = 30,
 	)
 	return counterlist_ceiling(weightList)
 
@@ -131,7 +131,7 @@
 			/obj/item/reagent_containers/food/snacks/fish/lobster = 250*commonMod,
 			/obj/item/roguegem/oyster = 50*rareMod,
 			/obj/item/reagent_containers/food/snacks/smallrat = 1 + 15*cheeseMod, //Oh for fucks sake!
-			/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
+			/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 1*cheeseMod,
 			/obj/item/grown/log/tree/stick =  100*trashMod,
 	)
 	return counterlist_ceiling(weightList)
@@ -191,13 +191,13 @@
 
 		// --- Rodent menace ---
 		/obj/item/reagent_containers/food/snacks/smallrat = 5 + 75 * cheeseMod,
-		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 5 * cheeseMod,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 5 * cheeseMod,
 
 		// --- Danger / Monsters ---
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 90,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab = 90,
 		/mob/living/carbon/human/species/goblin/npc/sea = 50 * dangerMod,
-		/mob/living/simple_animal/hostile/rogue/deepone = 50 * dangerMod,
-		/mob/living/simple_animal/hostile/rogue/deepone/spit = 50 * dangerMod
+		/mob/living/carbon/simple_animal/hostile/rogue/deepone = 50 * dangerMod,
+		/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit = 50 * dangerMod
 	)
 	return counterlist_ceiling(weightList)
 

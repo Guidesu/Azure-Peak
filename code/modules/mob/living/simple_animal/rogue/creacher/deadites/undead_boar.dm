@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/undead
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/undead
 	icon = 'icons/roguetown/mob/monster/deadites/boar_undead.dmi'
 	name = "deadite bramblesnout"
 	desc = "The terrifying bramblesnout, claimed by undeath. Its viciously curved tusks are splintered but lethal, backed by a ruined mass of muscle that no longer feels pain, fatigue, or mercy."
@@ -38,11 +38,11 @@
 		/obj/item/natural/hide = 3,
 	)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/undead/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, BOAR_HEALTH_UNDEAD, 300, "boar_downed", 0)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/boar/undead/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/undead/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -221,7 +221,7 @@
 
 	var/mob/living/carbon/human/H = parent
 	var/turf/T = get_turf(H)
-	var/mob/living/simple_animal/hostile/retaliate/rogue/terrorhog_corpse/C = new(T)
+	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/terrorhog_corpse/C = new(T)
 	
 	spawn(1)
 		C.death()
@@ -257,7 +257,7 @@
 
 #undef MOVESPEED_ID_BLOOD_FRENZY
 
-/mob/living/simple_animal/hostile/retaliate/rogue/terrorhog_corpse
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/terrorhog_corpse
 	name = "Terrorhog"
 	desc = "No longer do the wails of this profane creature pierce the night."
 	icon = 'icons/mob/unique_shapeshifts/boar_shape.dmi'

@@ -2521,7 +2521,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/vampire_lair)
 "kG" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
 "kH" = (
@@ -3075,7 +3075,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/wretch_lair)
 "mR" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
 "mS" = (
@@ -3913,7 +3913,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
 "qw" = (
-/mob/living/simple_animal/pet/cat/rogue/black{
+/mob/living/carbon/simple_animal/pet/cat/rogue/black{
 	name = "fangs"
 	},
 /obj/structure/fluff/railing/border/west{
@@ -6155,7 +6155,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/vampire_manor)
 "Ab" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
 "Ac" = (
@@ -12206,7 +12206,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "ZV" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab,
 /turf/open/floor/rogue/AzureSand,
 /area/rogue/outdoors/woods/wretch_lair)
 "ZW" = (

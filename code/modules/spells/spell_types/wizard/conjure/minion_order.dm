@@ -60,7 +60,7 @@
 				target.mind.current.faction += faction_tag
 				user.say("Amicus declaratus es.", language = /datum/language/common)
 				target.notify_faction_change()
-		else if(istype(target, /mob/living/simple_animal))
+		else if(istype(target, /mob/living/carbon/simple_animal))
 			if(faction_tag in target.faction)
 				target.faction -= faction_tag
 				user.say("Hostis declaratus es.", language = /datum/language/common)

@@ -389,6 +389,8 @@
 						dullfactor = 0.2
 					else
 						dullfactor = 0.45 + (lumberskill * 0.15)
+						// Stat integration: STR boosts chopping power
+						dullfactor *= lumberjacker.get_lumber_speed_mult() * 0.5 + 0.5
 						if(HAS_TRAIT(user, TRAIT_WYRD_LABOURER))
 							dullfactor *= 1.5
 						lumberjacker.mind?.add_sleep_experience(/datum/skill/labor/lumberjacking, (lumberjacker.STAINT*0.2))
@@ -400,6 +402,8 @@
 						dullfactor = 0.3
 					else
 						dullfactor = 1.0 + (lumberskill * 0.25)
+						// Stat integration: STR boosts chopping power
+						dullfactor *= lumberjacker.get_lumber_speed_mult() * 0.5 + 0.5
 						lumberjacker.mind?.add_sleep_experience(/datum/skill/labor/lumberjacking, (lumberjacker.STAINT*0.2))
 					cont = TRUE
 			if(!cont)
@@ -461,6 +465,8 @@
 			var/mob/living/miner = user
 			var/mineskill = miner.get_skill_level(/datum/skill/labor/mining)
 			newforce = newforce * (8+(mineskill*1.5))
+			// Stat integration: STR and CON boost mining damage
+			newforce *= miner.get_mining_speed_mult() * 0.5 + 0.5 // blend: 0.5x at low, up to ~1.25x at high
 			if(HAS_TRAIT(user, TRAIT_WYRD_LABOURER))
 				newforce *= 1.5
 			shake_camera(user, 1, 1)
@@ -734,7 +740,7 @@
 	if(I.force_dynamic)
 		return TRUE
 
-/mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)
+/mob/living/carbon/simple_animal/attacked_by(obj/item/I, mob/living/user)
 	if(I.force_dynamic < force_threshold || I.damtype == STAMINA)
 		playsound(loc, 'sound/blank.ogg', I.get_clamped_volume(), TRUE, -1)
 	else

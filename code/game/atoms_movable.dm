@@ -184,8 +184,8 @@
 				if(M.mind)	//No clickcd if we're grabbing a mindless mob, just frag the stupid AI
 					L.changeNext_move(clickcd)
 				M.changeNext_move(CLICK_CD_HEAVY)
-	if(istype(AM, /mob/living/simple_animal))
-		var/mob/living/simple_animal/simple_animal = AM
+	if(istype(AM, /mob/living/carbon/simple_animal))
+		var/mob/living/carbon/simple_animal/simple_animal = AM
 		simple_animal.toggle_ai(AI_ON)
 	return TRUE
 

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rogue/haunt
+/mob/living/carbon/simple_animal/hostile/rogue/haunt
 	name = "haunt"
 	desc = "Something dances in the corner of your eye; something is both there and not there."
 	icon = 'icons/roguetown/mob/monster/wraith.dmi'
@@ -48,10 +48,10 @@
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/haunt
 
-/mob/living/simple_animal/hostile/rogue/haunt/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
 	return FALSE
 
-/mob/living/simple_animal/hostile/rogue/haunt/simple_limb_hit(zone)
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -96,7 +96,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hostile/rogue/haunt/omen
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/omen
 	name = "omen"
 	desc = "A vengeful spirit comes to haunt the living!"
 	maxHealth = 200
@@ -137,7 +137,7 @@
 	if(!spawning)
 		return
 	spawning = FALSE
-	var/mob/living/simple_animal/hostile/rogue/haunt/H = new (get_turf(src))
+	var/mob/living/carbon/simple_animal/hostile/rogue/haunt/H = new (get_turf(src))
 	H.slavepile = src
 	haunts += H
 	update_icon()
@@ -155,7 +155,7 @@
 	soundloop.stop()
 	spawning = FALSE
 	for(var/H in haunts)
-		var/mob/living/simple_animal/hostile/rogue/haunt/D = H
+		var/mob/living/carbon/simple_animal/hostile/rogue/haunt/D = H
 		D.death()
 	var/spawned = pick(/obj/item/reagent_containers/powder/spice)
 	new spawned(get_turf(src))
@@ -165,21 +165,21 @@
 	. = ..()
 	if(user)
 		for(var/H in haunts)
-			var/mob/living/simple_animal/hostile/rogue/haunt/D = H
+			var/mob/living/carbon/simple_animal/hostile/rogue/haunt/D = H
 			D.GiveTarget(user)
 
-/mob/living/simple_animal/hostile/rogue/haunt/taunted(mob/user)
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/taunted(mob/user)
 	GiveTarget(user)
 	return
 
-/mob/living/simple_animal/hostile/rogue/haunt/Initialize()
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	set_light(2, 2, 2, l_color = "#c0523f")
 	ADD_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/rogue/haunt/Destroy()
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/Destroy()
 	set_light(0)
 	if(slavepile)
 		slavepile.haunts -= src
@@ -187,11 +187,11 @@
 		slavepile = null
 	. = ..()
 
-/mob/living/simple_animal/hostile/rogue/haunt/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/death(gibbed)
 	emote("death")
 	..()
 
-/mob/living/simple_animal/hostile/rogue/haunt/Life()
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/Life()
 	. = ..()
 	if(slavepile)
 		var/offset_x = x - slavepile.x
@@ -205,7 +205,7 @@
 		if(prob(3))
 			emote(pick("laugh", "moan", "whisper"), TRUE)
 
-/mob/living/simple_animal/hostile/rogue/haunt/get_sound(input)
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/get_sound(input)
 	switch(input)
 		if("laugh")
 			return pick('sound/vo/mobs/ghost/laugh (1).ogg','sound/vo/mobs/ghost/laugh (2).ogg','sound/vo/mobs/ghost/laugh (3).ogg','sound/vo/mobs/ghost/laugh (4).ogg','sound/vo/mobs/ghost/laugh (5).ogg','sound/vo/mobs/ghost/laugh (6).ogg')
@@ -218,7 +218,7 @@
 		if("aggro")
 			return pick('sound/vo/mobs/ghost/aggro (1).ogg','sound/vo/mobs/ghost/aggro (2).ogg','sound/vo/mobs/ghost/aggro (3).ogg','sound/vo/mobs/ghost/aggro (4).ogg','sound/vo/mobs/ghost/aggro (5).ogg','sound/vo/mobs/ghost/aggro (6).ogg')
 
-/mob/living/simple_animal/hostile/rogue/haunt/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/rogue/haunt/AttackingTarget()
 	. = ..()
 	if(. && prob(10) && iscarbon(target))
 		var/mob/living/carbon/C = target

@@ -1,5 +1,5 @@
 // Port from Vanderlin with AP code for throwing the rock
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave
 	name = "cave troll"
 	desc = "Dwarven tales of giants and trolls often contain these creatures, horrifying amalgamations of flesh and crystal who have long since abandoned Malum's ways."
 	icon = 'icons/roguetown/mob/monster/trolls/troll_cave.dmi'
@@ -10,7 +10,7 @@
 
 	defprob = 15
 
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave/Initialize(mapload)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/mob_cooldown/stone_throw/throwstone = new(src)
 	throwstone.Grant(src)

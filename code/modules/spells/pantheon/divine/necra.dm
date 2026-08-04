@@ -1051,14 +1051,14 @@ var/global/mob/_corpse_sort_ref = null
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
 		if(user.dir == SOUTH || user.dir == NORTH)
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, EAST),user)
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, WEST),user)
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, EAST),user)
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, WEST),user)
 		else
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, NORTH),user)
-			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, SOUTH),user)
-		for(var/mob/living/simple_animal/hostile/rogue/spirit_vengeance/swarm in view(2, user))
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, NORTH),user)
+			new /mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, SOUTH),user)
+		for(var/mob/living/carbon/simple_animal/hostile/rogue/spirit_vengeance/swarm in view(2, user))
 			swarm.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
 		return TRUE
 	revert_cast()

@@ -112,7 +112,7 @@
 		..()
 
 
-/turf/closed/wall/attack_animal(mob/living/simple_animal/M)
+/turf/closed/wall/attack_animal(mob/living/carbon/simple_animal/M)
 	M.changeNext_move(CLICK_CD_MELEE)
 	M.do_attack_animation(src)
 	if((M.environment_smash & ENVIRONMENT_SMASH_WALLS) || (M.environment_smash & ENVIRONMENT_SMASH_RWALLS))

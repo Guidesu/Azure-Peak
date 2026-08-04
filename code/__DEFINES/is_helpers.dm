@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
-#define issimple(A) (istype(A, /mob/living/simple_animal))
+#define issimple(A) (istype(A, /mob/living/carbon/simple_animal))
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
@@ -106,35 +106,35 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 
 
 //Simple animals
-#define isanimal(A) (istype(A, /mob/living/simple_animal))
+#define isanimal(A) (istype(A, /mob/living/carbon/simple_animal))
 
-#define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
+#define isrevenant(A) (istype(A, /mob/living/carbon/simple_animal/revenant))
 
-#define isshade(A) (istype(A, /mob/living/simple_animal/shade))
+#define isshade(A) (istype(A, /mob/living/carbon/simple_animal/shade))
 
-#define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
+#define ismouse(A) (istype(A, /mob/living/carbon/simple_animal/mouse))
 
-#define iscow(A) (istype(A, /mob/living/simple_animal/cow))
+#define iscow(A) (istype(A, /mob/living/carbon/simple_animal/cow))
 
-#define isslime(A) (istype(A, /mob/living/simple_animal/slime))
+#define isslime(A) (istype(A, /mob/living/carbon/simple_animal/slime))
 
-#define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
+#define iscat(A) (istype(A, /mob/living/carbon/simple_animal/pet/cat))
 
-#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
+#define isdog(A) (istype(A, /mob/living/carbon/simple_animal/pet/dog))
 
-#define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
+#define iscorgi(A) (istype(A, /mob/living/carbon/simple_animal/pet/dog/corgi))
 
-#define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
+#define ishostile(A) (istype(A, /mob/living/carbon/simple_animal/hostile))
 
-#define isswarmer(A) (istype(A, /mob/living/simple_animal/hostile/swarmer))
+#define isswarmer(A) (istype(A, /mob/living/carbon/simple_animal/hostile/swarmer))
 
-#define isguardian(A) (istype(A, /mob/living/simple_animal/hostile/guardian))
+#define isguardian(A) (istype(A, /mob/living/carbon/simple_animal/hostile/guardian))
 
-#define isconstructm(A) (istype(A, /mob/living/simple_animal/hostile/construct))
+#define isconstructm(A) (istype(A, /mob/living/carbon/simple_animal/hostile/construct))
 
-#define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
+#define ismegafauna(A) (istype(A, /mob/living/carbon/simple_animal/hostile/megafauna))
 
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
+#define isclown(A) (istype(A, /mob/living/carbon/simple_animal/hostile/retaliate/clown))
 
 
 //Misc mobs
@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 
 #define iseffect(O) (istype(O, /obj/effect))
 
-#define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
+#define isblobmonster(O) (istype(O, /mob/living/carbon/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
 

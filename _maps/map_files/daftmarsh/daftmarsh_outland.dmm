@@ -10,7 +10,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/lower)
 "am" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "av" = (
@@ -423,7 +423,7 @@
 /turf/open/floor/tile/kitchen,
 /area/indoors/villagegarrison)
 "ej" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave,
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/lower)
 "ek" = (
@@ -639,7 +639,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors/woods_safe)
 "fG" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/water/marsh/deep,
 /area/outdoors/wilderness)
 "fM" = (
@@ -1282,7 +1282,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/cobweb,
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood/turned/darker,
 /area/under/mountains/anvil/lower)
 "mG" = (
@@ -1371,7 +1371,7 @@
 "nD" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon,
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "nE" = (
@@ -1394,7 +1394,7 @@
 /turf/open/floor/cobblerock,
 /area/outdoors/woods_safe)
 "nK" = (
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "nN" = (
@@ -1450,7 +1450,7 @@
 /area/under/mountains/anvil/lower)
 "oP" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "oQ" = (
@@ -1648,7 +1648,7 @@
 /area/under/mountains/anvil/lower)
 "qW" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "qY" = (
@@ -1676,7 +1676,7 @@
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "rB" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/lower)
@@ -1964,7 +1964,7 @@
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "uk" = (
-/mob/living/simple_animal/hostile/retaliate/troll/cave{
+/mob/living/carbon/simple_animal/hostile/retaliate/troll/cave{
 	name = "Grond the Entrapped"
 	},
 /obj/effect/decal/cleanable/blood/gibs/limb,
@@ -2214,7 +2214,7 @@
 /turf/open/floor/wood,
 /area/indoors)
 "xN" = (
-/mob/living/simple_animal/hostile/retaliate/minotaur/axe,
+/mob/living/carbon/simple_animal/hostile/retaliate/minotaur/axe,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "xT" = (
@@ -2244,7 +2244,7 @@
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "ym" = (
-/mob/living/simple_animal/hostile/skeleton/bow,
+/mob/living/carbon/simple_animal/hostile/skeleton/bow,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "ys" = (
@@ -2626,7 +2626,7 @@
 /area/under/mountains/anvil/lower)
 "Cy" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "CC" = (
@@ -3050,7 +3050,7 @@
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "GT" = (
-/mob/living/simple_animal/hostile/retaliate/poltergeist,
+/mob/living/carbon/simple_animal/hostile/retaliate/poltergeist,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "GX" = (
@@ -3160,7 +3160,7 @@
 /area/outdoors/bog)
 "HT" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/lower)
 "HU" = (
@@ -3885,7 +3885,7 @@
 "PD" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "PH" = (
@@ -3945,7 +3945,7 @@
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "Qn" = (
-/mob/living/simple_animal/hostile/retaliate/gator,
+/mob/living/carbon/simple_animal/hostile/retaliate/gator,
 /turf/open/water/marsh/deep,
 /area/outdoors/bog)
 "Qo" = (
@@ -4019,7 +4019,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog)
 "QZ" = (
-/mob/living/simple_animal/hostile/retaliate/spider,
+/mob/living/carbon/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "Re" = (
@@ -4830,7 +4830,7 @@
 /turf/open/water/swamp/deep,
 /area/outdoors/bog)
 "Zu" = (
-/mob/living/simple_animal/hostile/retaliate/poltergeist,
+/mob/living/carbon/simple_animal/hostile/retaliate/poltergeist,
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "Zy" = (

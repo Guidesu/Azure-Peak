@@ -1,5 +1,5 @@
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound
 	threat_point = THREAT_MODERATE
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "hell hound"
@@ -50,18 +50,18 @@
 	aggressive = 1
 	var/flame_cd
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/Initialize()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/AttackingTarget()
+/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound/AttackingTarget()
 	if(SEND_SIGNAL(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, target) & COMPONENT_HOSTILE_NO_PREATTACK)
 		return FALSE //but more importantly return before attack_animal called
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
