@@ -1,5 +1,3 @@
-#define REACH_WARNING_COOLDOWN (4 SECONDS)
-
 /mob/living/simple_animal
 	var/anatomy_type
 	var/list/part_damage
@@ -96,7 +94,7 @@
 		return
 	if(!part_damage)
 		part_damage = list()
-	part_damage[norm_zone] += damage
+	part_damage[norm_zone] += damage * (ranged ? RANGED_PART_CONTRIBUTION : 1)
 	var/part_health = max(hit_zone.part_health_minimum, round(maxHealth * hit_zone.part_health_fraction, 1))
 	if(part_damage[norm_zone] < part_health)
 		return
@@ -127,15 +125,15 @@
 	return ..()
 
 /mob/living/simple_animal/proc/show_damage_stage()
-	if(maxHealth < 200 || stat == DEAD)
+	if(maxHealth < DAMAGE_STAGE_MIN_HEALTH || stat == DEAD)
 		return
 	var/ratio = health / maxHealth
 	var/stage = 0
-	if(ratio < 0.75)
+	if(ratio < DAMAGE_STAGE_BLOODIED)
 		stage = 1
-	if(ratio < 0.5)
+	if(ratio < DAMAGE_STAGE_MANGLED)
 		stage = 2
-	if(ratio < 0.25)
+	if(ratio < DAMAGE_STAGE_SAVAGED)
 		stage = 3
 	if(stage > last_damage_stage)
 		var/part = last_hit_part || "body"
@@ -149,5 +147,3 @@
 				word = "[part] <br><font color='#7a1e1e'>savaged</font>"
 		balloon_alert_to_viewers(word)
 	last_damage_stage = stage
-
-#undef REACH_WARNING_COOLDOWN
