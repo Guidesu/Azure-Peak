@@ -21,7 +21,7 @@
 	base_intents = list(/datum/intent/simple/bite/dragon_bite)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
-	damage_coeff = list(BRUTE = 1, BURN = 0.2, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	botched_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
 		/obj/item/natural/hide = 2,
