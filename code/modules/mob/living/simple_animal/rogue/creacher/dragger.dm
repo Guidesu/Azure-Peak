@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/rogue/dragger
+	threat_point = THREAT_MODERATE
 	anatomy_type = /datum/anatomy/biped
 	icon = 'icons/roguetown/underworld/enigma_dragger.dmi'
 	icon_state = "dragger"

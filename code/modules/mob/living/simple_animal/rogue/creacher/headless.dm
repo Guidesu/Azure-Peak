@@ -1,5 +1,6 @@
 //The vile Vore Monster
 /mob/living/simple_animal/hostile/retaliate/rogue/headless
+	threat_point = THREAT_DANGEROUS
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
 	name = "headless"
 	desc = "A horrible beast of gluttony. Its body is built like a barrel with a maw that opens only to darkness."

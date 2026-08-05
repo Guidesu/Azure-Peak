@@ -31,8 +31,8 @@
 	period = 27.5
 	stats = list("STASTR" = 10, "STAPER" = 15, "STASPD" = 10)
 
-/proc/ttk_dummy(list/stats)
-	var/mob/living/carbon/human/dummy = new(locate(1, 1, 1))
+/proc/ttk_dummy(list/stats, turf/where)
+	var/mob/living/carbon/human/dummy = new(where || get_turf(usr))
 	dummy.status_flags |= GODMODE
 	for(var/stat in stats)
 		dummy.vars[stat] = stats[stat]
@@ -96,7 +96,7 @@
 	// Melee head accuracy across the PER range, against a live tough biped.
 	html += "<h2>Head hit rate vs biped/tough by PER</h2>"
 	html += "<table border='1' cellpadding='4'><tr><th>PER</th><th>Melee head</th><th>Melee leg</th><th>Ranged head</th></tr>"
-	var/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/probe = new(locate(1, 1, 1))
+	var/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/probe = new(get_turf(usr))
 	probe.status_flags |= GODMODE
 	for(var/per in 10 to 18)
 		var/mob/living/carbon/human/user = ttk_dummy(list("STAPER" = per))
@@ -109,6 +109,52 @@
 		qdel(user)
 	html += "</table>"
 	qdel(probe)
+
+	// What a mob's combat skill costs the player's defences, measured not assumed.
+	html += "<h2>Player defence vs mob combat skill</h2>"
+	html += "<p><small>Journeyman defender, sabre in hand. Rolls of the real <b>attempt_parry</b> / <b>attempt_dodge</b>.</small></p>"
+	html += "<table border='1' cellpadding='4'><tr><th>Mob skill</th><th>Threat tier</th><th>Parry</th><th>Dodge</th></tr>"
+	var/static/list/tier_names = list(
+		"[SKILL_LEVEL_NONE]" = "TRASH",
+		"[SKILL_LEVEL_NOVICE]" = "LOW",
+		"[SKILL_LEVEL_APPRENTICE]" = "MODERATE / HIGH",
+		"[SKILL_LEVEL_JOURNEYMAN]" = "TOUGH / DANGEROUS",
+		"[SKILL_LEVEL_EXPERT]" = "DEADLY",
+		"[SKILL_LEVEL_MASTER]" = "ELITE",
+	)
+	for(var/level in SKILL_LEVEL_NONE to SKILL_LEVEL_MASTER)
+		var/mob/living/carbon/human/defender = ttk_dummy(list("STASTR" = 10, "STAPER" = 12, "STASPD" = 12))
+		defender.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+		var/obj/item/blade = new /obj/item/rogueweapon/sword/sabre()
+		defender.put_in_active_hand(blade)
+		defender.cmode = 1
+
+		var/mob/living/simple_animal/hostile/retaliate/rogue/wolf/attacker = new(get_turf(usr))
+		attacker.status_flags |= GODMODE
+		attacker.adjust_skillrank_up_to(/datum/skill/combat/unarmed, level, TRUE)
+		var/intent_path = attacker.base_intents[1]
+		attacker.used_intent = new intent_path(attacker)
+
+		var/parries = 0
+		var/dodges = 0
+		for(var/i in 1 to TTK_SAMPLES)
+			defender.d_intent = INTENT_PARRY
+			defender.last_parry = 0
+			if(defender.attempt_parry(attacker.used_intent, attacker))
+				parries++
+		for(var/i in 1 to TTK_SAMPLES)
+			defender.d_intent = INTENT_DODGE
+			defender.stamina = 0
+			defender.dodgecd = FALSE
+			if(defender.attempt_dodge(attacker.used_intent, attacker))
+				dodges++
+
+		html += "<tr><td>[level]</td><td>[tier_names["[level]"]]</td>"
+		html += "<td>[round(parries / TTK_SAMPLES * 100, 0.1)]%</td>"
+		html += "<td>[round(dodges / TTK_SAMPLES * 100, 0.1)]%</td></tr>"
+		qdel(attacker)
+		qdel(defender)
+	html += "</table>"
 
 	// Raw TTK across every mob carrying a profile.
 	html += "<h2>Raw kill</h2><table border='1' cellpadding='4'><tr><th>Mob</th><th>HP</th>"

@@ -1,6 +1,7 @@
 //the saiga
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga
+	threat_point = THREAT_DEADLY
 	anatomy_type = /datum/anatomy/quadruped/standard
 	attack_aim = MOB_AIM_HIGH
 	name = "saiga doe"
@@ -78,6 +79,7 @@
 	remains_type = /obj/effect/decal/remains/saiga
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigakid
+	threat_point = THREAT_TRASH
 	name = "saiga calf"
 	icon_state = "saigakid"
 	icon_living = "saigakid"
@@ -136,6 +138,7 @@
 	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
+	threat_point = THREAT_TRASH
 	name = "saiga calf"
 	desc = ""
 	gender = MALE
@@ -264,6 +267,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
+	threat_point = THREAT_TRASH
 	icon = 'icons/roguetown/mob/monster/saiga.dmi'
 	name = "saiga"
 	gender = MALE

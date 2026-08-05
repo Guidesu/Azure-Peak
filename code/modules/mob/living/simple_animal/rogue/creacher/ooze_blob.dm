@@ -1,6 +1,7 @@
 //Sprites contributed by VelSlime
 
 /mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob
+	threat_point = THREAT_LOW
 	anatomy_type = /datum/anatomy/amorphous
 	attack_aim = MOB_AIM_GROUND
 	name = "ooze"

@@ -1,4 +1,5 @@
 /mob/living/simple_animal
+	var/combat_skill = null
 	var/anatomy_type
 	var/list/part_damage
 	var/list/broken_parts
@@ -6,6 +7,26 @@
 	var/last_damage_stage = 0
 	var/last_hit_part
 	var/next_reach_warning = 0
+
+/proc/combat_skill_for_threat(threat)
+	switch(threat)
+		if(THREAT_ELITE to INFINITY)
+			return SKILL_LEVEL_MASTER
+		if(THREAT_DEADLY to THREAT_ELITE)
+			return SKILL_LEVEL_EXPERT
+		if(THREAT_TOUGH to THREAT_DEADLY)
+			return SKILL_LEVEL_JOURNEYMAN
+		if(THREAT_MODERATE to THREAT_TOUGH)
+			return SKILL_LEVEL_APPRENTICE
+		if(THREAT_LOW to THREAT_MODERATE)
+			return SKILL_LEVEL_NOVICE
+	return SKILL_LEVEL_NONE
+
+/mob/living/simple_animal/proc/apply_combat_skill()
+	var/level = isnull(combat_skill) ? combat_skill_for_threat(threat_point) : combat_skill
+	if(level <= SKILL_LEVEL_NONE)
+		return
+	adjust_skillrank_up_to(/datum/skill/combat/unarmed, level, TRUE)
 
 /mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
 	return

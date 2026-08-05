@@ -1,6 +1,7 @@
 //chest mimic, ported from ratwood
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mimic
+	threat_point = THREAT_ELITE
 	anatomy_type = /datum/anatomy/amorphous/mimic
 	name = "chest"
 	desc = "A wooden chest with a lid held on metal hinges."

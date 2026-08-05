@@ -1,5 +1,6 @@
 //Look Sir, free crabs!
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab
+	threat_point = THREAT_TRASH
 	anatomy_type = /datum/anatomy/quadruped/trash
 	attack_aim = MOB_AIM_GROUND
 	name = "mudcrab"

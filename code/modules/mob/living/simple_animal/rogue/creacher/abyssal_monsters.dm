@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/rogue/dreamfiend
+	threat_point = THREAT_TOUGH
 	anatomy_type = /datum/anatomy/aberrant
 	icon = 'icons/mob/abyssal_small.dmi'
 	desc = "A dizzying sight ripped violently from a distant dream and brought where it never belonged. It folds in on itself in ways impossible, and seems to move without moving."
@@ -34,6 +35,7 @@
 	var/desummon_timer = 8 SECONDS
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major
+	threat_point = THREAT_ELITE
 	icon = 'icons/mob/abyssal_medium.dmi'
 	name = "major dream fiend"
 	pixel_x = -4
@@ -52,6 +54,7 @@
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient
+	threat_point = THREAT_APEX
 	icon = 'icons/mob/abyssal_large.dmi'
 	name = "ancient dream fiend"
 	desc = "A truly horrifying creature. It makes you dizzy just looking at it."

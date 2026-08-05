@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon
+	threat_point = THREAT_APEX
 	attack_aim = MOB_AIM_HIGH
 	icon = 'modular/icons/mob/96x96/ratwood_dragon.dmi'
 	name = "half-drakkyn"
@@ -208,6 +209,7 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
+	threat_point = THREAT_LEGENDARY
 	health = DRAGON_BROODMOTHER_HEALTH
 	maxHealth = DRAGON_BROODMOTHER_HEALTH
 	retreat_health = 0.05

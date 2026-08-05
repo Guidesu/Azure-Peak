@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/lamia
+	threat_point = THREAT_DANGEROUS
 	anatomy_type = /datum/anatomy/biped/lamia
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
 	name = "lamia"

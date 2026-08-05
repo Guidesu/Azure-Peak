@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead
+	threat_point = THREAT_ELITE
 	anatomy_type = /datum/anatomy/biped/tough/undead
 	// Icon credit openkeep troll, edited by Ketrai for undeath
 	icon = 'icons/roguetown/mob/monster/deadites/troll_undead.dmi'

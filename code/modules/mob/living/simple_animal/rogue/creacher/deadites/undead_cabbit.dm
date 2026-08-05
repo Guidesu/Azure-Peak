@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead
+	threat_point = THREAT_TRASH
 	anatomy_type = /datum/anatomy/quadruped/undead
 	ai_controller = /datum/ai_controller/undead/cabbit
 	faction = list(FACTION_UNDEAD)
