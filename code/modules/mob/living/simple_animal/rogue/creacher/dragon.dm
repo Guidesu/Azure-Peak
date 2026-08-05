@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon
+	anatomy_type = /datum/anatomy/drakkyn
 	threat_point = THREAT_APEX
 	attack_aim = MOB_AIM_HIGH
 	icon = 'modular/icons/mob/96x96/ratwood_dragon.dmi'

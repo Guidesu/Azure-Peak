@@ -15,6 +15,7 @@
 	var/break_alert
 	var/mob/struck_by
 	var/attack_delay_mult = 1
+	var/static/list/kill_verbs = list("ENDED", "SLAIN", "SLAUGHTERED", "MURDERED", "SNUFFED", "BUTCHERED", "FELLED", "FINISHED")
 
 /datum/wound/cripple/on_mob_gain(mob/living/affected)
 	. = ..()
@@ -167,44 +168,21 @@
 
 /datum/wound/cripple/decapitate
 	name = "destroyed head"
-	crit_message = list(
-		"THE HEAD IS TORN FROM THE SHOULDERS!",
-		"THE SKULL BURSTS APART IN A SHOWER OF GORE!",
-		"THE HEAD FLIES OFF IN AN ARC!",
-	)
 	break_alert = "HEAD DESTROYED!"
-	// Don't leave it at 3
-	var/head_throw_range = 3
 
 /datum/wound/cripple/decapitate/on_mob_gain(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/simple_animal))
 		var/mob/living/simple_animal/animal = affected
 		animal.no_reanimate = TRUE
-		if(animal.head_butcher)
-			var/head_type = animal.head_butcher
-			var/obj/item/severed_head = new head_type(affected.drop_location())
-			animal.head_butcher = null
-			var/throw_dir = struck_by ? get_dir(struck_by, affected) : pick(GLOB.cardinals)
-			if(!throw_dir)
-				throw_dir = pick(GLOB.cardinals)
-			var/turf/head_dest = get_ranged_target_turf(affected, throw_dir, head_throw_range)
-			if(head_dest && head_dest != get_turf(affected))
-				severed_head.throw_at(head_dest, head_throw_range, 3)
-	affected.visible_message(span_userdanger("[affected]'s head is torn from its shoulders!"))
+	affected.visible_message(span_danger("<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] ravaged neck <span class='crit'>BLOSSOMS</span> into petals of <span class='crit'>GORE and BONE!</span></B>"))
 	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
 	affected.death()
 
 /datum/wound/cripple/decapitate/small
-	head_throw_range = 2
 
 /datum/wound/cripple/guts
 	name = "spilled guts"
-	crit_message = list(
-		"THE BELLY SPLITS, SPILLING ITS GUTS!",
-		"THE ENTRAILS BURST FREE!",
-		"THE GUT IS OPENED IN A MAGNIFICENT WAY!",
-	)
 	break_alert = "GUTS SPILLED!"
 
 /datum/wound/cripple/guts/on_mob_gain(mob/living/affected)
@@ -212,7 +190,7 @@
 	if(istype(affected, /mob/living/simple_animal))
 		var/mob/living/simple_animal/animal = affected
 		animal.no_reanimate = TRUE
-	affected.visible_message(span_userdanger("[affected]'s guts spill out in a steaming heap!"))
+	affected.visible_message(span_danger("<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] split belly <span class='crit'>UNSPOOLS</span> into ropes of <span class='crit'>GORE and OFFAL!</span></B>"))
 	new /obj/item/alch/viscera(affected.drop_location())
 	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
 	affected.death()

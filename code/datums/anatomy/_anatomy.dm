@@ -8,6 +8,8 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 /datum/anatomy
 	var/list/zones
 	var/list/limb_names
+	/// Grants TRAIT_BLOODLOSS_IMMUNE on spawn.
+	var/undead = FALSE
 
 /datum/anatomy/New()
 	. = ..()

@@ -22,6 +22,11 @@
 			return SKILL_LEVEL_NOVICE
 	return SKILL_LEVEL_NONE
 
+/mob/living/simple_animal/proc/apply_anatomy_traits()
+	var/datum/anatomy/profile = get_anatomy()
+	if(profile?.undead)
+		ADD_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE, TRAIT_GENERIC)
+
 /mob/living/simple_animal/proc/apply_combat_skill()
 	var/level = isnull(combat_skill) ? combat_skill_for_threat(threat_point) : combat_skill
 	if(level <= SKILL_LEVEL_NONE)
