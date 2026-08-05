@@ -27,6 +27,13 @@
 		return
 	if(H.mind.has_antag_datum(/datum/antagonist/zombie) || H.has_status_effect(/datum/status_effect/zombie_infection))
 		return
+	// zombie_check_can_convert() rejects these outright, so infecting them only ever
+	// hands out a permanent psychosis they can never resolve.
+	if(H.mind.has_antag_datum(/datum/antagonist/vampire) \
+		|| H.mind.has_antag_datum(/datum/antagonist/werewolf) \
+		|| H.mind.has_antag_datum(/datum/antagonist/skeleton) \
+		|| H.mind.has_antag_datum(/datum/antagonist/gnoll))
+		return
 	if(affecting.max_damage <= 0 || affecting.get_damage() < affecting.max_damage * 0.5)
 		return
 	addtimer(CALLBACK(src, PROC_REF(infect_wound), H, affecting.name), 0)
