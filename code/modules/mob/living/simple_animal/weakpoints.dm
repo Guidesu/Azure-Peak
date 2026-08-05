@@ -1,3 +1,5 @@
+#define REACH_WARNING_COOLDOWN (4 SECONDS)
+
 /mob/living/simple_animal
 	var/anatomy_type
 	var/list/part_damage
@@ -5,6 +7,7 @@
 	var/no_reanimate = FALSE
 	var/last_damage_stage = 0
 	var/last_hit_part
+	var/next_reach_warning = 0
 
 /mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
 	return
@@ -30,6 +33,21 @@
 
 /mob/living/simple_animal/hit_zone_name(hit_zone)
 	return simple_limb_hit(hit_zone)
+
+/mob/living/simple_animal/proc/resolve_reachable_zone(zone, obj/item/weapon, mob/living/user)
+	var/datum/anatomy/profile = get_anatomy()
+	if(!profile)
+		return zone
+	var/datum/anatomy_zone/hit_zone = profile.get_zone(zone)
+	if(!hit_zone || !hit_zone.min_wlength || is_prone())
+		return zone
+	var/wlength = weapon?.wlength || WLENGTH_NORMAL
+	if(wlength >= hit_zone.min_wlength)
+		return zone
+	if(user?.client && world.time > next_reach_warning)
+		next_reach_warning = world.time + REACH_WARNING_COOLDOWN
+		to_chat(user, span_warning("I can't reach [p_their()] [hit_zone.hint] from down here - I need a longer weapon, or to topple [p_them()]."))
+	return BODY_ZONE_CHEST
 
 /mob/living/simple_animal/proc/weakpoint_damage_mod(zone)
 	var/datum/anatomy/profile = get_anatomy()
@@ -131,3 +149,5 @@
 				word = "[part] <br><font color='#7a1e1e'>savaged</font>"
 		balloon_alert_to_viewers(word)
 	last_damage_stage = stage
+
+#undef REACH_WARNING_COOLDOWN
