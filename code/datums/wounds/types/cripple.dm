@@ -39,8 +39,8 @@
 		"The joint is smashed apart!",
 	)
 	break_alert = "leg crippled!"
-	var/slowdown = 1
-	var/move_penalty = 0.15 SECONDS
+	var/slowdown = CRIPPLE_SLOWDOWN
+	var/move_penalty = CRIPPLE_MOVE_PENALTY_MINOR
 	var/applied_penalty = 0
 
 /datum/wound/cripple/limb/on_mob_gain(mob/living/affected)
@@ -69,8 +69,8 @@
 		"The fangs are broken loose!",
 	)
 	break_alert = "jaw shattered!"
-	attack_delay_mult = 1.2
-	var/damage_penalty = 0.5
+	attack_delay_mult = CRIPPLE_ATTACK_DELAY_MAJOR
+	var/damage_penalty = CRIPPLE_DAMAGE_PENALTY_MAJOR
 	var/removed_lower = 0
 	var/removed_upper = 0
 
@@ -100,8 +100,8 @@
 		"The arm is left hanging useless!",
 	)
 	break_alert = "arm mangled!"
-	attack_delay_mult = 1.2
-	var/damage_penalty = 0.35
+	attack_delay_mult = CRIPPLE_ATTACK_DELAY_MINOR
+	var/damage_penalty = CRIPPLE_DAMAGE_PENALTY_MINOR
 	var/removed_lower = 0
 	var/removed_upper = 0
 
@@ -224,7 +224,7 @@
 		"The knee is blown out, and it falls flat!",
 	)
 	break_alert = "toppled!"
-	move_penalty = 0.4 SECONDS
+	move_penalty = CRIPPLE_MOVE_PENALTY_MAJOR
 
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()
@@ -243,7 +243,7 @@
 		"The joint bursts apart in a spray of foul ichor!",
 	)
 	break_alert = "leg broken!"
-	attack_delay_mult = 1.25
+	attack_delay_mult = CRIPPLE_ATTACK_DELAY_MAJOR
 
 /datum/wound/cripple/limb/core
 	name = "ruptured core"
