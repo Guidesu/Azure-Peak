@@ -100,31 +100,10 @@
 	draw_offsets(H, facing, indicator, get_pattern_offsets())
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/draw_offsets(mob/living/carbon/human/H, facing, list/indicator, list/offs)
-	var/turf/origin = get_turf(H)
-	var/list/wanted = list()
-	if(origin)
-		for(var/list/off in offs)
-			var/list/r = rotate_offset(off[1], off[2], facing)
-			var/turf/T = locate(origin.x + r[1], origin.y + r[2], origin.z)
-			if(!T || T.density)
-				continue
-			if(stop_at_dense && path_blocked(origin, T))
-				continue
-			wanted |= T
-	for(var/obj/effect/old in indicator.Copy())
-		var/turf/ot = get_turf(old)
-		if(!QDELETED(old) && (ot in wanted))
-			wanted -= ot
-		else
-			indicator -= old
-			qdel(old)
-	for(var/turf/T in wanted)
-		indicator += new telegraph_type(T)
+	telegraph_draw(get_turf(H), facing, indicator, offs, telegraph_type, stop_at_dense)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/clear_indicators(list/indicator)
-	for(var/obj/effect/old in indicator)
-		if(!QDELETED(old))
-			qdel(old)
+	telegraph_clear(indicator)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/strike(mob/living/carbon/human/H, facing, list/indicator)
 	if(!length(get_pattern_offsets()))
@@ -232,19 +211,7 @@
 	return deflected
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/path_blocked(turf/origin, turf/target)
-	if(!origin || !target || origin == target)
-		return null
-	for(var/turf/step in getline(origin, target))
-		if(step == origin)
-			continue
-		if(step == target)
-			break
-		if(step.density)
-			return step
-		for(var/obj/structure/S in step)
-			if(S.density && !S.climbable)
-				return step
-	return null
+	return telegraph_path_blocked(origin, target)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/damage_obstacles(turf/T)
 	if(!T || (T in struck_obstacles))
@@ -303,25 +270,10 @@
 	return bands
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/get_cardinal(dir)
-	if(dir & NORTH)
-		return NORTH
-	if(dir & SOUTH)
-		return SOUTH
-	if(dir & EAST)
-		return EAST
-	if(dir & WEST)
-		return WEST
-	return NORTH
+	return telegraph_cardinal(dir)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/rotate_offset(dx, dy, facing)
-	switch(facing)
-		if(SOUTH)
-			return list(-dx, -dy)
-		if(EAST)
-			return list(dy, -dx)
-		if(WEST)
-			return list(-dy, dx)
-	return list(dx, dy)
+	return telegraph_rotate_offset(dx, dy, facing)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/facing_position_angle(facing)
 	switch(facing)

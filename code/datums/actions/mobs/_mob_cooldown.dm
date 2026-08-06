@@ -5,6 +5,8 @@
 	var/min_range = 0
 	var/max_range = 1
 	var/requires_los = TRUE
+	var/blocked_by_exposure = TRUE
+	var/use_chance = 100
 	var/list/required_zones
 
 /datum/action/cooldown/mob_cooldown/IsAvailable()
@@ -14,6 +16,8 @@
 	if(!isliving(user))
 		return FALSE
 	if(user.stat != CONSCIOUS || user.incapacitated())
+		return FALSE
+	if(blocked_by_exposure && user.has_status_effect(/datum/status_effect/debuff/exposed))
 		return FALSE
 	return !crippled()
 
@@ -49,7 +53,7 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/proc/npc_use_chance(atom/target)
-	return 100
+	return use_chance
 
 /datum/action/cooldown/mob_cooldown/Activate(atom/target)
 	if(!can_use(target))
