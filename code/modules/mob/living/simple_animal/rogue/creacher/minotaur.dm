@@ -32,6 +32,7 @@
 	faction = list(FACTION_CAVES)
 	threat_point = THREAT_ELITE
 	ambush_faction = "wildlife"
+	var/sweep_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/minotaur_sweep/slam
 
 	health = MINOTAUR_HEALTH
 	maxHealth = MINOTAUR_HEALTH
@@ -74,6 +75,12 @@
 	ADD_TRAIT(src, TRAIT_BASHDOORS, TRAIT_GENERIC)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
+	var/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/charge = new(src)
+	charge.Grant(src)
+	if(sweep_ability)
+		var/datum/action/cooldown/mob_cooldown/telegraphed/area/minotaur_sweep/sweep = new sweep_ability(src)
+		sweep.Grant(src)
+
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/female
 	icon_state = "MinotaurFem"
 	icon_living = "MinotaurFem"
@@ -84,6 +91,7 @@
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"
 	base_intents = list(/datum/intent/simple/minotaur_axe)
+	sweep_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/minotaur_sweep/axe
 	melee_damage_lower = 65
 	melee_damage_upper = 85
 	limb_destroyer = TRUE
