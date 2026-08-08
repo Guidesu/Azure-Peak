@@ -52,6 +52,9 @@
 #define CANUNCONSCIOUS	(1<<2)
 #define CANPUSH			(1<<3)
 #define GODMODE			(1<<4)
+#define GODMODE_TARGETABLE	(1<<5)
+
+#define GODMODE_HIDDEN(M) (((M).status_flags & GODMODE) && !((M).status_flags & GODMODE_TARGETABLE))
 
 //Health Defines
 #define HEALTH_THRESHOLD_CRIT 0

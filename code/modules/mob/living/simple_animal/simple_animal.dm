@@ -819,7 +819,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return FALSE
 	if(ismob(the_target))
 		var/mob/M = the_target
-		if(M.status_flags & GODMODE)
+		if(GODMODE_HIDDEN(M))
 			return FALSE
 	if (isliving(the_target))
 		var/mob/living/L = the_target

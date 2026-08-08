@@ -142,6 +142,19 @@
 	part_damage = null
 	broken_parts = null
 
+/mob/living/simple_animal/proc/topple(duration = 3 SECONDS)
+	Knockdown(duration, ignore_canstun = TRUE)
+	addtimer(CALLBACK(src, PROC_REF(recover_footing)), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/mob/living/simple_animal/proc/recover_footing()
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(has_wound(/datum/wound/cripple/limb/topple))
+		return
+	SetKnockdown(0, ignore_canstun = TRUE)
+	set_resting(FALSE, TRUE)
+	visible_message(span_warning("[src] recovers its footing."))
+
 /mob/living/simple_animal/proc/is_prone()
 	return resting || has_wound(/datum/wound/cripple/limb/topple)
 
