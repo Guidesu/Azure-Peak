@@ -51,10 +51,29 @@
 	ranged_cooldown_time = 80
 	projectiletype = /obj/projectile/magic/aoe/fireball/rogue
 	ranged_message = "stares"
+	var/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/watcher/eyefire
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
+	eyefire = new(src)
+	eyefire.Grant(src)
+
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Destroy()
+	if(eyefire)
+		eyefire.Remove(src)
+		QDEL_NULL(eyefire)
+	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/OpenFire(atom/A)
+	if(binded)
+		return FALSE
+	if(CheckFriendlyFire(A))
+		return
+	if(!eyefire?.IsAvailable() || !eyefire.can_use(A))
+		return FALSE
+	ranged_cooldown = world.time + ranged_cooldown_time
+	return eyefire.Trigger(target = A)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return

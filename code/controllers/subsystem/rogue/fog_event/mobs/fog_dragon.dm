@@ -52,9 +52,6 @@
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	AddElement(/datum/element/ai_retaliate)
 
-	var/datum/action/cooldown/mob_cooldown/dragon_leap/leap = new(src)
-	leap.Grant(src)
-
 /mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon/get_sound(input)
 	switch(input)
 		if("aggro")

@@ -206,7 +206,7 @@
 
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()
-	affected.Knockdown(20)
+	affected.Stun(20, ignore_canstun = TRUE)
 	animate(affected, transform = turn(affected.transform, 90), time = 2)
 
 /datum/wound/cripple/limb/topple/on_mob_loss(mob/living/affected)
