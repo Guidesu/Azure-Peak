@@ -72,6 +72,9 @@
 	limb_destroyer = TRUE
 //	stat_attack = UNCONSCIOUS
 
+	var/breath_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath
+	var/fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn
+
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
@@ -97,8 +100,12 @@
 	ADD_TRAIT(src, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 
-	var/datum/action/cooldown/mob_cooldown/dragon_leap/leap = new(src)
-	leap.Grant(src)
+	if(breath_ability)
+		var/datum/action/cooldown/mob_cooldown/telegraphed/breath = new breath_ability(src)
+		breath.Grant(src)
+	if(fireball_ability)
+		var/datum/action/cooldown/mob_cooldown/telegraphed/bolt = new fireball_ability(src)
+		bolt.Grant(src)
 
 	//ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC) // Need a weakness
 
@@ -142,53 +149,8 @@
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/simple_limb_hit(zone)
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_PRECISE_R_EYE)
-			return "head"
-		if(BODY_ZONE_PRECISE_L_EYE)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE)
-			return "nose"
-		if(BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_SKULL)
-			return "head"
-		if(BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_PRECISE_L_HAND)
-			return "foreleg"
-		if(BODY_ZONE_PRECISE_R_HAND)
-			return "foreleg"
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			return "leg"
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			return "leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-		if(BODY_ZONE_PRECISE_GROIN)
-			return "tail"
-		if(BODY_ZONE_HEAD)
-			return "head"
-		if(BODY_ZONE_R_LEG)
-			return "leg"
-		if(BODY_ZONE_L_LEG)
-			return "leg"
-		if(BODY_ZONE_R_ARM)
-			return "foreleg"
-		if(BODY_ZONE_L_ARM)
-			return "foreleg"
-	return ..()
-
 /datum/intent/simple/bite/dragon_bite //the model/hitbox is too big so it never got to attack. Increase reach
-	reach = 3
-	swingdelay = 2
-	clickcd = DRAGON_ATTACK_SPEED //It is a dragon so it bites slightly faster
-	penfactor = PEN_HEAVY // It is a dragon so it bites hard
+	reach = 2
 
 /obj/projectile/magic/aoe/dragon_breath
     name = "fire hairball"
@@ -208,7 +170,6 @@
     var/exp_flash = 3
     var/exp_fire = 3
 
-
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 	threat_point = THREAT_LEGENDARY
 	health = DRAGON_BROODMOTHER_HEALTH
@@ -222,7 +183,8 @@
 	melee_damage_lower = 110
 	melee_damage_upper = 130 //big buffs, these guys will drop very very good things
 	ranged_cooldown_time = 10 SECONDS //dark souls prepare to fry edition
-	var/datum/action/cooldown/mob_cooldown/fire_breath/cone/fire_breath
+	breath_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/greater
+	fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn/greater
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 4,
 		/obj/item/natural/hide = 4,
@@ -235,13 +197,3 @@
 	head_butcher = /obj/item/natural/head/dragon/broodmother
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Initialize()
-	. = ..()
-
-	fire_breath = new(src)
-	fire_breath.Grant(src)
-
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Destroy()
-	fire_breath.Remove(src)
-	QDEL_NULL(fire_breath)
-	return ..()

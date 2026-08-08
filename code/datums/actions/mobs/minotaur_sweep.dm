@@ -64,6 +64,7 @@
 	impact_sound = list('sound/combat/ground_smash1.ogg','sound/combat/ground_smash2.ogg','sound/combat/ground_smash3.ogg')
 	hit_sound = list('sound/combat/hits/smashlimb (1).ogg','sound/combat/hits/smashlimb (2).ogg','sound/combat/hits/smashlimb (3).ogg')
 	max_range = 3
+	self_targetable = TRUE
 	lock_facing = FALSE
 	track_target = TRUE
 	freeze_windup = FALSE

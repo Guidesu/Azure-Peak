@@ -1,13 +1,26 @@
 // Shared lightweight mob cooldown system for any kind of mob abilities to enforce a shared cooldown
 /datum/action/cooldown/mob_cooldown
 	shared_cooldown = "mob_special"
+	click_to_activate = TRUE
+	retrigger_after_cooldown = FALSE
 	var/lockout_time = 5 SECONDS
 	var/min_range = 0
 	var/max_range = 1
 	var/requires_los = TRUE
 	var/blocked_by_exposure = TRUE
 	var/use_chance = 100
+	var/self_targetable = FALSE
 	var/list/required_zones
+
+/datum/action/cooldown/mob_cooldown/InterceptClickOn(mob/living/clicker, list/modifiers, atom/target)
+	if(!isnull(modifiers))
+		return ..()
+	if(QDELETED(target))
+		return FALSE
+	return PreActivate(target)
+
+/datum/action/cooldown/mob_cooldown/proc/npc_controlled()
+	return !owner?.client
 
 /datum/action/cooldown/mob_cooldown/IsAvailable()
 	if(!..())
@@ -43,8 +56,10 @@
 	StartCooldownSelf(override_cooldown_time)
 
 /datum/action/cooldown/mob_cooldown/proc/can_use(atom/target)
-	if(QDELETED(target) || target == owner)
+	if(QDELETED(target))
 		return FALSE
+	if(target == owner)
+		return self_targetable
 	var/dist = get_dist(owner, target)
 	if(dist < min_range || dist > max_range)
 		return FALSE

@@ -194,9 +194,9 @@
 
 /datum/action/cooldown/mob_cooldown/telegraphed/area/can_use(atom/target)
 	. = ..()
-	if(!. || !require_target_in_area)
+	if(!. || !require_target_in_area || !npc_controlled())
 		return .
-	var/facing = telegraph_cardinal(get_dir(owner, target))
+	var/facing = telegraph_cardinal(target == owner ? owner.dir : get_dir(owner, target))
 	var/found = FALSE
 	for(var/turf/T in telegraph_resolve_turfs(get_turf(owner), facing, telegraph_offsets(target), stop_at_dense))
 		for(var/mob/living/L in T)
