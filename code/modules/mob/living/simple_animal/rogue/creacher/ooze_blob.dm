@@ -94,7 +94,6 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-
 /mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/death(gibbed)
 	..()
 	update_icon()
@@ -126,44 +125,3 @@
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/simple_limb_hit(zone) // BLOB :D
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_PRECISE_R_EYE)
-			return "blob"
-		if(BODY_ZONE_PRECISE_L_EYE)
-			return "blob"
-		if(BODY_ZONE_PRECISE_NOSE)
-			return "blob"
-		if(BODY_ZONE_PRECISE_MOUTH)
-			return "blob"
-		if(BODY_ZONE_PRECISE_SKULL)
-			return "blob"
-		if(BODY_ZONE_PRECISE_EARS)
-			return "blob"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "blob"
-		if(BODY_ZONE_PRECISE_L_HAND)
-			return "blob"
-		if(BODY_ZONE_PRECISE_R_HAND)
-			return "blob"
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			return "blob"
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			return "blob"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "blob"
-		if(BODY_ZONE_PRECISE_GROIN)
-			return "blob"
-		if(BODY_ZONE_HEAD)
-			return "blob"
-		if(BODY_ZONE_R_LEG)
-			return "blob"
-		if(BODY_ZONE_L_LEG)
-			return "blob"
-		if(BODY_ZONE_R_ARM)
-			return "blob"
-		if(BODY_ZONE_L_ARM)
-			return "blob"
-	return ..()

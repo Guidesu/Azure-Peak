@@ -22,7 +22,6 @@
 	aggro_vision_range = 2
 	see_in_dark = 6
 
-
 	harm_intent_damage = 5
 	melee_damage_lower = 30
 	melee_damage_upper = 40
@@ -133,28 +132,6 @@
 	switch(input)
 		if("death")
 			return pick('sound/vo/mobs/mimic/mimic_death.ogg')
-
-/mob/living/simple_animal/hostile/retaliate/rogue/mimic/simple_limb_hit(zone)
-	if(!zone || !aggressive) // don't talk about bodyparts while disguised!
-		return ""
-	switch(zone)
-		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE)
-			return "nose"
-		if(BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
-			return "foreleg"
-		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
-			return "leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-		if(BODY_ZONE_PRECISE_GROIN)
-			return "tail"
-	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
 	mimicking_chest = /obj/structure/closet/crate/chest/gold
