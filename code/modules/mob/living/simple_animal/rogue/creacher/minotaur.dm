@@ -189,7 +189,7 @@
 /datum/intent/simple/minotaur_axe
 	name = "minotaur axe"
 	icon_state = "instrike"
-	attack_verb = list("hacks at", "slashes", "chops", "steps on", "crushes", "bites")
+	attack_verb = list("hacks at", "slashes", "chops", "cleaves", "carves into", "buries its axe into")
 	animname = "chop"
 	blade_class = BCLASS_CUT
 	hitsound = "genchop"
