@@ -6,6 +6,8 @@
 	cooldown_time = 14 SECONDS
 	max_range = 2
 	use_chance = 55
+	overhead_y_offset = 48
+	overhead_x_offset = 16
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
 	telegraph_time = TELEGRAPH_AREA_DENIAL

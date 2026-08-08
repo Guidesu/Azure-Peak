@@ -7,6 +7,8 @@
 	min_range = 3
 	max_range = 8
 	use_chance = 50
+	overhead_y_offset = 48
+	overhead_x_offset = 16
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 	telegraph_time = TELEGRAPH_HIGH_IMPACT

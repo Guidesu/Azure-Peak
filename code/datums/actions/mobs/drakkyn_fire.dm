@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath
 	name = "Dragon's Breath"
 	desc = "Exhale a cone of flame."
-	button_icon = 'icons/obj/magic.dmi'
-	button_icon_state = "fireball"
+	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
+	button_icon_state = "fire_blast"
 	cooldown_time = 25 SECONDS
 	min_range = 0
 	max_range = 4
@@ -12,6 +12,8 @@
 	telegraph_time = TELEGRAPH_AREA_DENIAL
 	telegraph_type = /obj/effect/temp_visual/trap/primordial/fire
 	telegraph_message = "draws a deep breath, throat glowing red!"
+	overhead_y_offset = 64
+	overhead_x_offset = 32
 	telegraph_sound = 'sound/magic/fireball.ogg'
 
 	damage = 55
@@ -53,7 +55,7 @@
 /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball
 	name = "Fireball"
 	desc = "Hurl a bolt of fire at a distant foe."
-	button_icon = 'icons/obj/magic.dmi'
+	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
 	button_icon_state = "fireball"
 	cooldown_time = 20 SECONDS
 	min_range = 4
@@ -82,6 +84,8 @@
 	use_chance = 15
 	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
 	telegraph_message = "rears back, fire gathering behinds its teeth!"
+	overhead_y_offset = 64
+	overhead_x_offset = 32
 	whiff_message = "closes its mouth, smoke billowing out."
 
 /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn/greater

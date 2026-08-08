@@ -19,6 +19,10 @@
 	var/added_move_delay = 0
 	var/telegraph_message
 	var/telegraph_sound
+	var/overhead_icon
+	var/overhead_state
+	var/overhead_y_offset = 32
+	var/overhead_x_offset = 0
 	var/whiff_message
 	var/recovery_message
 
@@ -44,6 +48,7 @@
 	if(telegraph_message)
 		user.visible_message(span_boldwarning("[user] [telegraph_message]"))
 	ability_sound(get_turf(user), telegraph_sound)
+	show_overhead(user)
 	start_windup(user, facing)
 	recovery_overridden = FALSE
 	var/list/indicator = list()
@@ -74,18 +79,13 @@
 	clear_move_penalty(user)
 	if(mult <= 1 || QDELETED(user))
 		return
-	var/datum/ai_controller/controller = user.ai_controller
-	if(!controller)
-		return
-	added_move_delay = controller.movement_delay * (mult - 1)
-	controller.movement_delay += added_move_delay
+	added_move_delay = user.cached_multiplicative_slowdown * (mult - 1)
+	user.add_movespeed_modifier(MOVESPEED_ID_TELEGRAPH_WINDUP, TRUE, 100, override = TRUE, multiplicative_slowdown = added_move_delay)
 
 /datum/action/cooldown/mob_cooldown/telegraphed/proc/clear_move_penalty(mob/living/user)
 	if(!added_move_delay)
 		return
-	var/datum/ai_controller/controller = user?.ai_controller
-	if(controller)
-		controller.movement_delay -= added_move_delay
+	user?.remove_movespeed_modifier(MOVESPEED_ID_TELEGRAPH_WINDUP)
 	added_move_delay = 0
 
 /datum/action/cooldown/mob_cooldown/telegraphed/proc/start_windup(mob/living/user, facing)
@@ -123,6 +123,13 @@
 
 /datum/action/cooldown/mob_cooldown/telegraphed/proc/resolve(atom/target, facing)
 	return
+
+/datum/action/cooldown/mob_cooldown/telegraphed/proc/show_overhead(mob/living/user)
+	var/telegraph_ic = overhead_icon || button_icon
+	var/telegraph_st = overhead_state || button_icon_state
+	if(QDELETED(user) || !telegraph_ic || !telegraph_st)
+		return
+	user.play_overhead_indicator_simple(telegraph_ic, telegraph_st, telegraph_time, ABOVE_MOB_LAYER, null, overhead_y_offset, overhead_x_offset)
 
 /datum/action/cooldown/mob_cooldown/telegraphed/proc/ability_sound(atom/where, soundin, volume = 100)
 	if(!soundin || !where)
