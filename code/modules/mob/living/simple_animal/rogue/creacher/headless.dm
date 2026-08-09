@@ -51,6 +51,7 @@
 	remains_type = null
 
 	ai_controller = /datum/ai_controller/headless
+	move_base_delay = MOVEMENT_DELAY_SLOW
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 

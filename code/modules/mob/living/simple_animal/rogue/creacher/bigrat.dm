@@ -47,10 +47,10 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks, 
-//					/obj/item/bodypart, 
-//					/obj/item/organ, 
-					/obj/item/natural/bone, 
+	food_type = list(/obj/item/reagent_containers/food/snacks,
+//					/obj/item/bodypart,
+//					/obj/item/organ,
+					/obj/item/natural/bone,
 					/obj/item/natural/hide)
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	pooptype = null
@@ -61,7 +61,7 @@
 	attack_same = 1
 	retreat_health = 0.3
 	aggressive = 1
-	
+
 
 	remains_type = /obj/effect/decal/remains/bigrat
 	eat_forever = TRUE
@@ -70,6 +70,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/big_rat
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = RAT_ATTACK_SPEED
 	stat_attack = UNCONSCIOUS
 	var/undead_rat = FALSE

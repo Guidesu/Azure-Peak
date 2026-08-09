@@ -36,6 +36,7 @@
 	can_have_ai = FALSE //disable native ai
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/skeleton_ranged/event
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = SKELETON_ATTACK_SPEED
 
 	projectiletype = /obj/projectile/magic/zardman_jailer_mage/lightning

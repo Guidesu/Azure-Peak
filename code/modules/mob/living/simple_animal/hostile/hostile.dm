@@ -177,7 +177,7 @@
 	if(stat == CONSCIOUS && !target && AIStatus != NPC_AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
-		Goto(P.starting, move_to_delay, 3)
+		Goto(P.starting, 3)
 	return ..()
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
@@ -345,11 +345,11 @@
 				OpenFire(target)
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
-				walk_away(src,target,retreat_distance,move_to_delay)
+				walk_away(src, target, retreat_distance, cached_multiplicative_slowdown)
 			else
-				Goto(target,move_to_delay,minimum_distance) //Otherwise, get to our minimum distance so we chase them
+				Goto(target, minimum_distance) //Otherwise, get to our minimum distance so we chase them
 		else
-			Goto(target,move_to_delay,minimum_distance)
+			Goto(target, minimum_distance)
 		if(target)
 			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
 				MeleeAction()
@@ -362,7 +362,7 @@
 	else
 		if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
 			OpenFire(target)
-		Goto(target,move_to_delay,minimum_distance)
+		Goto(target, minimum_distance)
 		FindHidden()
 		return 1
 //	if(environment_smash)
@@ -370,7 +370,7 @@
 //			if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
 //				OpenFire(target)
 //			if((environment_smash & ENVIRONMENT_SMASH_WALLS) || (environment_smash & ENVIRONMENT_SMASH_RWALLS)) //If we're capable of smashing through walls, forget about vision completely after finding our target
-//				Goto(target,move_to_delay,minimum_distance)
+//				Goto(target, minimum_distance)
 //				FindHidden()
 //				return 1
 //			else
@@ -379,12 +379,12 @@
 //	LoseTarget()
 //	return 0
 
-/mob/living/simple_animal/hostile/proc/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/proc/Goto(target, minimum_distance)
 	if(target == src.target)
 		approaching_target = TRUE
 	else
 		approaching_target = FALSE
-	walk_to(src, target, minimum_distance, delay)
+	walk_to(src, target, minimum_distance, cached_multiplicative_slowdown)
 
 
 /mob/living/simple_animal/hostile/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -460,7 +460,7 @@
 			if(M.AIStatus == NPC_AI_OFF)
 				return
 			else
-				M.Goto(src,M.move_to_delay,M.minimum_distance)
+				M.Goto(src, M.minimum_distance)
 
 /mob/living/simple_animal/hostile/proc/CheckFriendlyFire(atom/A)
 	if(check_friendly_fire)
@@ -622,7 +622,7 @@
 /mob/living/simple_animal/hostile/proc/FindHidden()
 	if(istype(target.loc, /obj/structure/closet))
 		var/atom/A = target.loc
-		Goto(A,move_to_delay,minimum_distance)
+		Goto(A, minimum_distance)
 		if(A.Adjacent(targets_from))
 			A.attack_animal(src)
 		return 1

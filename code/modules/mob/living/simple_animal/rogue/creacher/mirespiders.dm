@@ -54,6 +54,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mirespider
+	move_base_delay = MOVEMENT_DELAY_SPD_17
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mirespider/Initialize()
 	. = ..()
@@ -72,7 +73,7 @@
 		lurker = L
 		break
 	}
-	
+
 	if(lurker && ai_controller)
 		ai_controller.set_blackboard_key(BB_FOLLOW_TARGET, lurker)
 
@@ -126,7 +127,7 @@
 	base_intents = list(/datum/intent/simple/bite/mirespider_lurker)
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 2,
 						/obj/item/natural/hide = 2,
-						/obj/item/natural/silk = 1, 
+						/obj/item/natural/silk = 1,
 						/obj/item/alch/viscera = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 4,
 						/obj/item/natural/hide = 3,
@@ -155,6 +156,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mirespider_lurker
+	move_base_delay = MOVEMENT_DELAY_SPD_17
 	projectiletype = /obj/projectile/bullet/spider
 
 	ranged = 1
@@ -180,7 +182,7 @@
 	projectiletype = /obj/projectile/bullet/spider_shroom
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 2,
 						/obj/item/natural/hide = 2,
-						/obj/item/natural/silk = 1, 
+						/obj/item/natural/silk = 1,
 						/obj/item/reagent_containers/powder/ozium = 1,
 						/obj/item/alch/viscera = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 4,
@@ -251,7 +253,7 @@
 
 	base_intents = list(/datum/intent/simple/bite/mirespider_paralytic)
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 1,
-						/obj/item/natural/silk = 1, 
+						/obj/item/natural/silk = 1,
 						/obj/item/alch/viscera = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 2,
 						/obj/item/natural/hide = 1,
@@ -280,6 +282,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mirespider_paralytic
+	move_base_delay = MOVEMENT_DELAY_SPD_17
 
 /datum/intent/simple/bite/mirespider_paralytic
 	clickcd = ARAGN_ATTACK_SPEED

@@ -1,5 +1,4 @@
 /datum/ai_controller/boar
-	movement_delay = BOAR_MOVEMENT_SPEED
 	ai_movement = /datum/ai_movement/hybrid_pathing
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 

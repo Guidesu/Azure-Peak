@@ -121,7 +121,7 @@
 		return TRUE
 	for(var/obj/item/F in foundfood)
 		var/turf/T = get_turf(F)
-		Goto(T,move_to_delay,0)
+		Goto(T, 0)
 		return TRUE
 	return FALSE
 
@@ -178,7 +178,7 @@
 						return TRUE
 	for(var/mob/living/eattarg in foundfood)
 		var/turf/T = get_turf(eattarg)
-		Goto(T,move_to_delay,0)
+		Goto(T, 0)
 		return TRUE
 	return FALSE
 
@@ -281,7 +281,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/beckoned(mob/user)
 	if(tame && !stop_automated_movement)
 		stop_automated_movement = TRUE
-		Goto(user,move_to_delay)
+		Goto(user)
 		addtimer(CALLBACK(src, PROC_REF(return_action)), 3 SECONDS)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/food_tempted(obj/item/O, mob/user)
@@ -289,5 +289,5 @@
 	if(food_typecache?[O.type] && !stop_automated_movement)
 
 		stop_automated_movement = TRUE
-		Goto(user,move_to_delay)
+		Goto(user)
 		addtimer(CALLBACK(src, PROC_REF(return_action)), 3 SECONDS)

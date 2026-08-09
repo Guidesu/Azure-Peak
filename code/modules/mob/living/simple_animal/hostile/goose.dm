@@ -18,7 +18,6 @@
 	response_harm_simple = "kick"
 	emote_taunt = list("hisses")
 	taunt_chance = 30
-	speed = 0
 	maxHealth = 25
 	health = 25
 	harm_intent_damage = 5

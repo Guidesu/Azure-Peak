@@ -40,27 +40,15 @@
 		"The joint is smashed apart!",
 	)
 	break_alert = "leg crippled!"
-	var/slowdown = CRIPPLE_SLOWDOWN
-	var/move_penalty = CRIPPLE_MOVE_PENALTY_MINOR
-	var/applied_penalty = 0
+	var/slowdown = CRIPPLE_MOVE_PENALTY_MINOR
 
 /datum/wound/cripple/limb/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.add_movespeed_modifier("cripple_[crippled_zone]", multiplicative_slowdown = slowdown)
-	if(!applied_penalty && istype(affected, /mob/living/simple_animal))
-		var/mob/living/simple_animal/animal = affected
-		if(animal.ai_controller)
-			applied_penalty = move_penalty
-			animal.ai_controller.movement_delay += applied_penalty
 
 /datum/wound/cripple/limb/on_mob_loss(mob/living/affected)
 	. = ..()
 	affected.remove_movespeed_modifier("cripple_[crippled_zone]")
-	if(applied_penalty && istype(affected, /mob/living/simple_animal))
-		var/mob/living/simple_animal/animal = affected
-		if(animal.ai_controller)
-			animal.ai_controller.movement_delay -= applied_penalty
-	applied_penalty = 0
 
 /datum/wound/cripple/maw
 	name = "shattered maw"
@@ -202,7 +190,7 @@
 		"The knee is blown out, and it falls flat!",
 	)
 	break_alert = "toppled!"
-	move_penalty = CRIPPLE_MOVE_PENALTY_MAJOR
+	slowdown = CRIPPLE_MOVE_PENALTY_MAJOR
 
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()

@@ -45,10 +45,11 @@
 	ambush_faction = "deepones"
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 
-	can_have_ai = FALSE 
+	can_have_ai = FALSE
 	AIStatus = AI_OFF
 
 	ai_controller = /datum/ai_controller/deepone
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 
 /mob/living/simple_animal/hostile/rogue/deepone/Initialize()
 	. = ..()
@@ -81,6 +82,7 @@
 	ranged_cooldown_time = 40
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 
 /mob/living/simple_animal/hostile/rogue/deepone/wiz
 	threat_point = THREAT_TOUGH
@@ -97,7 +99,8 @@
 	ranged_cooldown_time = 70
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
-	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/repel)	
+	move_base_delay = MOVEMENT_DELAY_SPD_3
+	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/repel)
 
 
 /mob/living/simple_animal/hostile/rogue/deepone/wiz/Shoot()

@@ -42,6 +42,7 @@
 	can_have_ai = FALSE //disable native ai
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/simple_skeleton
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 	melee_cooldown = SKELETON_ATTACK_SPEED
 
 /mob/living/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine, is_summoned)
@@ -68,6 +69,7 @@
 	attack_sound = 'sound/foley/pierce.ogg'
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/spear, /obj/item/skull)
 	ai_controller = /datum/ai_controller/skeleton_spear
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 
 /mob/living/simple_animal/hostile/rogue/skeleton/guard
 	name = "Skeleton"
@@ -104,6 +106,7 @@
 			/obj/item/ammo_casing/caseless/rogue/arrow/iron,
 			)
 	ai_controller = /datum/ai_controller/skeleton_ranged
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 
 /mob/living/simple_animal/hostile/rogue/skeleton/get_sound(input)
 	switch(input)
@@ -218,12 +221,16 @@
 
 /mob/living/simple_animal/hostile/rogue/skeleton/axe/event
 	ai_controller = /datum/ai_controller/simple_skeleton/event
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 /mob/living/simple_animal/hostile/rogue/skeleton/spear/event
 	ai_controller = /datum/ai_controller/skeleton_spear/event
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 /mob/living/simple_animal/hostile/rogue/skeleton/guard/event
 	ai_controller = /datum/ai_controller/simple_skeleton/event
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 /mob/living/simple_animal/hostile/rogue/skeleton/bow/event
 	ai_controller = /datum/ai_controller/skeleton_ranged/event
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 
 /mob/living/simple_animal/hostile/rogue/skeleton/axe/Initialize(mapload, mob/user, cabal_affine = FALSE, is_summoned = FALSE)
     . = ..(mapload, user, cabal_affine, is_summoned)

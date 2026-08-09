@@ -33,9 +33,9 @@
 	emote_hear = null
 	emote_see = null
 	turns_per_move = 6
-	speed = 5
+	move_base_delay = MOVEMENT_DELAY_CRAWLING
 	see_in_dark = 9
-	move_to_delay = 12
+	move_to_delay = 6
 	vision_range = 9
 	aggro_vision_range = 9
 	movement_type = FLYING
@@ -120,11 +120,11 @@
 				OpenFire(target)
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
-				walk_away(src,target,retreat_distance,move_to_delay)
+				walk_away(src, target, retreat_distance, cached_multiplicative_slowdown)
 			else
-				Goto(target,move_to_delay,minimum_distance) //Otherwise, get to our minimum distance so we chase them
+				Goto(target, minimum_distance) //Otherwise, get to our minimum distance so we chase them
 		else
-			Goto(target,move_to_delay,minimum_distance)
+			Goto(target, minimum_distance)
 		if(target)
 			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
 				MeleeAction()
@@ -137,7 +137,7 @@
 	else
 		if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
 			OpenFire(target)
-		Goto(target,move_to_delay,minimum_distance)
+		Goto(target, minimum_distance)
 		FindHidden()
 		return 1
 

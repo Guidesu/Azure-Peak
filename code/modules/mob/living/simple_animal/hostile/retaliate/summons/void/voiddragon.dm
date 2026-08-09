@@ -85,7 +85,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	minimum_distance = 0
 	aggressive = 1
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	speed = 5
+	move_base_delay = MOVEMENT_DELAY_LUMBERING
 	move_to_delay = 5
 	ranged = TRUE
 	canparry = TRUE
@@ -461,7 +461,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	if(!swooping)
 		..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Goto(target, minimum_distance)
 	if(!swooping)
 		..()
 

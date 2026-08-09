@@ -18,10 +18,10 @@
 	move_to_delay = 3
 	base_intents = list(/datum/intent/simple/bite/volf)
 	botched_butcher_results = list(/obj/item/alch/viscera = 1)
-	butcher_results = list(/obj/item/alch/waterdust = 2, 
+	butcher_results = list(/obj/item/alch/waterdust = 2,
 							/obj/item/alch/viscera = 2)
-	perfect_butcher_results = list(/obj/item/reagent_containers/lux_impure = 1, 
-									/obj/item/alch/waterdust = 3, 
+	perfect_butcher_results = list(/obj/item/reagent_containers/lux_impure = 1,
+									/obj/item/alch/waterdust = 3,
 									/obj/item/alch/viscera = 3)
 	head_butcher = null
 	faction = list("zombie")
@@ -62,6 +62,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/volf
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = WOLF_ATTACK_SPEED
 	color = "#88ff7d"
 

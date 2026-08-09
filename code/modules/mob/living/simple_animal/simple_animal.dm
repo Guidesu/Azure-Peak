@@ -117,8 +117,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	///Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls.
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
 
-	///LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster.
-	var/speed = 1
+	// Base tile to tile delay
+	var/move_base_delay = null
+	var/run_multiplier = SIMPLEMOB_RUN_MULTIPLIER
+	var/sneak_multiplier = SIMPLEMOB_SNEAK_MULTIPLIER
 	///Delay for movement and riding logic across the simple-animal hierarchy.
 	var/move_to_delay = 3
 
@@ -242,7 +244,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		real_name = name
 	if(!loc)
 		stack_trace("Simple animal being instantiated in nullspace")
-	update_simplemob_varspeed()
 	apply_combat_skill()
 	apply_anatomy_traits()
 	our_cells = new(interesting_dist, interesting_dist, 1)
@@ -428,17 +429,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		minimum_distance = initial(minimum_distance)
 	if(HAS_TRAIT(src, TRAIT_RIGIDMOVEMENT))
 		return
-	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
-		var/base_delay = initial(move_to_delay)
-		move_to_delay = base_delay * barding_speed_mult
-		return
-	var/health_deficiency = getBruteLoss() + getFireLoss()
-	if(health_deficiency >= ( maxHealth - (maxHealth*0.50) ))
-		var/damaged_delay = initial(move_to_delay) + 2
-		move_to_delay = damaged_delay * barding_speed_mult
-	else
-		var/normal_delay = initial(move_to_delay)
-		move_to_delay = normal_delay * barding_speed_mult
+	move_to_delay = initial(move_to_delay) * barding_speed_mult
 
 /mob/living/simple_animal/hostile/forceMove(turf/T)
 	var/list/BM = list()
@@ -773,14 +764,31 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		verb_say = pick(speak_emote)
 	. = ..()
 
-/mob/living/simple_animal/proc/set_varspeed(var_value)
-	speed = var_value
-	update_simplemob_varspeed()
+/mob/living/simple_animal/proc/get_move_base_delay()
+	var/base = isnull(move_base_delay) ? SIMPLEMOB_DEFAULT_MOVE_DELAY : move_base_delay
+	return clamp(base, SIMPLEMOB_MINIMUM_MOVE_DELAY, SIMPLEMOB_MAXIMUM_MOVE_DELAY)
 
-/mob/living/simple_animal/proc/update_simplemob_varspeed()
-	if(speed == 0)
-		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
-	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
+/mob/living/simple_animal/update_move_intent_slowdown()
+	var/mod = get_move_base_delay()
+	switch(m_intent)
+		if(MOVE_INTENT_RUN)
+			mod *= run_multiplier
+		if(MOVE_INTENT_SNEAK)
+			mod *= sneak_multiplier
+	// Only apply the penalty of slowing down. Raising speed to make something fast is not OK, because we want to decouple movement from combat speed on simple animals
+	var/spd = get_effective_speed()
+	if(spd < 10)
+		mod += (10 - spd) * SPEED_MOVSPD_MOD
+	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
+
+/mob/living/simple_animal/update_movespeed(resort = TRUE)
+	. = ..()
+	if(cached_multiplicative_slowdown >= SIMPLEMOB_MINIMUM_MOVE_DELAY)
+		return
+	. = SIMPLEMOB_MINIMUM_MOVE_DELAY
+	cached_multiplicative_slowdown = .
+	if(updating_glide_size)
+		set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 /mob/living/simple_animal/proc/drop_loot()
 	for(var/i in loot) // If someone puts a turf in this list I'm going to kill you.
@@ -1257,18 +1265,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		toggle_ai(initial(AIStatus))
 
 /mob/living/simple_animal/Move(NewLoc, Dir, step_x, step_y)
-    if(binded)
-        return FALSE
-    var/oldloc = loc
-    . = ..()
-    if(. && loc != oldloc)
-        if(client)
-            // Player
-            set_glide_size(DELAY_TO_GLIDE_SIZE(world.tick_lag))
-        else
-            // AI
-            set_glide_size(DELAY_TO_GLIDE_SIZE(move_to_delay))
-    return .
+	if(binded)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/proc/eat_plants()
 

@@ -3,7 +3,6 @@
 	Caster dragon can emit a fire cone. Technically it also has leap but AI won't use it.
 */
 /datum/ai_controller/dragon
-	movement_delay = DRAGON_MOVEMENT_SPEED
 
 	ai_movement = /datum/ai_movement/hybrid_pathing
 

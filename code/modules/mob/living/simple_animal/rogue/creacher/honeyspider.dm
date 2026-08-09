@@ -39,9 +39,9 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
-					//obj/item/bodypart, 
-					/obj/item/organ, 
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat,
+					//obj/item/bodypart,
+					/obj/item/organ,
 					)
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	pooptype = null
@@ -58,6 +58,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/spider
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 	melee_cooldown = HONEYSPIDER_ATTACK_SPEED
 	stat_attack = UNCONSCIOUS
 

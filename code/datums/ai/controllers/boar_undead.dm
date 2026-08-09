@@ -1,5 +1,4 @@
 /datum/ai_controller/boar/undead
-	movement_delay = BOAR_UNDEAD_MOVEMENT_SPEED
 	ai_movement = /datum/ai_movement/hybrid_pathing
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 

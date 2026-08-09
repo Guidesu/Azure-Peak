@@ -2,7 +2,6 @@
 /// movement settings, targeting, common subtrees, and signal wiring. Do not assign this
 /// controller directly — use /melee or /archer subtypes.
 /datum/ai_controller/human_npc
-	movement_delay = 0.1 SECONDS
 	max_target_distance = 13
 	ai_movement = /datum/ai_movement/hybrid_pathing
 	blackboard = list(
@@ -44,26 +43,16 @@
 
 /datum/ai_controller/human_npc/TryPossessPawn(atom/new_pawn)
 	. = ..()
-	var/mob/living/living_pawn = new_pawn
-	RegisterSignal(new_pawn, COMSIG_MOB_MOVESPEED_UPDATED, PROC_REF(update_movespeed))
-	movement_delay = living_pawn.cached_multiplicative_slowdown
 	new_pawn.AddComponent(/datum/component/ai_inventory_manager)
 	new_pawn.AddElement(/datum/element/interrupt_on_damage)
 	new_pawn.AddComponent(/datum/component/combat_vocalizer)
 
 /datum/ai_controller/human_npc/UnpossessPawn(destroy)
 	var/mob/living/living_pawn = pawn
-	UnregisterSignal(pawn, list(
-		COMSIG_MOB_MOVESPEED_UPDATED,
-	))
 	living_pawn.RemoveElement(/datum/element/interrupt_on_damage)
 	qdel(living_pawn.GetComponent(/datum/component/ai_inventory_manager))
 	qdel(living_pawn.GetComponent(/datum/component/combat_vocalizer))
 	return ..()
-
-/datum/ai_controller/human_npc/proc/update_movespeed(mob/living/pawn)
-	SIGNAL_HANDLER
-	movement_delay = pawn.cached_multiplicative_slowdown
 
 /datum/ai_controller/human_npc/can_move()
 	. = ..()

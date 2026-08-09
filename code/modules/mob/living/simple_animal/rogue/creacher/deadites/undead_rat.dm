@@ -29,6 +29,7 @@
 	health = RAT_HEALTH_UNDEAD
 	maxHealth = RAT_HEALTH_UNDEAD
 	ai_controller = /datum/ai_controller/rat/undead
+	move_base_delay = MOVEMENT_DELAY_SLOW
 	undead_rat = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/Initialize()
@@ -37,3 +38,4 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned
 	ai_controller = /datum/ai_controller/rat/undead/summoned
+	move_base_delay = MOVEMENT_DELAY_SLOW

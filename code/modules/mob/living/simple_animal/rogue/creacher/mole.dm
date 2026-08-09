@@ -45,8 +45,8 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
-	//obj/item/bodypart, 
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat,
+	//obj/item/bodypart,
 	//obj/item/organ
 	)
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
@@ -63,12 +63,13 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/mole
-	
+
 
 //new ai, old ai off
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mole
+	move_base_delay = MOVEMENT_DELAY_SLOW
 
 /obj/effect/decal/remains/mole
 	name = "remains"

@@ -2,6 +2,7 @@
 	threat_point = THREAT_TRASH
 	anatomy_type = /datum/anatomy/quadruped/undead
 	ai_controller = /datum/ai_controller/undead/cabbit
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 	faction = list(FACTION_UNDEAD)
 
 	icon = 'icons/roguetown/mob/monster/deadites/cabbit_undead.dmi'
@@ -21,13 +22,13 @@
 	melee_damage_lower = 6
 	base_intents = list(/datum/intent/simple/claw/cabbit_undead)
 
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2, 
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
 							/obj/item/alch/sinew = 1,
 							/obj/item/alch/bone = 1,
 							/obj/item/natural/fur/rabbit = 1,
 							/obj/item/natural/rabbitsfoot = 0,
 							/obj/item/alch/viscera = 1)
-	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 3, 
+	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 3,
 							/obj/item/alch/sinew = 1,
 							/obj/item/alch/bone = 1,
 							/obj/item/natural/fur/rabbit = 1,

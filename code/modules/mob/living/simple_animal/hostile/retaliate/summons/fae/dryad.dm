@@ -14,6 +14,7 @@
 	speak_chance = 1
 	turns_per_move = 6
 	see_in_dark = 6
+	move_base_delay = MOVEMENT_DELAY_CRAWLING
 	move_to_delay = 12
 	base_intents = list(/datum/intent/simple/elementalt2_unarmed)
 	butcher_results = list()
@@ -59,11 +60,12 @@
 	if(isturf(newloc))
 		var/turf/T = newloc
 		if(contains_vines(T))
-			src.move_to_delay = 6
+			add_movespeed_modifier(MOVESPEED_ID_DRYAD_VINES, TRUE, 100, override = TRUE, multiplicative_slowdown = DRYAD_VINE_SPEEDUP)
 			src.STASPD = 15
 		else
-			src.move_to_delay = 12
+			remove_movespeed_modifier(MOVESPEED_ID_DRYAD_VINES)
 			src.STASPD = 4
+		update_move_intent_slowdown()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/contains_vines(var/turf/T)
 	for(var/obj/structure/vine/V in T)
@@ -90,11 +92,11 @@
 			src.vine_cd = world.time
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
-				walk_away(src,target,retreat_distance,move_to_delay)
+				walk_away(src, target, retreat_distance, cached_multiplicative_slowdown)
 			else
-				Goto(target,move_to_delay,minimum_distance) //Otherwise, get to our minimum distance so we chase them
+				Goto(target, minimum_distance) //Otherwise, get to our minimum distance so we chase them
 		else
-			Goto(target,move_to_delay,minimum_distance)
+			Goto(target, minimum_distance)
 		if(target)
 			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
 				MeleeAction()
@@ -107,7 +109,7 @@
 	else
 		if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
 			OpenFire(target)
-		Goto(target,move_to_delay,minimum_distance)
+		Goto(target, minimum_distance)
 		FindHidden()
 		return 1
 

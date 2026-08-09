@@ -23,6 +23,7 @@
 	can_have_ai = FALSE
 
 	ai_controller = /datum/ai_controller/assassin
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 	melee_cooldown = MINOR_DREAMFIEND_ATTACK_SPEED
 	var/next_blink = 0
 	var/blink_cooldown = 5 SECONDS
@@ -73,6 +74,7 @@
 	STAPER = 20
 
 	ai_controller = /datum/ai_controller/assassin/ancient
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/get_sound(input)
@@ -218,10 +220,12 @@
 /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound/death()
 	if(prob(25))
@@ -235,3 +239,4 @@
 /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound_ancient
+	move_base_delay = MOVEMENT_DELAY_SPD_10

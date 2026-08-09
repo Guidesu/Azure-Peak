@@ -51,7 +51,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	var/datum/component/ai_inventory_manager/inventory_component
 	///Cooldown until next movement
 	COOLDOWN_DECLARE(movement_cooldown)
-	///Delay between movements. This is on the controller so we can keep the movement datum singleton
+	///Delay between movements. Derived from the pawn's movespeed modifiers, never set directly.
 	var/movement_delay = 0.1 SECONDS
 	///A list for the path we're currently following, if we're using AStar pathing
 	var/list/movement_path
@@ -206,6 +206,12 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	RegisterSignal(pawn, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 	RegisterSignal(pawn, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_pawn_attacked))
 
+	if(isliving(pawn))
+		RegisterSignal(pawn, COMSIG_MOB_MOVESPEED_UPDATED, PROC_REF(on_movespeed_updated))
+		var/mob/living/living_pawn = pawn
+		living_pawn.update_move_intent_slowdown()
+		recalculate_movement_delay()
+
 	our_cells = new(interesting_dist, interesting_dist, 1)
 	set_new_cells()
 
@@ -338,9 +344,31 @@ have ways of interacting with a specific atom and control it. They posses a blac
 /datum/ai_controller/proc/TryPossessPawn(atom/new_pawn)
 	return
 
+/datum/ai_controller/proc/on_movespeed_updated(mob/living/source)
+	SIGNAL_HANDLER
+	recalculate_movement_delay()
+
+///Keeps the AI's step cadence in lockstep with the movespeed modifiers that drive players and glide size.
+/datum/ai_controller/proc/recalculate_movement_delay()
+	if(!isliving(pawn))
+		return
+	var/mob/living/living_pawn = pawn
+	movement_delay = max(living_pawn.cached_multiplicative_slowdown, SIMPLEMOB_MINIMUM_MOVE_DELAY)
+
+/**
+ * Advances the movement cooldown from its previous deadline rather than from world.time, so a
+ * movement_delay that isn't a whole multiple of SSai_movement's wait averages out instead of
+ * rounding up on every single step. Deadlines that have fallen far behind are rebased to now so a
+ * mob that was blocked or paused doesn't burst to catch up.
+ */
+/datum/ai_controller/proc/advance_movement_cooldown()
+	movement_cooldown += movement_delay
+	if(movement_cooldown < world.time)
+		movement_cooldown = world.time + movement_delay
+
 ///Proc for deinitializing the pawn to the old controller
 /datum/ai_controller/proc/UnpossessPawn(destroy)
-	UnregisterSignal(pawn, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT, COMSIG_MOB_STATCHANGE, COMSIG_ATOM_WAS_ATTACKED))
+	UnregisterSignal(pawn, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT, COMSIG_MOB_STATCHANGE, COMSIG_ATOM_WAS_ATTACKED, COMSIG_MOB_MOVESPEED_UPDATED))
 	var/turf/pawn_turf = get_turf(pawn)
 	if(pawn_turf)
 		GLOB.ai_controllers_by_zlevel[pawn_turf.z] -= src

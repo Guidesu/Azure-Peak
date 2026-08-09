@@ -10,7 +10,6 @@
 	icon_living = "mimicopen"
 	icon_dead = "mimicdead"
 
-	speed = 0
 	maxHealth = MIMIC_HEALTH
 	health = MIMIC_HEALTH
 	gender = NEUTER
@@ -47,6 +46,7 @@
 	STASPD = 5
 
 	ai_controller = /datum/ai_controller/mimic
+	move_base_delay = MOVEMENT_DELAY_SLOW
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	/// The typepath of the chest this mimic is mimicking.

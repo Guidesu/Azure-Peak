@@ -9,33 +9,34 @@
 	health = BOAR_HEALTH_UNDEAD
 	maxHealth = BOAR_HEALTH_UNDEAD
 	ai_controller = /datum/ai_controller/boar/undead
+	move_base_delay = MOVEMENT_DELAY_SLOW
 	charge_type = /datum/action/cooldown/mob_cooldown/boar_charge/undead
 
 	head_butcher = /obj/item/natural/head/boar/undead
 	botched_butcher_results = list(
-		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2, 
-		/obj/item/alch/sinew = 2, 
+		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
+		/obj/item/alch/sinew = 2,
 		/obj/item/natural/bone = 4,
 		/obj/item/alch/viscera = 1,
 		/obj/item/natural/hide = 1,
 	)
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 4,
-		/obj/item/reagent_containers/food/snacks/fat = 2, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 3, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 2,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 3,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
 		/obj/item/natural/hide = 2,
 	)
 	perfect_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 5,
-		/obj/item/reagent_containers/food/snacks/fat = 3, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 4, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 3,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 4,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
 		/obj/item/natural/hide = 3,
 	)
@@ -206,10 +207,10 @@
 	var/mob/living/carbon/human/H = parent
 	var/turf/T = get_turf(H)
 	var/mob/living/simple_animal/hostile/retaliate/rogue/terrorhog_corpse/C = new(T)
-	
+
 	spawn(1)
 		C.death()
-		
+
 	H.visible_message(span_userdanger("[H] crashes down with a massive thud, its squealing finally falling silent."))
 	qdel(H)
 
@@ -254,29 +255,29 @@
 	maxHealth = 1
 
 	botched_butcher_results = list(
-		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2, 
-		/obj/item/alch/sinew = 2, 
+		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
+		/obj/item/alch/sinew = 2,
 		/obj/item/natural/bone = 4,
 		/obj/item/alch/viscera = 1,
 		/obj/item/natural/hide = 1,
 	)
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 4,
-		/obj/item/reagent_containers/food/snacks/fat = 2, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 3, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 2,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 3,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
 		/obj/item/natural/hide = 2,
 	)
 	perfect_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 5,
-		/obj/item/reagent_containers/food/snacks/fat = 3, 
-		/obj/item/natural/bundle/bone/full = 1, 
-		/obj/item/alch/sinew = 4, 
-		/obj/item/alch/bone = 1, 
-		/obj/item/alch/viscera = 2, 
+		/obj/item/reagent_containers/food/snacks/fat = 3,
+		/obj/item/natural/bundle/bone/full = 1,
+		/obj/item/alch/sinew = 4,
+		/obj/item/alch/bone = 1,
+		/obj/item/alch/viscera = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 2,
 		/obj/item/natural/hide = 3,
 	)
@@ -301,7 +302,7 @@
 	post_icon_state = null
 
 /datum/special_intent/terrorhog_onslaught/process_attack()
-	SHOULD_CALL_PARENT(FALSE) 
+	SHOULD_CALL_PARENT(FALSE)
 
 	if(!isliving(howner) || howner.stat == DEAD)
 		return FALSE
@@ -312,7 +313,7 @@
 
 	var/list/valid_targets = list()
 	for(var/mob/living/L in orange(7, howner))
-		if(L.stat == DEAD) 
+		if(L.stat == DEAD)
 			continue
 		var/shared_faction = FALSE
 		if(L.faction && howner.faction)
@@ -340,7 +341,7 @@
 			var/mob/living/victim = pick(valid_targets)
 
 			// If anyone were to comment this out, the same guy could get nerded.
-			valid_targets -= victim 
+			valid_targets -= victim
 
 			var/turf/victim_turf = get_turf(victim)
 			if(!victim_turf)
@@ -400,7 +401,7 @@
 	src.dir = raw_dir
 
 	playsound(src, 'sound/vo/mobs/boar/boar_charge.ogg', 50, TRUE)
-	
+
 	var/turf/destination = get_turf(target)
 	addtimer(CALLBACK(src, PROC_REF(start_phantom_drive), destination), 0.8 SECONDS)
 
@@ -434,7 +435,7 @@
 		for(var/mob/living/L in T)
 			if(L == master_hog)
 				continue
-				
+
 			var/shared_faction = FALSE
 			if(L.faction && master_hog.faction)
 				for(var/F in L.faction)

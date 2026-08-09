@@ -200,6 +200,7 @@
 	food = 0
 	next_ability_use
 	ai_controller = /datum/ai_controller/flame_primordial
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 	var/blast_damage = 60
 	var/blast_push = 2
 	var/blast_vulnerable_time = 3 SECONDS
@@ -288,6 +289,7 @@
 	food = 0
 
 	ai_controller = /datum/ai_controller/water_primordial
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 
 /mob/living/simple_animal/hostile/retaliate/rogue/primordial/water/ability(turf/target_location, mob/living/user)
 	var/turf/center = get_turf(src)
@@ -387,6 +389,7 @@
 	food = 0
 
 	ai_controller = /datum/ai_controller/air_primordial
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 	var/gust_push = 3
 
 /mob/living/simple_animal/hostile/retaliate/rogue/primordial/air/ability(turf/target_location, mob/living/user)

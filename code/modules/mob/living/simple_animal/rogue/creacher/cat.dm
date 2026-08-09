@@ -35,7 +35,6 @@
 	pass_flags = PASSTABLE
 	mobility_flags = MOBILITY_FLAGS_DEFAULT
 	move_resist = MOVE_FORCE_WEAK
-	speed = 1
 	retreat_distance = 3
 	minimum_distance = 1
 
@@ -49,6 +48,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic
+	move_base_delay = MOVEMENT_DELAY_LUMBERING
 
 	// Loot
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat = 1)

@@ -1,5 +1,4 @@
 /datum/ai_controller/volf
-	movement_delay = WOLF_MOVEMENT_SPEED
 
 	ai_movement = /datum/ai_movement/hybrid_pathing
 

@@ -12,6 +12,7 @@
 	health = TROLL_HEALTH_UNDEAD
 	maxHealth = TROLL_HEALTH_UNDEAD
 	ai_controller = /datum/ai_controller/undead_troll
+	move_base_delay = MOVEMENT_DELAY_SPD_3
 
 	head_butcher = /obj/item/natural/head/troll/undead
 	// Troll flesh is unnatural and doesn't rot easily
@@ -19,7 +20,7 @@
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak/troll = 2,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak/troll/fried = 1,
 		/obj/item/natural/bundle/bone/full = 1,
-		/obj/item/alch/horn = 1, 
+		/obj/item/alch/horn = 1,
 		/obj/item/natural/hide = 1)
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak/troll = 2,

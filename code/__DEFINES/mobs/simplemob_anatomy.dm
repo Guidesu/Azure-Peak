@@ -9,12 +9,9 @@
 #define CRIPPLE_ATTACK_DELAY_MINOR 1.05
 #define CRIPPLE_ATTACK_DELAY_MAJOR 1.2
 
-// Added to the AI controller's movement_delay while crippled.
+// Movespeed modifier applied per crippled limb. Stacks per leg.
 #define CRIPPLE_MOVE_PENALTY_MINOR (0.15 SECONDS)
 #define CRIPPLE_MOVE_PENALTY_MAJOR (0.4 SECONDS)
-
-// Movespeed modifier applied per crippled limb. Stacks per leg.
-#define CRIPPLE_SLOWDOWN 1
 
 // Share of a ranged hit's damage contributed toward breaking a part
 #define RANGED_PART_CONTRIBUTION 0.5

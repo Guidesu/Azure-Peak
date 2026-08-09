@@ -1,5 +1,4 @@
 /datum/ai_controller/flame_primordial
-	movement_delay = 0.15 SECONDS
 	ai_movement = /datum/ai_movement/hybrid_pathing
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
