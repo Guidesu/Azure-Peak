@@ -12,7 +12,7 @@
 	cooldown_time = 15 SECONDS
 	shared_cooldown = "ferramancy_strike"
 	shared_cooldown_mult = 0.5
-	charging_slowdown = 1
+	charge_slowdown = CHARGING_SLOWDOWN_SMALL
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2

@@ -27,7 +27,7 @@
 	committed_strike = TRUE
 	interruptible = FALSE
 	lock_direction = FALSE
-	charging_slowdown = CHARGING_SLOWDOWN_SMALL
+	charge_slowdown = CHARGING_SLOWDOWN_SMALL
 	windup_time = 2 SECONDS
 	sweep_step = 0
 	vuln_on_hit = 2 SECONDS

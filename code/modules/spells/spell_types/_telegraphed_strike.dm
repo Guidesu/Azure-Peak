@@ -13,7 +13,6 @@
 	var/detonate_sound = 'sound/combat/newstuck.ogg'
 	var/strike_sound = 'sound/magic/blade_burst.ogg'
 	var/windup_time = TELEGRAPH_DODGEABLE
-	var/charging_slowdown = 0
 	var/committed_strike = TRUE
 	var/interruptible = FALSE
 	var/lock_direction = FALSE
@@ -70,8 +69,8 @@
 		H.tempfixeye = TRUE
 		H.nodirchange = TRUE
 		H.facing_locked = TRUE
-	if(charging_slowdown)
-		H.add_movespeed_modifier("telegraphed_strike_windup", TRUE, 100, override = TRUE, multiplicative_slowdown = charging_slowdown)
+	if(charge_slowdown)
+		H.add_movespeed_modifier(MOVESPEED_ID_SPELL_CASTING, TRUE, 100, override = TRUE, multiplicative_slowdown = charge_slowdown)
 	announce_telegraph(H)
 	apply_cast_freeze(H, windup_time)
 	show_cast_effect(H)
@@ -86,8 +85,8 @@
 			last_facing = facing
 			draw_indicators(H, facing, indicator)
 		sleep(redraw_interval)
-	if(charging_slowdown && !QDELETED(H))
-		H.remove_movespeed_modifier("telegraphed_strike_windup")
+	if(charge_slowdown && !QDELETED(H))
+		H.remove_movespeed_modifier(MOVESPEED_ID_SPELL_CASTING)
 	if(locked_facing && !QDELETED(H))
 		H.tempfixeye = FALSE
 		H.nodirchange = FALSE
@@ -203,15 +202,8 @@
 			continue
 		hit_any = TRUE
 		sweep_hit_count++
-		if(ishuman(L))
-			var/target_zone = H.zone_selected || BODY_ZONE_CHEST
-			arcyne_strike(H, L, weapon, dmg, target_zone, blade_class, armor_penetration = strike_armor_pen, spell_name = name, damage_type = strike_damage_type, skip_animation = TRUE)
-		else
-			var/actual_damage = dmg
-			if(strike_damage_type == BURN)
-				L.adjustFireLoss(actual_damage)
-			else
-				L.adjustBruteLoss(actual_damage)
+		var/target_zone = H.zone_selected || BODY_ZONE_CHEST
+		arcyne_strike(H, L, weapon, dmg, target_zone, blade_class, armor_penetration = strike_armor_pen, spell_name = name, damage_type = strike_damage_type, skip_animation = TRUE)
 		if(vuln_on_hit)
 			L.apply_status_effect(/datum/status_effect/debuff/vulnerable, vuln_on_hit)
 		if(immobilize_on_hit)

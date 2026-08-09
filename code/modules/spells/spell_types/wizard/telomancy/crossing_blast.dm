@@ -26,7 +26,7 @@
 	blade_class = BCLASS_BLUNT
 	committed_strike = TRUE
 	interruptible = FALSE
-	charging_slowdown = 1
+	charge_slowdown = CHARGING_SLOWDOWN_SMALL
 	windup_time = TELEGRAPH_AREA_DENIAL
 	sweep_step = 0
 	telegraph_type = /obj/effect/temp_visual/trap/telomancy

@@ -61,6 +61,7 @@
 	desc = "Smashes your feet forward into the ground, sending shockwave to damage everyone in the area."
 	blade_class = BCLASS_BLUNT
 	armor_flag = "blunt"
+	armor_pen = PEN_NONE
 	damage = 60
 	telegraph_sound = 'sound/combat/ground_smash_start.ogg'
 	impact_sound = list('sound/combat/ground_smash1.ogg','sound/combat/ground_smash2.ogg','sound/combat/ground_smash3.ogg')

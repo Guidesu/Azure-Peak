@@ -26,7 +26,7 @@
 	blade_class = BCLASS_BURN
 	committed_strike = TRUE
 	interruptible = FALSE
-	charging_slowdown = CHARGING_SLOWDOWN_SMALL
+	charge_slowdown = CHARGING_SLOWDOWN_SMALL
 	windup_time = TELEGRAPH_AREA_DENIAL
 	sweep_step = 0
 	strike_sound = 'sound/magic/fireball.ogg'
