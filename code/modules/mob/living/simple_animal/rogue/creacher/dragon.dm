@@ -73,7 +73,7 @@
 	limb_destroyer = TRUE
 //	stat_attack = UNCONSCIOUS
 
-	var/breath_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath
+	var/breath_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn
 	var/fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
@@ -102,7 +102,7 @@
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 
 	if(breath_ability)
-		var/datum/action/cooldown/mob_cooldown/telegraphed/breath = new breath_ability(src)
+		var/datum/action/cooldown/spell/telegraphed_strike/breath = new breath_ability(src)
 		breath.Grant(src)
 	if(fireball_ability)
 		var/datum/action/cooldown/mob_cooldown/telegraphed/bolt = new fireball_ability(src)
@@ -184,7 +184,7 @@
 	melee_damage_lower = 110
 	melee_damage_upper = 130 //big buffs, these guys will drop very very good things
 	ranged_cooldown_time = 10 SECONDS //dark souls prepare to fry edition
-	breath_ability = /datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/greater
+	breath_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn/greater
 	fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn/greater
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 4,

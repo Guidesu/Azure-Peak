@@ -12,6 +12,8 @@
 	var/strike_armor_pen = PEN_NONE
 	var/detonate_sound = 'sound/combat/newstuck.ogg'
 	var/strike_sound = 'sound/magic/blade_burst.ogg'
+	/// Played on each victim struck, on top of the per-turf detonate_sound.
+	var/list/hit_sound
 	var/windup_time = TELEGRAPH_DODGEABLE
 	var/committed_strike = TRUE
 	var/interruptible = FALSE
@@ -20,6 +22,10 @@
 	var/track_target = FALSE
 	var/redraw_interval = 2
 	var/sweep_step = 1
+	/// If TRUE, a guard deflection aborts the remaining bands instead of just sparing that victim.
+	var/guard_aborts_sweep = FALSE
+	/// Band currently resolving, INDEXED FROM 1. Transient.
+	var/band_index = 0
 	var/impact_delay = 0
 	var/stop_at_dense = TRUE
 	var/damage_structures = TRUE
@@ -48,7 +54,7 @@
 	if(requires_weapon && !get_strike_weapon(H))
 		to_chat(H, span_warning(weapon_missing_message))
 		return FALSE
-	var/strike_duration = windup_time + impact_delay + max(0, length(get_pattern_offsets()) - 1) * sweep_step
+	var/strike_duration = windup_time + impact_delay + max(0, length(get_sweep_bands()) - 1) * sweep_step
 	if(committed_strike)
 		H.changeNext_move(strike_duration)
 		if(interruptible)
@@ -145,6 +151,10 @@
 	for(var/b in 1 to length(bands))
 		if(QDELETED(H) || H.stat != CONSCIOUS)
 			break
+		if(deflected && guard_aborts_sweep)
+			break
+		band_index = b
+		on_band_start(H, b)
 		var/turf/origin = get_pattern_origin(H)
 		for(var/list/off in bands[b])
 			var/list/r = rotate_offset(off[1], off[2], facing)
@@ -164,6 +174,7 @@
 			if(damage_structures)
 				damage_obstacles(T)
 			deflected = hit_turf(H, T, facing, deflected)
+			on_pattern_turf(T, H, facing)
 			if(swipe_state)
 				var/obj/effect/temp_visual/dir_setting/attack_effect/slash = new(T, facing)
 				slash.icon_state = swipe_state
@@ -179,6 +190,29 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/on_impact(mob/living/H, facing, atom/movable/visual)
 	return
+
+/// Called once per band as it begins resolving, before any of its turfs are hit.
+/datum/action/cooldown/spell/telegraphed_strike/proc/on_band_start(mob/living/H, band)
+	return
+
+/// Called for every turf the pattern actually reaches, after its occupants are struck.
+/datum/action/cooldown/spell/telegraphed_strike/proc/on_pattern_turf(turf/T, mob/living/H, facing)
+	return
+
+/// The turfs this pattern reaches, with obstacles already filtered out.
+/datum/action/cooldown/spell/telegraphed_strike/proc/get_pattern_turfs(mob/living/H, facing, list/offs)
+	. = list()
+	var/turf/origin = get_pattern_origin(H)
+	if(!origin)
+		return
+	for(var/list/off in (offs || get_pattern_offsets()))
+		var/list/r = rotate_offset(off[1], off[2], facing)
+		var/turf/T = locate(origin.x + r[1], origin.y + r[2], origin.z)
+		if(!T || T.density)
+			continue
+		if(stop_at_dense && path_blocked(origin, T))
+			continue
+		. += T
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/hit_turf(mob/living/H, turf/T, facing, deflected = FALSE)
 	if(QDELETED(H) || QDELETED(T))
@@ -204,6 +238,8 @@
 		sweep_hit_count++
 		var/target_zone = H.zone_selected || BODY_ZONE_CHEST
 		arcyne_strike(H, L, weapon, dmg, target_zone, blade_class, armor_penetration = strike_armor_pen, spell_name = name, damage_type = strike_damage_type, skip_animation = TRUE)
+		if(length(hit_sound))
+			playsound(get_turf(L), hit_sound, 100, TRUE)
 		if(vuln_on_hit)
 			L.apply_status_effect(/datum/status_effect/debuff/vulnerable, vuln_on_hit)
 		if(immobilize_on_hit)

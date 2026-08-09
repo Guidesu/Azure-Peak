@@ -34,6 +34,7 @@
 
 	var/cone_range = 4
 	var/push_dist = 2
+	var/scorch_stacks = 1
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/proc/cone_rings()
 	var/list/rings = list()
@@ -54,24 +55,17 @@
 		flat += ring
 	return flat
 
-/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_hit_target(mob/living/carbon/human/H, mob/living/L, facing)
-	apply_scorch_stack(L, 1)
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_hit_target(mob/living/H, mob/living/L, facing)
+	apply_scorch_stack(L, scorch_stacks)
+	if(!push_dist)
+		return
 	var/push_dir = get_dir(H, L)
 	if(!push_dir)
 		push_dir = facing
 	L.safe_throw_at(get_ranged_target_turf(L, push_dir, push_dist), push_dist, 2, H, force = MOVE_FORCE_STRONG)
 
-/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_impact(mob/living/carbon/human/H, facing, atom/movable/visual)
-	var/turf/origin = get_turf(H)
-	if(!origin)
-		return
-	for(var/list/off in get_pattern_offsets())
-		var/list/r = rotate_offset(off[1], off[2], facing)
-		var/turf/T = locate(origin.x + r[1], origin.y + r[2], origin.z)
-		if(!T || T.density)
-			continue
-		if(stop_at_dense && path_blocked(origin, T))
-			continue
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_impact(mob/living/H, facing, atom/movable/visual)
+	for(var/turf/T in get_pattern_turfs(H, facing))
 		new /obj/effect/temp_visual/dragonfire(T)
 		for(var/atom/movable/A in T)
 			if(ismob(A))

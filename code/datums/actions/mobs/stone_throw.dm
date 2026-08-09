@@ -22,9 +22,9 @@
 	impact_delay = 4
 	strike_sound = 'sound/combat/shieldraise.ogg'
 	detonate_sound = null
+	hit_sound = list('sound/combat/hits/smashlimb (1).ogg','sound/combat/hits/smashlimb (2).ogg','sound/combat/hits/smashlimb (3).ogg')
 
 	var/stone_type = /obj/effect/temp_visual/stone_throw
-	var/list/hit_sounds = list('sound/combat/hits/smashlimb (1).ogg','sound/combat/hits/smashlimb (2).ogg','sound/combat/hits/smashlimb (3).ogg')
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/stone_throw/do_blade_animation(mob/living/H, facing)
 	H.visible_message(span_boldwarning("<b>[H]</b> chucks a huge rock!"))
@@ -38,9 +38,6 @@
 		visual.pixel_x = 0
 		visual.pixel_y = 0
 	playsound(locked_turf, 'sound/foley/smash_rock.ogg', 100, TRUE)
-
-/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/stone_throw/on_hit_target(mob/living/H, mob/living/L, facing)
-	playsound(get_turf(L), pick(hit_sounds), 100, TRUE)
 
 /obj/effect/temp_visual/stone_throw
 	icon = 'icons/roguetown/items/natural.dmi'

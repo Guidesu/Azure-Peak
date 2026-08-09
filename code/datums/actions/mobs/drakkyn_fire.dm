@@ -1,51 +1,43 @@
-/datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn
 	name = "Dragon's Breath"
 	desc = "Exhale a cone of flame."
-	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
-	button_icon_state = "fire_blast"
+	panel = null
 	cooldown_time = 25 SECONDS
 	npc_min_range = 0
 	npc_max_range = 4
 	use_chance = 45
 	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
+	shared_cooldown = "mob_special"
+	lockout_time = 5 SECONDS
 
-	telegraph_time = TELEGRAPH_AREA_DENIAL
+	invocations = list()
+	invocation_type = INVOCATION_NONE
+	sound = null
+	primary_resource_type = SPELL_COST_NONE
+	spell_requirements = SPELL_REQUIRES_SAME_Z
+	associated_stat = null
+	has_visual_effects = FALSE
+	glow_intensity = 0
+	spell_impact_intensity = SPELL_IMPACT_NONE
+	charge_slowdown = CHARGING_SLOWDOWN_NONE
+	blocked_by_antimagic = FALSE
+	spare_allies = TRUE
+	freeze_cast = TRUE
+	track_target = TRUE
+	damage_structures = FALSE
+
 	telegraph_type = /obj/effect/temp_visual/trap/primordial/fire
 	telegraph_message = "draws a deep breath, throat glowing red!"
-	overhead_y_offset = 64
-	overhead_x_offset = 32
-	telegraph_sound = 'sound/magic/fireball.ogg'
+	telegraph_sound = list('sound/magic/fireball.ogg')
+	cast_effect_x_offset = 32
+	cast_effect_y_offset = 32
 
 	damage = 55
-	damage_type = BURN
-	blade_class = BCLASS_BURN
-	armor_flag = "fire"
-	impact_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
-	hit_sound = 'sound/items/firelight.ogg'
+	push_dist = 0
+	detonate_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
+	hit_sound = list('sound/items/firelight.ogg')
 
-	var/cone_range = 4
-	var/scorch_stacks = 1
-
-/datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/telegraph_offsets(atom/target)
-	var/list/offs = list()
-	for(var/d in 1 to cone_range)
-		var/half = max(1, round(d / 2))
-		for(var/lat in -half to half)
-			offs += list(list(lat, d))
-	return offs
-
-/datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/on_impact_turf(turf/T, mob/living/user)
-	new /obj/effect/temp_visual/dragonfire(T)
-	for(var/atom/movable/A in T)
-		if(ismob(A))
-			continue
-		A.fire_act()
-
-/datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/hit_mob(mob/living/victim, mob/living/user)
-	. = ..()
-	apply_scorch_stack(victim, scorch_stacks)
-
-/datum/action/cooldown/mob_cooldown/telegraphed/area/dragons_breath/greater
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn/greater
 	cooldown_time = 20 SECONDS
 	damage = 60
 	cone_range = 5
