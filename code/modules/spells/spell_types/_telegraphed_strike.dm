@@ -17,6 +17,8 @@
 	var/committed_strike = TRUE
 	var/interruptible = FALSE
 	var/lock_direction = FALSE
+	/// Makes the AI Caster keep facing their target during the windup
+	var/track_target = FALSE
 	var/redraw_interval = 2
 	var/sweep_step = 1
 	var/impact_delay = 0
@@ -41,8 +43,8 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(!istype(H))
+	var/mob/living/H = owner
+	if(!isliving(H))
 		return FALSE
 	if(requires_weapon && !get_strike_weapon(H))
 		to_chat(H, span_warning(weapon_missing_message))
@@ -54,10 +56,10 @@
 			H.apply_status_effect(/datum/status_effect/swingdelay/disrupt, strike_duration + 2, FALSE)
 		else
 			H.apply_status_effect(/datum/status_effect/swingdelay/penalty/committed, strike_duration + 2, TRUE)
-	INVOKE_ASYNC(src, PROC_REF(windup_and_strike), H)
+	INVOKE_ASYNC(src, PROC_REF(windup_and_strike), H, cast_on)
 	return TRUE
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/windup_and_strike(mob/living/carbon/human/H)
+/datum/action/cooldown/spell/telegraphed_strike/proc/windup_and_strike(mob/living/H, atom/cast_on)
 	var/list/indicator = list()
 	var/iterations = max(1, round(windup_time / redraw_interval))
 	var/turf/last_turf
@@ -73,6 +75,8 @@
 	for(var/i in 1 to iterations)
 		if(QDELETED(H) || H.stat != CONSCIOUS || strike_disrupted(H))
 			break
+		if(track_target && !QDELETED(cast_on) && cast_on != H)
+			H.face_atom(cast_on)
 		var/facing = locked_facing || get_cardinal(H.dir)
 		if(get_turf(H) != last_turf || facing != last_facing)
 			last_turf = get_turf(H)
@@ -88,24 +92,24 @@
 	if(QDELETED(H) || H.stat != CONSCIOUS || strike_disrupted(H))
 		clear_indicators(indicator)
 		return
-	strike(H, locked_facing || get_cardinal(H.dir), indicator)
+	strike(H, locked_facing || get_cardinal(H.dir), indicator, cast_on)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/strike_disrupted(mob/living/carbon/human/H)
+/datum/action/cooldown/spell/telegraphed_strike/proc/strike_disrupted(mob/living/H)
 	if(!interruptible)
 		return FALSE
 	var/datum/status_effect/swingdelay/disrupt/SW = H.has_status_effect(/datum/status_effect/swingdelay/disrupt)
 	return SW && SW.is_disrupted()
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/draw_indicators(mob/living/carbon/human/H, facing, list/indicator)
+/datum/action/cooldown/spell/telegraphed_strike/proc/draw_indicators(mob/living/H, facing, list/indicator)
 	draw_offsets(H, facing, indicator, get_pattern_offsets())
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/draw_offsets(mob/living/carbon/human/H, facing, list/indicator, list/offs)
+/datum/action/cooldown/spell/telegraphed_strike/proc/draw_offsets(mob/living/H, facing, list/indicator, list/offs)
 	telegraph_draw(get_turf(H), facing, indicator, offs, telegraph_type, stop_at_dense)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/clear_indicators(list/indicator)
 	telegraph_clear(indicator)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/strike(mob/living/carbon/human/H, facing, list/indicator)
+/datum/action/cooldown/spell/telegraphed_strike/proc/strike(mob/living/H, facing, list/indicator, atom/cast_on)
 	if(!length(get_pattern_offsets()))
 		clear_indicators(indicator)
 		return
@@ -114,7 +118,7 @@
 	var/atom/movable/visual = do_blade_animation(H, facing)
 	INVOKE_ASYNC(src, PROC_REF(execute_hits), H, facing, indicator, visual)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/execute_hits(mob/living/carbon/human/H, facing, list/indicator, atom/movable/visual)
+/datum/action/cooldown/spell/telegraphed_strike/proc/execute_hits(mob/living/H, facing, list/indicator, atom/movable/visual)
 	var/turf/last_turf = get_turf(H)
 	draw_indicators(H, facing, indicator)
 	var/elapsed = 0
@@ -168,10 +172,10 @@
 	clear_indicators(indicator)
 	on_strike_complete(H, sweep_hit_count, deflected)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/on_impact(mob/living/carbon/human/H, facing, atom/movable/visual)
+/datum/action/cooldown/spell/telegraphed_strike/proc/on_impact(mob/living/H, facing, atom/movable/visual)
 	return
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/hit_turf(mob/living/carbon/human/H, turf/T, facing, deflected = FALSE)
+/datum/action/cooldown/spell/telegraphed_strike/proc/hit_turf(mob/living/H, turf/T, facing, deflected = FALSE)
 	if(QDELETED(H) || QDELETED(T))
 		return deflected
 	var/obj/item/weapon = get_strike_weapon(H)
@@ -227,7 +231,7 @@
 		if(detonate_sound)
 			playsound(T, detonate_sound, 65, TRUE)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/forward_reach(mob/living/carbon/human/H, facing, max_steps)
+/datum/action/cooldown/spell/telegraphed_strike/proc/forward_reach(mob/living/H, facing, max_steps)
 	var/reach = 0
 	var/turf/current = get_turf(H)
 	for(var/i in 1 to max_steps)
@@ -241,23 +245,23 @@
 				return reach
 	return reach
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/get_strike_weapon(mob/living/carbon/human/H)
+/datum/action/cooldown/spell/telegraphed_strike/proc/get_strike_weapon(mob/living/H)
 	return null
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/get_strike_damage()
 	return damage
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/on_hit_target(mob/living/carbon/human/H, mob/living/L, facing)
+/datum/action/cooldown/spell/telegraphed_strike/proc/on_hit_target(mob/living/H, mob/living/L, facing)
 	return
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/on_strike_complete(mob/living/carbon/human/H, hit_count, deflected)
+/datum/action/cooldown/spell/telegraphed_strike/proc/on_strike_complete(mob/living/H, hit_count, deflected)
 	return
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/on_antimagic_block(mob/living/L)
 	L.visible_message(span_warning("The arcyne blades dispel as they near [L]!"))
 	playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 
-/datum/action/cooldown/spell/telegraphed_strike/proc/do_blade_animation(mob/living/carbon/human/H, facing)
+/datum/action/cooldown/spell/telegraphed_strike/proc/do_blade_animation(mob/living/H, facing)
 	return
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/get_pattern_offsets()

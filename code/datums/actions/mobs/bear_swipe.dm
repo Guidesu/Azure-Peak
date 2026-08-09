@@ -4,7 +4,7 @@
 	button_icon_state = "explosion"
 	desc = "Swipes at someone with a huge paw"
 	cooldown_time = 10 SECONDS
-	max_range = 1
+	npc_max_range = 1
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/cast_time = 1 SECONDS
 	var/def_zone = BODY_ZONE_CHEST

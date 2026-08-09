@@ -16,7 +16,7 @@
 	if (!(target_key in controller.blackboard))
 		return
 	//var/obj/effect/proc_holder/spell/using_action = controller.blackboard[ability_key]
-	var/datum/action/cooldown/mob_cooldown/using_action = controller.blackboard[ability_key]
+	var/datum/action/cooldown/using_action = controller.blackboard[ability_key]
 	if (!using_action?.IsAvailable())
 		return
 	/*if(using_action?.cast_check()) */ // needs, re-add if go back to spells
@@ -40,7 +40,7 @@
 		return
 
 	var/list/candidates = list()
-	for(var/datum/action/cooldown/mob_cooldown/special in pawn.actions)
+	for(var/datum/action/cooldown/special in pawn.actions)
 		if(!special.IsAvailable() || !special.can_use(target))
 			continue
 		if(!prob(special.npc_use_chance(target)))

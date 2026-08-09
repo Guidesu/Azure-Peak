@@ -1276,6 +1276,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		qdel(I)
 		food = max(food + 30, 100)
 
+/mob/living/simple_animal/Login()
+	. = ..()
+	walk(src, 0)
+
 /mob/living/simple_animal/Life()
 	if(!client && can_have_ai && (AIStatus == AI_Z_OFF || AIStatus == AI_OFF))
 		return

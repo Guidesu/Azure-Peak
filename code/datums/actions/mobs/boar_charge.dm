@@ -4,8 +4,8 @@
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "explosion"
 	cooldown_time = 20 SECONDS
-	min_range = 2
-	max_range = 7
+	npc_min_range = 2
+	npc_max_range = 7
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/charge_speed = 2
 	var/windup_time = 0.7 SECONDS
@@ -27,7 +27,7 @@
 		return
 	boar.visible_message(span_danger("<b>[boar]</b> charges!"))
 	var/charge_dir = get_dir(boar, target)
-	boar.throw_at(target, max_range, charge_speed, boar, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
+	boar.throw_at(target, npc_max_range, charge_speed, boar, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
 
 /datum/action/cooldown/mob_cooldown/boar_charge/proc/on_charge_end(charge_dir)
 	var/mob/living/boar = owner

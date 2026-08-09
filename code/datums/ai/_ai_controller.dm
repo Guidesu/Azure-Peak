@@ -91,9 +91,6 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	UnpossessPawn(FALSE)
 	our_cells = null
 	inventory_component = null
-	set_movement_target(type, null)
-	if(ai_movement.moving_controllers[src])
-		ai_movement.stop_moving_towards(src)
 	return ..()
 
 ///Sets the current movement target, with an optional param to override the movement behavior
@@ -152,7 +149,23 @@ have ways of interacting with a specific atom and control it. They posses a blac
 
 ///Overrides the current ai_movement of this controller with a new one
 /datum/ai_controller/proc/change_ai_movement_type(datum/ai_movement/new_movement)
+	if(istype(ai_movement) && (src in ai_movement.moving_controllers))
+		ai_movement.stop_moving_towards(src)
 	ai_movement = SSai_movement.movement_types[new_movement]
+
+///Rips this controller out of every movement datum and drops any queued path.
+/datum/ai_controller/proc/halt_movement()
+	for(var/movement_type in SSai_movement.movement_types)
+		var/datum/ai_movement/movement = SSai_movement.movement_types[movement_type]
+		if(src in movement.moving_controllers)
+			movement.stop_moving_towards(src)
+	movement_path = null
+	if(blackboard[BB_FUTURE_MOVEMENT_PATH])
+		clear_blackboard_key(BB_FUTURE_MOVEMENT_PATH)
+	if(current_movement_target)
+		set_movement_target(type, null)
+	if(!QDELETED(pawn) && ismovable(pawn))
+		walk(pawn, 0)
 
 ///Completely replaces the planning_subtrees with a new set based on argument provided, list provided must contain specifically typepaths
 /datum/ai_controller/proc/replace_planning_subtrees(list/typepaths_of_new_subtrees)
@@ -192,17 +205,17 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	if(pawn_turf)
 		GLOB.ai_controllers_by_zlevel[pawn_turf.z] += src
 
-	if(!continue_processing_when_client && istype(new_pawn, /mob))
-		var/mob/possible_client_holder = new_pawn
-		if(possible_client_holder.client)
-			set_ai_status(AI_STATUS_OFF)
-		else
-			set_ai_status(AI_STATUS_ON)
+	var/mob/possible_client_holder = ismob(new_pawn) ? new_pawn : null
+	if(!continue_processing_when_client && possible_client_holder?.client)
+		set_ai_status(AI_STATUS_OFF)
 	else
 		set_ai_status(AI_STATUS_ON)
 
 	RegisterSignal(pawn, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_changed_z_level))
-	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
+	if(possible_client_holder?.client)
+		RegisterSignal(pawn, COMSIG_MOB_LOGOUT, PROC_REF(on_sentience_lost))
+	else
+		RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
 	RegisterSignal(pawn, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 	RegisterSignal(pawn, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_pawn_attacked))
 
@@ -376,6 +389,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 		GLOB.ai_controllers_by_status[ai_status] -= src
 	stop_previous_processing()
 	CancelActions()
+	halt_movement()
 	pawn.ai_controller = null
 	pawn = null
 	if(destroy)
@@ -410,6 +424,8 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	if(QDELETED(pawn))
 		return
 	var/mob/living/living_pawn = pawn
+	if(living_pawn.client && !continue_processing_when_client)
+		return FALSE
 	if(living_pawn.incapacitated())
 		return FALSE
 	if(ai_traits & STOP_MOVING_WHEN_PULLED && living_pawn.pulledby)
@@ -613,6 +629,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 			START_PROCESSING(SSidle_ai_behaviors, src)
 		if(AI_STATUS_OFF)
 			CancelActions()
+			halt_movement()
 
 /datum/ai_controller/proc/stop_previous_processing()
 	switch(ai_status)

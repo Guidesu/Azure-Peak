@@ -12,5 +12,5 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/cave/Initialize(mapload)
 	. = ..()
-	var/datum/action/cooldown/mob_cooldown/stone_throw/throwstone = new(src)
+	var/datum/action/cooldown/mob_cooldown/telegraphed/ground/stone_throw/throwstone = new(src)
 	throwstone.Grant(src)

@@ -4,7 +4,7 @@
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "explosion"
 	cooldown_time = 14 SECONDS
-	max_range = 2
+	npc_max_range = 2
 	use_chance = 55
 	overhead_y_offset = 48
 	overhead_x_offset = 16
@@ -65,7 +65,7 @@
 	telegraph_sound = 'sound/combat/ground_smash_start.ogg'
 	impact_sound = list('sound/combat/ground_smash1.ogg','sound/combat/ground_smash2.ogg','sound/combat/ground_smash3.ogg')
 	hit_sound = list('sound/combat/hits/smashlimb (1).ogg','sound/combat/hits/smashlimb (2).ogg','sound/combat/hits/smashlimb (3).ogg')
-	max_range = 3
+	npc_max_range = 3
 	self_targetable = TRUE
 	lock_facing = FALSE
 	track_target = TRUE

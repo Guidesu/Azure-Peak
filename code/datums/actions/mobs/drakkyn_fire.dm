@@ -4,8 +4,8 @@
 	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
 	button_icon_state = "fire_blast"
 	cooldown_time = 25 SECONDS
-	min_range = 0
-	max_range = 4
+	npc_min_range = 0
+	npc_max_range = 4
 	use_chance = 45
 	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
 
@@ -49,7 +49,7 @@
 	cooldown_time = 20 SECONDS
 	damage = 60
 	cone_range = 5
-	max_range = 5
+	npc_max_range = 5
 	scorch_stacks = 2
 
 /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball
@@ -58,8 +58,8 @@
 	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
 	button_icon_state = "fireball"
 	cooldown_time = 20 SECONDS
-	min_range = 4
-	max_range = 9
+	npc_min_range = 4
+	npc_max_range = 9
 
 	telegraph_time = TELEGRAPH_HIGH_IMPACT
 	telegraph_type = /obj/effect/temp_visual/trap/primordial/fire
@@ -95,8 +95,8 @@
 /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/watcher
 	name = "Eye of Fire"
 	cooldown_time = 8 SECONDS
-	min_range = 2
-	max_range = 9
+	npc_min_range = 2
+	npc_max_range = 9
 	use_chance = 70
 	telegraph_message = "fixes its eye, glaring down its foe!"
 	whiff_message = "'s eyes shut, the glow dimming."

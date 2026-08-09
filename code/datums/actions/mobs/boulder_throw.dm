@@ -5,8 +5,8 @@
 	button_icon_state = "explosion"
 	cooldown_time = 25 SECONDS
 	lockout_time = 25 SECONDS
-	min_range = 3
-	max_range = 12
+	npc_min_range = 3
+	npc_max_range = 12
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/windup_time = 1.2 SECONDS
 
@@ -53,7 +53,7 @@
 	button_icon_state = "explosion"
 	cooldown_time = 0.7 SECONDS
 	lockout_time = 0
-	max_range = 2
+	npc_max_range = 2
 	var/consecutive = 0
 	var/escalation = 1 SECONDS
 	var/max_cooldown = 10 SECONDS

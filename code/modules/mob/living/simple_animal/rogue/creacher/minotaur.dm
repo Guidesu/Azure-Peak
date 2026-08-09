@@ -76,7 +76,7 @@
 	ADD_TRAIT(src, TRAIT_BASHDOORS, TRAIT_GENERIC)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-	var/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/charge = new(src)
+	var/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/charge = new(src)
 	charge.Grant(src)
 	if(sweep_ability)
 		var/datum/action/cooldown/mob_cooldown/telegraphed/area/minotaur_sweep/sweep = new sweep_ability(src)

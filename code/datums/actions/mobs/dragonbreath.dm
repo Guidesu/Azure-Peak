@@ -4,7 +4,7 @@
 	button_icon_state = "fireball"
 	desc = "Breathe a line of flames towards the target."
 	cooldown_time = 30 SECONDS
-	max_range = 15
+	npc_max_range = 15
 	/// The range of the fire
 	var/fire_range = 15
 	/// The sound played when you use this ability
@@ -86,8 +86,8 @@
 	button_icon_state = "light"
 	desc = "Breathe flames in all directions."
 	cooldown_time = 60.5 SECONDS
-	min_range = 0
-	requires_los = FALSE
+	npc_min_range = 0
+	npc_requires_los = FALSE
 	/// How many fire lines do we produce to turn a full circle?
 	var/sectors = 12
 	/// How long do we wait between each spin?

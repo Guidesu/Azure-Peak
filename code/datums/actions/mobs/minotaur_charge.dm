@@ -1,74 +1,80 @@
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge
 	name = "Gore Charge"
 	desc = "Lowers your horns and runs your quarry down."
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "explosion"
 	cooldown_time = 18 SECONDS
-	min_range = 3
-	max_range = 8
+	shared_cooldown = "mob_special"
+
+	click_to_activate = FALSE
+	self_cast_possible = TRUE
+	charge_required = FALSE
+	invocation_type = INVOCATION_NONE
+	primary_resource_type = SPELL_COST_NONE
+	spell_requirements = SPELL_REQUIRES_SAME_Z
+
 	use_chance = 50
-	overhead_y_offset = 48
-	overhead_x_offset = 16
+	npc_min_range = 3
+	npc_max_range = 8
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-	telegraph_time = TELEGRAPH_HIGH_IMPACT
-	telegraph_message = "throws back its head and ROARS, digging in its hooves!"
-	telegraph_sound = list('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
-	lock_facing = FALSE
+	windup_time = TELEGRAPH_HIGH_IMPACT
 	track_target = TRUE
-	recovery_time = 4 SECONDS
-	recovery_slowdown = 3
-	recovery_status = /datum/status_effect/debuff/vulnerable
-	recovery_message = "skids to a sudden halt, struggling to recover."
+	lock_direction = FALSE
+	committed_strike = TRUE
+	interruptible = FALSE
+	damage_structures = FALSE
+	strike_sound = 'sound/combat/clash_charge.ogg'
 
+	var/lane_length = 8
 	var/step_delay = 1
 	var/gore_damage = 55
 	var/gore_exposed = 6 SECONDS
+	var/recovery_time = 4 SECONDS
 	var/slam_stun = 2 SECONDS
 	var/slam_exposed = 6 SECONDS
 	var/guard_topple = 4 SECONDS
+	var/list/roar_sound = list('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/telegraph_offsets(atom/target)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/get_pattern_offsets()
 	var/list/offs = list()
-	for(var/d in 1 to max_range)
+	for(var/d in 1 to lane_length)
 		offs += list(list(-1, d), list(0, d), list(1, d))
 	return offs
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/proc/row_turfs(turf/centre, facing)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/cast(atom/cast_on)
+	. = ..()
+	if(.)
+		var/mob/living/bull = owner
+		bull.visible_message(span_boldwarning("<b>[bull]</b> throws back its head and ROARS, digging in its hooves!"))
+		playsound(get_turf(bull), pick(roar_sound), 100, TRUE)
+		bull.play_overhead_indicator_simple(button_icon, button_icon_state, windup_time, ABOVE_MOB_LAYER, null, 48, 16)
+
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/perpendicular_dirs(facing)
+	switch(facing)
+		if(EAST, WEST)
+			return list(NORTH, SOUTH)
+	return list(WEST, EAST)
+
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/row_turfs(turf/centre, facing)
 	. = list(centre)
 	for(var/side in perpendicular_dirs(facing))
 		var/turf/flank = get_step(centre, side)
 		if(flank && !flank.density)
 			. += flank
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/proc/perpendicular_dirs(facing)
-	switch(facing)
-		if(EAST, WEST)
-			return list(NORTH, SOUTH)
-	return list(WEST, EAST)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/strike(mob/living/H, facing, list/indicator, atom/cast_on)
+	clear_indicators(indicator)
+	if(strike_sound)
+		playsound(get_turf(H), strike_sound, 100, TRUE)
+	H.visible_message(span_danger("<b>[H]</b> hurls itself forward!"))
+	INVOKE_ASYNC(src, PROC_REF(charge_run), H, facing)
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/on_guarded(mob/living/victim, mob/living/user)
-	var/mob/living/simple_animal/bull = user
-	user.visible_message(span_boldwarning("<b>[user]</b> is tripped and toppled!"))
-	ability_sound(get_turf(user), 'sound/foley/zfall.ogg')
-	if(istype(bull))
-		bull.topple(guard_topple)
-	open_up(user, guard_topple, /datum/status_effect/debuff/exposed, override_recovery = TRUE)
-
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/resolve(atom/target, facing)
-	var/mob/living/bull = owner
-	if(QDELETED(target))
-		return
-	guard_cancelled = FALSE
-	ability_sound(get_turf(bull), 'sound/combat/clash_charge.ogg')
-	bull.visible_message(span_danger("<b>[bull]</b> hurls itself forward!"))
-	charge_run(bull, facing, max_range)
-
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/proc/charge_run(mob/living/bull, facing, lane)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/charge_run(mob/living/bull, facing)
 	var/list/perp_dirs = perpendicular_dirs(facing)
 	var/shove_toggle = 0
-	for(var/i in 1 to lane)
-		if(QDELETED(bull) || !windup_holds(bull))
+	for(var/i in 1 to lane_length)
+		if(QDELETED(bull) || bull.stat != CONSCIOUS || bull.incapacitated())
 			return
 		var/turf/next = get_step(get_turf(bull), facing)
 		if(!next || next.density)
@@ -101,36 +107,53 @@
 				gored += victim
 		if(length(gored))
 			for(var/mob/living/victim in gored)
-				gore(bull, victim, facing)
-				if(guard_cancelled)
+				if(!gore(bull, victim, facing))
 					return
+			open_up(bull, recovery_time, /datum/status_effect/debuff/vulnerable)
 			return
 		if(fouled)
 			bull.visible_message(span_boldwarning("<b>[bull]</b> stumbles to a halt!"))
+			open_up(bull, recovery_time, /datum/status_effect/debuff/vulnerable)
 			return
 
 		step(bull, facing)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(bull))
 		sleep(step_delay)
 
-	bull.visible_message(span_notice("[bull] bring itself to a skidding halt!"))
+	bull.visible_message(span_notice("[bull] brings itself to a skidding halt!"))
+	open_up(bull, recovery_time, /datum/status_effect/debuff/vulnerable)
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/proc/gore(mob/living/bull, mob/living/victim, facing)
-	if(check_guard(victim, bull))
-		return
-	ability_sound(get_turf(victim), 'sound/combat/brutal_impalement.ogg')
-	ability_sound(get_turf(victim), 'sound/combat/crit.ogg', 75)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/gore(mob/living/bull, mob/living/victim, facing)
+	if(spell_guard_check(victim, FALSE, bull))
+		bull.visible_message(span_boldwarning("<b>[bull]</b> is tripped and toppled!"))
+		playsound(get_turf(bull), 'sound/foley/zfall.ogg', 100, TRUE)
+		var/mob/living/simple_animal/beast = bull
+		if(istype(beast))
+			beast.topple(guard_topple)
+		open_up(bull, guard_topple, /datum/status_effect/debuff/exposed)
+		return FALSE
+	playsound(get_turf(victim), 'sound/combat/brutal_impalement.ogg', 100, TRUE)
 	victim.visible_message(span_userdanger("[bull] gores [victim] on its horns!"))
-	strike_mob(victim, bull, gore_damage, BRUTE, BCLASS_STAB, "stab", PEN_HEAVY, pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+	if(ishuman(victim))
+		arcyne_strike(bull, victim, null, gore_damage, pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), BCLASS_STAB, armor_penetration = PEN_HEAVY, spell_name = name, skip_animation = TRUE, exact_zone = TRUE)
+	else
+		victim.adjustBruteLoss(gore_damage)
 	if(victim.mobility_flags & MOBILITY_STAND)
 		victim.apply_status_effect(/datum/status_effect/debuff/exposed, gore_exposed)
 	var/turf/behind = get_step(get_turf(victim), facing)
 	if(behind && !behind.density)
 		victim.safe_throw_at(behind, 1, 1, bull, force = MOVE_FORCE_STRONG)
+	return TRUE
 
-/datum/action/cooldown/mob_cooldown/telegraphed/minotaur_charge/proc/slam_into_wall(mob/living/bull, turf/wall)
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/slam_into_wall(mob/living/bull, turf/wall)
 	bull.visible_message(span_boldwarning("<b>[bull]</b> slams headlong into \the [wall] and reels!"))
-	ability_sound(wall, 'sound/misc/meteorimpact.ogg')
+	playsound(wall, 'sound/misc/meteorimpact.ogg', 100, TRUE)
 	shake_camera(bull, 3, 3)
 	bull.Stun(slam_stun, ignore_canstun = TRUE)
-	open_up(bull, slam_exposed, /datum/status_effect/debuff/exposed, override_recovery = TRUE)
+	open_up(bull, slam_exposed, /datum/status_effect/debuff/exposed)
+
+/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/open_up(mob/living/bull, duration, status)
+	if(QDELETED(bull) || duration <= 0)
+		return
+	bull.apply_status_effect(status, duration)
+	bull.apply_status_effect(/datum/status_effect/debuff/clickcd, duration)

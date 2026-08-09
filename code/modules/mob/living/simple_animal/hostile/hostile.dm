@@ -90,6 +90,14 @@
 		walk(src, 0) //stops walking
 		return 0
 
+/mob/living/simple_animal/hostile/Login()
+	. = ..()
+	if(target)
+		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+		target = null
+	approaching_target = FALSE
+	in_melee = FALSE
+
 /mob/living/simple_animal/hostile/handle_automated_action()
 	if(QDELETED(src) || !loc)
 		return FALSE

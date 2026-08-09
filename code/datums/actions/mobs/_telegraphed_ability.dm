@@ -312,3 +312,67 @@
 
 /datum/action/cooldown/mob_cooldown/telegraphed/ranged/proc/ready_projectile(obj/projectile/P, atom/target)
 	return
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground
+	lock_facing = FALSE
+	freeze_windup = TRUE
+	var/blast_radius = 1
+	var/damage = 40
+	var/damage_type = BRUTE
+	var/blade_class = BCLASS_BLUNT
+	var/armor_flag = "blunt"
+	var/armor_pen = PEN_NONE
+	var/impact_sound
+	var/hit_sound
+	var/spare_allies = TRUE
+	var/turf/locked_turf
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/windup(atom/target)
+	locked_turf = get_turf(target)
+	if(!locked_turf)
+		return
+	return ..()
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/telegraph_marks(atom/target)
+	. = list()
+	if(!locked_turf)
+		return
+	for(var/turf/T in range(blast_radius, locked_turf))
+		if(!T.density)
+			. += T
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/proc/blast_turfs()
+	. = list()
+	if(!locked_turf)
+		return
+	for(var/turf/T in range(blast_radius, locked_turf))
+		if(!T.density)
+			. += T
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/resolve(atom/target, facing)
+	var/mob/living/user = owner
+	guard_cancelled = FALSE
+	var/list/turfs = blast_turfs()
+	if(!length(turfs))
+		return
+	ability_sound(locked_turf, impact_sound)
+	var/list/struck = list()
+	for(var/turf/T in turfs)
+		on_impact_turf(T, user)
+		for(var/mob/living/L in T)
+			if(L == user || (L in struck))
+				continue
+			if(spare_allies && user.faction_check_mob(L))
+				continue
+			struck += L
+			hit_mob(L, user)
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/proc/on_impact_turf(turf/T, mob/living/user)
+	return
+
+/datum/action/cooldown/mob_cooldown/telegraphed/ground/proc/hit_mob(mob/living/victim, mob/living/user)
+	if(check_guard(victim, user))
+		return 0
+	. = strike_mob(victim, user, damage, damage_type, blade_class, armor_flag, armor_pen)
+	if(.)
+		ability_sound(get_turf(victim), hit_sound)
