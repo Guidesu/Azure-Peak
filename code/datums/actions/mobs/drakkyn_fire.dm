@@ -44,47 +44,74 @@
 	npc_max_range = 5
 	scorch_stacks = 2
 
-/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball
-	name = "Fireball"
-	desc = "Hurl a bolt of fire at a distant foe."
-	button_icon = 'icons/mob/actions/mage_pyromancy.dmi'
-	button_icon_state = "fireball"
+
+/datum/action/cooldown/spell/projectile/fireball/mob_ability
+	abstract_type = /datum/action/cooldown/spell/projectile/fireball/mob_ability
+	panel = null
+	use_chance = 100
+	shared_cooldown = "mob_special"
+	lockout_time = 5 SECONDS
 	cooldown_time = 20 SECONDS
 	npc_min_range = 4
 	npc_max_range = 9
 
-	telegraph_time = TELEGRAPH_HIGH_IMPACT
-	telegraph_type = /obj/effect/temp_visual/trap/primordial/fire
-	telegraph_message = "gathers a knot of fire!"
-	telegraph_sound = 'sound/magic/fireball.ogg'
-	whiff_message = "loses its mark."
+	retrigger_after_cooldown = FALSE
+	self_cast_possible = FALSE
+	invocations = list()
+	invocation_type = INVOCATION_NONE
+	sound = null
+	primary_resource_type = SPELL_COST_NONE
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
+	associated_stat = null
+	has_visual_effects = FALSE
+	glow_intensity = 0
+	weapon_cast_penalized = FALSE
 
-	projectile_type = /obj/projectile/magic/aoe/fireball/rogue
-	fire_sound = 'sound/magic/fireball.ogg'
+	charge_required = TRUE
+	charge_time = TELEGRAPH_HIGH_IMPACT
+	charge_sound = null
+	charge_slowdown = CHARGING_SLOWDOWN_NONE
+	charge_swingdelay_type = SWINGDELAY_NORMAL
+	hold_drain = 0
+	freeze_cast = TRUE
+
+	telegraph_message = "gathers a knot of fire!"
+	telegraph_sound = list('sound/magic/fireball.ogg')
+
+	/// Said when the quarry slips out of reach during the wind-up.
+	var/whiff_message = "loses its mark."
 	var/damage_mult = 1
 
-/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/ready_projectile(obj/projectile/P, atom/target)
+/datum/action/cooldown/spell/projectile/fireball/mob_ability/cast(atom/cast_on)
+	if(!npc_controlled() || can_use(cast_on))
+		return ..()
+	if(whiff_message)
+		owner.visible_message(span_warning("[owner] [whiff_message]"))
+	return TRUE
+
+/datum/action/cooldown/spell/projectile/fireball/mob_ability/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
+	. = ..()
 	if(damage_mult == 1)
 		return
-	P.damage *= damage_mult
-	var/obj/projectile/magic/aoe/fireball/rogue/bolt = P
+	to_fire.damage *= damage_mult
+	var/obj/projectile/magic/aoe/fireball/rogue/bolt = to_fire
 	if(istype(bolt))
 		bolt.arcyne_aoe_damage *= damage_mult
 
-/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn
+/datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn
 	name = "Drakkyn Fireball"
 	use_chance = 15
 	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
 	telegraph_message = "rears back, fire gathering behinds its teeth!"
-	overhead_y_offset = 64
-	overhead_x_offset = 32
 	whiff_message = "closes its mouth, smoke billowing out."
+	cast_effect_x_offset = 32
+	cast_effect_y_offset = 32
 
-/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn/greater
+/datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn/greater
 	cooldown_time = 15 SECONDS
 	damage_mult = 1.5
 
-/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/watcher
+/datum/action/cooldown/spell/projectile/fireball/mob_ability/watcher
 	name = "Eye of Fire"
 	cooldown_time = 8 SECONDS
 	npc_min_range = 2

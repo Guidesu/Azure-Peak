@@ -39,8 +39,7 @@
 		return FALSE
 
 	var/atom/target = cast_on
-	// For non-click spells, resolve target in the caster's facing direction
-	if(!click_to_activate)
+	if(!click_to_activate && (QDELETED(cast_on) || cast_on == owner))
 		var/aim_dir = cardinal_aim ? angle2dir_cardinal(dir2angle(owner.dir)) : owner.dir
 		target = get_ranged_target_turf(owner, aim_dir, cast_range)
 

@@ -74,7 +74,7 @@
 //	stat_attack = UNCONSCIOUS
 
 	var/breath_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn
-	var/fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn
+	var/fireball_ability = /datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
 	. = ..()
@@ -105,7 +105,7 @@
 		var/datum/action/cooldown/spell/telegraphed_strike/breath = new breath_ability(src)
 		breath.Grant(src)
 	if(fireball_ability)
-		var/datum/action/cooldown/mob_cooldown/telegraphed/bolt = new fireball_ability(src)
+		var/datum/action/cooldown/spell/projectile/bolt = new fireball_ability(src)
 		bolt.Grant(src)
 
 	//ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC) // Need a weakness
@@ -185,7 +185,7 @@
 	melee_damage_upper = 130 //big buffs, these guys will drop very very good things
 	ranged_cooldown_time = 10 SECONDS //dark souls prepare to fry edition
 	breath_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn/greater
-	fireball_ability = /datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/drakkyn/greater
+	fireball_ability = /datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn/greater
 	butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 4,
 		/obj/item/natural/hide = 4,

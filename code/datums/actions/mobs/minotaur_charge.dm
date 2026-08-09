@@ -1,17 +1,8 @@
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge
 	name = "Gore Charge"
 	desc = "Lowers your horns and runs your quarry down."
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "explosion"
 	cooldown_time = 18 SECONDS
-	shared_cooldown = "mob_special"
-
-	click_to_activate = FALSE
-	self_cast_possible = TRUE
-	charge_required = FALSE
-	invocation_type = INVOCATION_NONE
-	primary_resource_type = SPELL_COST_NONE
-	spell_requirements = SPELL_REQUIRES_SAME_Z
+	freeze_cast = FALSE
 
 	use_chance = 50
 	npc_min_range = 3
@@ -39,33 +30,33 @@
 	var/slam_exposed = 6 SECONDS
 	var/guard_topple = 4 SECONDS
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/get_pattern_offsets()
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/get_pattern_offsets()
 	var/list/offs = list()
 	for(var/d in 1 to lane_length)
 		offs += list(list(-1, d), list(0, d), list(1, d))
 	return offs
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/perpendicular_dirs(facing)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/perpendicular_dirs(facing)
 	switch(facing)
 		if(EAST, WEST)
 			return list(NORTH, SOUTH)
 	return list(WEST, EAST)
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/row_turfs(turf/centre, facing)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/row_turfs(turf/centre, facing)
 	. = list(centre)
 	for(var/side in perpendicular_dirs(facing))
 		var/turf/flank = get_step(centre, side)
 		if(flank && !flank.density)
 			. += flank
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/strike(mob/living/H, facing, list/indicator, atom/cast_on)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/strike(mob/living/H, facing, list/indicator, atom/cast_on)
 	clear_indicators(indicator)
 	if(strike_sound)
 		playsound(get_turf(H), strike_sound, 100, TRUE)
 	H.visible_message(span_danger("<b>[H]</b> hurls itself forward!"))
 	INVOKE_ASYNC(src, PROC_REF(charge_run), H, facing)
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/charge_run(mob/living/bull, facing)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/charge_run(mob/living/bull, facing)
 	var/list/perp_dirs = perpendicular_dirs(facing)
 	var/shove_toggle = 0
 	for(var/i in 1 to lane_length)
@@ -118,7 +109,7 @@
 	bull.visible_message(span_notice("[bull] brings itself to a skidding halt!"))
 	open_up(bull, recovery_time, /datum/status_effect/debuff/vulnerable)
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/gore(mob/living/bull, mob/living/victim, facing)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/gore(mob/living/bull, mob/living/victim, facing)
 	if(spell_guard_check(victim, FALSE, bull))
 		bull.visible_message(span_boldwarning("<b>[bull]</b> is tripped and toppled!"))
 		playsound(get_turf(bull), 'sound/foley/zfall.ogg', 100, TRUE)
@@ -140,14 +131,14 @@
 		victim.safe_throw_at(behind, 1, 1, bull, force = MOVE_FORCE_STRONG)
 	return TRUE
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/slam_into_wall(mob/living/bull, turf/wall)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/slam_into_wall(mob/living/bull, turf/wall)
 	bull.visible_message(span_boldwarning("<b>[bull]</b> slams headlong into \the [wall] and reels!"))
 	playsound(wall, 'sound/misc/meteorimpact.ogg', 100, TRUE)
 	shake_camera(bull, 3, 3)
 	bull.Stun(slam_stun, ignore_canstun = TRUE)
 	open_up(bull, slam_exposed, /datum/status_effect/debuff/exposed)
 
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/open_up(mob/living/bull, duration, status)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/open_up(mob/living/bull, duration, status)
 	if(QDELETED(bull) || duration <= 0)
 		return
 	bull.apply_status_effect(status, duration)

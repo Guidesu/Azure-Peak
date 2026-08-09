@@ -118,7 +118,6 @@
 #define VAMPIRE_SPAWN 	(1<<8)
 #define GNOLL			(1<<9)
 #define HAG				(1<<10)
-#define MONSTERHUNTER	(1<<11) // TEST ROLE
 
 #define SLOP				(1<<11)
 
@@ -224,7 +223,6 @@
 #define JDO_WRETCH 11.2
 #define JDO_GNOLL 11.3
 #define JDO_HAG 11.4
-#define JDO_MONSTERHUNTER 11.5
 
 #define BITFLAG_HOLY_WARRIOR (1<<0)
 #define BITFLAG_ROYALTY (1<<1)

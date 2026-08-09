@@ -422,13 +422,14 @@
 				other_spell.UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 			UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 
-		if(charge_required)
-			// If pointed we setup signals to override mouse down to call InterceptClickOn()
-			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
-		else
-			// Non-charge spells still need to intercept middle-click MouseDown
-			// to prevent the old system from starting its charging flow
-			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(intercept_mousedown))
+		if(owner.client) // NPC skip this
+			if(charge_required)
+				// If pointed we setup signals to override mouse down to call InterceptClickOn()
+				RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
+			else
+				// Non-charge spells still need to intercept middle-click MouseDown
+				// to prevent the old system from starting its charging flow
+				RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(intercept_mousedown))
 
 	return ..()
 
@@ -525,6 +526,11 @@
 /datum/action/cooldown/spell/InterceptClickOn(mob/living/clicker, list/modifiers, atom/click_target)
 	if(istext(modifiers))
 		modifiers = params2list(modifiers)
+	// The AI drives abilities through Trigger(target) with no click behind them.
+	if(isnull(modifiers) && npc_controlled())
+		if(QDELETED(click_target))
+			return FALSE
+		return PreActivate(click_target)
 	if(!LAZYACCESS(modifiers, MIDDLE_CLICK))
 		return
 
@@ -958,10 +964,13 @@
 			owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			return sig_return | SPELL_CANCEL_CAST
 
-	if(charge_required && !click_to_activate)
+	// An NPC has no mouse to hold, so it charges through a do_after even on click-to-activate spells.
+	if(charge_required && (!click_to_activate || npc_controlled()))
 		// Use a simple do_after for non-click charge spells
 		var/require_no_move = (spell_requirements & SPELL_REQUIRES_NO_MOVE)
 		on_start_charge()
+		charge_started_at = world.time
+		charge_target_time = charge_time
 		apply_charge_intent()
 		var/success = TRUE
 		if(!do_after(owner, charge_time, needhand = FALSE, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), owner, cast_on), no_interrupt = !require_no_move, allow_movement = !require_no_move))
@@ -1305,8 +1314,9 @@
 	if(SW && SW.duration != -1)
 		SW.duration = max(SW.duration, world.time + (charge_swingdelay_duration || 20))
 
+/// Bypass the straining / mouse hold mechanics for NPC
 /datum/action/cooldown/spell/proc/is_held_ready()
-	return charge_required && click_to_activate
+	return charge_required && click_to_activate && !npc_controlled()
 
 /datum/action/cooldown/spell/proc/has_hold_cap()
 	return is_held_ready() && !charge_then_click && hold_max_time > hold_grace_time

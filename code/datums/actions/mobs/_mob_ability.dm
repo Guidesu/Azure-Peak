@@ -4,6 +4,8 @@
 	button_icon_state = "explosion"
 	panel = null
 	use_chance = 100
+	click_to_activate = TRUE
+	retrigger_after_cooldown = FALSE
 	shared_cooldown = "mob_special"
 	lockout_time = 5 SECONDS
 	self_cast_possible = TRUE

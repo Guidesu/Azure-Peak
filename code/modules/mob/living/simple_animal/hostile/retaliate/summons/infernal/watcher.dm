@@ -51,7 +51,7 @@
 	ranged_cooldown_time = 80
 	projectiletype = /obj/projectile/magic/aoe/fireball/rogue
 	ranged_message = "stares"
-	var/datum/action/cooldown/mob_cooldown/telegraphed/ranged/fireball/watcher/eyefire
+	var/datum/action/cooldown/spell/projectile/fireball/mob_ability/watcher/eyefire
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
 	. = ..()

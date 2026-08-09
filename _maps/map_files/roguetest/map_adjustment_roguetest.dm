@@ -10,7 +10,6 @@
 	slot_adjust = list(
 		/datum/job/roguetown/villager = 42,
 		/datum/job/roguetown/adventurer = 69,
-		/datum/job/roguetown/monster_hunter = 1,
 	)
 	title_adjust = list(
 		/datum/job/roguetown/lord = list(display_title = "Lord Castellan", f_title = "Lady Castellan")
