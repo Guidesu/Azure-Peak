@@ -44,8 +44,8 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, "troll_downed", 0)
-	var/datum/action/cooldown/mob_cooldown/boulder_throw/boulder = new(src)
+	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/boulder_throw/boulder = new(src)
 	boulder.Grant(src)
-	var/datum/action/cooldown/mob_cooldown/troll_shove/shove = new(src)
+	var/datum/action/cooldown/spell/troll_shove/shove = new(src)
 	shove.Grant(src)
 

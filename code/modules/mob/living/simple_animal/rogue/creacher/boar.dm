@@ -78,7 +78,7 @@
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/boar
 	move_base_delay = MOVEMENT_DELAY_SPD_17
-	var/charge_type = /datum/action/cooldown/mob_cooldown/boar_charge
+	var/charge_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boar/Initialize()
 	. = ..()
@@ -88,7 +88,7 @@
 		gender = FEMALE
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
-	var/datum/action/cooldown/mob_cooldown/boar_charge/charge = new charge_type(src)
+	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/charge = new charge_type(src)
 	charge.Grant(src)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)

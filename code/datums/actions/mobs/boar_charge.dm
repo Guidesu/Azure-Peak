@@ -1,35 +1,34 @@
-/datum/action/cooldown/mob_cooldown/boar_charge
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge
 	name = "Charge"
 	desc = "Lowers its head and barrels forward."
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "explosion"
 	cooldown_time = 20 SECONDS
 	npc_min_range = 2
 	npc_max_range = 7
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+
+	windup_time = 0.7 SECONDS
+	telegraph_message = "lowers its head and paws at the ground!"
+	telegraph_sound = list('sound/vo//mobs/boar/boar_charge.ogg')
+	strike_sound = null
+	freeze_cast = FALSE
+
 	var/charge_speed = 2
-	var/windup_time = 0.7 SECONDS
 	var/missed_once = FALSE
 
-/datum/action/cooldown/mob_cooldown/boar_charge/use_special(atom/target)
-	INVOKE_ASYNC(src, PROC_REF(wind_up), target)
-	return TRUE
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/get_pattern_offsets()
+	. = list()
+	for(var/d in 1 to npc_max_range)
+		. += list(list(0, d))
 
-/datum/action/cooldown/mob_cooldown/boar_charge/proc/wind_up(atom/target)
-	var/mob/living/boar = owner
-	boar.visible_message("<b>[boar]</b> lowers its head and paws at the ground!")
-	playsound(boar, 'sound/vo//mobs/boar/boar_charge.ogg', 75, TRUE)
-	if(!do_after(boar, windup_time))
-		StartCooldownSelf(0)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/strike(mob/living/H, facing, list/indicator, atom/cast_on)
+	clear_indicators(indicator)
+	if(QDELETED(cast_on) || H.buckled || H.incapacitated())
 		return
-	if(QDELETED(target) || QDELETED(boar) || boar.buckled || boar.incapacitated())
-		StartCooldownSelf(0)
-		return
-	boar.visible_message(span_danger("<b>[boar]</b> charges!"))
-	var/charge_dir = get_dir(boar, target)
-	boar.throw_at(target, npc_max_range, charge_speed, boar, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
+	H.visible_message(span_danger("<b>[H]</b> charges!"))
+	var/charge_dir = get_dir(H, cast_on)
+	H.throw_at(cast_on, npc_max_range, charge_speed, H, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
 
-/datum/action/cooldown/mob_cooldown/boar_charge/proc/on_charge_end(charge_dir)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/on_charge_end(charge_dir)
 	var/mob/living/boar = owner
 	if(QDELETED(boar))
 		return
@@ -101,20 +100,20 @@
 		return
 	if(!missed_once)
 		missed_once = TRUE
-		StartCooldownSelf(0)
+		reset_spell_cooldown()
 		boar.visible_message(span_notice("[boar] skids to a halt and prepares to lunges again!"))
 	else
 		missed_once = FALSE
 
-/datum/action/cooldown/mob_cooldown/boar_charge/proc/on_wall_impact(mob/living/boar, list/blocked_turfs)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/on_wall_impact(mob/living/boar, list/blocked_turfs)
 	return
 
-/datum/action/cooldown/mob_cooldown/boar_charge/undead
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/undead
 	cooldown_time = 25 SECONDS
 	charge_speed = 1
 	windup_time = 0.75 SECONDS
 
-/datum/action/cooldown/mob_cooldown/boar_charge/undead/on_wall_impact(mob/living/boar, list/blocked_turfs)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/undead/on_wall_impact(mob/living/boar, list/blocked_turfs)
 	for(var/turf/T in blocked_turfs)
 		var/obj/structure/flora/hit_flora = locate(/obj/structure/flora) in T
 		if(!hit_flora || !hit_flora.density)

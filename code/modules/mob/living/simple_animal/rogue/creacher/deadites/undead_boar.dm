@@ -10,7 +10,7 @@
 	maxHealth = BOAR_HEALTH_UNDEAD
 	ai_controller = /datum/ai_controller/boar/undead
 	move_base_delay = MOVEMENT_DELAY_SLOW
-	charge_type = /datum/action/cooldown/mob_cooldown/boar_charge/undead
+	charge_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/undead
 
 	head_butcher = /obj/item/natural/head/boar/undead
 	botched_butcher_results = list(

@@ -1,64 +1,74 @@
-/datum/action/cooldown/mob_cooldown/boulder_throw
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/boulder_throw
 	name = "Boulder Throw"
 	desc = "Rips a boulder out of the earth and hurls it."
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "explosion"
 	cooldown_time = 25 SECONDS
 	lockout_time = 25 SECONDS
 	npc_min_range = 3
 	npc_max_range = 12
+	cast_range = 12
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-	var/windup_time = 1.2 SECONDS
 
-/datum/action/cooldown/mob_cooldown/boulder_throw/can_use(atom/target)
-	return ..() && get_turf(target)
+	windup_time = 1.2 SECONDS
+	telegraph_message = "rips a massive boulder right out of the earth and winds up!"
+	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
+	telegraph_type = /obj/effect/temp_visual/special_intent/warning
+	strike_sound = null
+	detonate_sound = null
+	blast_radius = 1
 
-/datum/action/cooldown/mob_cooldown/boulder_throw/use_special(atom/target)
-	var/mob/living/troll = owner
-	var/turf/target_turf = get_turf(target)
-	troll.visible_message(span_danger("<b>[troll]</b> rips a massive boulder right out of the earth and winds up!"))
-	playsound(troll, 'sound/combat/ground_smash_start.ogg', 90, TRUE)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/boulder_throw/get_sweep_bands()
+	return list()
 
-	for(var/turf/T in range(1, target_turf))
-		new /obj/effect/temp_visual/special_intent/warning(T, windup_time)
-
-	var/datum/action/cooldown/mob_cooldown/troll_shove/shove = locate() in troll.actions
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/boulder_throw/cast(atom/cast_on)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/cooldown/spell/troll_shove/shove = locate() in owner.actions
 	if(shove)
 		shove.consecutive = 0
 
-	addtimer(CALLBACK(src, PROC_REF(spawn_rock), target_turf), windup_time)
-	return TRUE
-
-/datum/action/cooldown/mob_cooldown/boulder_throw/proc/spawn_rock(turf/target_turf)
-	var/mob/living/troll = owner
-	if(QDELETED(troll) || troll.incapacitated() || !target_turf)
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/boulder_throw/on_impact(mob/living/H, facing, atom/movable/visual)
+	if(QDELETED(H) || H.incapacitated() || !locked_turf)
 		return
-	var/turf/start_turf = get_turf(troll)
+	var/turf/start_turf = get_turf(H)
 	if(!start_turf)
 		return
-
 	var/obj/projectile/bullet/thrown_boulder/B = new(start_turf)
 	B.starting = start_turf
-	B.firer = troll
-	B.original = target_turf
-	B.yo = target_turf.y - start_turf.y
-	B.xo = target_turf.x - start_turf.x
-	B.preparePixelProjectile(target_turf, start_turf)
+	B.firer = H
+	B.original = locked_turf
+	B.yo = locked_turf.y - start_turf.y
+	B.xo = locked_turf.x - start_turf.x
+	B.preparePixelProjectile(locked_turf, start_turf)
 	B.fire()
 
-/datum/action/cooldown/mob_cooldown/troll_shove
+/datum/action/cooldown/spell/troll_shove
 	name = "Shove"
 	desc = "Clears some space with a backhand."
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "explosion"
+	panel = null
 	cooldown_time = 0.7 SECONDS
-	lockout_time = 0
 	npc_max_range = 2
+	use_chance = 100
+	shared_cooldown = "mob_special"
+	lockout_time = 0
+	click_to_activate = TRUE
+	retrigger_after_cooldown = FALSE
+	self_cast_possible = FALSE
+	charge_required = FALSE
+	invocation_type = INVOCATION_NONE
+	sound = null
+	primary_resource_type = SPELL_COST_NONE
+	spell_requirements = SPELL_REQUIRES_SAME_Z
+	associated_stat = null
+	has_visual_effects = FALSE
+
 	var/consecutive = 0
 	var/escalation = 1 SECONDS
 	var/max_cooldown = 10 SECONDS
 
-/datum/action/cooldown/mob_cooldown/troll_shove/can_use(atom/target)
+/datum/action/cooldown/spell/troll_shove/can_use(atom/target)
 	if(!..())
 		return FALSE
 	if(!isliving(target))
@@ -66,9 +76,16 @@
 	var/mob/living/victim = target
 	return !victim.incapacitated()
 
-/datum/action/cooldown/mob_cooldown/troll_shove/use_special(atom/target)
+/// The escalating cooldown is set in cast(); stop Activate() from stamping the flat one over it.
+/datum/action/cooldown/spell/troll_shove/before_cast(atom/cast_on)
+	return ..() | SPELL_NO_IMMEDIATE_COOLDOWN
+
+/datum/action/cooldown/spell/troll_shove/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(cast_on))
+		return FALSE
 	var/mob/living/troll = owner
-	var/mob/living/victim = target
+	var/mob/living/victim = cast_on
 	troll.visible_message(span_danger("<b>[troll]</b> shoves [victim] back to clear some space!"))
 	playsound(troll, 'sound/combat/flail_sweep_hit_minor.ogg', 80, TRUE)
 	victim.Knockdown(1.5 SECONDS)
