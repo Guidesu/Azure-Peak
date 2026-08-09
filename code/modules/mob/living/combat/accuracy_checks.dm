@@ -183,12 +183,15 @@
 	var/shift = round((STAPER - ARCHER_NPC_AIM_BASELINE) / ARCHER_NPC_AIM_PER_STAT_POINT, 1)
 	return max(ARCHER_NPC_AIM_WINDOW_MIN, ARCHER_NPC_AIM_WINDOW_BASE - shift)
 
-/mob/living/proc/get_ranged_lead_error(moved = 0)
+/// aim_stat defaults to Perception, the archery case. Spells pass Intelligence.
+/mob/living/proc/get_ranged_lead_error(moved = 0, aim_stat)
+	if(isnull(aim_stat))
+		aim_stat = STAPER
 	var/error = ARCHER_NPC_STATIONARY_MISS + (moved * ARCHER_NPC_MOVING_TARGET_ERROR)
-	if(STAPER > ARCHER_NPC_AIM_BASELINE)
-		error -= min((STAPER - ARCHER_NPC_AIM_BASELINE) * ARCHER_NPC_LEAD_ERROR_PER_POINT, ARCHER_NPC_LEAD_ERROR_MAX_BONUS)
-	else if(STAPER < ARCHER_NPC_AIM_BASELINE)
-		error += (ARCHER_NPC_AIM_BASELINE - STAPER) * ARCHER_NPC_LEAD_ERROR_PER_POOR
+	if(aim_stat > ARCHER_NPC_AIM_BASELINE)
+		error -= min((aim_stat - ARCHER_NPC_AIM_BASELINE) * ARCHER_NPC_LEAD_ERROR_PER_POINT, ARCHER_NPC_LEAD_ERROR_MAX_BONUS)
+	else if(aim_stat < ARCHER_NPC_AIM_BASELINE)
+		error += (ARCHER_NPC_AIM_BASELINE - aim_stat) * ARCHER_NPC_LEAD_ERROR_PER_POOR
 	return CLAMP(error, ARCHER_NPC_LEAD_ERROR_FLOOR, ARCHER_NPC_LEAD_ERROR_CEILING)
 
 /mob/living/proc/scatter_aim_turf(turf/aim, atom/reference, tiles)
@@ -197,7 +200,7 @@
 	var/perp = turn(get_dir(src, reference), pick(90, -90))
 	return get_ranged_target_turf(aim, perp, tiles) || aim
 
-/mob/living/proc/get_ranged_lead_turf(atom/movable/target, turf/locked_turf, projectile_speed = ARCHER_NPC_DEFAULT_PROJECTILE_SPEED)
+/mob/living/proc/get_ranged_lead_turf(atom/movable/target, turf/locked_turf, projectile_speed = ARCHER_NPC_DEFAULT_PROJECTILE_SPEED, aim_stat)
 	var/turf/current = get_turf(target)
 	if(!isturf(current) || !isturf(locked_turf))
 		return current
@@ -211,7 +214,7 @@
 			lead = CLAMP(round((get_dist(src, current) * projectile_speed) / target_delay, 1), 0, ARCHER_NPC_MAX_LEAD)
 			if(lead)
 				aim = get_ranged_target_turf(current, target.last_move, lead) || current
-	var/error_chance = get_ranged_lead_error(moved)
+	var/error_chance = get_ranged_lead_error(moved, aim_stat)
 	if(!prob(error_chance))
 		return aim
 	var/offset = ARCHER_NPC_MISS_OFFSET_TILES + (prob(error_chance) ? 1 : 0)

@@ -26,6 +26,8 @@
 	var/arc_mode = FALSE
 	/// If TRUE, a non-click (facing-direction) cast snaps the aim to the nearest cardinal direction.
 	var/cardinal_aim = FALSE
+	/// Where the target was when the spell was cast. Used for NPC lead aiming.
+	var/turf/aim_locked_turf
 
 /datum/action/cooldown/spell/projectile/generate_wiki_html(mob/user)
 	if(!displayed_damage && projectile_type)
@@ -33,6 +35,10 @@
 	return ..()
 
 /// cast_on is the turf or atom we're firing at.
+/datum/action/cooldown/spell/projectile/before_cast(atom/cast_on)
+	aim_locked_turf = get_turf(cast_on)
+	return ..()
+
 /datum/action/cooldown/spell/projectile/cast(atom/cast_on)
 	. = ..()
 	if(!isturf(owner.loc))
@@ -42,9 +48,18 @@
 	if(!click_to_activate && (QDELETED(cast_on) || cast_on == owner))
 		var/aim_dir = cardinal_aim ? angle2dir_cardinal(dir2angle(owner.dir)) : owner.dir
 		target = get_ranged_target_turf(owner, aim_dir, cast_range)
+	else
+		target = npc_lead_aim(target) || target
 
 	fire_projectile(target)
 	return TRUE
+
+// Uses the same formula as a normal archer for leading
+/datum/action/cooldown/spell/projectile/proc/npc_lead_aim(atom/target)
+	if(!npc_controlled() || !isliving(owner) || !isliving(target) || !aim_locked_turf)
+		return null
+	var/mob/living/caster = owner
+	return caster.get_ranged_lead_turf(target, aim_locked_turf, initial(projectile_type.speed), caster.STAINT)
 
 /// Fire the projectile(s) at the target.
 /datum/action/cooldown/spell/projectile/proc/fire_projectile(atom/target)
