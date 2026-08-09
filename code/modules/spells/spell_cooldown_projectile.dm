@@ -34,11 +34,10 @@
 		displayed_damage = initial(projectile_type.damage)
 	return ..()
 
-/// cast_on is the turf or atom we're firing at.
-/datum/action/cooldown/spell/projectile/before_cast(atom/cast_on)
-	aim_locked_turf = get_turf(cast_on)
-	return ..()
+/datum/action/cooldown/spell/projectile/set_ai_aim_lock(turf/locked_turf)
+	aim_locked_turf = locked_turf
 
+/// cast_on is the turf or atom we're firing at.
 /datum/action/cooldown/spell/projectile/cast(atom/cast_on)
 	. = ..()
 	if(!isturf(owner.loc))
@@ -48,18 +47,14 @@
 	if(!click_to_activate && (QDELETED(cast_on) || cast_on == owner))
 		var/aim_dir = cardinal_aim ? angle2dir_cardinal(dir2angle(owner.dir)) : owner.dir
 		target = get_ranged_target_turf(owner, aim_dir, cast_range)
-	else
-		target = npc_lead_aim(target) || target
+	else if(aim_locked_turf && isliving(owner))
+		var/mob/living/caster = owner
+		var/active_type = (arc_mode && projectile_type_arc) ? projectile_type_arc : projectile_type
+		target = caster.get_ranged_lead_turf(target, aim_locked_turf, initial(active_type.speed), caster.STAINT) || target
 
 	fire_projectile(target)
+	aim_locked_turf = null
 	return TRUE
-
-// Uses the same formula as a normal archer for leading
-/datum/action/cooldown/spell/projectile/proc/npc_lead_aim(atom/target)
-	if(!npc_controlled() || !isliving(owner) || !isliving(target) || !aim_locked_turf)
-		return null
-	var/mob/living/caster = owner
-	return caster.get_ranged_lead_turf(target, aim_locked_turf, initial(projectile_type.speed), caster.STAINT)
 
 /// Fire the projectile(s) at the target.
 /datum/action/cooldown/spell/projectile/proc/fire_projectile(atom/target)
@@ -85,8 +80,7 @@
 	// Accuracy from INT and skill, matching the old proc_holder system
 	if(isliving(user))
 		var/mob/living/L = user
-		to_fire.accuracy += (L.STAINT - 9) * 4
-		to_fire.bonus_accuracy += (L.STAINT - 8) * 3
+		L.apply_ranged_accuracy(to_fire, L.STAINT)
 		if(L.mind)
 			to_fire.bonus_accuracy += (L.get_skill_level(associated_skill) * 5)
 

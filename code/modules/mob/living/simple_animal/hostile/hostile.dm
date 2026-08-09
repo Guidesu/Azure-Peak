@@ -498,12 +498,6 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 
-/mob/living/simple_animal/hostile/proc/apply_ranged_accuracy(obj/projectile/P)
-	if(!P)
-		return
-	P.accuracy += (STAPER - 9) * 4
-	P.bonus_accuracy += (STAPER - 8) * 3
-
 /mob/living/simple_animal/hostile/proc/Shoot(atom/targeted_atom, turf/locked_turf)
 	if(QDELETED(src) || QDELETED(targets_from) || !targets_from.loc)
 		return
@@ -519,6 +513,7 @@
 	else if(projectiletype)
 		var/obj/projectile/P = new projectiletype(startloc)
 		playsound(src, projectilesound, 100, TRUE)
+		apply_ranged_accuracy(P)
 		var/atom/aim_at = locked_turf ? get_ranged_lead_turf(targeted_atom, locked_turf, P.speed) : targeted_atom
 		if(!aim_at)
 			aim_at = targeted_atom
@@ -529,7 +524,6 @@
 		P.xo = aim_at.x - startloc.x
 		P.original = aim_at
 		P.def_zone = ran_zone()
-		apply_ranged_accuracy(P)
 		P.preparePixelProjectile(aim_at, src)
 		P.fire()
 		return P

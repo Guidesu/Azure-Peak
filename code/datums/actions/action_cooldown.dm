@@ -230,6 +230,9 @@
 /datum/action/cooldown/proc/npc_use_chance(atom/target)
 	return use_chance
 
+/datum/action/cooldown/proc/set_ai_aim_lock(turf/locked_turf)
+	return
+
 /datum/action/cooldown/proc/can_use(atom/target)
 	if(QDELETED(target))
 		return FALSE

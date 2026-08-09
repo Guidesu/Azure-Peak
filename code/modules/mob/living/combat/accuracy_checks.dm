@@ -184,6 +184,15 @@
 	return max(ARCHER_NPC_AIM_WINDOW_MIN, ARCHER_NPC_AIM_WINDOW_BASE - shift)
 
 /// aim_stat defaults to Perception, the archery case. Spells pass Intelligence.
+/mob/living/proc/apply_ranged_accuracy(obj/projectile/P, aim_stat)
+	if(!P)
+		return
+	if(isnull(aim_stat))
+		aim_stat = STAPER
+	P.accuracy += (aim_stat - 9) * 4
+	P.bonus_accuracy += (aim_stat - 8) * 3
+
+/// aim_stat defaults to Perception, the archery case. Spells pass Intelligence.
 /mob/living/proc/get_ranged_lead_error(moved = 0, aim_stat)
 	if(isnull(aim_stat))
 		aim_stat = STAPER

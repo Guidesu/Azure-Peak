@@ -14,6 +14,7 @@
 		return
 	var/mob/pawn = controller.pawn
 	pawn.face_atom(target)
+	ability.set_ai_aim_lock(get_turf(target))
 	var/result = ability.Trigger(target = target)
 
 
