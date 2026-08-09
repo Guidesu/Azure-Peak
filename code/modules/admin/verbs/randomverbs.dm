@@ -205,8 +205,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
-	set category = "Admin.Special"
-	set name = "Godmode"
+	set category = null
+	set name = "Toggle Godmode"
 	if(!check_rights(R_ADMIN))
 		return
 

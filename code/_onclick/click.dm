@@ -68,8 +68,8 @@
 			return
 		var/newmax = max_dodge + num
 		if(clamp)
-			if(newmax > MAX_DODGE_CLAMP && max_dodge < MAX_DODGE_CLAMP) 
-			// We had less than the clamp, and we are set to gain above the clamp, we override. 
+			if(newmax > MAX_DODGE_CLAMP && max_dodge < MAX_DODGE_CLAMP)
+			// We had less than the clamp, and we are set to gain above the clamp, we override.
 			// Mainly used to clamp compensatory dodge increases, NOT offensive ones.
 				newmax = MAX_DODGE_CLAMP
 		max_dodge = CLAMP((newmax), MAX_DODGE_FLOOR, MAX_DODGE_CEIL)
@@ -130,7 +130,7 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
-	
+
 	var/mob/living/L = src
 	if(L?.wallpressed && L.m_intent == MOVE_INTENT_SNEAK && !istype(L.loc, /turf/open/transparent/openspace))
 		to_chat(src, span_warning("You need to step away from the wall first."))
@@ -547,7 +547,7 @@
 			else if(istype(rmb_intent, /datum/rmb_intent/swift))
 				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
-		
+
 		UnarmedAttack(A,1,params)
 
 	var/invis_timer = mob_timers[MT_INVISIBILITY]
@@ -886,7 +886,7 @@ GLOBAL_LIST_EMPTY(reach_dummy_pool)
 		user.client.open_listed_turf(T)
 
 /mob/proc/CtrlRightClickOn(atom/A, params)
-	pointed(A)
+	linepoint(A)
 
 /*
 	Misc helpers
