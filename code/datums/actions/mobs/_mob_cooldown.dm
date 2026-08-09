@@ -4,7 +4,7 @@
 	click_to_activate = TRUE
 	retrigger_after_cooldown = FALSE
 	use_chance = 100
-	var/lockout_time = 5 SECONDS
+	lockout_time = 5 SECONDS
 	var/blocked_by_exposure = TRUE
 
 /datum/action/cooldown/mob_cooldown/InterceptClickOn(mob/living/clicker, list/modifiers, atom/target)
@@ -25,16 +25,6 @@
 	if(blocked_by_exposure && user.has_status_effect(/datum/status_effect/debuff/exposed))
 		return FALSE
 	return TRUE
-
-/datum/action/cooldown/mob_cooldown/StartCooldown(override_cooldown_time)
-	if(owner && shared_cooldown && lockout_time)
-		for(var/datum/action/cooldown/mob_cooldown/other in (owner.actions - src))
-			if(other.shared_cooldown != shared_cooldown)
-				continue
-			if(other.next_use_time >= world.time + lockout_time)
-				continue
-			other.StartCooldownSelf(lockout_time)
-	StartCooldownSelf(override_cooldown_time)
 
 /datum/action/cooldown/mob_cooldown/Activate(atom/target)
 	if(!can_use(target))

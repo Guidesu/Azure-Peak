@@ -72,6 +72,9 @@
 		H.facing_locked = TRUE
 	if(charging_slowdown)
 		H.add_movespeed_modifier("telegraphed_strike_windup", TRUE, 100, override = TRUE, multiplicative_slowdown = charging_slowdown)
+	announce_telegraph(H)
+	apply_cast_freeze(H, windup_time)
+	show_cast_effect(H)
 	for(var/i in 1 to iterations)
 		if(QDELETED(H) || H.stat != CONSCIOUS || strike_disrupted(H))
 			break
@@ -89,6 +92,8 @@
 		H.tempfixeye = FALSE
 		H.nodirchange = FALSE
 		H.facing_locked = FALSE
+	clear_cast_freeze(H)
+	clear_cast_effect(H)
 	if(QDELETED(H) || H.stat != CONSCIOUS || strike_disrupted(H))
 		clear_indicators(indicator)
 		return
@@ -104,7 +109,7 @@
 	draw_offsets(H, facing, indicator, get_pattern_offsets())
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/draw_offsets(mob/living/H, facing, list/indicator, list/offs)
-	telegraph_draw(get_turf(H), facing, indicator, offs, telegraph_type, stop_at_dense)
+	telegraph_draw(get_pattern_origin(H), facing, indicator, offs, telegraph_type, stop_at_dense)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/clear_indicators(list/indicator)
 	telegraph_clear(indicator)
@@ -141,7 +146,7 @@
 	for(var/b in 1 to length(bands))
 		if(QDELETED(H) || H.stat != CONSCIOUS)
 			break
-		var/turf/origin = get_turf(H)
+		var/turf/origin = get_pattern_origin(H)
 		for(var/list/off in bands[b])
 			var/list/r = rotate_offset(off[1], off[2], facing)
 			var/turf/T = origin ? locate(origin.x + r[1], origin.y + r[2], origin.z) : null
@@ -171,6 +176,7 @@
 			sleep(sweep_step)
 	clear_indicators(indicator)
 	on_strike_complete(H, sweep_hit_count, deflected)
+	start_recovery(H)
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/on_impact(mob/living/H, facing, atom/movable/visual)
 	return
@@ -186,8 +192,10 @@
 			continue
 		if(L in struck_mobs)
 			continue
+		if(!can_strike_victim(H, L))
+			continue
 		struck_mobs += L
-		if(L.anti_magic_check())
+		if(blocked_by_antimagic && L.anti_magic_check())
 			on_antimagic_block(L)
 			continue
 		if(spell_guard_check(L, FALSE, deflected ? null : H))
@@ -208,7 +216,8 @@
 			L.apply_status_effect(/datum/status_effect/debuff/vulnerable, vuln_on_hit)
 		if(immobilize_on_hit)
 			L.apply_status_effect(STATUS_EFFECT_IMMOBILIZED, immobilize_on_hit)
-		new /obj/effect/temp_visual/spell_impact(get_turf(L), spell_color, spell_impact_intensity)
+		if(spell_impact_intensity != SPELL_IMPACT_NONE)
+			new /obj/effect/temp_visual/spell_impact(get_turf(L), spell_color, spell_impact_intensity)
 		on_hit_target(H, L, facing)
 	if(hit_any && detonate_sound)
 		playsound(T, detonate_sound, 65, TRUE)
@@ -227,7 +236,8 @@
 		S.take_damage(dmg, BRUTE, "blunt", TRUE)
 		hit_any = TRUE
 	if(hit_any)
-		new /obj/effect/temp_visual/spell_impact(T, spell_color, spell_impact_intensity)
+		if(spell_impact_intensity != SPELL_IMPACT_NONE)
+			new /obj/effect/temp_visual/spell_impact(T, spell_color, spell_impact_intensity)
 		if(detonate_sound)
 			playsound(T, detonate_sound, 65, TRUE)
 
@@ -256,6 +266,13 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/on_strike_complete(mob/living/H, hit_count, deflected)
 	return
+
+/// The turf the pattern offsets are measured from. Override to anchor a pattern somewhere other than the caster.
+/datum/action/cooldown/spell/telegraphed_strike/proc/get_pattern_origin(mob/living/H)
+	return get_turf(H)
+
+/datum/action/cooldown/spell/telegraphed_strike/proc/can_strike_victim(mob/living/H, mob/living/L)
+	return TRUE
 
 /datum/action/cooldown/spell/telegraphed_strike/proc/on_antimagic_block(mob/living/L)
 	L.visible_message(span_warning("The arcyne blades dispel as they near [L]!"))

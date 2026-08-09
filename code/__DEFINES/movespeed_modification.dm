@@ -96,6 +96,7 @@
 #define MOVESPEED_ID_CELERITY                           "CELERITY_BUFF"
 #define MOVESPEED_ID_FOTV                               "FOTV_BUFF"
 #define MOVESPEED_ID_SPELL_CASTING                      "SPELL_CASTING"
+#define MOVESPEED_ID_SPELL_RECOVERY                     "SPELL_RECOVERY"
 #define MOVESPEED_ID_TELEGRAPH_WINDUP                   "TELEGRAPH_WINDUP"
 #define MOVESPEED_ID_REVENANT_FADE                      "REVENANT_FADE"
 #define MOVESPEED_ID_DRYAD_VINES                        "DRYAD_VINES"

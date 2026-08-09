@@ -594,6 +594,7 @@
 #include "code\datums\actions\action_item.dm"
 #include "code\datums\actions\action_spell.dm"
 #include "code\datums\actions\items\organ_action.dm"
+#include "code\datums\actions\mobs\_mob_ability.dm"
 #include "code\datums\actions\mobs\_mob_cooldown.dm"
 #include "code\datums\actions\mobs\_telegraphed_ability.dm"
 #include "code\datums\actions\mobs\bear_swipe.dm"

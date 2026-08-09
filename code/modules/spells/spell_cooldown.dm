@@ -192,6 +192,8 @@
 	var/weapon_penalty_active = FALSE
 	/// If TRUE, this spell ignores armor cooldown penalties (for armored casters like Tithebound).
 	var/ignore_armor_penalty = FALSE
+	/// If FALSE, victim antimagic does not stop this spell. Natural mob abilities are not magic.
+	var/blocked_by_antimagic = TRUE
 	/// If TRUE, casting will -not- apply the combat tag (skips stealth reveal and rest interruption).
 	var/ignore_combat_tag = FALSE
 	/// If TRUE, spell charges on button press, then waits for a separate middle-click to cast.
@@ -199,6 +201,27 @@
 	var/charge_then_click = FALSE
 	var/blocks_defense_while_channeling = FALSE
 	var/cancel_penalty_mult = 1
+
+	/// Roots the caster for the length of the cast
+	var/freeze_cast = FALSE
+	/// Visible announcing the wind up, after the caster's name
+	var/telegraph_message
+	/// Sounds played as the wind-up begins. One is picked at random.
+	var/list/telegraph_sound
+	/// If TRUE, faction allies of the caster are skipped by this spell's area effects.
+	var/spare_allies = FALSE
+	/// Extra offsets for mob_charge_effect, on top of the rune's own. For oversized casters.
+	var/cast_effect_x_offset = 0
+	var/cast_effect_y_offset = 0
+
+	/// How long the caster is left open after the spell resolves. 0 disables the whole recovery step.
+	var/recovery_time = 0
+	/// Status effect applied to the caster for the recovery window.
+	var/recovery_status = /datum/status_effect/debuff/exposed
+	/// Movement slowdown during recovery. NONE (0) disables it.
+	var/recovery_slowdown = CHARGING_SLOWDOWN_NONE
+	/// Visible message announcing the wind up, after the caster's name
+	var/recovery_message
 
 	/// Lore/flavor text. Shown on hover in spell lists, always shown in detailed examine.
 	var/fluff_desc = ""
@@ -229,6 +252,8 @@
 		var/obj/effect/R = new /obj/effect/spell_rune
 		R.icon = button_icon
 		R.icon_state = button_icon_state
+		R.pixel_x += cast_effect_x_offset
+		R.pixel_y += cast_effect_y_offset
 		mob_charge_effect = R
 
 	if(!charge_required)
@@ -364,7 +389,7 @@
 	// to allow people to click unavailable abilities to get a feedback chat message
 	// about why the ability is unavailable.
 	// It is otherwise redundant, however, as IsAvailable() checks can_cast_spell as well.
-	if(!can_cast_spell())
+	if(!can_cast_spell(feedback = !npc_controlled()))
 		return FALSE
 
 	return ..()
@@ -1010,9 +1035,7 @@
 		smoke.set_up(smoke_amt, loca = get_turf(owner))
 		smoke.start()
 
-	// Clean up overhead spell icon
-	if(mob_charge_effect)
-		owner.vis_contents -= mob_charge_effect
+	clear_cast_effect(owner)
 
 	// Clean up glow
 	if(spell_glow_light)
@@ -1025,6 +1048,59 @@
 	// Reset mouse pointer
 	if(owner.client)
 		owner.client.mouse_pointer_icon = 'icons/effects/mousemice/human.dmi'
+
+/// Announces the wind-up. Called at the head of whichever commitment phase the spell uses.
+/datum/action/cooldown/spell/proc/announce_telegraph(mob/living/caster)
+	if(QDELETED(caster))
+		return
+	if(telegraph_message)
+		caster.visible_message(span_boldwarning("[caster] [telegraph_message]"))
+	if(telegraph_sound)
+		playsound(get_turf(caster), telegraph_sound, 100, TRUE)
+
+/// Roots the caster for `duration`. No-op unless the spell opts in via freeze_cast.
+/// The duration is a safety cap - the commitment path that applied it is expected to clear it.
+/datum/action/cooldown/spell/proc/apply_cast_freeze(mob/living/caster, duration)
+	if(!freeze_cast || !isliving(caster) || duration <= 0)
+		return
+	caster.Immobilize(duration, ignore_canstun = TRUE)
+
+/datum/action/cooldown/spell/proc/clear_cast_freeze(mob/living/caster)
+	if(!freeze_cast || !isliving(caster))
+		return
+	caster.SetImmobilized(0, ignore_canstun = TRUE)
+
+/// Shows/hides the overhead cast rune. Shared by the charge-up and telegraph-windup paths.
+/datum/action/cooldown/spell/proc/show_cast_effect(mob/caster)
+	if(mob_charge_effect && !QDELETED(caster))
+		caster.vis_contents |= mob_charge_effect
+
+/datum/action/cooldown/spell/proc/clear_cast_effect(mob/caster)
+	if(mob_charge_effect && !QDELETED(caster))
+		caster.vis_contents -= mob_charge_effect
+
+/// Opens the caster up for recovery_time after the spell resolves. Callers decide when the spell has
+/// actually resolved - instant spells can fire this from after_cast, telegraphed ones only once the hit lands.
+/datum/action/cooldown/spell/proc/start_recovery(mob/living/caster)
+	if(!recovery_time || QDELETED(caster))
+		clear_recovery_penalty(caster)
+		return
+	if(recovery_message)
+		caster.visible_message(span_boldwarning("[caster] [recovery_message]"))
+	if(recovery_status)
+		caster.apply_status_effect(recovery_status, recovery_time)
+	caster.apply_status_effect(/datum/status_effect/debuff/clickcd, recovery_time)
+	set_recovery_penalty(caster)
+	sleep(recovery_time)
+	clear_recovery_penalty(caster)
+
+/datum/action/cooldown/spell/proc/set_recovery_penalty(mob/living/caster)
+	if(recovery_slowdown <= CHARGING_SLOWDOWN_NONE || QDELETED(caster))
+		return
+	caster.add_movespeed_modifier(MOVESPEED_ID_SPELL_RECOVERY, TRUE, 100, override = TRUE, multiplicative_slowdown = recovery_slowdown)
+
+/datum/action/cooldown/spell/proc/clear_recovery_penalty(mob/living/caster)
+	caster?.remove_movespeed_modifier(MOVESPEED_ID_SPELL_RECOVERY)
 
 /// Provides feedback after a spell cast occurs, in the form of a cast sound and/or invocation
 /datum/action/cooldown/spell/proc/spell_feedback(mob/living/invoker)
@@ -1079,6 +1155,8 @@
 		if(!owner.fixedeye)
 			owner.nodirchange = TRUE
 		owner.channeling_spell = src
+		announce_telegraph(owner)
+		apply_cast_freeze(owner, charge_time)
 	START_PROCESSING(SSfastprocess, src)
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
 
@@ -1088,9 +1166,7 @@
 	if(charge_sound_instance)
 		playsound(owner, charge_sound_instance, 50, FALSE, channel = CHANNEL_CHARGED_SPELL)
 
-	// Overhead spell icon rune
-	if(mob_charge_effect)
-		owner.vis_contents += mob_charge_effect
+	show_cast_effect(owner)
 
 	// Spell glow light
 	if(glow_intensity && spell_color && isliving(owner))
@@ -1160,6 +1236,7 @@
 		UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 	UnregisterSignal(owner, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_MOB_KICKED_SUCCESSFUL, COMSIG_CARBON_SWAPHANDS))
 	clear_charge_intent()
+	clear_cast_freeze(owner)
 
 	// When charging ends, other spells may have had their buttons stuck red
 	// because can_cast_spell() returned FALSE while we were charging.
@@ -1176,9 +1253,7 @@
 		owner.stop_sound_channel(CHANNEL_CHARGED_SPELL)
 		playsound(owner, sound(null, repeat = 0), 50, FALSE, channel = CHANNEL_CHARGED_SPELL)
 
-	// Clean up overhead spell icon
-	if(mob_charge_effect)
-		owner.vis_contents -= mob_charge_effect
+	clear_cast_effect(owner)
 
 	if(has_visual_effects)
 		var/mob/living/caster = owner

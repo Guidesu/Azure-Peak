@@ -18,6 +18,9 @@
 	/// Multiplier applied to the cooldown handed to the OTHER abilities in this shared group when
 	/// this ability triggers it. 1 = they get the same cooldown; 0.5 = they get half of it.
 	var/shared_cooldown_mult = 1
+	/// Flat cooldown handed to the OTHER abilities in this shared group, and only when it would
+	/// extend theirs. Takes precedence over shared_cooldown_mult. 0 disables it.
+	var/lockout_time = 0
 
 	// These are only used for click_to_activate actions
 	/// Setting for intercepting clicks before activating the ability
@@ -148,6 +151,10 @@
 	if(shared_cooldown)
 		for(var/datum/action/cooldown/shared_ability in owner.actions - src)
 			if(shared_cooldown != shared_ability.shared_cooldown)
+				continue
+			if(lockout_time)
+				if(shared_ability.next_use_time < world.time + lockout_time)
+					shared_ability.StartCooldownSelf(lockout_time)
 				continue
 			var/shared_time = override_cooldown_time
 			if(shared_cooldown_mult != 1 && isnum(shared_time))

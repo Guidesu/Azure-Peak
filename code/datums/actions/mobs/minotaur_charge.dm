@@ -25,30 +25,25 @@
 	interruptible = FALSE
 	damage_structures = FALSE
 	strike_sound = 'sound/combat/clash_charge.ogg'
+	recovery_time = 4 SECONDS
+	telegraph_message = "throws back its head and ROARS, digging in its hooves!"
+	telegraph_sound = list('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
+	cast_effect_x_offset = 16
+	cast_effect_y_offset = 16
 
 	var/lane_length = 8
 	var/step_delay = 1
 	var/gore_damage = 55
 	var/gore_exposed = 6 SECONDS
-	var/recovery_time = 4 SECONDS
 	var/slam_stun = 2 SECONDS
 	var/slam_exposed = 6 SECONDS
 	var/guard_topple = 4 SECONDS
-	var/list/roar_sound = list('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
 
 /datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/get_pattern_offsets()
 	var/list/offs = list()
 	for(var/d in 1 to lane_length)
 		offs += list(list(-1, d), list(0, d), list(1, d))
 	return offs
-
-/datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/cast(atom/cast_on)
-	. = ..()
-	if(.)
-		var/mob/living/bull = owner
-		bull.visible_message(span_boldwarning("<b>[bull]</b> throws back its head and ROARS, digging in its hooves!"))
-		playsound(get_turf(bull), pick(roar_sound), 100, TRUE)
-		bull.play_overhead_indicator_simple(button_icon, button_icon_state, windup_time, ABOVE_MOB_LAYER, null, 48, 16)
 
 /datum/action/cooldown/spell/telegraphed_strike/minotaur_charge/proc/perpendicular_dirs(facing)
 	switch(facing)
