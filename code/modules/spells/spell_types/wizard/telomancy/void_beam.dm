@@ -123,7 +123,7 @@
 		qdel(old)
 	warnings.Cut()
 	for(var/turf/T in line)
-		warnings += new /obj/effect/temp_visual/trap/telomancy(T)
+		warnings += new /obj/effect/temp_visual/telegraph/telomancy(T)
 
 /datum/action/cooldown/spell/void_beam/proc/finish_windup(mob/living/carbon/human/H, list/warnings)
 	for(var/obj/effect/old in warnings)

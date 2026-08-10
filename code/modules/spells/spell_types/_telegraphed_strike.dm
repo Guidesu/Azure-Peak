@@ -33,7 +33,7 @@
 	var/swipe_state = null
 	var/vuln_on_hit = 0
 	var/immobilize_on_hit = 0
-	var/telegraph_type = /obj/effect/temp_visual/trap
+	var/telegraph_type = /obj/effect/temp_visual/telegraph
 	// AI Hint to keep the target in its pattern
 	var/require_target_in_pattern = FALSE
 	var/requires_weapon = FALSE

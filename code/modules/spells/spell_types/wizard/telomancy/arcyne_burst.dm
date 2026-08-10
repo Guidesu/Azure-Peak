@@ -55,7 +55,7 @@
 	for(var/turf/T in range(blast_radius, center))
 		if(T.density)
 			continue
-		new /obj/effect/temp_visual/pillar_warning/fadein(T, blast_delay)
+		new /obj/effect/temp_visual/telegraph/pillar/fadein(T, blast_delay)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(arcyne_burst_erupt), center, H, blast_radius, blast_damage, push_dist, src, name), blast_delay)
 

@@ -73,8 +73,7 @@
 #undef MT_ROCKSHOT
 #undef ROCKSHOT_DR_DURATION
 
-/obj/effect/temp_visual/trap/geomancy
-	color = GLOW_COLOR_EARTHEN
+/obj/effect/temp_visual/telegraph/geomancy
 	light_color = GLOW_COLOR_EARTHEN
 	duration = 4 SECONDS
 

@@ -69,7 +69,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/ability(turf/target_location, mob/living/user)
 	return
 
-/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/telegraph_turfs(list/turfs, telegraph_type = /obj/effect/temp_visual/trap/primordial, telegraph_time = 1 SECONDS)
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/proc/telegraph_turfs(list/turfs, telegraph_type = /obj/effect/temp_visual/telegraph/primordial, telegraph_time = 1 SECONDS)
 	for(var/turf/T in turfs)
 		new telegraph_type(T, telegraph_time)
 
@@ -140,27 +140,17 @@
 	P.ability(T, P)
 	return TRUE
 
-/obj/effect/temp_visual/trap/primordial
-	randomdir = FALSE
+/obj/effect/temp_visual/telegraph/primordial
 	duration = 1 SECONDS
-	alpha = 0
+	fade_in = TRUE
 
-/obj/effect/temp_visual/trap/primordial/Initialize(mapload, telegraph_time)
-	if(telegraph_time)
-		duration = telegraph_time
-	. = ..()
-	animate(src, alpha = 255, time = duration)
-
-/obj/effect/temp_visual/trap/primordial/fire
-	color = GLOW_COLOR_FIRE
+/obj/effect/temp_visual/telegraph/primordial/fire
 	light_color = GLOW_COLOR_FIRE
 
-/obj/effect/temp_visual/trap/primordial/water
-	color = GLOW_COLOR_ICE
+/obj/effect/temp_visual/telegraph/primordial/water
 	light_color = GLOW_COLOR_ICE
 
-/obj/effect/temp_visual/trap/primordial/air
-	color = "#c0e8ff"
+/obj/effect/temp_visual/telegraph/primordial/air
 	light_color = "#c0e8ff"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire
@@ -212,7 +202,7 @@
 	visible_message(span_danger("[src] inhales, heat gathering about its form!"))
 	setDir(cardinal_to(target_location))
 	var/list/turfs = get_cone_turfs(src, dir, blast_range)
-	telegraph_turfs(turfs, /obj/effect/temp_visual/trap/primordial/fire)
+	telegraph_turfs(turfs, /obj/effect/temp_visual/telegraph/primordial/fire)
 	addtimer(CALLBACK(src, PROC_REF(do_fire_blast), turfs), 1 SECONDS)
 	return TRUE
 
@@ -297,7 +287,7 @@
 		return FALSE
 	visible_message(span_danger("[src] draws the moisture of the land into a pool!"))
 	var/list/turfs = get_flood_turfs(center)
-	telegraph_turfs(turfs, /obj/effect/temp_visual/trap/primordial/water)
+	telegraph_turfs(turfs, /obj/effect/temp_visual/telegraph/primordial/water)
 	addtimer(CALLBACK(src, PROC_REF(do_deluge), turfs), 1 SECONDS)
 	return TRUE
 
@@ -402,7 +392,7 @@
 	var/list/telegraph = list()
 	for(var/list/row in wave_rows)
 		telegraph |= row
-	telegraph_turfs(telegraph, /obj/effect/temp_visual/trap/primordial/air)
+	telegraph_turfs(telegraph, /obj/effect/temp_visual/telegraph/primordial/air)
 	addtimer(CALLBACK(src, PROC_REF(do_gust), wave_rows, dir_to_target), 1 SECONDS)
 	return TRUE
 

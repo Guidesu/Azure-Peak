@@ -1,11 +1,7 @@
 #define CONJURE_TAUNT_TELEGRAPH (1.5 SECONDS)
 #define CONJURE_OVERLOAD_WINDUP (3.5 SECONDS)
 
-/obj/effect/temp_visual/conjure_taunt
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "trap"
-	layer = BELOW_MOB_LAYER
-	color = GLOW_COLOR_ARCANE
+/obj/effect/temp_visual/telegraph/conjure_taunt
 	duration = CONJURE_TAUNT_TELEGRAPH
 
 /datum/action/cooldown/spell/command_word
@@ -404,7 +400,7 @@
 /datum/action/cooldown/spell/command_word/proc/do_taunt(list/summons, turf/dest)
 	if(!isturf(dest) || !length(summons))
 		return FALSE
-	new /obj/effect/temp_visual/conjure_taunt(dest)
+	new /obj/effect/temp_visual/telegraph/conjure_taunt(dest)
 	for(var/mob/living/summon in summons)
 		if(QDELETED(summon) || summon.stat == DEAD)
 			continue

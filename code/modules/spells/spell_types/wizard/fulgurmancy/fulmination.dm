@@ -113,7 +113,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/fulmination/proc/cast_heavens_strike(turf/T)
-	new /obj/effect/temp_visual/trap/thunderstrike(T, hs_telegraph)
+	new /obj/effect/temp_visual/telegraph/thunderstrike(T, hs_telegraph)
 	addtimer(CALLBACK(src, PROC_REF(heavens_strike_damage), T), hs_telegraph)
 
 /datum/action/cooldown/spell/fulmination/proc/heavens_strike_damage(turf/T)
@@ -148,7 +148,7 @@
 	for(var/turf/T in range(ts_radius, centerpoint))
 		if(!(T in get_hear(ts_radius, centerpoint)))
 			continue
-		new /obj/effect/temp_visual/pillar_warning/fadein(T, ts_telegraph)
+		new /obj/effect/temp_visual/telegraph/pillar/fadein(T, ts_telegraph)
 	playsound(centerpoint, 'sound/magic/charging.ogg', 80, TRUE)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, owner, ts_radius, ts_damage, src), ts_telegraph)
 

@@ -329,7 +329,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		if(dist > last_dist)
 			last_dist = dist
 			sleep(2 + min(4 - last_dist, 12) * 0.5) //gets faster
-		new /obj/effect/temp_visual/targetlightning(T)
+		new /obj/effect/temp_visual/telegraph/targetlightning(T)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/lightning_strikes(amount, delay = 0.8)
 	if(!target)
@@ -339,7 +339,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		if(QDELETED(target))
 			break
 		var/turf/T = pick(RANGE_TURFS(enraged ? 2 : 1, target))
-		new /obj/effect/temp_visual/targetlightning(T)
+		new /obj/effect/temp_visual/telegraph/targetlightning(T)
 		amount--
 		SLEEP_CHECK_DEATH(delay)
 

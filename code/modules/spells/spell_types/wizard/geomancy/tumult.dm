@@ -121,7 +121,7 @@
 		if(S.density)
 			to_chat(H, span_warning("Something is already there!"))
 			return FALSE
-	new /obj/effect/temp_visual/trap/geomancy(T)
+	new /obj/effect/temp_visual/telegraph/geomancy(T)
 	playsound(T, 'sound/combat/hits/onstone/wallhit.ogg', 60, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(erupt_strike), T, H), telegraph_delay)
 	return TRUE
@@ -210,7 +210,7 @@
 		cur = get_step(cur, dir)
 		if(!cur || cur.density)
 			break
-		indicators += new /obj/effect/temp_visual/trap/geomancy(cur)
+		indicators += new /obj/effect/temp_visual/telegraph/geomancy(cur)
 	playsound(H, 'sound/foley/stone_scrape.ogg', 60, TRUE)
 	sleep(telegraph_time)
 	for(var/obj/effect/E in indicators)

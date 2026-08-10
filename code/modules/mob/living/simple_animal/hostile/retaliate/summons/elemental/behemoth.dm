@@ -77,12 +77,10 @@
 		yeet_cd = world.time + 8 SECONDS
 		addtimer(CALLBACK(src, PROC_REF(yeet), target), 1 SECONDS)
 
-/obj/effect/temp_visual/marker
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "trap"
+/obj/effect/temp_visual/telegraph/marker
+	light_color = GLOW_COLOR_EARTHEN
 	light_outer_range = 2
 	duration = 1.5 SECONDS
-	layer = ABOVE_ALL_MOB_LAYER //this doesnt render above mobs? it really should
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
@@ -149,7 +147,7 @@
 	playsound(src,'sound/combat/hits/onstone/wallhit.ogg', 600, TRUE, 10)
 	var/turf/focalpoint = target_turf
 	for (var/turf/open/visual in view(1, focalpoint))
-		new /obj/effect/temp_visual/marker(visual)
+		new /obj/effect/temp_visual/telegraph/marker(visual)
 	sleep(1.5 SECONDS)
 	for (var/mob/living/screenshaken in view(1, focalpoint))
 		shake_camera(screenshaken, 5, 5)

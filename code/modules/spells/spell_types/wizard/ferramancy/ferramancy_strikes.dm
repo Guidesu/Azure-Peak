@@ -19,7 +19,7 @@
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
-	telegraph_type = /obj/effect/temp_visual/trap/ferramancy
+	telegraph_type = /obj/effect/temp_visual/telegraph/ferramancy
 
 /datum/action/cooldown/spell/ferramancy_strike/falling_crescent
 	name = "Falling Crescent"
@@ -190,15 +190,7 @@
 	vis_holder = null
 	return ..()
 
-/obj/effect/temp_visual/trap
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "trap"
-	light_outer_range = 2
-	duration = 12
-	layer = MASSIVE_OBJ_LAYER
-
-/obj/effect/temp_visual/trap/ferramancy
-	color = GLOW_COLOR_METAL
+/obj/effect/temp_visual/telegraph/ferramancy
 	light_color = GLOW_COLOR_METAL
 	duration = 3 SECONDS
 

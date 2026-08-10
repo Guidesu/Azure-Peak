@@ -212,28 +212,17 @@
 	if(!epicenter)
 		return FALSE
 	for(var/turf/T in range(pillar_radius, epicenter))
-		new /obj/effect/temp_visual/pillar_warning/fadein(T, pillar_delay)
+		new /obj/effect/temp_visual/telegraph/pillar/fadein(T, pillar_delay)
 	playsound(epicenter, 'sound/magic/charging_fire.ogg', 80, TRUE)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(pillar_of_flame_erupt), epicenter, owner, pillar_radius, pillar_damage, owner.zone_selected), pillar_delay)
 	return TRUE
 
-/obj/effect/temp_visual/pillar_warning
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "warning"
-	layer = ABOVE_MOB_LAYER
+/obj/effect/temp_visual/telegraph/pillar
+	light_color = GLOW_COLOR_FIRE
 	duration = 2 SECONDS
 
-/obj/effect/temp_visual/pillar_warning/Initialize(mapload, life)
-	if(life)
-		duration = life
-	. = ..()
-
-/obj/effect/temp_visual/pillar_warning/fadein
-	alpha = 0
-
-/obj/effect/temp_visual/pillar_warning/fadein/Initialize(mapload, life)
-	. = ..()
-	animate(src, alpha = 255, time = duration)
+/obj/effect/temp_visual/telegraph/pillar/fadein
+	fade_in = TRUE
 
 /obj/effect/temp_visual/fire_pillar
 	icon = 'icons/effects/32x96.dmi'
@@ -389,7 +378,7 @@
 		return FALSE
 	var/list/warnings = list()
 	for(var/turf/T in blast_turfs(epicenter))
-		warnings += new /obj/effect/temp_visual/pillar_warning/fadein(T, chant_time)
+		warnings += new /obj/effect/temp_visual/telegraph/pillar/fadein(T, chant_time)
 	playsound(get_turf(caster), 'sound/magic/charging_fire.ogg', 80, TRUE)
 	INVOKE_ASYNC(src, PROC_REF(perform_chant), caster, epicenter, warnings)
 	return TRUE

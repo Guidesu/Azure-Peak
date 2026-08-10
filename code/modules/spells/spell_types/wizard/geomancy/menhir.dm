@@ -103,7 +103,7 @@
 	B.fire()
 
 /datum/action/cooldown/spell/menhir/proc/do_drop(mob/living/carbon/human/H, turf/target)
-	new /obj/effect/temp_visual/trap/geomancy(target)
+	new /obj/effect/temp_visual/telegraph/geomancy(target)
 	target.visible_message(span_boldwarning("A shadow spreads over [target] - a boulder plummets from the sky!"))
 	playsound(target, 'sound/combat/wooshes/blunt/wooshhuge (2).ogg', 60, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(drop_fall), target, H), drop_telegraph_time)

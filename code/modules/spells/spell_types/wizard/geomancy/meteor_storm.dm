@@ -81,7 +81,7 @@
 
 	// Show telegraph markers on all tiles in the impact zone
 	for(var/turf/T in valid_turfs)
-		new /obj/effect/temp_visual/trap/meteor(T)
+		new /obj/effect/temp_visual/telegraph/meteor(T)
 
 	// Boulders start dropping after the telegraph
 	var/delay_offset = METEOR_TELEGRAPH_TIME
@@ -182,8 +182,7 @@
 /obj/effect/temp_visual/falling_boulder/proc/do_impact()
 	on_impact?.Invoke()
 
-/obj/effect/temp_visual/trap/meteor
-	color = GLOW_COLOR_EARTHEN
+/obj/effect/temp_visual/telegraph/meteor
 	light_color = GLOW_COLOR_EARTHEN
 	duration = METEOR_TELEGRAPH_TIME
 
