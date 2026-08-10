@@ -14,7 +14,7 @@
 #define CRIPPLE_MOVE_PENALTY_MAJOR (0.4 SECONDS)
 
 // Share of a ranged hit's damage contributed toward breaking a part
-#define RANGED_PART_CONTRIBUTION 0.5
+#define RANGED_PART_CONTRIBUTION 0.66
 
 // Throttle on the "I can't reach that" message, per mob.
 #define REACH_WARNING_COOLDOWN (4 SECONDS)
