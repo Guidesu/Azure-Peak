@@ -130,6 +130,8 @@
 	new_break.struck_by = user
 	if(simple_add_wound(new_break, crit_message = TRUE))
 		LAZYADD(broken_parts, norm_zone)
+		if(user?.client)
+			record_round_statistic(STATS_CRITS_MADE)
 
 /mob/living/simple_animal/proc/clear_part_damage(zone)
 	if(part_damage)
