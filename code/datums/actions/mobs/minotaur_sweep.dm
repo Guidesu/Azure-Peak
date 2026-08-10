@@ -10,6 +10,7 @@
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
 	windup_time = TELEGRAPH_AREA_DENIAL
+	freeze_cast = FALSE // steps with its quarry through the wind-up instead of planting
 	telegraph_message = "shoulders its weapon, readying for a wide swing!"
 	telegraph_sound = list('sound/combat/rend_start.ogg')
 	sweep_step = 7

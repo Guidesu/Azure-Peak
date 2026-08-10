@@ -23,7 +23,7 @@
 	blocked_by_antimagic = FALSE
 	spare_allies = TRUE
 	require_target_in_pattern = TRUE
-	freeze_cast = TRUE
+	freeze_cast = FALSE
 	track_target = TRUE
 	damage_structures = FALSE
 
