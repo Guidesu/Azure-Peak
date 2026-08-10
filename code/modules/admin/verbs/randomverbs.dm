@@ -205,8 +205,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
-	set category = null
-	set name = "Toggle Godmode"
+	set category = "Admin.Special"
+	set name = "Godmode"
 	if(!check_rights(R_ADMIN))
 		return
 
@@ -220,8 +220,8 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Godmode", "[M.status_flags & GODMODE ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode_targetable(mob/M in GLOB.mob_list)
-	set category = "Admin.Special"
-	set name = "Godmode (Targetable)"
+	set category = null
+	set name = "Toggle Godmode"
 	if(!check_rights(R_ADMIN))
 		return
 
