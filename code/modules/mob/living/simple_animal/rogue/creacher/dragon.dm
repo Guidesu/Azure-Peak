@@ -108,7 +108,7 @@
 		var/datum/action/cooldown/spell/projectile/bolt = new fireball_ability(src)
 		bolt.Grant(src)
 
-	//ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC) // Need a weakness
+	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/death(gibbed)
 	..()

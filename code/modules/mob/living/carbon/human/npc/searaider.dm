@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer
 
 /mob/living/carbon/human/species/human/northern/searaider/archer/scarce
-	archer_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/scarce
+	searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/scarce
 
 /mob/living/carbon/human/species/human/northern/searaider/archer/ambush
 	threat_point = THREAT_TOUGH
