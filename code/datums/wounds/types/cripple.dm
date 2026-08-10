@@ -270,3 +270,56 @@
 		"The tongue flies off in an arc!",
 	)
 	break_alert = "tongue severed!"
+
+/datum/wound/cripple/ribs
+	name = "caved ribs"
+	crit_message = list(
+		"The ribs shatter in a splendid way!",
+		"The ribs are smashed!",
+		"The ribs are mauled!",
+		"The ribcage caves in!",
+	)
+	break_alert = "ribs caved!"
+	bleed_rate = 0.6
+	attack_delay_mult = CRIPPLE_ATTACK_DELAY_MINOR
+	var/damage_penalty = CRIPPLE_DAMAGE_PENALTY_MINOR
+	var/slowdown = CRIPPLE_MOVE_PENALTY_MINOR
+	var/removed_lower = 0
+	var/removed_upper = 0
+
+/datum/wound/cripple/ribs/on_mob_gain(mob/living/affected)
+	. = ..()
+	affected.add_movespeed_modifier("cripple_[crippled_zone]", multiplicative_slowdown = slowdown)
+	if(!istype(affected, /mob/living/simple_animal))
+		return
+	var/mob/living/simple_animal/animal = affected
+	removed_lower = round(animal.melee_damage_lower * damage_penalty, 1)
+	removed_upper = round(animal.melee_damage_upper * damage_penalty, 1)
+	animal.melee_damage_lower = max(0, animal.melee_damage_lower - removed_lower)
+	animal.melee_damage_upper = max(0, animal.melee_damage_upper - removed_upper)
+
+/datum/wound/cripple/ribs/on_mob_loss(mob/living/affected)
+	. = ..()
+	affected.remove_movespeed_modifier("cripple_[crippled_zone]")
+	if(!istype(affected, /mob/living/simple_animal))
+		return
+	var/mob/living/simple_animal/animal = affected
+	animal.melee_damage_lower += removed_lower
+	animal.melee_damage_upper += removed_upper
+
+/datum/wound/cripple/ribs/undead
+	name = "shattered ribcage"
+	crit_message = list(
+		"The ribcage splinters inward!",
+		"The chest cavity collapses with a dry crack!",
+	)
+	sound_effect = "fracturedry"
+	bleed_rate = 0
+
+/datum/wound/cripple/ribs/thorax
+	name = "cracked thorax"
+	crit_message = list(
+		"The thorax splits, weeping ichor!",
+		"The carapace caves in!",
+	)
+	break_alert = "thorax cracked!"

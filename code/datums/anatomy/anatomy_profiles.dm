@@ -34,6 +34,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/quadruped/trash/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.7, part_health_minimum = 35, break_wound = /datum/wound/cripple/ribs, hint = "flank")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 30, break_wound = /datum/wound/cripple/maw, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
@@ -43,6 +44,7 @@ TODO mirespider:
 /* Standard quadruped like direbear, mole that has an actual substantial HP pool. Crippling is a real mid fight tactic. Forelegs lower offensive output, hind legs lower movement. Part health being lower means that a fight would involve 2 - 3 parts instead of just 1 into death.
 */
 /datum/anatomy/quadruped/standard/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.55, part_health_minimum = 55, break_wound = /datum/wound/cripple/ribs, hint = "flank")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 45, break_wound = /datum/wound/cripple/maw, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/foreleg, hint = "forelegs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/foreleg, hint = "forelegs")
@@ -55,6 +57,7 @@ TODO mirespider:
 	undead = TRUE
 
 /datum/anatomy/quadruped/undead/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 30, break_wound = /datum/wound/cripple/ribs/undead, hint = "ribcage")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 30, break_wound = /datum/wound/cripple/decapitate/small, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
@@ -85,6 +88,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/biped/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 30, break_wound = /datum/wound/cripple/ribs, hint = "chest")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.45, part_health_minimum = 25, break_wound = /datum/wound/cripple/skull, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/arm, hint = "arms")
@@ -117,6 +121,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/biped/lamia/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.55, part_health_minimum = 45, break_wound = /datum/wound/cripple/ribs, hint = "chest")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 25, break_wound = /datum/wound/cripple/decapitate, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 30, break_wound = /datum/wound/cripple/arm, hint = "bladed arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 30, break_wound = /datum/wound/cripple/arm, hint = "bladed arms")
@@ -149,6 +154,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/biped/lamia/headless/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.55, part_health_minimum = 45, break_wound = /datum/wound/cripple/ribs, hint = "chest")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 40, break_wound = /datum/wound/cripple/decapitate, hint = "maw")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 35, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 35, break_wound = /datum/wound/cripple/arm, hint = "arms")
@@ -181,6 +187,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/drakkyn/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 140, break_wound = /datum/wound/cripple/ribs, hint = "breast")
 	add_zone(BODY_ZONE_PRECISE_MOUTH, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 120, break_wound = /datum/wound/cripple/maw, hint = "maw", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30)
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/arm, hint = "wings")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/arm, hint = "wings")
@@ -283,6 +290,7 @@ Aiming legs should be nearly guaranteed due to their profile
 	)
 
 /datum/anatomy/spider/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 30, break_wound = /datum/wound/cripple/ribs/thorax, hint = "thorax")
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 30, break_wound = /datum/wound/cripple/maw/fangs, hint = "fangs")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 25, break_wound = /datum/wound/cripple/limb, hint = "legs")
