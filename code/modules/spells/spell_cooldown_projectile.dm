@@ -37,6 +37,9 @@
 /datum/action/cooldown/spell/projectile/set_ai_aim_lock(turf/locked_turf)
 	aim_locked_turf = locked_turf
 
+/datum/action/cooldown/spell/projectile/ai_commit_time()
+	return charge_required ? charge_time : 0
+
 /// cast_on is the turf or atom we're firing at.
 /datum/action/cooldown/spell/projectile/cast(atom/cast_on)
 	. = ..()
@@ -49,7 +52,7 @@
 		target = get_ranged_target_turf(owner, aim_dir, cast_range)
 	else if(aim_locked_turf && isliving(owner))
 		var/mob/living/caster = owner
-		var/active_type = (arc_mode && projectile_type_arc) ? projectile_type_arc : projectile_type
+		var/obj/projectile/active_type = (arc_mode && projectile_type_arc) ? projectile_type_arc : projectile_type
 		target = caster.get_ranged_lead_turf(target, aim_locked_turf, initial(active_type.speed), caster.STAINT) || target
 
 	fire_projectile(target)

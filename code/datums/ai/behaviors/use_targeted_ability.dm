@@ -16,6 +16,10 @@
 	pawn.face_atom(target)
 	ability.set_ai_aim_lock(get_turf(target))
 	var/result = ability.Trigger(target = target)
+	if(result)
+		var/commit = ability.ai_commit_time()
+		if(commit > 0)
+			controller.set_blackboard_key(BB_ABILITY_COMMITTED_UNTIL, world.time + commit)
 
 
 	//var/result = ability.perform(list(target), TRUE, pawn)

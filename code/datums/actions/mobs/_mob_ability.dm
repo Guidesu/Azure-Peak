@@ -17,6 +17,7 @@
 	has_visual_effects = FALSE
 	blocked_by_antimagic = FALSE
 	spare_allies = TRUE
+	require_target_in_pattern = TRUE
 	freeze_cast = TRUE
 	track_target = TRUE
 	damage_structures = FALSE
@@ -33,6 +34,7 @@
 	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground
 	lock_direction = FALSE
 	sweep_step = 0
+	require_target_in_pattern = FALSE // anchored on the quarry's turf, so it is always in the pattern
 	var/blast_radius = 1
 	var/turf/locked_turf
 

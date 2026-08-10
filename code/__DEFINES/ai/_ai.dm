@@ -112,6 +112,7 @@
 
 #define BB_HUMAN_BEG_TARGET "human_beg_target"
 #define BB_HUMAN_NPC_SWINGS_TAKEN        "human_npc_swings_taken"
+#define BB_ABILITY_COMMITTED_UNTIL       "ability_committed_until"
 #define BB_HUMAN_NPC_SWINGS_TARGET       "human_npc_swings_target"
 #define BB_HUMAN_NPC_ZONE_COMMIT_COUNTER "human_npc_zone_commit_counter"
 #define BB_HUMAN_NPC_LAST_ATTACK_ZONE    "human_npc_last_attack_zone"

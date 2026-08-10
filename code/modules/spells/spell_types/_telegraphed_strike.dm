@@ -34,11 +34,28 @@
 	var/vuln_on_hit = 0
 	var/immobilize_on_hit = 0
 	var/telegraph_type = /obj/effect/temp_visual/trap
+	// AI Hint to keep the target in its pattern
+	var/require_target_in_pattern = FALSE
 	var/requires_weapon = FALSE
 	var/weapon_missing_message = "I need a weapon to strike with!"
 	var/sweep_hit_count = 0
 	var/list/struck_obstacles
 	var/list/struck_mobs
+
+/datum/action/cooldown/spell/telegraphed_strike/proc/get_strike_duration()
+	return windup_time + impact_delay + max(0, length(get_sweep_bands()) - 1) * sweep_step
+
+/datum/action/cooldown/spell/telegraphed_strike/ai_commit_time()
+	return get_strike_duration()
+
+/datum/action/cooldown/spell/telegraphed_strike/can_use(atom/target)
+	. = ..()
+	if(!. || !require_target_in_pattern || !npc_controlled() || QDELETED(target) || target == owner)
+		return .
+	var/turf/goal = get_turf(target)
+	if(!goal)
+		return FALSE
+	return (goal in get_pattern_turfs(owner, telegraph_cardinal(get_dir(owner, target))))
 
 /datum/action/cooldown/spell/telegraphed_strike/get_spell_statistics(mob/living/user)
 	var/list/stats = ..()
@@ -54,7 +71,7 @@
 	if(requires_weapon && !get_strike_weapon(H))
 		to_chat(H, span_warning(weapon_missing_message))
 		return FALSE
-	var/strike_duration = windup_time + impact_delay + max(0, length(get_sweep_bands()) - 1) * sweep_step
+	var/strike_duration = get_strike_duration()
 	if(committed_strike)
 		H.changeNext_move(strike_duration)
 		if(interruptible)

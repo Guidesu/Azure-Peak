@@ -39,9 +39,14 @@
 		return
 	if(need_los && !can_see(controller.pawn, target, view_distance)) //Chase into vision if need be. For ranged
 		return
-	
+
 	var/range = get_dist(living_pawn, target)
 	var/ready_to_attack = living_pawn.next_move < world.time
+
+	// If you are committed to moving toward the enemy, do not space away from enemies so that telegraphed strike follows.
+	if (world.time < controller.blackboard[BB_ABILITY_COMMITTED_UNTIL])
+		controller.queue_behavior(/datum/ai_behavior/pursue_to_range, target_key, minimum_distance)
+		return
 
 	if ((range < minimum_distance) || (!ready_to_attack)) // take a step back -- buy time till next attack
 		controller.queue_behavior(run_away_behavior, target_key, minimum_distance)

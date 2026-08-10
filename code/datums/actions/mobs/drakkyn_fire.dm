@@ -22,6 +22,7 @@
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	blocked_by_antimagic = FALSE
 	spare_allies = TRUE
+	require_target_in_pattern = TRUE
 	freeze_cast = TRUE
 	track_target = TRUE
 	damage_structures = FALSE
