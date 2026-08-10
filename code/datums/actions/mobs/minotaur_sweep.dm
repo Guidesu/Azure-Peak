@@ -13,10 +13,10 @@
 	telegraph_message = "shoulders its weapon, readying for a wide swing!"
 	telegraph_sound = list('sound/combat/rend_start.ogg')
 	sweep_step = 7
-	guard_aborts_sweep = TRUE
-	recovery_time = 3 SECONDS
-	recovery_slowdown = CHARGING_SLOWDOWN_HEAVY
-	recovery_message = "is wide open!"
+	recovery_time = 2 SECONDS
+	recovery_status = /datum/status_effect/debuff/vulnerable
+	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
+	recovery_message = "is off balance!"
 
 	damage = 60
 	blade_class = BCLASS_CUT
@@ -29,6 +29,8 @@
 	var/list/band_damage_mult = list(1, 1.5, 2)
 	/// Unpenetrating follow-up on the last band, as a fraction of damage.
 	var/final_band_bonus = 0.8
+	/// How long a guard deflection leaves the caster fully exposed, on top of the normal recovery.
+	var/deflect_exposed = 3 SECONDS
 	var/list/band_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/get_pattern_offsets()
@@ -45,8 +47,6 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/on_band_start(mob/living/H, band)
 	if(length(band_sound))
 		playsound(get_turf(H), band_sound, 100, TRUE)
-	if(band > 1 && recovery_status)
-		H.apply_status_effect(recovery_status, sweep_step)
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/on_pattern_turf(turf/T, mob/living/H, facing)
 	var/obj/effect/temp_visual/special_intent/fx = new (T, 0.5 SECONDS)
@@ -62,8 +62,11 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/on_strike_complete(mob/living/H, hit_count, deflected)
 	. = ..()
-	if(deflected)
-		H.visible_message(span_boldwarning("[H]'s swing is turned aside!"))
+	if(!deflected)
+		return
+	H.visible_message(span_boldwarning("[H]'s swing is turned aside!"))
+	if(deflect_exposed)
+		H.apply_status_effect(/datum/status_effect/debuff/exposed, deflect_exposed)
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/axe
 	name = "Great Swipe"
