@@ -93,6 +93,4 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/direbear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
-	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/bear_swipe/swipe = new(src)
-	swipe.Grant(src)
 
