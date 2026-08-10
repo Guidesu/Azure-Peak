@@ -109,8 +109,6 @@
 	var/static/list/random_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	// Direct hit on impact tile
 	for(var/mob/living/L in T.contents)
-		if(L == owner)
-			continue
 		if(L.anti_magic_check())
 			L.visible_message(span_warning("The boulder fades away around [L]!"))
 			playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
@@ -133,8 +131,6 @@
 		if(aoe_turf == T)
 			continue
 		for(var/mob/living/L in aoe_turf.contents)
-			if(L == owner)
-				continue
 			if(L.anti_magic_check())
 				continue
 			if(spell_guard_check(L, TRUE))

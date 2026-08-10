@@ -466,7 +466,8 @@
 	if(offhand.associated_skill)
 		if(get_skill_level(offhand.associated_skill) < SKILL_LEVEL_JOURNEYMAN)
 			return FALSE
-
+	if(mainhand.force <= 9 || offhand.force <= 9) // should prevent things that have tiny damage from being used, those are often tools anyway.
+		return FALSE
 	return TRUE
 
 /mob/living/proc/process_dualwield(atom/A, obj/item/attack_weapon, params)
@@ -512,13 +513,16 @@
 
 		if(stamina_add(3))
 			balloon_alert_to_viewers("<font color='#bb2b2b'>Dual Hit!!</font>")
-			visible_message("<font color='#ffc400'>Dual Hit!</font>", "<font color='#ffc400'>Dual Hit!</font>")
+			to_chat(src, "<font color='#ffc400'>I strike twice!</font>")
+			to_chat(A, "<font color='#ffc400'>I am hit twice!</font>")
 			if(attack_weapon && offhand)
 				offhand.melee_attack_chain(src, A, params)
 			else
 				UnarmedAttack(A, TRUE, params)
-
+		playsound_local(A, 'sound/combat/polearm_woosh.ogg', 75, FALSE, 0, 3)
+		playsound_local(A, 'sound/combat/rend_hit.ogg', 75, FALSE, 0, 3)
 		dualwield_processing = FALSE
+		swap_hand()
 		return
 
 	// Build combo

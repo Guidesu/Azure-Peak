@@ -110,7 +110,7 @@
 /mob/living/simple_animal/hostile/rogue/mirespider_lurker
 	anatomy_type = /datum/anatomy/spider/spitter
 	attack_aim = MOB_AIM_HIGH // BIG spidah with tall sprite
-	icon = 'icons/mob/mirespider_big.dmi'
+	icon = 'icons/mob/mirespider_new.dmi'
 	desc = "An unusually large and dangerous mire crawler, these lumbering creatures tend to find smaller specimens gravitating to them for safety - or perhaps simply to hunt more efficiently."
 	name = "mire lurker"
 	icon_state = "lurker"
