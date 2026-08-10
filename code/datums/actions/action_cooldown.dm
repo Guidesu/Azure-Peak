@@ -233,6 +233,11 @@
 /datum/action/cooldown/proc/set_ai_aim_lock(turf/locked_turf)
 	return
 
+/// How long this ability keeps the caster committed once triggered. While committed the AI closes on
+/// its quarry instead of spacing off it, so a telegraphed pattern still lands where it was aimed.
+/datum/action/cooldown/proc/ai_commit_time()
+	return 0
+
 /datum/action/cooldown/proc/can_use(atom/target)
 	if(QDELETED(target))
 		return FALSE
