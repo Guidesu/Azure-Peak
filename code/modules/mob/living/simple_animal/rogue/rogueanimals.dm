@@ -62,7 +62,6 @@
 		if(damage > 5 && prob(damage * 3))
 			emote("pain")
 		if(damage > 10)
-			Immobilize(clamp(damage/2, 1, 30))
 			shake_camera(src, 1, 1)
 		if(show_redflash())
 			if(damage < 10)
