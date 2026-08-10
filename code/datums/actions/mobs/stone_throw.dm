@@ -1,6 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock/stone_throw
 	name = "Stone Throw"
 	desc = "Rips a stone from the earth and hurls it at a distant foe."
+	button_icon_state = "stone_throw"
 	cooldown_time = 20 SECONDS
 	npc_min_range = 2
 	npc_max_range = 7

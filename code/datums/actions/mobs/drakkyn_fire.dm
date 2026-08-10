@@ -1,5 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn
 	name = "Dragon's Breath"
+	button_icon = 'icons/mob/actions/mob_actions.dmi'
+	button_icon_state = "dragons_breath"
 	desc = "Exhale a cone of flame."
 	panel = null
 	cooldown_time = 25 SECONDS
@@ -27,7 +29,7 @@
 	track_target = TRUE
 	damage_structures = FALSE
 
-	telegraph_type = /obj/effect/temp_visual/trap/primordial/fire
+	telegraph_type = /obj/effect/temp_visual/telegraph/primordial/fire
 	telegraph_message = "draws a deep breath, throat glowing red!"
 	telegraph_sound = list('sound/magic/fireball.ogg')
 	cast_effect_x_offset = 32
@@ -101,6 +103,8 @@
 
 /datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn
 	name = "Drakkyn Fireball"
+	button_icon = 'icons/mob/actions/mob_actions.dmi'
+	button_icon_state = "drakkyn_fireball"
 	use_chance = 15
 	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
 	telegraph_message = "rears back, fire gathering behinds its teeth!"
@@ -114,6 +118,8 @@
 
 /datum/action/cooldown/spell/projectile/fireball/mob_ability/watcher
 	name = "Eye of Fire"
+	button_icon = 'icons/mob/actions/mob_actions.dmi'
+	button_icon_state = "eye_of_fire"
 	cooldown_time = 8 SECONDS
 	npc_min_range = 2
 	npc_max_range = 9

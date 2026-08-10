@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability
 	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "explosion"
+	button_icon = 'icons/mob/actions/mob_actions.dmi'
+	button_icon_state = "mob_ability"
 	panel = null
 	use_chance = 100
 	click_to_activate = TRUE

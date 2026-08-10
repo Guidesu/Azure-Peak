@@ -1,6 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge
 	name = "Gore Charge"
 	desc = "Lowers your horns and runs your quarry down."
+	button_icon_state = "gore_charge"
 	cooldown_time = 18 SECONDS
 	freeze_cast = FALSE
 

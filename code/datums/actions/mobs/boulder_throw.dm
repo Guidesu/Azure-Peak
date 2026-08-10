@@ -1,6 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock/boulder_throw
 	name = "Boulder Throw"
 	desc = "Rips a boulder out of the earth and hurls it."
+	button_icon_state = "boulder_throw"
 	cooldown_time = 25 SECONDS
 	lockout_time = 25 SECONDS
 	npc_min_range = 3
@@ -11,7 +12,7 @@
 	windup_time = TELEGRAPH_HIGH_IMPACT
 	telegraph_message = "rips a massive boulder right out of the earth and winds up!"
 	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
-	telegraph_type = /obj/effect/temp_visual/special_intent/warning
+	telegraph_type = /obj/effect/temp_visual/telegraph
 
 	blast_radius = 2
 	damage = 75
@@ -62,8 +63,8 @@
 /datum/action/cooldown/spell/troll_shove
 	name = "Shove"
 	desc = "Clears some space with a backhand."
-	button_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "explosion"
+	button_icon = 'icons/mob/actions/mob_actions.dmi'
+	button_icon_state = "shove"
 	panel = null
 	cooldown_time = 0.7 SECONDS
 	npc_max_range = 2

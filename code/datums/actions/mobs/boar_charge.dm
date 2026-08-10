@@ -1,6 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge
 	name = "Charge"
 	desc = "Lowers its head and barrels forward."
+	button_icon_state = "boar_charge"
 	cooldown_time = 20 SECONDS
 	npc_min_range = 2
 	npc_max_range = 7

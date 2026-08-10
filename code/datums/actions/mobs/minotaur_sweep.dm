@@ -1,6 +1,7 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep
 	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep
 	name = "Great Sweep"
+	button_icon_state = "great_sweep"
 	desc = "Sweeps your weapon forward in a committed arc that leaves yourself wide open, inflicting heavy damage to anything and anyone in the way."
 	cooldown_time = 14 SECONDS
 	npc_max_range = 2
@@ -71,6 +72,7 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/axe
 	name = "Great Swipe"
+	button_icon_state = "great_swipe"
 	desc = "A wide axe arc that travels out and back across its whole front."
 	band_sound = list('sound/combat/sp_axe_swing1.ogg','sound/combat/sp_axe_swing2.ogg','sound/combat/sp_axe_swing3.ogg')
 	hit_sound = list('sound/combat/sp_gsword_hit.ogg')
@@ -82,6 +84,7 @@
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/slam
 	name = "Ground Slam"
+	button_icon_state = "ground_slam"
 	desc = "Smashes your feet forward into the ground, sending shockwave to damage everyone in the area."
 	blade_class = BCLASS_BLUNT
 	strike_armor_pen = PEN_NONE
