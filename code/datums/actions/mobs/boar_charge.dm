@@ -6,112 +6,131 @@
 	npc_max_range = 7
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
-	windup_time = 0.7 SECONDS
+	windup_time = TELEGRAPH_DODGEABLE
 	telegraph_message = "lowers its head and paws at the ground!"
 	telegraph_sound = list('sound/vo//mobs/boar/boar_charge.ogg')
 	strike_sound = null
 	freeze_cast = FALSE
 
-	var/charge_speed = 2
+	var/step_delay = 1
+	var/gore_damage = 60
+	var/guard_topple = 4 SECONDS
 	var/missed_once = FALSE
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/get_pattern_offsets()
 	. = list()
 	for(var/d in 1 to npc_max_range)
-		. += list(list(0, d))
+		. += list(list(-1, d), list(0, d), list(1, d))
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/strike(mob/living/H, facing, list/indicator, atom/cast_on)
 	clear_indicators(indicator)
 	if(QDELETED(cast_on) || H.buckled || H.incapacitated())
 		return
 	H.visible_message(span_danger("<b>[H]</b> charges!"))
-	var/charge_dir = get_dir(H, cast_on)
-	H.throw_at(cast_on, npc_max_range, charge_speed, H, callback = CALLBACK(src, PROC_REF(on_charge_end), charge_dir))
+	INVOKE_ASYNC(src, PROC_REF(charge_run), H, facing)
 
-/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/on_charge_end(charge_dir)
-	var/mob/living/boar = owner
-	if(QDELETED(boar))
-		return
-	var/turf/landing_turf = get_turf(boar)
-	var/turf/impact_turf = get_step(landing_turf, charge_dir)
-	var/did_hit = FALSE
-	if(!impact_turf)
-		return
-	var/list/turfs_to_check = list(impact_turf)
-	if(charge_dir & (charge_dir - 1))
-		turfs_to_check += get_step(landing_turf, (charge_dir & (NORTH|SOUTH)))
-		turfs_to_check += get_step(landing_turf, (charge_dir & (EAST|WEST)))
-	else
-		turfs_to_check += get_step(impact_turf, turn(charge_dir, 90))
-		turfs_to_check += get_step(impact_turf, turn(charge_dir, -90))
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/perpendicular_dirs(facing)
+	switch(facing)
+		if(EAST, WEST)
+			return list(NORTH, SOUTH)
+	return list(WEST, EAST)
 
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/row_turfs(turf/centre, facing)
+	. = list(centre)
+	for(var/side in perpendicular_dirs(facing))
+		var/turf/flank = get_step(centre, side)
+		if(flank && !flank.density)
+			. += flank
+
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/charge_run(mob/living/boar, facing)
 	var/swing_sfx = pick('sound/combat/ground_smash_start.ogg', 'sound/combat/flail_sweep_hit_minor.ogg')
-	for(var/turf/T in turfs_to_check)
-		var/delay = 0.5 SECONDS
-		var/obj/effect/temp_visual/special_intent/fx = new (T, delay)
-		fx.icon = 'icons/effects/effects.dmi'
-		fx.icon_state = "sweep_fx"
-	playsound(impact_turf, swing_sfx, 80, TRUE)
+	playsound(get_turf(boar), swing_sfx, 80, TRUE)
+	for(var/i in 1 to npc_max_range)
+		if(QDELETED(boar) || boar.stat != CONSCIOUS || boar.incapacitated())
+			return
+		var/turf/next = get_step(get_turf(boar), facing)
+		var/list/blocked_turfs = list()
+		if(!next || next.density)
+			blocked_turfs += (next || get_turf(boar))
+		else
+			for(var/obj/structure/S in next)
+				if(S.density && !S.climbable)
+					blocked_turfs += next
+					break
+		if(length(blocked_turfs))
+			slam_into_wall(boar, blocked_turfs)
+			return
 
-	var/mob/living/victim
-	for(var/turf/check_turf in turfs_to_check)
-		victim = locate(/mob/living) in check_turf
-		if(victim && victim != boar)
-			break
-	if(victim)
-		victim.visible_message(span_userdanger("[boar] gores [victim]!</span>"))
-		if(iscarbon(victim))
-			var/mob/living/carbon/C = victim
-			var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
-			if(chest)
-				chest.add_wound(/datum/wound/slash/boar_gore)
-		victim.Stun(2 SECONDS)
-		victim.apply_status_effect(/datum/status_effect/debuff/exposed, 10 SECONDS)
-		boar.Stun(3 SECONDS)
-		victim.adjustBruteLoss(50)
-		playsound(victim, 'sound/combat/crit.ogg', 75, TRUE)
-		missed_once = FALSE
-		return
+		for(var/turf/T in row_turfs(next, facing))
+			var/obj/effect/temp_visual/special_intent/fx = new (T, 0.5 SECONDS)
+			fx.icon = 'icons/effects/effects.dmi'
+			fx.icon_state = "sweep_fx"
+			for(var/mob/living/victim in T)
+				if(victim == boar || victim.stat == DEAD)
+					continue
+				if(boar.faction_check_mob(victim))
+					continue
+				gore(boar, victim)
+				return
 
-	var/list/blocked_turfs = list()
-	for(var/turf/check_turf in turfs_to_check)
-		if(check_turf.is_blocked_turf(exclude_mobs = TRUE))
-			blocked_turfs += check_turf
-	if(length(blocked_turfs))
-		did_hit = TRUE
-		boar.visible_message(span_danger("[boar] slams into the environment with bone-shattering force!"))
-		playsound(impact_turf, 'sound/combat/hits/onwood/fence_hit3.ogg', 100, TRUE)
-		boar.Stun(3 SECONDS)
-		on_wall_impact(boar, blocked_turfs)
-		for(var/turf/T in range(1, impact_turf))
-			var/obj/effect/temp_visual/special_intent/smash = new (T, 0.5 SECONDS)
-			smash.icon = 'icons/effects/effects.dmi'
-			smash.icon_state = "strike"
-		for(var/mob/living/L in range(1, impact_turf))
-			if(L == boar)
-				continue
-			L.visible_message(span_warning("The shockwave from [boar]'s impact knocks [L] off their feet!"))
-			L.Knockdown(3 SECONDS)
-			L.apply_status_effect(/datum/status_effect/debuff/dazed)
-			L.adjustBruteLoss(20)
+		step(boar, facing)
+		sleep(step_delay)
 
-	if(did_hit)
-		missed_once = FALSE
-		return
 	if(!missed_once)
 		missed_once = TRUE
 		reset_spell_cooldown()
-		boar.visible_message(span_notice("[boar] skids to a halt and prepares to lunges again!"))
+		boar.visible_message(span_notice("[boar] skids to a halt and prepares to lunge again!"))
 	else
 		missed_once = FALSE
+
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/gore(mob/living/boar, mob/living/victim)
+	if(spell_guard_check(victim, FALSE, boar))
+		boar.visible_message(span_boldwarning("<b>[boar]</b> is turned aside and goes tumbling!"))
+		playsound(get_turf(boar), 'sound/foley/zfall.ogg', 100, TRUE)
+		var/mob/living/simple_animal/beast = boar
+		if(istype(beast))
+			beast.topple(guard_topple)
+		boar.apply_status_effect(/datum/status_effect/debuff/exposed, guard_topple)
+		missed_once = FALSE
+		return
+	victim.visible_message(span_userdanger("[boar] gores [victim]!"))
+	if(iscarbon(victim))
+		var/mob/living/carbon/C = victim
+		var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
+		if(chest)
+			chest.add_wound(/datum/wound/slash/boar_gore)
+	victim.Stun(2 SECONDS)
+	victim.apply_status_effect(/datum/status_effect/debuff/exposed, 10 SECONDS)
+	boar.Stun(3 SECONDS)
+	arcyne_strike(boar, victim, null, gore_damage, BODY_ZONE_CHEST, BCLASS_STAB, armor_penetration = PEN_HEAVY, spell_name = name, skip_animation = TRUE, exact_zone = TRUE)
+	playsound(victim, 'sound/combat/crit.ogg', 75, TRUE)
+	missed_once = FALSE
+
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/slam_into_wall(mob/living/boar, list/blocked_turfs)
+	var/turf/impact_turf = blocked_turfs[1]
+	boar.visible_message(span_danger("[boar] slams into the environment with bone-shattering force!"))
+	playsound(impact_turf, 'sound/combat/hits/onwood/fence_hit3.ogg', 100, TRUE)
+	boar.Stun(3 SECONDS)
+	on_wall_impact(boar, blocked_turfs)
+	for(var/turf/T in range(1, impact_turf))
+		var/obj/effect/temp_visual/special_intent/smash = new (T, 0.5 SECONDS)
+		smash.icon = 'icons/effects/effects.dmi'
+		smash.icon_state = "strike"
+	for(var/mob/living/L in range(1, impact_turf))
+		if(L == boar)
+			continue
+		L.visible_message(span_warning("The shockwave from [boar]'s impact staggers [L]!"))
+		L.apply_status_effect(/datum/status_effect/debuff/vulnerable, 6 SECONDS)
+		L.apply_status_effect(/datum/status_effect/debuff/dazed)
+		arcyne_strike(boar, L, null, 20, BODY_ZONE_CHEST, BCLASS_BLUNT, spell_name = name, skip_animation = TRUE, exact_zone = TRUE)
+	missed_once = FALSE
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/on_wall_impact(mob/living/boar, list/blocked_turfs)
 	return
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/undead
 	cooldown_time = 25 SECONDS
-	charge_speed = 1
-	windup_time = 0.75 SECONDS
+	step_delay = 2
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/undead/on_wall_impact(mob/living/boar, list/blocked_turfs)
 	for(var/turf/T in blocked_turfs)
