@@ -9,7 +9,9 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	var/list/zones
 	var/list/limb_names
 	/// Grants TRAIT_BLOODLOSS_IMMUNE on spawn.
-	var/undead = FALSE
+	var/bloodless = FALSE
+	/// Per-blade-class multiplier on part damage.
+	var/list/bclass_part_mult
 
 /datum/anatomy/New()
 	. = ..()
@@ -19,7 +21,7 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 /datum/anatomy/proc/build_zones()
 	return
 
-/datum/anatomy/proc/add_zone(zone, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound, hint, melee_hit_bonus = 0, ranged_hit_bonus = 0, min_wlength = 0)
+/datum/anatomy/proc/add_zone(zone, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound, hint, melee_hit_bonus = 0, ranged_hit_bonus = 0, min_wlength = 0, list/requires_broken, exposed_message)
 	var/datum/anatomy_zone/new_zone = new()
 	new_zone.zone = zone
 	new_zone.damage_mult = damage_mult
@@ -30,6 +32,8 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	new_zone.melee_hit_bonus = melee_hit_bonus
 	new_zone.ranged_hit_bonus = ranged_hit_bonus
 	new_zone.min_wlength = min_wlength
+	new_zone.requires_broken = requires_broken
+	new_zone.exposed_message = exposed_message
 	zones[zone] = new_zone
 
 /datum/anatomy/proc/get_zone(zone_precise)
@@ -39,6 +43,11 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	if(.)
 		return .
 	return zones[check_zone(zone_precise)]
+
+/datum/anatomy/proc/get_part_damage_mult(bclass)
+	if(!bclass || !length(bclass_part_mult))
+		return 1
+	return bclass_part_mult[bclass] || 1
 
 /datum/anatomy_zone
 	var/zone
@@ -50,3 +59,15 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	var/melee_hit_bonus = 0
 	var/ranged_hit_bonus = 0
 	var/min_wlength = 0
+	/// Zones that must already be broken before this one takes any part damage.
+	var/list/requires_broken
+	/// Announced once, the moment requires_broken is satisfied.
+	var/exposed_message
+
+/datum/anatomy_zone/proc/is_exposed(list/broken_parts)
+	if(!length(requires_broken))
+		return TRUE
+	for(var/zone_needed in requires_broken)
+		if(!(zone_needed in broken_parts))
+			return FALSE
+	return TRUE

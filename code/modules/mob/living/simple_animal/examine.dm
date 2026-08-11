@@ -45,7 +45,7 @@
 				msg += span_artery("[m1] pale.")
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				msg += span_artery("[m1] a little pale.")
-	
+
 		// Bleeding
 		if(bleed_rate)
 			var/bleed_wording = "bleeding"
@@ -72,7 +72,7 @@
 	//Grabbing
 	if(pulledby && pulledby.grab_state)
 		msg += "[m1] being grabbed by [pulledby]."
-	
+
 	if(stat >= UNCONSCIOUS)
 		msg += "[m1] unconscious."
 
@@ -108,6 +108,15 @@
 				broken_hints |= broken_zone.hint
 		if(length(broken_hints))
 			. += span_danger("<B>[t_He] [p_are()] crippled about the [english_list(broken_hints)].</B>")
+		var/list/exposed_hints = list()
+		for(var/zone_key in anat.zones)
+			var/datum/anatomy_zone/candidate = anat.zones[zone_key]
+			if(!length(candidate.requires_broken) || (candidate.zone in broken_parts))
+				continue
+			if(candidate.is_exposed(broken_parts))
+				exposed_hints |= candidate.hint
+		if(length(exposed_hints))
+			. += span_danger("<B>[p_their(TRUE)] [english_list(exposed_hints)] [length(exposed_hints) > 1 ? "are" : "is"] laid bare.</B>")
 
 	if(Adjacent(user))
 		if(has_simple_wounds)

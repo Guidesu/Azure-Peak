@@ -3,6 +3,7 @@
 	var/anatomy_type
 	var/list/part_damage
 	var/list/broken_parts
+	var/list/announced_exposed
 	var/no_reanimate = FALSE
 	var/last_damage_stage = 0
 	var/last_hit_part
@@ -24,7 +25,7 @@
 
 /mob/living/simple_animal/proc/apply_anatomy_traits()
 	var/datum/anatomy/profile = get_anatomy()
-	if(profile?.undead)
+	if(profile?.bloodless)
 		ADD_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE, TRAIT_GENERIC)
 
 /mob/living/simple_animal/proc/apply_combat_skill()
@@ -33,7 +34,7 @@
 		return
 	adjust_skillrank_up_to(/datum/skill/combat/unarmed, level, TRUE)
 
-/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
+/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass)
 	return
 
 /mob/living/proc/get_zone_melee_hit_bonus(zone)
@@ -102,7 +103,7 @@
 		return 0
 	return hit_zone.ranged_hit_bonus
 
-/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE)
+/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass)
 	if(damage <= 0 || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return
 	var/datum/anatomy/profile = get_anatomy()
@@ -118,9 +119,12 @@
 	var/norm_zone = check_zone(zone)
 	if(norm_zone in broken_parts)
 		return
+	if(!hit_zone.is_exposed(broken_parts))
+		warn_unexposed(hit_zone, user)
+		return
 	if(!part_damage)
 		part_damage = list()
-	part_damage[norm_zone] += damage * (ranged ? RANGED_PART_CONTRIBUTION : 1)
+	part_damage[norm_zone] += damage * (ranged ? RANGED_PART_CONTRIBUTION : 1) * profile.get_part_damage_mult(bclass)
 	var/part_health = max(hit_zone.part_health_minimum, round(maxHealth * hit_zone.part_health_fraction, 1))
 	if(part_damage[norm_zone] < part_health)
 		return
@@ -132,6 +136,32 @@
 		LAZYADD(broken_parts, norm_zone)
 		if(user?.client)
 			record_round_statistic(STATS_CRITS_MADE)
+		announce_newly_exposed(profile)
+
+/mob/living/simple_animal/proc/warn_unexposed(datum/anatomy_zone/hit_zone, mob/living/user)
+	if(!user?.client || world.time <= next_reach_warning || !length(broken_parts))
+		return
+	var/datum/anatomy/profile = get_anatomy()
+	var/list/shields = list()
+	for(var/zone_needed in hit_zone.requires_broken)
+		if(zone_needed in broken_parts)
+			continue
+		var/datum/anatomy_zone/shield = profile?.get_zone(zone_needed)
+		shields |= shield?.hint || parse_zone(zone_needed)
+	if(!length(shields))
+		return
+	next_reach_warning = world.time + REACH_WARNING_COOLDOWN
+	to_chat(user, span_warning("[p_their(TRUE)] [hit_zone.hint] is still shielded - I need to break the [english_list(shields)] first."))
+
+/mob/living/simple_animal/proc/announce_newly_exposed(datum/anatomy/profile)
+	for(var/zone_key in profile.zones)
+		var/datum/anatomy_zone/candidate = profile.zones[zone_key]
+		if(!candidate.exposed_message || (candidate.zone in announced_exposed))
+			continue
+		if(!candidate.is_exposed(broken_parts))
+			continue
+		LAZYADD(announced_exposed, candidate.zone)
+		balloon_alert_to_viewers("<font color='#ff3b3b'>[candidate.exposed_message]</font>")
 
 /mob/living/simple_animal/proc/clear_part_damage(zone)
 	if(part_damage)
@@ -143,6 +173,7 @@
 		simple_remove_wound(crippled)
 	part_damage = null
 	broken_parts = null
+	announced_exposed = null
 
 /mob/living/simple_animal/proc/topple(duration = 3 SECONDS)
 	Knockdown(duration, ignore_canstun = TRUE)

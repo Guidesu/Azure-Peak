@@ -154,34 +154,52 @@
 	if(mortal_break)
 		REMOVE_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS, "[type]")
 
-/datum/wound/cripple/decapitate
+/// Breaks that kill outright. Subtypes only supply the message and the debris.
+/datum/wound/cripple/fatal
+	var/list/debris_types
+	var/debris_effect = /obj/effect/gibspawner/generic
+
+/datum/wound/cripple/fatal/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(istype(affected, /mob/living/simple_animal))
+		var/mob/living/simple_animal/animal = affected
+		animal.no_reanimate = TRUE
+	affected.visible_message(span_danger(kill_message(affected)))
+	var/turf/where = affected.drop_location()
+	for(var/debris in debris_types)
+		new debris(where)
+	if(debris_effect)
+		new debris_effect(where, affected)
+	affected.death()
+
+/datum/wound/cripple/fatal/proc/kill_message(mob/living/affected)
+	return "<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span>!</B>"
+
+/datum/wound/cripple/fatal/decapitate
 	name = "destroyed head"
 	break_alert = "HEAD DESTROYED!"
 
-/datum/wound/cripple/decapitate/on_mob_gain(mob/living/affected)
-	. = ..()
-	if(istype(affected, /mob/living/simple_animal))
-		var/mob/living/simple_animal/animal = affected
-		animal.no_reanimate = TRUE
-	affected.visible_message(span_danger("<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] ravaged neck <span class='crit'>BLOSSOMS</span> into petals of <span class='crit'>GORE and BONE!</span></B>"))
-	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
-	affected.death()
+/datum/wound/cripple/fatal/decapitate/kill_message(mob/living/affected)
+	return "<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] ravaged neck <span class='crit'>BLOSSOMS</span> into petals of <span class='crit'>GORE and BONE!</span></B>"
 
-/datum/wound/cripple/decapitate/small
+/datum/wound/cripple/fatal/decapitate/small
 
-/datum/wound/cripple/guts
+/datum/wound/cripple/fatal/guts
 	name = "spilled guts"
 	break_alert = "GUTS SPILLED!"
+	debris_types = list(/obj/item/alch/viscera)
 
-/datum/wound/cripple/guts/on_mob_gain(mob/living/affected)
-	. = ..()
-	if(istype(affected, /mob/living/simple_animal))
-		var/mob/living/simple_animal/animal = affected
-		animal.no_reanimate = TRUE
-	affected.visible_message(span_danger("<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] split belly <span class='crit'>UNSPOOLS</span> into ropes of <span class='crit'>GORE and OFFAL!</span></B>"))
-	new /obj/item/alch/viscera(affected.drop_location())
-	new /obj/effect/gibspawner/generic(affected.drop_location(), affected)
-	affected.death()
+/datum/wound/cripple/fatal/guts/kill_message(mob/living/affected)
+	return "<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] split belly <span class='crit'>UNSPOOLS</span> into ropes of <span class='crit'>GORE and OFFAL!</span></B>"
+
+/datum/wound/cripple/fatal/core
+	name = "shattered core"
+	break_alert = "CORE SHATTERED!"
+	sound_effect = "fracturedry"
+	debris_effect = null
+
+/datum/wound/cripple/fatal/core/kill_message(mob/living/affected)
+	return "<B>[affected] is <span class='crit'>[pick(kill_verbs)]</span> as [affected.p_their()] core <span class='crit'>BURSTS</span> and the whole body <span class='crit'>COLLAPSES INTO RUBBLE!</span></B>"
 
 /datum/wound/cripple/limb/topple
 	name = "shattered leg"
@@ -270,3 +288,43 @@
 		"The tongue flies off in an arc!",
 	)
 	break_alert = "tongue severed!"
+
+// Construct breaks. Same mechanics as the flesh versions, reskinned.
+/datum/wound/cripple/limb/fracture
+	name = "fractured leg"
+	crit_message = list(
+		"The leg cracks through!",
+		"The limb crumbles at the joint!",
+		"A slab shears off the leg!",
+	)
+	break_alert = "leg fractured!"
+	sound_effect = "fracturedry"
+
+/datum/wound/cripple/limb/topple/fracture
+	name = "shattered leg"
+	crit_message = list(
+		"The leg bursts apart!",
+		"The knee shatters!",
+	)
+	break_alert = "toppled!"
+	sound_effect = "fracturedry"
+
+/datum/wound/cripple/limb/core/fracture
+	name = "cracked core"
+	crit_message = list(
+		"The core splits open!",
+		"A crack runs clean through the core!",
+		"The core grinds and shatter!",
+	)
+	break_alert = "core cracked!"
+	sound_effect = "fracturedry"
+
+/datum/wound/cripple/arm/fracture
+	name = "fractured arm"
+	crit_message = list(
+		"The arm cracks through!",
+		"The shoulder crumbles away!",
+		"The arm breaks off in slabs!",
+	)
+	break_alert = "arm fractured!"
+	sound_effect = "fracturedry"

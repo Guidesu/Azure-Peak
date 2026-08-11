@@ -48,7 +48,7 @@
 			continue
 		woundies += wound
 	return woundies
-	
+
 /// Loops through our list of wounds and returns the first wound that is of the type specified by the path
 /mob/living/proc/has_wound(path, specific = FALSE)
 	if(!path)
@@ -117,7 +117,7 @@
 /mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, obj/item/weapon, ranged = FALSE)
 	if(!bclass || !dam || (status_flags & GODMODE) || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
-	register_part_damage(zone_precise, dam, user, weapon, ranged)
+	register_part_damage(zone_precise, dam, user, weapon, ranged, bclass)
 	if(user?.goodluck(2))
 		dam += 10
 	var/added_wound

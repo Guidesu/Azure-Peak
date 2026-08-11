@@ -52,10 +52,10 @@ TODO mirespider:
 /* Deadite quadruped. Head will destroy and end it for good. Other body parts merely slow them.
 */
 /datum/anatomy/quadruped/undead
-	undead = TRUE
+	bloodless = TRUE
 
 /datum/anatomy/quadruped/undead/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 30, break_wound = /datum/wound/cripple/decapitate/small, hint = "head")
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 30, break_wound = /datum/wound/cripple/fatal/decapitate/small, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "forelegs")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/undead, hint = "hind legs")
@@ -117,7 +117,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/biped/lamia/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 25, break_wound = /datum/wound/cripple/decapitate, hint = "head")
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 25, break_wound = /datum/wound/cripple/fatal/decapitate, hint = "head")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 30, break_wound = /datum/wound/cripple/arm, hint = "bladed arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 30, break_wound = /datum/wound/cripple/arm, hint = "bladed arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "coils")
@@ -149,7 +149,7 @@ TODO mirespider:
 	)
 
 /datum/anatomy/biped/lamia/headless/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 40, break_wound = /datum/wound/cripple/decapitate, hint = "maw")
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 40, break_wound = /datum/wound/cripple/fatal/decapitate, hint = "maw")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 35, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 35, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "legs")
@@ -192,8 +192,8 @@ less hp than their global HP pool. It also stop it from reanimating. Guts is a p
 Aiming legs should be nearly guaranteed due to their profile
 */
 /datum/anatomy/biped/tough/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30) // Better build up that PER chudling
-	add_zone(BODY_ZONE_PRECISE_STOMACH, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 150, break_wound = /datum/wound/cripple/guts, hint = "gut")
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/fatal/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30) // Better build up that PER chudling
+	add_zone(BODY_ZONE_PRECISE_STOMACH, damage_mult = 1, part_health_fraction = 0.6, part_health_minimum = 150, break_wound = /datum/wound/cripple/fatal/guts, hint = "gut")
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
@@ -332,13 +332,66 @@ Aiming legs should be nearly guaranteed due to their profile
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "crawling limbs")
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb, hint = "crawling limbs")
 
+// Construct have blunt favored wounds that are otherwise the same. On larger constructs, there is a core that must be exposed by breaking a leg.
+/datum/anatomy/construct
+	bloodless = TRUE
+	bclass_part_mult = list(
+		BCLASS_BLUNT = CONSTRUCT_BLUNT_PART_MULT,
+		BCLASS_SMASH = CONSTRUCT_BLUNT_PART_MULT,
+	)
+	limb_names = list(
+		BODY_ZONE_HEAD = "mantle",
+		BODY_ZONE_PRECISE_R_EYE = "mantle",
+		BODY_ZONE_PRECISE_L_EYE = "mantle",
+		BODY_ZONE_PRECISE_SKULL = "mantle",
+		BODY_ZONE_PRECISE_EARS = "mantle",
+		BODY_ZONE_PRECISE_NOSE = "mantle",
+		BODY_ZONE_PRECISE_MOUTH = "mantle",
+		BODY_ZONE_PRECISE_NECK = "mantle",
+		BODY_ZONE_CHEST = "core",
+		BODY_ZONE_L_ARM = "arm",
+		BODY_ZONE_R_ARM = "arm",
+		BODY_ZONE_PRECISE_L_HAND = "fist",
+		BODY_ZONE_PRECISE_R_HAND = "fist",
+		BODY_ZONE_L_LEG = "leg",
+		BODY_ZONE_R_LEG = "leg",
+		BODY_ZONE_PRECISE_L_FOOT = "leg",
+		BODY_ZONE_PRECISE_R_FOOT = "leg",
+		BODY_ZONE_PRECISE_STOMACH = "core",
+		BODY_ZONE_PRECISE_GROIN = "core",
+	)
+
+/datum/anatomy/construct/trash/build_zones()
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.5, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb/core/fracture, hint = "core")
+
+/datum/anatomy/construct/standard/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb/fracture, hint = "legs")
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 40, break_wound = /datum/wound/cripple/limb/fracture, hint = "legs")
+
+// Arm weaken its heavy swing and legs make it slower
+/datum/anatomy/construct/tough/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple/fracture, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple/fracture, hint = "legs", melee_hit_bonus = 40)
+
+// Must be toppled by legs to reach the core and will finish it off way quicker than grinding through its HP pool
+/datum/anatomy/construct/apex/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/arm/fracture, hint = "arms")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/limb/topple/fracture, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 100, break_wound = /datum/wound/cripple/limb/topple/fracture, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_CHEST, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 100, break_wound = /datum/wound/cripple/fatal/core, hint = "core", requires_broken = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), exposed_message = "core is laid bare!")
+
 /* Deadite tough biped. Mirrors the living profile. They have a reach gated head that kills them outright.
 */
 /datum/anatomy/biped/tough/undead
-	undead = TRUE
+	bloodless = TRUE
 
 /datum/anatomy/biped/tough/undead/build_zones()
-	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30)
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 100, break_wound = /datum/wound/cripple/fatal/decapitate, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30)
 	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/arm, hint = "arms")
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 80, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)

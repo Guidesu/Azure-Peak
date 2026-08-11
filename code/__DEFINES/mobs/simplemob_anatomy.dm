@@ -16,6 +16,9 @@
 // Share of a ranged hit's damage contributed toward breaking a part
 #define RANGED_PART_CONTRIBUTION 0.66
 
+// Damage multiplier vs Earth Elemental for using blunt weapons
+#define CONSTRUCT_BLUNT_PART_MULT 1.6
+
 // Throttle on the "I can't reach that" message, per mob.
 #define REACH_WARNING_COOLDOWN (4 SECONDS)
 

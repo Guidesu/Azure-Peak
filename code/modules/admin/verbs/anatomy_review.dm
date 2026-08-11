@@ -24,6 +24,11 @@
 			continue
 		var/list/mob_types = users_by_profile[profile_type]
 		html += "<h2>[profile_type]</h2>"
+		if(length(profile.bclass_part_mult))
+			var/list/affinities = list()
+			for(var/bclass in profile.bclass_part_mult)
+				affinities += "[bclass] x[profile.bclass_part_mult[bclass]]"
+			html += "<p><small>Part damage affinity: [affinities.Join(", ")]</small></p>"
 		if(!length(mob_types))
 			html += "<p><b>UNUSED</b> - no mob assigns this profile.</p>"
 			continue
@@ -73,6 +78,12 @@
 				bits += "ranged [part.ranged_hit_bonus > 0 ? "+" : ""][part.ranged_hit_bonus]"
 			if(part.damage_mult != 1)
 				bits += "dmg x[part.damage_mult]"
+			if(length(part.requires_broken))
+				var/list/gates = list()
+				for(var/zone_needed in part.requires_broken)
+					var/datum/anatomy_zone/gate = profile.get_zone(zone_needed)
+					gates |= gate?.hint || zone_needed
+				bits += "sealed until [gates.Join(" + ")] break"
 			notes += bits.Join(", ")
 		html += notes.Join("<br>")
 		html += "</small></p>"
