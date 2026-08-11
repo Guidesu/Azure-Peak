@@ -90,6 +90,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear/Initialize(mapload)
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_THICK_HIDE)
 	AddComponent(/datum/component/ai_aggro_system)
 	var/datum/action/cooldown/mob_cooldown/bear_swipe/swipe = new(src)
 	swipe.Grant(src)

@@ -18,6 +18,7 @@
 #define ITEM_CAT_WEAPONS_FLAILS "Weapons (Flails & Whips)"
 #define ITEM_CAT_WEAPONS_SHIELDS "Weapons (Shields)"
 #define ITEM_CAT_WEAPONS_AMMO "Weapons (Ammunition)"
+#define ITEM_CAT_WEAPON_MODS "Weapon Modifications"
 
 #define ITEM_CAT_TOOLS_COOKWARE "Tools (Cookware)"
 #define ITEM_CAT_TOOLS_FIELD "Tools (Field & Mining)"

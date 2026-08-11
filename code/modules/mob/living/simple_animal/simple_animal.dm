@@ -29,6 +29,15 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	// by the classic health <= 0 death check (see update_stat below).
 	/// Prevents blood-loss death (oxy damage from empty blood_volume).
 	var/bloodloss_immune = TRUE
+	/// Per-bodypart natural armor for this animal. Associative list:
+	/// BODY_ZONE_* -> armor list (same format as ARMOR_* defines).
+	/// When a def_zone is passed to getarmor(), the matching entry is used.
+	/// If no entry exists for the zone, falls back to natural_armor_default.
+	/// Example: list(BODY_ZONE_CHEST = list("blunt" = DR_SUPER, "slash" = DBLOCK_MEDIUM, ...))
+	var/list/natural_armor = list()
+	/// Default natural armor used when natural_armor has no entry for the hit zone.
+	/// Leave as an empty list for no natural armor (0 across the board).
+	var/list/natural_armor_default = list()
 	var/icon_living = ""
 	///Icon when the animal is dead. Don't use animated icons for this.
 	var/icon_dead = ""

@@ -67,6 +67,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_THICK_HIDE)
 	AddComponent(/datum/component/ai_aggro_system)
 	update_icon()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)

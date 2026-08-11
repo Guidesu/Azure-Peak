@@ -43,6 +43,19 @@
 		/datum/supply_pack/rogue/rosawood/pears = 5,
 		/datum/supply_pack/rogue/rosawood/berries = 5,
 		/datum/supply_pack/rogue/rosawood/butter = 4,
+		//weapon mods
+		/datum/supply_pack/rogue/weapon_mods/blade_oil_fire = 3,
+		/datum/supply_pack/rogue/weapon_mods/blade_oil_poison = 2,
+		/datum/supply_pack/rogue/weapon_mods/blade_oil_holy = 2,
+		/datum/supply_pack/rogue/weapon_mods/blade_edge_razor = 2,
+		/datum/supply_pack/rogue/weapon_mods/grip_leather = 4,
+		/datum/supply_pack/rogue/weapon_mods/grip_balanced = 3,
+		/datum/supply_pack/rogue/weapon_mods/pommel_gemstone = 1,
+		/datum/supply_pack/rogue/weapon_mods/guard_reinforced = 3,
+		/datum/supply_pack/rogue/weapon_mods/guard_basket = 2,
+		/datum/supply_pack/rogue/weapon_mods/bowstring_silk = 3,
+		/datum/supply_pack/rogue/weapon_mods/sight_pin = 3,
+		/datum/supply_pack/rogue/weapon_mods/coating_holy = 2,
 	)
 
 /datum/merchant_catalog/underdark
@@ -77,6 +90,15 @@
 		/datum/supply_pack/rogue/underdark/shackles = 4,
 		/datum/supply_pack/rogue/underdark/spider_honey = 5,
 		/datum/supply_pack/rogue/underdark/repossessed_moondust = 2,
+		//weapon mods
+		/datum/supply_pack/rogue/weapon_mods/blade_oil_poison = 3,
+		/datum/supply_pack/rogue/weapon_mods/blade_coating_rust = 3,
+		/datum/supply_pack/rogue/weapon_mods/grip_wire = 3,
+		/datum/supply_pack/rogue/weapon_mods/shaft_metal = 2,
+		/datum/supply_pack/rogue/weapon_mods/boss_steel = 2,
+		/datum/supply_pack/rogue/weapon_mods/rim_spiked = 2,
+		/datum/supply_pack/rogue/weapon_mods/crank_quick = 2,
+		/datum/supply_pack/rogue/weapon_mods/crank_heavy = 2,
 	)
 
 /datum/controller/subsystem/merchant_trade/proc/catalog_unlocked(catalog_id)

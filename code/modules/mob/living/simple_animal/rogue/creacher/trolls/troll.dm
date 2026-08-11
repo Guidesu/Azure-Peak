@@ -85,6 +85,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Initialize()
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_STONE_SKIN)
 	AddComponent(/datum/component/ai_aggro_system)
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)

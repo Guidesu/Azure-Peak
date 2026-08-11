@@ -154,6 +154,32 @@
 		/obj/item/reagent_containers/powder/salt = 3,
 		/obj/item/reagent_containers/food/snacks/rogue/egg = 3,
 
+		//weapon mods
+		/obj/item/weapon_mod/grip_leather = 2,
+		/obj/item/weapon_mod/grip_wire = 2,
+		/obj/item/weapon_mod/grip_balanced = 1,
+		/obj/item/weapon_mod/pommel_heavy = 2,
+		/obj/item/weapon_mod/pommel_light = 2,
+		/obj/item/weapon_mod/pommel_gemstone = 1,
+		/obj/item/weapon_mod/guard_reinforced = 2,
+		/obj/item/weapon_mod/guard_basket = 1,
+		/obj/item/weapon_mod/boss_iron = 2,
+		/obj/item/weapon_mod/boss_steel = 1,
+		/obj/item/weapon_mod/rim_metal = 2,
+		/obj/item/weapon_mod/rim_spiked = 1,
+		/obj/item/weapon_mod/blade_oil_fire = 2,
+		/obj/item/weapon_mod/blade_oil_poison = 1,
+		/obj/item/weapon_mod/blade_oil_holy = 1,
+		/obj/item/weapon_mod/blade_edge_razor = 1,
+		/obj/item/weapon_mod/blade_coating_rust = 2,
+		/obj/item/weapon_mod/shaft_reinforced = 2,
+		/obj/item/weapon_mod/shaft_metal = 1,
+		/obj/item/weapon_mod/bowstring_silk = 1,
+		/obj/item/weapon_mod/bowstring_sinew = 2,
+		/obj/item/weapon_mod/sight_pin = 2,
+		/obj/item/weapon_mod/crank_quick = 1,
+		/obj/item/weapon_mod/crank_heavy = 1,
+		/obj/item/weapon_mod/coating_holy = 1,
 	)
 	lootcount = 1
 

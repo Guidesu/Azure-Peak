@@ -79,6 +79,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/Initialize()
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_TOUGH_HIDE)
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
 	if(prob(33))

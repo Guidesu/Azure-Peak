@@ -45,6 +45,20 @@ SUBSYSTEM_DEF(dungeon_generator)
 
 	var/prot_min_x = 0; var/prot_max_x = 0; var/prot_min_y = 0; var/prot_max_y = 0
 
+	// --- Multi-biome procedural generation vars ---
+	/// Biome manager instance
+	var/datum/dungeon_biome_manager/biome_manager
+	/// Track depth per marker (marker ref -> depth)
+	var/list/marker_depth = list()
+	/// Track biome per placed template (turf -> biome name)
+	var/list/room_biomes = list()
+	/// Current maximum depth reached
+	var/max_depth_reached = 0
+	/// Chance to generate a procedural room instead of using a template (0-100)
+	var/procedural_room_chance = 30
+	/// Whether to use procedural generation alongside templates
+	var/use_procedural_generation = TRUE
+
 /datum/controller/subsystem/dungeon_generator/Initialize(start_timeofday)
 	var/list/dungeon_templates = list()
 	templates_by_connection = list()

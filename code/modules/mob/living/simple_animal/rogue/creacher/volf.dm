@@ -106,6 +106,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/Initialize()
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_TOUGH_HIDE)
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
 	gender = MALE

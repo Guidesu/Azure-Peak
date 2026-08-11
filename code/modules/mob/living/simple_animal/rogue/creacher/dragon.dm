@@ -72,6 +72,7 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
 	. = ..()
+	apply_bodypart_reduction(ANIMAL_BP_DRAGON_SCALES)
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
 	if(prob(33))

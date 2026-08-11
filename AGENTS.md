@@ -205,19 +205,27 @@ and limb-targetable like carbon mobs, without the full bodypart/organ overhead.
 
 ## Superior Animal System (Eris Approach)
 
-Full carbon-based animal mobs — inherits from `/mob/living/carbon` to get
-**everything** carbon has: bodyparts, organs, blood, reagents, grapple,
-dismemberment, status effects. Inspired by CEV-Eris's
-`/mob/living/carbon/superior_animal`.
+All simple animals in this codebase inherit from
+`/mob/living/carbon/simple_animal`, which itself inherits from
+`/mob/living/carbon`. This means every simple animal is already a full
+carbon mob with bodyparts, organs, blood, reagents, grapple,
+dismemberment, and status effects — the same architecture CEV-Eris uses
+for its `/mob/living/carbon/superior_animal`.
+
+**Note:** `AGENTS.md` previously listed files under
+`code/modules/mob/living/carbon/superior_animal/` — those files do not
+exist. The carbon-based animal system is implemented through
+`/mob/living/carbon/simple_animal` directly. There is no separate
+`superior_animal` type; the simple_animal type IS the superior animal.
 
 **Files:**
 
-- Base type: `code/modules/mob/living/carbon/superior_animal/superior_animal.dm`
-- Mobs: `code/modules/mob/living/carbon/superior_animal/mobs/`
-    - `direbear.dm` — direbear
-    - `wolf_boar_minotaur_troll.dm` — wolf, boar, minotaur, troll
+- Base type: `code/modules/mob/living/simple_animal/simple_animal.dm`
+- Animal mob files: `code/modules/mob/living/simple_animal/rogue/creacher/`
+    - `direbear.dm`, `volf.dm` (wolf), `boar.dm`, `minotaur.dm`, `dragon.dm`
+    - `trolls/troll.dm`
 
-**What it gets from carbon (automatically):**
+**What animals get from carbon (automatically):**
 
 - Full bodyparts (head, chest, arms, legs) — per-limb damage tracking
 - Full organ system (heart, lungs, brain, liver, stomach, etc.)
@@ -228,6 +236,8 @@ dismemberment, status effects. Inspired by CEV-Eris's
 - Fire/burn damage with bodypart-specific effects
 - Dismemberment — limbs can be cut off
 - Organ damage — heart attacks, liver failure, brain damage
+- Bodypart `brute_reduction` / `burn_reduction` — flat damage reduction
+  per limb (Eris-style, used by natural armor system)
 
 **What it ports from simple_animal:**
 
@@ -240,19 +250,76 @@ dismemberment, status effects. Inspired by CEV-Eris's
 - Death message, icon states (icon_living, icon_dead)
 - Faction, ambushable, blood_toll_bucket (inherited from /mob/living)
 
-**What it does NOT have:**
+## Limb-Specific Animal Armor (Eris-Inspired)
 
-- No species/DNA (like spirit mobs — animals don't need human species)
-- No human-specific HUD
-- No human-specific inventory slots
-- No human-specific speech/language system
+Simple animals have per-bodypart natural armor using two complementary
+approaches, both inspired by CEV-Eris's superior_animal per-bodypart
+armor design.
 
-**Helper proc:**
+**Files:**
 
-- `is_superior_animal(mob)` — checks if mob is a superior animal
+- Vars + getarmor(): `code/modules/mob/living/simple_animal/simple_animal.dm` (vars),
+  `code/modules/mob/living/simple_animal/animal_defense.dm` (getarmor override)
+- Animal assignments: `code/modules/mob/living/simple_animal/animal_natural_armor.dm`
+- Bodypart reduction calls: each animal's `Initialize()` in
+  `code/modules/mob/living/simple_animal/rogue/creacher/`
 
-**Migrated animals:**
+**Two-layer defense:**
 
-- Direbear, Wolf (Volf), Boar, Minotaur, Troll
-- Original simple_animal versions still exist (for backwards compat)
-- pseudo_carbon component removed from original versions
+1. **Bodypart reduction (Eris-style flat reduction)**: Sets
+   `brute_reduction` and `burn_reduction` on bodyparts via
+   `apply_bodypart_reduction()` in Initialize(). Flat damage is
+   subtracted from every hit to that limb before armor rating applies.
+   Presets: `ANIMAL_BP_THICK_HIDE`, `ANIMAL_BP_TOUGH_HIDE`,
+   `ANIMAL_BP_STONE_SKIN`, `ANIMAL_BP_DRAGON_SCALES`.
+
+2. **Armor rating (tier-based)**: `natural_armor` list maps
+   BODY_ZONE_* -> armor list (same format as ARMOR_* defines).
+   `natural_armor_default` is the fallback when no zone-specific entry
+   exists. `getarmor()` takes the max of barding armor and natural armor
+   for the hit zone. `attacked_by()` and `attack_hand()` pass the actual
+   zone to `run_armor_check()`.
+
+**Animals with natural armor:**
+
+- Direbear: thick hide (chest), tough hide (limbs), vulnerable head
+- Wolf: tough hide (chest), exposed limbs, vulnerable head
+- Boar: tough hide (chest/head), exposed limbs
+- Troll: stone skin (all), weaker head, weak to fire
+- Minotaur: thick hide (chest), tough hide (head/limbs)
+- Dragon: dragon scales (all), near-impenetrable, fire-immune
+
+## Procedural Multi-Biome Dungeon
+
+The "Tomb of Alotheos" dungeon on the "Dungeon Map" Z-level is now a
+procedurally generated multi-biome dungeon inspired by Dungeon Meshi and
+deep-maint SS13 dungeons.
+
+**Files:**
+
+- Framework: `code/controllers/subsystem/dungeon_framework.dm` (void turf, directional helpers, map_template/dungeon base, tomb areas)
+- Templates: `code/controllers/subsystem/dungeon_templates.dm` (datum definitions for .dmm room/hallway files)
+- Biomes: `code/controllers/subsystem/dungeon_biomes.dm` (biome definitions, procedural room generation, enhanced generator)
+- Generator: `code/controllers/subsystem/dungeon_generator.dm` (template-based expansion engine)
+- Map: `_maps/map_files/shared/dungeon.dmm` (entry map with 4 directional markers)
+- Room .dmm files: `_maps/dungeon_generator/room/` (TownRuins, SmallChurch, sewers, rousecamp, hctomb2, queensretreat)
+- Hallway .dmm files: `_maps/dungeon_generator/hallway/` (Malphpiece5)
+
+**Biome layers (shallow to deep):** 0. ruins — collapsed buildings, wood/stone floors, rats/skeletons
+
+1. crypt — ancient burial chambers, hexstone, skeletons
+2. cave — natural caverns, dirt/rock, spiders/wolves
+3. sewer — flooded corridors, metal grates, goblins/rats
+4. lair — monster nests, volcanic rock, lava, minotaurs/trolls
+5. treasure — deepest vault, richest loot, dragons
+
+**How it works:**
+
+1. The dungeon.dmm map loads with 4 directional helper markers
+2. SSdungeon_generator expands from markers, placing templates or procedural rooms
+3. Each room/hallway spawns new markers at its edges for further growth
+4. Depth increases with each room from the entrance
+5. Biome selection is depth-based — deeper = more dangerous
+6. Procedural rooms (30% chance) are generated on-the-fly with biome-specific turfs, loot, and mobs
+7. Template rooms (70% chance) use pre-made .dmm files
+8. Loot is budget-controlled via the loot_pool system (key: "tomb_of_alotheos")

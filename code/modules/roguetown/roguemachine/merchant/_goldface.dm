@@ -60,6 +60,7 @@
 		"Armor (Steel)",
 		"Armor (Exotic)",
 		"Potions",
+		"Weapon Modifications",
 		"Weapons (Ranged)",
 		"Weapons (Iron and Shields)",
 		"Weapons (Bronze)",

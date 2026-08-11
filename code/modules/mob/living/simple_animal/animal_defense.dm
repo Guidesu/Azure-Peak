@@ -7,7 +7,7 @@
 		if(I.force_dynamic)
 			var/newforce = get_complex_damage(I, user)
 			var/haha = user.used_intent.item_d_type
-			var/armor = run_armor_check(null, haha, armor_penetration = I.armor_penetration, damage = newforce, used_weapon = I)
+			var/armor = run_armor_check(user.zone_selected, haha, armor_penetration = I.armor_penetration, damage = newforce, used_weapon = I)
 			var/nodmg = FALSE
 			next_attack_msg.Cut()
 			if(armor > 0)
@@ -57,6 +57,20 @@
 	if(!type)
 		return 0
 	var/armorval = 0
+	// --- Natural armor (per-bodypart) ---
+	// Natural armor is innate to the creature (thick hide, scales, etc.)
+	// It does not have integrity and is never damaged.
+	var/natural_val = 0
+	if(def_zone)
+		var/list/zone_armor = natural_armor[def_zone]
+		if(!zone_armor && length(natural_armor_default))
+			zone_armor = natural_armor_default
+		if(zone_armor && zone_armor[type])
+			natural_val = zone_armor[type]
+	else if(length(natural_armor_default))
+		if(natural_armor_default[type])
+			natural_val = natural_armor_default[type]
+	// --- Barding armor (worn) ---
 	if(bbarding && !bbarding.obj_broken)
 		armorval = bbarding.armor.getRating(type)
 		var/intdamage = damage
@@ -76,8 +90,8 @@
 				intdamage *= intdamfactor
 
 			bbarding.take_damage(intdamage, damage_flag = type, sound_effect = FALSE, armor_penetration = 100)
-
-	return armorval
+	// Take the higher of natural armor and barding for the final value
+	return max(armorval, natural_val)
 
 /mob/living/carbon/simple_animal/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
@@ -116,7 +130,7 @@
 			next_attack_msg.Cut()
 			var/hitlim = simple_limb_hit(M.zone_selected)
 			var/haha = M.used_intent.item_d_type
-			var/armor = run_armor_check(null, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
+			var/armor = run_armor_check(M.zone_selected, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
 			if(armor > 0)
 				next_attack_msg += VISMSG_ARMOR_BLOCKED
 			attack_threshold_check(damage, hitlim, armorcheck = armor)
@@ -209,7 +223,7 @@
 		next_attack_msg.Cut()
 		var/hitlim = simple_limb_hit(M.zone_selected)
 		var/haha = M.used_intent.item_d_type
-		var/armor = run_armor_check(null, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
+		var/armor = run_armor_check(M.zone_selected, haha, armor_penetration = M.used_intent.penfactor, damage = damage)
 		if(armor > 0)
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		attack_threshold_check(damage, hitlim, armorcheck = armor)
@@ -228,7 +242,7 @@
 		var/hitlim = simple_limb_hit(M.zone_selected)
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		var/haha = M.d_type
-		var/armor = run_armor_check(null, haha, armor_penetration = M.armor_penetration, damage = damage)
+		var/armor = run_armor_check(M.zone_selected, haha, armor_penetration = M.armor_penetration, damage = damage)
 		if(armor > 0)
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		attack_threshold_check(damage, hitlim, M.melee_damage_type, armor)
@@ -277,7 +291,7 @@
 				return
 		return
 	var/hitlim = simple_limb_hit(user.zone_selected)
-	var/armor = run_armor_check(null, "stab", armor_penetration = 0, damage = damage)
+	var/armor = run_armor_check(user.zone_selected, "stab", armor_penetration = 0, damage = damage)
 	if(armor > 0)
 		user.next_attack_msg += VISMSG_ARMOR_BLOCKED
 	if(src.apply_damage(damage, BRUTE, hitlim, armor))
@@ -297,7 +311,7 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
+	if(!HAS_TRAIT(user, TRAIT_GARROTED))
 		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 			to_chat(user, span_notice("I can't move my leg!"))
 			return
