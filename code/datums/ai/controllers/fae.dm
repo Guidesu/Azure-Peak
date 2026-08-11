@@ -45,6 +45,21 @@
 
 		/datum/ai_planning_subtree/targeted_mob_ability/any/continue_planning,
 
+		/datum/ai_planning_subtree/spacing/circling/melee,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree/spaced,
+		/datum/ai_planning_subtree/simple_self_recovery,
+	)
+
+/*
+*/
+/datum/ai_controller/fae/skirmisher/melee/reactive
+
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/aggro_find_target,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
+
+		/datum/ai_planning_subtree/targeted_mob_ability/any/continue_planning,
+
 		/datum/ai_planning_subtree/spacing/circling/reactive,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/spaced,
 		/datum/ai_planning_subtree/simple_self_recovery,

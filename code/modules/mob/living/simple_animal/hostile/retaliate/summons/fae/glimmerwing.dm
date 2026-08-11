@@ -49,8 +49,8 @@
 	dodgetime = 40
 	aggressive = 1
 
-	ai_controller = /datum/ai_controller/fae/skirmisher/melee
-	move_base_delay = MOVEMENT_DELAY_SPD_23
+	ai_controller = /datum/ai_controller/fae/skirmisher/melee/reactive
+	move_base_delay = MOVEMENT_DELAY_SPD_10
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)

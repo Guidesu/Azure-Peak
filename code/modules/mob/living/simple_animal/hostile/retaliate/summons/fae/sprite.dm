@@ -26,8 +26,8 @@
 	maxHealth = 80
 	threat_point = THREAT_TRASH
 	ranged = FALSE
-	melee_damage_lower = 18
-	melee_damage_upper = 26
+	melee_damage_lower = 14
+	melee_damage_upper = 20
 	vision_range = 8
 	aggro_vision_range = 11
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -54,7 +54,7 @@
 	aggressive = 1
 
 	ai_controller = /datum/ai_controller/fae/skirmisher/melee
-	move_base_delay = MOVEMENT_DELAY_SPD_23
+	move_base_delay = MOVEMENT_DELAY_SPD_17
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
