@@ -22,8 +22,8 @@
 	death_loot = list(/obj/item/magic/elemental/relic = 1)
 	faction = list(FACTION_ELEMENTAL)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 1500
-	maxHealth = 1500
+	health = 2000
+	maxHealth = 2000
 	threat_point = THREAT_LEGENDARY
 	obj_damage = 150
 	melee_damage_lower = 40
