@@ -1,6 +1,40 @@
+/mob/living/simple_animal
+	/// Dodge chance shaved off by recent dodges. Recovers on its own, with no stamina involved.
+	var/dodge_fatigue = 0
+	var/dodge_fatigue_updated = 0
+	var/winded_until = 0
+
+/mob/living/simple_animal/proc/is_winded()
+	return world.time < winded_until
+
+/// Lazily aged so nothing has to tick for this - the reserve only matters when a dodge is rolled.
+/mob/living/simple_animal/proc/current_dodge_fatigue()
+	if(dodge_fatigue <= 0)
+		return 0
+	var/idle = world.time - dodge_fatigue_updated - SIMPLEMOB_DODGE_RECOVERY_DELAY
+	if(idle <= 0)
+		return dodge_fatigue
+	dodge_fatigue = max(0, dodge_fatigue - round((idle / 10) * SIMPLEMOB_DODGE_FATIGUE_REGEN, 1))
+	dodge_fatigue_updated = world.time
+	return dodge_fatigue
+
+/mob/living/simple_animal/proc/spend_dodge_reserve()
+	dodge_fatigue = min(current_dodge_fatigue() + SIMPLEMOB_DODGE_FATIGUE_PER_DODGE, SIMPLEMOB_DODGE_FATIGUE_MAX)
+	dodge_fatigue_updated = world.time
+	if(dodge_fatigue < SIMPLEMOB_DODGE_FATIGUE_MAX)
+		return
+	winded_until = world.time + SIMPLEMOB_WINDED_DURATION
+	dodge_fatigue = 0
+	visible_message(span_boldwarning("[src] is winded - it cannot keep this up!"))
+	balloon_alert_to_viewers("<font color='#ff3b3b'>winded!</font>")
+
 /mob/living/proc/attempt_dodge(datum/intent/intenty, mob/living/user)
 	if(pulledby || pulling)
 		return FALSE
+	if(isanimal(src))
+		var/mob/living/simple_animal/beast = src
+		if(beast.is_winded())
+			return FALSE
 	if(world.time < last_dodge + dodgetime)
 		return FALSE
 	if(has_status_effect(/datum/status_effect/debuff/riposted))
@@ -281,11 +315,19 @@
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human
-		prob2defend = clamp(prob2defend, 5, 90)
+		var/mob/living/simple_animal/beast = isanimal(src) ? src : null
+		// Recomputed rather than adjusted - the human stack above is the wrong shape for a mob.
+		prob2defend = SIMPLEMOB_DODGE_BASE + ((L.STASPD - U.STASPD) * SIMPLEMOB_DODGE_PER_SPD)
+		if(I && UH)
+			prob2defend -= UH.get_skill_level(I.associated_skill) * SIMPLEMOB_DODGE_PER_SKILL
+		if(beast)
+			prob2defend -= beast.current_dodge_fatigue()
+		prob2defend = clamp(prob2defend, 5, SIMPLEMOB_DODGE_CAP)
 		if(client?.prefs.showrolls)
 			to_chat(src, span_info("Roll to dodge... [prob2defend]%"))
 		if(!prob(prob2defend))
 			return FALSE
+		beast?.spend_dodge_reserve()
 	dodgecd = TRUE
 	playsound(src, 'sound/combat/dodge.ogg', 100, FALSE)
 	if(!HAS_TRAIT(src, TRAIT_DODGE_NO_MOVE))
