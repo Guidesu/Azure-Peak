@@ -215,7 +215,7 @@
 /// Exposes and staggers the caster of a spell we just Guard-deflected (riposte punish).
 /// Deduped per game tick so a single AOE deflected by multiple guards only punishes once.
 /mob/living/proc/punish_deflected_caster(mob/living/attacker)
-	if(!attacker || !ishuman(attacker) || attacker == src)
+	if(!attacker || attacker == src)
 		return
 	if(attacker.last_deflect_recoil == world.time)
 		return

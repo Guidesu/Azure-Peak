@@ -41,6 +41,8 @@
 	else
 		basic_mob.ClickOn(target, list())
 
+	controller.blackboard[BB_SWINGS_SINCE_CIRCLING] = (controller.blackboard[BB_SWINGS_SINCE_CIRCLING] || 0) + 1
+
 /datum/ai_behavior/static_melee_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
 	if(!succeeded)

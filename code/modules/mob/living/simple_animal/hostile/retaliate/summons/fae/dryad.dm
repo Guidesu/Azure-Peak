@@ -1,4 +1,5 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad	//Make this cause giant vine tangled messes
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad
+	anatomy_type = /datum/anatomy/dryad
 	icon = 'icons/mob/summonable/32x64.dmi'
 	name = "dryad"
 	desc = "A human-like figure formed of the flesh and bark of a tree, easier taller than a man. Guardians \
@@ -23,6 +24,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = 650
 	maxHealth = 650
+	threat_point = THREAT_DEADLY
 	melee_damage_lower = 20
 	melee_damage_upper = 30
 	vision_range = 7
@@ -46,100 +48,19 @@
 	attack_sound = "plantcross"
 	dodgetime = 30
 	aggressive = 1
-//	stat_attack = UNCONSCIOUS
 	ranged = FALSE
-	var/vine_cd
-	inherent_spells = list(/obj/effect/proc_holder/spell/self/create_vines)
+
+	ai_controller = /datum/ai_controller/fae
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+	var/datum/action/cooldown/spell/projectile/log_throw/hurl = new(src)
+	hurl.Grant(src)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Move(newloc)	//vine movespeed buff
-	.=..()
-	if(isturf(newloc))
-		var/turf/T = newloc
-		if(contains_vines(T))
-			add_movespeed_modifier(MOVESPEED_ID_DRYAD_VINES, TRUE, 100, override = TRUE, multiplicative_slowdown = DRYAD_VINE_SPEEDUP)
-			src.STASPD = 15
-		else
-			remove_movespeed_modifier(MOVESPEED_ID_DRYAD_VINES)
-			src.STASPD = 4
-		update_move_intent_slowdown()
-
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/contains_vines(var/turf/T)
-	for(var/obj/structure/vine/V in T)
-		return TRUE
-	return FALSE
-
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
-	return
-
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
-	stop_automated_movement = 1
-	if(!target || !CanAttack(target))
-		LoseTarget()
-		return 0
-	if(binded)
-		return 0
-	if(target in possible_targets)
-		var/target_distance = get_dist(targets_from,target)
-		if(ranged) //We ranged? Shoot at em
-			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
-				OpenFire(target)
-		if(world.time >= src.vine_cd + 100 && !mind)
-			vine()
-			src.vine_cd = world.time
-		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
-			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
-				walk_away(src, target, retreat_distance, cached_multiplicative_slowdown)
-			else
-				Goto(target, minimum_distance) //Otherwise, get to our minimum distance so we chase them
-		else
-			Goto(target, minimum_distance)
-		if(target)
-			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
-				MeleeAction()
-			else
-				if(rapid_melee > 1 && target_distance <= melee_queue_distance)
-					MeleeAction(FALSE)
-				in_melee = FALSE //If we're just preparing to strike do not enter sidestep mode
-			return 1
-		return 0
-	else
-		if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
-			OpenFire(target)
-		Goto(target, minimum_distance)
-		FindHidden()
-		return 1
-
-/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/vine()
-	visible_message(span_boldwarning("Vines spread out from [src]!"))
-	for(var/turf/turf as anything in RANGE_TURFS(2,src.loc))
-		if(!locate(/obj/structure/vine) in turf)
-			new /obj/structure/vine(turf)
-	src.vine_cd = world.time
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
 	..()
-	for(var/obj/structure/vine/V in view(src))
-		qdel(V)
-	src.visible_message(span_boldwarning("Vines near [src] wither as it returns to its plane!"))
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
-
-/obj/effect/proc_holder/spell/self/create_vines
-	name = "Spawn Vines"
-	recharge_time = 10 SECONDS
-	sound = 'sound/magic/churn.ogg'
-	overlay_state = "blesscrop"
-
-/obj/effect/proc_holder/spell/self/create_vines/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad))
-		var/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/treeguy = user
-		if(world.time <= treeguy.vine_cd + 100)//shouldn't ever happen cuz the spell cd is the same as summon_cd but I'd rather it check with the internal cd just in case
-			to_chat(user,span_warning("Too soon!"))
-			revert_cast()
-			return FALSE
-		treeguy.vine()
-		treeguy.vine_cd = world.time

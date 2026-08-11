@@ -489,23 +489,21 @@ Medical defines
 #define MAX_DODGE_START 0	// We start at (presumed) 90%
 #define MAX_DODGE_FLOOR -15
 
-// Mobs dodge on their own curve. The human path stacks a 50 base with 10 per point of SPD, which pins
-// anything fast at the cap and leaves no room for a limb break or a skilled swing to matter.
+// Mbos dodge with a different speed based curve meant to not be overly oppressive for melee players
 #define SIMPLEMOB_DODGE_BASE 20
 #define SIMPLEMOB_DODGE_PER_SPD 3
 #define SIMPLEMOB_DODGE_PER_SKILL 4
 #define SIMPLEMOB_DODGE_CAP 45
 
-// A mob has no stamina to spend on evasion, so the dodge is its own resource. Each one shaves the
-// next, and a spent reserve leaves the mob winded - it loses the evasion and nothing else, so
-// sustained pressure is what beats a dodger rather than a lucky roll.
+// We reduce the dodge chances of simple mobs if they dodge consecutively
 #define SIMPLEMOB_DODGE_FATIGUE_PER_DODGE 5
 #define SIMPLEMOB_DODGE_FATIGUE_MAX 20
-/// Nothing recovers until the mob has gone this long without dodging.
+/// Nothing recovers until they stop dodging for a while
 #define SIMPLEMOB_DODGE_RECOVERY_DELAY (6 SECONDS)
-/// Points recovered per second, once the delay has elapsed.
+/// Points recovered
 #define SIMPLEMOB_DODGE_FATIGUE_REGEN 5
 #define SIMPLEMOB_WINDED_DURATION (4 SECONDS)
+
 #define DODGE_EXPERT_BASE_CAP 90	//What a Dodge Expert with SPD above 10 is hardset to, before max_dodge is added on top.
 #define MAX_DODGE_CLAMP -5 // at 85%. Base is 90%.
 

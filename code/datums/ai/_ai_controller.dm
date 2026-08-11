@@ -402,6 +402,8 @@ have ways of interacting with a specific atom and control it. They posses a blac
 
 /datum/ai_controller/proc/on_pawn_attacked(mob/living/source, atom/attacker, damage)
 	SIGNAL_HANDLER
+	// Direct write - this fires on every hit on every AI mob, so it stays a bare assignment.
+	blackboard[BB_LAST_HIT_TIME] = world.time
 	wake_for_combat()
 
 /datum/ai_controller/proc/wake_for_combat()

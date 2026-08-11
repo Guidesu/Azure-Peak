@@ -8,7 +8,7 @@
 	npc_min_range = 0
 	npc_max_range = 4
 	use_chance = 45
-	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
+	required_zones = list(BODY_ZONE_HEAD)
 	shared_cooldown = "mob_special"
 	lockout_time = 5 SECONDS
 
@@ -106,7 +106,7 @@
 	button_icon = 'icons/mob/actions/mob_actions.dmi'
 	button_icon_state = "drakkyn_fireball"
 	use_chance = 15
-	required_zones = list(BODY_ZONE_PRECISE_MOUTH)
+	required_zones = list(BODY_ZONE_HEAD)
 	telegraph_message = "rears back, fire gathering behinds its teeth!"
 	whiff_message = "closes its mouth, smoke billowing out."
 	cast_effect_x_offset = 32

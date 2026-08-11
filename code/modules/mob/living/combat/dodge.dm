@@ -1,5 +1,5 @@
 /mob/living/simple_animal
-	/// Dodge chance shaved off by recent dodges. Recovers on its own, with no stamina involved.
+	// Pseudo dodge expert system for simple animals that let you exhausts them with normal attacks
 	var/dodge_fatigue = 0
 	var/dodge_fatigue_updated = 0
 	var/winded_until = 0
@@ -7,7 +7,6 @@
 /mob/living/simple_animal/proc/is_winded()
 	return world.time < winded_until
 
-/// Lazily aged so nothing has to tick for this - the reserve only matters when a dodge is rolled.
 /mob/living/simple_animal/proc/current_dodge_fatigue()
 	if(dodge_fatigue <= 0)
 		return 0
@@ -25,7 +24,7 @@
 		return
 	winded_until = world.time + SIMPLEMOB_WINDED_DURATION
 	dodge_fatigue = 0
-	visible_message(span_boldwarning("[src] is winded - it cannot keep this up!"))
+	visible_message(span_boldwarning("[src] is winded!"))
 	balloon_alert_to_viewers("<font color='#ff3b3b'>winded!</font>")
 
 /mob/living/proc/attempt_dodge(datum/intent/intenty, mob/living/user)
@@ -316,7 +315,6 @@
 			return FALSE
 	else //we are a non human
 		var/mob/living/simple_animal/beast = isanimal(src) ? src : null
-		// Recomputed rather than adjusted - the human stack above is the wrong shape for a mob.
 		prob2defend = SIMPLEMOB_DODGE_BASE + ((L.STASPD - U.STASPD) * SIMPLEMOB_DODGE_PER_SPD)
 		if(I && UH)
 			prob2defend -= UH.get_skill_level(I.associated_skill) * SIMPLEMOB_DODGE_PER_SKILL

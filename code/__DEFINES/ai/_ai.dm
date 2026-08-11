@@ -113,6 +113,10 @@
 #define BB_HUMAN_BEG_TARGET "human_beg_target"
 #define BB_HUMAN_NPC_SWINGS_TAKEN        "human_npc_swings_taken"
 #define BB_ABILITY_COMMITTED_UNTIL       "ability_committed_until"
+/// Last time anything landed a hit on us, melee included. Written by on_pawn_attacked.
+#define BB_LAST_HIT_TIME                 "bb_last_hit_time"
+/// Swings thrown since we last repositioned.
+#define BB_SWINGS_SINCE_CIRCLING         "bb_swings_since_circling"
 #define BB_HUMAN_NPC_SWINGS_TARGET       "human_npc_swings_target"
 #define BB_HUMAN_NPC_ZONE_COMMIT_COUNTER "human_npc_zone_commit_counter"
 #define BB_HUMAN_NPC_LAST_ATTACK_ZONE    "human_npc_last_attack_zone"

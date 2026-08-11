@@ -154,7 +154,6 @@
 	if(mortal_break)
 		REMOVE_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS, "[type]")
 
-/// Breaks that kill outright. Subtypes only supply the message and the debris.
 /datum/wound/cripple/fatal
 	var/list/debris_types
 	var/debris_effect = /obj/effect/gibspawner/generic
@@ -289,7 +288,48 @@
 	)
 	break_alert = "tongue severed!"
 
-// Construct breaks. Same mechanics as the flesh versions, reskinned.
+/datum/wound/cripple/limb/topple/root
+	name = "severed roots"
+	crit_message = list(
+		"The roots split and the dryad topples!!",
+	)
+	break_alert = "roots severed!"
+	sound_effect = "plantcross"
+
+/datum/wound/cripple/limb/wing
+	name = "torn wing"
+	crit_message = list(
+		"The wing tears through!",
+		"The wing is torn apart!",
+		"The wing is shorn away!",
+	)
+	break_alert = "wing torn!"
+	slowdown = CRIPPLE_MOVE_PENALTY_MAJOR
+	attack_delay_mult = CRIPPLE_ATTACK_DELAY_MINOR
+	var/removed_flight = FALSE
+	var/removed_dodge = FALSE
+
+/datum/wound/cripple/limb/wing/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(affected.movement_type & FLYING)
+		affected.setMovetype(affected.movement_type & ~FLYING)
+		removed_flight = TRUE
+	if(affected.candodge)
+		affected.candodge = FALSE
+		removed_dodge = TRUE
+
+/datum/wound/cripple/limb/wing/on_mob_loss(mob/living/affected)
+	. = ..()
+	for(var/datum/wound/cripple/limb/wing/other in affected.simple_wounds)
+		if(other != src)
+			return
+	if(removed_flight)
+		affected.setMovetype(affected.movement_type | FLYING)
+		removed_flight = FALSE
+	if(removed_dodge)
+		affected.candodge = TRUE
+		removed_dodge = FALSE
+
 /datum/wound/cripple/limb/fracture
 	name = "fractured leg"
 	crit_message = list(

@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite
+	anatomy_type = /datum/anatomy/winged/trash
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "sprite"
 	desc = "This is a sprite, a particularly small manner of fae-creature known often to surround \
@@ -21,11 +22,12 @@
 	death_loot = list(/obj/item/magic/fae/fairydust = 4)
 	faction = list(FACTION_FAE)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 50
-	maxHealth = 50
+	health = 80
+	maxHealth = 80
+	threat_point = THREAT_TRASH
 	ranged = FALSE
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 18
+	melee_damage_upper = 26
 	vision_range = 8
 	aggro_vision_range = 11
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -48,10 +50,11 @@
 	attack_sound = 'sound/combat/hits/bladed/smallslash (1).ogg'
 	attack_verb_continuous = "jabs"
 	attack_verb_simple = "jab"
-	dodgetime = 60
+	dodgetime = 40
 	aggressive = 1
-	var/drug_cd
 
+	ai_controller = /datum/ai_controller/fae/skirmisher/melee
+	move_base_delay = MOVEMENT_DELAY_SPD_23
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
