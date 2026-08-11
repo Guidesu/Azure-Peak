@@ -462,6 +462,97 @@ Aiming legs should be nearly guaranteed due to their profile
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 180, break_wound = /datum/wound/cripple/limb/topple/root, hint = "roots", melee_hit_bonus = 40)
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 180, break_wound = /datum/wound/cripple/limb/topple/root, hint = "roots", melee_hit_bonus = 40)
 
+/*
+*/
+/datum/anatomy/winged/infernal
+	limb_names = list(
+		BODY_ZONE_HEAD = "head",
+		BODY_ZONE_PRECISE_R_EYE = "head",
+		BODY_ZONE_PRECISE_L_EYE = "head",
+		BODY_ZONE_PRECISE_SKULL = "head",
+		BODY_ZONE_PRECISE_EARS = "head",
+		BODY_ZONE_PRECISE_NOSE = "snout",
+		BODY_ZONE_PRECISE_MOUTH = "maw",
+		BODY_ZONE_PRECISE_NECK = "neck",
+		BODY_ZONE_CHEST = "body",
+		BODY_ZONE_L_ARM = "wing",
+		BODY_ZONE_R_ARM = "wing",
+		BODY_ZONE_PRECISE_L_HAND = "claw",
+		BODY_ZONE_PRECISE_R_HAND = "claw",
+		BODY_ZONE_L_LEG = "leg",
+		BODY_ZONE_R_LEG = "leg",
+		BODY_ZONE_PRECISE_L_FOOT = "leg",
+		BODY_ZONE_PRECISE_R_FOOT = "leg",
+		BODY_ZONE_PRECISE_STOMACH = "body",
+		BODY_ZONE_PRECISE_GROIN = "tail",
+	)
+
+/datum/anatomy/winged/infernal/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 30, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.35, part_health_minimum = 30, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
+
+/*
+*/
+/datum/anatomy/quadruped/standard/hellhound
+	limb_names = list(
+		BODY_ZONE_HEAD = "head",
+		BODY_ZONE_PRECISE_R_EYE = "head",
+		BODY_ZONE_PRECISE_L_EYE = "head",
+		BODY_ZONE_PRECISE_SKULL = "head",
+		BODY_ZONE_PRECISE_EARS = "head",
+		BODY_ZONE_PRECISE_NOSE = "snout",
+		BODY_ZONE_PRECISE_MOUTH = "furnace maw",
+		BODY_ZONE_PRECISE_NECK = "neck",
+		BODY_ZONE_CHEST = "flank",
+		BODY_ZONE_L_ARM = "foreleg",
+		BODY_ZONE_R_ARM = "foreleg",
+		BODY_ZONE_PRECISE_L_HAND = "foreleg",
+		BODY_ZONE_PRECISE_R_HAND = "foreleg",
+		BODY_ZONE_L_LEG = "hind leg",
+		BODY_ZONE_R_LEG = "hind leg",
+		BODY_ZONE_PRECISE_L_FOOT = "hind leg",
+		BODY_ZONE_PRECISE_R_FOOT = "hind leg",
+		BODY_ZONE_PRECISE_STOMACH = "belly",
+		BODY_ZONE_PRECISE_GROIN = "tail",
+	)
+
+/*
+*/
+/datum/anatomy/orb
+	limb_names = list(
+		BODY_ZONE_HEAD = "eye",
+		BODY_ZONE_PRECISE_R_EYE = "eye",
+		BODY_ZONE_PRECISE_L_EYE = "eye",
+		BODY_ZONE_PRECISE_SKULL = "eye",
+		BODY_ZONE_PRECISE_EARS = "shell",
+		BODY_ZONE_PRECISE_NOSE = "shell",
+		BODY_ZONE_PRECISE_MOUTH = "eye",
+		BODY_ZONE_PRECISE_NECK = "shell",
+		BODY_ZONE_CHEST = "molten shell",
+		BODY_ZONE_L_ARM = "shell",
+		BODY_ZONE_R_ARM = "shell",
+		BODY_ZONE_PRECISE_L_HAND = "shell",
+		BODY_ZONE_PRECISE_R_HAND = "shell",
+		BODY_ZONE_L_LEG = "shell",
+		BODY_ZONE_R_LEG = "shell",
+		BODY_ZONE_PRECISE_L_FOOT = "shell",
+		BODY_ZONE_PRECISE_R_FOOT = "shell",
+		BODY_ZONE_PRECISE_STOMACH = "molten shell",
+		BODY_ZONE_PRECISE_GROIN = "molten shell",
+	)
+
+/datum/anatomy/orb/build_zones()
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 150, break_wound = /datum/wound/cripple/skull/blinded, hint = "eye", melee_hit_bonus = -10, ranged_hit_bonus = -30)
+
+/*
+*/
+/datum/anatomy/biped/tough/fiend/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/arm, hint = "arms")
+	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 300, break_wound = /datum/wound/cripple/skull/silenced, hint = "head", min_wlength = WLENGTH_GREAT, melee_hit_bonus = -10, ranged_hit_bonus = -30)
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
+
 /* Deadite tough biped. Mirrors the living profile. They have a reach gated head that kills them outright.
 */
 /datum/anatomy/biped/tough/undead

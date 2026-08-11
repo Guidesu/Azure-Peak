@@ -175,9 +175,10 @@
 #define ARCHER_NPC_AIM_WINDOW_BASE      5
 #define ARCHER_NPC_AIM_WINDOW_MIN       3
 #define ARCHER_NPC_AIM_PER_STAT_POINT   3
-#define ARCHER_NPC_MAX_LEAD             3
+
+#define ARCHER_NPC_MAX_LEAD             2 // Overly large lead, especially with slow projectile often leads to wildly ridiculous shots from AI, so we clamp it to just range 2
 #define ARCHER_NPC_STATIONARY_MISS      15
-#define ARCHER_NPC_MOVING_TARGET_ERROR  30
+#define ARCHER_NPC_MOVING_TARGET_ERROR  10
 #define ARCHER_NPC_LEAD_ERROR_PER_POINT 3
 #define ARCHER_NPC_LEAD_ERROR_MAX_BONUS 15
 #define ARCHER_NPC_LEAD_ERROR_PER_POOR  5

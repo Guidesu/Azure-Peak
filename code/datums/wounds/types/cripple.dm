@@ -154,6 +154,23 @@
 	if(mortal_break)
 		REMOVE_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS, "[type]")
 
+/datum/wound/cripple/skull/blinded
+	name = "burst eye"
+	crit_message = list(
+		"The eye bursts, molten liquids running out!",
+		"The eye splits apart!",
+	)
+	break_alert = "EYE BURST!"
+	vision_penalty = 5
+
+/datum/wound/cripple/skull/silenced
+	name = "shattered jaw"
+	crit_message = list(
+		"The jaw hangs slack!",
+		"The skull caves!",
+	)
+	break_alert = "silenced!"
+
 /datum/wound/cripple/fatal
 	var/list/debris_types
 	var/debris_effect = /obj/effect/gibspawner/generic

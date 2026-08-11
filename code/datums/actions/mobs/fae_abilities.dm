@@ -125,7 +125,7 @@
 	charge_time = TELEGRAPH_DODGEABLE
 	charge_sound = null
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
-	freeze_cast = TRUE
+	freeze_cast = FALSE
 	telegraph_message = "draws a lance of ice out of the air!"
 	telegraph_sound = list('sound/spellbooks/icicle.ogg')
 

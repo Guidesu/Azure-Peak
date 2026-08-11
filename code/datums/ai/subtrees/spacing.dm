@@ -41,7 +41,7 @@
 		return
 
 	var/range = get_dist(living_pawn, target)
-	var/ready_to_attack = living_pawn.next_move < world.time
+	var/ready_to_attack = is_ready_to_attack(controller, living_pawn)
 
 	// If you are committed to moving toward the enemy, do not space away from enemies so that telegraphed strike follows.
 	if (world.time < controller.blackboard[BB_ABILITY_COMMITTED_UNTIL])
@@ -49,26 +49,44 @@
 		return
 
 	if (range < minimum_distance) // they closed on us, give ground regardless
+		AI_THINK(living_pawn, "SPACING: too close ([range]<[minimum_distance]), backing off")
 		controller.queue_behavior(run_away_behavior, target_key, minimum_distance)
 		return
 
 	if (!ready_to_attack)
 		if (should_give_ground(controller, living_pawn))
+			AI_THINK(living_pawn, "SPACING: on cooldown at [range], giving ground")
 			controller.queue_behavior(run_away_behavior, target_key, minimum_distance)
 			return
 		// Staying on them instead. Close to melee rather than idling at spacing range.
+		AI_THINK(living_pawn, "SPACING: on cooldown at [range], piling on")
 		controller.queue_behavior(/datum/ai_behavior/pursue_to_range, target_key, 1)
 		return
 	var/canReach = need_los || living_pawn.Adjacent(target) || living_pawn.CanReach(target)  //Check adjacency first because (probably) cheaper
 	if ((range > maximum_distance) || (ready_to_attack) || !canReach) // next attack ready or target too far for us
 		if(!canReach) //living_pawn.a_intent.reach if we can't reach then move into melee - possibly on a corner
 			minimum_distance = 1
+		AI_THINK(living_pawn, "SPACING: closing to [minimum_distance] from [range][ready_to_attack ? " (ready)" : ""]")
 		controller.queue_behavior(/datum/ai_behavior/pursue_to_range, target_key, minimum_distance)
 		return
 
 /// Whether we back off during our attack cooldown, or stay in their face. Default is always back off.
 /datum/ai_planning_subtree/spacing/proc/should_give_ground(datum/ai_controller/controller, mob/living/living_pawn)
 	return TRUE
+
+/// Melee swing cadence, which is what spacing was built around.
+/datum/ai_planning_subtree/spacing/proc/is_ready_to_attack(datum/ai_controller/controller, mob/living/living_pawn)
+	return living_pawn.next_move < world.time
+
+/*
+	next_move is melee cadence and is almost always in the past for a ranged mob, so it read as
+	permanently ready and advanced to minimum range forever instead of ever falling back.
+*/
+/datum/ai_planning_subtree/spacing/ranged/is_ready_to_attack(datum/ai_controller/controller, mob/living/living_pawn)
+	for(var/datum/action/cooldown/special in living_pawn.actions)
+		if(special.npc_max_range > 1 && special.IsAvailable())
+			return TRUE
+	return FALSE
 
 /datum/ai_planning_subtree/spacing/cover_minimum_distance
 	run_away_behavior = /datum/ai_behavior/cover_minimum_distance

@@ -193,7 +193,10 @@
 	P.bonus_accuracy += (aim_stat - 8) * 3
 
 /// aim_stat defaults to Perception, the archery case. Spells pass Intelligence.
-/mob/living/proc/get_ranged_lead_error(moved = 0, aim_stat)
+/mob/living/proc/get_ranged_lead_error(moved, aim_stat)
+	// If you have not moved, they don't miss
+	if(moved <= 0)
+		return 0
 	if(isnull(aim_stat))
 		aim_stat = STAPER
 	var/error = ARCHER_NPC_STATIONARY_MISS + (moved * ARCHER_NPC_MOVING_TARGET_ERROR)
@@ -215,8 +218,10 @@
 		return current
 	var/turf/aim = current
 	var/lead = 0
-	var/moved = get_dist(locked_turf, current)
-	if(moved && target.last_move && isliving(target))
+	// get_dist hands back -1 when it cannot measure, and -1 is truthy - unclamped it slips past every
+	// "did they move" guard and leads a full cap's worth at a target standing still.
+	var/moved = max(0, get_dist(locked_turf, current))
+	if(moved > 0 && target.last_move && isliving(target))
 		var/mob/living/living_target = target
 		var/target_delay = living_target.cached_multiplicative_slowdown
 		if(target_delay > 0)

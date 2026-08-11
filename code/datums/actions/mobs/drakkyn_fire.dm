@@ -76,7 +76,7 @@
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	charge_swingdelay_type = SWINGDELAY_NORMAL
 	hold_drain = 0
-	freeze_cast = TRUE
+	freeze_cast = FALSE
 
 	telegraph_message = "gathers a knot of fire!"
 	telegraph_sound = list('sound/magic/fireball.ogg')

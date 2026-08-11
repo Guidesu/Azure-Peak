@@ -102,13 +102,13 @@
 		playsound(epicenter, pick('sound/misc/explode/bomb.ogg', 'sound/misc/explode/explosionclose (1).ogg', 'sound/misc/explode/explosionclose (2).ogg', 'sound/misc/explode/explosionclose (3).ogg'), 120, TRUE, 8)
 		playsound(epicenter, pick('sound/misc/explode/incendiary (1).ogg', 'sound/misc/explode/incendiary (2).ogg'), 100, TRUE, 4)
 
-	if(arcyne_aoe_radius > 0 && istype(firer, /mob/living/carbon/human))
-		var/mob/living/carbon/human/caster = firer
+	if(arcyne_aoe_radius > 0 && isliving(firer))
+		var/mob/living/caster = firer
 		var/mob/living/direct_hit = M
 		for(var/turf/T in range(arcyne_aoe_radius, epicenter))
 			new /obj/effect/temp_visual/fire(T)
 			for(var/mob/living/L in T)
-				if(L == direct_hit || L.stat == DEAD)
+				if(L == direct_hit || L.stat == DEAD || L == caster)
 					continue
 				if(L.anti_magic_check())
 					continue

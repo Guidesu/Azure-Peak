@@ -37,6 +37,19 @@
 /datum/action/cooldown/spell/projectile/set_ai_aim_lock(turf/locked_turf)
 	aim_locked_turf = locked_turf
 
+/datum/action/cooldown/spell/projectile/can_use(atom/target)
+	. = ..()
+	if(!. || !npc_controlled() || !isliving(owner))
+		return .
+	var/mob/living/shooter = owner
+	for(var/turf/T in getline(shooter, target))
+		for(var/mob/living/blocker in T)
+			if(blocker == shooter || blocker == target)
+				continue
+			if(shooter.faction_check_mob(blocker))
+				return FALSE
+	return TRUE
+
 /datum/action/cooldown/spell/projectile/ai_commit_time()
 	return charge_required ? charge_time : 0
 
