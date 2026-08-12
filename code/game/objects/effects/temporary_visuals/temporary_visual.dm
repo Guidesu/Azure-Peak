@@ -92,21 +92,16 @@
 	layer = HUD_LAYER
 	plane = ABOVE_LIGHTING_PLANE
 
-/obj/effect/temp_visual/telegraph
-	icon = 'icons/effects/telegraph.dmi'
+/obj/effect/temp_visual/special_intent/warning
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "warning"
-	layer = HUD_LAYER
-	plane = ABOVE_LIGHTING_PLANE
-	randomdir = FALSE
-	light_outer_range = 2
-	duration = 3 SECONDS
-	var/fade_in = FALSE
+	alpha = 225
 
-/obj/effect/temp_visual/telegraph/Initialize(mapload, custom_duration)
-	if(custom_duration)
-		duration = custom_duration
+/obj/effect/temp_visual/special_intent/warning/Initialize(mapload, customdur, customcolor, customstate)
+	if(customdur)
+		duration = customdur
+	if(customstate)
+		icon_state = customstate
+	if(customcolor)
+		add_atom_colour(customcolor, FIXED_COLOUR_PRIORITY)
 	. = ..()
-	if(fade_in)
-		var/target_alpha = alpha
-		alpha = 0
-		animate(src, alpha = target_alpha, time = duration)

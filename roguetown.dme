@@ -1242,6 +1242,7 @@
 #include "code\game\objects\effects\temporary_visuals\music.dm"
 #include "code\game\objects\effects\temporary_visuals\offered_item_effect.dm"
 #include "code\game\objects\effects\temporary_visuals\surrender_flag.dm"
+#include "code\game\objects\effects\temporary_visuals\telegraph.dm"
 #include "code\game\objects\effects\temporary_visuals\temporary_visual.dm"
 #include "code\game\objects\effects\temporary_visuals\projectiles\impact.dm"
 #include "code\game\objects\effects\temporary_visuals\projectiles\muzzle.dm"
