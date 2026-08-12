@@ -688,36 +688,187 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 /datum/tat_traits/proc/get_trait_conflict_map()
 	if(length(GLOB.tat_trait_conflict_map))
 		return GLOB.tat_trait_conflict_map
-	// Only genuinely overlapping traits are mutually exclusive.
-	// Direction/cost restrictions are removed (freeform selection),
-	// but these pairs mechanically conflict (same slot, same ability, etc.).
+	// Only genuinely overlapping or contradictory traits are mutually
+	// exclusive. Direction/cost restrictions are removed (freeform
+	// selection), but these pairs mechanically conflict (same slot, same
+	// ability, contradictory mechanics, etc.).
 	GLOB.tat_trait_conflict_map = list(
-		// Skin traits: both equip regenerating skin to SLOT_ARMOR
-		TAT_TRAIT_SAVAGE_SKIN = list(TAT_TRAIT_BODYBUILDER_SKIN),
-		TAT_TRAIT_BODYBUILDER_SKIN = list(TAT_TRAIT_SAVAGE_SKIN),
-		// Rage traits: both grant rage abilities and add TRAIT_RAGE
+		// ── Skin traits: both equip regenerating skin to SLOT_ARMOR ──
+		TAT_TRAIT_SAVAGE_SKIN = list(TAT_TRAIT_BODYBUILDER_SKIN, TRAIT_NUDIST),
+		TAT_TRAIT_BODYBUILDER_SKIN = list(TAT_TRAIT_SAVAGE_SKIN, TRAIT_NUDIST),
+		// ── Rage traits: both grant rage abilities and add TRAIT_RAGE ──
 		TAT_TRAIT_SAVAGE_RAGE = list(TAT_TRAIT_BERSERKER_RAGE),
 		TAT_TRAIT_BERSERKER_RAGE = list(TAT_TRAIT_SAVAGE_RAGE),
-		// Ranged synergy: explicitly "choose one ranged synergy only"
-		TAT_TRAIT_RANGED_SYNERGY_BOWS = list(TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
-		TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
-		TAT_TRAIT_RANGED_SYNERGY_SLINGS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS),
-		TAT_TRAIT_RANGED_SYNERGY_FIREARMS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS),
-		// Hunter paths: explicitly "conflicts with [other] Hunter"
-		TAT_TRAIT_HUNTER_BEATER = list(TAT_TRAIT_HUNTER_SHOOTER),
-		TAT_TRAIT_HUNTER_SHOOTER = list(TAT_TRAIT_HUNTER_BEATER),
-		// Mage minor slots: functionally identical (+1 minor spell slot each)
-		TAT_TRAIT_MAGE_MINOR_SLOT_1 = list(TAT_TRAIT_MAGE_MINOR_SLOT_2),
-		TAT_TRAIT_MAGE_MINOR_SLOT_2 = list(TAT_TRAIT_MAGE_MINOR_SLOT_1),
-		// Handicraft cluster: apprentice conflicts with master
+		// ── Ranged synergy: explicitly "choose one ranged synergy only" ──
+		TAT_TRAIT_RANGED_SYNERGY_BOWS = list(TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS, TRAIT_PACIFISM),
+		TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS, TRAIT_PACIFISM),
+		TAT_TRAIT_RANGED_SYNERGY_SLINGS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS, TRAIT_PACIFISM),
+		TAT_TRAIT_RANGED_SYNERGY_FIREARMS = list(TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS, TAT_TRAIT_RANGED_SYNERGY_SLINGS, TRAIT_PACIFISM),
+		// ── Hunter paths: explicitly "conflicts with [other] Hunter" ──
+		TAT_TRAIT_HUNTER_BEATER = list(TAT_TRAIT_HUNTER_SHOOTER, TRAIT_PACIFISM),
+		TAT_TRAIT_HUNTER_SHOOTER = list(TAT_TRAIT_HUNTER_BEATER, TRAIT_PACIFISM),
+		// ── Mage minor slots: functionally identical (+1 minor spell slot each) ──
+		TAT_TRAIT_MAGE_MINOR_SLOT_1 = list(TAT_TRAIT_MAGE_MINOR_SLOT_2, TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_MAGE_MINOR_SLOT_2 = list(TAT_TRAIT_MAGE_MINOR_SLOT_1, TRAIT_SPELLCOCKBLOCK),
+		// ── Handicraft cluster: apprentice conflicts with master ──
 		TAT_TRAIT_MASTER_OF_CRAFTING = list(TAT_TRAIT_HANDICRAFT_APPRENTICE),
 		TAT_TRAIT_HANDICRAFT_APPRENTICE = list(TAT_TRAIT_MASTER_OF_CRAFTING),
-		// Straying Soul cluster: apprentice conflicts with master
+		// ── Straying Soul cluster: apprentice conflicts with master ──
 		TAT_TRAIT_STRAYING_SOUL = list(TAT_TRAIT_STRAYING_SOUL_APPRENTICE),
 		TAT_TRAIT_STRAYING_SOUL_APPRENTICE = list(TAT_TRAIT_STRAYING_SOUL),
-		// Lootrat: tiered versions of the same bonus
+		// ── Lootrat: tiered versions of the same bonus ──
 		TAT_TRAIT_LOOTRAT = list(TAT_TRAIT_LOOTRAT_2),
 		TAT_TRAIT_LOOTRAT_2 = list(TAT_TRAIT_LOOTRAT),
+
+		// ════════════════════════════════════════════════════════════════
+		// PACIFIST vs COMBAT — Pacifism prevents harming living beings,
+		// so all combat-enhancement traits are contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_PACIFISM = list(
+			TAT_TRAIT_WARRIOR_EXPERT, TAT_TRAIT_WARRIOR_MASTER,
+			TAT_TRAIT_WEAPON_TRAINING, TAT_TRAIT_SPELLBLADE,
+			TAT_TRAIT_SPELLFIST, TAT_TRAIT_EXPERT_ARMAMENT,
+			TAT_TRAIT_HUNTER_BEATER, TAT_TRAIT_HUNTER_SHOOTER,
+			TAT_TRAIT_DIVINE_BLAST,
+			TRAIT_DODGEEXPERT, TRAIT_LONGSWORDSMAN, TRAIT_SABRIST,
+			TRAIT_FIREARMS_MARKSMAN, TRAIT_CIVILIZEDBARBARIAN,
+			TRAIT_BOW_DOUBLESHOT, TRAIT_BOW_LONGSHOT, TRAIT_BOW_BACKSTEP,
+			TAT_TRAIT_RANGED_SYNERGY_BOWS, TAT_TRAIT_RANGED_SYNERGY_CROSSBOWS,
+			TAT_TRAIT_RANGED_SYNERGY_SLINGS, TAT_TRAIT_RANGED_SYNERGY_FIREARMS,
+		),
+		TAT_TRAIT_WARRIOR_EXPERT = list(TRAIT_PACIFISM),
+		TAT_TRAIT_WARRIOR_MASTER = list(TRAIT_PACIFISM),
+		TAT_TRAIT_WEAPON_TRAINING = list(TRAIT_PACIFISM),
+		TAT_TRAIT_SPELLBLADE = list(TRAIT_PACIFISM, TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_SPELLFIST = list(TRAIT_PACIFISM, TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_EXPERT_ARMAMENT = list(TRAIT_PACIFISM, TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_DIVINE_BLAST = list(TRAIT_PACIFISM, TRAIT_SPELLCOCKBLOCK),
+		TRAIT_DODGEEXPERT = list(TRAIT_PACIFISM, TRAIT_NODEF),
+		TRAIT_LONGSWORDSMAN = list(TRAIT_PACIFISM),
+		TRAIT_SABRIST = list(TRAIT_PACIFISM),
+		TRAIT_FIREARMS_MARKSMAN = list(TRAIT_PACIFISM),
+		TRAIT_CIVILIZEDBARBARIAN = list(TRAIT_PACIFISM),
+
+		// ════════════════════════════════════════════════════════════════
+		// BEWITCHED vs SPELLCASTING — Bewitched prevents casting spells,
+		// so all spell/miracle granting traits are contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_SPELLCOCKBLOCK = list(
+			TAT_TRAIT_MAGE_INITIATE, TAT_TRAIT_MAGE_MAJOR_SLOT,
+			TAT_TRAIT_MAGE_MINOR_SLOT_1, TAT_TRAIT_MAGE_MINOR_SLOT_2,
+			TAT_TRAIT_MAGE_UTILITY_SLOT, TAT_TRAIT_WITCH_INITIATE,
+			TAT_TRAIT_SPELLBLADE, TAT_TRAIT_SPELLFIST,
+			TAT_TRAIT_EXPERT_ARMAMENT, TAT_TRAIT_DIVINE_INITIATE,
+			TAT_TRAIT_DIVINE_BLAST,
+		),
+		TAT_TRAIT_MAGE_INITIATE = list(TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_MAGE_MAJOR_SLOT = list(TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_MAGE_UTILITY_SLOT = list(TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_WITCH_INITIATE = list(TRAIT_SPELLCOCKBLOCK),
+		TAT_TRAIT_DIVINE_INITIATE = list(TRAIT_SPELLCOCKBLOCK),
+
+		// ════════════════════════════════════════════════════════════════
+		// NUDIST / SHIRTLESS vs ARMOR — Can't wear clothes but training
+		// to wear armor is contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_NUDIST = list(
+			TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR,
+			TAT_TRAIT_PLATE_SUPPLIER, TAT_TRAIT_MAIL_SUPPLIER, TAT_TRAIT_LEATHER_SUPPLIER,
+			TAT_TRAIT_SAVAGE_SKIN, TAT_TRAIT_BODYBUILDER_SKIN,
+		),
+		TRAIT_SHIRTLESS = list(
+			TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR,
+			TAT_TRAIT_PLATE_SUPPLIER, TAT_TRAIT_MAIL_SUPPLIER, TAT_TRAIT_LEATHER_SUPPLIER,
+		),
+		TRAIT_HEAVYARMOR = list(TRAIT_NUDIST, TRAIT_SHIRTLESS, TRAIT_INHUMEN_ANATOMY, TRAIT_NODEF),
+		TRAIT_MEDIUMARMOR = list(TRAIT_NUDIST, TRAIT_SHIRTLESS, TRAIT_INHUMEN_ANATOMY, TRAIT_NODEF),
+		TAT_TRAIT_PLATE_SUPPLIER = list(TRAIT_NUDIST, TRAIT_SHIRTLESS),
+		TAT_TRAIT_MAIL_SUPPLIER = list(TRAIT_NUDIST, TRAIT_SHIRTLESS),
+		TAT_TRAIT_LEATHER_SUPPLIER = list(TRAIT_NUDIST, TRAIT_SHIRTLESS),
+
+		// ════════════════════════════════════════════════════════════════
+		// INHUMEN ANATOMY vs ARMOR — Can't wear hats or boots, so full
+		// armor training is contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_INHUMEN_ANATOMY = list(TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR),
+
+		// ════════════════════════════════════════════════════════════════
+		// TECHNOPHOBE vs RESIDENT — Can't use Meister devices but
+		// Resident grants a Meister account. Contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_TECHNOPHOBE = list(TAT_TRAIT_RESIDENT),
+		TAT_TRAIT_RESIDENT = list(TRAIT_TECHNOPHOBE),
+
+		// ════════════════════════════════════════════════════════════════
+		// SLEEPLESS vs NUDE SLEEPER — Can't sleep at all vs. can only
+		// sleep naked. Contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_NOSLEEP = list(TRAIT_NUDE_SLEEPER),
+		TRAIT_NUDE_SLEEPER = list(TRAIT_NOSLEEP),
+
+		// ════════════════════════════════════════════════════════════════
+		// CRITICAL WEAKNESS vs CRITICAL RESISTANCE — More vulnerable to
+		// crits vs. resist crits. Directly contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_CRITICAL_WEAKNESS = list(TRAIT_CRITICAL_RESISTANCE),
+		TRAIT_CRITICAL_RESISTANCE = list(TRAIT_CRITICAL_WEAKNESS, TRAIT_NODEF),
+
+		// ════════════════════════════════════════════════════════════════
+		// EASY DISMEMBERMENT vs HARD DISMEMBERMENT — Easier vs. harder
+		// to dismember. Directly contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_EASYDISMEMBER = list(TRAIT_HARDDISMEMBER),
+		TRAIT_HARDDISMEMBER = list(TRAIT_EASYDISMEMBER),
+
+		// ════════════════════════════════════════════════════════════════
+		// NO DEFENSE vs DEFENSIVE TRAITS — Expose yourself completely
+		// in battle conflicts with defensive training.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_NODEF = list(
+			TRAIT_DODGEEXPERT, TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR,
+			TRAIT_CRITICAL_RESISTANCE,
+		),
+
+		// ════════════════════════════════════════════════════════════════
+		// PERMANENT MUTE vs BARDIC INSPIRATION — Can't speak vs.
+		// singing-based abilities. Contradictory.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_PERMAMUTE = list(TAT_TRAIT_BARDIC_INSPIRATION_T1, TAT_TRAIT_BARDIC_INSPIRATION_T2),
+		TAT_TRAIT_BARDIC_INSPIRATION_T1 = list(TRAIT_PERMAMUTE),
+		TAT_TRAIT_BARDIC_INSPIRATION_T2 = list(TRAIT_PERMAMUTE),
+
+		// ════════════════════════════════════════════════════════════════
+		// MASTERFUL HUNTER vs EXPERT HUNTER — Masterful is a superset
+		// of Expert. Redundant to take both.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_MASTERFUL_HUNTER = list(TRAIT_EXPERT_HUNTER),
+		TRAIT_EXPERT_HUNTER = list(TRAIT_MASTERFUL_HUNTER),
+
+		// ════════════════════════════════════════════════════════════════
+		// NO RUNNING vs MOVEMENT SPEED — Can't run but immune to
+		// slowdown is contradictory/pointless.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_NORUN = list(TRAIT_IGNORESLOWDOWN, TRAIT_IGNOREDAMAGESLOWDOWN),
+		TRAIT_IGNORESLOWDOWN = list(TRAIT_NORUN),
+		TRAIT_IGNOREDAMAGESLOWDOWN = list(TRAIT_NORUN),
+
+		// ════════════════════════════════════════════════════════════════
+		// EXPERT vs SKILLED CRAFT TRAITS — Expert raises caps to
+		// Legendary, Skilled raises to Master on the same skills.
+		// Taking both is redundant; the Expert supersedes Skilled.
+		// ════════════════════════════════════════════════════════════════
+		TRAIT_SMITHING_EXPERT = list(TAT_TRAIT_SKILLED_FORGEHAND, TAT_TRAIT_SKILLED_ARMORER, TAT_TRAIT_SKILLED_WEAPONSMITH),
+		TAT_TRAIT_SKILLED_FORGEHAND = list(TRAIT_SMITHING_EXPERT),
+		TAT_TRAIT_SKILLED_ARMORER = list(TRAIT_SMITHING_EXPERT),
+		TAT_TRAIT_SKILLED_WEAPONSMITH = list(TRAIT_SMITHING_EXPERT),
+		TRAIT_ALCHEMY_EXPERT = list(TAT_TRAIT_SKILLED_ALCHEMIST),
+		TAT_TRAIT_SKILLED_ALCHEMIST = list(TRAIT_ALCHEMY_EXPERT),
+		TRAIT_MEDICINE_EXPERT = list(TAT_TRAIT_SKILLED_PHYSICKER),
+		TAT_TRAIT_SKILLED_PHYSICKER = list(TRAIT_MEDICINE_EXPERT),
+		TRAIT_SURVIVAL_EXPERT = list(TAT_TRAIT_SKILLED_SURVIVALIST),
+		TAT_TRAIT_SKILLED_SURVIVALIST = list(TRAIT_SURVIVAL_EXPERT),
+		TRAIT_SEWING_EXPERT = list(TAT_TRAIT_SKILLED_CLOTHIER),
+		TAT_TRAIT_SKILLED_CLOTHIER = list(TRAIT_SEWING_EXPERT),
 	)
 	return GLOB.tat_trait_conflict_map
 

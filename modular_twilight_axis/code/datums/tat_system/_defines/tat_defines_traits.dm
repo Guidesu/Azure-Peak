@@ -3,6 +3,18 @@
 #define TAT_TRAIT_WEAPON_TRAINING "tat_weapon_training"
 #define TAT_TRAIT_SOUNDBREAKER "tat_soundbreaker"
 #define TAT_TRAIT_RONIN "tat_ronin"
+
+// Bow special traits - ported from Twilight-Axis traits.dm
+// These are used as TAT trait IDs and must be defined as strings.
+#ifndef TRAIT_BOW_DOUBLESHOT
+#define TRAIT_BOW_DOUBLESHOT "Double Shot Archer"
+#endif
+#ifndef TRAIT_BOW_LONGSHOT
+#define TRAIT_BOW_LONGSHOT "Long Shot Archer"
+#endif
+#ifndef TRAIT_BOW_BACKSTEP
+#define TRAIT_BOW_BACKSTEP "Skirmisher Archer"
+#endif
 #define TAT_TRAIT_RESIDENT "tat_resident"
 #define TAT_TRAIT_TRADER_LICENSE "tat_trader_license"
 
