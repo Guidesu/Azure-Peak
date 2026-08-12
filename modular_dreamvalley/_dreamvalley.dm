@@ -18,6 +18,7 @@
 #include "campaign\character_sheet_markings_ui.dm"
 #include "campaign\character_sheet_descriptors_ui.dm"
 #include "campaign\campaign_save_status_ui.dm"
+#include "campaign\bed_respawn.dm"
 #include "tat\_tat.dm"
 #include "ported\ratwood\byos_terrain\byos_desert_floors.dm"
 #include "ported\ratwood\byos_terrain\byos_desert_walls.dm"

@@ -152,6 +152,7 @@ SUBSYSTEM_DEF(dreamvalley)
 	next_persistence_id = 1
 	checkpoint_generation = 0
 	last_checkpoint_at = null
+	bed_respawns = list()
 
 	var/path = save_file_path()
 	if(fexists(path))
@@ -215,6 +216,7 @@ SUBSYSTEM_DEF(dreamvalley)
 	next_persistence_id = 1
 	checkpoint_generation = 0
 	last_checkpoint_at = null
+	bed_respawns = list()
 
 	// Switch and load.
 	configure(new_campaign_id)

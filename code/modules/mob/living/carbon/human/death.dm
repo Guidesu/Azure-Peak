@@ -182,6 +182,10 @@
 		SSblackbox.ReportDeath(src)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
 
+	// DreamValley: offer bed respawn if the campaign system is active.
+	if(GLOB.dreamvalley_campaign?.enabled && client)
+		GLOB.dreamvalley_campaign.offer_bed_respawn(src)
+
 /mob/living/carbon/human/revive(full_heal, admin_revive)
 	. = ..()
 	if(!.)

@@ -298,6 +298,7 @@
 		"turfs" = turfs,
 		"objects" = capture_persistent_objects(),
 		"characters" = copy_character_records(),
+		"bed_respawns" = capture_bed_respawns(),
 	)
 
 /datum/dreamvalley_campaign_manager/proc/load_snapshot(list/snapshot)
@@ -350,6 +351,8 @@
 		load_persistent_objects(objects)
 	var/list/characters = snapshot["characters"]
 	load_character_records(characters)
+	var/list/saved_bed_respawns = snapshot["bed_respawns"]
+	load_bed_respawns(saved_bed_respawns)
 	dirty_turfs.Cut()
 	return TRUE
 
