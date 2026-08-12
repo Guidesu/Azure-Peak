@@ -24,8 +24,10 @@
 					/obj/effect/proc_holder/spell/invoked/griefflower				= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/projectile/blowingdust	= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/lasthigh					= CLERIC_T2,
+					/datum/action/cooldown/spell/hausvette_expansion/harvest_blessing	= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/joyride					= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/painkiller				= CLERIC_T3,
+					/datum/action/cooldown/spell/hausvette_expansion/communitys_shield	= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/resurrect/baotha			= CLERIC_T4,
 	)
 	confess_lines = list(

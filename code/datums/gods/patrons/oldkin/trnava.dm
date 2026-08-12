@@ -20,7 +20,11 @@
 					/obj/effect/proc_holder/spell/invoked/pestilent_blade		= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/pestra_heal			= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/attach_bodypart		= CLERIC_T2,
+					/datum/action/cooldown/spell/trnava/thorn_burst				= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/cure_rot				= CLERIC_T3,
+					/datum/action/cooldown/spell/trnava/mothers_wrath			= CLERIC_T3,
+					/datum/action/cooldown/spell/trnava/poison_ward				= CLERIC_T3,
+					/datum/action/cooldown/spell/trnava/wild_regrowth			= CLERIC_T4,
 	)
 	confess_lines = list(
 		"TRNAVA SEES YOU!",

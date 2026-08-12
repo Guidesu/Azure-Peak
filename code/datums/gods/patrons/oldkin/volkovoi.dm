@@ -20,7 +20,9 @@
 					/datum/action/cooldown/spell/graggar/hamstring				= CLERIC_T1,
 					/datum/action/cooldown/spell/projectile/graggar_net		 	= CLERIC_T2,
 					/datum/action/cooldown/spell/graggar/graggar_battlecry		= CLERIC_T2,
+					/datum/action/cooldown/spell/volkovoi_expansion/winters_bite	= CLERIC_T2,
 					/datum/action/cooldown/spell/graggar/exsanguinate		 	= CLERIC_T3,
+					/datum/action/cooldown/spell/volkovoi_expansion/hungers_call	= CLERIC_T3,
 					/datum/action/cooldown/spell/graggar/avatar					= CLERIC_T4,
 					/obj/effect/proc_holder/spell/invoked/resurrect/graggar		= CLERIC_T4,
 	)

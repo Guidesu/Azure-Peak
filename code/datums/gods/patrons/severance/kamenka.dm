@@ -13,11 +13,15 @@
 	mob_traits = list(TRAIT_NOSLEEP)
 	traits_tier = list(TRAIT_FORGEBLESSED = CLERIC_T1)
 	miracles = list(/datum/action/cooldown/spell/touch/orison				= CLERIC_ORI,
+					/datum/action/cooldown/spell/kamenka/stones_patience	= CLERIC_T0,
 					/datum/action/cooldown/spell/miracle/heal 				= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle		= CLERIC_T1,
+					/datum/action/cooldown/spell/kamenka/preserve			= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/fortify			= CLERIC_T2,
 					/datum/action/cooldown/spell/mending/malum				= CLERIC_T2,
+					/datum/action/cooldown/spell/kamenka/petrify			= CLERIC_T3,
 					/datum/action/cooldown/spell/malum/fortress				= CLERIC_T4,
+					/datum/action/cooldown/spell/kamenka/monument			= CLERIC_T4,
 	)
 	confess_lines = list(
 		"KAMENKA ENDURES!",

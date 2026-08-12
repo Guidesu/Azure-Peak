@@ -18,7 +18,10 @@
 					/datum/action/cooldown/spell/miracle/heal 				= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle		= CLERIC_T1,
 					/datum/action/cooldown/spell/undivided/twinned_gaze		= CLERIC_T2,
+					/datum/action/cooldown/spell/verita/zone_of_truth		= CLERIC_T2,
+					/datum/action/cooldown/spell/verita/binding_contract	= CLERIC_T3,
 					/datum/action/cooldown/spell/miracle/fortify			= CLERIC_T3,
+					/datum/action/cooldown/spell/verita/final_verdict		= CLERIC_T4,
 	)
 	confess_lines = list(
 		"VERITA SEES THROUGH EVERY LIE!",

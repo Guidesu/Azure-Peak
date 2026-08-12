@@ -24,6 +24,10 @@
 					/datum/action/cooldown/spell/miracle/bloodmiracle			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/avert					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/fog_ward				= CLERIC_T2,
+					/datum/action/cooldown/spell/klokner/threshold_ward			= CLERIC_T2,
+					/datum/action/cooldown/spell/klokner/lost_and_found			= CLERIC_T3,
+					/datum/action/cooldown/spell/klokner/echoing_dark			= CLERIC_T3,
+					/datum/action/cooldown/spell/klokner/banish_beyond			= CLERIC_T4,
 	)
 	confess_lines = list(
 		"SOMETHING ANSWERS FROM THE DARK.",

@@ -19,10 +19,12 @@
 					/datum/action/cooldown/spell/projectile/zizo/profane				= CLERIC_T1,
 					/datum/action/cooldown/spell/conjure_summon/zizo/skeleton_swarm		= CLERIC_T2,
 					/datum/action/cooldown/spell/zizo/bone_cataclysm					= CLERIC_T2,
+					/datum/action/cooldown/spell/aurelian_expansion/grave_bolt			= CLERIC_T2,
 					/datum/action/cooldown/spell/tame_undead/zizo						= CLERIC_T3,
 					/datum/action/cooldown/spell/zizo/rituos 							= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/resurrect/zizo				= CLERIC_T3,
 					/datum/action/cooldown/spell/lacrima/zizo							= CLERIC_T4,
+					/datum/action/cooldown/spell/aurelian_expansion/unmake				= CLERIC_T4,
 	)
 	confess_lines = list(
 		"NO PRIEST STANDS BETWEEN ME AND THE DIVINE!",

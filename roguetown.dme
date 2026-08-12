@@ -3148,6 +3148,8 @@
 #include "code\modules\spells\roguetown\acolyte\auxentius_battle.dm"
 #include "code\modules\spells\roguetown\acolyte\resurrect.dm"
 #include "code\modules\spells\roguetown\acolyte\xylix.dm"
+#include "code\modules\spells\roguetown\acolyte\divine_expansion.dm"
+#include "code\modules\spells\roguetown\acolyte\divine_expansion_2.dm"
 #include "code\modules\spells\roguetown\acolyte\abyssor\dream_pylon.dm"
 #include "code\modules\spells\roguetown\acolyte\abyssor\paint_infusion.dm"
 #include "code\modules\spells\roguetown\acolyte\abyssor\paint_infusions.dm"

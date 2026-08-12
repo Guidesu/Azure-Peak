@@ -18,8 +18,10 @@
 					/datum/action/cooldown/spell/undivided/twinned_gaze			= CLERIC_T1,
 					/datum/action/cooldown/spell/undivided/perseverance			= CLERIC_T2,
 					/datum/action/cooldown/spell/undivided/undivided_spellpack	= CLERIC_T2,
+					/datum/action/cooldown/spell/custodius_expansion/oathbind	= CLERIC_T2,
 					/datum/action/cooldown/spell/miracle/fortify/undivided		= CLERIC_T3,
 					/datum/action/cooldown/spell/undivided/gallow_humor			= CLERIC_T3,
+					/datum/action/cooldown/spell/custodius_expansion/corrective_strike	= CLERIC_T3,
 					/datum/action/cooldown/spell/undivided/undivided_battlecry	= CLERIC_T4,
 					/obj/effect/proc_holder/spell/invoked/resurrect/undivided	= CLERIC_T4
 	)

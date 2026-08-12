@@ -21,6 +21,8 @@
 					/datum/action/cooldown/spell/projectile/vicious_mockery		= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/vendetta				= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/mastersillusion		= CLERIC_T2,
+					/datum/action/cooldown/spell/viator_expansion/roadwardens_step	= CLERIC_T2,
+					/datum/action/cooldown/spell/viator_expansion/fortunes_favor	= CLERIC_T3,
 					/obj/effect/proc_holder/spell/targeted/touch/parlor_trick	= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/abscond				= CLERIC_T4,
 					/obj/effect/proc_holder/spell/invoked/resurrect/xylix		= CLERIC_T4,

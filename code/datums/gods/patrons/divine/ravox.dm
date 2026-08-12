@@ -8,6 +8,7 @@
 	miracles = list(/datum/action/cooldown/spell/touch/orison				= CLERIC_ORI,
 					/datum/action/cooldown/spell/projectile/ravox_tug		= CLERIC_T1,
 					/datum/action/cooldown/spell/ravox/provocation	       	= CLERIC_T0,
+					/datum/action/cooldown/spell/ravox_expansion/warriors_resolve	= CLERIC_T0,
 					/datum/action/cooldown/spell/miracle/heal 				= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle		= CLERIC_T1,
 					/datum/action/cooldown/spell/ravox/strikeoraegis		= CLERIC_T1,
@@ -15,6 +16,7 @@
 					/datum/action/cooldown/spell/ravox/challenge			= CLERIC_T2,
 					/datum/action/cooldown/spell/ravox/persistence			= CLERIC_T3,
 					/datum/action/cooldown/spell/ravox/battlecry			= CLERIC_T3,
+					/datum/action/cooldown/spell/ravox_expansion/glorious_judgment	= CLERIC_T4,
 					/obj/effect/proc_holder/spell/invoked/resurrect/ravox	= CLERIC_T4,
 	)
 	confess_lines = list(

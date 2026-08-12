@@ -17,6 +17,8 @@
 					/datum/action/cooldown/spell/praecursor/prayer		= CLERIC_T1, //Internal spell - minor self-regeneration, repeatedly casted while still.
 					/datum/action/cooldown/spell/praecursor/respite		= CLERIC_T2, //Ditto, but stronger. The original variant, intended for dedicated - non-Adventuring - combat classes.
 					/datum/action/cooldown/spell/praecursor/persist		= CLERIC_T3, //Ditto-ditto. Intended for non-combative devotee classes, such as the Missionary and Absolver.
+					/datum/action/cooldown/spell/praecursor_expansion/edict		= CLERIC_T3, //Forces a target to cease all violence for 15 seconds.
+					/datum/action/cooldown/spell/praecursor_expansion/final_word	= CLERIC_T4, //Deals divine damage scaling with the target's hostility.
 	)
 	traits_tier = list(TRAIT_VAELTITE = CLERIC_T0) //Requires a minimal holy skill or the 'Devotee' virtue to unlock. Offers passive wound regeneration, but prevents healing from most miracles.
 	confess_lines = list(
