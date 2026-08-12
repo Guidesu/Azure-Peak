@@ -390,6 +390,8 @@ SUBSYSTEM_DEF(ticker)
 
 	GLOB.dominant_faith_tracker.roundstart_setup() // this needs to be after antags roll because some of them change your patron
 
+	GLOB.dominant_faith_tracker.roundstart_setup() // this needs to be after antags roll because some of them change your patron
+
 //	SEND_SOUND(world, sound('sound/misc/roundstart.ogg'))
 	current_state = GAME_STATE_PLAYING
 

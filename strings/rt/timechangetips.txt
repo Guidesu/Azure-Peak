@@ -94,7 +94,7 @@ O WORD, forgive your wayward child. Forgive us our ignorance. Forgive us our def
 Skeletons have no BRAIN. Try to FEINT them. But don't tell this to everyone!
 A DODGING rogue who keeps their eyes FIXED retreats only backwards.
 The Aragn is a large black spider capable of outrunning even the swiftest of elves. Its venom is paralytic, and it preys within sewers and bogs.
-The heads of goblins, minotaurs, dragons, footpads, seamen, trolls, and various beasts can all be sold to a Merchant, or a particular machine...
+The heads of goblins, minotaurs, dragons, trolls, and various other creachers can be sold to the HEADEATER in town.
 Wearing a red tabard provokes even the most serene minotaur.
 An arcing arrow can only hit a target below you, not above you. A thrown rock, however...
 AUXENTIUS is a VILE TYRANT and must be CONSUMED AND SUBSUMED.
@@ -283,6 +283,7 @@ SPEED represents your actor's fleet-footedness. This affect the haste of their m
 FORTUNE represents your actor's luck. This affects their chance to sway seemingly random events in their favor, or - in the inverse - against their favor.
 Remember that there is another face behind the masks of every actor you meet. Cruelty in service of a story becomes unacceptable when it is done purely out of single-minded malice.
 There are only three things that're certain; death, taxes, and the quality of an Innhouse's liqour.
+New? Overwhelmed? Confused? Try checking out 'A Tutorialeer's Handbook' from the Loadout's 'Miscellanious' section, in order to get a crash course on everything you'd need to know!
 Losing is fun!
 It was all a dream.. ?!
 I hate you. I hate you. I hate you.
@@ -314,6 +315,8 @@ GODMACHINE, I BESEECH YOU! RUPTURE THE FILAMENT, AND GIFT ME THE POWER THAT HE H
 ADAMANTIUM? MITHRIL? POPPYCOCK!
 SEVEN DAES. SEVEN DAES ARE ALL I CAN SPARE TO PARLAY WITH THEE.
 LET ME PUT IT IN A WAY YOU'D UNDERSTAND; DO WHAT I SAY, OR DRINK PHLOGISTON.
+IN THIS WORLD, IT'S KILL OR BE KILLED.
+YOU ARE FILLED WITH DETERMINATION.
 I DON'T WANT TO DIE ANYMORE.
 I'M READY TO DIE!
 REBOLT. RECALIBRATE. REENAGE.

@@ -74,8 +74,8 @@ SUBSYSTEM_DEF(treasury)
 	/// Steward-settable floor. Stockpile refuses purchases when Crown's Purse would drop below this.
 	var/stockpile_purchase_floor = STOCKPILE_CROWN_PURCHASE_FLOOR_DEFAULT
 	/// A feature for the Steward to unlock once the Crown's trade volume reaches 10k
-	/// Basically help automate the import, fitting in line with my idea of active trade 
-	/// Converting to passive convenience later. Later on I might gate it through a 
+	/// Basically help automate the import, fitting in line with my idea of active trade
+	/// Converting to passive convenience later. Later on I might gate it through a
 	/// Total trade volumes converting into multiple chooseable upgrades but for now
 	/// It just automatically unlock an upgrade with no real choice
 	var/royal_custom_unlocked = FALSE
@@ -276,7 +276,6 @@ SUBSYSTEM_DEF(treasury)
 	var/datum/fund/account = get_account(target)
 	if(!account)
 		return FALSE
-
 	if(amt > 0)
 		if(mint_new)
 			if(!mint(account, amt, source, mint_label))
@@ -453,6 +452,8 @@ SUBSYSTEM_DEF(treasury)
 	for(var/datum/roguestock/D in stockpile_datums)
 		if(!D.importexport_amt || D.trade_good_id)
 			continue
+		if(D.autoexport_disabled)
+			continue
 		if((autoexport_percentage * D.stockpile_limit) >= D.stockpile_amount)
 			continue
 		if(D.get_export_price() <= (D.payout_price * D.importexport_amt))
@@ -478,6 +479,8 @@ SUBSYSTEM_DEF(treasury)
 		if(!D.trade_good_id)
 			continue
 		if(!D.automatic_price)
+			continue
+		if(D.autoexport_disabled)
 			continue
 		if(!D.importexport_amt)
 			continue

@@ -21,11 +21,13 @@
 				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 15,
 				/mob/living/carbon/human/species/human/northern/searaider/ambush = 10,
 				/mob/living/carbon/human/species/human/northern/searaider/archer/ambush = 3,
+				/mob/living/carbon/human/species/human/northern/searaider/huscarl/ambush = 4,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30,
 				/mob/living/carbon/human/species/orc/npc/footsoldier = 10,
 				/mob/living/carbon/human/species/orc/npc/archer = 3,
 				/mob/living/carbon/human/species/orc/npc/berserker = 10,
 				/mob/living/carbon/human/species/orc/npc/marauder = 10,
+				/mob/living/carbon/human/species/orc/npc/warlord = 4,
 				/mob/living/carbon/human/species/goblin/npc/ambush/sea = 40,
 				/mob/living/carbon/human/species/hobgoblin/npc/ambush = 12,
 				/mob/living/carbon/human/species/goblin/npc/archer/sea = 10)

@@ -80,7 +80,7 @@
 	sewn_whp = 25
 	woundpain = 80
 	sewn_woundpain = 30
-	bleed_rate = 5
+	bleed_rate = 10 // Let's make it actually do something ok
 	sewn_bleed_rate = 0.5
 	sew_threshold = 120
 	mob_overlay = ""

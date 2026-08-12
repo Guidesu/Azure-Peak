@@ -36,7 +36,7 @@
 	if(SStreasury.steward_machine == null) //The "only one" mapped in Nerve Master at map start
 		SStreasury.steward_machine = src
 
-/obj/structure/roguemachine/steward/proc/has_fiscal_authority(mob/user)
+/proc/has_fiscal_authority(mob/user)
 	if(!user)
 		return FALSE
 	if(user.job == "Steward" || user.job == "Clerk" || user.job == "Grand Duke")
@@ -320,7 +320,9 @@
 		"quantity" = quantity,
 		"max_units" = TRADE_MAX_BULK_UNITS,
 		"daily_pace" = daily_pace,
-		"capacity_today" = max(0, daily_pace - starting_index),
+		"batch_capacity" = region.get_batch_capacity(good_id, side == "import"),
+		"capacity_today" = region.get_day_capacity(good_id, side == "import"),
+		"capacity_total" = region.get_day_capacity_total(good_id, side == "import"),
 		"base_unit_price" = base_unit_price,
 		"base_subtotal" = base_subtotal,
 		"escalation_subtotal" = escalation_subtotal,

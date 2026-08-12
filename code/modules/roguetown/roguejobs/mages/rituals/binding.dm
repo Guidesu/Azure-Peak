@@ -67,7 +67,7 @@
 // ----- Familiar Binding -----
 
 /datum/runeritual/binding/infernal
-	name = "Bind Lesser Infernal"
+	name = "Bind Lesser Daemon"
 	desc = "Bind a lesser infernal to your service: a being of daemonic hatred, specializing in fiery destruction."
 	blacklisted = FALSE
 	mob_to_bind = /mob/living/carbon/simple_animal/pet/familiar/infernal
@@ -177,7 +177,6 @@
 				vestige.stored_familiar.loc = loc
 				vestige.stored_familiar.grab_ghost(force = TRUE)
 				vestige.stored_familiar.familiar_summoner = user
-				vestige.stored_familiar.icon_state = vestige.stored_familiar.icon_living
 				vestige.stored_familiar.update_icon()
 				vestige.stored_familiar.visible_message(span_notice("[vestige.stored_familiar.name] is restored to life by [user]'s magic!"))
 				vestige.stored_familiar = null

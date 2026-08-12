@@ -16,7 +16,9 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	blocksound = SOFTUNDERHIT
 	armor = ARMOR_PADDED
+	max_integrity = ARMOR_INT_CHEST_CIVILIAN
 	unenchantable = TRUE
+	blocking_behavior = BLOCKSHIRT | BLOCKARMOR // Skins block layering real armor (armor_class > NONE); plain shirts still layer. Arbalist/berserker override below.
 
 	var/repairmsg_end = "My skin has become taut with newfound vigor!"
 	var/repairmsg_continue = "My armour mends some of its abuse.."
@@ -162,7 +164,7 @@
 	if(!repair_check(user, I))
 		return FALSE
 
-	if(!do_after(user, 5 SECONDS, target = src))
+	if(!do_after(user, 7 SECONDS, target = src))
 		return FALSE
 
 	armour_regen()

@@ -36,7 +36,7 @@
 	var/needs_emotion = FALSE
 
 	/// For ranged targeted emotes, range of 2 is for adjacents
-	var/targetrange = 2 
+	var/targetrange = 2
 
 	/// Whether this emote will ONLY go through a few walls on the same z-level.
 	var/is_quiet = FALSE

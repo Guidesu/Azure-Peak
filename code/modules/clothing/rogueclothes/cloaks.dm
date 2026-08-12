@@ -1594,7 +1594,7 @@
 //Short hoods for guards
 
 /obj/item/clothing/cloak/tabard/stabard/guardhood
-	name = "guard hood"
+	name = "hood"
 	desc = "A hood with the lord's heraldic colors."
 	color = CLOTHING_BLUE
 	detail_tag = "_spl"
@@ -2008,3 +2008,15 @@
 	inhand_mod = TRUE
 	detail_tag = "_detail"
 	detail_color = "#405996"
+
+/obj/item/clothing/cloak/sash
+	name = "sash"
+	desc = "A large sash that can be draped across one's torso."
+	icon_state = "sash"
+	item_state = "sash"
+	boobed = FALSE
+	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BACK_R|ITEM_SLOT_BACK_L|ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE

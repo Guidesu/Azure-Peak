@@ -8,7 +8,7 @@
 	icon = 'icons/roguetown/weapons/whips32.dmi'
 	sharpness = IS_BLUNT
 	//dropshrink = 0.75
-	wlength = WLENGTH_LONG
+	wlength = WLENGTH_GREAT // It has a 3 reach attack.
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BELT
 	associated_skill = /datum/skill/combat/whipsflails
@@ -113,7 +113,7 @@
 	desc = "A short but heavy leather whip, sporting a blunt reinforced tip and a longer handle."
 	icon_state = "nagaika"
 	force = 25		//Same as a cudgel/sword for intent purposes. Basically a 2 range cudgel while one-handing.
-	possible_item_intents = list(/datum/intent/whip/crack/blunt, /datum/intent/whip/lash, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/whip/lash, /datum/intent/whip/crack/blunt, /datum/intent/sword/strike)
 	wdefense = 1	//Akin to a cudgel, still terrible at parrying though. Better than nothing I guess; thing is used irl as a counter-weapon to knives.
 
 /obj/item/rogueweapon/whip/xylix

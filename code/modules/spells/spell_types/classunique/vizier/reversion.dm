@@ -1,24 +1,19 @@
 // Reversion - Origin Magic (Vizier)
-// The Vizier marks anyone - or themselves - snapshotting their state and position, and grants the
-// marked target a spell that lets THEM revert back to that state and position at will.
-// If the target is a fellowship member, the Vizier also gains a spell to pull them back directly,
-// without asking. Anyone who is not a fellow can only be reverted by their own hand.
-// The mark expires after 25 seconds.
-
-#define REVERSION_MARK_DURATION (25 SECONDS)
+// Close range channeled healing spell that requires proximity.
+// Rewinds them through time and does a big heal.
 
 /datum/action/cooldown/spell/vizier/reversion
 	button_icon = 'icons/mob/actions/classuniquespells/vizier.dmi'
 	name = "Reversion"
-	desc = "Marks a target's body and position for 25 seconds, granting them the power to revert to their marked state at will. If the target shares a fellowship, I may also pull them back myself, without asking."
-	fluff_desc = "Among the most demanding applications of Origin Magick, this art does not merely restore a prior state. It preserves one. For a fleeting moment, a Vizier anchors a person's place within the tapestry of time, allowing it to retrace its own history and reclaim a body, position, and condition once held."
+	desc = "A demanding and difficult to execute spell that reverts a target to a prior state in their timestream before they were injured, instantaneously healing a large amount of damage and stopping bleeding. It does not restore blood, due to the nature of how it flows."
+	fluff_desc = "Among the most demanding applications of Origin Magick, this art reaches into the timestream of a person, allowing the Vizier to pluck through it and find a point in time where their injuries were not as severe. Then, as if plucking an apple from a tree, it is flung to the present and collapsed into their current timestream."
 	button_icon_state = "reversion"
 	sound = 'sound/magic/timeforward.ogg'
 	spell_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
 
 	click_to_activate = TRUE
-	cast_range = 7
+	cast_range = 2
 	self_cast_possible = TRUE
 	aim_assist = TRUE
 
@@ -29,11 +24,12 @@
 	invocation_type = INVOCATION_WHISPER
 
 	charge_required = TRUE
-	charge_time = 0.5 SECONDS
-	hold_drain = 0
-	charge_slowdown = CHARGING_SLOWDOWN_SMALL
+	charge_time = 15 SECONDS
+	charge_swingdelay_type = SWINGDELAY_CANCEL
+	hold_drain = 1
+	charge_slowdown = CHARGING_SLOWDOWN_HEAVY
 	charge_sound = 'sound/magic/charging.ogg'
-	cooldown_time = 60 SECONDS
+	cooldown_time = 4 MINUTES
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 1
@@ -43,44 +39,28 @@
 
 	cost = 3
 
-/datum/action/cooldown/spell/vizier/reversion/is_valid_target(atom/cast_on)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isliving(cast_on))
-		if(owner)
-			to_chat(owner, span_warning("That is not a valid target!"))
-		return FALSE
-	if(!iscarbon(cast_on))
-		if(owner)
-			to_chat(owner, span_warning("I cannot mark that!"))
-		return FALSE
-	return TRUE
-
 /datum/action/cooldown/spell/vizier/reversion/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(!istype(H))
-		return FALSE
-
 	var/mob/living/carbon/target = cast_on
 	if(!istype(target))
 		return FALSE
 
-	// Snapshot the target's current state
-	var/datum/action/cooldown/spell/vizier/reversion_trigger/trigger = new
-	trigger.origin = get_turf(target)
-	trigger.brute = target.getBruteLoss()
-	trigger.burn = target.getFireLoss()
-	trigger.oxy = target.getOxyLoss()
-	trigger.toxin = target.getToxLoss()
-	trigger.blood = target.blood_volume
+	target.visible_message(span_purple("[target]'s body begins to flicker, slipping out of the present moment, before violently shuddering back into normal time!"))
+	target.adjust_fire_stacks(-100)
+	target.adjust_fire_stacks(-100, /datum/status_effect/fire_handler/fire_stacks/sunder)
+	target.adjust_fire_stacks(-100, /datum/status_effect/fire_handler/fire_stacks/divine)
+	target.adjustBruteLoss(-300)
+	target.adjustFireLoss(-300)
+	target.adjustOxyLoss(-300)
+	target.adjustToxLoss(-300)
+	target.stamina_add(-200)
+	target.energy_add(-600)
 
-	var/datum/status_effect/fire_handler/fire_stacks/fire_status = target.has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
-	trigger.firestacks = fire_status?.stacks
+	var/list/wCount = target.get_wounds()
 
-	var/datum/status_effect/fire_handler/fire_stacks/sunder/sunder_status = target.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
-	trigger.sunderfirestacks = sunder_status?.stacks
+	if(wCount.len > 0)
+		target.heal_wounds(100)
+		target.update_damage_overlays()
 
 	var/datum/status_effect/fire_handler/fire_stacks/divine/divine_status = target.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
 	trigger.divinefirestacks = divine_status?.stacks

@@ -313,9 +313,8 @@
 /mob/living/carbon/simple_animal/UnarmedAttack(atom/A, proximity)
 	if(!dextrous)
 		return ..()
-	if(!ismob(A))
-		A.attack_hand(src)
-		update_inv_hands()
+	A.attack_hand(src)
+	update_inv_hands()
 
 
 /*

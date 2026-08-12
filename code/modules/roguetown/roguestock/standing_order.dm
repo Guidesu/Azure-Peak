@@ -842,7 +842,7 @@ GLOBAL_LIST_EMPTY(standing_order_pool)
 /datum/standing_order/demand_artificery
 	roll_weight = 2
 	var/list/project_by_region = list(
-		TRADE_REGION_DAFTSMARCH = list("the artificers' guild", "a master smith's workshop", "a foundry-master's commission"),
+		TRADE_REGION_DAFTSMARCH = list("the artificers' guild", "a master smith's workshop", "a forgemaster's commission"),
 		TRADE_REGION_KINGSFIELD = list("a court artificer's workshop", "a guild engineer's workshop", "a back-alley contraption maker"),
 	)
 
@@ -933,7 +933,8 @@ GLOBAL_LIST_EMPTY(standing_order_pool)
 
 
 // ============================================================================
-// demand_artificed_panoply - rare premium order: artificed plate + voltic gauntlets
+// demand_artificed_panoply - rare premium order: voltic gauntlets + steam shield,
+// optionally anchored by a smith's steel harness
 // ============================================================================
 /datum/standing_order/demand_artificed_panoply
 	roll_weight = 1
@@ -944,9 +945,10 @@ GLOBAL_LIST_EMPTY(standing_order_pool)
 
 /datum/standing_order/demand_artificed_panoply/generate_item_mix()
 	var/list/mix = list()
-	mix[TRADE_GOOD_ARTIFICED_HALFPLATE] = 1
+	mix[TRADE_GOOD_VOLTIC_GAUNTLETS] = 1
+	mix[TRADE_GOOD_STEAM_SHIELD] = 1
 	if(prob(55))
-		mix[TRADE_GOOD_VOLTIC_GAUNTLETS] = 1
+		mix[TRADE_GOOD_STEEL_FULLPLATE] = 1
 	mix[TRADE_GOOD_STEEL_INGOT] = rand(8, 14)
 	if(prob(50))
 		mix[TRADE_GOOD_GOLD_INGOT] = rand(2, 4)
@@ -958,8 +960,8 @@ GLOBAL_LIST_EMPTY(standing_order_pool)
 /datum/standing_order/demand_artificed_panoply/generate_description(datum/economic_region/region)
 	var/list/projects = project_by_region[region.region_id]
 	if(length(projects))
-		return "[capitalize(pick(projects))] at [region.name] commissions a panoply of artificed plate. Masterwork pays masterwork's price."
-	return "A patron at [region.name] commissions a panoply of artificed plate."
+		return "[capitalize(pick(projects))] at [region.name] commissions a panoply of artificed war-gear. Masterwork pays masterwork's price."
+	return "A patron at [region.name] commissions a panoply of artificed war-gear."
 
 
 // ============================================================================

@@ -118,6 +118,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 					old_hex = "#[old_hex]"
 				meta["color"] = old_hex
 			gear_list[LI.name] = meta
+	if(current_version < 36) // Strip the old per-item favorite/hated food & drink data now that preferences are category flags
+		S.dir.Remove("culinary_preferences")
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -584,6 +586,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["familiar_names"]					>> familiar_prefs.familiar_names
 	S["familiar_pronouns"]				>> familiar_prefs.familiar_pronouns
 	S["familiar_species"]				>> familiar_prefs.familiar_species
+	S["familiar_voice_colors"]			>> familiar_prefs.familiar_voice_colors
 	S["familiar_flavortext"]			>> familiar_prefs.familiar_flavortext
 	S["familiar_flavortext_display"]	>> familiar_prefs.familiar_flavortext_display
 	S["familiar_headshot_link"]			>> familiar_prefs.familiar_headshot_link
@@ -669,6 +672,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["joblessrole"] >> joblessrole
 	//Load prefs
 	S["job_preferences"] >> job_preferences
+	S["job_subprefs"] >> job_subprefs
 
 	//Quirks
 	S["all_quirks"] >> all_quirks
@@ -901,6 +905,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["joblessrole"]		, joblessrole)
 	//Write prefs
 	WRITE_FILE(S["job_preferences"] , job_preferences)
+	WRITE_FILE(S["job_subprefs"] , job_subprefs)
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
@@ -986,6 +991,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["familiar_names"] , familiar_prefs.familiar_names)
 	WRITE_FILE(S["familiar_pronouns"] , familiar_prefs.familiar_pronouns)
 	WRITE_FILE(S["familiar_species"] , familiar_prefs.familiar_species)
+	WRITE_FILE(S["familiar_voice_colors"] , familiar_prefs.familiar_voice_colors)
 	WRITE_FILE(S["familiar_flavortext"] , familiar_prefs.familiar_flavortext)
 	WRITE_FILE(S["familiar_flavortext_display"] , familiar_prefs.familiar_flavortext_display)
 	WRITE_FILE(S["familiar_headshot_link"] , familiar_prefs.familiar_headshot_link)

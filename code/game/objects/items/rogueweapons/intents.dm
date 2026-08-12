@@ -517,6 +517,7 @@
 	icon_state = "inshoot"
 	tranged = 1
 	warnie = "aimwarn"
+	ready_sound = 'sound/foley/nockarrow.ogg'
 	item_d_type = "stab"
 	chargetime = 0.1
 	no_early_release = FALSE
@@ -535,6 +536,7 @@
 	icon_state = "inarc"
 	tranged = 1
 	warnie = "aimwarn"
+	ready_sound = 'sound/foley/nockarrow.ogg'
 	item_d_type = "blunt"
 	chargetime = 0
 	no_early_release = FALSE
@@ -558,6 +560,7 @@
 	icon_state = "inshoot"
 	tranged = 1
 	warnie = "aimwarn"
+	ready_sound = 'sound/foley/slingload.ogg'
 	item_d_type = "stab"
 	chargetime = 0.1
 	no_early_release = FALSE

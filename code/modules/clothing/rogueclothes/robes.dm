@@ -108,7 +108,7 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
 	name = "ravox robe"
 	desc = "None are above justice; none are beneath redemption."
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
+	body_parts_covered = CHEST|GROIN|LEGS|VITALS
 	icon_state = "ravoxrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
@@ -424,6 +424,19 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
+/obj/item/clothing/suit/roguetown/shirt/robe/hierophant/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/suit/roguetown/shirt/robe/hierophant/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 /obj/item/clothing/suit/roguetown/shirt/robe/hierophant/loadout
 	name = "aesthetic hierophant's kandys"
 
@@ -448,6 +461,19 @@
 	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
 	heat_protection = CHEST | GROIN | ARM_RIGHT | ARM_LEFT
 	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
+
+/obj/item/clothing/suit/roguetown/shirt/robe/pointfex/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/suit/roguetown/shirt/robe/pointfex/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/Initialize()
 	. = ..()

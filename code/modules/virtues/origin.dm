@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(origins) // alist: origin name = origin desc. so we don't have to access client prefs midgame
+
 // Race list means RESTRICTED from the LISTED races.
 /datum/virtue/origin/unknown
 	name = "Nowhere"

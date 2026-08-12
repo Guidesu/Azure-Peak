@@ -188,6 +188,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/gesture_required = FALSE // Can it be cast while cuffed? Rule of thumb: Offensive spells + Mobility cannot be cast
 	var/spell_tier = 1 // Tier of the spell, used to determine whether you can learn it based on your spell. Starts at 1.
 	var/spell_impact_intensity = SPELL_IMPACT_NONE // Visual impact intensity for on-hit effects. See SPELL_IMPACT defines.
+	var/source_aspect // Aspect type path this spell was granted by, if any.
 	var/zizo_spell = FALSE // If this spell is fucked up & evil and can only be learned by heretics.
 
 	var/overlay = 0
@@ -371,7 +372,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return FALSE
 
 	var/mob/living/living_user = user
-	if(istype(living_user) && living_user.has_status_effect(/datum/status_effect/debuff/exposed))
+	if(istype(living_user) && living_user.has_status_effect(/datum/status_effect/debuff/cast_disrupted))
 		to_chat(user, span_warning("I'm too exposed to focus on casting!"))
 		return FALSE
 
@@ -398,6 +399,18 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			to_chat(user, span_warning("My body is paralyzed!"))
 			return FALSE
 
+		if(H.mind?.has_spellmiracle_block_antag())
+			if(miracle)
+				to_chat(H, span_warning("The gods reject what I am!"))
+				return FALSE
+			if(source_aspect)
+				to_chat(H, span_warning("The arcyne rejects what I am!"))
+				return FALSE
+		if(H.mind?.has_antag_datum(/datum/antagonist/vampire))
+			var/vamp_miracle_tier = get_miracle_tier(type)
+			if(!isnull(vamp_miracle_tier) && vamp_miracle_tier > CLERIC_T1)
+				to_chat(H, span_warning("The gods deny me such power!"))
+				return FALSE
 		if(miracle && !H.devotion?.check_devotion(src))
 			to_chat(H, span_warning("I don't have enough devotion!"))
 			return FALSE

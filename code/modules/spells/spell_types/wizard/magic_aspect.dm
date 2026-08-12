@@ -153,11 +153,14 @@
 		if(existing)
 			target.RemoveSpell(existing)
 
-/datum/magic_aspect/proc/mark_aspect_spell(datum/action/cooldown/spell/spell_instance)
-	if(!istype(spell_instance))
-		return
-	spell_instance.refundable = FALSE
-	spell_instance.source_aspect = type
+/proc/mark_spell_source_aspect(datum/spell_instance, aspect_path)
+	if(istype(spell_instance, /datum/action/cooldown/spell))
+		var/datum/action/cooldown/spell/S = spell_instance
+		S.refundable = FALSE
+		S.source_aspect = aspect_path
+
+/datum/magic_aspect/proc/mark_aspect_spell(datum/spell_instance)
+	mark_spell_source_aspect(spell_instance, type)
 
 /// Perform the physical gestures for assuming or releasing a discipline.
 /// Returns TRUE if completed, FALSE if interrupted.

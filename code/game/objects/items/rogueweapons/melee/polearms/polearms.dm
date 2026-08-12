@@ -248,6 +248,7 @@
 	special = /datum/special_intent/quarterstaff_sweep
 	anvilrepair = /datum/skill/craft/carpentry
 	resistance_flags = FLAMMABLE
+	twirly = SKILL_LEVEL_JOURNEYMAN
 
 /obj/item/rogueweapon/woodstaff/getonmobprop(tag)
 	. = ..()
@@ -452,6 +453,7 @@
 	throwforce = 25
 	resistance_flags = FLAMMABLE
 	special = /datum/special_intent/polearm_backstep
+	twirly = SKILL_LEVEL_EXPERT // safely twirling like, a halberd, is going to be harder than a blunt staff
 
 /obj/item/rogueweapon/spear/short
 	force = 25
@@ -1139,7 +1141,7 @@
 	max_integrity = 300 // +50
 
 /obj/item/rogueweapon/halberd/psyhalberd/relic
-	name = "Stigmata"
+	name = "\"Stigmata\""
 	desc = "Christened in the Siege of Lirvas, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's \
 	paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as \
 	a bulwark for the defenseless."
@@ -1239,7 +1241,7 @@
 
 /// Ported from Scarlet Reach's Glaive. We're avoiding force increase because I hate roguepen. It can have better blade integrity and defense instead.
 /obj/item/rogueweapon/halberd/glaive/knightcaptain
-	name = "'Deliverance'"
+	name = "\"Deliverance\""
 	desc = "A masterwork glaive with a seasoned ashwood shaft reinforced by brass-sheathed steel bands. The blacksteel blade \
 	bears inscriptions on both side. One reads, \"QUIS CUSTODIET\" while the other reads, \"IPSOS CUSTODES\"."
 	icon = 'icons/roguetown/weapons/special/captainglaive.dmi'
@@ -1250,7 +1252,7 @@
 	sellprice = 250
 
 /obj/item/rogueweapon/halberd/pestran
-	name = "Lance of Boils"
+	name = "\"Lance of Boils\""
 	desc = "For when a scalpel is too short, and you still need to perform Pestra's holy work."
 	icon_state = "pestranhalberd"
 

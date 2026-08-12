@@ -31,6 +31,10 @@
 		/datum/action/cooldown/spell/bending_stance/fire,
 		/datum/action/cooldown/spell/firebending,
 		/datum/action/cooldown/spell/projectile/spitfire,
+		/datum/action/cooldown/spell/ultio,
+	)
+	spell_order = list(
+		ASPECT_CHOICE,
 		/datum/action/cooldown/spell/telegraphed_strike/dragons_breath,
 		/datum/action/cooldown/spell/projectile/fireball/barrage,
 		/datum/action/cooldown/spell/fire_curtain,

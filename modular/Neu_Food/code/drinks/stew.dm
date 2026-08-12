@@ -36,6 +36,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/porridge/pudding
+	cuisine = CUISINE_RANESHENI
 	name = "berried porridge-pudding"
 	description = "Fitting for a nobleman."
 	taste_description = "spongey-sweet doughiness with caramelized berries"
@@ -46,6 +47,7 @@
 	quality = DRINK_GOOD
 
 /datum/reagent/consumable/soup/porridge/thickpudding
+	cuisine = CUISINE_RANESHENI
 	name = "thick berried porridge-pudding"
 	description = "Fitting for a king."
 	taste_description = "spongey-sweet doughiness, caramelized berries, and a hint of fragrance"
@@ -226,6 +228,8 @@
 	alpha = 222
 
 /datum/reagent/consumable/soup/lemon
+	cuisine = CUISINE_SOUTHEASTERN
+	drink_type = DRINKTYPE_JUICE
 	name = "juice of lemon"
 	color = "#FFE88F"
 	taste_description = "puckeringly bright lemoniness"
@@ -235,6 +239,8 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/lime
+	cuisine = CUISINE_SOUTHEASTERN
+	drink_type = DRINKTYPE_JUICE
 	name = "juice of lime"
 	color = "#BAE88F"
 	taste_description = "puckeringly bright limeyness"
@@ -244,6 +250,8 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/pear
+	cuisine = CUISINE_SOUTHEASTERN
+	drink_type = DRINKTYPE_JUICE
 	name = "juice of pear"
 	color = "#BAAE8F"
 	taste_description = "pleasantly crisp peariness"
@@ -253,6 +261,8 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/apple
+	cuisine = CUISINE_SOUTHEASTERN
+	drink_type = DRINKTYPE_JUICE
 	name = "juice of apple"
 	color = "#E0BE6D"
 	taste_description = "pleasantly crisp appleness"
@@ -262,6 +272,8 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/tangerine_marmalade
+	cuisine = CUISINE_SOUTHEASTERN
+	drink_type = DRINKTYPE_JUICE
 	name = "juice of tangerine"
 	color = "#f0935d"
 	taste_description = "extremely sweet tangerines"
@@ -352,6 +364,7 @@
 	taste_description = "creamy cheese"
 
 /datum/reagent/consumable/soup/stew/thickcheese
+	cuisine = CUISINE_OTAVAIS
 	name = "fondue"
 	description = "A ridiculously thick cheese soup. Creamy, comforting, and decadant."
 	color = "#c4be70"
@@ -369,6 +382,7 @@
 	metabolization_rate = 0.8
 
 /datum/reagent/consumable/soup/stew/thickparmesan
+	cuisine = CUISINE_OTAVAIS
 	name = "aged fondue"
 	description = "A ridiculously thick aged cheese soup. Creamy, comforting, and decadant."
 	color = "#A8AA70"
@@ -418,6 +432,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/pepperchicken
+	cuisine = CUISINE_RANESHENI
 	name = "pepper-spiced frybird stew"
 	color = "#A0421C"
 	taste_description = "deliciously tender chicken with flakes of crispy skin, and a hint of tongue-tickling spice"
@@ -461,6 +476,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/pepperfrymeat
+	cuisine = CUISINE_RANESHENI
 	name = "pepper-spiced brisket stew"
 	color = "#892214"
 	taste_description = "deliciously tender meat, and a hint of tongue-tickling spice"
@@ -546,6 +562,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/pepperfryfish
+	cuisine = CUISINE_RANESHENI
 	name = "pepper-spiced fish stew"
 	color = "#C65D5D"
 	taste_description = "flaky fish in a sharp, creamy broth with tongue-tingling spices"
@@ -634,6 +651,7 @@
 	taste_description = "shellfish"
 
 /datum/reagent/consumable/soup/stew/frybisque
+	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_OTAVAIS
 	name = "roasted bisque"
 	color = "#ffb74f"
 	taste_description = "roasted shellfish, cradled in a sea of savory-yet-smooth broth"
@@ -643,6 +661,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/lavishfrybisque
+	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_OTAVAIS
 	name = "lavish bisque"
 	color = "#FFC688"
 	taste_description = "sumptuously roasted shellfish, savory-yet-smooth broth, and a hint of spiced butteriness"
@@ -659,6 +678,7 @@
 	alpha = 200
 
 /datum/reagent/consumable/soup/stew/fryseafoodbroil
+	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_OTAVAIS
 	name = "roasted seabroil chowder"
 	color = "#ffb74f"
 	taste_description = "roasted shellfish within a creamy, delicate broth"
@@ -668,6 +688,7 @@
 	alpha = 222
 
 /datum/reagent/consumable/soup/stew/lavishfryseafoodbroil
+	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_OTAVAIS
 	name = "lavish seabroil chowder"
 	color = "#FFE3D9"
 	taste_description = "sumptuously creamy broth with a hint of moist clammage"
@@ -677,6 +698,7 @@
 	alpha = 222
 
 /datum/reagent/consumable/soup/stew/meatrice
+	cuisine = CUISINE_SOUTHEASTERN
 	name = "congee with roasted meat"
 	color = "#E5C099"
 	taste_description = "mushy, savory-brothed rice with chunks of tender meat"
@@ -686,6 +708,7 @@
 	alpha = 250
 
 /datum/reagent/consumable/soup/stew/eggrice
+	cuisine = CUISINE_SOUTHEASTERN
 	name = "congee with cackleberries"
 	color = "#F7C997"
 	taste_description = "mushy, savory-brothed rice with creamy yolkage and crispy eggs"
@@ -695,6 +718,7 @@
 	alpha = 250
 
 /datum/reagent/consumable/soup/stew/shrimprice
+	cuisine = CUISINE_SOUTHEASTERN
 	name = "congee with roasted shrimp"
 	color = "#F7D5BE"
 	taste_description = "mushy, savory-brothed rice with salty yet subdued shellfish"
@@ -704,6 +728,7 @@
 	alpha = 250
 
 /datum/reagent/consumable/soup/stew/cheeserice
+	cuisine = CUISINE_SOUTHEASTERN
 	name = "congee with melted cheese"
 	color = "#F7E297"
 	taste_description = "mushy, savory-brothed rice that's been smothered in cheesy goodness"
@@ -713,6 +738,7 @@
 	alpha = 250
 
 /datum/reagent/consumable/soup/stew/lavishfryrice
+	cuisine = CUISINE_SOUTHEASTERN
 	name = "luxury congee"
 	color = "#E0AF97"
 	taste_description = "sumptuous, pillowy rice with slow-braised meats with hints of butteriness and cheese"
@@ -767,6 +793,7 @@
 	taste_description = "tasty eggplant"
 
 /datum/reagent/consumable/soup/stew/aubergine_soup
+	cuisine = CUISINE_ETRUSCAN|CUISINE_RANESHENI
 	name = "aubergine stew"
 	color = "#D9E4E3"
 	taste_description = "tender eggplant with nibblings of roasted mince"
@@ -775,6 +802,7 @@
 	quality = DRINK_NICE
 
 /datum/reagent/consumable/soup/stew/lavishaubergine_soup
+	cuisine = CUISINE_ETRUSCAN|CUISINE_RANESHENI
 	name = "lavish aubergine stew"
 	color = "#D9C6E3"
 	taste_description = "sumptuously tender eggplant, nibblings of roasted mince, and a creamy broth"

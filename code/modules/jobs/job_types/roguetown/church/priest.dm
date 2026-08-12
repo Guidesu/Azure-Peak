@@ -32,8 +32,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	 /obj/effect/proc_holder/spell/invoked/revive,
 	 /datum/action/cooldown/spell/miracle/bishop_pack,
 	 /obj/effect/proc_holder/spell/self/convertrole/templar,
-	 /obj/effect/proc_holder/spell/self/convertrole/monk,
-	 /obj/effect/proc_holder/spell/invoked/convert_heretic_priest
+	 /obj/effect/proc_holder/spell/self/convertrole/monk
 	)
 	outfit = /datum/outfit/job/roguetown/priest
 	display_order = JDO_BISHOP
@@ -48,6 +47,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_HOMESTEAD_EXPERT, TRAIT_MEDICINE_EXPERT, TRAIT_CLERGY, TRAIT_MARRIAGE_CAPABLE)
 	advclass_cat_rolls = list(CTAG_BISHOP = 2)
 	job_subclasses = list(/datum/advclass/bishop)
+	has_subprefs = FALSE // only one subclass
 
 /datum/advclass/bishop
 	name = "Bishop"

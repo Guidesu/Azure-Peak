@@ -57,7 +57,6 @@
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/recipe_book/survival = 1,
 		/obj/item/reagent_containers/food/snacks/rogue/meat/salami = 1,
 		/obj/item/reagent_containers/food/snacks/rogue/bread = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/beer = 1, //Plays into the classic stereotype of beer-loving monks and well-stocked pilgrims.
@@ -75,8 +74,8 @@
 				if(HAS_TRAIT(H, TRAIT_VAELTIAN_GRIT))
 					armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/monke // ape out, brothers. +25 durability over other monks.
 				else
-					armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/monk // same as gladiator's skin.
-
+					armor = /obj/item/clothing/suit/roguetown/armor/manual/emote/prayer/monk //light gambeson, repaired by praying.
+					shirt = /obj/item/clothing/suit/roguetown/armor/manual/resting/monk/chest //leather armor with light gambeson integ, this one needs resting.
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_EXPERT, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_EXPERT, TRUE)
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
@@ -238,7 +237,9 @@
 		"Knight's Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/old,
 		"Knight's Greatplumed Armet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/greatplume,
 		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Snouted Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored/snouted,
 		"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+		"Snouted Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/snouted,
 		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
 		"Klappvisier Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 		"Slitted Kettle" = /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
@@ -486,7 +487,6 @@
 		C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_2)
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
@@ -525,7 +525,7 @@
 		else
 			cloak = /obj/item/clothing/cloak/cape/crusader
 	H.set_blindness(0)
-	if(is_bard && H.mind)
+	if(H.mind)
 		var/instruments = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman", "Psyaltery", "Flute", "Drum", "Shamisen")
 		var/instrument_choice = tgui_input_list(H, "Choose your instrument.", "TAKE UP ARMS", instruments)
 		switch(instrument_choice)
@@ -641,7 +641,6 @@
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)

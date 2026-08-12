@@ -8,10 +8,12 @@
 	salvage_result = /obj/item/natural/hide/cured
 	sewrepair = TRUE
 	salvage_amount = 1
-	
+	grid_height = 64
+	grid_width = 64
+
 /obj/item/clothing/suit/roguetown/armor/longcoat
 	name = "longcoat"
-	desc = "A padded longcoat meant to keep you warm in the frigid winters"
+	desc = "A padded longcoat meant to keep you warm in the frigid winters."
 	icon_state = "longcoat"
 	color = CLOTHING_BLACK
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK

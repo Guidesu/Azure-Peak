@@ -79,11 +79,11 @@
 	is_inhumen
 )
 	*is_inhumen = TRUE
-	*message_out = span_info("Hedonistic impulses and emotions throb all about from [target].")
-	*message_self = span_notice("An intoxicating rush of narcotic delight soothes my suffering!")
+	*message_out = span_info("Heart-throb and loss radiate from [target].")
+	*message_self = span_notice("Warm numbness soothes my suffering.")
 
 	if(!ishuman(target))
-		*message_self = span_notice("An intoxicating rush of narcotic delight flows through me!")
+		*message_self = span_notice("Warm numbness soothes my suffering.")
 		return
 
 	var/mob/living/carbon/human/human_target = target

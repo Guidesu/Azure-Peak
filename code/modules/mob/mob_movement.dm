@@ -622,7 +622,7 @@
 			animate(src, alpha = 255, time = 10)
 
 		rogue_sneaking = FALSE
-		return		
+		return
 
 	if(rogue_sneaking || reset) //If sneaking, check if they should be revealed
 		var/should_reveal = FALSE

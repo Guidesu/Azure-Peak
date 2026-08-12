@@ -94,11 +94,11 @@
 	switch(helmet_choice)
 		if("Etruscan Bascinet")
 			head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
-		if("Volf Plate Helmet") 
+		if("Volf Plate Helmet")
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate
 		if("Beak Helmet") // GUUUUTS NO GUTS NOOOOO
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/beakhelm
-		if("Visored Sallet")	
+		if("Visored Sallet")
 			head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
 		if("Snouted Visored Sallet")
 			head = /obj/item/clothing/head/roguetown/helmet/sallet/visored/snouted

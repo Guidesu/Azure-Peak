@@ -2,7 +2,7 @@
 	name = "Heretic"
 	tutorial = "You father your unholy cause through the most time-tested of ways: hard, heavy steel in both arms and armor."
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	outfit = /datum/outfit/job/roguetown/wretch/heretic
 	class_select_category = CLASS_CAT_CLERIC
 	category_tags = list(CTAG_WRETCH)
@@ -34,7 +34,7 @@
         "Armor Plates" =  /obj/item/repair_kit/metal,
     )
 
-	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
+	extra_context = "This subclass gains the Wound Heal miracle."
 	tempo_capable = FALSE
 
 /datum/advclass/wretch/heretic/get_vice_limits(mob/living/carbon/human/H)
@@ -141,7 +141,9 @@
 			"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 			"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
 			"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+			"Snouted Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored/snouted,
 			"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+			"Snouted Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/snouted,
 			"Sugarloaf Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket/crusader,
 			"Knight's Armet"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
 			"Knight's Helmet"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/old,
@@ -152,6 +154,8 @@
 			"Visored Barbute" = /obj/item/clothing/head/roguetown/helmet/heavy/barbute/visor,
 			"Great Barbute" = /obj/item/clothing/head/roguetown/helmet/heavy/barbute/great,
 			"Volfskulle Bascinet" = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate,
+			"Roundface Bascinet"	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/roundface,
+			"Snouted Roundface Bascinet"	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/roundface/snouted,
 			"None"
 		)
 
@@ -413,7 +417,6 @@
 			H.mind.AddSpell(new /datum/action/cooldown/spell/gravemark)
 			H.mind?.current.faction += "[H.name]_faction"
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
-	H.mind?.AddSpell(new /datum/action/cooldown/spell/convert_heretic)
 
 /datum/outfit/job/roguetown/wretch/hereticspy/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -521,12 +524,8 @@
 			"WHO IS YOUR SHEPHERD!?",
 		)
 		src.visible_message(span_warning("[src] shoves the decrepit zcross into [H]'s lux!"))
-		if(HAS_TRAIT(src, TRAIT_UNFORGIVABLE))
-			say(pick(faith_lines), spans = list("bloody"))//Vheslynites aren't people.
-		else
-			say(pick(faith_lines), spans = list("torture"))
+		say(pick(faith_lines), spans = list("torture"))
 		H.emote("agony", forced = TRUE)
-
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
 		H.confess_sins("patron")

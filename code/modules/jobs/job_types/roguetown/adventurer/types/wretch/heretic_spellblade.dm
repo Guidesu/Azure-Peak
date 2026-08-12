@@ -19,7 +19,7 @@
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_INT = 1, // Weighted 7. But a very nice statblock
-		STATKEY_PER = 1, 
+		STATKEY_PER = 1,
 		STATKEY_CON = 1,
 		STATKEY_WIL = 2, // With 2 Wil they should not be struggling
 	)

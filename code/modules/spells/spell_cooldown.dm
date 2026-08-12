@@ -156,7 +156,7 @@
 	/// Whether the charge bar has completed and the spell is being held ready. While TRUE, hold_drain bleeds per process tick.
 	var/fully_charged = FALSE
 	/**
-	 * Per-tick cost to hold the spell once charged. Charge-up itself is free.
+	 * Cost per 0.2 seconds to hold the spell once charged. Charge-up itself is free.
 	 *
 	 * Drained every SSfastprocess tick (wait = 2, i.e. 5x/second) from the moment
 	 * hold_grace_time expires until the spell is cast or dropped.
@@ -183,6 +183,8 @@
 	// Following vars are used for mouse pointer charge only
 	/// World time that the charge started.
 	var/charge_started_at = 0
+	/// Lag compensation for charging. If the server lag, we credits them for time held down.
+	var/charge_started_realtime = 0
 	/// Charge target time, from get_charge_time().
 	var/charge_target_time = 0
 	/// Whether the spell is currently charged, for cases where you want to keep casting after the initial charge (projectiles).
@@ -274,6 +276,7 @@
 			UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 		UnregisterSignal(owner, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_MOB_KICKED_SUCCESSFUL, COMSIG_CARBON_SWAPHANDS))
 	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSmousecharge, src)
 	charge_sound_instance = null
 	return ..()
 
@@ -323,22 +326,22 @@
 
 	// Update mouse charge pointer based on progress
 	if(owner.client && charge_started_at && charge_target_time)
-		var/progress = world.time - charge_started_at
+		var/progress = max(world.time - charge_started_at, charge_started_realtime ? REALTIMEOFDAY - charge_started_realtime : 0)
 		var/percentage = clamp((progress / charge_target_time) * 100, 0, 100)
 		var/new_icon = SSmousecharge.access(percentage)
 		if(owner.client.mouse_pointer_icon != new_icon)
 			owner.client.mouse_pointer_icon = new_icon
 
 	// Charge goal reached — enter the held phase; keep processing so hold_drain bleeds while held.
-	if(world.time > (charge_started_at + charge_target_time))
+	if(charge_complete())
 		fully_charged = TRUE
 		fully_charged_at = world.time
 		if(owner.client)
 			owner.client.mouse_pointer_icon = 'icons/effects/mousemice/swang/acharged.dmi'
 			if(hide_charge_effect)
-				owner.playsound_local(owner, 'sound/magic/charged.ogg', 40, TRUE)
+				owner.playsound_local(owner, 'sound/magic/charge_ready.ogg', 50, TRUE)
 			else
-				playsound(owner, 'sound/magic/charged.ogg', 40, TRUE)
+				playsound(owner, 'sound/magic/charge_ready.ogg', 50, TRUE)
 
 /datum/action/cooldown/spell/Grant(mob/grant_to)
 	// Spells are hard baked to pratically only work with living owners
@@ -547,7 +550,7 @@
 /datum/action/cooldown/spell/PreActivate(atom/target)
 	charged = FALSE
 	fully_charged = FALSE
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSmousecharge, src)
 	if(owner?.channeling_spell == src)
 		owner.channeling_spell = null
 	if(!is_valid_target(target))
@@ -748,7 +751,7 @@
 			return FALSE
 
 	var/mob/living/living_owner = owner
-	if(istype(living_owner) && living_owner.has_status_effect(/datum/status_effect/debuff/exposed))
+	if(istype(living_owner) && living_owner.has_status_effect(/datum/status_effect/debuff/cast_disrupted))
 		if(feedback)
 			owner.balloon_alert(owner, "Too exposed to focus!")
 		return FALSE
@@ -1123,7 +1126,8 @@
 		if(!owner.fixedeye)
 			owner.nodirchange = TRUE
 		owner.channeling_spell = src
-	START_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSfastprocess, src)
+	START_PROCESSING(SSmousecharge, src)
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
 
 	if(charge_slowdown)
@@ -1184,12 +1188,13 @@
 	hold_warned = 0
 	next_hold_shake = 0
 	charge_started_at = null
+	charge_started_realtime = 0
 	charge_target_time = null
 	// Only drop the cache if we're not about to enter the "charged, waiting to fire" phase
 	// (charge-then-click spells). Caller sets charged=TRUE after this returns on success.
 	if(owner?.channeling_spell == src && !charged)
 		owner.channeling_spell = null
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSmousecharge, src)
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
 
 	// Clean up glow before the owner guard below - the light is owner-independent and
@@ -1757,13 +1762,15 @@
 		return
 
 	var/list/modifiers = params2list(params)
+	if(charge_started_at || currently_charging)
+		if(LAZYACCESS(modifiers, BUTTON_CHANGED) == RIGHT_CLICK)
+			cancel_casting(voluntary = TRUE)
+		return COMPONENT_CLIENT_MOUSEDOWN_INTERCEPT
+	if(LAZYACCESS(modifiers, BUTTON_CHANGED) != MIDDLE_CLICK)
+		return
 	if(LAZYACCESS(modifiers, SHIFT_CLICKED))
 		return
 	if(LAZYACCESS(modifiers, CTRL_CLICKED))
-		return
-	if(LAZYACCESS(modifiers, LEFT_CLICK))
-		return
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		return
 	if(LAZYACCESS(modifiers, ALT_CLICKED))
 		return
@@ -1771,8 +1778,6 @@
 		return
 	if(!IsAvailable())
 		return COMPONENT_CLIENT_MOUSEDOWN_INTERCEPT // Still consume the click so it doesn't fall through to old charge system
-	if(charge_started_at || currently_charging)
-		return
 
 	if(istype(_target, /atom/movable/screen/inventory))
 		pass() // Inventory clicks resolve to the actual item later in ClickOn — allow charging
@@ -1799,6 +1804,7 @@
 
 	on_start_charge()
 	charge_started_at = world.time
+	charge_started_realtime = REALTIMEOFDAY
 	charge_target_time = charge_time
 
 	if(HAS_TRAIT(owner, TRAIT_SWIFTCAST)) // Makes your next spell be instant.
@@ -1816,6 +1822,10 @@
 	if(QDELETED(src) || QDELETED(owner))
 		return
 
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, BUTTON_CHANGED) != MIDDLE_CLICK)
+		return
+
 	// Stop the failsafe timer
 	if(auto_cancel_timer)
 		deltimer(auto_cancel_timer)
@@ -1826,7 +1836,7 @@
 		cancel_casting()
 		return
 
-	var/success = world.time >= (charge_started_at + charge_target_time)
+	var/success = charge_complete()
 
 	// Charge-then-click: releasing the mouse doesn't cast — wait for a second click
 	if(charge_then_click)
@@ -1853,7 +1863,8 @@
 	if(!on_end_charge(success, quiet = penalised)) // Give them another try — end_charging() already re-registered MOUSEDOWN
 		return
 
-	var/list/modifiers = params2list(params)
+	if(!on_end_charge(success, quiet = penalised)) // Give them another try — end_charging() already re-registered MOUSEDOWN
+		return
 
 	// At this point we DO care about the _target value
 	if(isnull(location) || istype(_target, /atom/movable/screen))
@@ -1875,7 +1886,10 @@
 		return
 
 	var/list/modifiers = params2list(params)
-	if(!LAZYACCESS(modifiers, MIDDLE_CLICK))
+	if(LAZYACCESS(modifiers, BUTTON_CHANGED) == RIGHT_CLICK)
+		cancel_casting(voluntary = TRUE)
+		return
+	if(LAZYACCESS(modifiers, BUTTON_CHANGED) != MIDDLE_CLICK)
 		return
 
 	if(auto_cancel_timer)

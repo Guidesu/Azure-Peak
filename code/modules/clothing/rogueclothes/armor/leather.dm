@@ -91,7 +91,7 @@
 	desc = "A hardened leather harness with a large pauldron worn over a tasseted brigandine, imbued with Ignatius's essence."
 	icon_state = "forestbrig"
 	armor = ARMOR_BRIGANDINE//is actually a brigandine now
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 50
+	max_integrity = ARMOR_INT_CHEST_LIGHT_ELITE
 	equip_delay_self = 50
 	smeltresult = /obj/item/ingot/iron
 
@@ -135,14 +135,14 @@
 	item_state = "cuirbouilli"
 	body_parts_covered = CHEST | VITALS
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER - 30
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER - ARMOR_INT_LIGHT_BETWEENTIER_MODIFIER
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy
 	name = "hardened leather armor"
 	desc = "A heavy steerhide jerkin with enough body to stand on its own. It forms a stiff, protective mantle \
 	for its wearer, shielding from blows and weather alike."
-	icon_state = "leather_armor"
-	item_state = "leather_armor"
+	icon_state = "roguearmor_belt"
+	item_state = "roguearmor_belt"
 	armor = ARMOR_LEATHER
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	color = "#7D6653"
@@ -174,7 +174,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 	name = "megarmach scale coat"
-	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
+	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \"megarmach\", an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
 	icon_state = "pangolin"
 	item_state = "pangolin"
 	color = null
@@ -184,8 +184,15 @@
 	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
-	name = "fur-woven hatanga coat"
-	desc = "A finely woven hatagna coat, replacing much of its scaled armor with fine furs and reinforced padding for lighter rides."
+	name = "fur-woven chargah coat"
+	desc = "A finely woven chargah coat, replacing much of its scaled armor with fine furs and reinforced padding for lighter rides."
+	icon_state = "chargahfur"
+	item_state = "chargahfur"
+	color = null
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/elven
+	name = "fur-lined trophy robes"
+	desc = "A heavy set of hardened robes, lined with fur. The leather is composed of several creatures that were notably difficult to fell by arrow. A proof or rangership among many."
 	icon_state = "hatangafur"
 	item_state = "hatangafur"
 	color = null
@@ -193,6 +200,19 @@
 	min_cold_protection_temperature = BODYTEMP_NORMAL_MIN
 	heat_protection = CHEST | ARM_RIGHT | ARM_LEFT
 	max_heat_protection_temperature = BODYTEMP_HEAT_LEVEL_ONE_MAX
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe/loadout
+	name = "aesthetic fur-woven hatanga coat"
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe/loadout/Initialize()
+	. = ..()
+	loadoutize()
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/elven/loadout
+	name = "aesthetic fur-lined trophy robes"
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/elven/loadout/Initialize()
+	. = ..()
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe/loadout
 	name = "aesthetic fur-woven hatanga coat"
@@ -251,7 +271,7 @@
 	desc = "A light, flexible button-up leather jacket that will keep your vitals out of harm's way."
 	icon_state = "freijacket"
 	item_state = "freijacket"
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM + 35
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM + ARMOR_INT_LIGHT_FENCER_MODIFIER
 	detail_tag = "_detail"
 	color = "#5E4440"
 	detail_color = "#c08955"
@@ -293,7 +313,7 @@
 	desc = "A light, custom-tailored flimsy leather and silken vest worn by nobility in the forested peaks of Aavnr."
 	icon_state = "freijacket"
 	item_state = "freijacket"
-	max_integrity = ARMOR_INT_CHEST_LIGHT_BASE - 30 //It'll save you from a blow or two but then it'll break quickly
+	max_integrity = ARMOR_INT_CHEST_LIGHT_BASE - ARMOR_INT_LIGHT_BETWEENTIER_MODIFIER //It'll save you from a blow or two but then it'll break quickly
 	color = "#292626"
 
 /obj/item/clothing/suit/roguetown/armor/leather/bikini

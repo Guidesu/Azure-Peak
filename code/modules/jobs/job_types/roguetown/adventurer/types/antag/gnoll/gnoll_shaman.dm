@@ -12,7 +12,7 @@
 		STATKEY_INT = 2
 	)
 	subclass_skills = list(
-		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT,
+		/datum/skill/magic/holy = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/tracking = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
@@ -31,6 +31,12 @@
 	)
 	category_tags = list(CTAG_GNOLL)
 	cmode_music = 'sound/music/combat_graggar.ogg'
+
+/datum/outfit/job/roguetown/gnoll/shaman
+	vamp_armor_type = /obj/item/clothing/suit/roguetown/armor/vampiric/gnoll/shaman
+	max_fury_stacks = 79
+	shard_threshold = 44
+	shard_repair_value = 20
 
 /datum/outfit/job/roguetown/gnoll/shaman/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)

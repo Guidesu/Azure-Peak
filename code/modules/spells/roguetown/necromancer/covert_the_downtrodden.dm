@@ -1,34 +1,22 @@
 /datum/action/cooldown/spell/convert_heretic
 	name = "Convert to Ecclesiarchy"
-	desc = "Initiate a lengthy ritual to convert a willing excommunicate, apostate, or cursed soul into your faith."
+	desc = "Initiate a lengthy ritual to convert a willing soul into your faith."
 	fluff_desc = "In the end, this was always a matter of faith. Not all Ecclesiarchs are thieves, madmen, cannibals, or tyrants; they are simply those who learned too early that humanity must shape the future of this dying world. Divinity was never meant to remain outside mortal hands."
 	button_icon = 'icons/mob/actions/roguespells.dmi'
 	button_icon_state = "convert_heretic"
-	invocations = list("Close your eyes and open your mind, this world is decaying but you shall be its last hope.")
+	invocations = list("Claude oculos, aperi mentem. Ex ruina spes surgi, mundus cadit, tu spes renova.")
 	invocation_type = INVOCATION_WHISPER
 	sound = 'sound/magic/bless.ogg'
 	charge_sound = 'sound/magic/chargingold.ogg'
-	primary_resource_type = SPELL_COST_DEVOTION
-	primary_resource_cost = 100
-	secondary_resource_type = SPELL_COST_DEVOTION
-	secondary_resource_cost = 100
-	cooldown_time = 20 MINUTES
+	primary_resource_type = SPELL_COST_ENERGY
+	primary_resource_cost = 125
+	cooldown_time = 5 MINUTES
 	charge_required = TRUE
 	charge_time = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy
 	associated_stat = null
 	self_cast_possible = FALSE
 
-/datum/action/cooldown/spell/convert_heretic/arcyne
-	primary_resource_type = SPELL_COST_ENERGY
-	primary_resource_cost = 125
-	invocations = list("Claude oculos, aperi mentem. Ex ruina spes surgi, mundus cadit, tu spes renova.")
-
-/datum/action/cooldown/spell/convert_heretic/free
-	primary_resource_type = SPELL_COST_ENERGY
-	primary_resource_cost = 125
-	invocations = list("Welcome to the righteous path. The future belongs to us.")
-	
 /datum/action/cooldown/spell/convert_heretic/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 

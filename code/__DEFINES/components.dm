@@ -237,6 +237,7 @@
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//Called when the movable's glide size is updated: (new_glide_size)
 
 // /mob signals
+#define COMSIG_MOB_SLEEP "mob_sleep" 							//from base of mob/living/carbon/handle_sleep(): (mob/sleeper)
 #define COMSIG_MOB_BREAK_SNEAK "mob_break_sneak"
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
 #define COMSIG_MOB_TRY_BARK "try_bark"
@@ -373,6 +374,7 @@
 #define COMSIG_ITEM_BROKEN "item_broken"                        //from base of /obj/proc/obj_break(damage_flag)
 #define COMSIG_ITEM_PICKUP "item_pickup"						//from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_OBJ_TAKE_DAMAGE "obj_take_damage"				//from base of obj/take_damage() (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
+#define COMSIG_MOB_ARMOR_INTEGRITY_DAMAGED "mob_armor_integrity_damaged"            //from base of /mob/living/carbon/human/proc/checkarmor(): (damage_taken, obj/item/clothing/damaged_item, current_layer, total_layers)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"				//from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_IMBUE_SOUL "item_imbue_soul" 				//return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
 #define COMSIG_ITEM_MARK_RETRIEVAL "item_mark_retrieval"			//called before marking an object for retrieval, checked in /obj/effect/proc_holder/spell/targeted/summonitem/cast() : (mob/user)
@@ -382,6 +384,7 @@
 #define COMSIG_ITEM_WEARERCROSSED "wearer_crossed"                //called on item when crossed by something (): (/atom/movable, mob/living/crossed)
 #define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"
 #define COMSIG_ITEM_GUN_PROCESS_FIRE	"item_gun_process_fire"		//called on /obj/item/gun/proc/process_fire
+#define COMSIG_ITEM_RESTORE_BINTEGRITY "item_restore_bintegrity"	//called on /obj/item/proc/restore_bintegrity()
 
 // /obj/item/clothing signals
 #define COMSIG_CLOTHING_STEP_ACTION "clothing_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()

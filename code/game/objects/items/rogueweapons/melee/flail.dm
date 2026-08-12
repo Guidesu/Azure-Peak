@@ -91,7 +91,7 @@
 	var/maxrange = 4
 
 /datum/intent/flail/smash/spec_on_apply_effect(mob/living/H, mob/living/user, params)
-	var/chungus_khan_str = user.STASTR 
+	var/chungus_khan_str = user.STASTR
 	if(H.has_status_effect(/datum/status_effect/debuff/yeetcd))
 		return // Recently knocked back, cannot be knocked back again yet
 	if(chungus_khan_str < 10)

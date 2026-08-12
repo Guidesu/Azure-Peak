@@ -295,7 +295,7 @@
 /mob/living/carbon/human/proc/reset_dodgetime()
 	if(!cmode && mind)
 		dodgetime = 0
-		max_dodge = MAX_DODGE_CEIL
+		max_dodge = MAX_DODGE_START
 
 ///A Unique Stat comparison between src and HT.
 ///It takes the highest stats up to 14 and lowest stats 'up to' 14.
@@ -520,11 +520,11 @@
 		//How much stamloss we take away from dodging. Flat number.
 		if(TEMPO_TAG_STAMLOSS_DODGE)
 			if(has_status_effect(/datum/status_effect/buff/tempo_one))
-				return 3
+				return 4
 			if(has_status_effect(/datum/status_effect/buff/tempo_two))
-				return 5
+				return 6
 			if(has_status_effect(/datum/status_effect/buff/tempo_three))
-				return 7
+				return 8
 		//How much stamloss we take away from parrying. Flat number.
 		if(TEMPO_TAG_STAMLOSS_PARRY)
 			if(has_status_effect(/datum/status_effect/buff/tempo_one))

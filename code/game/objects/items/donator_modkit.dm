@@ -5,6 +5,8 @@
 	desc = "A small container of special morphing dust, perfect to make a specific item."
 	icon = 'icons/obj/items/donor_objects.dmi'	//We default to here just to avoid tons of uneeded sprites.
 	icon_state = "enchanting_kit"
+	grid_width = 32
+	grid_height = 64
 	w_class = WEIGHT_CLASS_SMALL	//So can fit in a bag, we don't need these large. They're just used to apply to items.
 	var/list/target_items = list()
 	/// Result item we'll exchange it to. Currently /weapon/ type kits use this as an example they'll copy all the visual data from. Keep this in mind if this never gets properly refactored!
@@ -171,6 +173,7 @@
 		/obj/item/clothing/suit/roguetown/armor/plate/iron				= /obj/item/clothing/suit/roguetown/armor/plate/iron/donator_gothic
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/gothicsteelarmor
 	name = "'Gothic Steel Armor' morphing elixir"
@@ -208,6 +211,7 @@
 		/obj/item/clothing/suit/roguetown/armor/chainmail				= /obj/item/clothing/suit/roguetown/armor/chainmail/donator
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/heartplate
 	name = "'Heartplate' morphing elixir"
@@ -219,6 +223,7 @@
 		/obj/item/clothing/suit/roguetown/armor/leather						= /obj/item/clothing/suit/roguetown/armor/leather/donator
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/elvenchainmail
 	name = "'Elven Haubergeon' morphing elixir"
@@ -228,6 +233,7 @@
 		/obj/item/clothing/suit/roguetown/armor/chainmail			= /obj/item/clothing/suit/roguetown/armor/chainmail/donator_elven
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/heroicleathercuirass
 	name = "'Heroic Leather Cuirass' morphing elixir"
@@ -248,6 +254,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/decorated			= /obj/item/rogueweapon/huntingknife/idagger/steel/decorated/donator
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/beltleather
 	name = "'Belt of Caped Leather' morphing elixir"
@@ -327,6 +334,7 @@
 		/obj/item/clothing/suit/roguetown/armor/leather						= /obj/item/clothing/suit/roguetown/armor/leather/donator_girdle
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/donator_universal_armory
 	name = "'Elegant Armory' morphing elixir" //Small compromise to avoid bloating the Loadout tab.
@@ -347,6 +355,7 @@
 		/obj/item/clothing/gloves/roguetown/knuckles						= /obj/item/clothing/gloves/roguetown/knuckles/donator_elegant,
 		/obj/item/rogueweapon/stoneaxe/woodcut/steel						= /obj/item/rogueweapon/stoneaxe/woodcut/steel/donator_elegant,
 		/obj/item/rogueweapon/woodstaff/quarterstaff/steel					= /obj/item/rogueweapon/woodstaff/quarterstaff/steel/donator_elegant,
+		/obj/item/rogueweapon/greatsword/grenz								= /obj/item/rogueweapon/greatsword/grenz/donator_elegant,
 		/obj/item/rogueweapon/sword/rapier									= /obj/item/rogueweapon/sword/rapier/donator_elegant,
 		/obj/item/rogueweapon/sword/short									= /obj/item/rogueweapon/sword/short/donator_elegant,
 		/obj/item/rogueweapon/sword/long									= /obj/item/rogueweapon/sword/long/donator_elegant,
@@ -587,6 +596,7 @@
 		/obj/item/clothing/head/roguetown/helmet/heavy/barbute/visor            = /obj/item/clothing/head/roguetown/helmet/heavy/barbute/visor/dakken
 	)
 	result_item = null
+	exact_type = TRUE
 
 /obj/item/enchantingkit/dakken_alloybsword
 	name = "'avantyne-threaded sword' morphing elixir"
@@ -699,11 +709,6 @@
 	)
 	result_item = /obj/item/rogueweapon/nerocavalier/flsword
 */
-
-/obj/item/enchantingkit/aisuwand
-    name = "Crystalline Rapier morphing elixir"
-    target_items = list(/obj/item/rogueweapon/sword/rapier)
-    result_item = /obj/item/rogueweapon/sword/rapier/aisu
 
 /obj/item/enchantingkit/weapon/regnum
 	name = "'Regnum' morphing elixir"

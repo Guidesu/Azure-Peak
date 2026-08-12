@@ -1,4 +1,7 @@
-/obj/effect/proc_holder/spell/invoked/projectile/divineblast
+/datum/action/cooldown/spell/projectile/divine_blast
+	background_icon = 'icons/mob/actions/genericmiracles.dmi'
+	button_icon = 'icons/mob/actions/genericmiracles.dmi'
+	button_icon_state = "dblast"
 	name = "Divine Blast"
 	desc = "Shoot out a blast of divine power! Deals more damage to heretics(Vaeltians/Inhumen) and Undead! \n\
 	Damage is increased by 100% versus simple-minded creechurs.\n\
@@ -21,17 +24,29 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_LOW
-	charging_slowdown = 3
-	chargedloop = /datum/looping_sound/invokegen
+	projectile_type = /obj/projectile/energy/divineblast
+	cast_range = SPELL_RANGE_PROJECTILE
+
+	primary_resource_type = SPELL_COST_DEVOTION
+	primary_resource_cost = 25
+	invocation_type = INVOCATION_SHOUT
+	charge_required = TRUE
+	charge_time = CHARGETIME_MAJOR
+	hold_drain = 1
+	charge_slowdown = CHARGING_SLOWDOWN_SMALL
+	charge_swingdelay_type = SWINGDELAY_PENALTY
+	charge_sound = 'sound/magic/charging.ogg'
+
+	cooldown_time = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy
-	miracle = TRUE
-	devotion_cost = 25
-	human_req = TRUE
-
-/obj/effect/proc_holder/spell/invoked/projectile/divineblast/cast(list/targets, mob/user = user)
-	projectile_type = arc_mode ? projectile_type_arc : initial(projectile_type)
-	. = ..()
-
+	spell_impact_intensity = SPELL_IMPACT_LOW
+	spell_requirements = SPELL_REQUIRES_HUMAN
+	var/next_bonus_time = 0
+	var/current_mode = 1
+	var/list/modes = list(
+		list("name" = "Focus", "tag" = "FOCUS", "proj" = /obj/projectile/energy/divineblast, "invocation" = "Sakral Strahl!"),
+		list("name" = "Arc", "tag" = "ARC", "proj" = /obj/projectile/energy/divineblast/arc, "invocation" = "Sakral Strahl!"),
+	)
 
 /obj/projectile/energy/divineblast
 	name = "Divine Blast"
@@ -46,8 +61,8 @@
 	speed = 1
 
 /obj/projectile/energy/divineblast/arc
-	name = "Arced Divine Blast"
-	damage = 15 // Slightly lower base damage and barely matter due to low to hit but not a problem on acolyte / cleric.
+	name = "arced divine blast"
+	damage = 32
 	arcshot = TRUE
 
 /obj/projectile/energy/divineblast/on_hit(target, blocked = FALSE)
@@ -128,7 +143,88 @@
 					H.visible_message(span_warning("[H] is hammered with divine force!"), span_warning("Malum's disappointment hammers into me!"))
 					//He's not mad, he's not proud, he's not hateful, he's as neutrally disappointed in you as one can be. (Its also funnier this way)
 	else
+		L.apply_damage(damage_to_do, BURN)
+
+/obj/projectile/energy/divineblast/proc/apply_god_bonus(mob/living/L)
+	var/mob/living/carbon/human/caster = firer
+	if(!istype(caster))
 		return
 
+	switch(caster.patron?.type)
+		if(/datum/patron/divine/undivided)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/astrata)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/noc)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/dendor)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/abyssor)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/ravox)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/necra)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/xylix)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/pestra)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/malum)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+		if(/datum/patron/divine/eora)
+			L.adjust_fire_stacks(4, /datum/status_effect/fire_handler/fire_stacks/divine)
+			L.ignite_mob()
+			L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
 
+/datum/action/cooldown/spell/projectile/divine_blast/Grant(mob/grant_to)
+	. = ..()
+	apply_mode(current_mode)
 
+/datum/action/cooldown/spell/projectile/divine_blast/proc/apply_mode(index)
+	var/list/mode = modes[index]
+	projectile_type = mode["proj"]
+	invocations = list(mode["invocation"])
+	update_mode_maptext(mode["tag"])
+
+/datum/action/cooldown/spell/projectile/divine_blast/toggle_arc_mode(mob/user)
+	current_mode = (current_mode % length(modes)) + 1
+	apply_mode(current_mode)
+	to_chat(user, span_notice("[name]: [modes[current_mode]["name"]] mode."))
+
+/datum/action/cooldown/spell/projectile/divine_blast/proc/update_mode_maptext(tag)
+	for(var/datum/hud/hud as anything in viewers)
+		var/atom/movable/screen/movable/action_button/B = viewers[hud]
+		var/atom/movable/screen/arc_maptext_holder/holder
+		for(var/atom/movable/screen/arc_maptext_holder/existing in B.vis_contents)
+			holder = existing
+			break
+		if(!holder)
+			holder = new(B)
+			B.vis_contents.Add(holder)
+		holder.maptext = MAPTEXT(tag)
+		holder.color = "#00ccff"
+
+/datum/action/cooldown/spell/projectile/divine_blast/get_spell_statistics(mob/living/user)
+	var/list/stats = ..()
+	stats += span_info("Firing mode (Shift+G): Focus (standard blast) / Arc (lobs over obstacles with reduced damage).")
+	return stats

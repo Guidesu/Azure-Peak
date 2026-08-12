@@ -50,11 +50,11 @@
 	// someone out of starvation even with no food, though they'll have to make sure they dont exert themselves.
 	// AS this is recastable, and a secondary effect, its kinda eh.
 	*/
-	
+
 	// EXPECTED RANGE FOR FORMULA: 102 -> 172 (DEVOTEE TO LEGENDARY)
 	H.adjust_nutrition(100 + ((assocskill * assocskill)*2))
 	// Adjust hydration based on skill
-	// Same as above, but adjusts thirst. 
+	// Same as above, but adjusts thirst.
 	H.adjust_hydration(100 + ((assocskill * assocskill)*2))
 
 
@@ -133,6 +133,8 @@
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	devotion_cost = 25
 	recharge_time = 90 SECONDS
+	action_icon = 'icons/mob/actions/eoramiracles.dmi'
+	overlay_icon = 'icons/mob/actions/eoramiracles.dmi'
 	overlay_state = "bread"
 	associated_skill = /datum/skill/magic/holy
 	var/base_recharge_time = 90 SECONDS
@@ -228,6 +230,8 @@
 	desc = "Tries to grow a bud blessed by Miluše on the target tile or on the targets head, forcing their thoughts away from violence until removed."
 	clothes_req = FALSE
 	range = 3
+	action_icon = 'icons/mob/actions/eoramiracles.dmi'
+	overlay_icon = 'icons/mob/actions/eoramiracles.dmi'
 	overlay_state = "love"
 	sound = list('sound/magic/magnet.ogg')
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
@@ -277,6 +281,8 @@
 /obj/effect/proc_holder/spell/invoked/eoracurse
 	name = "Miluše's Curse"
 	desc = "Makes the target both high and drunk."
+	action_icon = 'icons/mob/actions/eoramiracles.dmi'
+	overlay_icon = 'icons/mob/actions/eoramiracles.dmi'
 	overlay_state = "curse2"
 	releasedrain = 50
 	chargetime = 30
@@ -431,6 +437,8 @@
 	name = "Heartweave"
 	desc = "Interlinks the caster's vitality with a chosen target, sharing any incoming healing-or-damage with each other. </br>If one interlinked person is healed, the other interlinked person will \
 	be healed as well. </br>Likewise, if one interlinked person is damaged, the other interlinked person will be damaged as well."
+	action_icon = 'icons/mob/actions/eoramiracles.dmi'
+	overlay_icon = 'icons/mob/actions/eoramiracles.dmi'
 	overlay_state = "bliss"
 	range = 1
 	chargetime = 0.5 SECONDS
@@ -510,6 +518,8 @@
 	devotion_cost = 500
 	recharge_time = 5 SECONDS
 	chargetime = 1 SECONDS
+	action_icon = 'icons/mob/actions/eoramiracles.dmi'
+	overlay_icon = 'icons/mob/actions/eoramiracles.dmi'
 	overlay_state = "tree"
 	associated_skill = /datum/skill/magic/holy
 	var/obj/structure/eoran_pomegranate_tree/my_little_tree = null
@@ -656,7 +666,7 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				add_sleep_experience(user, /datum/skill/labor/farming, C.STAINT * 0.5)
-			
+
 			to_chat(user, span_notice("You prune some branches."))
 			update_icon()
 			return TRUE
@@ -740,7 +750,7 @@
 
 		qdel(I)
 		tree_offerings += I.type
-		
+
 		happiness = min(happiness + 10, 100)
 		update_happiness_tier()
 

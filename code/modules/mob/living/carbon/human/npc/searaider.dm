@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	ambushable = FALSE
 	dodgetime = 30
 	blood_toll_bucket = STATS_KILLED_GRONNMEN
+	var/searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider
 
 
 /mob/living/carbon/human/species/human/northern/searaider/ambush
@@ -35,7 +36,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
-	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/searaider)
+	equipOutfit(new searaider_outfit)
 	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
 	head.sellprice = HEAD_BOUNTY_SEARAIDER
 	dna.species.handle_body(src)
@@ -142,22 +143,22 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	H.STAPER = 8 //AIMING? Who needs that lame-ass shit? GRAGGAR GRAGGAR GRAGGAR!!
 	H.STAINT = 8 //Minimal req to use specials
 	H.STASTR = 14
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_JOURNEYMAN, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/swimming, SKILL_LEVEL_APPRENTICE, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, SKILL_LEVEL_APPRENTICE, TRUE)
 
 	H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/warrior]
 	H.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/female/warrior]
 
 /mob/living/carbon/human/species/human/northern/searaider/archer
 	ai_controller = /datum/ai_controller/human_npc/archer
-	var/archer_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer
+	searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer
 
 /mob/living/carbon/human/species/human/northern/searaider/archer/ambush
 	threat_point = THREAT_TOUGH
@@ -179,6 +180,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	equipOutfit(new archer_outfit)
 
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/pre_equip(mob/living/carbon/human/H)
+	..()
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
@@ -189,22 +191,14 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 	backl = /obj/item/quiver/npc
 	r_hand = /obj/item/rogueweapon/sword/iron
+	l_hand = null
 	H.STASPD = 9
 	H.STACON = 7
 	H.STAWIL = 7
 	H.STAPER = 11
 	H.STAINT = 1
 	H.STASTR = 12
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
 	H.upgrade_ai_controller(/datum/ai_controller/human_npc/archer)
 
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/reaver/pre_equip(mob/living/carbon/human/H)
@@ -222,9 +216,6 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	..()
 	job = "Sea Raider Huscarl"
 	ADD_TRAIT(src, TRAIT_BADTRAINER, TRAIT_GENERIC)
-	for(var/obj/item/old in get_equipped_items() + held_items)
-		qdel(old)
-	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/searaider/huscarl)
 	regenerate_icons()
 	for(var/obj/item/gear in get_equipped_items() + held_items)
 		lock_gear_piece(gear, "searaider_huscarl_gear")
@@ -235,6 +226,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 		REMOVE_TRAIT(gear, TRAIT_NODROP, "searaider_huscarl_gear")
 
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/huscarl/pre_equip(mob/living/carbon/human/H)
+	..()
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/old/iron
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
@@ -246,17 +238,18 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
 	belt = /obj/item/storage/belt/rogue/leather
 	r_hand = /obj/item/rogueweapon/greatsword/iron
+	l_hand = null
 	H.STASTR = 15
 	H.STASPD = 9
 	H.STACON = 10
 	H.STAWIL = 9
 	H.STAPER = 9
 	H.STAINT = 8
-	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_MASTER, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_EXPERT, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_EXPERT, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/swimming, SKILL_LEVEL_APPRENTICE, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, SKILL_LEVEL_APPRENTICE, TRUE)
 	H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/warrior]
 	H.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/female/warrior]

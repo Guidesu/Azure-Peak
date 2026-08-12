@@ -22,14 +22,179 @@
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, , /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// T0 - Tug of War- Chain a target to yourself and pull them in, prevents them from leaving your vicinity. //
+// T1 - Tug of War - Chain projectile that off-balances + stuns. Exposes the user.           			   //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/action/cooldown/spell/auxentius/battle/tug
 	name = "Tug of War"
-	desc = "Casts out a chain that tries to pull the target closer."
+	desc = "Divine wrought-iron is hurled out to tug back my opponent. I'm left exposed whilst I throw-and-pull."
 	fluff_desc = "One's worth is determined by weight of their soul in the afterlyfe, chains of sin pushing the scale downwards to inevitable pits of damnation."
+	background_icon = 'icons/mob/actions/ravoxmiracles.dmi'
+	button_icon = 'icons/mob/actions/ravoxmiracles.dmi'
 	button_icon_state = "ravox_tug"
+	spell_color = GLOW_COLOR_RAVOX
+	sound = 'sound/magic/battletrance.ogg'
+	glow_intensity = GLOW_INTENSITY_LOW
+
+	projectile_type = /obj/projectile/magic/ravox_chain
+
+	click_to_activate = TRUE
+	cast_range = SPELL_RANGE_GROUND
+	self_cast_possible = FALSE
+
+	primary_resource_type = SPELL_COST_DEVOTION
+	primary_resource_cost = SPELLCOST_MIRACLE
+
+	secondary_resource_type = SPELL_COST_STAMINA
+	secondary_resource_cost = SPELLCOST_CANTRIP
+
+	invocation_type = INVOCATION_SHOUT
+	invocations = list("Feel the weight of your sins!")
+
+	charge_required = TRUE
+	charge_time = 1 SECONDS
+	hold_drain = 1
+	charge_slowdown = CHARGING_SLOWDOWN_MEDIUM
+	charge_sound = 'sound/magic/holycharging.ogg'
+	cooldown_time = 1 MINUTES
+
+	has_visual_effects = FALSE
+	spell_impact_intensity = SPELL_IMPACT_NONE
+	ignore_armor_penalty = TRUE
+	attunement_school = null
+	associated_stat = null
+	associated_skill = /datum/skill/magic/holy
+	spell_tier = 0
+	point_cost = 0
+
+	spell_flags = SPELL_PSYDON
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z | SPELL_REQUIRES_CMODE
+	allow_cross_z = FALSE
+
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/ravox, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+
+/datum/action/cooldown/spell/projectile/ravox_tug/is_valid_target(atom/cast_on)
+	if(owner)
+		cast_range = 4 + floor(owner.get_skill_level(/datum/skill/magic/holy) / 2)
+	return ..()
+
+/datum/action/cooldown/spell/projectile/ravox_tug/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
+	. = ..()
+	var/obj/projectile/magic/ravox_chain/chain = to_fire
+	if(!istype(chain))
+		return
+	chain.range = cast_range
+	chain.pull_distance = 1 + floor(user.get_skill_level(/datum/skill/magic/holy) / 2)//+1 pull dist at Apprentice, Expert and Legendary
+	user.visible_message(span_boldwarning("[user] hurls out a transluscent chain!"))
+
+// ---- Projectile ----
+
+/obj/projectile/magic/ravox_chain
+	name = "chain of judgement"
+	icon = 'icons/effects/beam.dmi'
+	icon_state = "chain"
+	nodamage = TRUE
+	damage = 0
+	range = 5
+	speed = 2.5
+	hitsound = 'sound/combat/hits/onmetal/metalimpact (1).ogg'
+	guard_deflectable = TRUE
+
+	/// How many tiles the caught target is dragged. Set by the spell from holy skill.
+	var/pull_distance = 1
+	/// Trailing beam for that mortal kombat feel.
+	var/datum/beam/chain_beam
+	/// Boolean flag to check if the user currently is exposed during casting or not.
+	var/applied_exposure = FALSE
+
+/obj/projectile/magic/ravox_chain/proc/expose_caster(expose_for)
+	var/mob/living/thrower = firer
+	if(!isliving(thrower))
+		return
+	if(!applied_exposure && thrower.has_status_effect(/datum/status_effect/debuff/exposed))
+		return
+	thrower.remove_status_effect(/datum/status_effect/debuff/exposed)
+	thrower.apply_status_effect(/datum/status_effect/debuff/exposed, expose_for)
+	applied_exposure = TRUE
+
+/obj/projectile/magic/ravox_chain/fire(angle, atom/direct_target)
+	if(firer)
+		chain_beam = firer.Beam(src, icon_state = "chain", time = 10 SECONDS, maxdistance = 15, beam_sleep_time = 1)
+		expose_caster((range * speed) + 2)
+	return ..()
+
+/obj/projectile/magic/ravox_chain/Destroy()
+	if(chain_beam)
+		chain_beam.End()
+		chain_beam = null
+	return ..()
+
+/obj/projectile/magic/ravox_chain/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(!isliving(target) || !firer)
+		return
+	var/mob/living/caught = target
+
+	firer.Beam(caught, icon_state = "chain", time = 5, maxdistance = 15, beam_sleep_time = 1)
+
+	expose_caster(max(pull_distance, 2))
+
+	caught.throw_at(firer, pull_distance, 1, caught, FALSE)
+	caught.OffBalance(2 SECONDS)
+	caught.Stun(1 SECONDS)
+	caught.visible_message(span_warning("The chain snaps taut and hauls [caught] in!"), span_userdanger("The chain bites into me and drags me forward!"))
+
+////////////////////////////////////////////////////////////////////////////////////////
+// T0 - Provocation - Ravox Trial Selector. CON/STR or INT/PER equalise.              //
+////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/action/cooldown/spell/ravox/provocation
+	name = "Provocation"
+	desc = "Declare the measure by which Ravox will weigh me against my foes. Choose between the Trial of Glory (brawn) or the Trial of Wits (mind). This choice is made once and cannot be unmade."
+	fluff_desc = "No duel pleases Him where one side was never in danger. Before He grants His judgement, He asks only which scale you would be set upon."
+	button_icon_state = "provocation"
+
+	click_to_activate = FALSE
+	cast_range = SPELL_RANGE_ADJACENT
+
+	primary_resource_cost = SPELLCOST_MIRACLE_MINOR
+
+	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
+
+	invocation_type = INVOCATION_NONE
+
+	charge_required = FALSE
+	cooldown_time = 10 SECONDS
+
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
+
+	var/trial_glory = /datum/action/cooldown/spell/ravox/trial/glory
+	var/trial_wits = /datum/action/cooldown/spell/ravox/trial/wits
+	var/choosingspell = FALSE
+
+/datum/action/cooldown/spell/ravox/provocation/cast(atom/cast_on)
+	. = ..()
+	if(choosingspell)
+		to_chat(owner, span_warning("I'm already declaring my trial!"))
+		return FALSE
+
+	choosingspell = TRUE
+	var/choice = tgui_alert(owner, "By which measure shall Ravox weigh you?", "DECLARE THE TRIAL", list("Trial of Glory", "Trial of Wits", "Cancel"))
+	choosingspell = FALSE
+
+	switch(choice)
+		if("Trial of Glory")
+			owner.mind?.AddSpell(new trial_glory, owner)
+			owner.mind?.RemoveSpell(src.type)
+			return TRUE
+		if("Trial of Wits")
+			owner.mind?.AddSpell(new trial_wits, owner)
+			owner.mind?.RemoveSpell(src.type)
+			return TRUE
+		else
+			return FALSE
+
+/datum/action/cooldown/spell/ravox/trial
 	sound = 'sound/magic/battletrance.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
 
@@ -140,7 +305,7 @@
 /datum/action/cooldown/spell/auxentius/battle/provocation/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/human/user = owner
-	if(!isliving(user))
+	if(!istype(user))
 		return FALSE
 	var/checkgate = FALSE
 	var/skill = user.get_skill_level(/datum/skill/magic/holy)
@@ -202,10 +367,10 @@
 
 	secondary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
-	invocation_type = INVOCATION_NONE //It has seperate message ON USE
+	invocation_type = INVOCATION_NONE
 
 	charge_required = FALSE
-	cooldown_time = 10 SECONDS//Does not matter it's single use
+	cooldown_time = 10 SECONDS
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 
@@ -216,7 +381,7 @@
 
 /datum/action/cooldown/spell/auxentius/battle/strikeoraegis/cast(atom/cast_on)
 	. = ..()
-	if(choosingspell == TRUE)
+	if(choosingspell)
 		to_chat(owner, span_warning("I'm already choosing a spell!"))
 	else
 		var/choice = chosen_spell

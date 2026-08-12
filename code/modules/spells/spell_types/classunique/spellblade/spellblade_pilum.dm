@@ -75,7 +75,10 @@
 	icon = 'icons/obj/magic_projectiles.dmi'
 	icon_state = "air_blade_stab"
 	color = "#88BFFF"
+	expose_caster_on_deflect = TRUE
 	damage = 35
+	damage_type = BRUTE
+	flag = "piercing"
 	woundclass = BCLASS_STAB
 	nodamage = FALSE
 	speed = 1.5
@@ -93,6 +96,8 @@
 			playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 			return BULLET_ACT_BLOCK
 		if(out_of_effective_range())
+			return
+		if(blocked >= 100)
 			return
 		apply_frost_stack(L, frost_stacks)
 		to_chat(L, span_danger("An icy pilum strikes true - the cold seeps into my bones!"))

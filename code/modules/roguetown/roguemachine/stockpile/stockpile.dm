@@ -155,6 +155,8 @@
 /obj/structure/roguemachine/stockpile/proc/try_auto_export_units(datum/roguestock/D, units)
 	if(!D || !D.trade_good_id || units <= 0)
 		return 0
+	if(D.autoexport_disabled)
+		return 0
 	if(D.stockpile_amount < units)
 		return 0
 	var/list/best = SSeconomy.get_best_export_region(D.trade_good_id)
@@ -238,7 +240,10 @@
 					if(try_auto_export_units(R, bundle_amt) <= 0)
 						R.stockpile_amount -= bundle_amt
 						if(message)
-							say("The Crown's [R.name] stockpile is full and region demands can absorb your load. Try smaller bundles or take it elsewhere.")
+							if(R.autoexport_disabled)
+								say("The Crown's [R.name] stockpile is full, autoexport disabled, take it elsewhere.")
+							else
+								say("The Crown's [R.name] stockpile is full and no region demands can absorb your load. Try smaller bundles or take it elsewhere.")
 						return
 					auto_exported = TRUE
 				SStreasury.dirty_market_view()
@@ -281,7 +286,10 @@
 				if(try_auto_export_units(R, 1) <= 0)
 					R.stockpile_amount -= 1
 					if(message)
-						say("The Crown's [R.name] stockpile is full and no region demands can absorb your load. Try smaller bundles or take it elsewhere.")
+						if(R.autoexport_disabled)
+							say("The Crown's [R.name] stockpile is full, autoexport disabled, take it elsewhere.")
+						else
+							say("The Crown's [R.name] stockpile is full and no region demands can absorb your load. Try smaller bundles or take it elsewhere.")
 					return
 				auto_exported = TRUE
 			R.refresh_auto_price()
@@ -301,7 +309,6 @@
 				SStreasury.burn(SStreasury.discretionary_fund, -crown_delta, "Quality penalty: [I.name] ([crown_delta]m)")
 			if(!full_on_arrival)
 				R.stockpile_amount += 1
-			R.stockpile_amount += 1 //stacked logs need to check for multiple
 			SStreasury.dirty_market_view()
 			qdel(I)
 			if(message == TRUE)

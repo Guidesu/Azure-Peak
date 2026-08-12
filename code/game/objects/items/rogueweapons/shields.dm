@@ -619,7 +619,7 @@
 
 // unique, better buckler for champion
 /obj/item/rogueweapon/shield/buckler/banneret
-	name = "'Aegis'"
+	name = "\"Aegis\""
 	desc = "A special buckler made out of blacksteel for the Knight Banneret, adorned with a crest. An inscription along the top reads,\"RUAT CAELUM\""
 	icon_state = "capbuckler"
 	icon = 'icons/roguetown/weapons/special/captain.dmi'

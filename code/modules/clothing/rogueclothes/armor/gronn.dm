@@ -70,7 +70,7 @@
 	icon = 'icons/roguetown/clothing/special/gronn.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/gronn.dmi'
 	unarmed_bonus = 6
-	max_integrity = 250
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	color = "#ffffff"
 	cold_protection = HAND_LEFT | HAND_RIGHT
 	min_cold_protection_temperature = 50
@@ -178,7 +178,7 @@
 			update_icon()
 		qdel(I)
 	. = ..()
-	
+
 
 /obj/item/clothing/head/roguetown/helmet/leather/shaman_hood/AdjustClothes(mob/user)
 	if(loc == user)
