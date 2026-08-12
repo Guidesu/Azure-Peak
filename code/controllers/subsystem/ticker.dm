@@ -486,6 +486,8 @@ SUBSYSTEM_DEF(ticker)
 	var/list/valid_characters = list()
 	for(var/mob/dead/new_player/new_player as anything in GLOB.new_player_list)
 		var/mob/living/carbon/human/player = new_player.new_character
+		if(new_player.client?.prefs?.dreamvalley_tat_join_pending)
+			continue
 		if(istype(player) && player.mind?.assigned_role)
 			if(player.mind.assigned_role != player.mind.special_role)
 				valid_characters[player] = new_player

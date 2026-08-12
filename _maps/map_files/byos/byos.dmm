@@ -191,57 +191,6 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/byos)
-"acC" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
 "acE" = (
 /obj/structure/table/wood,
 /obj/item/undies/bikini{
@@ -263,18 +212,6 @@
 	anchored = 0;
 	density = 0;
 	obj_integrity = 100;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -12;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
 	was_crafted = 0;
 	is_carved = 0
 	},
@@ -695,30 +632,6 @@
 	was_crafted = 0;
 	is_carved = 0
 	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "acP" = (
@@ -758,33 +671,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/town/tavern)
-"acR" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
 "acS" = (
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak,
 /obj/item/reagent_containers/food/snacks/rogue/meat_rotten{
@@ -923,18 +809,6 @@
 	was_crafted = 0;
 	is_carved = 0
 	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/byos)
 "add" = (
@@ -946,42 +820,6 @@
 	anchored = 1;
 	density = 1;
 	obj_integrity = 70
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
 	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
@@ -1233,109 +1071,7 @@
 	was_crafted = 0;
 	is_carved = 0
 	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"adq" = (
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"adr" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
 "ads" = (
 /obj/item/natural/fibers{
@@ -1350,70 +1086,10 @@
 	was_crafted = 0;
 	is_carved = 0
 	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/byos)
 "adt" = (
 /obj/structure/flora/roguetree/palm,
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /obj/item/natural/fibers{
 	name = "fibers";
 	dir = 2;
@@ -1437,42 +1113,6 @@
 	anchored = 1;
 	density = 1;
 	obj_integrity = 100
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
 	},
 /obj/item/natural/fibers{
 	name = "fibers";
@@ -1503,18 +1143,6 @@
 	dir = 2;
 	pixel_x = -2;
 	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 5;
 	anchored = 0;
 	density = 0;
 	obj_integrity = 20;
@@ -1567,66 +1195,6 @@
 /area/rogue/outdoors/byos)
 "adx" = (
 /obj/effect/landmark/events/haunts,
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
 "ady" = (
@@ -1646,30 +1214,6 @@
 /area/rogue/outdoors/byos)
 "adz" = (
 /obj/structure/flora/roguegrass/bush/jungle,
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /obj/structure/flora/roguetree/stump{
 	name = "tree stump";
 	dir = 2;
@@ -1678,18 +1222,6 @@
 	anchored = 1;
 	density = 1;
 	obj_integrity = 100
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
 	},
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/byos)
@@ -1747,212 +1279,10 @@
 	},
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
-"adC" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
 "adD" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog/north)
-"adE" = (
-/obj/item/oystershell,
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
-"adF" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/water/cleanshallow,
-/area/rogue/outdoors/byos)
-"adG" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
-"adH" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/byos)
-"adI" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 3;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
-"adJ" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
 "adK" = (
 /obj/structure/bars/passage{
 	redstone_id = "greedexit5"
@@ -1986,112 +1316,7 @@
 	},
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/byos)
-"adM" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"adN" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassred,
-/area/rogue/outdoors/byos)
-"adO" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
 "adP" = (
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /obj/structure/flora/roguetree/stump{
 	name = "tree stump";
 	dir = 2;
@@ -2101,40 +1326,7 @@
 	density = 1;
 	obj_integrity = 100
 	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 3;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"adQ" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 3;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"adR" = (
-/obj/effect/landmark/mapGenerator/rogue/island{
-	endTurfX = 350
-	},
-/turf/open/water/cleanshallow,
 /area/rogue/outdoors/byos)
 "adS" = (
 /obj/structure/flora/roguetree/stump/palm{
@@ -2145,54 +1337,6 @@
 	anchored = 1;
 	density = 1;
 	obj_integrity = 100
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
 	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
@@ -3022,17 +2166,6 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "aer" = (
-/obj/item/organ/ears{
-	name = "ears";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 200;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /obj/item/organ/tongue{
 	name = "tongue";
 	dir = 2;
@@ -3406,44 +2539,6 @@
 	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
-"aeI" = (
-/obj/item/paper/scroll{
-	name = "papyrus";
-	dir = 2;
-	pixel_x = -10;
-	pixel_y = -10;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"aeJ" = (
-/obj/structure/fluff/sign{
-	name = "sign";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 0;
-	anchored = 1;
-	density = 0;
-	obj_integrity = 150
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"aeK" = (
-/obj/structure/fluff/sign{
-	name = "sign";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 0;
-	anchored = 1;
-	density = 0;
-	obj_integrity = 150
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
 "aeL" = (
 /obj/item/clothing/neck/roguetown/coif{
 	name = "scavenged coif";
@@ -3643,33 +2738,6 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/indoors/inq/boat)
-"aeV" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
 "aeW" = (
 /obj/structure/table/wood{
 	icon_state = "largetable"
@@ -3677,63 +2745,6 @@
 /obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/tribeden)
-"aeX" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/byos)
-"aeY" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"aeZ" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
 "afa" = (
 /obj/item/natural/fibers{
 	name = "fibers";
@@ -4072,21 +3083,6 @@
 	},
 /turf/open/floor/rogue/woodturned,
 /area/rogue/outdoors/byos)
-"afn" = (
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/byos)
 "afo" = (
 /obj/item/reagent_containers/glass/bottle/rogue/beer/saigamilk{
 	name = "bottle of brewed Saiga Milk";
@@ -4147,69 +3143,6 @@
 	is_carved = 0
 	},
 /turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"afr" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/byos)
 "afs" = (
 /obj/item/natural/stone{
@@ -4298,18 +3231,6 @@
 	was_crafted = 0;
 	is_carved = 0
 	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "afu" = (
@@ -4381,272 +3302,11 @@
 	},
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/byos)
-"afz" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"afA" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 5;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/byos)
-"afB" = (
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"afC" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 3;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"afD" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 1;
-	pixel_x = -3;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 1;
-	pixel_x = -3;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
-"afE" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -2;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
 "afF" = (
 /obj/structure/fluff/walldeco/chains,
 /obj/structure/closet/crate/coffin/vampire,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/vampire_manor)
-"afG" = (
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -5;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/grasscold,
-/area/rogue/outdoors/byos)
 "afH" = (
 /obj/structure/flora/roguegrass/herb/random,
 /obj/item/natural/fibers{
@@ -4657,147 +3317,6 @@
 	anchored = 0;
 	density = 0;
 	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"afI" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 4;
-	pixel_y = -4;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -1;
-	pixel_y = 5;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"afJ" = (
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 0;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 1;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/turf/open/floor/rogue/snowrough,
-/area/rogue/outdoors/byos)
-"afK" = (
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree{
-	name = "log";
-	dir = 2;
-	pixel_x = -3;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 2;
-	pixel_y = -1;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = -4;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/stick{
-	name = "stick";
-	dir = 2;
-	pixel_x = 3;
-	pixel_y = -3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 20;
-	quality = 3;
-	was_crafted = 0;
-	is_carved = 0
-	},
-/obj/item/grown/log/tree/small{
-	name = "small log";
-	dir = 2;
-	pixel_x = -2;
-	pixel_y = 3;
-	anchored = 0;
-	density = 0;
-	obj_integrity = 30;
 	quality = 3;
 	was_crafted = 0;
 	is_carved = 0
@@ -4815,13 +3334,6 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
-"agj" = (
-/obj/item/grown/log/tree/small,
-/obj/structure/fluff/railing/border{
-	dir = 6
-	},
-/turf/open/floor/rogue/ruinedwood/platform,
-/area/rogue/indoors/town/tavern)
 "agC" = (
 /turf/closed/wall/mineral/rogue/wooddark/vertical,
 /area/rogue/indoors)
@@ -5287,7 +3799,6 @@
 	lockid = "towner_fisher"
 	},
 /obj/item/rogueweapon/hoe,
-/obj/item/grown/log/tree/small,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors)
 "aJc" = (
@@ -5854,7 +4365,6 @@
 	pixel_x = -2
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/item/rogueweapon/huntingknife/idagger/silver/elvish/drow,
 /turf/open/floor/rogue/snowrough,
 /area/rogue/under/cave)
 "byf" = (
@@ -6228,10 +4738,6 @@
 /obj/machinery/light/rogue/candle/blue/r,
 /turf/open/floor/rogue/greenstone/runed,
 /area/rogue/under/town/basement)
-"bUw" = (
-/obj/item/grown/log/tree/small,
-/turf/open/floor/rogue/ruinedwood/chevron,
-/area/rogue/indoors/town/tavern)
 "bUL" = (
 /obj/item/rogueore/iron,
 /turf/open/floor/rogue/volcanic,
@@ -6852,9 +5358,6 @@
 /obj/structure/ladder,
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors)
-"cEL" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback,
-/area/rogue/under/cave)
 "cEY" = (
 /obj/structure/fluff/railing/border{
 	layer = 2;
@@ -7810,7 +6313,6 @@
 /turf/closed/mineral/rogue,
 /area/rogue/under/cave)
 "dNv" = (
-/obj/item/grown/log/tree,
 /obj/effect/decal/cleanable/dirt/cobweb,
 /obj/structure/flora/roguegrass/jungle/sparse,
 /turf/open/floor/rogue/grasscold,
@@ -9820,15 +8322,6 @@
 /obj/item/natural/stone,
 /obj/item/natural/stone,
 /obj/item/natural/stone,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/beach/harbor)
 "geR" = (
@@ -10044,10 +8537,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/vampire_manor)
-"gnY" = (
-/obj/item/grown/log/tree/small,
-/turf/open/floor/rogue/ruinedwood/platform,
-/area/rogue/indoors/town/tavern)
 "gog" = (
 /obj/structure/chair/wood/rogue/chair3,
 /turf/open/floor/rogue/ruinedwood/chevron,
@@ -10188,10 +8677,6 @@
 	pixel_x = -8
 	},
 /turf/open/floor/rogue/volcanic,
-/area/rogue/under/cave)
-"gzR" = (
-/obj/item/grown/log/tree,
-/turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
 "gAp" = (
 /obj/structure/fluff/walldeco/psybanner/red{
@@ -11015,10 +9500,6 @@
 "hzq" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/cleanshallow,
-/area/rogue/under/cave)
-"hzr" = (
-/obj/item/grown/log/tree/small,
-/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "hzX" = (
 /obj/structure/closet/crate/coffin{
@@ -12110,9 +10591,6 @@
 /area/rogue/under/cave)
 "iMh" = (
 /obj/structure/rack/rogue,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/tribeden)
 "iMm" = (
@@ -12376,7 +10854,6 @@
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/outdoors/byos)
 "jep" = (
-/obj/item/grown/log/tree/stick,
 /obj/structure/vine,
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/under/cave)
@@ -12874,6 +11351,13 @@
 	endTurfX = 350;
 	endTurfY = 350
 	},
+/obj/effect/landmark/mapGenerator/rogue/bog,
+/obj/effect/landmark/mapGenerator/rogue/island{
+	endTurfX = 350
+	},
+/obj/effect/landmark/mapGenerator/rogue/beach,
+/obj/effect/landmark/mapGenerator/rogue/mountain,
+/obj/effect/landmark/mapGenerator/rogue/roguetownfield,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/byos)
 "jHc" = (
@@ -14209,10 +12693,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/inq/boat)
-"lau" = (
-/obj/item/grown/log/tree/small,
-/turf/open/transparent/openspace,
-/area/rogue/indoors/town/tavern)
 "laE" = (
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/rogue/naturalstone,
@@ -15118,6 +13598,7 @@
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless{
 	faction = list("crabs")
 	},
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "lYR" = (
 /obj/structure/fluff/railing/border{
@@ -17378,13 +15859,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "ouN" = (
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
 /obj/structure/closet/crate/chest,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/cavewet/byos/banditcove)
 "ovh" = (
@@ -18034,10 +16509,6 @@
 	icon_state = "wooden_floor2"
 	},
 /area/rogue/under/cavewet/byos/banditcove)
-"phl" = (
-/obj/effect/landmark/mapGenerator/rogue/beach,
-/turf/open/water/cleanshallow,
-/area/rogue/outdoors/byos)
 "phx" = (
 /obj/machinery/light/rogue/firebowl/standing/blue,
 /turf/open/floor/rogue/naturalstone/sandstone,
@@ -18887,10 +17358,6 @@
 "qcH" = (
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/rtfield)
-"qcL" = (
-/obj/item/grown/log/tree,
-/turf/open/floor/rogue/ruinedwood/platform,
-/area/rogue/indoors/town/tavern)
 "qdQ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/snowrough,
@@ -19353,11 +17820,6 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)
-"qBO" = (
-/obj/item/reagent_containers/food/snacks/smallrat,
-/obj/item/grown/log/tree/small,
-/turf/open/floor/rogue/ruinedwood/platform,
-/area/rogue/indoors/town/tavern)
 "qBU" = (
 /obj/structure/lever{
 	redstone_id = "hoard";
@@ -19614,7 +18076,6 @@
 	},
 /area/rogue/indoors/inq/boat)
 "qSS" = (
-/obj/item/grown/log/tree/small,
 /obj/structure/flora/roguegrass/bush/jungle,
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors)
@@ -19668,7 +18129,6 @@
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/cave/tribeden)
 "qVS" = (
-/obj/item/grown/log/tree,
 /obj/structure/flora/roguegrass/jungle,
 /turf/open/floor/rogue/snowrough,
 /area/rogue/indoors/town/tavern)
@@ -21699,10 +20159,6 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp/byos)
-"tbQ" = (
-/obj/item/grown/log/tree,
-/turf/open/floor/rogue/underworld/road,
-/area/rogue/under/cave)
 "tbX" = (
 /obj/structure/closet/crate/drawer,
 /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman,
@@ -22148,14 +20604,6 @@
 	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/indoors/inq/boat/office)
-"tzd" = (
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/tribeden)
 "tzx" = (
 /obj/structure/rack/rogue,
 /obj/item/lovepotion,
@@ -22681,10 +21129,6 @@
 	dir = 4
 	},
 /area/rogue/indoors/inq/boat)
-"ugE" = (
-/obj/item/grown/log/tree,
-/turf/open/floor/rogue/volcanic,
-/area/rogue/under/cave)
 "ugL" = (
 /obj/structure/fluff/railing/border{
 	dir = 5
@@ -24397,10 +22841,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
-"wii" = (
-/obj/item/grown/log/tree/small,
-/turf/open/floor/rogue/snowrough,
-/area/rogue/indoors)
 "wiH" = (
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
@@ -25491,7 +23931,6 @@
 /area/rogue/under/cavewet/byos/banditcove)
 "xzo" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/grown/log/tree/small,
 /obj/item/candle/yellow,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors)
@@ -25658,7 +24097,6 @@
 	pixel_y = -5
 	},
 /obj/item/rogueweapon/shovel/small,
-/obj/item/grown/log/tree/small,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
 "xJO" = (
@@ -26009,10 +24447,6 @@
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/byos)
-"ybf" = (
-/obj/item/grown/log/tree/stick,
-/turf/open/floor/rogue/ruinedwood/platform,
-/area/rogue/under/cave)
 "ybo" = (
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/cobblerock,
@@ -42013,7 +40447,7 @@ dNc
 dNc
 dNc
 rlt
-ugE
+wXy
 wXy
 wXy
 wXy
@@ -42627,7 +41061,7 @@ oai
 oai
 oai
 wXy
-ugE
+wXy
 wXy
 jGW
 oQg
@@ -43228,7 +41662,7 @@ rOs
 wXy
 rOs
 wXy
-tbQ
+rOs
 wXy
 wXy
 rOs
@@ -43437,7 +41871,7 @@ wXy
 rOs
 wXy
 wXy
-ugE
+wXy
 wXy
 wXy
 wXy
@@ -43830,7 +42264,7 @@ nFS
 hsi
 rOs
 wXy
-ugE
+wXy
 wXy
 wXy
 oai
@@ -47757,11 +46191,11 @@ wXy
 qNG
 dNc
 dNc
-wgd
-wgd
+rRr
+rRr
 mPH
-wgd
-wgd
+rRr
+rRr
 rRr
 bzU
 ceB
@@ -47959,7 +46393,7 @@ wXy
 dNc
 dNc
 mPH
-wgd
+rRr
 wDj
 ceB
 mPH
@@ -48160,7 +46594,7 @@ wXy
 wXy
 rRr
 jgz
-wgd
+rRr
 mPH
 rRr
 kNn
@@ -48373,7 +46807,7 @@ oQg
 oQg
 oQg
 oQg
-wgd
+rRr
 mPH
 oQg
 dNc
@@ -48575,7 +47009,7 @@ qNG
 qNG
 qNG
 oQg
-wgd
+rRr
 mPH
 wDj
 oQg
@@ -48777,7 +47211,7 @@ qNG
 qNG
 qNG
 oQg
-wgd
+rRr
 iSh
 mPH
 oQg
@@ -48981,8 +47415,8 @@ qNG
 oQg
 mPH
 mPH
-wgd
-wgd
+rRr
+rRr
 wDj
 oQg
 dNc
@@ -49182,11 +47616,11 @@ qNG
 qNG
 oQg
 wDj
-wgd
+rRr
 tbd
-wgd
-wgd
-cEL
+rRr
+rRr
+uKh
 oQg
 dNc
 dNc
@@ -49384,12 +47818,12 @@ qNG
 qNG
 dNc
 oQg
-wgd
+rRr
 mPH
 mPH
 iSh
-wgd
-wgd
+rRr
+rRr
 wDj
 oQg
 oQg
@@ -49586,8 +48020,8 @@ qNG
 qNG
 dNc
 oQg
-cEL
-wgd
+uKh
+rRr
 iSh
 mPH
 wDj
@@ -49789,9 +48223,9 @@ qNG
 dNc
 oQg
 wDj
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
 uwz
 huI
 huI
@@ -49991,7 +48425,7 @@ qNG
 dNc
 dNc
 oQg
-wgd
+rRr
 rRr
 wDj
 huI
@@ -50193,7 +48627,7 @@ dNc
 dNc
 dNc
 oQg
-wgd
+rRr
 tbd
 mPH
 huI
@@ -50395,11 +48829,11 @@ sWp
 sWp
 dNc
 oQg
-wgd
-wgd
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
+rRr
+rRr
 rRr
 wDj
 oQg
@@ -50599,11 +49033,11 @@ dNc
 oQg
 mPH
 wDj
-wgd
-wgd
+rRr
+rRr
 jgz
-wgd
-wgd
+rRr
+rRr
 mPH
 oQg
 qNG
@@ -50802,9 +49236,9 @@ oQg
 wDj
 iSh
 mPH
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
 mPH
 kNn
 oQg
@@ -51004,9 +49438,9 @@ oQg
 jgz
 rRr
 yaj
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
 rRr
 tAt
 iSh
@@ -51203,14 +49637,14 @@ qNG
 qNG
 oQg
 iSh
-wgd
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
+rRr
 mPH
-cEL
+uKh
 nPp
-wgd
+rRr
 rRr
 oQg
 qNG
@@ -51404,16 +49838,16 @@ qNG
 qNG
 qNG
 wDj
-cEL
-wgd
+uKh
+rRr
 nPp
-wgd
+rRr
 huI
 wWg
-wgd
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
+rRr
 oQg
 qNG
 qNG
@@ -51609,11 +50043,11 @@ wDj
 mPH
 pbb
 rRr
-wgd
+rRr
 huI
 huI
 huI
-wgd
+rRr
 yaj
 rRr
 oQg
@@ -51810,9 +50244,9 @@ qNG
 oQg
 kNn
 mPH
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
 huI
 huI
 mPH
@@ -52011,10 +50445,10 @@ qNG
 qNG
 oQg
 jgz
-cEL
-wgd
+uKh
+rRr
 bco
-wgd
+rRr
 mPH
 mdi
 rRr
@@ -52822,8 +51256,8 @@ dNc
 dNc
 dNc
 dNc
-wgd
-wgd
+rRr
+rRr
 dNc
 dNc
 dNc
@@ -53025,10 +51459,10 @@ sWp
 sWp
 dNc
 kNn
-wgd
+rRr
 dNc
 xda
-wgd
+rRr
 dNc
 dNc
 dNc
@@ -53227,10 +51661,10 @@ sWp
 sWp
 dNc
 rRr
-wgd
+rRr
 dNc
 kNn
-wgd
+rRr
 lXZ
 dNc
 dNc
@@ -53428,12 +51862,12 @@ qNG
 qNG
 sWp
 dNc
-wgd
+rRr
 rRr
 dNc
 dNc
 lXZ
-wgd
+rRr
 mdi
 dNc
 dNc
@@ -53630,14 +52064,14 @@ qNG
 qNG
 sWp
 dNc
-wgd
-wgd
+rRr
+rRr
 wKK
 dNc
 lXZ
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
 dNc
 dNc
 dNc
@@ -53833,12 +52267,12 @@ qNG
 sWp
 dNc
 mPH
-wgd
+rRr
 mPH
 dNc
 dNc
-wgd
-wgd
+rRr
+rRr
 kNn
 dNc
 dNc
@@ -54035,12 +52469,12 @@ qNG
 qNG
 dNc
 rRr
-wgd
-wgd
-wgd
-wgd
+rRr
+rRr
+rRr
+rRr
 wKK
-wgd
+rRr
 mPH
 dNc
 dNc
@@ -54238,11 +52672,11 @@ qNG
 dNc
 mdi
 mPH
-wgd
+rRr
 huI
 mPH
 mPH
-wgd
+rRr
 mdi
 dNc
 dNc
@@ -120611,7 +119045,7 @@ nQA
 nQA
 ues
 kVL
-tzd
+muW
 hFU
 hFU
 hFU
@@ -168009,7 +166443,7 @@ lDh
 lDh
 lDh
 lDh
-adR
+lDh
 "}
 (3,1,3) = {"
 rhI
@@ -168211,7 +166645,7 @@ lDh
 lDh
 lDh
 lDh
-phl
+lDh
 "}
 (4,1,3) = {"
 rhI
@@ -177659,7 +176093,7 @@ kqm
 wad
 nQc
 nQc
-wii
+xYU
 kxl
 kxl
 qLl
@@ -182720,7 +181154,7 @@ adB
 wiH
 wiH
 wiH
-adI
+wiH
 wOP
 lDh
 lDh
@@ -182921,9 +181355,9 @@ gZp
 wiH
 wiH
 wiH
-adE
-adC
-adF
+nzf
+wiH
+lDh
 lDh
 lDh
 lDh
@@ -183117,14 +181551,14 @@ nQc
 mcm
 mcm
 xSo
-adN
+xSo
 wad
 nQc
 adt
 wiH
 wiH
 wiH
-adG
+wiH
 adj
 fef
 lDh
@@ -183319,14 +181753,14 @@ xSo
 mcm
 xSo
 wad
-adO
+wad
 wad
 nQc
 adu
 adw
 adv
 wiH
-adJ
+wiH
 wiH
 lDh
 lDh
@@ -183519,8 +181953,8 @@ wad
 nQc
 mcm
 mcm
-adQ
-adM
+wad
+wad
 adP
 adV
 adL
@@ -183930,7 +182364,7 @@ wad
 adW
 nQc
 nQc
-adr
+wiH
 wiH
 wiH
 wiH
@@ -184534,7 +182968,7 @@ kqm
 wad
 wad
 nQc
-adq
+nQc
 wiH
 wiH
 qEZ
@@ -186533,7 +184967,7 @@ qJq
 kKT
 kKT
 kKT
-gnY
+qJq
 qJq
 kKT
 udF
@@ -186557,7 +184991,7 @@ nQc
 nQc
 wad
 wad
-afr
+nQc
 nQc
 wiH
 fef
@@ -187137,7 +185571,7 @@ qJq
 bJE
 teA
 ubu
-gnY
+qJq
 ihY
 kKT
 qJq
@@ -187341,7 +185775,7 @@ tFU
 kWt
 wor
 sjI
-gnY
+qJq
 qJq
 gAD
 xKK
@@ -187352,7 +185786,7 @@ xSo
 xSo
 mcm
 gyE
-acC
+wad
 aMC
 afb
 nQc
@@ -187961,7 +186395,7 @@ mcm
 mcm
 mcm
 mcm
-afn
+mcm
 mcm
 wad
 wad
@@ -188162,7 +186596,7 @@ mcm
 xSo
 mcm
 yaT
-afA
+mcm
 mcm
 mcm
 wad
@@ -188363,9 +186797,9 @@ mcm
 xSo
 xSo
 nQc
-afz
-afB
-afE
+nQc
+nQc
+nQc
 nQc
 wad
 wad
@@ -188566,8 +187000,8 @@ mcm
 etS
 nQc
 afH
-afC
-afG
+wad
+wad
 acO
 wad
 wad
@@ -188768,7 +187202,7 @@ xSo
 xSo
 nQc
 wad
-afD
+wad
 wad
 wad
 wad
@@ -188969,7 +187403,7 @@ mcm
 mcm
 nQc
 nQc
-afJ
+nQc
 wad
 wad
 wad
@@ -189170,11 +187604,11 @@ nQc
 xSo
 mcm
 nQc
-afI
-afK
+nQc
+nQc
 wad
 nQc
-acR
+nQc
 wad
 wad
 nQc
@@ -189766,7 +188200,7 @@ wad
 wad
 wad
 wad
-aeJ
+nQc
 nQc
 wad
 wad
@@ -189968,7 +188402,7 @@ wad
 wad
 wad
 wad
-aeK
+wad
 wad
 nQc
 wad
@@ -189992,8 +188426,8 @@ nQc
 nQc
 nQc
 nQc
-aeY
-aeX
+wad
+wiH
 wiH
 wiH
 wiH
@@ -190170,7 +188604,7 @@ wad
 nQc
 kqm
 aep
-aeI
+nQc
 wad
 wad
 wad
@@ -190392,10 +188826,10 @@ wad
 wad
 wad
 wad
-aeV
+wad
 nQc
 wad
-aeZ
+nQc
 wad
 wad
 wiH
@@ -251346,7 +249780,7 @@ klm
 cad
 klm
 rRr
-gzR
+klm
 kCU
 klm
 qNG
@@ -251545,7 +249979,7 @@ dNc
 dNc
 qNG
 tkG
-hzr
+rRr
 liX
 kCU
 rRr
@@ -253219,7 +251653,7 @@ dqG
 dqG
 dqG
 dqG
-adH
+dqG
 dqG
 dqG
 dqG
@@ -256827,7 +255261,7 @@ htM
 hIB
 gjh
 iee
-agj
+orB
 xLX
 qzi
 lyQ
@@ -257238,7 +255672,7 @@ qJq
 lyQ
 rfe
 qzi
-gnY
+qJq
 tFU
 tFU
 dqG
@@ -257436,7 +255870,7 @@ lyQ
 qJq
 qJq
 qJq
-qBO
+nkS
 qJq
 qJq
 qJq
@@ -257845,7 +256279,7 @@ qJq
 gaA
 gaA
 gaA
-bUw
+gaA
 qJq
 dqG
 dqG
@@ -258244,7 +256678,7 @@ qJq
 qJq
 qJq
 qJq
-lau
+wor
 tFU
 xFw
 gaA
@@ -321868,7 +320302,7 @@ caK
 caK
 caK
 nhF
-ybf
+xjU
 bRw
 caK
 caK
@@ -327530,7 +325964,7 @@ qJn
 qJq
 fZG
 wor
-qcL
+qJq
 fZG
 vUU
 qJq
@@ -328747,7 +327181,7 @@ qJq
 qJq
 cTN
 sRc
-gnY
+qJq
 fwL
 ovi
 lmU

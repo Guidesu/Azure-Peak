@@ -369,7 +369,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	var/error = IsJobUnavailable(rank, TRUE)
+	var/tat_join = client?.prefs?.dreamvalley_tat_join_pending
+	var/error = tat_join ? JOB_AVAILABLE : IsJobUnavailable(rank, TRUE)
 	if(error != JOB_AVAILABLE)
 		to_chat(src, span_warning("[get_job_unavailable_error_message(error, rank)]"))
 		return FALSE
@@ -396,22 +397,25 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 
 
-	SSjob.AssignRole(src, rank, 1)
+	if(!tat_join)
+		SSjob.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 
 	character.islatejoin = TRUE
-	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	var/equip
+	if(!tat_join)
+		equip = SSjob.EquipRank(character, rank, TRUE)
 
 
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
 
-	var/datum/job/job = SSjob.GetJob(rank)
+	var/datum/job/job = tat_join ? null : SSjob.GetJob(rank)
 
-
-	if(job && !job.override_latejoin_spawn(character))
-
+	if(tat_join)
+		SSjob.SendToLateJoin(character)
+	else if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
 
 //		if(!arrivals_docked)

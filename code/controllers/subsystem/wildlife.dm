@@ -152,6 +152,8 @@ SUBSYSTEM_DEF(wildlife)
 	if(GLOB.tod != "night")
 		try_spawn_wildlife()
 
+	try_spawn_ambient_encounter()
+
 	// Check despawn for all tracked wildlife
 	check_despawns()
 
@@ -286,7 +288,7 @@ SUBSYSTEM_DEF(wildlife)
 		if(!A.outdoors)
 			continue
 		// Skip dangerous/indoor areas
-		if(istype(A, /area/rogue/outdoors))
+		if(A.outdoors)
 			for(var/turf/T in A)
 				if(isopenturf(T) && !is_blocked_turf(T))
 					candidates += T
@@ -306,7 +308,7 @@ SUBSYSTEM_DEF(wildlife)
 		if(!A.outdoors)
 			continue
 		// Prefer forest/wilderness areas
-		if(istype(A, /area/rogue/outdoors/woods) || istype(A, /area/rogue/outdoors))
+		if(A.outdoors)
 			for(var/turf/T in A)
 				if(isopenturf(T) && !is_blocked_turf(T))
 					// Check it's far from players
@@ -383,3 +385,17 @@ SUBSYSTEM_DEF(wildlife)
 		// Despawn: fade out and delete
 		animate(L, alpha = 0, time = 2 SECONDS)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), L), 2 SECONDS)
+
+/datum/controller/subsystem/wildlife/proc/try_spawn_ambient_encounter()
+	var/list/players = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != CONSCIOUS || !H.client || !H.ambushable())
+			continue
+		var/area/A = get_area(H)
+		if(!A?.ambush_mobs || !A.outdoors)
+			continue
+		players += H
+	if(!players.len)
+		return
+	var/mob/living/carbon/human/target = pick(players)
+	target.consider_ambush(silent = FALSE)

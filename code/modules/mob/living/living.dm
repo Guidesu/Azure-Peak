@@ -12,12 +12,13 @@
 	var/roll_affixes_on_spawn = FALSE
 	/// Base name before affixes are applied
 	var/affix_base_name
-	/// Affix tier used for difficulty scaling
+	var/affix_spawn_had_mind = FALSE
 	var/affix_tier = 1
 
 
 /mob/living/Initialize()
 	. = ..()
+	affix_spawn_had_mind = !!mind
 	var/turf/turf = get_turf(loc)
 	if(turf)
 		if(!("[turf.z]" in GLOB.weatherproof_z_levels))
