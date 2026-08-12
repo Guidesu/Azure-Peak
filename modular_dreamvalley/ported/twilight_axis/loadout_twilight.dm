@@ -545,3 +545,179 @@
 	name = "Cowbell Collar"
 	path = /obj/item/clothing/neck/roguetown/collar/bell/cowbell
 	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Headwear
+////////////////////////////////////////
+/datum/loadout_item/tw_steward_tophat
+	name = "Top Hat"
+	path = /obj/item/clothing/head/roguetown/stewardtophat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_elven_burka
+	name = "Elven Burka"
+	path = /obj/item/clothing/head/roguetown/twilight_elven_hat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_kokoshnik
+	name = "Kokoshnik"
+	path = /obj/item/clothing/head/roguetown/twilight_hammerhold_hat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_hammerhold_hat_peasant
+	name = "Hammerhold Hat"
+	path = /obj/item/clothing/head/roguetown/twilight_hammerhold_hat/peasant
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_nun_hood
+	name = "Nun Hood"
+	path = /obj/item/clothing/head/roguetown/nunTA
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_bishop_hood
+	name = "Bishop Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/bishop
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_eora_flowercrown
+	name = "Crown of Trnva Flowers"
+	path = /obj/item/flowercrown/rosa/resprite
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_soundbreaker_hat
+	name = "Soundbreaker Hat"
+	path = /obj/item/clothing/head/roguetown/bardhat/soundbreakerhat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_antlers
+	name = "Old Antlers"
+	path = /obj/item/clothing/head/roguetown/antlers
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_noble_hood
+	name = "Noble Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/burgerhood
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_head_scarf
+	name = "Head Scarf"
+	path = /obj/item/clothing/head/roguetown/hscarf
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_wanderer_hat
+	name = "Wanderer's Hat"
+	path = /obj/item/clothing/head/roguetown/duelhat/etrhat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_grenzelhoft_hat_decorated
+	name = "Decorated Plume Hat"
+	path = /obj/item/clothing/head/roguetown/grenzelhofthat/decorated
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Gloves & Wrists
+////////////////////////////////////////
+/datum/loadout_item/tw_elven_gloves
+	name = "Elven Rider Gloves"
+	path = /obj/item/clothing/gloves/roguetown/angle/twilight_elven
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_elven_bracers
+	name = "Elven Rider Bracers"
+	path = /obj/item/clothing/wrists/roguetown/bracers/twilight_elven
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Masks
+////////////////////////////////////////
+/datum/loadout_item/tw_dendormask_armored
+	name = "Armored Briarmask"
+	path = /obj/item/clothing/head/roguetown/dendormask/armored
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_naledi_mask_steel
+	name = "Steel Naledian Mask"
+	path = /obj/item/clothing/mask/rogue/lordmask/naledi/steel
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Storage
+////////////////////////////////////////
+/datum/loadout_item/tw_hammerhold_sash
+	name = "Hammerhold Sash"
+	path = /obj/item/storage/belt/rogue/leather/hammerhold_sash
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Rings
+////////////////////////////////////////
+/datum/loadout_item/tw_baotha_ring
+	name = "Snake Ring"
+	path = /obj/item/clothing/ring/baotha
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Shirts
+////////////////////////////////////////
+/datum/loadout_item/tw_etrdress
+	name = "Low-cut Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/etrdress
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_etrdress2
+	name = "Embroidered Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/etrdress2
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_etrshirt
+	name = "Low-cut Shirt"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/etrshirt
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_padedetrshirt
+	name = "Padded Etruscan Shirt"
+	path = /obj/item/clothing/suit/roguetown/shirt/padedetrshirt
+	sort_category = "Twilight-Axis"
+
+////////////////////////////////////////
+// Missing Clothing - Armor
+////////////////////////////////////////
+/datum/loadout_item/tw_grenzelhoft_hauberk
+	name = "Grenzelhoftian Hip-shirt w/Hauberk"
+	path = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/grenzelhoft
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_iron_besilked
+	name = "Iron Besilked Haubergeon"
+	path = /obj/item/clothing/suit/roguetown/armor/chainmail/iron/besilked
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_steward_tailcoat
+	name = "Steward Tailcoat"
+	path = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_baotha_masquerade
+	name = "Masquerade"
+	path = /obj/item/clothing/suit/roguetown/armor/regenerating/baotha
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_noble_jacket
+	name = "Noble Jacket"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket/handjacket
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_raneshen_scale_coat
+	name = "Ranesheni Scale Coat"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen/new_coat
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_etrjacket
+	name = "Wanderer's Jacket"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/etrjacket
+	sort_category = "Twilight-Axis"
+
+/datum/loadout_item/tw_soundbreaker_robes
+	name = "Soundbreaker Robes"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe/soundbreakerrobe
+	sort_category = "Twilight-Axis"

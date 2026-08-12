@@ -92,6 +92,7 @@
 #include "ported\twilight_axis\kazengun_wardrobe\kazengun_wardrobe.dm"
 #include "ported\twilight_axis\desert_wardrobe\desert_wardrobe.dm"
 #include "ported\twilight_axis\extra_wardrobe\extra_wardrobe.dm"
+#include "ported\twilight_axis\extra_wardrobe\missing_clothing.dm"
 #include "ported\twilight_axis\misc_items\misc_items.dm"
 #include "ported\twilight_axis\extra_items\extra_items.dm"
 #include "ported\twilight_axis\loadout_twilight.dm"

@@ -20,9 +20,7 @@
 //   not exist in DreamValley; a local neurotoxin reagent is defined here to preserve
 //   the weapon's on-hit drug effect.
 // - The snake's sting's attack_self() proc creates a /obj/item/clothing/ring/baotha
-//   which does not exist in DreamValley; that proc is omitted to avoid a dangling
-//   type reference. The cursed_item component and on-hit hallucination/toxin effects
-//   are retained.
+//   which is now ported in missing_clothing.dm; the proc has been restored.
 // - Her verdict (donat_astrata kriegmesser) uses DreamValley's native
 //   icons/obj/items/donor_weapons_64.dmi (shared ancestry with TA's donor icon file).
 // - Psydonic claws were already ported as "vaeltic claws" in
@@ -273,6 +271,18 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/baotha/proc/icon_proc()
 	icon_state = "baotha_knife2"
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/baotha/attack_self(var/mob/living/carbon/human/user)
+	if(user.patron?.type == /datum/patron/inhumen/baotha)
+		if(do_after(user, 10, target = src))
+			var/obj/item/clothing/ring/baotha/S = new/obj/item/clothing/ring/baotha(get_turf(src.loc))
+			if(user.is_holding(src))
+				user.dropItemToGround(src)
+				user.put_in_hands(S)
+			qdel(src)
+			playsound(user, pick('sound/magic/magic_nulled.ogg'), 20, TRUE)
+		else
+			to_chat(user, span_notice("I am losing concentration!"))
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/baotha/proc/on_hit_effects(obj/item/source, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone)
 	SIGNAL_HANDLER
