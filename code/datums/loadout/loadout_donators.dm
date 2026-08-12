@@ -891,20 +891,30 @@
 	path = /obj/item/clothing/cloak/tabard/donator_squidqueen_harlottoga
 	ckeywhitelist = list("lmwevil")
 
-/*/datum/loadout_item/donator/hellpossum_apostle_armor
-	name = "Donator Kit - Apostolic Armor"
+/datum/loadout_item/donator/hellpossum_apostle_armor
+	name = "Donator Kit - Apostle's Armor"
 	path = /obj/item/enchantingkit/hellpossum_apostle_armor
 	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")
 
 /datum/loadout_item/donator/hellpossum_robed_apostle_armor
-	name = "Donator Kit - Apostolic Armor, Robed"
+	name = "Donator Kit - Apostle's Armor, Robed"
 	path = /obj/item/enchantingkit/hellpossum_robed_apostle_armor
 	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")
 
 /datum/loadout_item/donator/hellpossum_apostle_helm
-	name = "Donator Kit - Apostolic Burgeonet"
+	name = "Donator Kit - Apostle's Burgeonet"
 	path = /obj/item/enchantingkit/hellpossum_apostle_helm
-	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")*/ //Staged for later, at the donator's request.
+	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")
+
+/datum/loadout_item/donator/hellpossum_apostle_winghelm
+	name = "Donator Kit - Apostle's Burgeonet, Winged"
+	path = /obj/item/enchantingkit/hellpossum_apostle_winghelm
+	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")
+
+/datum/loadout_item/donator/hellpossum_apostle_wingsallet
+	name = "Donator Kit - Apostle's Sallet, Winged"
+	path = /obj/item/enchantingkit/hellpossum_apostle_wingsallet
+	ckeywhitelist = list("dasfox, purplepineapple, bigfoot02, ryan180602, oddbomber3768")
 
 /datum/loadout_item/donator/hellpossum_grandmaster_armor
 	name = "Donator Kit - Grandmaster's Armor, Robed"
