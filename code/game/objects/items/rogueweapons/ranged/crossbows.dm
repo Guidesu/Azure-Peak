@@ -12,7 +12,7 @@
 	it uses a sophisticated mechanism to renock - and retain - its half-length bolts; a \
 	matter that relies more on raw strength than dexterity to master. </br>A favorite \
 	amongst the Keep's ever-dutiful watchmen, both for its relative ease-of-use and \
-	effectiveness against Vaeltis's unchivalrous inhabitants."
+	effectiveness against Psydonia's unchivalrous inhabitants."
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "crossbow0"
 	item_state = "crossbow"
@@ -350,7 +350,7 @@
 	desc = "A heavier weight crossbow - the basis of a mounted ballista, made fit for handheld usage. Integrated just \
 	beneath the stock is a windlass mechanism, necessary to surmount the siegebow's titanic draw-strength. It loads \
 	heavier, full-length bolts; purpose-made to pulverize. </br>Assembled in Grenzelhoft, championed by Valoria, and \
-	unfamiliar to the highlands surrounding the outpost."
+	unfamiliar to the highlands of Azure Peak."
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "heavybow0"
 	item_state = "heavybow"

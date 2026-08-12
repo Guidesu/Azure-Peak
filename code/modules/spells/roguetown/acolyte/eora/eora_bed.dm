@@ -1,6 +1,6 @@
-/obj/structure/bed/rogue/eora
-	name = "flower bed"
-	desc = "A bed of flower petals that looks soft enough to sleep on! Said to spare the dying from Morwenna's domain."
+/obj/structure/bed/rogue/sanctuary
+	name = "sanctuary bed"
+	desc = "A bed of magical flora."
 	sleepy = 4
 	debris = null
 	max_integrity = 50
@@ -58,12 +58,8 @@
 		if(L.has_status_effect(status_effect_type))
 			continue
 
-		var/current_oxy = L.getOxyLoss()
-		var/current_brute = L.getBruteLoss()
-		if(current_oxy > max_oxy)
-			max_oxy = current_oxy
-			priority_target = L
-			max_brute = current_brute
+		if(L.mobility_flags & MOBILITY_STAND)
+			continue
 
 		var/score = calculate_priority(L)
 		if(score > max_priority_score)
@@ -87,7 +83,7 @@
 	outline_colour = "#d04ae2"
 
 /atom/movable/screen/alert/status_effect/buff/healing/eora_bed
-	name = "Miluše's reprieve"
+	name = "Eora's reprieve"
 	desc = "The warmth of the petals soothes my breathing and heals my ails."
 	icon_state = "eorabed"
 
@@ -120,18 +116,15 @@
 	status_effect_type = /datum/status_effect/buff/healing/bed_rest
 
 /datum/action/cooldown/spell/summon_bed
-	name = "Miluše's Rest"
-	desc = "Summon a sacred miluvane bed to provide sanctuary and soothe the wounded. \
-	You may only maintain a limited amount of beds at a time depending on miracle skill. Summoning a new one will cause the oldest one to vanish."
+	name = "Summon Sanctuary Bed"
+	desc = "Summon a sacred bed."
 	background_icon = 'icons/mob/actions/eoramiracles.dmi'
 	button_icon = 'icons/mob/actions/eoramiracles.dmi'
 	sound = 'sound/magic/holyshield.ogg'
 
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_STAT_BUFF
-	mana_cost = MANACOST_MIRACLE_MINOR
 
-	invocations = list("Miluše, grant us respite!")
 	invocation_type = INVOCATION_SHOUT
 	charge_required = TRUE
 	charge_time = 1 SECONDS
@@ -192,9 +185,10 @@
 
 	var/obj/structure/bed/rogue/sanctuary/new_bed = new bed_type(T)
 	bed_refs += WEAKREF(new_bed)
-	user.visible_message(span_notice("[user] conjures a beautiful bed of miluvane petals!"), \
-						 span_notice("You summon a sanctuary for the weary."))
-
+	user.visible_message(
+		span_notice("[user] conjures \a [new_bed]!"),
+		span_notice("You summon a sanctuary for the weary.")
+	)
 	return TRUE
 
 /datum/action/cooldown/spell/summon_bed/Destroy()

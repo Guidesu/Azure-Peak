@@ -343,12 +343,12 @@
 	limb.add_embedded_object(S, FALSE, TRUE, TRUE)
 	playsound(get_turf(L),pick('sound/combat/fracture/fracturedry (1).ogg','sound/combat/fracture/fracturedry (2).ogg','sound/combat/fracture/fracturedry (3).ogg'),80,TRUE)
 
-// RAISE LESSER SKELETON (T2) - The new 'main' Zizo undeath-raising skill. Summon's durability scales from Miracle skill.
-/datum/action/cooldown/spell/raise_undead_formation/zizo
-	name = "Raise Lesser Skeleton"
-	desc = "Invoke raw Enochian bendinga to bind loose bones into a simple skeletal thrall. Its crude physiology is held together purely by magic; unable to be incapacitated, it shall stand until it crumbles into spare bones. It is also simpler to control, so you can order it to move, guard or attack manually."
-	fluff_desc = "The faithful of Zizo do not raise the dead, they mock life by proving how little of it is truly required. Flesh decays, thought falters, and souls flee screaming into Morwenna's ledger, yet bone remains obedient. Through the language of ancient Enochian words of power, scattered remains are lashed together into a parody of mortal form, animated not by purpose or memory, but by the simple joy of defying the natural order."
-	background_icon = 'icons/mob/actions/zizomiracles.dmi'
+// RAISE LESSER SKELETON SWARM (T2)
+/datum/action/cooldown/spell/conjure_summon/zizo/skeleton_swarm
+	name = "Raise Lesser Skeletons"
+	desc = "Invoke raw Enochian magicka to bind loose bones into two simple skeletal thralls. Their crude physiology is held together purely by magic; unable to be incapacitated, they shall stand until they crumble into spare bones. Toggle their armaments with Shift+G: Sword and Shield, Spear, or Two Daggers. Each one killed gives a partial recoil."
+	fluff_desc = "The faithful of Zizo do not raise the dead, they mock life by proving how little of it is truly required. Flesh decays, thought falters, and souls flee screaming into the arms of Necra, yet bone remains obedient. Through the language of ancient Enochian words of power, scattered remains are lashed together into a parody of mortal form, animated not by purpose or memory, but by the simple joy of defying the natural order."
+
 	button_icon = 'icons/mob/actions/zizomiracles.dmi'
 	button_icon_state = "skeleton_formation"
 	background_icon = 'icons/mob/actions/zizomiracles.dmi'
@@ -559,7 +559,7 @@
 	if(user.stat != CONSCIOUS)
 		return FALSE
 
-	user.visible_message(span_boldwarning("[user] throws back [user.p_their()] head, chi energy crackling across [user.p_their()] body!"))
+	user.visible_message(span_boldwarning("[user] throws back [user.p_their()] head, arcyne energy crackling across [user.p_their()] body!"))
 	user.grant_language(/datum/language/undead)
 
 	if(!src.run_ritual_chant(user, path_choice))
@@ -611,16 +611,8 @@
 	. = ..()
 	var/list/valid_skeletons = list()
 	var/mob/living/caster = owner
-	for(var/mob/living/L in view(9, owner))
-		if(QDELETED(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(istype(L, /mob/living/carbon/simple_animal/hostile/rogue/skeleton))
-			var/mob/living/carbon/simple_animal/hostile/rogue/skeleton/S = L
-			if(S.summoner != owner.real_name)
-				continue
-			valid_skeletons += S
+	for(var/mob/living/S in view(9, owner))
+		if(QDELETED(S))
 			continue
 
 		if(!istype(S, /mob/living/carbon/human/species/skeleton/conjured))

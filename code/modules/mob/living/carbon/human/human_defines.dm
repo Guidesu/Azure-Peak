@@ -28,14 +28,6 @@
 
 	var/footstep_type = FOOTSTEP_MOB_HUMAN
 
-	/// Whether this human has already gone through the one-time cosmetic
-	/// claw style prompt (see modular_dreamvalley/ported/ported_upstream/cosmetic_claws.dm).
-	var/cosmetic_claws_configured = FALSE
-	/// The chosen /datum/intent/unarmed/punch/cosmetic_claw subtype, if any.
-	var/cosmetic_claw_intent
-	var/cosmetic_claw_hitsound = "bluntwooshmed"
-	var/cosmetic_claw_miss_sound = "bluntwooshmed"
-
 	var/last_sound //last emote so we have no doubles
 
 	//Hair colour and style

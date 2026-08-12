@@ -14,6 +14,7 @@
 #define ROLE_ASSASSIN			"Assassin"
 #define ROLE_DELF				"Dark Elf"
 #define ROLE_PREBEL				"Peasant Rebel"
+#define ROLE_REBEL_LEADER		"Rebellion Leader"
 #define ROLE_ASPIRANT			"Aspirant"			//Role removed, left here for safety.
 #define ROLE_LICH				"Lich"
 #define ROLE_DREAMWALKER		"Dreamwalker"

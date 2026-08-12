@@ -97,11 +97,7 @@
 
 /datum/status_effect/buff/berserk_rush/on_apply()
 	. = ..()
-	if(!ishuman(user))
-		revert_cast()
-		return FALSE
-	user.apply_status_effect(/datum/status_effect/buff/ragebad)
-	return TRUE
+	ADD_TRAIT(owner, TRAIT_HARDDISMEMBER, INNATE_TRAIT) //limbs still get disabled by damage
 
 /datum/status_effect/buff/berserk_rush/on_remove()
 	. = ..()

@@ -17,8 +17,8 @@
 	var/mob/living/user = owner
 	if(!istype(user))
 		return FALSE
-	var/mob/living/carbon/simple_animal/pet/familiar/familiar
-	for(var/mob/living/carbon/simple_animal/pet/familiar/familiar_check in GLOB.player_list)
+	var/mob/living/carbon/human/species/familiar/familiar
+	for(var/mob/living/carbon/human/species/familiar/familiar_check in GLOB.player_list)
 		if(familiar_check.familiar_summoner == user)
 			familiar = familiar_check
 	if(!familiar || !familiar.mind)
@@ -36,7 +36,7 @@
 	log_game("[key_name(user)] sent a message to [key_name(familiar)] with contents [message]")
 	return TRUE
 
-/datum/action/cooldown/spell/message_familiar/proc/track_vestige(mob/living/user, mob/living/carbon/simple_animal/pet/familiar/fam)
+/datum/action/cooldown/spell/message_familiar/proc/track_vestige(mob/living/user, mob/living/carbon/human/species/familiar/fam)
 	user.visible_message(span_notice("[user] closes [user.p_their()] eyes and reaches out through the veil..."), span_notice("I close my eyes and attune to the flow of the veil..."))
 	if(!do_after(user, 2 SECONDS, target = user))
 		to_chat(user, span_warning("Your concentration breaks."))
@@ -84,7 +84,7 @@
 
 /datum/action/cooldown/spell/message_summoner/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/carbon/simple_animal/pet/familiar/user = owner
+	var/mob/living/carbon/human/species/familiar/user = owner
 	if(!istype(user))
 		return FALSE
 
@@ -187,7 +187,6 @@
 	name = "Fey Shroud"
 	desc = "Cloak yourself, blending into the surroundings. Attacking, being attacked, or casting another ability will break your stealth."
 	click_to_activate = FALSE
-	spell_requirements = SPELL_REQUIRES_SAME_Z
 
 /datum/action/cooldown/spell/fae_brew
 	name = "Alchemical Stomach"
@@ -203,7 +202,7 @@
 	spell_requirements = NONE
 	spell_impact_intensity = SPELL_IMPACT_NONE
 
-/datum/action/cooldown/spell/fae_brew/cast(mob/living/carbon/simple_animal/pet/familiar/fae/user)
+/datum/action/cooldown/spell/fae_brew/cast(mob/living/carbon/human/species/familiar/fae/user)
 	. = ..()
 	if(!istype(user))
 		return FALSE
@@ -223,7 +222,7 @@
 	overlay_icon = 'icons/mob/actions/mage_hex.dmi'
 	overlay_icon_state = "wither"
 
-/obj/effect/proc_holder/spell/invoked/reagent_bite/cast(list/targets, mob/living/carbon/simple_animal/pet/familiar/fae/user)
+/obj/effect/proc_holder/spell/invoked/reagent_bite/cast(list/targets, mob/living/carbon/human/species/familiar/fae/user)
 	. = ..()
 	if(!user || !user.reagents) // literally how
 		revert_cast()
@@ -233,17 +232,8 @@
 		to_chat(user, span_notice("I need to select a valid target to bite!"))
 		revert_cast()
 		return FALSE
-	if(!user.reagents || user.reagents.total_volume == 0)
-		to_chat(user, span_notice("I need to have a potion in my stomach to inject!"))
-		revert_cast()
-		return FALSE
-	if(!isliving(targets[1]))
-		user.visible_message(
-			span_notice("[user.name] gently bites the top of [targets[1]], filling it with an alchemical cocktail..."),
-			span_notice("You gently bite the top of [targets[1]], filling it with your alchemical cocktail...")
-		)
-		// we're not biting a mob, so we can loop for convenience
-		while(do_after(user, 1 SECONDS, FALSE, target) && user.reagents.trans_to(targets[1], 5, transfered_by = user))
+	if(!isliving(target))
+		if(user.reagents.total_volume && (!target.reagents.holder_full()))
 			user.visible_message(
 				span_notice("[user.name] gently bites the top of [targets[1]], filling it with an alchemical cocktail..."),
 				span_notice("You gently bite the top of [targets[1]], filling it with your alchemical cocktail...")
@@ -301,7 +291,7 @@
 	overlay_icon = 'icons/mob/actions/mage_pyromancy.dmi'
 	overlay_icon_state = "spitfire"
 
-/obj/effect/proc_holder/spell/invoked/incendiary_bite/cast(list/targets, mob/living/carbon/simple_animal/pet/familiar/infernal/user)
+/obj/effect/proc_holder/spell/invoked/incendiary_bite/cast(list/targets, mob/living/carbon/human/species/familiar/infernal/user)
 	. = ..()
 	if(!user) // literally how
 		revert_cast()
@@ -343,11 +333,6 @@
 /datum/action/cooldown/spell/magicians_stone/elemental
 	name = "Create Stone"
 	fluff_desc = ""
-
-/datum/action/cooldown/spell/aetherknife/elemental
-	name = "Shape Knife"
-	fluff_desc = ""
-	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_SAME_Z
 
 /obj/item/rogueweapon/woodstaff/implement/greater/elemental
 	name = "\improper Staff of the Binder"
@@ -438,7 +423,7 @@
 
 /datum/action/cooldown/spell/earthen_forge/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/carbon/simple_animal/pet/familiar/H = owner
+	var/mob/living/carbon/human/species/familiar/H = owner
 	if(!istype(H))
 		return FALSE
 
@@ -558,42 +543,6 @@
 		"Needle" = /obj/item/needle
 	)
 	cooldown_time = 30 SECONDS
-	charge_required = FALSE
-	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_SAME_Z
-
-/datum/action/cooldown/spell/arcyne_forge/elementalt2/cast(atom/cast_on)
-	. = ..()
-	var/mob/living/carbon/simple_animal/pet/familiar/elemental/H = owner
-	if(!istype(H))
-		return FALSE
-
-	var/choice = tgui_input_list(H, "Choose what to conjure", "Earthen Forge", conjure_options)
-	if(!choice)
-		return FALSE
-
-	// Destroy previous conjured item
-	if(conjured_item && !QDELETED(conjured_item))
-		conjured_item.visible_message(span_warning("[conjured_item] shimmers and fades away!"))
-		qdel(conjured_item)
-
-	var/item_path = conjure_options[choice]
-	var/obj/item/R = new item_path(H.drop_location())
-
-	// Halve durability
-	R.max_integrity = round(R.max_integrity * 0.5)
-	R.obj_integrity = R.max_integrity
-
-	// Mark as conjured — no salvage, no smelting
-	R.smeltresult = null
-	R.salvage_result = null
-	R.fiber_salvage = FALSE
-
-	// Conjured glow
-	R.AddComponent(/datum/component/conjured_item, GLOW_COLOR_EARTHEN, FALSE, H, src)
-
-	H.put_in_hands(R)
-	conjured_item = R
-	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/consume
 	name = "Consume"
@@ -603,7 +552,7 @@
 	overlay_icon = 'icons/mob/actions/hagspells.dmi'
 	overlay_icon_state = "hand_up"
 
-/obj/effect/proc_holder/spell/invoked/consume/cast(list/targets, mob/living/carbon/simple_animal/pet/familiar/void/user)
+/obj/effect/proc_holder/spell/invoked/consume/cast(list/targets, mob/living/carbon/human/species/familiar/void/user)
 	. = ..()
 	if(!user) // literally how
 		revert_cast()
@@ -611,7 +560,7 @@
 	if(!targets.len)
 		to_chat(user, span_notice("I can't eat that... not yet, at least."))
 		return FALSE
-	var/mob/living/carbon/simple_animal/pet/familiar/target = targets[1]
+	var/mob/living/carbon/human/species/familiar/target = targets[1]
 	if(!istype(target))
 		to_chat(user, span_notice("I can't eat that... not yet, at least."))
 		return FALSE
@@ -633,11 +582,11 @@
 		return FALSE
 	// we have a mindless familiar: let's see if it's actually valid for us
 	var/essence_to_grant = null
-	if(istype(target, /mob/living/carbon/simple_animal/pet/familiar/fae))
+	if(istype(target, /mob/living/carbon/human/species/familiar/fae))
 		essence_to_grant = "fae"
-	else if(istype(target, /mob/living/carbon/simple_animal/pet/familiar/infernal))
+	else if(istype(target, /mob/living/carbon/human/species/familiar/infernal))
 		essence_to_grant = "infernal"
-	else if(istype(target, /mob/living/carbon/simple_animal/pet/familiar/elemental))
+	else if(istype(target, /mob/living/carbon/human/species/familiar/elemental))
 		essence_to_grant = "elemental"
 	else
 		// kin... hubris begets hubris, in the end
@@ -709,7 +658,7 @@
 		hit_mob.apply_damage(damage = 3, damagetype = BURN)
 	to_chat(hit_mob, span_danger("You're damaged by [src]!"))
 
-/obj/effect/proc_holder/spell/invoked/fire_obelisk_beam/drakeling/cast(list/targets, mob/living/carbon/simple_animal/pet/familiar/void/user)
+/obj/effect/proc_holder/spell/invoked/fire_obelisk_beam/drakeling/cast(list/targets, mob/living/carbon/human/species/familiar/void/user)
 	user.face_atom(targets[1])
 	user.move_resist = MOVE_FORCE_VERY_STRONG
 	if(do_after(user,1 SECONDS, target=user))

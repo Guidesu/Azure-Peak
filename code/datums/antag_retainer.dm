@@ -26,6 +26,9 @@
 	var/bandit_goal = 1
 	var/bandit_contribute = 0
 
+	///rebel stuff
+	var/head_rebel_decree = null
+
 /proc/vampire_werewolf()
 	var/vampyr = 0
 	var/wwoelf = 0

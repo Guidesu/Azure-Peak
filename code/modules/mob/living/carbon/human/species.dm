@@ -177,11 +177,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/list/body_markings
 	var/list/languages = list(/datum/language/common)
 
-	/// Species that fight with natural claws can offer a purely cosmetic
-	/// reskin of the unarmed punch intent, chosen once via a chargen-style
-	/// verb (see cosmetic_claws.dm). Maps display name -> /datum/intent/unarmed/punch/cosmetic_claw subtype.
-	var/list/cosmetic_claw_types
-
 	var/list/restricted_virtues
 
 	var/list/custom_selection

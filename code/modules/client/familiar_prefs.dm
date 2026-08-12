@@ -20,10 +20,10 @@
 	prefs = passed_prefs
 	familiar_names = alist()
 	familiar_species = alist(
-		"fae" = /mob/living/carbon/simple_animal/pet/familiar/fae,
-		"infernal" = /mob/living/carbon/simple_animal/pet/familiar/infernal,
-		"elemental" = /mob/living/carbon/simple_animal/pet/familiar/elemental,
-		"void" = /mob/living/carbon/simple_animal/pet/familiar/void
+		"fae" = /mob/living/carbon/human/species/familiar/fae,
+		"infernal" = /mob/living/carbon/human/species/familiar/infernal,
+		"elemental" = /mob/living/carbon/human/species/familiar/elemental,
+		"void" = /mob/living/carbon/human/species/familiar/void
 	)
 	familiar_flavortexts = alist()
 	familiar_pronouns = alist(
@@ -316,7 +316,7 @@
 				if(!advertisee.client)
 					continue
 				if(HAS_TRAIT(advertisee, TRAIT_ARCYNE))
-					to_chat(advertisee, span_info("The leylines pulse beneath your feet... a new familiar strains against the veil, seeking to be summoned! (You can summon most familiars at no cost by drawing a binding rune; it doesn't need to be near a leyline.)"))
+					to_chat(advertisee, span_info(message))
 			to_chat(user, span_notice("All alive arcyne users have been notified; you may send out another pulse in 10 minutes."))
 			GLOB.familiar_advertised += user.ckey
 			addtimer(CALLBACK(src, PROC_REF(remove_ckey), user.ckey), 10 MINUTES)

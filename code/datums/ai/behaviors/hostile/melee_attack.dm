@@ -22,7 +22,7 @@
 			return
 
 	. = ..()
-	var/mob/living/carbon/simple_animal/basic_mob = controller.pawn
+	var/mob/living/simple_animal/basic_mob = controller.pawn
 	//targetting datum will kill the action if not real anymore
 	var/atom/target = controller.blackboard[target_key]
 	var/datum/targetting_datum/targetting_datum = controller.blackboard[targetting_datum_key]
@@ -88,7 +88,7 @@
 
 /datum/ai_behavior/basic_ranged_attack/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
-	var/mob/living/carbon/simple_animal/basic_mob = controller.pawn
+	var/mob/living/simple_animal/basic_mob = controller.pawn
 	//targetting datum will kill the action if not real anymore
 	var/atom/target = controller.blackboard[target_key]
 	var/datum/targetting_datum/targetting_datum = controller.blackboard[targetting_datum_key]
@@ -127,7 +127,7 @@
 
 /datum/ai_behavior/opportunistic_ranged_attack/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
-	var/mob/living/carbon/simple_animal/hostile/basic_mob = controller.pawn
+	var/mob/living/simple_animal/hostile/basic_mob = controller.pawn
 	var/atom/target = controller.blackboard[target_key]
 	var/datum/targetting_datum/targetting_datum = controller.blackboard[targetting_datum_key]
 	if(!istype(basic_mob) || QDELETED(target) || target == basic_mob || !targetting_datum?.can_attack(basic_mob, target))
@@ -148,6 +148,6 @@
 	. = ..()
 	if(!succeeded)
 		controller.clear_blackboard_key(target_key)
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/mimic_pawn = controller.pawn
+		var/mob/living/simple_animal/hostile/retaliate/rogue/mimic/mimic_pawn = controller.pawn
 		mimic_pawn.disguise()
 

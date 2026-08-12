@@ -37,6 +37,11 @@
 /// Is a Praecursor spell
 #define SPELL_PRAECURSOR (1 << 2)
 
+// Upstream-compatible aliases (upstream uses these names without SPELL_ prefix)
+#define IGNORE_SPELLBLOCK SPELL_IGNORE_SPELLBLOCK
+#define RITUOS SPELL_RITUOS
+#define SPELL_PSYDON SPELL_PRAECURSOR
+
 // Bitflags for spell requirements
 /// Whether the spell requires wizard clothes to cast.
 #define SPELL_REQUIRES_WIZARD_GARB (1 << 0)

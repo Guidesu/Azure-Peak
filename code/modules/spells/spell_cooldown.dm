@@ -229,6 +229,26 @@
 	/// A parent variable to store devotion cost. -- Kuan's Note: This is kinda needed if we want to shift Miracles from proc_holder to spell/cooldown
 	var/devotion_cost = null
 
+	// ============== UPSTREAM-COMPATIBLE VARS ==============
+	// These vars are added from upstream Azure-Peak to support upstream spell subtypes.
+	// NOTE: Many vars are defined with var/ in upstream child types — only define
+	// vars here that are NOT redefined with var/ in any child type.
+	var/clothes_req = FALSE
+	var/range = 7
+	var/overlay_state = null
+	var/active = FALSE
+	var/releasedrain = 0
+	var/chargedrain = 0
+	var/chargetime = 0
+	var/recharge_time = 50
+	var/warnie = null
+	var/no_early_release = FALSE
+	var/movement_interrupt = FALSE
+	var/glow_color = null
+	var/ready_sound = null
+	var/status_effect_type = null
+	var/damage_to_do = 0
+
 /datum/action/cooldown/spell/New(Target)
 	. = ..()
 	// Create overhead spell icon effect (matching old proc_holder system)

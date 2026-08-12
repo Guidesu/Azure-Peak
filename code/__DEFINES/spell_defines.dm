@@ -21,6 +21,7 @@
 #define GLOW_COLOR_AUXENTIUS_SUN "#F9B362" //Auxentian Sun Yellow/Orange
 #define GLOW_COLOR_NOC "#9acdff" //Noc's lightbulb
 #define GLOW_COLOR_AUXENTIUS_BATTLE "#7A1E30" //Auxentian Battle Crimson
+#define GLOW_COLOR_RAVOX "#7A1E30" //Ravox (alias for Auxentius Battle)
 #define GLOW_COLOR_MALUM "#884610" //Malum Orange
 
 //Gods - Ascendant

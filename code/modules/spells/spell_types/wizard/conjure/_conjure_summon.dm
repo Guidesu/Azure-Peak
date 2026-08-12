@@ -11,7 +11,12 @@
 		minion.dismissing = TRUE
 
 	M.ai_controller?.set_ai_status(AI_STATUS_OFF)
-	M.visible_message(span_notice("[M] unravels, dissolving back into the spirit line."))
+
+	if(istype(M, /mob/living/carbon/human/species/skeleton))
+		M.dust()
+		return
+
+	M.visible_message(span_notice("[M] unravels, dissolving back into the leyline."))
 	animate(M, alpha = 0, time = CONJURE_DISMISS_FADE_TIME)
 	QDEL_IN(M, CONJURE_DISMISS_FADE_TIME)
 
@@ -134,7 +139,7 @@
 	if(!istype(user))
 		return FALSE
 
-	if(istype(get_area(user), /area/rogue/indoors/auxentiusarena))
+	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
 		to_chat(user, span_userdanger("I reach for outer help, but something rebukes me! This challenge is only for me to overcome!"))
 		return FALSE
 
@@ -235,7 +240,7 @@
 		return
 	if(stamina_only)
 		summoner.stamina_add(round(summoner.max_stamina * 0.5 * scale))
-		to_chat(summoner, span_warning("The spirit line snaps taut and tears the wind from me as my primordial unravels."))
+		to_chat(summoner, span_warning("The leyline snaps taut and tears the wind from me as my primordial unravels."))
 		scale *= 0.5
 		block = FALSE
 	if(severity == CONJURE_RECOIL_LIGHT)
@@ -306,6 +311,6 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/debuff/conjure_backlash
-	name = "Spirit-bender's Backlash"
+	name = "Conjurer's Backlash"
 	desc = "The unbinding of my conjured servant recoils upon me - the more grievously it was hurt, the deeper the toll. My body and focus are sapped until it passes."
 	icon_state = "debuff"

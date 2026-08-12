@@ -19,6 +19,7 @@
 
 	point_cost = 0
 
+	var/projectile_type = null
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross/auxentius, , /obj/item/clothing/neck/roguetown/psicross/custodius, /obj/item/clothing/neck/roguetown/psicross/silver/custodius)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +221,7 @@
 	spell_flags = SPELL_PRAECURSOR
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 
+/datum/action/cooldown/spell/auxentius/battle/tug
 	var/pull_distance = 1
 	var/slowdown = 1
 

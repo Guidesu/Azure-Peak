@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(target_interested_atoms, typecacheof(list(/mob)))
 	. = ..()
 	if (succeeded)
 		controller.CancelActions()
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic/mimic_pawn = controller.pawn
+		var/mob/living/simple_animal/hostile/retaliate/rogue/mimic/mimic_pawn = controller.pawn
 		mimic_pawn.undisguise()
 
 
@@ -122,6 +122,6 @@ GLOBAL_LIST_INIT(target_interested_atoms, typecacheof(list(/mob)))
 /datum/ai_behavior/find_potential_targets/bog_troll/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
 	if(succeeded)
-		if(istype(controller.pawn, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll))
-			var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/mob = controller.pawn
+		if(istype(controller.pawn, /mob/living/simple_animal/hostile/retaliate/rogue/troll))
+			var/mob/living/simple_animal/hostile/retaliate/rogue/troll/mob = controller.pawn
 			mob.ambush()
