@@ -362,10 +362,8 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	return 0
 
 /datum/tat_traits/proc/get_base_cost(trait_id)
-	var/list/entry = get_entry(trait_id)
-	if(!islist(entry))
-		return 0
-	return round((isnum(entry["cost"]) ? entry["cost"] : 0))
+	// Point system removed - all traits are free.
+	return 0
 
 /datum/tat_traits/proc/get_oddity_direction_point_bonus(trait_id)
 	if(!owner_build?.directions?.is_direction_trait(trait_id))
@@ -469,10 +467,8 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	return modifier
 
 /datum/tat_traits/proc/get_display_cost(trait_id)
-	var/cost = get_base_cost(trait_id) + get_cost_modifier(trait_id)
-	if(is_armor_supplier_trait(trait_id) || is_material_supplier_trait(trait_id))
-		return max(0, cost)
-	return cost
+	// Point system removed - all traits are free.
+	return 0
 
 /datum/tat_traits/proc/check_trait(trait_id)
 	return islist(get_entry(trait_id))
@@ -683,18 +679,8 @@ GLOBAL_VAR_INIT(tat_virtue_trait_entries_ready, FALSE)
 	return min(get_capped_negative_credit_raw(), TAT_NEGATIVE_TRAIT_CREDIT_CAP)
 
 /datum/tat_traits/proc/get_spent_points()
-	var/total = 0
-	var/capped_negative_credit = 0
-	for(var/trait_id in selected)
-		if(owner_build?.directions?.is_direction_trait(trait_id))
-			continue
-		var/cost = get_display_cost(trait_id) * get_trait_count(trait_id)
-		if(is_capped_negative_credit_trait(trait_id) && cost < 0)
-			capped_negative_credit += -cost
-			continue
-		total += cost
-	total -= min(capped_negative_credit, TAT_NEGATIVE_TRAIT_CREDIT_CAP)
-	return total
+	// Point system removed - all traits are free.
+	return 0
 
 /datum/tat_traits/proc/get_remaining_points()
 	return 0

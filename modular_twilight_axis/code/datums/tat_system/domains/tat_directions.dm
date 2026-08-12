@@ -211,24 +211,16 @@
 	return max(0, owner_build?.traits?.get_base_cost(trait_id) || 0)
 
 /datum/tat_directions/proc/get_trait_cost(trait_id)
-	var/list/rule = get_trait_rule(trait_id)
-	if(!rule)
-		return 0
-	var/handicraft_cost = get_handicraft_cluster_trait_cost(trait_id)
-	if(handicraft_cost >= 0)
-		return handicraft_cost
-	return max(0, owner_build?.traits?.get_base_cost(trait_id) || 0)
+	// Point system removed - all traits are free.
+	return 0
 
 /datum/tat_directions/proc/get_trait_tier(trait_id)
 	var/list/rule = get_trait_rule(trait_id)
 	return rule ? max(0, round(rule["tier"] || 0)) : 0
 
 /datum/tat_directions/proc/get_trait_requirements(trait_id)
-	var/list/rule = get_trait_rule(trait_id)
-	if(!rule)
-		return null
-	var/list/requirements = rule["requirements"]
-	return islist(requirements) ? requirements.Copy() : null
+	// Point system removed - no direction point requirements.
+	return list()
 
 /datum/tat_directions/proc/trait_requirements_met(trait_id)
 	// Freeform: all direction requirements removed
@@ -239,15 +231,8 @@
 	return null
 
 /datum/tat_directions/proc/get_spent_trait_points(direction)
-	direction = normalize_direction(direction)
-	if(!direction || !owner_build?.traits)
-		return 0
-	var/total = 0
-	for(var/trait_id in owner_build.traits.selected)
-		if(get_trait_direction(trait_id) != direction)
-			continue
-		total += get_trait_cost(trait_id) * owner_build.traits.get_trait_count(trait_id)
-	return total
+	// Point system removed - no direction point spending.
+	return 0
 
 /datum/tat_directions/proc/get_remaining_trait_points(direction)
 	direction = normalize_direction(direction)
@@ -334,18 +319,18 @@
 	var/list/result = list()
 	for(var/direction in TAT_DIRECTION_ORDER)
 		result[direction] = list(
-			"points" = get_points(direction),
-			"spent" = get_spent_trait_points(direction),
-			"remaining" = get_remaining_trait_points(direction),
-			"next_cost" = get_next_point_cost(direction),
+			"points" = 0,
+			"spent" = 0,
+			"remaining" = 0,
+			"next_cost" = 0,
 			"name" = GLOB.tat_direction_names[direction] || direction,
 		)
 	return list(
 		"foundation" = foundation,
 		"role_choice" = TAT_ROLE_CHOICE_STARTER,
-		"points_total" = get_total_points(),
-		"points_spent" = get_spent_points(),
-		"points_remaining" = get_remaining_points(),
+		"points_total" = 0,
+		"points_spent" = 0,
+		"points_remaining" = 0,
 		"directions" = result,
 		"foundation_names" = GLOB.tat_foundation_names,
 		"foundation_role_choices" = GLOB.tat_foundation_role_choices,
