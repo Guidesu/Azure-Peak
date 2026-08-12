@@ -365,7 +365,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 /datum/ai_controller/proc/recalculate_movement_delay()
 	if(!isliving(pawn))
 		return
-	var/mob/living/living_pawn = pawn.
+	var/mob/living/living_pawn = pawn
 	movement_delay = CEILING(max(living_pawn.cached_multiplicative_slowdown, SIMPLEMOB_MINIMUM_MOVE_DELAY), SSai_movement.wait)
 
 /**

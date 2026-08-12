@@ -190,7 +190,7 @@
 	button_icon = 'icons/mob/animal.dmi'
 	cooldown_time = 250
 
-/datum/action/cooldown/vomit/Trigger()
+/datum/action/cooldown/vomit/Trigger(trigger_flags, atom/target)
 	if(!..())
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/retaliate/goose/vomit))

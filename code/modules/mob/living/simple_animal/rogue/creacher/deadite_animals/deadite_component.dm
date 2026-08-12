@@ -46,7 +46,7 @@
 
 	// Prevent the standard damage from going through so the mob doesn't die right now
 	. = COMPONENT_DAMAGE_HANDLED
-	go_down(L)
+	INVOKE_ASYNC(src, PROC_REF(go_down), L)
 
 /datum/component/deadite/proc/go_down(mob/living/simple_animal/L)
 	L.unbuckle_all_mobs()

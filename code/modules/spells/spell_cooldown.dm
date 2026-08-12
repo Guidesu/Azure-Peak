@@ -1915,8 +1915,7 @@
 
 	// Call this directly to do all the relevant checks and aim assist
 	// If it fails (cooldown, invalid target), end_charging() already re-registered MOUSEDOWN
-	InterceptClickOn(owner, modifiers, _target)
-	source.click_intercept_time = 0
+	INVOKE_ASYNC(src, PROC_REF(finish_intercepted_cast), source, modifiers, _target)
 
 /// Handle the second click for charge-then-click spells.
 /// Spell is already charged — this middle-click picks the target and casts.
@@ -1951,8 +1950,13 @@
 			RegisterSignal(source, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(cast_after_charge))
 			return
 
+	INVOKE_ASYNC(src, PROC_REF(finish_intercepted_cast), source, modifiers, _target)
+
+/// Runs the actual cast out of the mouse signal handler, which must not sleep.
+/datum/action/cooldown/spell/proc/finish_intercepted_cast(client/source, list/modifiers, atom/_target)
 	InterceptClickOn(owner, modifiers, _target)
-	source.click_intercept_time = 0
+	if(source)
+		source.click_intercept_time = 0
 
 /datum/action/cooldown/spell/proc/spell_guard_check(mob/living/target, no_message = FALSE, mob/living/attacker)
 	if(!isliving(target))
