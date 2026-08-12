@@ -12,9 +12,10 @@
 	strike_sound = null
 	freeze_cast = FALSE
 
-	var/step_delay = 1
+	var/step_delay = 0.5
 	var/gore_damage = 60
-	var/guard_topple = 4 SECONDS
+	var/brace_damage = 40
+	var/brace_recovery = 3 SECONDS
 	var/missed_once = FALSE
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/get_pattern_offsets()
@@ -84,13 +85,7 @@
 		missed_once = FALSE
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/gore(mob/living/boar, mob/living/victim)
-	if(spell_guard_check(victim, FALSE, boar))
-		boar.visible_message(span_boldwarning("<b>[boar]</b> is turned aside and goes tumbling!"))
-		playsound(get_turf(boar), 'sound/foley/zfall.ogg', 100, TRUE)
-		var/mob/living/simple_animal/beast = boar
-		if(istype(beast))
-			beast.topple(guard_topple)
-		boar.apply_status_effect(/datum/status_effect/debuff/exposed, guard_topple)
+	if(brace_charge(boar, victim, brace_damage, brace_recovery))
 		missed_once = FALSE
 		return
 	victim.visible_message(span_userdanger("[boar] gores [victim]!"))

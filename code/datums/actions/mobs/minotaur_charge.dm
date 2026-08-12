@@ -28,7 +28,8 @@
 	var/gore_exposed = 6 SECONDS
 	var/slam_stun = 2 SECONDS
 	var/slam_exposed = 6 SECONDS
-	var/guard_topple = 4 SECONDS
+	var/brace_damage = 45
+	var/brace_recovery = 4 SECONDS
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/get_pattern_offsets()
 	var/list/offs = list()
@@ -110,13 +111,7 @@
 	open_up(bull, recovery_time, /datum/status_effect/debuff/vulnerable)
 
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/gore(mob/living/bull, mob/living/victim, facing)
-	if(spell_guard_check(victim, FALSE, bull))
-		bull.visible_message(span_boldwarning("<b>[bull]</b> is tripped and toppled!"))
-		playsound(get_turf(bull), 'sound/foley/zfall.ogg', 100, TRUE)
-		var/mob/living/simple_animal/beast = bull
-		if(istype(beast))
-			beast.topple(guard_topple)
-		open_up(bull, guard_topple, /datum/status_effect/debuff/exposed)
+	if(brace_charge(bull, victim, brace_damage, brace_recovery))
 		return FALSE
 	playsound(get_turf(victim), 'sound/combat/brutal_impalement.ogg', 100, TRUE)
 	victim.visible_message(span_userdanger("[bull] gores [victim] on its horns!"))

@@ -22,6 +22,27 @@
 	track_target = TRUE
 	damage_structures = FALSE
 
+/datum/action/cooldown/spell/telegraphed_strike/mob_ability/proc/brace_charge(mob/living/charger, mob/living/victim, impact_damage, recovery)
+	if(!victim.has_status_effect(/datum/status_effect/buff/clash) && !victim.has_status_effect(/datum/status_effect/buff/parry_buffer))
+		return FALSE
+	victim.visible_message(span_boldwarning("<b>[victim]</b> braces, and [charger] halts!"), \
+		span_userdanger("I brace against [charger], the impact drives through my armor!"))
+	var/obj/item/held = victim.get_active_held_item()
+	if(held?.parrysound)
+		playsound(get_turf(victim), pick(held.parrysound), 100, TRUE)
+	else
+		playsound(get_turf(victim), pick(victim.parry_sound), 100, TRUE)
+	playsound(get_turf(charger), 'sound/combat/ground_smash_start.ogg', 80, TRUE)
+	victim.remove_status_effect(/datum/status_effect/buff/clash)
+	victim.apply_status_effect(/datum/status_effect/buff/parry_buffer)
+	victim.apply_damage(impact_damage, BRUTE, BODY_ZONE_CHEST, 0, TRUE)
+	victim.stamina_add(victim.max_stamina / 3)
+	var/turf/shoved = get_step(get_turf(victim), get_dir(charger, victim))
+	if(shoved && !shoved.density)
+		victim.safe_throw_at(shoved, 1, 1, charger, force = MOVE_FORCE_STRONG)
+	charger.apply_status_effect(/datum/status_effect/debuff/clickcd, recovery)
+	return TRUE
+
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/can_strike_victim(mob/living/H, mob/living/L)
 	if(L.stat == DEAD)
 		return FALSE
