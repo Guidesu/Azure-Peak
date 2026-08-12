@@ -19,12 +19,10 @@
 
 	windup_time = TELEGRAPH_ULTIMATE
 	telegraph_type = /obj/effect/temp_visual/telegraph/hellfire
-	telegraph_message = "throws both arms skyward, and the air above starts to glow!"
 	telegraph_sound = list('sound/magic/meteorstorm.ogg')
 	recovery_time = 3 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
-	recovery_message = "lowers its arms, smoking."
 
 	blast_radius = 3
 	damage = 45
@@ -144,7 +142,6 @@
 	npc_max_range = 9
 	use_chance = 70
 	damage_mult = 1.4
-	telegraph_message = "fixes its gaze, the air igniting around it!"
 
 /*
 */
@@ -181,7 +178,6 @@
 	charge_sound = null
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	freeze_cast = FALSE
-	telegraph_message = "hawks up a mouthful of fire!"
 	telegraph_sound = list('sound/magic/fireball.ogg')
 
 	projectile_type = /obj/projectile/magic/firebolt

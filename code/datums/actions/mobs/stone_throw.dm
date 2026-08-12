@@ -10,12 +10,10 @@
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
 	windup_time = TELEGRAPH_AREA_DENIAL
-	telegraph_message = "digs into the ground and heaves up a massive rock!"
 	telegraph_sound = list('sound/items/dig_shovel.ogg')
 	recovery_time = 5 SECONDS
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
 	recovery_status = /datum/status_effect/debuff/vulnerable
-	recovery_message = "is left off balance by the throw."
 
 	blast_radius = 1
 	damage = 40

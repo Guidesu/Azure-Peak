@@ -206,8 +206,6 @@
 
 	/// Roots the caster for the length of the cast
 	var/freeze_cast = FALSE
-	/// Visible announcing the wind up, after the caster's name
-	var/telegraph_message
 	/// Sounds played as the wind-up begins. One is picked at random.
 	var/list/telegraph_sound
 	/// If TRUE, faction allies of the caster are skipped by this spell's area effects.
@@ -222,8 +220,6 @@
 	var/recovery_status = /datum/status_effect/debuff/exposed
 	/// Movement slowdown during recovery. NONE (0) disables it.
 	var/recovery_slowdown = CHARGING_SLOWDOWN_NONE
-	/// Visible message announcing the wind up, after the caster's name
-	var/recovery_message
 
 	/// Lore/flavor text. Shown on hover in spell lists, always shown in detailed examine.
 	var/fluff_desc = ""
@@ -1068,8 +1064,6 @@
 /datum/action/cooldown/spell/proc/announce_telegraph(mob/living/caster)
 	if(QDELETED(caster))
 		return
-	if(telegraph_message)
-		caster.visible_message(span_boldwarning("[caster] [telegraph_message]"))
 	if(telegraph_sound)
 		playsound(get_turf(caster), telegraph_sound, 100, TRUE)
 
@@ -1100,8 +1094,6 @@
 	if(!recovery_time || QDELETED(caster))
 		clear_recovery_penalty(caster)
 		return
-	if(recovery_message)
-		caster.visible_message(span_boldwarning("[caster] [recovery_message]"))
 	if(recovery_status)
 		caster.apply_status_effect(recovery_status, recovery_time)
 	caster.apply_status_effect(/datum/status_effect/debuff/clickcd, recovery_time)

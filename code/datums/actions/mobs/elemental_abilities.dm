@@ -50,13 +50,11 @@
 	windup_time = TELEGRAPH_HIGH_IMPACT
 	freeze_cast = FALSE
 	track_target = TRUE
-	telegraph_message = "hauls both fists overhead!"
 	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
 	sweep_step = 3
 	recovery_time = 2 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
-	recovery_message = "is left off balance."
 
 	damage = 55
 	structure_damage = 55
@@ -81,13 +79,11 @@
 	lock_direction = FALSE
 	track_target = FALSE
 	freeze_cast = TRUE
-	telegraph_message = "raises one foot high!"
 	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
 	sweep_step = 2
 	recovery_time = 3 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_HEAVY
-	recovery_message = "pulls its foot back out of the crater."
 
 	damage = 60
 	structure_damage = 60
@@ -130,12 +126,10 @@
 
 	windup_time = TELEGRAPH_AREA_DENIAL
 	telegraph_type = /obj/effect/temp_visual/telegraph/marker
-	telegraph_message = "drives its fists into the earth!"
 	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
 	recovery_time = 3 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
-	recovery_message = "wrenches its fists back out of the earth."
 
 	blast_radius = 1
 	damage = 35
@@ -211,7 +205,6 @@
 	charge_sound = null
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	freeze_cast = TRUE
-	telegraph_message = "tears a slab off its own shoulder and winds up!"
 	telegraph_sound = list('sound/foley/smash_rock.ogg')
 
 	projectile_type = /obj/projectile/earthenchunk

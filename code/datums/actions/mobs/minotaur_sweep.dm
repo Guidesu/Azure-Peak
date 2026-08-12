@@ -12,13 +12,11 @@
 
 	windup_time = TELEGRAPH_AREA_DENIAL
 	freeze_cast = FALSE // steps with its quarry through the wind-up instead of planting
-	telegraph_message = "shoulders its weapon, readying for a wide swing!"
 	telegraph_sound = list('sound/combat/rend_start.ogg')
 	sweep_step = 7
 	recovery_time = 2 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
-	recovery_message = "is off balance!"
 
 	damage = 60
 	blade_class = BCLASS_CUT

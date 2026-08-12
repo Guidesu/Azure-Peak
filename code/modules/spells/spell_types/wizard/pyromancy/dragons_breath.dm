@@ -33,6 +33,9 @@
 	detonate_sound = 'sound/misc/explode/incendiary (1).ogg'
 
 	var/cone_range = 4
+	var/cone_half_width = 0
+	var/sweep_by_ring = FALSE
+	var/ignite_pattern = TRUE
 	var/push_dist = 2
 	var/scorch_stacks = 1
 
@@ -40,13 +43,15 @@
 	var/list/rings = list()
 	for(var/d in 1 to cone_range)
 		var/list/ring = list()
-		var/half = max(1, round(d / 2))
+		var/half = cone_half_width || max(1, round(d / 2))
 		for(var/lat in -half to half)
 			ring += list(list(lat, d))
 		rings += list(ring)
 	return rings
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/get_sweep_bands()
+	if(sweep_by_ring)
+		return cone_rings()
 	return list(get_pattern_offsets())
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/get_pattern_offsets()
@@ -56,7 +61,8 @@
 	return flat
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_hit_target(mob/living/H, mob/living/L, facing)
-	apply_scorch_stack(L, scorch_stacks)
+	if(scorch_stacks)
+		apply_scorch_stack(L, scorch_stacks)
 	if(!push_dist)
 		return
 	var/push_dir = get_dir(H, L)
@@ -65,6 +71,8 @@
 	L.safe_throw_at(get_ranged_target_turf(L, push_dir, push_dist), push_dist, 2, H, force = MOVE_FORCE_STRONG)
 
 /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/on_impact(mob/living/H, facing, atom/movable/visual)
+	if(!ignite_pattern)
+		return
 	for(var/turf/T in get_pattern_turfs(H, facing))
 		new /obj/effect/temp_visual/dragonfire(T)
 		for(var/atom/movable/A in T)

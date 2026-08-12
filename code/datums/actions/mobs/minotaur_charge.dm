@@ -18,7 +18,6 @@
 	damage_structures = FALSE
 	strike_sound = 'sound/combat/clash_charge.ogg'
 	recovery_time = 4 SECONDS
-	telegraph_message = "throws back its head and ROARS, digging in its hooves!"
 	telegraph_sound = list('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
 	cast_effect_x_offset = 16
 	cast_effect_y_offset = 16

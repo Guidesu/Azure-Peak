@@ -553,6 +553,37 @@ Aiming legs should be nearly guaranteed due to their profile
 	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
 	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 250, break_wound = /datum/wound/cripple/limb/topple, hint = "legs", melee_hit_bonus = 40)
 
+/*
+*/
+/datum/anatomy/construct/primordial
+	limb_names = list(
+		BODY_ZONE_HEAD = "crown",
+		BODY_ZONE_PRECISE_R_EYE = "crown",
+		BODY_ZONE_PRECISE_L_EYE = "crown",
+		BODY_ZONE_PRECISE_SKULL = "crown",
+		BODY_ZONE_PRECISE_EARS = "crown",
+		BODY_ZONE_PRECISE_NOSE = "crown",
+		BODY_ZONE_PRECISE_MOUTH = "crown",
+		BODY_ZONE_PRECISE_NECK = "crown",
+		BODY_ZONE_CHEST = "core",
+		BODY_ZONE_L_ARM = "limb",
+		BODY_ZONE_R_ARM = "limb",
+		BODY_ZONE_PRECISE_L_HAND = "limb",
+		BODY_ZONE_PRECISE_R_HAND = "limb",
+		BODY_ZONE_L_LEG = "base",
+		BODY_ZONE_R_LEG = "base",
+		BODY_ZONE_PRECISE_L_FOOT = "base",
+		BODY_ZONE_PRECISE_R_FOOT = "base",
+		BODY_ZONE_PRECISE_STOMACH = "core",
+		BODY_ZONE_PRECISE_GROIN = "core",
+	)
+
+/datum/anatomy/construct/primordial/build_zones()
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 120, break_wound = /datum/wound/cripple/arm/fracture, hint = "limbs")
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 120, break_wound = /datum/wound/cripple/arm/fracture, hint = "limbs")
+	add_zone(BODY_ZONE_L_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 120, break_wound = /datum/wound/cripple/limb/fracture, hint = "base")
+	add_zone(BODY_ZONE_R_LEG, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 120, break_wound = /datum/wound/cripple/limb/fracture, hint = "base")
+
 /* Deadite tough biped. Mirrors the living profile. They have a reach gated head that kills them outright.
 */
 /datum/anatomy/biped/tough/undead

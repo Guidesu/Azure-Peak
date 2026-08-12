@@ -35,13 +35,11 @@
 	charge_sound = null
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	freeze_cast = TRUE
-	telegraph_message = "heaves a whole log up over its head!"
 	telegraph_sound = list('sound/misc/woodhit.ogg')
 
 	recovery_time = 2 SECONDS
 	recovery_status = /datum/status_effect/debuff/vulnerable
 	recovery_slowdown = CHARGING_SLOWDOWN_MEDIUM
-	recovery_message = "is left wide open by the throw."
 
 	projectile_type = /obj/projectile/thrown_log
 
@@ -126,7 +124,6 @@
 	charge_sound = null
 	charge_slowdown = CHARGING_SLOWDOWN_NONE
 	freeze_cast = FALSE
-	telegraph_message = "draws a lance of ice out of the air!"
 	telegraph_sound = list('sound/spellbooks/icicle.ogg')
 
 	recovery_time = 1.5 SECONDS

@@ -1,14 +1,14 @@
-/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn
-	name = "Dragon's Breath"
+/*
+*/
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability
+	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability
 	button_icon = 'icons/mob/actions/mob_actions.dmi'
 	button_icon_state = "dragons_breath"
-	desc = "Exhale a cone of flame."
 	panel = null
 	cooldown_time = 25 SECONDS
 	npc_min_range = 0
 	npc_max_range = 4
 	use_chance = 45
-	required_zones = list(BODY_ZONE_HEAD)
 	shared_cooldown = "mob_special"
 	lockout_time = 5 SECONDS
 
@@ -30,17 +30,21 @@
 	damage_structures = FALSE
 
 	telegraph_type = /obj/effect/temp_visual/telegraph/primordial/fire
-	telegraph_message = "draws a deep breath, throat glowing red!"
 	telegraph_sound = list('sound/magic/fireball.ogg')
-	cast_effect_x_offset = 32
-	cast_effect_y_offset = 32
 
 	damage = 55
 	push_dist = 0
 	detonate_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
 	hit_sound = list('sound/items/firelight.ogg')
 
-/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/drakkyn/greater
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/drakkyn
+	name = "Dragon's Breath"
+	desc = "Exhale a cone of flame."
+	required_zones = list(BODY_ZONE_HEAD)
+	cast_effect_x_offset = 32
+	cast_effect_y_offset = 32
+
+/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/drakkyn/greater
 	cooldown_time = 20 SECONDS
 	damage = 60
 	cone_range = 5
@@ -78,18 +82,13 @@
 	hold_drain = 0
 	freeze_cast = FALSE
 
-	telegraph_message = "gathers a knot of fire!"
 	telegraph_sound = list('sound/magic/fireball.ogg')
 
-	/// Said when the quarry slips out of reach during the wind-up.
-	var/whiff_message = "loses its mark."
 	var/damage_mult = 1
 
 /datum/action/cooldown/spell/projectile/fireball/mob_ability/cast(atom/cast_on)
 	if(!npc_controlled() || can_use(cast_on))
 		return ..()
-	if(whiff_message)
-		owner.visible_message(span_warning("[owner] [whiff_message]"))
 	return TRUE
 
 /datum/action/cooldown/spell/projectile/fireball/mob_ability/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
@@ -107,8 +106,6 @@
 	button_icon_state = "drakkyn_fireball"
 	use_chance = 15
 	required_zones = list(BODY_ZONE_HEAD)
-	telegraph_message = "rears back, fire gathering behinds its teeth!"
-	whiff_message = "closes its mouth, smoke billowing out."
 	cast_effect_x_offset = 32
 	cast_effect_y_offset = 32
 
@@ -124,5 +121,3 @@
 	npc_min_range = 2
 	npc_max_range = 9
 	use_chance = 70
-	telegraph_message = "fixes its eye, glaring down its foe!"
-	whiff_message = "'s eyes shut, the glow dimming."

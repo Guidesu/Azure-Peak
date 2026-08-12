@@ -8,7 +8,6 @@
 	required_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
 	windup_time = TELEGRAPH_DODGEABLE
-	telegraph_message = "lowers its head and paws at the ground!"
 	telegraph_sound = list('sound/vo//mobs/boar/boar_charge.ogg')
 	strike_sound = null
 	freeze_cast = FALSE

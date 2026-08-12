@@ -10,7 +10,6 @@
 	required_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 
 	windup_time = TELEGRAPH_HIGH_IMPACT
-	telegraph_message = "rips a massive boulder right out of the earth and winds up!"
 	telegraph_sound = list('sound/combat/ground_smash_start.ogg')
 	telegraph_type = /obj/effect/temp_visual/telegraph
 
