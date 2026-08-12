@@ -240,6 +240,23 @@
 
 	to_chat(user, "[inspec.Join()]")
 
+/datum/intent/proc/out_of_effective_range(atom/target, mob/user)
+	if(!effective_range || !target || !user)
+		return FALSE
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			return FALSE
+	var/dist = get_dist(target, user)
+	switch(effective_range_type)
+		if(EFF_RANGE_EXACT)
+			return dist != effective_range
+		if(EFF_RANGE_ABOVE)
+			return dist < effective_range
+		if(EFF_RANGE_BELOW)
+			return dist > effective_range
+	CRASH("effective_range found without a valid effective_range_type on [type] used by [user]")
+
 /datum/intent/proc/get_chargetime()
 	if(chargetime)
 		return chargetime

@@ -335,6 +335,7 @@ Aiming legs should be nearly guaranteed due to their profile
 // Construct have blunt favored wounds that are otherwise the same. On larger constructs, there is a core that must be exposed by breaking a leg.
 /datum/anatomy/construct
 	bloodless = TRUE
+	pen_flavor = "plating"
 	bclass_part_mult = list(
 		BCLASS_BLUNT = CONSTRUCT_BLUNT_PART_MULT,
 		BCLASS_SMASH = CONSTRUCT_BLUNT_PART_MULT,
@@ -434,6 +435,7 @@ Aiming legs should be nearly guaranteed due to their profile
 /*
 */
 /datum/anatomy/dryad
+	pen_flavor = "heartwood"
 	limb_names = list(
 		BODY_ZONE_HEAD = "crown",
 		BODY_ZONE_PRECISE_R_EYE = "crown",

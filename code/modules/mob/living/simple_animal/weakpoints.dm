@@ -34,7 +34,7 @@
 		return
 	adjust_skillrank_up_to(/datum/skill/combat/unarmed, level, TRUE)
 
-/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass)
+/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE)
 	return
 
 /mob/living/proc/get_zone_melee_hit_bonus(zone)
@@ -103,7 +103,7 @@
 		return 0
 	return hit_zone.ranged_hit_bonus
 
-/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass)
+/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE)
 	if(damage <= 0 || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return
 	var/datum/anatomy/profile = get_anatomy()
@@ -124,7 +124,10 @@
 		return
 	if(!part_damage)
 		part_damage = list()
-	part_damage[norm_zone] += damage * (ranged ? RANGED_PART_CONTRIBUTION : 1) * profile.get_part_damage_mult(bclass)
+	var/pen_mult = profile.get_pen_part_mult(penfactor, bclass)
+	part_damage[norm_zone] += damage * (ranged ? RANGED_PART_CONTRIBUTION : 1) * profile.get_part_damage_mult(bclass) * pen_mult
+	if(pen_mult > 1)
+		announce_penetration(pen_mult, profile.pen_flavor)
 	var/part_health = max(hit_zone.part_health_minimum, round(maxHealth * hit_zone.part_health_fraction, 1))
 	if(part_damage[norm_zone] < part_health)
 		return
@@ -138,6 +141,14 @@
 	if(user?.client)
 		record_round_statistic(STATS_CRITS_MADE)
 	announce_newly_exposed(profile)
+
+/mob/living/simple_animal/proc/announce_penetration(mult, flavor)
+	if(mult >= PEN_PART_MULT_BSTEEL)
+		next_attack_msg += " [span_boldwarning("The point punches clean through the [flavor]!")]"
+	else if(mult >= PEN_PART_MULT_HEAVY)
+		next_attack_msg += " [span_warning("The point sinks deep into the [flavor]!")]"
+	else
+		next_attack_msg += " [span_warning("The point bites into the [flavor].")]"
 
 /mob/living/simple_animal/proc/warn_unexposed(datum/anatomy_zone/hit_zone, mob/living/user)
 	if(!user?.client || world.time <= next_reach_warning || !length(broken_parts))

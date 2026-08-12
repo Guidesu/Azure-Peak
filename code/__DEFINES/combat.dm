@@ -115,6 +115,9 @@
 #define EFF_RANGE_ABOVE 2
 #define EFF_RANGE_BELOW 3
 
+// Damage multiplier for attacking outside of effective range. Also zeroes out penetration.
+#define EFF_RANGE_MISS_DAMFACTOR 0.5
+
 // Swingdelay presets
 #define SWINGDELAY_NORMAL 1	//No penalties, we just swing.
 #define SWINGDELAY_PENALTY 2 //We suffer a defensive penalty if struck during it. Otherwise, normal.

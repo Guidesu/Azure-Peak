@@ -1833,28 +1833,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			Iforce = 0
 	var/bladec = user.used_intent.blade_class
 
-	// Effective range check. Attacking a prone target doesn't apply a penalty at any range.
-	if(user.used_intent?.effective_range && H.mobility_flags & MOBILITY_STAND)
-		var/dist = get_dist(H, user)
-		var/range = user.used_intent?.effective_range
-		var/apply_penalty = FALSE
-		switch(user.used_intent?.effective_range_type)
-			if(EFF_RANGE_EXACT)
-				if(dist != range)
-					apply_penalty = TRUE
-			if(EFF_RANGE_BELOW)
-				if(dist <= range)
-					apply_penalty = TRUE
-			if(EFF_RANGE_ABOVE)
-				if(dist >= range)
-					apply_penalty = TRUE
-			if(EFF_RANGE_ABOVE)
-				apply_penalty = FALSE
-			else
-				CRASH("Invalid effective_range_type used by [user] with effective_range! Please set an effective_range_type on [user.used_intent?.type]")
-		if(apply_penalty)
-			pen = PEN_NONE
-			Iforce *= 0.5
+	if(user.used_intent?.out_of_effective_range(H, user))
+		pen = PEN_NONE
+		Iforce *= EFF_RANGE_MISS_DAMFACTOR
 
 	if(H == user && bladec == BCLASS_DISARM)
 		bladec = BCLASS_BLUNT
@@ -1935,7 +1916,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.dodgetime = (clamp(H.dodgetime - 8, 0, CLICK_CD_DODGE))	//We reset the dodgetime after getting struck directly in the body.
 				if(!has_vuln_or_exposed)
 					H.changeMaxDodge(5, clamp = TRUE)
-					
+
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)

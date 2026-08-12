@@ -19,6 +19,16 @@
 // Damage multiplier vs Earth Elemental for using blunt weapons
 #define CONSTRUCT_BLUNT_PART_MULT 1.6
 
+// Penetration damage multiplier vs PART, not total HP. So that there's rewards for using stab weapons instead of just DPS race.
+// Largely meant to give a slight leg up to spears and such which also make sense. See: Boar Spears in history.
+#define PEN_PART_MULT_LIGHT		1.05
+#define PEN_PART_MULT_MEDIUM	1.1
+#define PEN_PART_MULT_HEAVY		1.3
+#define PEN_PART_MULT_BSTEEL	1.6
+
+// Only allow thrust / piercing family to get this multiplier to avoid axes in particular from becoming too good
+#define PEN_PART_BCLASSES list(BCLASS_STAB, BCLASS_PICK, BCLASS_PIERCE)
+
 // Throttle on the "I can't reach that" message, per mob.
 #define REACH_WARNING_COOLDOWN (4 SECONDS)
 

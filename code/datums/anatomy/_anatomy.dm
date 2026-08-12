@@ -12,6 +12,8 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	var/bloodless = FALSE
 	/// Per-blade-class multiplier on part damage.
 	var/list/bclass_part_mult
+	/// Noun the penetration hit message drives into.
+	var/pen_flavor = "flesh"
 
 /datum/anatomy/New()
 	. = ..()
@@ -48,6 +50,20 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	if(!bclass || !length(bclass_part_mult))
 		return 1
 	return bclass_part_mult[bclass] || 1
+
+/datum/anatomy/proc/get_pen_part_mult(penfactor, bclass)
+	if(!penfactor || !bclass || !(bclass in PEN_PART_BCLASSES))
+		return 1
+	switch(penfactor)
+		if(PEN_LIGHT)
+			return PEN_PART_MULT_LIGHT
+		if(PEN_MEDIUM)
+			return PEN_PART_MULT_MEDIUM
+		if(PEN_HEAVY)
+			return PEN_PART_MULT_HEAVY
+		if(PEN_BSTEEL)
+			return PEN_PART_MULT_BSTEEL
+	return 1
 
 /datum/anatomy_zone
 	var/zone
