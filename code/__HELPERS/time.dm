@@ -56,6 +56,7 @@ GLOBAL_VAR_INIT(date_override_offset, 0)
 		if(GLOB.tod == "dawn" && SSticker?.current_state == GAME_STATE_PLAYING)
 			GLOB.dayspassed++
 			scom_announce_new_dawn()
+			update_moon_phase()
 			if(SStreasury?.initialized)
 				SStreasury.tick_rural_tax()
 				SStreasury.distribute_estate_incomes()
@@ -104,6 +105,10 @@ GLOBAL_VAR_INIT(date_override_offset, 0)
 		if(!weekday_line)
 			return
 		var/text_to_show = "[weekday_line]\n[uppertext(get_ic_date_short_as_string())]"
+		var/moon_name = get_moon_phase_name(GLOB.moon_phase)
+		if(GLOB.is_blood_moon)
+			moon_name = "BLOOD MOON"
+		text_to_show += "\n[uppertext(moon_name)]"
 		var/list/active_titles = get_active_calendar_event_titles()
 		if(length(active_titles))
 			text_to_show += "\n- [uppertext(active_titles.Join(" & "))] -"

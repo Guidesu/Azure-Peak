@@ -18,3 +18,20 @@
 #define CALENDAR_CATEGORY_CIVIC "civic"
 
 #define CALENDAR_EVENTS_JSON_PATH "strings/calendar_events.json"
+
+// Moon phase defines
+#define MOON_PHASE_NEW "new_moon"
+#define MOON_PHASE_WAXING_CRESCENT "waxing_crescent"
+#define MOON_PHASE_FIRST_QUARTER "first_quarter"
+#define MOON_PHASE_WAXING_GIBBOUS "waxing_gibbous"
+#define MOON_PHASE_FULL "full_moon"
+#define MOON_PHASE_WANING_GIBBOUS "waning_gibbous"
+#define MOON_PHASE_LAST_QUARTER "last_quarter"
+#define MOON_PHASE_WANING_CRESCENT "waning_crescent"
+
+// Blood moon chance on full moon (15%)
+#define BLOOD_MOON_CHANCE 15
+
+// Lunar cycle length = 28 days (matches CALENDAR_DAYS_IN_MONTH)
+// Day 1 = new moon, Day 14 = full moon, Day 28 = new moon again
+#define LUNAR_CYCLE_DAYS 28

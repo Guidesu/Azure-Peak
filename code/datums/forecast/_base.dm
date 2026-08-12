@@ -4,6 +4,9 @@
  * SSParticleWeather picks one /datum/forecast subtype at Initialize() based on SSmapping.config.map_name,
  * then calls check_forecast(time_of_day) whenever GLOB.tod changes (see code/__HELPERS/time.dm settod()).
  * This replaces the old hardcoded switch(GLOB.tod) block that used to live directly in settod().
+ *
+ * Seasonal adjustments: pick_weather() also considers the current season to modify
+ * weather weights — snow is more likely in winter, fireflies in summer, leaves in autumn, etc.
  */
 /datum/forecast
 	var/name = "Base Forecast"
@@ -19,6 +22,14 @@
 	var/day_prob = 25
 	var/night_prob = 35
 	var/dusk_prob = 35
+
+	/// Seasonal weight multipliers applied to specific weather types.
+	/// Format: list(weather_type_path = multiplier)
+	/// These are applied AFTER the base pool is selected, modifying weights up or down.
+	var/list/spring_weather_modifiers = list()
+	var/list/summer_weather_modifiers = list()
+	var/list/autumn_weather_modifiers = list()
+	var/list/winter_weather_modifiers = list()
 
 /**
  * Rolls whether weather should occur for the given time_of_day ("dawn"/"day"/"dusk"/"night"),
@@ -46,6 +57,10 @@
 			if(SSgamemode.current_storyteller?.name == "Zizo" || SSgamemode.current_storyteller?.name == "Graggar")
 				weather_pool[/datum/particle_weather/blood_rain_storm] = 10
 
+			// Blood moon increases blood rain chance
+			if(GLOB.is_blood_moon)
+				weather_pool[/datum/particle_weather/blood_rain_storm] = 20
+
 		if("dawn")
 			if(!prob(dawn_prob))
 				return
@@ -67,4 +82,32 @@
 	if(!weather_pool || !length(weather_pool))
 		return
 
+	// Apply seasonal modifiers
+	weather_pool = apply_seasonal_modifiers(weather_pool)
+
 	return pickweight(weather_pool)
+
+/// Applies seasonal weight modifiers to the weather pool based on the current season
+/datum/forecast/proc/apply_seasonal_modifiers(list/weather_pool)
+	var/list/parts = resolve_ic_date_parts(GLOB.dayspassed)
+	var/season = get_season_from_month(parts[2])
+	var/list/modifiers
+
+	switch(season)
+		if("Spring")
+			modifiers = spring_weather_modifiers
+		if("Summer")
+			modifiers = summer_weather_modifiers
+		if("Autumn")
+			modifiers = autumn_weather_modifiers
+		if("Winter")
+			modifiers = winter_weather_modifiers
+
+	if(!modifiers || !length(modifiers))
+		return weather_pool
+
+	for(var/weather_type in modifiers)
+		if(weather_type in weather_pool)
+			weather_pool[weather_type] = max(1, weather_pool[weather_type] * modifiers[weather_type])
+
+	return weather_pool
