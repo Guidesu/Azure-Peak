@@ -417,6 +417,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	show_damage_stage()
 
 /mob/living/carbon/simple_animal/hostile
+	roll_affixes_on_spawn = TRUE
+	affix_tier = 2
 	var/retreating
 
 /mob/living/carbon/simple_animal/hostile/updatehealth()

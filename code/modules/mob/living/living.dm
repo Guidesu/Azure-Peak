@@ -6,6 +6,15 @@
 	var/contract_spawned = FALSE
 	var/contract_dust_scheduled = FALSE
 
+	/// Mob affix system - list of /datum/mob_affix
+	var/list/mob_affixes = list()
+	/// Whether this mob should roll affixes when it spawns
+	var/roll_affixes_on_spawn = FALSE
+	/// Base name before affixes are applied
+	var/affix_base_name
+	/// Affix tier used for difficulty scaling
+	var/affix_tier = 1
+
 
 /mob/living/Initialize()
 	. = ..()
@@ -22,6 +31,8 @@
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	init_faith()
+	if(roll_affixes_on_spawn)
+		addtimer(CALLBACK(src, PROC_REF(roll_mob_affixes_for_self)), 2 SECONDS)
 
 /mob/living/Destroy()
 	surgeries = null
@@ -2698,3 +2709,36 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 	if(QDELETED(src) || stat != DEAD) // skip if it was somehow revived in the meantime
 		return
 	dust()
+
+/mob/living/proc/roll_mob_affixes_for_self()
+	if(client || ckey)
+		return
+	if(!affix_base_name)
+		affix_base_name = real_name || name
+	roll_mob_affixes(src, affix_tier, force = TRUE)
+
+/mob/living/proc/update_affix_name()
+	if(!affix_base_name)
+		affix_base_name = real_name || name
+	var/list/prefixes = list()
+	var/list/suffixes = list()
+	for(var/datum/mob_affix/A as anything in mob_affixes)
+		if(A.affix_type == AFFIX_PREFIX_MOB)
+			prefixes += A.name
+		else
+			suffixes += A.name
+	var/prefix_string = english_list(prefixes, nothing_text = "", and_text = ", ", final_comma_text = ", ")
+	var/suffix_string = english_list(suffixes, nothing_text = "", and_text = ", ", final_comma_text = ", ")
+	if(prefix_string && suffix_string)
+		name = "[prefix_string] [affix_base_name] [suffix_string]"
+	else if(prefix_string)
+		name = "[prefix_string] [affix_base_name]"
+	else if(suffix_string)
+		name = "[affix_base_name] [suffix_string]"
+	else
+		name = affix_base_name
+	real_name = name
+
+/mob/living/proc/handle_mob_affixes()
+	for(var/datum/mob_affix/A as anything in mob_affixes)
+		A.affix_process()

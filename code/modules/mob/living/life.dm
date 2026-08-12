@@ -104,6 +104,7 @@
 
 	handle_traits() // eye, ear, brain damages
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
+	handle_mob_affixes()
 
 	update_sneak_invis()
 

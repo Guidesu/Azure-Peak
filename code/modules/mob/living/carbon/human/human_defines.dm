@@ -21,6 +21,8 @@
 	var/cosmetic_claw_miss_sound = "bluntwooshmed"
 
 	ambushable = 1
+	roll_affixes_on_spawn = TRUE
+	affix_tier = 2
 
 	voice_pitch = 1
 	/// This is probably dead code, but moved to human_defines and I learned to hate people who deatomize it. It's war now.
