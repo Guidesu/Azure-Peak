@@ -24,8 +24,8 @@
 	health = 270
 	maxHealth = 270
 	threat_point = THREAT_HIGH
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 18
+	melee_damage_upper = 25
 	vision_range = 7
 	aggro_vision_range = 9
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
