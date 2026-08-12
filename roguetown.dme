@@ -1540,7 +1540,6 @@
 #include "code\modules\admin\verbs\adminjump.dm"
 #include "code\modules\admin\verbs\adminpm.dm"
 #include "code\modules\admin\verbs\adminsay.dm"
-#include "code\modules\admin\verbs\anatomy_review.dm"
 #include "code\modules\admin\verbs\beakerpanel.dm"
 #include "code\modules\admin\verbs\bluespacearty.dm"
 #include "code\modules\admin\verbs\BrokenInhands.dm"
