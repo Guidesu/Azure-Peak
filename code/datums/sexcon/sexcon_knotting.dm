@@ -144,9 +144,9 @@
 	btm.remove_status_effect(/datum/status_effect/knot_gaped)
 	RegisterSignal(user.sexcon.knotted_owner, COMSIG_MOVABLE_MOVED, PROC_REF(knot_movement), TRUE)
 	RegisterSignal(user.sexcon.knotted_recipient, COMSIG_MOVABLE_MOVED, PROC_REF(knot_movement), TRUE)
-	GLOB.round_stats[STATS_KNOTTED]++
+	GLOB.azure_round_stats[STATS_KNOTTED]++
 	if(!islupian(user)) // only add to counter if top isn't a Lupian (for lore reasons)
-		GLOB.round_stats[STATS_KNOTTED_NOT_LUPIANS]++
+		GLOB.azure_round_stats[STATS_KNOTTED_NOT_LUPIANS]++
 
 /datum/sex_controller/proc/knot_movement_mods_remove_his_knot_ty(mob/living/carbon/human/top, mob/living/carbon/human/btm)
 	var/obj/item/organ/penis/penor = top.getorganslot(ORGAN_SLOT_PENIS)
@@ -539,7 +539,7 @@
 	desc = "You were forcefully withdrawn from. Warmth runs freely down your thighs..."
 
 
-/atom/movable/screen/alert/status_effect/knot_tied/Click()
+/atom/movable/screen/alert/status_effect/knot_tied/handle_click()
 	..()
 	var/mob/living/L = usr
 	if(!istype(L) || !L.sexcon)
@@ -562,7 +562,7 @@
 	desc = "I have to be careful where I step..."
 	icon_state = "knotted"
 
-/atom/movable/screen/alert/status_effect/knotted/Click()
+/atom/movable/screen/alert/status_effect/knotted/handle_click()
 	..()
 	var/mob/living/L = usr
 	if(!istype(L) || !L.sexcon)

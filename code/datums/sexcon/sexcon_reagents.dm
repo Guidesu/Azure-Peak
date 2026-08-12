@@ -81,11 +81,9 @@
 		to_chat(C, span_danger("I have an intense craving for [name]."))
 		C.sexcon.adjust_arousal(5)
 	if(istype(C, /mob/living/carbon/human))
-		// Stores charflaws as a list on prefs (charflaws), not a singular var on the mob.
-		// Only add the lovefiend flaw if the mob doesn't already have it.
-		if(!C.has_flaw(/datum/charflaw/addiction/lovefiend))
-			var/datum/charflaw/addiction/lovefiend/new_flaw = new()
-			new_flaw.on_mob_creation(C)
+		var/mob/living/carbon/human/H = C
+		if(!istype(H.charflaw, /datum/charflaw/addiction/lovefiend))
+			H.charflaw = new /datum/charflaw/addiction/lovefiend(H)
 	return
 
 /datum/reagent/consumable/ethanol/beer/emberwine/addiction_act_stage4(mob/living/carbon/human/C)

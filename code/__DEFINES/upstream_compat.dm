@@ -177,3 +177,21 @@
 // Missing rebel throne defines
 #define REBEL_THRONE_SPEEDUP_PER_PERSON 5
 #define REBEL_THRONE_TIME 600
+
+// ============== SEXCON COMPAT STUBS ==============
+
+// Round stats (Ratwood uses GLOB.azure_round_stats)
+GLOBAL_LIST_INIT(azure_round_stats, list())
+#define STATS_KNOTTED "knotted"
+#define STATS_KNOTTED_NOT_LUPIANS "knotted_not_lupians"
+
+// handle_click proc stub for sexcon_knotting
+/atom/movable/screen/proc/handle_click(location, control, params)
+	return
+
+// fullscreen_redflash proc stub
+/mob/proc/fullscreen_redflash()
+	return
+
+// charflaw var stub
+/mob/living/carbon/human/var/charflaw = null
