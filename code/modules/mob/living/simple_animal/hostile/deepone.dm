@@ -100,8 +100,7 @@
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
 	move_base_delay = MOVEMENT_DELAY_SPD_3
-	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/repel)
-
+	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3)
 
 /mob/living/simple_animal/hostile/rogue/deepone/wiz/Shoot()
 	projectiletype = pick(allowed_projectile_types)
