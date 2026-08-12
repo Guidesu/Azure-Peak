@@ -74,6 +74,10 @@
 		GLOB.loadout_items[path] = loadout_item
 		GLOB.loadout_items_by_name[loadout_item.name] = loadout_item
 
+	// DreamValley TAT extension traits
+	if(GLOB.tat_available_traits)
+		dreamvalley_register_alt_form_trait()
+
 
 	// Combat Music Overrides
 	for (var/path in subtypesof(/datum/combat_music))

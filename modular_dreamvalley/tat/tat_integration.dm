@@ -114,4 +114,5 @@
 	qdel(setup_button)
 	human.cure_blind("advsetup")
 	SSrole_class_handler.adjust_class_amount(class, 1)
+	dreamvalley_apply_alt_form_trait(human)
 	return TRUE
