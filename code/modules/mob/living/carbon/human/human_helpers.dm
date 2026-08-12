@@ -228,3 +228,61 @@
 	walk_to_last_pos = null
 	walk_to_cached_path = null
 
+/// Checks if this human is "sleep-naked" - wearing only items that
+/// wouldn't bother a Nude Sleeper. Used by handle_sleep() when the
+/// TRAIT_NUDE_SLEEPER trait is active.
+/// Returns TRUE if the human can sleep, FALSE if bothered by clothing.
+/mob/living/carbon/human/proc/is_sleep_naked()
+	// skin_armor is always fine - it's literally your skin (NODROP)
+	// Rings, neck items, cloaks, belts, wrist items are minimal and
+	// don't really "bother" a nude sleeper.
+	// We only check the major body-covering slots.
+
+	// wear_armor: real armor/clothing over the torso - NOT OK
+	// (skin armor lives in skin_armor slot, not wear_armor)
+	if(wear_armor)
+		return FALSE
+
+	// wear_shirt: OK only if minimal (covers ONLY CHEST, like a bra)
+	// Full shirts that cover CHEST|VITALS|ARMS are NOT OK
+	if(wear_shirt)
+		var/covered = wear_shirt.body_parts_covered
+		// A bra covers just CHEST. Anything covering ARMS or VITALS
+		// in addition to CHEST is too much for a nude sleeper.
+		if(covered & (ARMS|VITALS|LEGS|GROIN|HANDS|FEET))
+			return FALSE
+
+	// wear_pants: OK only if minimal (loincloth covers GROIN|LEGS
+	// from the parent, but a loincloth is minimal enough).
+	// However, chain/plate legs or heavy leather pants are NOT OK.
+	if(wear_pants)
+		var/covered = wear_pants.body_parts_covered
+		// If it covers more than GROIN|LEGS, it's too much
+		if(covered & (CHEST|VITALS|ARMS|HANDS|FEET))
+			return FALSE
+		// Heavy armor pants are not OK
+		if(wear_pants.armor_class >= ARMOR_CLASS_MEDIUM)
+			return FALSE
+
+	// head: OK if it's a light hat, NOT OK if it's a helmet
+	// (helmets have CANT_SLEEP_IN or medium+ armor class)
+	if(head)
+		if(head.clothing_flags & CANT_SLEEP_IN)
+			return FALSE
+		if(istype(head, /obj/item/clothing/head/roguetown/helmet))
+			return FALSE
+
+	// wear_mask: NOT OK - face coverings bother nude sleepers
+	if(wear_mask)
+		return FALSE
+
+	// gloves: NOT OK - hand coverings bother nude sleepers
+	if(gloves)
+		return FALSE
+
+	// shoes: NOT OK - foot coverings bother nude sleepers
+	if(shoes)
+		return FALSE
+
+	return TRUE
+

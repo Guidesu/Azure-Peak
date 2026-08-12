@@ -697,6 +697,16 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(armor_blocked && !fallingas)
 						to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
 						fallingas = TRUE
+					// Nude Sleeper trait: can only sleep if not wearing
+					// bothersome clothing. Skin armor and minimal items
+					// (rings, necklaces, bracers, cloaks, bras, loincloths,
+					// light hats) are allowed.
+					if(!armor_blocked && HAS_TRAIT(src, TRAIT_NUDE_SLEEPER))
+						var/nude_blocked = !H.is_sleep_naked()
+						if(nude_blocked && !fallingas)
+							to_chat(src, span_warning("I can't fall asleep unless I'm nude and in bed."))
+							fallingas = TRUE
+						armor_blocked = nude_blocked
 				if(!armor_blocked)
 					if (sleepy_mod > 1)
 						sleep_threshold = 30
