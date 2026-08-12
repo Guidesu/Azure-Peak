@@ -105,14 +105,16 @@
 
 /// Build the list of available parked characters for a player, keyed by
 /// record_key -> display name. Excludes the current preference slot.
-/proc/dreamvalley_get_available_alt_forms(mob/living/carbon/human/user)
+/proc/dreamvalley_get_available_alt_forms(mob/user)
 	var/list/available = list()
 	if(!user?.client)
 		return available
 	var/owner_ckey = ckey(user.client.key)
 	if(!length(owner_ckey))
 		return available
-	for(var/record_key in GLOB.dreamvalley_campaign?.parked_characters)
+	if(!GLOB.dreamvalley_campaign?.parked_characters)
+		return available
+	for(var/record_key in GLOB.dreamvalley_campaign.parked_characters)
 		var/list/record = GLOB.dreamvalley_campaign.parked_characters[record_key]
 		if(!islist(record) || record["state"] != "parked" || record["complete"] != TRUE)
 			continue
@@ -260,9 +262,10 @@
 		return
 	var/list/available = dreamvalley_get_available_alt_forms(user)
 	if(!length(available))
-		// No parked characters yet - allow the trait but warn the player.
-		to_chat(user, span_warning("You have no parked characters yet. You can select your alternate form later using the \"Select Alternate Form\" verb after parking a character via Far Travel."))
+		// No parked characters yet - allow the trait but warn the player
+		// with a visible popup (to_chat is easy to miss inside the TAT UI).
 		build.set_magic_value(ALT_FORM_MAGIC_KEY, null)
+		tgui_alert(user, "You have no parked characters yet.\n\nThe Alternate Form trait is still added - you can select which character to transform into later.\n\nTo park a character: join the game, use Far Travel to park your current character, then create a new character in another preference slot.\n\nAfter parking, use the \"Select Alternate Form\" verb in the OOC tab to choose your form.", "Alternate Form - No Saved Characters Yet")
 		return
 	// Show the selection prompt.
 	var/choice = tgui_input_list(user, "Which saved character will be your alternate form?", "Alternate Form Selection", available)
@@ -272,6 +275,7 @@
 	build.set_magic_value(ALT_FORM_MAGIC_KEY, record_key)
 	var/char_name = available[record_key]
 	to_chat(user, span_notice("Your alternate form is now set to: [char_name]"))
+	tgui_alert(user, "Your alternate form is now set to: [char_name]\n\nYou will be able to transform into this character using the \"Assume Alternate Form\" ability in-game.", "Alternate Form Selected")
 
 /// Admin/player verb to re-select the alt-form character after parking a new one.
 /mob/verb/select_alternate_form()
