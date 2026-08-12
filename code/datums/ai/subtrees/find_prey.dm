@@ -98,6 +98,8 @@
 		return TRUE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast))
 		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel))
+		return TRUE
 	// Hunt small animals (easy prey for wolves)
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox))
 		return TRUE

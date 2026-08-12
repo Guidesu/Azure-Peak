@@ -42,6 +42,9 @@
 #define LOOT_BUDGET_ARAIGNEE 		    300
 #define LOOT_BUDGET_BOGMANFORT          1200
 #define LOOT_BUDGET_SKELETONFORT        800
+#define LOOT_BUDGET_BIZZARE_BAZAARE     1500
+#define LOOT_BUDGET_DESERT_PYRAMID		2000
+#define LOOT_BUDGET_DESERTDARK			1000
 
 // ---- Spawner Loot Values (mammons) ----
 // Expected mammon value of what each spawner category rolls.
@@ -65,6 +68,8 @@
 #define LOOT_VALUE_DUNGEON_FOOD			3
 #define LOOT_VALUE_DUNGEON_SPELLS		50
 #define LOOT_VALUE_SEWERS				5
+#define LOOT_VALUE_CHEAP_CARVEDGEM		7
+#define LOOT_VALUE_VALUABLE_CARVEDGEM	30
 
 // Equipment spawners - armor (focused pools, higher expected value)
 #define LOOT_VALUE_LIGHT_ARMOR			22

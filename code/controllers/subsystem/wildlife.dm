@@ -59,12 +59,14 @@ SUBSYSTEM_DEF(wildlife)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 15,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 5,
 		// Small predators
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 10,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 8,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 3,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 3,
 		// Large predators (rarer in spring)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 3,
@@ -80,12 +82,14 @@ SUBSYSTEM_DEF(wildlife)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 12,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 5,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 5,
 		// Small predators (active in summer)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 12,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 10,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 6,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 8,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 5,
 		// Large predators
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 8,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 5,
@@ -101,12 +105,14 @@ SUBSYSTEM_DEF(wildlife)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 10,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 3,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 3,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 3,
 		// Small predators (stocking up)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 10,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 8,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 6,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 8,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 8,
 		// Large predators (more active in autumn)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 12,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 10,
@@ -125,6 +131,7 @@ SUBSYSTEM_DEF(wildlife)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 5,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 8,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 10,
+		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 10,
 		// Large predators (very active — hungry wolves hunt in winter)
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 8,
 		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 20,
