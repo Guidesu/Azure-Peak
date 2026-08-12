@@ -33,6 +33,7 @@
 	var/swipe_state = null
 	var/vuln_on_hit = 0
 	var/immobilize_on_hit = 0
+	var/knockdown_on_hit = 0
 	var/telegraph_type = /obj/effect/temp_visual/telegraph
 	// AI Hint to keep the target in its pattern
 	var/require_target_in_pattern = FALSE
@@ -261,6 +262,8 @@
 			L.apply_status_effect(/datum/status_effect/debuff/vulnerable, vuln_on_hit)
 		if(immobilize_on_hit)
 			L.apply_status_effect(STATUS_EFFECT_IMMOBILIZED, immobilize_on_hit)
+		if(knockdown_on_hit)
+			L.Knockdown(knockdown_on_hit)
 		if(spell_impact_intensity != SPELL_IMPACT_NONE)
 			new /obj/effect/temp_visual/spell_impact(get_turf(L), spell_color, spell_impact_intensity)
 		on_hit_target(H, L, facing)

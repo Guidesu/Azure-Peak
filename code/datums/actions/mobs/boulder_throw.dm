@@ -17,6 +17,7 @@
 	damage = 75
 	damage_structures = TRUE
 	structure_damage = 75
+	knockdown_on_hit = 1 SECONDS
 	strike_sound = null
 	hit_sound = list('sound/combat/hits/smashlimb (1).ogg','sound/combat/hits/smashlimb (2).ogg','sound/combat/hits/smashlimb (3).ogg')
 	impact_sound = list('sound/misc/explode/explosionfar (1).ogg')
