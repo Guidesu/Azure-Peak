@@ -441,7 +441,7 @@
 				continue
 			var/datum/component/ai_aggro_system/A = enemy.GetComponent(/datum/component/ai_aggro_system)
 			if(A)
-				A.add_threat_to_mob(summon, 100)
+				A.add_threat_to_mob(summon, AGGRO_THREAT_TAUNT)
 
 /datum/action/cooldown/spell/command_word/fray
 	name = "Fray"

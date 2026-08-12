@@ -198,6 +198,20 @@
 #define MELEE_NPC_WHIFF_FLOOR_CHANCE      8
 #define MELEE_NPC_TRACK_CEILING_CHANCE    40
 
+#define AGGRO_PICK_WEIGHT_BASE       100
+#define AGGRO_PICK_WEIGHT_MIN        15
+#define AGGRO_PICK_DISTANCE_FALLOFF  8
+#define AGGRO_CROWD_PENALTY_BASE     1
+#define AGGRO_CROWD_PENALTY_WARBAND  2.5
+#define AGGRO_CALL_FOR_HELP_THREAT   12
+
+#define AGGRO_THREAT_CAP             300
+#define AGGRO_THREAT_DECAY_MULT      0.75
+#define AGGRO_THREAT_DECAY_FLAT      1
+#define AGGRO_THREAT_SWITCH_MARGIN   10
+#define AGGRO_THREAT_PEEL_BONUS      2
+#define AGGRO_THREAT_TAUNT           250
+
 // Keys used by one and only one behavior
 // Used to hold state without making bigass lists
 /// For /datum/ai_behavior/find_potential_targets, what if any field are we using currently
