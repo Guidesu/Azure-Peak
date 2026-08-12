@@ -919,7 +919,7 @@
 			return _ok
 		if("remove_trait")
 			if(params["id"] == "tat_alt_form")
-				set_magic_value("alt_form_character", null)
+				set_magic_value("alt_form_slot", null)
 			return remove_trait(params["id"], text2num(params["amount"]) || 1)
 		if("set_direction_foundation")
 			return set_direction_foundation(params["foundation"])
