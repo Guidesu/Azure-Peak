@@ -195,3 +195,26 @@ GLOBAL_LIST_INIT(azure_round_stats, list())
 
 // charflaw var stub
 /mob/living/carbon/human/var/charflaw = null
+
+// ============== SAO PR #8574 COMPAT STUBS ==============
+
+// Contraption item types from upstream
+/obj/item/contraption/linker
+/obj/item/contraption/wood_metalizer
+
+// Old god patron from upstream
+/datum/patron/old_god
+
+// Vaeltic endurance buff from upstream
+/datum/status_effect/buff/vaeltic_endurance
+
+// Psydonian blessing/silver defines for polearms
+#define BLESSING_PSYDONIAN "blessing_psydonian"
+#define SILVER_PSYDONIAN "silver_psydonian"
+
+// Auxentius vow buff from upstream
+/datum/status_effect/buff/auxentius_vow
+
+// IsObscured proc stub for objs (PR references it)
+/obj/proc/IsObscured()
+	return FALSE

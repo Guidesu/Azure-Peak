@@ -78,7 +78,6 @@
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 7
 	is_silver_proj = TRUE
-	npc_simple_damage_mult = 5
 	speed = 0.8
 	min_range = MIN_BOLT_RANGE - 1
 	max_range = MAX_BOLT_RANGE - 1
@@ -97,7 +96,6 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.4
-	npc_simple_damage_mult = 2
 	min_range = MIN_BOLT_RANGE
 	max_range = MAX_BOLT_RANGE
 	dam_falloff_factor = DAM_FALLOFF_BOLT
@@ -143,7 +141,6 @@
 	armor_penetration = PEN_MEDIUM
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/bronze
 	icon_state = "bronzebolt_proj"
-	npc_simple_damage_mult = 3
 	speed = 0.15
 
 /obj/projectile/bullet/reusable/bolt/holy
@@ -155,7 +152,6 @@
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 7
 	is_silver_proj = TRUE //Uniquely deals a 'double whammy', in terms of both applying Sunder and some lingering post-impact damage.
-	npc_simple_damage_mult = 5 //175, compared to the regular bolt's 140. Slightly more damage, as to imitate its anti-unholy properties on mobs who aren't affected by any form of poison.
 
 /obj/projectile/bullet/reusable/bolt/blunt
 	damage = 25
@@ -203,7 +199,6 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 1.2
-	npc_simple_damage_mult = 5 //..or 350 damage against mindless opponents. Run them through!
 	min_range = MIN_BOLT_RANGE + 2
 	max_range = MAX_BOLT_RANGE + 3
 
@@ -314,7 +309,6 @@
 	icon_state = "silvbolt_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/silver
 	embedchance = 100
-	npc_simple_damage_mult = 6 //..or 480 damage against a mindless mob. Only if you're desperate.
 	is_silver_proj = TRUE
 
 /obj/item/ammo_casing/caseless/rogue/heavy_bolt/silver
@@ -337,7 +331,6 @@
 	hitsound = 'sound/combat/hits/hi_bolt (3).ogg'
 	speed = 0.8 //Same speed as a crossbow bolt. 
 	is_silver_proj = TRUE
-	npc_simple_damage_mult = 10 //..or 1000 damage against a mindless mob. If you're using this against one, you're either a fool or have no other choice left. Godspeed.
 
 // STAKE AMMO
 /obj/item/ammo_casing/caseless/rogue/heavy_bolt/stake
@@ -359,7 +352,6 @@
 	icon_state = "heavystake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
 	speed = 0.8
-	npc_simple_damage_mult = 10 //..or 750 damage against a mindless mob.
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 6 //Deals 60 BRUTE and 30 BURN, on top of some mild afterburn.
 
@@ -385,7 +377,6 @@
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
 	speed = 0.6
 	is_silver_proj = TRUE
-	npc_simple_damage_mult = 10 //..or 900 damage against a mindless mob. If you're using this against one, you're either a fool or have no other choice left. Godspeed.
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 4 //Deals 70 BRUTE and 40 BURN, on top of some mild afterburn.
 
@@ -412,7 +403,6 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/stake
 	icon_state = "stake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (1).ogg'
-	npc_simple_damage_mult = 6 //..or 150 damage against a mindless mob.
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 3 //Deals 25 BRUTE and 15 BURN, on top of some mild afterburn.
 	range = 15
@@ -441,7 +431,6 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/stake/silver
 	icon_state = "silverstake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (1).ogg'
-	npc_simple_damage_mult = 6 //..or 300 damage against a mindless mob.
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 4 //Deals 40 BRUTE and 20 BURN, on top of some mild afterburn.
 	is_silver_proj = TRUE
@@ -466,7 +455,6 @@
 	woundclass = BCLASS_BURN
 	damage_type = BURN
 	flag = "fire"
-	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/bolt/pyro/on_hit(target, blocked = FALSE)
 	..()
@@ -536,4 +524,3 @@
 	icon_state = "blacksteelbolt_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/blacksteel
 	embedchance = 80
-	npc_simple_damage_mult = 6 //..or 420 damage against a mindless mob.

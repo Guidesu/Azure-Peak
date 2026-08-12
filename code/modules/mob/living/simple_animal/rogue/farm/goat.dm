@@ -49,7 +49,7 @@
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
-	domesticated by the children of Praecursor and remain the key livestock to pastoralist communities across the known world."
+	domesticated by the children of Psydon and remain the key livestock to pastoralist communities across the known world."
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -110,6 +110,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic/goat //slightly more agressive retaliation
+	move_base_delay = MOVEMENT_DELAY_SLOW
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tame
 	tame = TRUE
@@ -152,7 +153,6 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	defprob = 50
 	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat
 	can_buckle = FALSE
 	buckle_lying = 0
@@ -203,7 +203,7 @@
 	icon = 'icons/roguetown/mob/monster/gote.dmi'
 	name = "goat"
 	desc = "Renowned for their mountaineering skills and their resilience, goats are said to have been one of the first animals \
-	domesticated by the children of Praecursor and remain the key livestock to pastoralist communities across the known world."
+	domesticated by the children of Psydon and remain the key livestock to pastoralist communities across the known world."
 	icon_state = "goatmale"
 	icon_living = "goatmale"
 	icon_dead = "goatmale_dead"
@@ -264,6 +264,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/generic
+	move_base_delay = MOVEMENT_DELAY_SLOW
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tame
 	tame = TRUE

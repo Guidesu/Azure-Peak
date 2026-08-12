@@ -127,7 +127,7 @@
 		override_status = ATTACK_OVERRIDE_NODEFENSE
 
 	if(HAS_TRAIT(M, TRAIT_TEMPO))
-		if(ishuman(M) && isliving(user) && user != M)
+		if(ishuman(M) && ishuman(user) && user.mind)
 			var/mob/living/carbon/human/H = M
 			H.process_tempo_attack(user)
 
@@ -395,8 +395,6 @@
 						dullfactor = 0.2
 					else
 						dullfactor = 0.45 + (lumberskill * 0.15)
-						// Stat integration: STR boosts chopping power
-						dullfactor *= lumberjacker.get_lumber_speed_mult() * 0.5 + 0.5
 						if(HAS_TRAIT(user, TRAIT_WYRD_LABOURER))
 							dullfactor *= 1.5
 						lumberjacker.mind?.add_sleep_experience(/datum/skill/labor/lumberjacking, (lumberjacker.STAINT*0.2))
@@ -408,8 +406,6 @@
 						dullfactor = 0.3
 					else
 						dullfactor = 1.0 + (lumberskill * 0.25)
-						// Stat integration: STR boosts chopping power
-						dullfactor *= lumberjacker.get_lumber_speed_mult() * 0.5 + 0.5
 						lumberjacker.mind?.add_sleep_experience(/datum/skill/labor/lumberjacking, (lumberjacker.STAINT*0.2))
 					cont = TRUE
 			if(!cont)
@@ -471,8 +467,6 @@
 			var/mob/living/miner = user
 			var/mineskill = miner.get_skill_level(/datum/skill/labor/mining)
 			newforce = newforce * (8+(mineskill*1.5))
-			// Stat integration: STR and CON boost mining damage
-			newforce *= miner.get_mining_speed_mult() * 0.5 + 0.5 // blend: 0.5x at low, up to ~1.25x at high
 			if(HAS_TRAIT(user, TRAIT_WYRD_LABOURER))
 				newforce *= 1.5
 			shake_camera(user, 1, 1)
@@ -509,17 +503,6 @@
 		newforce = (newforce * WEAK_STANCE_DMG_MULT)
 
 	newforce = CLAMP(newforce, user.used_intent.min_intent_damage, user.used_intent.max_intent_damage)
-
-	// Tempo: being swarmed by foes focuses the mind, increasing melee damage
-	if(isliving(user))
-		var/mob/living/L = user
-		var/tempo_dmg_mult = L.get_tempo_bonus(TEMPO_TAG_MELEE_DAMAGE)
-		if(tempo_dmg_mult > 1.0)
-			newforce = round(newforce * tempo_dmg_mult, 1)
-		// Stance damage multiplier (bending/miracle stances)
-		var/stance_dmg_mult = get_any_stance_damage_mult(L)
-		if(stance_dmg_mult != 1.0)
-			newforce = round(newforce * stance_dmg_mult, 1)
 
 	return newforce
 
@@ -685,7 +668,7 @@
 	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_EFFECT_SELF, user, affecting, intent, victim, selzone)
 
-	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
+	if((is_silver || (is_even_lesser_silver && is_npc(victim))) && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
 		if(is_lesser_silver)
 			// Lesser silver only flares meaningfully on a deliberate melee strike — thrown contact does nothing,
 			// and the hit never forces a disguise off. Stacks accumulate without ignition.
@@ -715,7 +698,7 @@
 		if(I.damtype == BRUTE)
 			next_attack_msg.Cut()
 			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
-				if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
+				if((I.is_silver || (I.is_even_lesser_silver && is_npc(src))) && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
 					newforce *= SILVER_SIMPLEMOB_DAM_MULT
 				simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
 				/* No embedding on simple mobs, thank you!
@@ -745,13 +728,6 @@
 	send_item_attack_message(I, user, hitlim)
 	if(I.force_dynamic)
 		return TRUE
-
-/mob/living/carbon/simple_animal/attacked_by(obj/item/I, mob/living/user)
-	if(I.force_dynamic < force_threshold || I.damtype == STAMINA)
-		playsound(loc, 'sound/blank.ogg', I.get_clamped_volume(), TRUE, -1)
-	else
-		. = ..()
-		I.do_special_attack_effect(user, null, null, src, null)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.

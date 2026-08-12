@@ -161,6 +161,9 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer
 	var/archer_outfit = null
 
+/mob/living/carbon/human/species/human/northern/searaider/archer/scarce
+	searaider_outfit = /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/scarce
+
 /mob/living/carbon/human/species/human/northern/searaider/archer/ambush
 	threat_point = THREAT_TOUGH
 	ambush_faction = "raiders"
@@ -205,6 +208,10 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/reaver/pre_equip(mob/living/carbon/human/H)
 	..()
 	backl = /obj/item/quiver/randomfill/reaver
+
+/datum/outfit/job/roguetown/human/species/human/northern/searaider/archer/scarce/pre_equip(mob/living/carbon/human/H)
+	..()
+	backl = /obj/item/quiver/arrows/scarce
 
 /mob/living/carbon/human/species/human/northern/searaider/huscarl
 	threat_point = THREAT_DEADLY

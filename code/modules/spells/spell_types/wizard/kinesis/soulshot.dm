@@ -50,7 +50,6 @@
 	damage = SOULSHOT_BASE_DAMAGE
 	damage_type = BRUTE
 	woundclass = BCLASS_STAB
-	npc_simple_damage_mult = 1.5
 	accuracy = 40
 	nodamage = FALSE
 	speed = 0.3

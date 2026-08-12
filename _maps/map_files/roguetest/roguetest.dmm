@@ -495,6 +495,10 @@
 /obj/structure/roguemachine/vaultbank/church,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town/manor)
+"om" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/rtfield)
 "on" = (
 /obj/item/dream_material/dream_seed,
 /obj/item/dream_material/dream_seed,
@@ -894,6 +898,10 @@
 	},
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors)
+"wA" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/woods/north)
 "wE" = (
 /obj/structure/roguemachine/headeater,
 /turf/open/floor/rogue/carpet/lord/right,
@@ -1168,6 +1176,10 @@
 "CU" = (
 /turf/closed/wall/mineral/rogue/decostone/long,
 /area/rogue/indoors)
+"CX" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/beach/forest/north)
 "CZ" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
@@ -1370,6 +1382,10 @@
 /obj/structure/table/vtable,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors)
+"Jp" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/bog/north)
 "Ka" = (
 /obj/effect/landmark/quest_spawner/generic,
 /turf/open/floor/rogue/cobble,
@@ -1572,6 +1588,10 @@
 /obj/structure/table/cooling,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"OU" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/woods/north)
 "Pc" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid";
@@ -1678,6 +1698,10 @@
 "SW" = (
 /turf/closed/indestructible/rock,
 /area/rogue/indoors)
+"SY" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/beach/forest/north)
 "Tb" = (
 /obj/structure/roguemachine/scrapper/smith,
 /turf/open/floor/rogue/blocks/newstone/alt,
@@ -2414,7 +2438,7 @@ Rk
 Rk
 Rk
 Rk
-Rk
+om
 Lg
 Lg
 Lg
@@ -3086,7 +3110,7 @@ rm
 wX
 wX
 wX
-wX
+OU
 wX
 wX
 wX
@@ -3188,7 +3212,7 @@ wX
 wX
 MX
 wX
-wX
+wA
 MX
 rt
 rt
@@ -3769,7 +3793,7 @@ fo
 Dp
 cQ
 cQ
-cQ
+CX
 cQ
 cQ
 cQ
@@ -3819,7 +3843,7 @@ Ln
 Ln
 Ln
 Ln
-cQ
+CX
 cQ
 cQ
 cQ
@@ -4026,9 +4050,9 @@ Ln
 Ln
 Ln
 fo
-Ln
+Jp
 cQ
-cQ
+SY
 cQ
 cQ
 cQ

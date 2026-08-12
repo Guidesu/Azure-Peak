@@ -21,28 +21,15 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	maxHealth = 20
 	gender = PLURAL //placeholder
 
-	status_flags = CANPUSH
+	status_flags = CANSTUN|CANPUSH
 	fire_stack_decay_rate = -3
-	// Simple animals are carbon but shouldn't die from blood loss or organ
-	// failure the way humans do.  They still have bodyparts, organs, and
-	// blood for combat/grabbing/butchering, but their survival is governed
-	// by the classic health <= 0 death check (see update_stat below).
-	/// Prevents blood-loss death (oxy damage from empty blood_volume).
-	var/bloodloss_immune = TRUE
-	/// Per-bodypart natural armor for this animal. Associative list:
-	/// BODY_ZONE_* -> armor list (same format as ARMOR_* defines).
-	/// When a def_zone is passed to getarmor(), the matching entry is used.
-	/// If no entry exists for the zone, falls back to natural_armor_default.
-	/// Example: list(BODY_ZONE_CHEST = list("blunt" = DR_SUPER, "slash" = DBLOCK_MEDIUM, ...))
-	var/list/natural_armor = list()
-	/// Default natural armor used when natural_armor has no entry for the hit zone.
-	/// Leave as an empty list for no natural armor (0 across the board).
-	var/list/natural_armor_default = list()
 	var/icon_living = ""
 	///Icon when the animal is dead. Don't use animated icons for this.
 	var/icon_dead = ""
 	///We only try to show a gibbing animation if this exists.
 	var/icon_gib = null
+	///Icon states already drawn lying down. Toppling must not rotate the sprite while one of these is showing.
+	var/list/prone_icon_states = null
 	///Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 	var/flip_on_death = FALSE
 
@@ -68,8 +55,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/stop_automated_movement_when_pulled = 1
 	///Next time we can perform a grid update (throttled to avoid excessive updates)
 	var/next_grid_update_time = 0
-
-	// handcuffed and legcuffed are inherited from /mob/living/carbon
 
 	var/blood_color = BLOOD_COLOR_RED
 
@@ -113,6 +98,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/melee_damage_type = BRUTE
 	///Type of melee attack
 	var/d_type = "slash"
+	/// Height band this mob's melee attacks favors.
+	var/attack_aim = MOB_AIM_LEVEL
+	/// Explicit list that overrides attack_aim
+	var/list/attack_zone_weights
 	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	///Attacking verb in present continuous tense.
@@ -127,8 +116,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	///Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls.
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
 
-	///LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster.
-	var/speed = 1
+	// Base tile to tile delay
+	var/move_base_delay = null
+	var/run_multiplier = SIMPLEMOB_RUN_MULTIPLIER
+	var/sneak_multiplier = SIMPLEMOB_SNEAK_MULTIPLIER
 	///Delay for movement and riding logic across the simple-animal hierarchy.
 	var/move_to_delay = 3
 
@@ -230,6 +221,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/barding_speed_mult = 1
 	var/do_footstep = FALSE
 	var/fly_time = 3 SECONDS //default fly delay
+	var/datum/voicepack/voicepack = null
 
 /mob/living/carbon/simple_animal/get_mechanics_examine(mob/user)
 	. = ..()
@@ -244,14 +236,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	return blood_color
 
 /mob/living/carbon/simple_animal/Initialize()
-	// Create bodyparts and organs BEFORE calling parent (carbon's Initialize calls update_body_parts)
-	create_bodyparts()
-	create_internal_organs()
-	if(bloodloss_immune)
-		ADD_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE, "simple_animal")
-	// Simple animals don't die from heart attacks or organ failure.
-	// Their death is governed by the classic health <= 0 check in update_stat().
-	ADD_TRAIT(src, TRAIT_STABLEHEART, "simple_animal")
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)
@@ -260,7 +244,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		real_name = name
 	if(!loc)
 		stack_trace("Simple animal being instantiated in nullspace")
-	update_simplemob_varspeed()
+	apply_combat_skill()
+	apply_anatomy_traits()
 	our_cells = new(interesting_dist, interesting_dist, 1)
 	set_new_cells()
 	if(length(food_type))
@@ -271,6 +256,12 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		var/obj/effect/proc_holder/spell/newspell = new spell()
 		AddSpell(newspell)
 	initial_butcher_count = length(butcher_results)
+	add_verb(src, list(
+		/mob/living/proc/emote_squeak,
+		/mob/living/proc/emote_mrrp,
+		/mob/living/proc/emote_prbt,
+		/mob/living/proc/emote_hiss,
+	))
 
 /mob/living/carbon/simple_animal/Destroy()
 	for(var/list/SA_list in GLOB.simple_animals)
@@ -299,17 +290,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	. = ..()
 	our_cells = null
-
-/mob/living/carbon/simple_animal/examine(mob/user)
-	. = ..()
-	if(tame)
-		. += span_notice("This animal appears to be tamed.")
-	if(ssaddle)
-		. += span_notice("This animal is saddled: ([ssaddle.name]).")
-	if(ccaparison)
-		. += span_notice("This animal is wearing a caparison: ([ccaparison.name]).")
-	if(bbarding)
-		. += span_notice("This animal is wearing a bard: ([bbarding.name]).")
 
 /mob/living/carbon/simple_animal/attackby(obj/item/O, mob/user, params)
 	if(!food_typecache?[O.type])
@@ -432,69 +412,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 //		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
 /mob/living/carbon/simple_animal/updatehealth()
-	// Parent /mob/living/updatehealth() computes health from getBruteLoss()
-	// etc., which for carbon reads from bodyparts.  Then it calls update_stat()
-	// which we override to use the classic health <= 0 death check.
 	..()
-	// update_damage_overlays is a no-op for simple animals (single icon)
-	// but kept for compatibility with hostile/updatehealth below.
 	update_damage_overlays()
-
-// Simple animals use a single icon, not bodypart overlays
-/mob/living/carbon/simple_animal/update_body_parts()
-	return
-
-/mob/living/carbon/simple_animal/update_damage_overlays()
-	return
-
-/mob/living/carbon/simple_animal/regenerate_icons()
-	if(stat == DEAD && icon_dead)
-		icon_state = icon_dead
-	else if(icon_living)
-		icon_state = icon_living
-	return
-
-// Minimal blood handling — simple animals have blood for grabbing/dismember
-// but don't suffer blood-loss death (TRAIT_BLOODLOSS_IMMUNE handles that in
-// the parent proc).  We still call ..() so wounds can bleed, but skip the
-// oxy-damage-from-no-blood code path.
-/mob/living/carbon/simple_animal/handle_blood()
-	if(HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
-		// Still let wounds bleed visually, but don't kill us for it
-		blood_volume = BLOOD_VOLUME_NORMAL
-		return
-	return ..()
-
-// Organ handling — simple animals process organs (for reagents, damage)
-// but are immune to organ-failure death.  Their death is governed by the
-// classic health <= 0 check in update_stat().  We temporarily clear
-// ORGAN_VITAL on the brain so check_damage_thresholds() won't call death().
-/mob/living/carbon/simple_animal/handle_organs()
-	if(stat != DEAD)
-		for(var/obj/item/organ/O as anything in internal_organs)
-			// Suppress vital-organ death for simple animals
-			var/was_vital = O.organ_flags & ORGAN_VITAL
-			if(was_vital)
-				O.organ_flags &= ~ORGAN_VITAL
-			O.on_life()
-			if(was_vital)
-				O.organ_flags |= ORGAN_VITAL
-	else
-		for(var/obj/item/organ/O as anything in internal_organs)
-			O.on_death()
-
-// Default organs for simple animals
-/mob/living/carbon/simple_animal/create_internal_organs()
-	if(!length(internal_organs))
-		internal_organs += new /obj/item/organ/lungs
-		internal_organs += new /obj/item/organ/heart
-		internal_organs += new /obj/item/organ/brain
-		internal_organs += new /obj/item/organ/tongue
-		internal_organs += new /obj/item/organ/eyes
-		internal_organs += new /obj/item/organ/ears
-		internal_organs += new /obj/item/organ/liver
-		internal_organs += new /obj/item/organ/stomach
-	..()
+	show_damage_stage()
 
 /mob/living/carbon/simple_animal/hostile
 	var/retreating
@@ -515,17 +435,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		minimum_distance = initial(minimum_distance)
 	if(HAS_TRAIT(src, TRAIT_RIGIDMOVEMENT))
 		return
-	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
-		var/base_delay = initial(move_to_delay)
-		move_to_delay = base_delay * barding_speed_mult
-		return
-	var/health_deficiency = getBruteLoss() + getFireLoss()
-	if(health_deficiency >= ( maxHealth - (maxHealth*0.50) ))
-		var/damaged_delay = initial(move_to_delay) + 2
-		move_to_delay = damaged_delay * barding_speed_mult
-	else
-		var/normal_delay = initial(move_to_delay)
-		move_to_delay = normal_delay * barding_speed_mult
+	move_to_delay = initial(move_to_delay) * barding_speed_mult
 
 /mob/living/carbon/simple_animal/hostile/forceMove(turf/T)
 	var/list/BM = list()
@@ -639,10 +549,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(stat == DEAD)
 		var/obj/item/held_item = user.get_active_held_item()
 		if(held_item)
-			if((butcher_results || guaranteed_butcher_results) && ((held_item.get_sharpness() && held_item.wlength == WLENGTH_SHORT) || istype(held_item, /obj/item/contraption/shears)))
+			if((butcher_results || guaranteed_butcher_results) && ((held_item.get_sharpness() && held_item.wlength == WLENGTH_SHORT) || istype(held_item, /obj/item/rogueweapon/contraption/shears)))
 				var/used_time = BUTCHERING_UNSKILLED_PRE_TIME
 				var/on_meathook = FALSE
-				if((src.buckled && istype(src.buckled, /obj/structure/meathook))|| istype(held_item, /obj/item/contraption/shears))
+				if((src.buckled && istype(src.buckled, /obj/structure/meathook))|| istype(held_item, /obj/item/rogueweapon/contraption/shears))
 					on_meathook = TRUE //will work efficiently if they are using autosheers as well
 					used_time -= BUTCHERING_UNSKILLED_PRE_TIME
 					visible_message("[user] begins to efficiently butcher [src]...")
@@ -860,14 +770,31 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		verb_say = pick(speak_emote)
 	. = ..()
 
-/mob/living/carbon/simple_animal/proc/set_varspeed(var_value)
-	speed = var_value
-	update_simplemob_varspeed()
+/mob/living/carbon/simple_animal/proc/get_move_base_delay()
+	var/base = isnull(move_base_delay) ? SIMPLEMOB_DEFAULT_MOVE_DELAY : move_base_delay
+	return clamp(base, SIMPLEMOB_MINIMUM_MOVE_DELAY, SIMPLEMOB_MAXIMUM_MOVE_DELAY)
 
-/mob/living/carbon/simple_animal/proc/update_simplemob_varspeed()
-	if(speed == 0)
-		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
-	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
+/mob/living/carbon/simple_animal/update_move_intent_slowdown()
+	var/mod = get_move_base_delay()
+	switch(m_intent)
+		if(MOVE_INTENT_RUN)
+			mod *= run_multiplier
+		if(MOVE_INTENT_SNEAK)
+			mod *= sneak_multiplier
+	// Only apply the penalty of slowing down. Raising speed to make something fast is not OK, because we want to decouple movement from combat speed on simple animals
+	var/spd = get_effective_speed()
+	if(spd < 10)
+		mod += (10 - spd) * SPEED_MOVSPD_MOD
+	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
+
+/mob/living/carbon/simple_animal/update_movespeed(resort = TRUE)
+	. = ..()
+	if(cached_multiplicative_slowdown >= SIMPLEMOB_MINIMUM_MOVE_DELAY)
+		return
+	. = SIMPLEMOB_MINIMUM_MOVE_DELAY
+	cached_multiplicative_slowdown = .
+	if(updating_glide_size)
+		set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 /mob/living/carbon/simple_animal/proc/drop_loot()
 	for(var/i in loot) // If someone puts a turf in this list I'm going to kill you.
@@ -893,6 +820,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	else
 		health = 0
 		icon_state = icon_dead
+		var/datum/wound/cripple/limb/topple/toppled = has_wound(/datum/wound/cripple/limb/topple)
+		toppled?.stand_upright(src)
 		if(flip_on_death)
 			transform = transform.Turn(180)
 		density = FALSE
@@ -906,7 +835,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return FALSE
 	if(ismob(the_target))
 		var/mob/M = the_target
-		if(M.status_flags & GODMODE)
+		if(GODMODE_HIDDEN(M))
 			return FALSE
 	if (isliving(the_target))
 		var/mob/living/L = the_target
@@ -1344,18 +1273,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		toggle_ai(initial(AIStatus))
 
 /mob/living/carbon/simple_animal/Move(NewLoc, Dir, step_x, step_y)
-    if(binded)
-        return FALSE
-    var/oldloc = loc
-    . = ..()
-    if(. && loc != oldloc)
-        if(client)
-            // Player
-            set_glide_size(DELAY_TO_GLIDE_SIZE(world.tick_lag))
-        else
-            // AI
-            set_glide_size(DELAY_TO_GLIDE_SIZE(move_to_delay))
-    return .
+	if(binded)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/simple_animal/proc/eat_plants()
 
@@ -1363,6 +1283,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(I && food_typecache?[I.type])
 		qdel(I)
 		food = max(food + 30, 100)
+
+/mob/living/carbon/simple_animal/Login()
+	. = ..()
+	walk(src, 0)
 
 /mob/living/carbon/simple_animal/Life()
 	if(!client && can_have_ai && (AIStatus == AI_Z_OFF || AIStatus == AI_OFF))
@@ -1460,6 +1384,19 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		else
 			to_chat(src, span_notice("I can't fly away while being grabbed!"))
 //End flight
+
+/mob/living/carbon/simple_animal/proc/get_animal_voicepack()
+	if(voicepack)
+		return voicepack
+
+	// Only assign the animal voicepack if the simple animal is player-controlled / has a mind
+	if(mind)
+		var/static/datum/voicepack/animal/shared_animal_vp
+		if(!shared_animal_vp)
+			shared_animal_vp = new /datum/voicepack/animal()
+		voicepack = shared_animal_vp
+
+	return voicepack
 
 #undef MAX_FARM_ANIMALS
 #undef BUTCHERING_UNSKILLED_PRE_TIME

@@ -1,7 +1,9 @@
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
+	attack_aim = MOB_AIM_HIGH
+	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/roguetown/mob/monster/trolls/trolls.dmi'
 	name = "troll"
-	desc = "Elven legends say these monsters were servants of Ignatius tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
+	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
 	icon_state = "troll"
 	icon_living = "troll"
 	icon_dead = "troll_dead"
@@ -67,7 +69,6 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	deaggroprob = 0
-	defprob = 20
 	del_on_deaggro = 99 SECONDS
 	retreat_health = 0
 	food = 0
@@ -79,13 +80,13 @@
 	can_have_ai = FALSE //disable native ai
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/troll
+	move_base_delay = MOVEMENT_DELAY_SPD_17
 	melee_cooldown = TROLL_ATTACK_SPEED
 
 	var/critvuln = FALSE
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Initialize()
 	. = ..()
-	apply_bodypart_reduction(ANIMAL_BP_STONE_SKIN)
 	AddComponent(/datum/component/ai_aggro_system)
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
@@ -94,7 +95,7 @@
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
 	..()
 	update_icon()
-	if(!QDELETED(src))
+	if(!QDELETED(src) && !no_reanimate)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
@@ -147,48 +148,6 @@
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/GiveTarget()
 	..()
 	ambush()
-
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/simple_limb_hit(zone)
-	if(!zone)
-		return ""
-	switch(zone)
-		if(BODY_ZONE_PRECISE_R_EYE)
-			return "head"
-		if(BODY_ZONE_PRECISE_L_EYE)
-			return "head"
-		if(BODY_ZONE_PRECISE_NOSE)
-			return "nose"
-		if(BODY_ZONE_PRECISE_MOUTH)
-			return "mouth"
-		if(BODY_ZONE_PRECISE_SKULL)
-			return "head"
-		if(BODY_ZONE_PRECISE_EARS)
-			return "head"
-		if(BODY_ZONE_PRECISE_NECK)
-			return "neck"
-		if(BODY_ZONE_PRECISE_L_HAND)
-			return "foreleg"
-		if(BODY_ZONE_PRECISE_R_HAND)
-			return "foreleg"
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			return "leg"
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			return "leg"
-		if(BODY_ZONE_PRECISE_STOMACH)
-			return "stomach"
-		if(BODY_ZONE_PRECISE_GROIN)
-			return "tail"
-		if(BODY_ZONE_HEAD)
-			return "head"
-		if(BODY_ZONE_R_LEG)
-			return "leg"
-		if(BODY_ZONE_L_LEG)
-			return "leg"
-		if(BODY_ZONE_R_ARM)
-			return "foreleg"
-		if(BODY_ZONE_L_ARM)
-			return "foreleg"
-	return ..()
 
 /obj/effect/decal/remains/troll
 	name = "remains"
