@@ -532,7 +532,7 @@
 							size_num = 9
 
 					breasts.breast_size = size_num
-					H.update_body()
+					H.update_body_parts(TRUE)
 					should_update = TRUE
 
 		if("Penis Size")
@@ -551,7 +551,7 @@
 							size_num = 3
 
 					penis.penis_size = size_num
-					H.update_body()
+					H.update_body_parts(TRUE)
 					should_update = TRUE
 
 		if("Testicle Size")
@@ -570,7 +570,7 @@
 							size_num = 3
 
 					testicles.ball_size = size_num
-					H.update_body()
+					H.update_body_parts(TRUE)
 					should_update = TRUE
 
 		if("Tail")

@@ -23,3 +23,10 @@
 
 /obj/item/organ/breasts/Remove(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
+
+/// Updates breast size and immediately refreshes the owner's bodypart icons.
+/obj/item/organ/breasts/proc/set_breast_size(new_size)
+	breast_size = new_size
+	milk_max = max(75, breast_size * 100)
+	if(owner)
+		owner.update_body_parts(TRUE)

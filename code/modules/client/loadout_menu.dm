@@ -38,8 +38,7 @@
 
 	for(var/item_name as anything in GLOB.loadout_items_by_name)
 		var/datum/loadout_item/LI = GLOB.loadout_items_by_name[item_name]
-		if(LI.donoritem && !LI.donator_ckey_check(user.ckey))
-			continue
+		// Donator restrictions removed - all items visible to everyone
 
 		var/cat = LI.sort_category
 		categories |= cat
@@ -64,12 +63,12 @@
 			"desc" = LI.desc,
 			"category" = cat,
 			"cost" = LI.cost,
-			"triumph_cost" = LI.triumph_cost,
+			"triumph_cost" = 0,
 			"color_channels" = color_channels,
 			"icon" = item_icon,
 			"icon_state" = item_icon_state,
-			"is_donator_item" = LI.donoritem ? TRUE : FALSE,
-			"required_tier" = LI.donator_unlocked ? 1 : null
+			"is_donator_item" = FALSE,
+			"required_tier" = null
 		))
 
 	var/donator = is_donator(user.ckey)

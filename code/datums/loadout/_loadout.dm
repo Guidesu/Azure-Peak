@@ -16,13 +16,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	if(isnull(donoritem))
 		if(ckeywhitelist || donator_unlocked)
 			donoritem = TRUE
+	// All triumph costs removed - everything is free
+	triumph_cost = 0
 	if(!isnull(path)) // First item in the loadout list is the parent datum, so we want to skip it
 		var/obj/targetitem = path
 		desc = targetitem.desc
 
+// All donator/triumph restrictions removed - everyone can access everything
 /datum/loadout_item/proc/donator_ckey_check(key)
-	if(donator_unlocked && is_donator(key))
-		return TRUE
-	if(ckeywhitelist && ckeywhitelist.Find(key))
-		return TRUE
-	return
+	return TRUE

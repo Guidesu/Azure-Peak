@@ -55,6 +55,12 @@
 	if(oldstate != erect_state && owner)
 		owner.update_body_parts(TRUE)
 
+/// Updates penis size and immediately refreshes the owner's bodypart icons.
+/obj/item/organ/penis/proc/set_penis_size(new_size)
+	penis_size = new_size
+	if(owner)
+		owner.update_body_parts(TRUE)
+
 /obj/item/organ/penis/proc/create_fake_variant(mob/living/carbon/human/user)
 	var/obj/item/penis_fake/fake = new()
 	fake.copy_properties_from(src)
