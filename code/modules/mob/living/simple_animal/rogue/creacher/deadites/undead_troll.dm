@@ -8,6 +8,7 @@
 	icon_state = "troll"
 	icon_living = "troll"
 	icon_dead = "troll_dead"
+	prone_icon_states = list("troll_downed")
 	pixel_x = -16
 	health = TROLL_HEALTH_UNDEAD
 	maxHealth = TROLL_HEALTH_UNDEAD

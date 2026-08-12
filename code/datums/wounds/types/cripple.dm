@@ -225,15 +225,29 @@
 	)
 	break_alert = "toppled!"
 	slowdown = CRIPPLE_MOVE_PENALTY_MAJOR
+	var/matrix/upright_transform
+
+/datum/wound/cripple/limb/topple/can_stack_with(datum/wound/other)
+	return !istype(other, /datum/wound/cripple/limb/topple)
 
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.Stun(20, ignore_canstun = TRUE)
-	animate(affected, transform = turn(affected.transform, 90), time = 2)
+	var/mob/living/simple_animal/animal = affected
+	if(istype(animal) && animal.sprite_drawn_prone())
+		return
+	upright_transform = matrix(affected.transform)
+	animate(affected, transform = turn(upright_transform, 90), time = 2)
 
 /datum/wound/cripple/limb/topple/on_mob_loss(mob/living/affected)
 	. = ..()
-	animate(affected, transform = turn(affected.transform, -90), time = 2)
+	stand_upright(affected)
+
+/datum/wound/cripple/limb/topple/proc/stand_upright(mob/living/affected)
+	if(!upright_transform)
+		return
+	animate(affected, transform = upright_transform, time = 2)
+	upright_transform = null
 
 /datum/wound/cripple/limb/undead
 	name = "dragging leg"

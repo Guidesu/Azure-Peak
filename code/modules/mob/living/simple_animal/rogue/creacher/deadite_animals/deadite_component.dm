@@ -59,6 +59,9 @@
 	L.icon_state = icon_downed
 	L.icon_living = icon_downed
 
+	var/datum/wound/cripple/limb/topple/toppled = L.has_wound(/datum/wound/cripple/limb/topple)
+	toppled?.stand_upright(L)
+
 	L.adjustBruteLoss(-L.maxHealth)
 	L.update_icon()
 

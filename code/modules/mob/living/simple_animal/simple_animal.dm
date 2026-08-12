@@ -28,6 +28,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/icon_dead = ""
 	///We only try to show a gibbing animation if this exists.
 	var/icon_gib = null
+	///Icon states already drawn lying down. Toppling must not rotate the sprite while one of these is showing.
+	var/list/prone_icon_states = null
 	///Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 	var/flip_on_death = FALSE
 
@@ -821,6 +823,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	else
 		health = 0
 		icon_state = icon_dead
+		var/datum/wound/cripple/limb/topple/toppled = has_wound(/datum/wound/cripple/limb/topple)
+		toppled?.stand_upright(src)
 		if(flip_on_death)
 			transform = transform.Turn(180)
 		density = FALSE

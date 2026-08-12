@@ -132,11 +132,12 @@
 	var/datum/wound/cripple/new_break = new break_path()
 	new_break.crippled_zone = norm_zone
 	new_break.struck_by = user
-	if(simple_add_wound(new_break, crit_message = TRUE))
-		LAZYADD(broken_parts, norm_zone)
-		if(user?.client)
-			record_round_statistic(STATS_CRITS_MADE)
-		announce_newly_exposed(profile)
+	if(!simple_add_wound(new_break, crit_message = TRUE) && !has_wound(break_path))
+		return
+	LAZYADD(broken_parts, norm_zone)
+	if(user?.client)
+		record_round_statistic(STATS_CRITS_MADE)
+	announce_newly_exposed(profile)
 
 /mob/living/simple_animal/proc/warn_unexposed(datum/anatomy_zone/hit_zone, mob/living/user)
 	if(!user?.client || world.time <= next_reach_warning || !length(broken_parts))
@@ -190,6 +191,9 @@
 
 /mob/living/simple_animal/proc/is_prone()
 	return resting || has_wound(/datum/wound/cripple/limb/topple)
+
+/mob/living/simple_animal/proc/sprite_drawn_prone()
+	return LAZYLEN(prone_icon_states) && (icon_state in prone_icon_states)
 
 /mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
 	if(def_zone)
