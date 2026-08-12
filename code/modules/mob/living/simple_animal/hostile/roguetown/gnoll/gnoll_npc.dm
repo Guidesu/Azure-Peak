@@ -2,7 +2,7 @@
 	NPC Gnoll — Blood Moon spawned hostile mob
 
 	Gnolls are hyena-like beastmen that hunt in packs during blood moons.
-	They use the werewolf icon set with a brownish tint.
+	They use the gnoll body sprites (gnoll.dmi) with random pelt variants.
 	Stronger than wolves but weaker than werewolves.
 	They despawn at dawn (handled by SSwildlife).
 */
@@ -10,10 +10,10 @@
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc
 	name = "gnoll"
 	desc = "A hunched, hyena-like beastman with matted fur and gleaming eyes. Its laugh chills the blood."
-	icon = 'icons/roguetown/mob/monster/werewolf.dmi'
-	icon_state = "wwolf_m"
-	icon_living = "wwolf_m"
-	icon_dead = "wwolf_dead"
+	icon = 'icons/roguetown/mob/monster/gnoll.dmi'
+	icon_state = "firepelt"
+	icon_living = "firepelt"
+	icon_dead = "firepelt"
 	gender = MALE
 	emote_hear = list("cackles", "giggles menacingly", "whoops")
 	emote_see = null
@@ -55,6 +55,8 @@
 	melee_cooldown = WOLF_ATTACK_SPEED
 	ambush_faction = "gnoll"
 	threat_point = THREAT_MODERATE
+	/// Available pelt variants for randomization on spawn
+	var/list/pelt_variants = list("firepelt", "rotpelt", "whitepelt", "bloodpelt", "nightpelt", "darkpelt")
 
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/humanoid = 1, /obj/item/reagent_containers/food/snacks/rogue/meat/wolf = 1, /obj/item/alch/viscera = 1, /obj/item/alch/sinew = 1, /obj/item/natural/bone = 2)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/wolf = 2,
@@ -76,14 +78,17 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/Initialize()
 	. = ..()
+	// Pick a random pelt variant
+	var/pelt = pick(pelt_variants)
+	icon_state = pelt
+	icon_living = pelt
+	icon_dead = pelt
 	AddComponent(/datum/component/ai_aggro_system)
 	regenerate_icons()
 	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
-	// Color tint to distinguish from werewolves
-	add_atom_colour("#8B7355", ADMIN_COLOUR_PRIORITY)
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/death(gibbed)
 	..()
@@ -93,7 +98,9 @@
 
 /mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/update_icon()
 	if(stat == DEAD)
-		icon_state = icon_dead
+		// Gnoll sprites don't have a separate dead state; use the living icon
+		// with a rotation to indicate death
+		transform = turn(matrix(), 90)
 	else
 		icon_state = icon_living
 

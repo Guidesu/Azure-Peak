@@ -65,7 +65,7 @@
 	// Only hunt simple animals
 	if(!isanimal(L))
 		return FALSE
-	// Don't hunt other predators
+	// Don't hunt other large predators
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf))
 		return FALSE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc))
@@ -76,17 +76,37 @@
 		return FALSE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear))
 		return FALSE
-	// Hunt domestic and prey animals
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar))
+		return FALSE // Boars are too tough to be prey
+	// Hunt domestic animals
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken))
 		return TRUE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow))
 		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull))
+		return TRUE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga))
-		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar))
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale))
 		return TRUE
 	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat))
+		return TRUE
+	// Hunt wild herd animals
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast))
+		return TRUE
+	// Hunt small animals (easy prey for wolves)
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat))
+		return TRUE
+	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat))
 		return TRUE
 	return FALSE
