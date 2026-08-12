@@ -249,6 +249,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	create_internal_organs()
 	if(bloodloss_immune)
 		ADD_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE, "simple_animal")
+	// Simple animals don't die from heart attacks or organ failure.
+	// Their death is governed by the classic health <= 0 check in update_stat().
+	ADD_TRAIT(src, TRAIT_STABLEHEART, "simple_animal")
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)
@@ -461,6 +464,24 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		blood_volume = BLOOD_VOLUME_NORMAL
 		return
 	return ..()
+
+// Organ handling — simple animals process organs (for reagents, damage)
+// but are immune to organ-failure death.  Their death is governed by the
+// classic health <= 0 check in update_stat().  We temporarily clear
+// ORGAN_VITAL on the brain so check_damage_thresholds() won't call death().
+/mob/living/carbon/simple_animal/handle_organs()
+	if(stat != DEAD)
+		for(var/obj/item/organ/O as anything in internal_organs)
+			// Suppress vital-organ death for simple animals
+			var/was_vital = O.organ_flags & ORGAN_VITAL
+			if(was_vital)
+				O.organ_flags &= ~ORGAN_VITAL
+			O.on_life()
+			if(was_vital)
+				O.organ_flags |= ORGAN_VITAL
+	else
+		for(var/obj/item/organ/O as anything in internal_organs)
+			O.on_death()
 
 // Default organs for simple animals
 /mob/living/carbon/simple_animal/create_internal_organs()

@@ -38,6 +38,10 @@
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_LIFE)
 
+	// ERISMED: process organ efficiency effects (eyes, liver, heart, etc.)
+	if(stat != DEAD)
+		process_organ_efficiency()
+
 	if(mind)
 		mind.sleep_adv.add_stress_cycle(get_stress_amount())
 		for(var/datum/antagonist/A as anything in mind.antag_datums)

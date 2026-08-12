@@ -26,6 +26,11 @@
 	var/statbuf = FALSE
 	var/list/statindex = list()
 	var/datum/patron/patron = /datum/patron/godless
+	/// Oddity stat bonuses — Eris-style scaling layer that stacks on top of base stats.
+	/// Range: ODDITY_STAT_BONUS_MIN (-200) to ODDITY_STAT_BONUS_MAX (+200) per stat.
+	/// Base stats (STASTR etc.) stay 1-20; get_stat() returns base + oddity bonus.
+	/// Format: list(STAT_STRENGTH = 15, STAT_INTELLIGENCE = -5, ...)
+	var/list/oddity_stat_bonuses = list()
 
 /mob/living/get_stats_tab_items()
 	return list(
@@ -110,6 +115,34 @@
 /mob/living/proc/get_stat(stat)
 	if(!stat)
 		return
+	var/base_val = 0
+	switch(stat)
+		if(STAT_STRENGTH)
+			base_val = STASTR
+		if(STAT_PERCEPTION)
+			base_val = STAPER
+		if(STAT_INTELLIGENCE)
+			base_val = STAINT
+		if(STAT_CONSTITUTION)
+			base_val = STACON
+		if(STAT_WILLPOWER)
+			base_val = STAWIL
+		if(STAT_SPEED)
+			base_val = STASPD
+		if(STAT_FORTUNE)
+			base_val = STALUC
+		else
+			CRASH("get_stat called on [src] with an erroneous stat flag: [stat]")
+	// Add oddity stat bonus (Eris-style scaling layer)
+	var/bonus = oddity_stat_bonuses[stat]
+	if(bonus)
+		return base_val + bonus
+	return base_val
+
+/// Get the base stat value (without oddity bonuses) — for character creation UI, etc.
+/mob/living/proc/get_base_stat(stat)
+	if(!stat)
+		return
 	switch(stat)
 		if(STAT_STRENGTH)
 			return STASTR
@@ -125,8 +158,17 @@
 			return STASPD
 		if(STAT_FORTUNE)
 			return STALUC
-		else
-			CRASH("get_stat called on [src] with an erroneous stat flag: [stat]")
+
+/// Get the oddity stat bonus for a given stat (can be negative)
+/mob/living/proc/get_oddity_stat_bonus(stat)
+	return oddity_stat_bonuses[stat] || 0
+
+/// Add an oddity stat bonus (can be negative for cursed oddities)
+/mob/living/proc/add_oddity_stat_bonus(stat, amount)
+	if(!stat)
+		return
+	var/current = oddity_stat_bonuses[stat] || 0
+	oddity_stat_bonuses[stat] = clamp(current + amount, ODDITY_STAT_BONUS_MIN, ODDITY_STAT_BONUS_MAX)
 
 /mob/living/proc/change_stat(stat, amt, index)
 	if(!stat)

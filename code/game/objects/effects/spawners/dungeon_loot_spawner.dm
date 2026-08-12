@@ -75,6 +75,18 @@
 		/obj/item/natural/cloth/bandage = 5,
 		/obj/item/natural/bundle/cloth/bandage/full = 3,
 
+		//oddities — sanity/insight artifacts
+		/obj/item/oddity/bone_charm = 2,
+		/obj/item/oddity/ancient_coin = 2,
+		/obj/item/oddity/wolf_fang = 1,
+		/obj/item/oddity/crystal = 1,
+		/obj/item/oddity/bloodstone = 1,
+		/obj/item/oddity/elf_mirror = 1,
+		/obj/item/oddity/grimoire_fragment = 1,
+		/obj/item/oddity/cursed_idol = 1,
+		/obj/item/oddity/dark_totem = 1,
+		/obj/item/oddity/shadow_mirror = 1,
+
 		//weapons
 		/obj/item/rogueweapon/mace = 2,
 		/obj/item/rogueweapon/huntingknife/idagger/steel = 3,

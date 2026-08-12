@@ -17,6 +17,14 @@
 #define STAT_QUALITY_EXCELLENT 4
 #define STAT_QUALITY_MASTERWORK 5
 
+/*ODDITY STAT BONUS DEFINES — Eris-style scaling layer*/
+/// Maximum oddity stat bonus (positive) per stat
+#define ODDITY_STAT_BONUS_MAX 200
+/// Maximum oddity stat penalty (negative) per stat
+#define ODDITY_STAT_BONUS_MIN -200
+/// All stat keys as a list for oddity bonus iteration
+#define ALL_STAT_KEYS list(STAT_STRENGTH, STAT_PERCEPTION, STAT_INTELLIGENCE, STAT_CONSTITUTION, STAT_WILLPOWER, STAT_SPEED, STAT_FORTUNE)
+
 // Weapon balance defines
 #define WBALANCE_NORMAL 0
 #define WBALANCE_HEAVY -1

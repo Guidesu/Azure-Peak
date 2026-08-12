@@ -1839,6 +1839,9 @@
 			state2use = "mood_sleep"
 		else if(H.nausea >= 100)
 			state2use = "mood_sick"
+		// Sanity overrides — low sanity shows distress even if stress is fine
+		else if(H.sanity && H.sanity.level < 20)
+			state2use = "stress4"
 	icon_state = state2use
 
 /atom/movable/screen/stress/proc/flick_pain(var/critical = FALSE)
@@ -1897,6 +1900,59 @@
 					to_chat(M, "[ddesc]")
 			already_printed = list()
 			to_chat(M, "*--------*")
+			// Sanity/Insight info (ERISMED sanity system)
+			if(M.sanity)
+				var/san_level = round(M.sanity.level)
+				var/ins_level = round(M.sanity.insight)
+				var/san_status
+				switch(san_level)
+					if(80 to 100)
+						san_status = "Your mind is clear and strong."
+					if(60 to 79)
+						san_status = "You feel slightly on edge."
+					if(40 to 59)
+						san_status = "You feel uneasy and distracted."
+					if(20 to 39)
+						san_status = "Your mind is fraying. Something feels wrong."
+					if(1 to 19)
+						san_status = "You are on the verge of a breakdown!"
+					else
+						san_status = "Your mind has shattered."
+				to_chat(M, span_info("Sanity: [san_level]/100 — [san_status]"))
+				to_chat(M, span_info("Insight: [ins_level]/100"))
+				if(M.sanity.resting > 0)
+					to_chat(M, span_notice("You are resting in contemplation."))
+				if(length(M.sanity.breakdowns))
+					to_chat(M, span_warning("You are experiencing a breakdown!"))
+				// Show oddity stat bonuses (Eris-style scaling)
+				if(length(M.oddity_stat_bonuses))
+					to_chat(M, span_info("Oddity Bonuses:"))
+					for(var/stat_key in M.oddity_stat_bonuses)
+						var/bonus = M.oddity_stat_bonuses[stat_key]
+						if(!bonus)
+							continue
+						var/stat_name
+						switch(stat_key)
+							if(STAT_STRENGTH)
+								stat_name = "STR"
+							if(STAT_PERCEPTION)
+								stat_name = "PER"
+							if(STAT_INTELLIGENCE)
+								stat_name = "INT"
+							if(STAT_CONSTITUTION)
+								stat_name = "CON"
+							if(STAT_WILLPOWER)
+								stat_name = "WIL"
+							if(STAT_SPEED)
+								stat_name = "SPD"
+							if(STAT_FORTUNE)
+								stat_name = "FOR"
+						var/base = M.get_base_stat(stat_key)
+						var/effective = M.get_stat(stat_key)
+						if(bonus > 0)
+							to_chat(M, span_info("  [stat_name]: [base] + [bonus] = [effective]"))
+						else
+							to_chat(M, span_warning("  [stat_name]: [base] [bonus] = [effective]"))
 		if(modifiers["right"])
 			if(M.get_triumphs() <= 0)
 				to_chat(M, span_warning("I haven't TRIUMPHED."))

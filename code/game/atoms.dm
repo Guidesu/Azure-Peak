@@ -31,6 +31,9 @@
 	///Value used to increment ex_act() if reactionary_explosions is on
 	var/explosion_block = 0
 
+	/// Sanity damage — positive values drain viewer's sanity, negative values restore it
+	var/sanity_damage = 0
+
 	/**
 	 * used to store the different colors on an atom
 	 *
