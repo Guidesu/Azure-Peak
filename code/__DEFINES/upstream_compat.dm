@@ -102,9 +102,6 @@
 /mob/living/simple_animal/hostile/rogue/deepone/arm
 /mob/living/simple_animal/hostile/rogue/deepone/spit
 /mob/living/simple_animal/hostile/rogue/deepone/wiz
-/mob/living/simple_animal/hostile/retaliate/rogue/troll
-	proc/ambush()
-		return
 /mob/living/simple_animal/hostile/retaliate/rogue/mimic
 	proc/undisguise()
 		return

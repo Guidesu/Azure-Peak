@@ -1,5 +1,5 @@
 // Grid/icon layout ported from Twilight-Axis's tgui/packages/tgui/interfaces/LoadoutPanel.tsx
-// (PR "Новое лодаут меню" / "New loadout menu"). All player-facing text translated from
+// (PR "New loadout menu"). All player-facing text translated from
 // Russian into English. Kept this repo's own backend contract (color/detail/altdetail tweaking,
 // custom name/desc, triumph-discount math via loadout_menu.dm) rather than adopting Twilight
 // Axis's simpler data shape - the visual grid was the actual improvement worth porting.
