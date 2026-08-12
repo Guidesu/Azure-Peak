@@ -245,6 +245,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			return "[jobtitle] is available."
 		if(JOB_UNAVAILABLE_GENERIC)
 			return "[jobtitle] is unavailable."
+		if(JOB_UNAVAILABLE_WTEAM)
+			return "[jobtitle] is unavailable because its team is not available."
 		if(JOB_UNAVAILABLE_BANNED)
 			return "You are currently banned from [jobtitle]."
 		if(JOB_UNAVAILABLE_PLAYTIME)

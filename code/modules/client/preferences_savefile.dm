@@ -499,8 +499,33 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	virtue.on_load()
 	virtuetwo.on_load()
 
-	if(origin_type)
+	var/list/excluded_twilight_origins = list(
+		/datum/virtue/origin/azuria,
+		/datum/virtue/origin/enigma,
+		/datum/virtue/origin/grenzelhoft,
+		/datum/virtue/origin/valorian,
+		/datum/virtue/origin/heartfelt,
+		/datum/virtue/origin/etrusca,
+		/datum/virtue/origin/otava,
+		/datum/virtue/origin/gronn,
+		/datum/virtue/origin/raneshen,
+		/datum/virtue/origin/naledi,
+		/datum/virtue/origin/zybantian,
+		/datum/virtue/origin/kazengun,
+		/datum/virtue/origin/lingyue,
+		/datum/virtue/origin/gyedzenese,
+		/datum/virtue/origin/hammerhold,
+		/datum/virtue/origin/avar,
+		/datum/virtue/origin/racial/lirvas,
+		/datum/virtue/origin/racial/underdark_drow,
+		/datum/virtue/origin/racial/akhdruk,
+		/datum/virtue/origin/racial/infernal,
+		/datum/virtue/origin/racial/ancient
+	)
+	if(origin_type && !(origin_type in excluded_twilight_origins))
 		virtue_origin = new origin_type
+	else if(pref_species?.origin_default)
+		virtue_origin = new pref_species.origin_default
 	else
 		virtue_origin = new /datum/virtue/none
 
@@ -653,7 +678,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["selected_patron"]	>> patron_typepath
 	if(patron_typepath)
 		selected_patron = GLOB.patronlist[patron_typepath]
-		if(!selected_patron) //failsafe
+		if(!selected_patron || !selected_patron.preference_accessible)
 			selected_patron = GLOB.patronlist[default_patron]
 
 	var/list/tat_character_data

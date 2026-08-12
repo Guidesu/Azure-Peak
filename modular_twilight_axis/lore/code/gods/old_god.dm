@@ -1,4 +1,5 @@
 /datum/faith/old_god
+	preference_accessible = FALSE
 	name = "Genesism"
 	translated_name = "Church of the Allfather"
 	desc = "The Church turned away from the <b>Architect of the Universe</b>, believing he fell at the hands of the <b>Arch-Enemy</b>. But we know the truth.\n\
@@ -8,6 +9,7 @@
 	godhead = /datum/patron/old_god
 
 /datum/patron/old_god
+	preference_accessible = FALSE
 	name = "Psydon"
 	translated_name = "Psydon"
 	rusgodnames = list(

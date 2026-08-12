@@ -22,7 +22,10 @@
 	return "<a href='?_src_=prefs;preference=dreamvalley_tat;task=input'><b>Open Character Sheet</b></a>"
 
 /proc/dreamvalley_tat_rank_for_bucket(bucket)
-	return "Towner"
+	for(var/rank in list("Adventurer"))
+		if(SSjob?.GetJob(rank))
+			return rank
+	return null
 
 /proc/dreamvalley_open_tat_join(mob/dead/new_player/player)
 	if(!player?.client?.prefs)

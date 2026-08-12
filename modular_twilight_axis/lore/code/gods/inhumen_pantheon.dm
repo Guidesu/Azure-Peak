@@ -18,6 +18,7 @@
 	name = "ornate scales cross"
 
 /datum/faith/inhumen
+	preference_accessible = FALSE
 	name = "Ascendents"
 	translated_name = "The Ascended"
 	desc = "The <b>Holy Ecclesiarchy</b>, also known among the followers of the Ten as the <b>Despised Pantheon</b> — a conglomeration of three religious currents centered around the ideologies of those called <b>the Ascended</b>. Once mortal, the Ascended seized divine powers by stealing shards of the fallen <b>Allfather</b> in the chaos of the <b>War in the Heavens</b>.\n\
@@ -26,6 +27,7 @@
 	godhead = /datum/patron/inhumen/baotha
 
 /datum/patron/inhumen
+	preference_accessible = FALSE
 	profane_words = list(
 		"damn", "damn", "damn", "damn", "damn",
 		"bastard", "bastard", "bastard", "bastard", "bastard",

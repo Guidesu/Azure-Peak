@@ -1,4 +1,5 @@
 /datum/patron/mossmother
+	preference_accessible = FALSE
 	name = "The Mossmother"
 	translated_name = "The Mossmother"
 	domain = "The swamps."

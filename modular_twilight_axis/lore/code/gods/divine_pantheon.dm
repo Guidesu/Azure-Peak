@@ -6,6 +6,7 @@
 	var/list/rusgodnames = list()
 
 /datum/faith/divine
+	preference_accessible = FALSE
 	name = "Divine Pantheon"
 	translated_name = "Pantheon of the Ten"
 	desc = "The most widespread religion in Grimoria, centered around <b>Ten</b> deities who inherited the world from the <b>Allfather</b>, slain at the hands of the <b>Arch-Enemy</b>. \n\
@@ -13,6 +14,7 @@
 	worshippers = "The majority of inhabitants of the Grand Duchy of Azuria and many other states of Psydonia."
 
 /datum/patron/divine
+	preference_accessible = FALSE
 	profane_words = list(
 		"zizo", "zizo", "zizo", "zizo", "zizo", "zizo",
 		"matthios", "matthios", "matthios", "matthios", "matthios", "matthios",

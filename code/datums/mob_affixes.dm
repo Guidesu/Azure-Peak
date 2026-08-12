@@ -42,6 +42,8 @@ GLOBAL_LIST_INIT(mob_affixes, list(
 /proc/roll_mob_affixes(mob/living/M, tier = 1, force = FALSE)
 	if(!M || QDELETED(M) || M.client || M.ckey)
 		return
+	if(!istype(M, /mob/living/carbon/human) && !istype(M, /mob/living/carbon/simple_animal))
+		return
 	if(!force && !prob(MOB_AFFIX_BASE_CHANCE))
 		return
 	if(!M.affix_base_name)

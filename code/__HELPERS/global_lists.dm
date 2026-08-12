@@ -61,7 +61,32 @@
 		GLOB.statpacks[path] = statpack
 	sortList(GLOB.statpacks, GLOBAL_PROC_REF(cmp_text_dsc))
 
+	var/list/dreamvalley_excluded_twilight_origins = list(
+		/datum/virtue/origin/azuria,
+		/datum/virtue/origin/enigma,
+		/datum/virtue/origin/grenzelhoft,
+		/datum/virtue/origin/valorian,
+		/datum/virtue/origin/heartfelt,
+		/datum/virtue/origin/etrusca,
+		/datum/virtue/origin/otava,
+		/datum/virtue/origin/gronn,
+		/datum/virtue/origin/raneshen,
+		/datum/virtue/origin/naledi,
+		/datum/virtue/origin/zybantian,
+		/datum/virtue/origin/kazengun,
+		/datum/virtue/origin/lingyue,
+		/datum/virtue/origin/gyedzenese,
+		/datum/virtue/origin/hammerhold,
+		/datum/virtue/origin/avar,
+		/datum/virtue/origin/racial/lirvas,
+		/datum/virtue/origin/racial/underdark_drow,
+		/datum/virtue/origin/racial/akhdruk,
+		/datum/virtue/origin/racial/infernal,
+		/datum/virtue/origin/racial/ancient
+	)
 	for (var/path in subtypesof(/datum/virtue))
+		if(path in dreamvalley_excluded_twilight_origins)
+			continue
 		var/datum/virtue/virtue = new path()
 		GLOB.virtues[path] = virtue
 		if(ispath(path, /datum/virtue/origin))

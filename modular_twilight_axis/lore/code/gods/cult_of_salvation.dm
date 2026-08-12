@@ -1,4 +1,5 @@
 /datum/faith/cult_of_salvation
+	preference_accessible = FALSE
 	name = "The Cult of Salvation"
 	translated_name = "The Cult of Salvation"
 	desc = "The cultists of the Bearer of Salvation reject the world order as we know it, and follow the dark, bloody light of Zizo.\n\

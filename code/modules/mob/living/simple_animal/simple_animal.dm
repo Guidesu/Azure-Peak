@@ -15,6 +15,8 @@
 GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 /mob/living/carbon/simple_animal
+	roll_affixes_on_spawn = TRUE
+	affix_tier = 1
 	name = "animal"
 	icon = 'icons/mob/animal.dmi'
 	health = 20
