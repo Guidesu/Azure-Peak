@@ -102,11 +102,48 @@
 			message_admins("[key_name_admin(usr)] cancelled a stuck DreamValley resume transaction ('[record_key]').")
 			return TRUE
 
+		if("switch_campaign")
+			var/target_id = params["campaign_id"]
+			if(!target_id || target_id == manager.campaign_id)
+				return TRUE
+			if(alert(usr, "Switch to campaign '[target_id]'? All connected players will be disconnected and the server will restart.", "Switch Campaign", "Switch", "Cancel") != "Switch")
+				return TRUE
+			log_admin("[key_name(usr)] switched DreamValley campaign from '[manager.campaign_id]' to '[target_id]' via UI.")
+			message_admins("[key_name_admin(usr)] switched DreamValley campaign from '[manager.campaign_id]' to '[target_id]'.")
+			manager.switch_campaign(target_id)
+			world.Reboot("Campaign switched by [usr.client.key]")
+			return TRUE
+
+		if("create_campaign")
+			var/new_id = input(usr, "Enter a campaign ID (alphanumeric, underscore, hyphen only):", "Create Campaign") as text|null
+			if(!new_id || !length(new_id))
+				return TRUE
+			var/result = manager.create_campaign(new_id)
+			if(!result)
+				to_chat(usr, span_warning("Failed to create campaign '[new_id]'. It may already exist or the ID is invalid."))
+				return TRUE
+			to_chat(usr, span_notice("Created campaign '[result]'."))
+			log_admin("[key_name(usr)] created DreamValley campaign '[result]' via UI.")
+			return TRUE
+
+		if("delete_campaign")
+			var/target_id = params["campaign_id"]
+			if(!target_id || target_id == manager.campaign_id)
+				return TRUE
+			if(alert(usr, "Permanently delete campaign '[target_id]'? This cannot be undone.", "Delete Campaign", "Delete", "Cancel") != "Delete")
+				return TRUE
+			manager.delete_campaign(target_id)
+			to_chat(usr, span_boldannounce("Deleted campaign '[target_id]'."))
+			log_admin("[key_name(usr)] deleted DreamValley campaign '[target_id]' via UI.")
+			return TRUE
+
 /datum/dreamvalley_save_status_ui/ui_data(mob/user)
 	var/list/data = list()
 	var/is_admin = is_admin_viewer(user)
 	data["is_admin"] = is_admin
 	data["enabled"] = manager?.enabled || FALSE
+	data["campaign_id"] = manager?.campaign_id || "default"
+	data["available_campaigns"] = build_available_campaigns()
 
 	data["world_save"] = list(
 		"checkpoint_generation" = manager?.checkpoint_generation || 0,
@@ -153,6 +190,23 @@
 		"dungeon" = dungeon,
 		"economy" = economy,
 	)
+
+/// Build a list of available campaigns for the UI.
+/datum/dreamvalley_save_status_ui/proc/build_available_campaigns()
+	var/list/result = list()
+	if(!manager)
+		return result
+	var/list/campaigns = manager.list_campaigns()
+	for(var/cid in campaigns)
+		var/list/info = campaigns[cid]
+		result += list(list(
+			"id" = cid,
+			"name" = info["name"],
+			"generation" = info["generation"],
+			"saved_at" = info["saved_at"],
+			"is_active" = (cid == manager.campaign_id),
+		))
+	return result
 
 /datum/dreamvalley_save_status_ui/proc/format_ago_text(at_time)
 	if(!isnum(at_time) || at_time <= 0)

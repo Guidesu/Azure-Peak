@@ -2,9 +2,13 @@
 //
 // Grants a self-targeted spell that lets a character temporarily assume the
 // physical appearance of one of their parked (saved) characters from another
-// preference slot. Only appearance is swapped — species, DNA, bodyparts, organs,
-// hair, skin tone, eye color, and body size. Stats, skills, items, and mind
-// stay with the caster. Casting again reverts to the original form.
+// preference slot. Only appearance is swapped - species, DNA, bodyparts,
+// organs, hair, skin tone, eye color, and body size. Stats, skills, items,
+// and mind stay with the caster. Casting again reverts to the original form.
+//
+// The character to transform into is selected preemptively at the TAT trait
+// screen when the trait is picked. The selection is stored in the build's
+// magic_profile under "alt_form_character" and persists with the save.
 //
 // The trait is registered into GLOB.tat_available_traits and
 // GLOB.tat_direction_trait_rules at world init so the TAT UI shows it
@@ -12,11 +16,12 @@
 
 #define TAT_TRAIT_ALT_FORM "tat_alt_form"
 #define ALT_FORM_TRAIT_SOURCE "alt_form_trait"
+#define ALT_FORM_MAGIC_KEY "alt_form_character"
 
 // Spell granted by the trait
 /obj/effect/proc_holder/spell/self/alt_form
 	name = "Assume Alternate Form"
-	desc = "Transform your body into one of your saved characters. Cast again to revert."
+	desc = "Transform your body into your selected saved character. Cast again to revert."
 	clothes_req = FALSE
 	human_req = TRUE
 	recharge_time = 100
@@ -30,7 +35,7 @@
 
 /obj/effect/proc_holder/spell/self/alt_form/cast(mob/living/carbon/human/user = usr)
 	if(!istype(user) || !user.client)
-		to_chat(user, span_warning("Something is wrong — you cannot use this right now."))
+		to_chat(user, span_warning("Something is wrong - you cannot use this right now."))
 		return
 
 	if(user.restrained(ignore_grab = FALSE))
@@ -42,38 +47,28 @@
 		revert_form(user)
 		return
 
-	// Gather parked characters belonging to this player across all preference slots.
-	var/list/available = list()
-	var/owner_ckey = ckey(user.client.key)
-	if(!length(owner_ckey))
-		to_chat(user, span_warning("You have no saved characters to draw upon."))
-		return
+	// Read the preemptively-selected character from the TAT build.
+	var/datum/tat_build/build = user.client?.prefs?.dreamvalley_get_tat_build()
+	var/stored_key = build?.get_magic_value(ALT_FORM_MAGIC_KEY)
 
-	for(var/record_key in GLOB.dreamvalley_campaign?.parked_characters)
-		var/list/record = GLOB.dreamvalley_campaign.parked_characters[record_key]
-		if(!islist(record) || record["state"] != "parked" || record["complete"] != TRUE)
-			continue
-		if(record["owner_ckey"] != owner_ckey)
-			continue
-		// Skip the slot the current character is playing from.
-		var/current_slot = user.client.prefs?.loaded_slot
-		if(record["preference_slot"] == current_slot)
-			continue
-		var/list/core = record["core"]
-		var/list/identity = core?["identity"]
-		var/char_name = identity?["real_name"] || "Unknown"
-		available["[char_name] (Slot [record["preference_slot"]])"] = record_key
-
+	var/list/available = dreamvalley_get_available_alt_forms(user)
 	if(!length(available))
 		to_chat(user, span_warning("You have no other saved characters to transform into. Park a character first via Far Travel."))
 		return
 
-	var/choice = tgui_input_list(user, "Which saved form shall you assume?", "Alternate Form", available)
-	if(!choice || !available[choice])
-		return
+	// If the stored selection is valid, use it directly.
+	var/record_key = null
+	if(stored_key && available[stored_key])
+		record_key = stored_key
+	else
+		// Stored selection is missing or invalid - fall back to prompting.
+		to_chat(user, span_warning("Your selected alternate form is no longer available. Choose another."))
+		var/choice = tgui_input_list(user, "Which saved form shall you assume?", "Alternate Form", available)
+		if(!choice || !available[choice])
+			return
+		record_key = choice
 
-	var/record_key = available[choice]
-	var/list/record = GLOB.dreamvalley_campaign.parked_characters[record_key]
+	var/list/record = GLOB.dreamvalley_campaign?.parked_characters[record_key]
 	if(!islist(record) || record["state"] != "parked")
 		to_chat(user, span_warning("That character is no longer available."))
 		return
@@ -107,6 +102,30 @@
 	apply_appearance(user, stored_original_appearance)
 	stored_original_appearance = null
 	current_alt_key = null
+
+/// Build the list of available parked characters for a player, keyed by
+/// record_key -> display name. Excludes the current preference slot.
+/proc/dreamvalley_get_available_alt_forms(mob/living/carbon/human/user)
+	var/list/available = list()
+	if(!user?.client)
+		return available
+	var/owner_ckey = ckey(user.client.key)
+	if(!length(owner_ckey))
+		return available
+	for(var/record_key in GLOB.dreamvalley_campaign?.parked_characters)
+		var/list/record = GLOB.dreamvalley_campaign.parked_characters[record_key]
+		if(!islist(record) || record["state"] != "parked" || record["complete"] != TRUE)
+			continue
+		if(record["owner_ckey"] != owner_ckey)
+			continue
+		var/current_slot = user.client.prefs?.loaded_slot
+		if(record["preference_slot"] == current_slot)
+			continue
+		var/list/core = record["core"]
+		var/list/identity = core?["identity"]
+		var/char_name = identity?["real_name"] || "Unknown"
+		available[record_key] = "[char_name] (Slot [record["preference_slot"]])"
+	return available
 
 /// Capture appearance-relevant data from a human.
 /obj/effect/proc_holder/spell/self/alt_form/proc/capture_appearance(mob/living/carbon/human/H)
@@ -228,11 +247,49 @@
 	if(!GLOB.tat_available_traits)
 		GLOB.tat_available_traits = list()
 	if(!GLOB.tat_available_traits[TAT_TRAIT_ALT_FORM])
-		GLOB.tat_available_traits[TAT_TRAIT_ALT_FORM] = TAT_TRAIT_ENTRY("Alternate Form", 3, "Grants the ability to transform into one of your saved (parked) characters from another preference slot. Only appearance changes - stats, skills, and items remain your own. Cast the spell again to revert.")
+		GLOB.tat_available_traits[TAT_TRAIT_ALT_FORM] = TAT_TRAIT_ENTRY("Alternate Form", 3, "Grants the ability to transform into one of your saved (parked) characters from another preference slot. You must select which character at the trait screen. Only appearance changes - stats, skills, and items remain your own. Cast the spell again to revert.")
 	if(!GLOB.tat_direction_trait_rules)
 		GLOB.tat_direction_trait_rules = list()
 	if(!GLOB.tat_direction_trait_rules[TAT_TRAIT_ALT_FORM])
 		GLOB.tat_direction_trait_rules[TAT_TRAIT_ALT_FORM] = TAT_DIRECTION_ENTRY(TAT_DIRECTION_MAGIC, list(TAT_DIRECTION_MAGIC = 2), 2)
+
+/// Hook called from the upstream TAT ui_act when the alt-form trait is added.
+/// Prompts the player to select which parked character to use as their alt form.
+/proc/dreamvalley_prompt_alt_form_selection(datum/tat_build/build, mob/user)
+	if(!build || !user?.client)
+		return
+	var/list/available = dreamvalley_get_available_alt_forms(user)
+	if(!length(available))
+		// No parked characters yet - allow the trait but warn the player.
+		to_chat(user, span_warning("You have no parked characters yet. You can select your alternate form later using the \"Select Alternate Form\" verb after parking a character via Far Travel."))
+		build.set_magic_value(ALT_FORM_MAGIC_KEY, null)
+		return
+	// Show the selection prompt.
+	var/choice = tgui_input_list(user, "Which saved character will be your alternate form?", "Alternate Form Selection", available)
+	if(!choice || !available[choice])
+		return
+	var/record_key = choice
+	build.set_magic_value(ALT_FORM_MAGIC_KEY, record_key)
+	var/char_name = available[record_key]
+	to_chat(user, span_notice("Your alternate form is now set to: [char_name]"))
+
+/// Admin/player verb to re-select the alt-form character after parking a new one.
+/mob/verb/select_alternate_form()
+	set category = "OOC"
+	set name = "Select Alternate Form"
+	set desc = "Choose which saved character your Alternate Form trait transforms into."
+
+	if(!client?.prefs)
+		to_chat(src, span_warning("No preferences loaded."))
+		return
+	var/datum/tat_build/build = client.prefs.dreamvalley_get_tat_build()
+	if(!build)
+		to_chat(src, span_warning("No TAT build loaded."))
+		return
+	if(!build.traits?.has_trait(TAT_TRAIT_ALT_FORM))
+		to_chat(src, span_warning("You do not have the Alternate Form trait."))
+		return
+	dreamvalley_prompt_alt_form_selection(build, src)
 
 /// Hook called after TAT traits are applied to a human. Grants the alt-form
 /// spell if the trait is selected. Called from tat_integration.dm.
@@ -249,4 +306,15 @@
 		return
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/alt_form)
 	ADD_TRAIT(H, TAT_TRAIT_ALT_FORM, ALT_FORM_TRAIT_SOURCE)
-	to_chat(H, span_notice("You feel a strange power stirring within — you can assume the form of your saved kin. Use the \"Assume Alternate Form\" ability."))
+
+	// Check if the stored selection is still valid.
+	var/stored_key = build.get_magic_value(ALT_FORM_MAGIC_KEY)
+	var/list/available = dreamvalley_get_available_alt_forms(H)
+	if(!stored_key || !available[stored_key])
+		if(length(available))
+			to_chat(H, span_warning("Your alternate form selection is missing or invalid. Use \"Select Alternate Form\" in the OOC tab to choose."))
+		else
+			to_chat(H, span_warning("You have the Alternate Form trait but no parked characters to transform into. Park a character via Far Travel, then use \"Select Alternate Form\" in the OOC tab."))
+	else
+		var/char_name = available[stored_key]
+		to_chat(H, span_notice("You feel a strange power stirring within - you can assume the form of [char_name]. Use the \"Assume Alternate Form\" ability."))
