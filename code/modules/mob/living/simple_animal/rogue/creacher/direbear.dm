@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear	//This way don't need new unqiue AI controller. Wolves are modular anyway.
+/mob/living/simple_animal/hostile/retaliate/rogue/direbear	//This way don't need new unqiue AI controller. Wolves are modular anyway.
 	attack_aim = MOB_AIM_HIGH
 	anatomy_type = /datum/anatomy/quadruped/standard
 	icon = 'icons/roguetown/mob/monster/direbear.dmi'
@@ -71,7 +71,7 @@
 	ai_controller = /datum/ai_controller/direbear
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/direbear/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/direbear/direbear_attack1.ogg')	//Placeholder till we get more sounds
@@ -90,7 +90,7 @@
 /datum/intent/simple/bite/bear
 	clickcd = RAT_ATTACK_SPEED	//Slightly slower than wolfs by .1
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear/Initialize(mapload)
+/mob/living/simple_animal/hostile/retaliate/rogue/direbear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 

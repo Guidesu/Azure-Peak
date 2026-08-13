@@ -1,5 +1,5 @@
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden
 	anatomy_type = /datum/anatomy/construct/standard
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "earthen Warden"
@@ -55,11 +55,11 @@
 	ai_controller = /datum/ai_controller/elemental
 	move_base_delay = MOVEMENT_DELAY_SLOW
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/mouse
+/mob/living/simple_animal/mouse
 	name = "mouse"
 	desc = ""
 	icon_state = "mouse_gray"
@@ -28,7 +28,7 @@
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-/mob/living/carbon/simple_animal/mouse/Initialize()
+/mob/living/simple_animal/mouse/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/blank.ogg'=1), 100)
 	if(!body_color)
@@ -38,12 +38,12 @@
 	icon_dead = "mouse_[body_color]_dead"
 
 
-/mob/living/carbon/simple_animal/mouse/proc/splat()
+/mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
 	src.icon_dead = "mouse_[body_color]_splat"
 	death()
 
-/mob/living/carbon/simple_animal/mouse/death(gibbed, toast)
+/mob/living/simple_animal/mouse/death(gibbed, toast)
 	if(!ckey)
 		..(1)
 		if(!gibbed)
@@ -57,7 +57,7 @@
 	else
 		..(gibbed)
 
-/mob/living/carbon/simple_animal/mouse/Crossed(AM as mob|obj)
+/mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
@@ -68,20 +68,20 @@
  * Mouse types
  */
 
-/mob/living/carbon/simple_animal/mouse/white
+/mob/living/simple_animal/mouse/white
 	body_color = "white"
 	icon_state = "mouse_white"
 
-/mob/living/carbon/simple_animal/mouse/gray
+/mob/living/simple_animal/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
 
-/mob/living/carbon/simple_animal/mouse/brown
+/mob/living/simple_animal/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
-/mob/living/carbon/simple_animal/mouse/brown/Tom
+/mob/living/simple_animal/mouse/brown/Tom
 	name = "Tom"
 	desc = ""
 	response_help_continuous = "pets"

@@ -1,5 +1,5 @@
 //The vile Vore Monster
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless
+/mob/living/simple_animal/hostile/retaliate/rogue/headless
 	anatomy_type = /datum/anatomy/biped/lamia/headless
 	threat_point = THREAT_DANGEROUS
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
@@ -56,13 +56,13 @@
 	can_have_ai = FALSE
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/headless/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, retreat_health)
 
 //Consume the corpses of allies code.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/retaliate/rogue/headless/CanAttack(atom/the_target)
 	. = ..()
 	if(!.)
 		if(isliving(the_target))

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad
 	anatomy_type = /datum/anatomy/dryad
 	icon = 'icons/mob/summonable/32x64.dmi'
 	name = "dryad"
@@ -52,14 +52,14 @@
 
 	ai_controller = /datum/ai_controller/fae
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	var/datum/action/cooldown/spell/projectile/log_throw/hurl = new(src)
 	hurl.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

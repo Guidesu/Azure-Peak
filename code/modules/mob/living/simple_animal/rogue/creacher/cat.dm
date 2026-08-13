@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat
+/mob/living/simple_animal/hostile/retaliate/rogue/cat
 	threat_point = THREAT_TRASH
 	attack_aim = MOB_AIM_GROUND
 	anatomy_type = /datum/anatomy/quadruped/trash

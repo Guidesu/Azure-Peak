@@ -1,7 +1,7 @@
 
 
 //these mobs run away when attacked
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue
+/mob/living/simple_animal/hostile/retaliate/rogue
 	turns_per_move = 5
 	see_in_dark = 6
 	response_help_continuous = "pets"
@@ -50,13 +50,13 @@
 	//If the creature is doing something they should STOP MOVING.
 	var/can_act = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/Move()
+/mob/living/simple_animal/hostile/retaliate/rogue/Move()
 	//If you cant act and dont have a player stop moving.
 	if(!can_act && !client)
 		return FALSE
 	..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
+/mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
 	..()
 	if(damagetype == BRUTE)
 		if(damage > 5 && prob(damage * 3))
@@ -82,7 +82,7 @@
 			else if(damage >= 20)
 				flash_fullscreen("redflash3")
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/death(gibbed)
 	emote("death")
 	..(gibbed)
 	if(length(death_loot))
@@ -91,7 +91,7 @@
 			for(var/i in 1 to death_loot[loot_path])
 				new loot_path(deathspot)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/handle_automated_movement()
+/mob/living/simple_animal/hostile/retaliate/rogue/handle_automated_movement()
 	set waitfor = FALSE
 	if(!stop_automated_movement && wander && !doing)
 		if(ssaddle && has_buckled_mobs())
@@ -101,7 +101,7 @@
 		else
 			..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/proc/find_food()
+/mob/living/simple_animal/hostile/retaliate/rogue/proc/find_food()
 	if(food > 50 && !eat_forever)
 		return
 	var/list/foundfood = list()
@@ -124,13 +124,13 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/AttackingTarget()
 	//If you can't act and dont have a player stop moving.
 	if(!can_act && !client)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/proc/eat_bodies()
+/mob/living/simple_animal/hostile/retaliate/rogue/proc/eat_bodies()
 	var/mob/living/L
 //	var/list/around = view(aggro_vision_range, src)
 	var/list/around = hearers(1, src)
@@ -181,7 +181,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/Initialize()
 	. = ..()
 	if(milkies)
 		udder = new()
@@ -189,12 +189,12 @@
 		tamed()
 	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/LoseTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/LoseTarget()
 	..()
 	retreat_distance = initial(retreat_distance)
 	minimum_distance = initial(minimum_distance)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/tamed(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/tamed(mob/user)
 	del_on_deaggro = 0
 	aggressive = 0
 	if(enemies.len)
@@ -208,11 +208,11 @@
 		friends |= user
 	..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/Destroy()
+/mob/living/simple_animal/hostile/retaliate/rogue/Destroy()
 	QDEL_NULL(udder)
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/Life()
 	. = ..()
 	if(.)
 		if(enemies.len)
@@ -234,7 +234,7 @@
 				growth_prog += 0.5
 				if(growth_prog >= 100)
 					if(isturf(loc))
-						var/mob/living/carbon/simple_animal/A = new adult_growth(loc)
+						var/mob/living/simple_animal/A = new adult_growth(loc)
 						if(tame)
 							A.tame = TRUE
 						qdel(src)
@@ -247,7 +247,7 @@
 				production--
 				udder.generateMilk()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/Retaliate()
+/mob/living/simple_animal/hostile/retaliate/rogue/Retaliate()
 //	if(!enemies.len && message)
 //		src.visible_message(span_warning("[src] panics!"))
 //	if(flee)
@@ -256,7 +256,7 @@
 	mob_timers["aggro_time"] = world.time
 	..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/hostile/retaliate/rogue/attackby(obj/item/O, mob/user, params)
 	if(!stat && istype(O, /obj/item/reagent_containers/glass))
 		if(udder)
 			udder.milkAnimal(O, user)
@@ -264,26 +264,26 @@
 	else
 		return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/proc/return_action()
+/mob/living/simple_animal/hostile/retaliate/rogue/proc/return_action()
 	stop_automated_movement = FALSE
 	walk(src,0)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/shood(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/shood(mob/user)
 	if(tame)
 		Retaliate()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/onkick(mob/M)
+/mob/living/simple_animal/hostile/retaliate/rogue/onkick(mob/M)
 	..()
 	Retaliate()
 	GiveTarget(M)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/beckoned(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/beckoned(mob/user)
 	if(tame && !stop_automated_movement)
 		stop_automated_movement = TRUE
 		Goto(user)
 		addtimer(CALLBACK(src, PROC_REF(return_action)), 3 SECONDS)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/food_tempted(obj/item/O, mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/food_tempted(obj/item/O, mob/user)
 
 	if(food_typecache?[O.type] && !stop_automated_movement)
 

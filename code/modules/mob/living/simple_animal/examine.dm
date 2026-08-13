@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/examine(mob/user)
+/mob/living/simple_animal/examine(mob/user)
 	var/t_He = p_they(TRUE)
 	var/t_his = p_their()
 	var/t_is = p_are()

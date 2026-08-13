@@ -14,7 +14,7 @@
 
 GLOBAL_VAR_INIT(farm_animals, FALSE)
 
-/mob/living/carbon/simple_animal
+/mob/living/simple_animal
 	name = "animal"
 	icon = 'icons/mob/animal.dmi'
 	health = 20
@@ -55,6 +55,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/stop_automated_movement_when_pulled = 1
 	///Next time we can perform a grid update (throttled to avoid excessive updates)
 	var/next_grid_update_time = 0
+
+	var/obj/item/handcuffed = null //Whether or not the mob is handcuffed
+	var/obj/item/legcuffed = null  //Same as handcuffs but for legs. Bear traps use this.
 
 	var/blood_color = BLOOD_COLOR_RED
 
@@ -223,7 +226,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/fly_time = 3 SECONDS //default fly delay
 	var/datum/voicepack/voicepack = null
 
-/mob/living/carbon/simple_animal/get_mechanics_examine(mob/user)
+/mob/living/simple_animal/get_mechanics_examine(mob/user)
 	. = ..()
 	if(can_buckle && max_buckled_mobs)
 		. += span_info("This can carry up to [max_buckled_mobs] rider[max_buckled_mobs == 1 ? "" : "s"].")
@@ -232,10 +235,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		if(ssaddle)
 			. += span_info("Use middle-mouse button on the mount to open its inventory.")
 
-/mob/living/carbon/simple_animal/get_blood_color()
+/mob/living/simple_animal/get_blood_color()
 	return blood_color
 
-/mob/living/carbon/simple_animal/Initialize()
+/mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
 	if(gender == PLURAL)
@@ -263,7 +266,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		/mob/living/proc/emote_hiss,
 	))
 
-/mob/living/carbon/simple_animal/Destroy()
+/mob/living/simple_animal/Destroy()
 	for(var/list/SA_list in GLOB.simple_animals)
 		SA_list -= src
 	SSnpcpool.currentrun -= src
@@ -291,7 +294,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	. = ..()
 	our_cells = null
 
-/mob/living/carbon/simple_animal/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/attackby(obj/item/O, mob/user, params)
 	if(!food_typecache?[O.type])
 		..()
 		return
@@ -312,7 +315,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				else
 					tame_chance += bonus_tame_chance
 
-/mob/living/carbon/simple_animal/attack_right(mob/user, params)
+/mob/living/simple_animal/attack_right(mob/user, params)
 	if(ccaparison)
 		user.visible_message(span_notice("[user] is removing the caparison from [src]..."), span_notice("I start removing the caparison from [src]..."))
 		if(!do_after(user, 10 SECONDS, TRUE, src))
@@ -354,7 +357,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return
 	return ..()
 
-/mob/living/carbon/simple_animal/update_icon()
+/mob/living/simple_animal/update_icon()
 	cut_overlays()
 	. = ..()
 	var/barding_layer = 6
@@ -397,7 +400,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			add_overlay(barding_above_overlay)
 
 ///Extra effects to add when the mob is tamed, such as adding a riding component
-/mob/living/carbon/simple_animal/proc/tamed(mob/user)
+/mob/living/simple_animal/proc/tamed(mob/user)
 	INVOKE_ASYNC(src, PROC_REF(emote), "lower_head", null, null, null, TRUE)
 	tame = TRUE
 	stop_automated_movement_when_pulled = TRUE
@@ -406,20 +409,20 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		SEND_SIGNAL(user, COMSIG_ANIMAL_TAMED, src)
 	pet_passive = TRUE
 
-//mob/living/carbon/simple_animal/examine(mob/user)
+//mob/living/simple_animal/examine(mob/user)
 //	. = ..()
 //	if(stat == DEAD)
 //		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
-/mob/living/carbon/simple_animal/updatehealth()
+/mob/living/simple_animal/updatehealth()
 	..()
 	update_damage_overlays()
 	show_damage_stage()
 
-/mob/living/carbon/simple_animal/hostile
+/mob/living/simple_animal/hostile
 	var/retreating
 
-/mob/living/carbon/simple_animal/hostile/updatehealth()
+/mob/living/simple_animal/hostile/updatehealth()
 	..()
 	if(!retreating)
 		if(target)
@@ -437,7 +440,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return
 	move_to_delay = initial(move_to_delay) * barding_speed_mult
 
-/mob/living/carbon/simple_animal/hostile/forceMove(turf/T)
+/mob/living/simple_animal/hostile/forceMove(turf/T)
 	var/list/BM = list()
 	for(var/m in buckled_mobs)
 		BM += m
@@ -446,7 +449,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		x.forceMove(get_turf(src))
 		buckle_mob(x, TRUE)
 
-/mob/living/carbon/simple_animal/update_stat()
+/mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
@@ -458,16 +461,16 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		if(!QDELING(src))
 			AddComponent(/datum/component/footstep, footstep_type)
 
-/mob/living/carbon/simple_animal/handle_status_effects()
+/mob/living/simple_animal/handle_status_effects()
 	..()
 	if(stuttering)
 		stuttering = 0
 
-/mob/living/carbon/simple_animal/proc/handle_automated_action()
+/mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
 	return
 
-/mob/living/carbon/simple_animal/proc/handle_automated_movement()
+/mob/living/simple_animal/proc/handle_automated_movement()
 	set waitfor = FALSE
 	if(!stop_automated_movement && wander && !doing)
 		if(ssaddle && has_buckled_mobs())
@@ -478,7 +481,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			turns_since_move++
 			return 1
 
-/mob/living/carbon/simple_animal/proc/handle_automated_speech(override)
+/mob/living/simple_animal/proc/handle_automated_speech(override)
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
@@ -514,7 +517,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 						emote("me", 2, pick(emote_hear))
 
 
-/mob/living/carbon/simple_animal/proc/environment_is_safe(check_temp = FALSE)
+/mob/living/simple_animal/proc/environment_is_safe(check_temp = FALSE)
 	. = TRUE
 
 	if(pulledby && pulledby.grab_state >= GRAB_KILL && atmos_requirements["min_oxy"])
@@ -528,7 +531,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			. = FALSE
 
 
-/mob/living/carbon/simple_animal/handle_environment()
+/mob/living/simple_animal/handle_environment()
 	var/atom/A = src.loc
 	if(isturf(A))
 		//ATMO/TURF/TEMPERATURE
@@ -541,11 +544,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	handle_temperature_damage()
 
-/mob/living/carbon/simple_animal/proc/handle_temperature_damage()
+/mob/living/simple_animal/proc/handle_temperature_damage()
 	if((bodytemperature < minbodytemp) || (bodytemperature > maxbodytemp))
 		adjustHealth(unsuitable_atmos_damage)
 
-/mob/living/carbon/simple_animal/MiddleClick(mob/living/user, params)
+/mob/living/simple_animal/MiddleClick(mob/living/user, params)
 	if(stat == DEAD)
 		var/obj/item/held_item = user.get_active_held_item()
 		if(held_item)
@@ -589,7 +592,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			saddle_storage.show_to(user)
 	..()
 
-/mob/living/carbon/simple_animal/proc/butcher(mob/living/user, on_meathook = FALSE)
+/mob/living/simple_animal/proc/butcher(mob/living/user, on_meathook = FALSE)
 	if(ssaddle)
 		ssaddle.forceMove(get_turf(src))
 		ssaddle = null
@@ -692,7 +695,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			user.mind.add_sleep_experience(/datum/skill/labor/butchering, user.STAINT * BUTCHERING_EXP_FINISH)
 		gib()
 
-/mob/living/carbon/simple_animal/proc/gib_with_novice_butchery()
+/mob/living/simple_animal/proc/gib_with_novice_butchery()
 	var/atom/Tsec = drop_location()
 
 	var/botch_chance = 50
@@ -733,7 +736,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			head.sellprice = 0
 	gib()
 
-/mob/living/carbon/simple_animal/mark_contract_spawned()
+/mob/living/simple_animal/mark_contract_spawned()
 	. = ..()
 	head_butcher = null
 
@@ -754,27 +757,27 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
     return msg
 
-/mob/living/carbon/simple_animal/spawn_dust(just_ash = FALSE)
+/mob/living/simple_animal/spawn_dust(just_ash = FALSE)
 	if(just_ash || !remains_type)
 		for(var/i in 1 to 5)
 			new /obj/item/ash(loc)
 	else
 		new remains_type(loc)
 
-/mob/living/carbon/simple_animal/gib_animation()
+/mob/living/simple_animal/gib_animation()
 	if(icon_gib)
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
 
-/mob/living/carbon/simple_animal/say_mod(input, message_mode)
+/mob/living/simple_animal/say_mod(input, message_mode)
 	if(speak_emote && speak_emote.len)
 		verb_say = pick(speak_emote)
 	. = ..()
 
-/mob/living/carbon/simple_animal/proc/get_move_base_delay()
+/mob/living/simple_animal/proc/get_move_base_delay()
 	var/base = isnull(move_base_delay) ? SIMPLEMOB_DEFAULT_MOVE_DELAY : move_base_delay
 	return clamp(base, SIMPLEMOB_MINIMUM_MOVE_DELAY, SIMPLEMOB_MAXIMUM_MOVE_DELAY)
 
-/mob/living/carbon/simple_animal/update_move_intent_slowdown()
+/mob/living/simple_animal/update_move_intent_slowdown()
 	var/mod = get_move_base_delay()
 	switch(m_intent)
 		if(MOVE_INTENT_RUN)
@@ -787,7 +790,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		mod += (10 - spd) * SPEED_MOVSPD_MOD
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
 
-/mob/living/carbon/simple_animal/update_movespeed(resort = TRUE)
+/mob/living/simple_animal/update_movespeed(resort = TRUE)
 	. = ..()
 	if(cached_multiplicative_slowdown >= SIMPLEMOB_MINIMUM_MOVE_DELAY)
 		return
@@ -796,11 +799,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(updating_glide_size)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
-/mob/living/carbon/simple_animal/proc/drop_loot()
+/mob/living/simple_animal/proc/drop_loot()
 	for(var/i in loot) // If someone puts a turf in this list I'm going to kill you.
 		new i(loc)
 
-/mob/living/carbon/simple_animal/death(gibbed)
+/mob/living/simple_animal/death(gibbed)
 	movement_type &= ~FLYING
 	if(nest)
 		nest.spawned_mobs -= src
@@ -828,7 +831,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/proc/CanAttack(atom/the_target)
+/mob/living/simple_animal/proc/CanAttack(atom/the_target)
 	if(binded)
 		return FALSE
 	if(see_invisible < the_target.invisibility)
@@ -843,13 +846,13 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return FALSE
 	return TRUE
 
-//mob/living/carbon/simple_animal/ignite_mob()
+//mob/living/simple_animal/ignite_mob()
 //	return FALSE
 
-///mob/living/carbon/simple_animal/extinguish_mob()
+///mob/living/simple_animal/extinguish_mob()
 //	return
 
-/mob/living/carbon/simple_animal/revive(full_heal = FALSE, admin_revive = FALSE)
+/mob/living/simple_animal/revive(full_heal = FALSE, admin_revive = FALSE)
 	if(..()) //successfully ressuscitated from death
 		icon = initial(icon)
 		icon_state = icon_living
@@ -859,7 +862,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		. = TRUE
 		setMovetype(initial(movement_type))
 
-/mob/living/carbon/simple_animal/proc/make_babies() // <3 <3 <3
+/mob/living/simple_animal/proc/make_babies() // <3 <3 <3
 	if(gender != FEMALE || stat || next_scan_time > world.time || !childtype || !animal_species || !SSticker.IsRoundInProgress())
 		return
 	if(GLOB.farm_animals >= MAX_FARM_ANIMALS)
@@ -875,7 +878,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	next_scan_time = world.time + breedcd
 	var/alone = TRUE
 	var/children = 0
-	var/mob/living/carbon/simple_animal/partner
+	var/mob/living/simple_animal/partner
 	for(var/mob/M in view(7, src))
 		if(M.stat != CONSCIOUS) //Check if it's conscious FIRST.
 			continue
@@ -892,7 +895,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		if(target)
 			return new childspawn(target)
 
-/mob/living/carbon/simple_animal/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+/mob/living/simple_animal/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, span_warning("I can't do that right now!"))
 		return FALSE
@@ -904,19 +907,19 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/simple_animal/stripPanelUnequip(obj/item/what, mob/who, where)
+/mob/living/simple_animal/stripPanelUnequip(obj/item/what, mob/who, where)
 	if(!canUseTopic(who, BE_CLOSE))
 		return
 	else
 		..()
 
-/mob/living/carbon/simple_animal/stripPanelEquip(obj/item/what, mob/who, where)
+/mob/living/simple_animal/stripPanelEquip(obj/item/what, mob/who, where)
 	if(!canUseTopic(who, BE_CLOSE))
 		return
 	else
 		..()
 
-/mob/living/carbon/simple_animal/update_mobility(value_otherwise = TRUE)
+/mob/living/simple_animal/update_mobility(value_otherwise = TRUE)
 	if(IsUnconscious() || IsParalyzed() || IsStun() || IsKnockdown() || IsParalyzed() || stat || resting)
 		drop_all_held_items()
 		mobility_flags = NONE
@@ -933,7 +936,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	update_transform()
 	update_mob_action_buttons()
 
-/mob/living/carbon/simple_animal/update_transform()
+/mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
 	var/changed = FALSE
 
@@ -945,11 +948,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
-/mob/living/carbon/simple_animal/proc/sentience_act() //Called when a simple animal gains sentience via gold slime potion
+/mob/living/simple_animal/proc/sentience_act() //Called when a simple animal gains sentience via gold slime potion
 	toggle_ai(AI_OFF) // To prevent any weirdness.
 	can_have_ai = FALSE
 
-/mob/living/carbon/simple_animal/update_sight()
+/mob/living/simple_animal/update_sight()
 	if(!client)
 		return
 	if(stat == DEAD)
@@ -969,13 +972,13 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				return
 	sync_lighting_plane_alpha()
 
-/mob/living/carbon/simple_animal/can_hold_items()
+/mob/living/simple_animal/can_hold_items()
 	return dextrous
 
-/mob/living/carbon/simple_animal/IsAdvancedToolUser()
+/mob/living/simple_animal/IsAdvancedToolUser()
 	return dextrous
 
-/mob/living/carbon/simple_animal/activate_hand(selhand)
+/mob/living/simple_animal/activate_hand(selhand)
 	if(!dextrous)
 		return ..()
 	if(!selhand)
@@ -991,7 +994,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	else
 		mode()
 
-/mob/living/carbon/simple_animal/swap_hand(hand_index)
+/mob/living/simple_animal/swap_hand(hand_index)
 	if(!dextrous)
 		return ..()
 	if(!hand_index)
@@ -1015,11 +1018,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			H.update_hand_vis()
 	return TRUE
 
-/mob/living/carbon/simple_animal/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE)
+/mob/living/simple_animal/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE)
 	. = ..(I, del_on_fail, merge_stacks)
 	update_inv_hands()
 
-/mob/living/carbon/simple_animal/update_inv_hands()
+/mob/living/simple_animal/update_inv_hands()
 	if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 		var/obj/item/l_hand = get_item_for_held_index(1)
 		var/obj/item/r_hand = get_item_for_held_index(2)
@@ -1036,7 +1039,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 //ANIMAL RIDING
 
-/mob/living/carbon/simple_animal/proc/get_mount_time(mob/living/M, default_fail)
+/mob/living/simple_animal/proc/get_mount_time(mob/living/M, default_fail)
 	var/time2mount = 12
 	if(M.mind)
 		var/amt = M.get_skill_level(/datum/skill/misc/riding)
@@ -1047,7 +1050,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return default_fail
 	return time2mount
 
-/mob/living/carbon/simple_animal/proc/setup_mount(list/riding_offsets = list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(-2, 8), TEXT_WEST = list(2, 8)), south_layer = ABOVE_MOB_LAYER, north_layer = OBJ_LAYER, east_layer = OBJ_LAYER, west_layer = OBJ_LAYER)
+/mob/living/simple_animal/proc/setup_mount(list/riding_offsets = list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(-2, 8), TEXT_WEST = list(2, 8)), south_layer = ABOVE_MOB_LAYER, north_layer = OBJ_LAYER, east_layer = OBJ_LAYER, west_layer = OBJ_LAYER)
 	if(!can_buckle)
 		return
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding/no_ocean)
@@ -1057,7 +1060,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	D.set_vehicle_dir_layer(EAST, east_layer)
 	D.set_vehicle_dir_layer(WEST, west_layer)
 
-/mob/living/carbon/simple_animal/proc/add_saddleicon(saddle_above_state, saddle_state, overlay_layer = 4.3)
+/mob/living/simple_animal/proc/add_saddleicon(saddle_above_state, saddle_state, overlay_layer = 4.3)
 	if(!ssaddle)
 		return
 	var/mutable_appearance/saddle_overlay = mutable_appearance(icon, saddle_above_state, overlay_layer)
@@ -1067,14 +1070,14 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	saddle_overlay.appearance_flags = RESET_ALPHA|RESET_COLOR
 	add_overlay(saddle_overlay)
 
-/mob/living/carbon/simple_animal/proc/add_ridericon(mounted_state, overlay_layer = 4.3)
+/mob/living/simple_animal/proc/add_ridericon(mounted_state, overlay_layer = 4.3)
 	if(!has_buckled_mobs())
 		return
 	var/mutable_appearance/mounted_overlay = mutable_appearance(icon, mounted_state, overlay_layer)
 	mounted_overlay.appearance_flags = RESET_ALPHA|RESET_COLOR
 	add_overlay(mounted_overlay)
 
-/mob/living/carbon/simple_animal/proc/adjust_speed(mob/living/driver)
+/mob/living/simple_animal/proc/adjust_speed(mob/living/driver)
 	var/delay = vars["move_to_delay"]
 	if(!isnum(delay))
 		delay = 3
@@ -1088,7 +1091,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			delay -= 3
 	return max(delay, 1)
 
-/mob/living/carbon/simple_animal/user_unbuckle_mob(mob/living/M, mob/user)
+/mob/living/simple_animal/user_unbuckle_mob(mob/living/M, mob/user)
 	if(user != M)
 		return
 	var/time2mount = get_mount_time(M, 30)
@@ -1102,7 +1105,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/user_buckle_mob(mob/living/M, mob/user)
+/mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
 	if(user != M)
 		return ..()
 
@@ -1121,7 +1124,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/user_buckle_mob(mob/living/M, mob/user)
+/mob/living/simple_animal/hostile/user_buckle_mob(mob/living/M, mob/user)
 	if(user != M)
 		if(!has_buckled_mobs())
 			return FALSE
@@ -1153,7 +1156,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return TRUE
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/proc/dismount_incap()
+/mob/living/simple_animal/hostile/proc/dismount_incap()
 	if(!has_buckled_mobs())
 		return
 	if(LAZYLEN(buckled_mobs) != 1)
@@ -1165,15 +1168,15 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		return
 	unbuckle_mob(L, TRUE)
 
-/mob/living/carbon/simple_animal/hostile/post_buckle_mob(mob/living/M)
+/mob/living/simple_animal/hostile/post_buckle_mob(mob/living/M)
 	. = ..()
 	dismount_incap()
 
-/mob/living/carbon/simple_animal/hostile/post_unbuckle_mob(mob/living/M)
+/mob/living/simple_animal/hostile/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	dismount_incap()
 
-/mob/living/carbon/simple_animal/relaymove(mob/user, direction)
+/mob/living/simple_animal/relaymove(mob/user, direction)
 	if (stat == DEAD)
 		return
 	var/oldloc = loc
@@ -1214,7 +1217,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 						continue
 					violent_dismount(mountee)
 
-/mob/living/carbon/simple_animal/proc/violent_dismount(mob/living/user)
+/mob/living/simple_animal/proc/violent_dismount(mob/living/user)
 	if(!isliving(user))
 		return FALSE
 
@@ -1227,11 +1230,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	return TRUE
 
-/mob/living/carbon/simple_animal/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
+/mob/living/simple_animal/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
 	. = ..()
 	LoadComponent(/datum/component/riding)
 
-/mob/living/carbon/simple_animal/proc/toggle_ai(togglestatus)
+/mob/living/simple_animal/proc/toggle_ai(togglestatus)
 	if(QDELETED(src))
 		return
 	if(!can_have_ai && (togglestatus != AI_OFF))
@@ -1250,7 +1253,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		else
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
-/mob/living/carbon/simple_animal/proc/consider_wakeup()
+/mob/living/simple_animal/proc/consider_wakeup()
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
 			toggle_ai(AI_ON)
@@ -1259,36 +1262,36 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	toggle_ai(AI_OFF)
 	return FALSE
 
-/mob/living/carbon/simple_animal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(!ckey && !stat)//Not unconscious
 		if(AIStatus == AI_IDLE)
 			toggle_ai(AI_ON)
 
 
-/mob/living/carbon/simple_animal/onTransitZ(old_z, new_z)
+/mob/living/simple_animal/onTransitZ(old_z, new_z)
 	..()
 	if (AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_z] -= src
 		toggle_ai(initial(AIStatus))
 
-/mob/living/carbon/simple_animal/Move(NewLoc, Dir, step_x, step_y)
+/mob/living/simple_animal/Move(NewLoc, Dir, step_x, step_y)
 	if(binded)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/simple_animal/proc/eat_plants()
+/mob/living/simple_animal/proc/eat_plants()
 
 	var/obj/item/reagent_containers/food/I = locate(/obj/item/reagent_containers/food) in loc
 	if(I && food_typecache?[I.type])
 		qdel(I)
 		food = max(food + 30, 100)
 
-/mob/living/carbon/simple_animal/Login()
+/mob/living/simple_animal/Login()
 	. = ..()
 	walk(src, 0)
 
-/mob/living/carbon/simple_animal/Life()
+/mob/living/simple_animal/Life()
 	if(!client && can_have_ai && (AIStatus == AI_Z_OFF || AIStatus == AI_OFF))
 		return
 	. = ..()
@@ -1302,22 +1305,22 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				pooprog = 0
 				poop()
 
-/mob/living/carbon/simple_animal/proc/poop()
+/mob/living/simple_animal/proc/poop()
 	if(pooptype)
 		if(isturf(loc))
 			playsound(src, "fart", 100, TRUE)
 			new pooptype(loc)
 
-/mob/living/carbon/simple_animal/proc/on_client_enter(datum/source, atom/target)
+/mob/living/simple_animal/proc/on_client_enter(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(AIStatus == AI_IDLE)
 		toggle_ai(AI_ON)
 
-/mob/living/carbon/simple_animal/proc/on_client_exit(datum/source, datum/exited)
+/mob/living/simple_animal/proc/on_client_exit(datum/source, datum/exited)
 	SIGNAL_HANDLER
 	consider_wakeup()
 
-/mob/living/carbon/simple_animal/proc/set_new_cells()
+/mob/living/simple_animal/proc/set_new_cells()
 	var/turf/our_turf = get_turf(src)
 	if(isnull(our_turf))
 		return
@@ -1332,12 +1335,12 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_EXITED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_exit))
 	consider_wakeup()
 
-/mob/living/carbon/simple_animal/Moved()
+/mob/living/simple_animal/Moved()
 	. = ..()
 	if(world.time >= next_grid_update_time)
 		update_grid()
 
-/mob/living/carbon/simple_animal/proc/update_grid()
+/mob/living/simple_animal/proc/update_grid()
 	next_grid_update_time = world.time + 5
 	var/turf/our_turf = get_turf(src)
 	if(isnull(our_turf) || isnull(our_cells))
@@ -1354,7 +1357,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	consider_wakeup()
 
 //Flight related procs foy flying simple_animals
-/mob/living/carbon/simple_animal/proc/fly_up()
+/mob/living/simple_animal/proc/fly_up()
 	set category = "RoleUnique.Winged Form"
 	set name = "Fly Up"
 
@@ -1369,7 +1372,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		else
 			to_chat(src, span_notice("I can't fly away while being grabbed!"))
 
-/mob/living/carbon/simple_animal/proc/fly_down()
+/mob/living/simple_animal/proc/fly_down()
 	set category = "RoleUnique.Winged Form"
 	set name = "Fly Down"
 
@@ -1385,7 +1388,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			to_chat(src, span_notice("I can't fly away while being grabbed!"))
 //End flight
 
-/mob/living/carbon/simple_animal/proc/get_animal_voicepack()
+/mob/living/simple_animal/proc/get_animal_voicepack()
 	if(voicepack)
 		return voicepack
 

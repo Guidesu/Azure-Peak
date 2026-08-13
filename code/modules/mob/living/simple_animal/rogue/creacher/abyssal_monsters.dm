@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend
+/mob/living/simple_animal/hostile/rogue/dreamfiend
 	threat_point = THREAT_TOUGH
 	anatomy_type = /datum/anatomy/aberrant
 	icon = 'icons/mob/abyssal_small.dmi'
@@ -35,7 +35,7 @@
 	var/sound2 = 'sound/mobs/abyssal/abyssal_teleport.ogg'
 	var/desummon_timer = 8 SECONDS
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major
 	threat_point = THREAT_ELITE
 	icon = 'icons/mob/abyssal_medium.dmi'
 	name = "major dream fiend"
@@ -54,7 +54,7 @@
 
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient
 	threat_point = THREAT_APEX
 	icon = 'icons/mob/abyssal_large.dmi'
 	name = "ancient dream fiend"
@@ -77,7 +77,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_23
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/get_sound(input)
+/mob/living/simple_animal/hostile/rogue/dreamfiend/get_sound(input)
     switch(input)
         if("aggro")
             return pick('sound/mobs/abyssal/abyssal_aggro.ogg')
@@ -88,7 +88,7 @@
         if("idle")
             return pick('sound/mobs/abyssal/abyssal_idle.ogg')
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/Initialize()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/Initialize()
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
@@ -97,7 +97,7 @@
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient/Initialize()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/Initialize()
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
@@ -115,7 +115,7 @@
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/proc/blink_to_target(var/mob/target)
+/mob/living/simple_animal/hostile/rogue/dreamfiend/proc/blink_to_target(var/mob/target)
 	if(world.time < next_blink || QDELETED(target) || target.stat == DEAD)
 		return FALSE
 
@@ -156,32 +156,32 @@
 
 	return FALSE
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/proc/return_to_abyssor()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/proc/return_to_abyssor()
 	src.visible_message(span_notice("The [src] starts to fade out of reality!"))
 	if(do_after(src, desummon_timer, FALSE, target = src))
 		qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/death()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/death()
 	if(prob(5))
 		new /obj/item/roguegem/yellow(loc)
 	//Was it even real?!
 	new /obj/effect/decal/cleanable/dreamfiend_ichor(loc)
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major/death()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/death()
 	if(prob(25))
 		new /obj/effect/spawner/lootdrop/roguetown/abyssor(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
 	var/main_target = ai_controller.blackboard[BB_MAIN_TARGET]
 	for(var/i in 1 to 2)
-		var/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/F = new(loc)
+		var/mob/living/simple_animal/hostile/rogue/dreamfiend/F = new(loc)
 		F.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
 		F.ai_controller.set_blackboard_key(BB_MAIN_TARGET, main_target)
 	if(main_target)
 		src.visible_message(span_notice("some dreamfiends split forth front the body of the [src] following after [main_target]... countless teeth bared with hostility!"))
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient/death()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/death()
 	if(prob(100))
 		if(prob(1))
 			new /obj/item/rogueweapon/greataxe/dreamscape/active(loc)
@@ -218,26 +218,26 @@
 	penfactor = PEN_MEDIUM
 
 // EVENT mobs and mappable mobs. (USE SPARINGLY)
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/unbound
+/mob/living/simple_animal/hostile/rogue/dreamfiend/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound
 	move_base_delay = MOVEMENT_DELAY_SPD_10
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major/unbound
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound
 	move_base_delay = MOVEMENT_DELAY_SPD_10
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major/unbound/death()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound/death()
 	if(prob(25))
 		new /obj/effect/spawner/lootdrop/roguetown/abyssor(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
 	for(var/i in 1 to 2)
-		new /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/unbound(loc)
+		new /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound(loc)
 	src.visible_message(span_notice("Some dreamfiends split forth front the body of the [src]!"))
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
 	attack_sound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
 	ai_controller = /datum/ai_controller/dreamfiend_unbound_ancient
 	move_base_delay = MOVEMENT_DELAY_SPD_10

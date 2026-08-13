@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar
+/mob/living/simple_animal/hostile/retaliate/rogue/boar
 	anatomy_type = /datum/anatomy/quadruped/standard
 	attack_aim = MOB_AIM_LEVEL
 	icon = 'icons/roguetown/mob/monster/boar.dmi'
@@ -80,7 +80,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_17
 	var/charge_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/boar/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -91,11 +91,11 @@
 	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/charge = new charge_type(src)
 	charge.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/boar/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/boar/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('modular/Creechers/sound/pighangry.ogg')
@@ -106,7 +106,7 @@
 		if("idle")
 			return pick('modular/Creechers/sound/pig1.ogg','modular/Creechers/sound/pig2.ogg',)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/boar/taunted(mob/user)
 	emote("aggro")
 	GiveTarget(user)
 	return
@@ -118,7 +118,7 @@
 	penfactor = PEN_HEAVY
 	blade_class = BCLASS_STAB
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/boar/death()
 	. = ..()
 	if(!QDELETED(src))
 		src.AddComponent(/datum/component/deadite_animal_reanimation)

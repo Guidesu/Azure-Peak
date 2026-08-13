@@ -45,19 +45,19 @@
 	H.apply_status_effect(/datum/status_effect/zombie_infection, 5 MINUTES, FALSE)
 
 GLOBAL_LIST_INIT(animal_to_undead, list(
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/game = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar/undead = /mob/living/carbon/human/species/wildshape/terrorhog,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/axe = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat  = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/saiga = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/game = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/wolf = /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/fox = /mob/living/simple_animal/hostile/retaliate/rogue/fox/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/boar = /mob/living/simple_animal/hostile/retaliate/rogue/boar/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/boar/undead = /mob/living/carbon/human/species/wildshape/terrorhog,
+	/mob/living/simple_animal/hostile/retaliate/rogue/troll = /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/troll/axe = /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave = /mob/living/simple_animal/hostile/retaliate/rogue/troll/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit = /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead,
+	/mob/living/simple_animal/hostile/retaliate/rogue/bigrat  = /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead,
 ))
 
 #define ZOMBIE_REANIMATION_CHANCE 25
@@ -69,10 +69,10 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 	var/undead_to_spawn
 
 /datum/component/deadite_animal_reanimation/Initialize()
-	if(!istype(parent, /mob/living/carbon/simple_animal))
+	if(!istype(parent, /mob/living/simple_animal))
 		return COMPONENT_INCOMPATIBLE
 
-	var/mob/living/carbon/simple_animal/mob = parent
+	var/mob/living/simple_animal/mob = parent
 	if(mob.stat != DEAD || !get_undead_type(mob.type))
 		// Not an error, we don't want this logged.
 		return COMPONENT_INCOMPATIBLE_SILENT
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 
 /datum/component/deadite_animal_reanimation/proc/get_undead_type(mob_type)
 	var/current_mob_type = mob_type
-	while(mob_type && mob_type != /mob/living/carbon/simple_animal)
+	while(mob_type && mob_type != /mob/living/simple_animal)
 		if(GLOB.animal_to_undead[mob_type])
 			var/target_undead = GLOB.animal_to_undead[mob_type]
 			if(target_undead == current_mob_type || current_mob_type == mob_type && target_undead == current_mob_type)
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 	return null
 
 /datum/component/deadite_animal_reanimation/proc/start_twitching()
-	var/mob/living/carbon/simple_animal/mob = parent
+	var/mob/living/simple_animal/mob = parent
 	if(!prob(get_reanimation_chance()) || QDELETED(mob) || mob.stat != DEAD)
 		UnregisterFromParent()
 		qdel(src)
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 	reanimation_timer = addtimer(CALLBACK(src, PROC_REF(reanimate)), REANIMATION_TELL_TIME, TIMER_STOPPABLE)
 
 /datum/component/deadite_animal_reanimation/proc/reanimate()
-	var/mob/living/carbon/simple_animal/mob = parent
+	var/mob/living/simple_animal/mob = parent
 	if(QDELETED(mob) || mob.stat != DEAD)
 		UnregisterFromParent()
 		return
@@ -130,12 +130,12 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 	qdel(mob)
 
 /datum/component/deadite_animal_reanimation/proc/get_reanimation_chance()
-	if(has_world_trait(/datum/world_trait/aurelian_pet_cementery))
+	if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
 		return 100
 	return ZOMBIE_REANIMATION_CHANCE
 
 /datum/component/deadite_animal_reanimation/proc/get_reanimation_time()
-	if(has_world_trait(/datum/world_trait/aurelian_pet_cementery))
+	if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
 		return 1.5 MINUTES
 	return ZOMBIE_REANIMATION_TIMER
 

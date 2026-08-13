@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher
 	anatomy_type = /datum/anatomy/orb
 	threat_point = 70
 	icon = 'icons/mob/summonable/32x32.dmi'
@@ -51,12 +51,12 @@
 	ai_controller = /datum/ai_controller/infernal/harasser
 	move_base_delay = MOVEMENT_DELAY_SPD_10
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
 	. = ..()
 	var/datum/action/cooldown/spell/projectile/fireball/mob_ability/watcher/great/eyefire = new(src)
 	eyefire.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/watcher/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

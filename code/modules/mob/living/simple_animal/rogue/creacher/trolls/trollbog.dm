@@ -1,6 +1,6 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog
 	name = "bog troll"
-	desc = "Elven legends say these monsters were servants of Ignatius tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
+	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
 	pixel_x = -16
 	threat_point = THREAT_DANGEROUS
 
@@ -19,11 +19,11 @@
 
 	dodgetime = 15
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC)	// bogtroll does not mind kneestingers
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/after_creation()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/after_creation()
 	..()
 	var/obj/item/organ/eyes/eyes = src.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)

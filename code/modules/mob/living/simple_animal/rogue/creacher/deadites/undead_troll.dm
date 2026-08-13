@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead
 	threat_point = THREAT_ELITE
 	anatomy_type = /datum/anatomy/biped/tough/undead
 	// Icon credit openkeep troll, edited by Ketrai for undeath
@@ -42,7 +42,7 @@
 		/obj/item/alch/viscera = 3,
 		)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, "troll_downed", 0)
 	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock/boulder_throw/boulder = new(src)

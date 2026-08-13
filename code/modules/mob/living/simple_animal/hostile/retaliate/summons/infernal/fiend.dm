@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend
 	anatomy_type = /datum/anatomy/biped/tough/fiend
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "fiend"
@@ -53,7 +53,7 @@
 	ai_controller = /datum/ai_controller/infernal
 	move_base_delay = MOVEMENT_DELAY_SLOW
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/meteor_storm/storm = new(src)
@@ -61,7 +61,7 @@
 	var/datum/action/cooldown/spell/call_infernals/call_them = new(src)
 	call_them.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit	//Technically mudcrab subtype, it's a rabbit though. Shrimpler that way.
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit	//Technically mudcrab subtype, it's a rabbit though. Shrimpler that way.
 	name = "cabbit"
 	desc = "A cabbit, a particular favorite of local fauna; both as a pet and as a tasty meal."
 	icon = 'icons/roguetown/mob/cabbit.dmi'
@@ -23,7 +23,7 @@
 							/obj/item/natural/fur/rabbit = 1,
 							/obj/item/natural/rabbitsfoot = 1)	//Rare rabbits foot for luck charm.
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/rabbit/rabbit_alert.ogg')
@@ -39,7 +39,7 @@
 	icon = 'icons/roguetown/mob/cabbit.dmi'
 	icon_state = "cabbit_remains"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/death(gibbed)
 	. = ..()
 	if(!QDELETED(src) && !gibbed)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)

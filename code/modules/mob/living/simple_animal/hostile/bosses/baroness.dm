@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/boss/baroness //Huge thank you to felinid for their lich_boss code. They inspired this entire project.
+/mob/living/simple_animal/hostile/boss/baroness //Huge thank you to felinid for their lich_boss code. They inspired this entire project.
 	name = "Baroness"
 	real_name = "Baroness Granita Narâg'Thark"
 	gender = FEMALE
@@ -50,7 +50,7 @@
 	projectiletype = /obj/projectile/magic
 	projectilesound = list('sound/magic/charged.ogg')
 	var/allowed_projectile_types = list(/obj/projectile/magic/lightning, /obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/acidsplash)
-	patron = /datum/patron/unveiled/aurelian
+	patron = /datum/patron/inhumen/zizo
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 
@@ -62,17 +62,17 @@
 	var/next_summon = 0
 	var/list/minions = list( /mob/living/carbon/human/species/dwarfskeleton/ambush/knight/summoned = 100)
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/Initialize()
+/mob/living/simple_animal/hostile/boss/baroness/Initialize()
 	. = ..()
 	//REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC) //Increased damage malus from silver. Minor over-time damage increase from bleeding wounds. Un-// if it's too easy.
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/Shoot()
+/mob/living/simple_animal/hostile/boss/baroness/Shoot()
 	projectiletype = pick(allowed_projectile_types)
 	..()
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/handle_automated_action()
+/mob/living/simple_animal/hostile/boss/baroness/handle_automated_action()
 	. = ..()
 	if(health < 1500)
 		minimum_distance = 3
@@ -139,7 +139,7 @@
 			playsound(get_turf(src), pick('sound/misc/elec (1).ogg', 'sound/misc/elec (2).ogg', 'sound/misc/elec (3).ogg'), 100, FALSE)
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/proc/spawn_minions()
+/mob/living/simple_animal/hostile/boss/baroness/proc/spawn_minions()
 	var/spawn_chance = 100
 	if (prob(spawn_chance))
 		var/turf/spawn_turf
@@ -153,7 +153,7 @@
 					spawned_mobs++
 			i++
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/proc/get_random_valid_turf()
+/mob/living/simple_animal/hostile/boss/baroness/proc/get_random_valid_turf()
 	var/list/valid_turfs = list()
 	for (var/turf/T in range(2, src))
 		if (is_valid_spawn_turf(T))
@@ -162,7 +162,7 @@
 		return null
 	return pick(valid_turfs)
 
-/mob/living/carbon/simple_animal/hostile/boss/baroness/proc/is_valid_spawn_turf(turf/T)
+/mob/living/simple_animal/hostile/boss/baroness/proc/is_valid_spawn_turf(turf/T)
 	if (!(istype(T, /turf/open/floor/rogue)))
 		return FALSE
 	if (istype(T, /turf/closed))
@@ -193,7 +193,7 @@
 	new /obj/item/clothing/neck/roguetown/ornateamulet(T)
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boss/baroness/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/boss/baroness/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

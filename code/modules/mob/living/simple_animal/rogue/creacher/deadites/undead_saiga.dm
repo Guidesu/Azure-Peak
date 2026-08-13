@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead
 	threat_point = THREAT_DEADLY
 	anatomy_type = /datum/anatomy/quadruped/undead
 	name = "deadite saiga"
@@ -59,6 +59,6 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/undead/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite)

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon
 	anatomy_type = /datum/anatomy/drakkyn
 	threat_point = THREAT_APEX
 	attack_aim = MOB_AIM_HIGH
@@ -76,7 +76,7 @@
 	var/breath_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/drakkyn
 	var/fireball_ability = /datum/action/cooldown/spell/projectile/fireball/mob_ability/drakkyn
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -110,13 +110,13 @@
 
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/death(gibbed)
 	..()
 
 	update_icon()
 
 /* Eyes that glow in the dark. They float over kybraxor pits at the moment.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -125,7 +125,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)*/
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -138,13 +138,13 @@
 		if("cidle")
 			return pick('sound/vo/mobs/wwolf/idle (2).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/Life()
 	..()
 	if(pulledby)
 		Retaliate()
@@ -171,7 +171,7 @@
     var/exp_flash = 3
     var/exp_fire = 3
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/broodmother
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 	threat_point = THREAT_LEGENDARY
 	health = DRAGON_BROODMOTHER_HEALTH
 	maxHealth = DRAGON_BROODMOTHER_HEALTH

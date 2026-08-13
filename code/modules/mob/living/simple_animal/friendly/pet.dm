@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/pet
+/mob/living/simple_animal/pet
 	icon = 'icons/mob/pets.dmi'
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -7,15 +7,15 @@
 	var/obj/item/clothing/neck/petcollar/pcollar
 	var/collar_type //if the mob has collar sprites, define them.
 
-/mob/living/carbon/simple_animal/pet/can_be_held(mob/by)
+/mob/living/simple_animal/pet/can_be_held(mob/by)
 	return TRUE
 
-/mob/living/carbon/simple_animal/pet/handle_atom_del(atom/A)
+/mob/living/simple_animal/pet/handle_atom_del(atom/A)
 	if(A == pcollar)
 		pcollar = null
 	return ..()
 
-/mob/living/carbon/simple_animal/pet/proc/add_collar(obj/item/clothing/neck/petcollar/P, mob/user)
+/mob/living/simple_animal/pet/proc/add_collar(obj/item/clothing/neck/petcollar/P, mob/user)
 	if(QDELETED(P) || pcollar)
 		return
 	if(!user.transferItemToLoc(P, src))
@@ -26,43 +26,43 @@
 	if(P.tagname && !unique_pet)
 		fully_replace_character_name(null, "\proper [P.tagname]")
 
-/mob/living/carbon/simple_animal/pet/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
 		add_collar(O, user)
 		return
 	else
 		..()
 
-/mob/living/carbon/simple_animal/pet/Initialize()
+/mob/living/simple_animal/pet/Initialize()
 	. = ..()
 	if(pcollar)
 		pcollar = new(src)
 		regenerate_icons()
 
-/mob/living/carbon/simple_animal/pet/Destroy()
+/mob/living/simple_animal/pet/Destroy()
 	QDEL_NULL(pcollar)
 	return ..()
 
-/mob/living/carbon/simple_animal/pet/revive(full_heal = FALSE, admin_revive = FALSE)
+/mob/living/simple_animal/pet/revive(full_heal = FALSE, admin_revive = FALSE)
 	. = ..()
 	if(.)
 		if(collar_type)
 			collar_type = "[initial(collar_type)]"
 		regenerate_icons()
 
-/mob/living/carbon/simple_animal/pet/death(gibbed)
+/mob/living/simple_animal/pet/death(gibbed)
 	..(gibbed)
 	if(collar_type)
 		collar_type = "[initial(collar_type)]_dead"
 	regenerate_icons()
 
-/mob/living/carbon/simple_animal/pet/gib(no_brain = FALSE, no_organs = FALSE, no_bodyparts = FALSE)
+/mob/living/simple_animal/pet/gib(no_brain = FALSE, no_organs = FALSE, no_bodyparts = FALSE)
 	if(pcollar)
 		pcollar.forceMove(drop_location())
 		pcollar = null
 	..()
 
-/mob/living/carbon/simple_animal/pet/regenerate_icons()
+/mob/living/simple_animal/pet/regenerate_icons()
 	cut_overlays()
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")

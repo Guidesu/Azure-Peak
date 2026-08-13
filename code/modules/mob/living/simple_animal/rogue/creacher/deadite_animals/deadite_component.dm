@@ -33,7 +33,7 @@
 	L.faction -= list(FACTION_ZOMBIE)
 	return ..()
 
-/datum/component/deadite/proc/on_apply_damage(mob/living/carbon/simple_animal/L, damage, damagetype, def_zone, blocked, forced)
+/datum/component/deadite/proc/on_apply_damage(mob/living/simple_animal/L, damage, damagetype, def_zone, blocked, forced)
 	SIGNAL_HANDLER
 
 	if(is_downed)
@@ -48,7 +48,7 @@
 	. = COMPONENT_DAMAGE_HANDLED
 	INVOKE_ASYNC(src, PROC_REF(go_down), L)
 
-/datum/component/deadite/proc/go_down(mob/living/carbon/simple_animal/L)
+/datum/component/deadite/proc/go_down(mob/living/simple_animal/L)
 	L.unbuckle_all_mobs()
 	L.can_buckle = FALSE
 	L.can_saddle = FALSE
@@ -68,7 +68,7 @@
 	reanim_timer_id = addtimer(CALLBACK(src, PROC_REF(reanimation)), reanimation_timer, flags = TIMER_STOPPABLE)
 
 /datum/component/deadite/proc/reanimation()
-	var/mob/living/carbon/simple_animal/L = parent
+	var/mob/living/simple_animal/L = parent
 	reanim_timer_id = null
 	if(QDELETED(L) || L.stat == DEAD || L.no_reanimate)
 		return

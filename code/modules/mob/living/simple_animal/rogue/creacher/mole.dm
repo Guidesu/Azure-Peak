@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole
+/mob/living/simple_animal/hostile/retaliate/rogue/mole
 	attack_aim = MOB_AIM_GROUND
 	anatomy_type = /datum/anatomy/quadruped/standard
 	icon = 'icons/roguetown/mob/monster/mole.dmi'
@@ -78,7 +78,7 @@
 	icon_state = "mole_bones"
 	icon = 'icons/roguetown/mob/monster/mole.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/mole/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -87,11 +87,11 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/mole/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/get_sound(input)//my media player does not work please add new .ogg
+/mob/living/simple_animal/hostile/retaliate/rogue/mole/get_sound(input)//my media player does not work please add new .ogg
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -104,13 +104,13 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/mole/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/mole/Life()
 	..()
 	if(pulledby)
 		Retaliate()

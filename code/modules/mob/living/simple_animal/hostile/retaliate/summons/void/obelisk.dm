@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Initialize()
 	. = ..()
 	ADD_TRAIT(src,TRAIT_NOFIRE, "[type]")
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
@@ -6,22 +6,22 @@
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, TRAIT_GENERIC)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the obelisk
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the obelisk
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Move(newloc)
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Move(newloc)
 	if(binded)
 		to_chat(src,span_warning("You're currently bound and unable to move!"))
 		return
 	.=..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "voidstone obelisk"
 	desc = "A construct from another age. It is marked by glowing sigils!"
@@ -94,7 +94,7 @@
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
 	new /obj/item/magic/voidstone(deathspot)
@@ -104,7 +104,7 @@
 		qdel(src)
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/MoveToTarget(list/possible_targets)
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/MoveToTarget(list/possible_targets)
 	stop_automated_movement = 1
 	if(!target || !CanAttack(target))
 		LoseTarget()
@@ -142,16 +142,16 @@
 		return 1
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vobelisk/construct.ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Destroy()
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/Destroy()
 	extinguish_laser()
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/Activate(atom/target)
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/Activate(atom/target)
 
 	src.face_atom(target)
 	src.move_resist = MOVE_FORCE_VERY_STRONG
@@ -173,7 +173,7 @@
 	return TRUE
 
 /// Create a laser in the direction we are facing
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/fire_laser()
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/fire_laser()
 	src.visible_message(span_danger("[src] fires a aberrant beam!"))
 	playsound(src, 'sound/magic/obeliskbeam.ogg', 150, FALSE, 0, 3)
 	var/turf/target_turf = get_ranged_target_turf(src, src.dir, beam_range)
@@ -206,7 +206,7 @@
 	return TRUE
 
 /// Get rid of our laser when we are done with it
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/extinguish_laser()
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/proc/extinguish_laser()
 	if(!length(beam_parts))
 		return FALSE
 	src.move_resist = initial(src.move_resist)
@@ -266,8 +266,8 @@
 	antimagic_allowed = TRUE //the magic is coming from inside the house
 
 /obj/effect/proc_holder/spell/invoked/fire_obelisk_beam/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/obby = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/obby = user
 		if(world.time <= obby.beam_cooldown)
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()

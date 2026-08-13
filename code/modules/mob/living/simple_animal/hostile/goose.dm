@@ -1,6 +1,6 @@
 #define GOOSE_SATIATED 50
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose
+/mob/living/simple_animal/hostile/retaliate/goose
 	name = "goose"
 	desc = "This thing looks aggressive."
 	icon_state = "goose" // sprites by cogwerks from goonstation, used with permission
@@ -36,14 +36,14 @@
 	var/icon_vomit_end = "vomit_end"
 	var/message_cooldown = 0
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/handle_automated_movement()
+/mob/living/simple_animal/hostile/retaliate/goose/handle_automated_movement()
 	. = ..()
 	if (stat == DEAD)
 		return
 	if(prob(5) && random_retaliate == TRUE)
 		Retaliate()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit
+/mob/living/simple_animal/hostile/retaliate/goose/vomit
 	name = "Birdboat"
 	real_name = "Birdboat"
 	desc = ""
@@ -61,7 +61,7 @@
 	var/vomitTimeBonus = 0
 	var/datum/action/cooldown/vomit/goosevomit
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize()
 	. = ..()
 	goosevomit = new
 	goosevomit.Grant(src)
@@ -71,21 +71,21 @@
 		desc = ""
 		deadchat_plays_goose()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/Destroy()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/Destroy()
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	QDEL_NULL(goosevomit)
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/examine(user)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/examine(user)
 	. = ..()
 	. += span_notice("Somehow, it still looks hungry.")
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/attacked_by(obj/item/O, mob/user)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/attacked_by(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/reagent_containers/food))
 		feed(O)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/feed(obj/item/reagent_containers/food/tasty)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/feed(obj/item/reagent_containers/food/tasty)
 	if (stat == DEAD) // plapatin I swear to god
 		return
 	if (contents.len > GOOSE_SATIATED)
@@ -104,7 +104,7 @@
 			visible_message(span_notice("[src] refuses to eat \the [tasty]."))
 			message_cooldown = world.time + 5 SECONDS
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/goose_vomit()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit()
 	if (stat == DEAD)
 		return
 	var/turf/T = get_turf(src)
@@ -115,7 +115,7 @@
 		playsound(T, 'sound/blank.ogg', 50, TRUE)
 		T.add_vomit_floor(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(atom/A, hard = FALSE)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(atom/A, hard = FALSE)
 	if (stat == DEAD)
 		return
 	if(!istype(A, /obj/item/reagent_containers/food))
@@ -133,17 +133,17 @@
 	currentTurf.add_vomit_floor(src)
 	playsound(currentTurf, 'sound/blank.ogg', 50, TRUE)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_prestart(duration)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_prestart(duration)
 	flick("vomit_start",src)
 	addtimer(CALLBACK(src, PROC_REF(vomit_start), duration), 13) //13 is the length of the vomit_start animation in gooseloose.dmi
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_start(duration)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_start(duration)
 	vomiting = TRUE
 	icon_state = "vomit"
-	goose_vomit()
+	vomit()
 	addtimer(CALLBACK(src, PROC_REF(vomit_preend)), duration)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_preend()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_preend()
 	for (var/obj/item/consumed in contents) //Get rid of any food left in the poor thing
 		barf_food(consumed, TRUE)
 		sleep(1)
@@ -151,16 +151,16 @@
 			return
 	vomit_end()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_end()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_end()
 	flick("vomit_end",src)
 	vomiting = FALSE
 	icon_state = initial(icon_state)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/goosement(atom/movable/AM, OldLoc, Dir, Forced)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/goosement(atom/movable/AM, OldLoc, Dir, Forced)
 	if(stat == DEAD)
 		return
 	if(vomiting)
-		goose_vomit() // its supposed to keep vomiting if you move
+		vomit() // its supposed to keep vomiting if you move
 		return
 	var/turf/currentTurf = get_turf(src)
 	while (currentTurf == get_turf(src))
@@ -174,7 +174,7 @@
 		vomitTimeBonus = 0
 
 /// A proc to make it easier for admins to make the goose playable by deadchat.
-/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/proc/deadchat_plays_goose()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/deadchat_plays_goose()
 	stop_automated_movement = TRUE
 	AddComponent(/datum/component/deadchat_control, ANARCHY_MODE, list(
 	 "up" = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), src, NORTH),
@@ -193,9 +193,9 @@
 /datum/action/cooldown/vomit/Trigger(trigger_flags, atom/target)
 	if(!..())
 		return FALSE
-	if(!istype(owner, /mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit))
+	if(!istype(owner, /mob/living/simple_animal/hostile/retaliate/goose/vomit))
 		return FALSE
-	var/mob/living/carbon/simple_animal/hostile/retaliate/goose/vomit/vomit = owner
+	var/mob/living/simple_animal/hostile/retaliate/goose/vomit/vomit = owner
 	if(!vomit.vomiting)
 		vomit.vomit_prestart(vomit.vomitTimeBonus + 25)
 		vomit.vomitCoefficient = 1

@@ -1,8 +1,8 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/poison
+/mob/living/simple_animal/hostile/retaliate/poison
     var/poison_per_bite = 0
     var/poison_type = /datum/reagent/toxin
 
-/mob/living/carbon/simple_animal/hostile/retaliate/poison/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/poison/AttackingTarget()
     . = ..()
     if(. && isliving(target))
         var/mob/living/L = target
@@ -10,7 +10,7 @@
             L.reagents.add_reagent(poison_type, poison_per_bite)
         return .
 
-/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake
+/mob/living/simple_animal/hostile/retaliate/poison/snake
         name = "snake"
         desc = ""
         icon_state = "snake"
@@ -40,19 +40,25 @@
         environment_smash = ENVIRONMENT_SMASH_NONE
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
-	. = hearers(vision_range, targets_from) - src //get list of things we can hear, instead of an expensive oview() scan
+/mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
+	. = oview(vision_range, targets_from) //get list of things in vision range
+	var/list/living_mobs = list()
 	var/list/mice = list()
-	for(var/mob/living/carbon/simple_animal/mouse/mouse in .)
-		mice += mouse
-	//Yum a tasty mouse
-	if(length(mice))
-		return mice
-	// if no tasty mice to chase, lets chase any living mob enemies in our vision range
-	return . & resolve_enemies()
+	for (var/HM in .)
+		//Yum a tasty mouse
+		if(istype(HM, /mob/living/simple_animal/mouse))
+			mice += HM
+		if(isliving(HM))
+			living_mobs += HM
 
-/mob/living/carbon/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
-        if(istype(target, /mob/living/carbon/simple_animal/mouse))
+	// if no tasty mice to chase, lets chase any living mob enemies in our vision range
+	if(length(mice) == 0)
+		//Filter living mobs (in range mobs) by those we consider enemies (retaliate behaviour)
+		return  living_mobs & resolve_enemies()
+	return mice
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
+        if(istype(target, /mob/living/simple_animal/mouse))
                 visible_message(span_notice("[name] consumes [target] in a single gulp!"), span_notice("I consume [target] in a single gulp!"))
                 QDEL_NULL(target)
                 adjustBruteLoss(-2)

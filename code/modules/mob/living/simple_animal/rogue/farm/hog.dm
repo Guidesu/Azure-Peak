@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine
+/mob/living/simple_animal/hostile/retaliate/rogue/swine
 	icon = 'modular/Creechers/icons/piggie.dmi'
 	name = "swine sow"
 	desc = "A domesticated hog, won't be finding you any truffles."
@@ -14,7 +14,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	move_to_delay = 8
-	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog
+	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/swine/hog
 	botched_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 2,
 		/obj/item/alch/sinew = 2,
@@ -61,7 +61,7 @@
 	STASPD = 8
 	move_to_delay = 8
 	milkies = FALSE //Do not the hog
-	childtype = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/piglet = 60, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/piglet = 40)
+	childtype = list(/mob/living/simple_animal/hostile/retaliate/rogue/swine/piglet = 60, /mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/piglet = 40)
 	remains_type = /obj/effect/decal/remains/pig
 
 	//new ai, old ai off
@@ -70,7 +70,7 @@
 	ai_controller = /datum/ai_controller/generic
 	move_base_delay = MOVEMENT_DELAY_SLOW
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('modular/Creechers/sound/pighangry.ogg')
@@ -81,7 +81,7 @@
 		if("idle")
 			return pick('modular/Creechers/sound/pig1.ogg','modular/Creechers/sound/pig2.ogg',)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/piglet
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/piglet
 	name = "piglet"
 	desc = "An infant swine."
 	icon_state = "piggie_piglin"
@@ -100,9 +100,9 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 2
-	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine
+	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/swine
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -143,7 +143,7 @@
 
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog
 	icon = 'modular/Creechers/icons/piggie.dmi'
 	name = "swine hog"
 	desc = "A domesticated hog, won't be finding you any truffles. This one can even be saddled."
@@ -210,7 +210,7 @@
 	can_saddle = TRUE//Hooooooog rider
 	remains_type = /obj/effect/decal/remains/pig
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -250,7 +250,7 @@
 			return "foreleg"
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/piglet
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/piglet
 	name = "piglet"
 	desc = "An infant swine."
 	gender = MALE
@@ -271,20 +271,20 @@
 	STACON = 5
 	STASTR = 5
 	STASPD = 2
-	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog
+	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/swine/hog
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_type))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tamed()
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tamed()
 	..()
 	deaggroprob = 50
 	setup_mount(
@@ -293,17 +293,17 @@
 	)
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
 		add_saddleicon("saddle-above", "saddle")
 		add_ridericon("piggie_mounted")
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tame
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame
 	tame = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S

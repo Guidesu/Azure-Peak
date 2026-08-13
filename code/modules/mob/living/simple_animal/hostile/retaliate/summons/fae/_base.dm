@@ -1,10 +1,10 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae
+/mob/living/simple_animal/hostile/retaliate/rogue/fae
 	obj_damage = 75
 	blood_toll_bucket = STATS_KILLED_FAE
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/Initialize()
 	. = ..()
 	desc += span_bold(" It does not belong to this plane.") // To hint that they may be summoned.
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC)
@@ -13,13 +13,13 @@
 	faction += "plants"
 	AddComponent(/datum/component/ai_aggro_system)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/attackby(obj/item/I, mob/living/carbon/human/user, params)
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/attackby(obj/item/I, mob/living/carbon/human/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		if(istype(magicmaterial, /obj/item/magic/fae))

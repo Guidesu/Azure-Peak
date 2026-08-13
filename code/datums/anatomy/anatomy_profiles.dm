@@ -335,6 +335,7 @@ Aiming legs should be nearly guaranteed due to their profile
 // Construct have blunt favored wounds that are otherwise the same. On larger constructs, there is a core that must be exposed by breaking a leg.
 /datum/anatomy/construct
 	bloodless = TRUE
+	pen_flavor = "plating"
 	bclass_part_mult = list(
 		BCLASS_BLUNT = CONSTRUCT_BLUNT_PART_MULT,
 		BCLASS_SMASH = CONSTRUCT_BLUNT_PART_MULT,
@@ -414,26 +415,27 @@ Aiming legs should be nearly guaranteed due to their profile
 /*
 */
 /datum/anatomy/winged/trash/build_zones()
-	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
-	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.4, part_health_minimum = 20, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
 
 /*
 */
 /datum/anatomy/winged/standard/build_zones()
-	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 70, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
-	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 70, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 70, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 70, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.3, part_health_minimum = 90, break_wound = /datum/wound/cripple/maw, hint = "head")
 
 /*
 */
 /datum/anatomy/winged/apex/build_zones()
-	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 160, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
-	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 160, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_L_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 160, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
+	add_zone(BODY_ZONE_R_ARM, damage_mult = 1, part_health_fraction = 0.2, part_health_minimum = 160, break_wound = /datum/wound/cripple/limb/wing, hint = "wings", melee_hit_bonus = 20, ranged_hit_bonus = 10)
 	add_zone(BODY_ZONE_HEAD, damage_mult = 1, part_health_fraction = 0.25, part_health_minimum = 200, break_wound = /datum/wound/cripple/maw, hint = "head")
 
 /*
 */
 /datum/anatomy/dryad
+	pen_flavor = "heartwood"
 	limb_names = list(
 		BODY_ZONE_HEAD = "crown",
 		BODY_ZONE_PRECISE_R_EYE = "crown",

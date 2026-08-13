@@ -5,7 +5,7 @@
 //The idea for Primordials is that they are conjurable companions for arcyne types. They should cost essentia to conjure, and will follow the command minion order spell.
 //Three differant types, air water and fire. Potential for unique effects/attacks for all three. Perhaps delineate between speed health and damage.
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/Initialize(mapload, mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/Initialize(mapload, mob/user)
 	if(user)
 		summoner_ref = WEAKREF(user)
 		if(user.mind && user.mind.current)
@@ -51,7 +51,7 @@
 	item_d_type = "slash"
 	clickcd = 12
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial
 	anatomy_type = /datum/anatomy/construct/primordial
 	icon = 'icons/roguetown/mob/monster/primordial.dmi'
 	AIStatus = AI_OFF
@@ -61,7 +61,7 @@
 	var/datum/weakref/summoner_ref
 	var/special_ability
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/death()
 	..()
 	spill_embedded_objects()
 	qdel(src)
@@ -79,7 +79,7 @@
 /obj/effect/temp_visual/telegraph/primordial/air
 	light_color = "#c0e8ff"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/fire
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire
 	name = "flame primordial"
 	desc = "Billowing heat strikes your face and threatens to singe your eyebrows! \
 	It may be wise not to touch it."
@@ -117,7 +117,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_17
 	special_ability = /datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/primordial/flame
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/water
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/water
 	name = "water primordial"
 	desc = "A torrential flood, magically animated and bound to service. It seems \
 	to draw moisture from the ground it traverses."
@@ -194,7 +194,7 @@
 	turf_data.Cut()
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/air
+/mob/living/simple_animal/hostile/retaliate/rogue/primordial/air
 	name = "air primordial"
 	desc = "Storm-winds whip at the air wherever this creature travels! \
 	It is scarcely even easy to keep one's footing while close."

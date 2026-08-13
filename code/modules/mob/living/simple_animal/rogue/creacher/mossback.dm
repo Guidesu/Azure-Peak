@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback
 	anatomy_type = /datum/anatomy/quadruped/standard
 	icon = 'icons/roguetown/mob/monster/boglobster.dmi'
 	name = "mossback"
@@ -56,7 +56,7 @@
 	move_base_delay = MOVEMENT_DELAY_LUMBERING
 	melee_cooldown = MOSSBACK_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
@@ -66,24 +66,24 @@
 			faction = list(FACTION_NEUTRAL, "[summoner]_faction")
 			tamed(user)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
 	switch(input)
 		if("idle")
 			return pick('sound/vo/mobs/crab/crab noise (1).ogg','sound/vo/mobs/crab/crab noise (2).ogg','sound/vo/mobs/crab/crab noise (3).ogg')
 		if("death")
 			return pick('sound/vo/mobs/crab/crab death.ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/Life()
 	..()
 	if(pulledby)
 		Retaliate()

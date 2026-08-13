@@ -3,7 +3,7 @@
 Void dragons are creatures of a bygone age. It is a melee creature, that will chase down and cut most people to shreds if they are by themself.
 It will also call down lightning strikes from the sky, and fling people with it's tail, as well as fly up into the sky.*/
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOFIRE, "[type]")
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
@@ -12,10 +12,10 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, TRAIT_GENERIC)
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 6, TRUE)	//parrying the voiddragon should be hard
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the void dragon
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the void dragon
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Life()
 	..()
 	if(pulledby)
 		Retaliate()
@@ -29,20 +29,20 @@ It will also call down lightning strikes from the sky, and fling people with it'
 #define SWOOP_INVULNERABLE 2
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/SetRecoveryTime(buffer_time)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/SetRecoveryTime(buffer_time)
 	recovery_time = world.time + buffer_time
 	ranged_cooldown = world.time + buffer_time
 
 /// This proc is called by the HRD-MDE grenade to enrage the megafauna. This should increase the megafaunas attack speed if possible, give it new moves, or disable weak moves. This should be reverseable, and reverses on zlvl change.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/enrage()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/enrage()
 	if(enraged || ((health / maxHealth) * 100 <= 80))
 		return
 	enraged = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/unrage()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/unrage()
 	enraged = FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/attackby(obj/item/I, mob/living/carbon/human/user, params)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/attackby(obj/item/I, mob/living/carbon/human/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		if(istype(magicmaterial, /obj/item/magic/voidstone))
@@ -58,7 +58,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 				return
 	..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon
 	name = "void drake"
 	desc = "An ancient creature from a bygone age. Now would be a good time to run."
 	health = 5000
@@ -114,7 +114,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	/obj/effect/proc_holder/spell/invoked/dragon_swoop,
 	/obj/effect/proc_holder/spell/invoked/chain_lightning_breath)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vdragon/drgn.ogg')
@@ -137,7 +137,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	name = "Megafauna Attack"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = ""
-	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/M
+	var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/M
 	var/chosen_message
 	var/chosen_attack_num = 0
 
@@ -156,8 +156,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	range = 15
 	antimagic_allowed = TRUE
 /obj/effect/proc_holder/spell/invoked/dragon_lightning/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
 		if(world.time <= dragon.lightning_cd)
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()
@@ -173,8 +173,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/dragon_slam/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
 		if(world.time <= dragon.slam_cd)
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()
@@ -190,8 +190,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/summon_obelisks/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
 		if(world.time <= dragon.summon_cd)
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()
@@ -207,8 +207,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/invoked/dragon_swoop/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
 		dragon.swoop_attack(manual_target = targets[1])
 
 /obj/effect/proc_holder/spell/invoked/chain_lightning_breath
@@ -220,8 +220,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/invoked/chain_lightning_breath/cast(list/targets, mob/living/user = usr)
-	if(istype(user, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/dragon = user
 		if(world.time <= dragon.cl_cd)
 			to_chat(user,span_warning("Too soon!"))
 			revert_cast()
@@ -231,14 +231,14 @@ It will also call down lightning strikes from the sky, and fling people with it'
 			revert_cast()
 			return FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/TailSwipe(mob/victim)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/TailSwipe(mob/victim)
 	var/mob/living/target = victim
 	src.visible_message(span_notice("[src] slams [target] with its tail, knocking them to the floor!"))
 	target.Paralyze(5)
 	target.apply_damage(20, BRUTE)
 	shake_camera(target, 2, 1)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/OpenFire()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/OpenFire()
 	if(swooping)
 		return
 
@@ -260,8 +260,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		create_lightning(target)
 		return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/summon_obelisk()
-	var/list/spawnLists = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/summon_obelisk()
+	var/list/spawnLists = list(/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk)
 	var/reinforcement_count = 2
 	src.visible_message(span_cultbigbold("[src] summons abberant obelisks from beneath the ground."))
 	summon_cd = world.time + 2000
@@ -278,7 +278,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		reinforcement_count--
 		continue
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/MeleeAction(patience = TRUE)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/MeleeAction(patience = TRUE)
 	if(rapid_melee > 1)
 		var/datum/callback/cb = CALLBACK(src, PROC_REF(CheckAndAttack))
 		var/delay = SSnpcpool.wait / rapid_melee
@@ -292,7 +292,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	if(patience)
 		GainPatience()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/dragon_slam(mob/owner, range, delay, throw_range)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/dragon_slam(mob/owner, range, delay, throw_range)
 	var/turf/origin = get_turf(owner)
 	if(!origin)
 		return
@@ -315,7 +315,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 			all_turfs -= stomp_turf
 		SLEEP_CHECK_DEATH(delay)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/create_lightning(atom/target)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/create_lightning(atom/target)
 	if(!target)
 		return
 	var/turf/targetturf = get_turf(target)
@@ -331,7 +331,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 			sleep(2 + min(4 - last_dist, 12) * 0.5) //gets faster
 		new /obj/effect/temp_visual/telegraph/targetlightning(T)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/lightning_strikes(amount, delay = 0.8)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/lightning_strikes(amount, delay = 0.8)
 	if(!target)
 		return
 	target.visible_message(span_colossus("Lightning starts to strike down from the sky!"))
@@ -343,7 +343,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		amount--
 		SLEEP_CHECK_DEATH(delay)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/lava_swoop(amount = 30)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/lava_swoop(amount = 30)
 	if(health < maxHealth * 0.5)
 		return swoop_attack(lava_arena = TRUE, swoop_cooldown = enraged ? 2 SECONDS : 6 SECONDS)
 	INVOKE_ASYNC(src, PROC_REF(lightning_strikes), enraged ? 60 : amount)
@@ -352,7 +352,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	if(health < maxHealth*0.5)
 		SetRecoveryTime(40)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
 	if(stat || swooping)
 		return
 	if(manual_target)
@@ -434,34 +434,34 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	swooping &= ~SWOOP_DAMAGEABLE
 	SetRecoveryTime(swoop_cooldown)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/ex_act(severity, target)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/ex_act(severity, target)
 	if(severity == EXPLODE_LIGHT)
 		return
 	..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/adjustHealth(amount, updating_health = TRUE)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/adjustHealth(amount, updating_health = TRUE)
 	if(swooping & SWOOP_INVULNERABLE)
 		return FALSE
 	return ..()
 
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/AttackingTarget()
 	if(!swooping)
 		return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/DestroySurroundings()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/DestroySurroundings()
 	if(!swooping)
 		..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/Move()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Move()
 	if(binded)
 		to_chat(src,span_warning("You're currently bound and unable to move!"))
 		return
 	if(!swooping)
 		..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/Goto(target, minimum_distance)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/Goto(target, minimum_distance)
 	if(!swooping)
 		..()
 
@@ -487,7 +487,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	playsound(T,'sound/magic/fireball.ogg', 200, TRUE)
 
 	for(var/mob/living/L in T.contents)
-		if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon))
+		if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/voiddragon))
 			continue
 		L.adjustFireLoss(10)
 		to_chat(L, "<span class='userdanger'>You fall directly into the pool of lava!</span>")
@@ -562,13 +562,13 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	else
 		animate(src, pixel_x = -32, pixel_z = 0, time = 5)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/chain_lightning(var/list/targets, mob/user = usr)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/chain_lightning(var/list/targets, mob/user = usr)
 	targets = list()
 
 	for(var/mob/living/target in view(7, src))
 		if(target == src)
 			continue
-		if(istype(target,/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk))
+		if(istype(target,/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk))
 			continue
 		targets += target
 	src.move_resist = MOVE_FORCE_VERY_STRONG
@@ -588,7 +588,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	else
 		return FALSE//if the dragon cancels its do_after by moving or something, don't put it on cd
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/Bolt(mob/origin,mob/target,bolt_energy,bounces,mob/user = usr)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/Bolt(mob/origin,mob/target,bolt_energy,bounces,mob/user = usr)
 	origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5)
 	var/mob/living/carbon/current = target
 	if(current.anti_magic_check())
@@ -608,7 +608,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		if(next)
 			Bolt(current,next,max((bolt_energy-5),5),bounces-1,user)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/proc/los_check(mob/A,mob/B)
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/proc/los_check(mob/A,mob/B)
 	//Checks for obstacles from A to B
 	var/obj/dummy = new(A.loc)
 	dummy.pass_flags |= PASSTABLE
@@ -640,7 +640,7 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		C.spin(6, 1)
 	return ..(cast_on)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voiddragon/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/death()
 	..()
 	update_icon()
 	spill_embedded_objects()

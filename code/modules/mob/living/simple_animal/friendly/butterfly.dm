@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/butterfly
+/mob/living/simple_animal/butterfly
 	name = "butterfly"
 	desc = ""
 	icon_state = "butterfly"
@@ -29,7 +29,7 @@
 	verb_exclaim = "flutters intensely"
 	verb_yell = "flutters intensely"
 
-/mob/living/carbon/simple_animal/butterfly/Initialize()
+/mob/living/simple_animal/butterfly/Initialize()
 	. = ..()
 	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)

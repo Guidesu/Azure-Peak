@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane
 	name = "fretensis"
 	health = GETHSMANE_HEALTH
 	maxHealth = GETHSMANE_HEALTH
@@ -13,7 +13,7 @@
 	ai_controller = /datum/ai_controller/fretensis
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target

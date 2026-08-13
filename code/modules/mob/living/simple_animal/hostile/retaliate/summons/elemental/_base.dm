@@ -1,10 +1,10 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental
 	obj_damage = 75
 	blood_toll_bucket = STATS_KILLED_ELEMENTALS
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/Initialize()
 	. = ..()
 	desc += span_bold(" It does not belong to this plane.") // To hint that they may be summoned.
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
@@ -12,13 +12,13 @@
 	weather_immunities += "lava"
 	AddComponent(/datum/component/ai_aggro_system)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/attackby(obj/item/I, mob/living/carbon/human/user, params)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/attackby(obj/item/I, mob/living/carbon/human/user, params)
 	if(istype(I, /obj/item/magic))
 		var/obj/item/magic/magicmaterial = I
 		if(istype(magicmaterial, /obj/item/magic/elemental))

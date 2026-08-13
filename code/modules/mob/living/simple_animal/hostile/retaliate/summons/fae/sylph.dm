@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph
 	anatomy_type = /datum/anatomy/winged/apex
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "sylph"
@@ -60,13 +60,13 @@
 	min_range = 1
 	damage = 36
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	. = ..()
 	var/datum/action/cooldown/spell/projectile/frost_lance/lance = new(src)
 	lance.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/AttackingTarget()
 	. = ..()
 	if(!. || !isliving(target) || world.time < next_frost)
 		return
@@ -77,7 +77,7 @@
 	apply_frost_stack(chilled)
 	chilled.visible_message(span_danger("[src]'s frozen touch bites deep into [chilled]!"))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sylph/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sylph/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

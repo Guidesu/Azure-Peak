@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/game
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/game
 	botched_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/saiga = 1,
 		/obj/item/natural/bone = 4,

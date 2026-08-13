@@ -1,5 +1,5 @@
 //Foxxy
-/mob/living/carbon/simple_animal/pet/fox
+/mob/living/simple_animal/pet/fox
 	anatomy_type = /datum/anatomy/quadruped/trash
 	name = "fox"
 	desc = ""
@@ -26,7 +26,7 @@
 	footstep_type = FOOTSTEP_MOB_CLAW
 
 //Captain fox
-/mob/living/carbon/simple_animal/pet/fox/Renault
+/mob/living/simple_animal/pet/fox/Renault
 	name = "Renault"
 	desc = ""
 	gender = FEMALE

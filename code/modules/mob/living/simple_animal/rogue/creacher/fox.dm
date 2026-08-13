@@ -1,5 +1,5 @@
 //Subtype of wolf, but non-hostile until attacked instead of default hostile.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox
+/mob/living/simple_animal/hostile/retaliate/rogue/fox
 	attack_aim = MOB_AIM_LOW
 	icon = 'icons/roguetown/mob/monster/fox.dmi'
 	name = "venard"
@@ -76,7 +76,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
@@ -87,7 +87,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/fox.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -100,7 +100,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/taunted(mob/user)
 	if(aggressive == FALSE)
 		return
 	else
@@ -109,7 +109,7 @@
 		GiveTarget(user)
 		return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/Life()
 	..()
 	if(aggressive == FALSE)
 		return
@@ -120,7 +120,7 @@
 
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/guildpet
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/guildpet
 	name = "Mimi the Fox"
 	desc = "An adorable creechur adopted by the Guild of Craft as their mascot."
 	density = 0 // You can walk through them
@@ -128,7 +128,7 @@
 	ai_controller = /datum/ai_controller/generic
 	move_base_delay = MOVEMENT_DELAY_SLOW
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/guildpet/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/guildpet/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -141,7 +141,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/death(gibbed)
 	. = ..()
 	if(!QDELETED(src) && !gibbed)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)

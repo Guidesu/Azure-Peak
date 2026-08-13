@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COLOR_GRAY, "Black" = COLOR_ALMOST_BLACK, "Brown" = COLOR_DARK_BROWN, "Chestnut" = COLOR_DARK_ORANGE))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast
 	name = "fogbeast mare"
 	desc = "A distant cousin to the saiga, hailing from the mysterious islands of Kaizoku - rarer, but more strongly valued. Extensively used in the Steppes of Aavnr as pack animals and combat mounts."
 	icon = 'icons/roguetown/mob/monster/fogbeast.dmi'
@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 		/obj/item/natural/bundle/bone/full = 1
 	)
 	base_intents = list(/datum/intent/simple/fogbeast)
-	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male
+	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male
 	health = 380
 	maxHealth = 380
 	food_type = list(/obj/item/reagent_containers/food/snacks/grown/wheat, /obj/item/reagent_containers/food/snacks/grown/oat, /obj/item/reagent_containers/food/snacks/grown/apple,/obj/item/reagent_containers/food/snacks/grown/maize)
@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 	STASTR = 12
 	STAWIL = 15
 	childtype = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/kid = 70,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/kid/male = 30,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/kid = 70,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/kid/male = 30,
 	)
 	pixel_x = -8
 	attack_sound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -57,24 +57,24 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 
 	var/fogbeast_color
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/Initialize(mapload, var/set_fogbeast_color)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/Initialize(mapload, var/set_fogbeast_color)
 	. = ..()
 	fogbeast_color = set_fogbeast_color
 	if(!fogbeast_color)
 		fogbeast_color = pick(GLOB.valid_fogbeast_colors)
 	color = GLOB.valid_fogbeast_colors[fogbeast_color]
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/tame
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/tame
 	tame = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/tame/saddled/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S
 	update_icon()
 
 // BEHAVIORS
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 		add_ridericon("[icon_state]_mounted")
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -93,21 +93,21 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 		if("idle")
 			return pick('sound/vo/mobs/saiga/idle (1).ogg','sound/vo/mobs/saiga/idle (2).ogg','sound/vo/mobs/saiga/idle (3).ogg','sound/vo/mobs/saiga/idle (4).ogg','sound/vo/mobs/saiga/idle (5).ogg','sound/vo/mobs/saiga/idle (6).ogg','sound/vo/mobs/saiga/idle (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/tamed()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/tamed()
 	..()
 	deaggroprob = 20
 	setup_mount()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/death()
 	unbuckle_all_mobs()
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 
 /// If we're a mount and are hit while sprinting, throw our rider off
 /// Also called if the rider is hit
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/proc/check_sprint_dismount()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/proc/check_sprint_dismount()
 	SIGNAL_HANDLER
 	for(var/mob/living/carbon/human/rider in buckled_mobs)
 		if(rider.m_intent != MOVE_INTENT_RUN)
@@ -159,13 +159,13 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 			continue
 		violent_dismount(rider)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/post_buckle_mob(mob/living/M)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/post_buckle_mob(mob/living/M)
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
 		RegisterSignal(src, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/post_unbuckle_mob(mob/living/M)
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
@@ -178,21 +178,21 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 	icon_state = "skele"
 	icon = 'icons/roguetown/mob/monster/fogbeast.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male
 	name = "fogbeast stallion"
 	gender = MALE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame
 	tame = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame/saddled/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame/saddled/Initialize()
 	. = ..()
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S
 	update_icon()
 
 // FOAL
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/kid
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/kid
 	name = "fogbeast filly"
 	desc = "A young fogbeast, likely to be running around with its mother. Fogbeasts are a distant cousin to the saiga, hailing from the mysterious islands of Kaizoku - rarer, but more strongly valued. Extensively used in the Steppes of Aavnr as pack animals and combat mounts."
 	icon = 'icons/roguetown/mob/monster/fogbeast.dmi'
@@ -213,15 +213,15 @@ GLOBAL_LIST_INIT(valid_fogbeast_colors, list("White" = COLOR_WHITE, "Gray" = COL
 	STACON = 5
 	STASTR = 5
 	STASPD = 5
-	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast
+	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast
 	tame = TRUE
 	can_buckle = FALSE
 	can_saddle = FALSE
 	aggressive = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/kid/male
+/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/kid/male
 	name = "fogbeast colt"
-	adult_growth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male
+	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male
 
 // INTENT
 /datum/intent/simple/fogbeast

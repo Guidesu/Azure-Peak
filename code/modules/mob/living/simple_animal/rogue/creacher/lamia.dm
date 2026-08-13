@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia
 	threat_point = THREAT_DANGEROUS
 	anatomy_type = /datum/anatomy/biped/lamia
 	icon = 'icons/roguetown/mob/monster/lamia.dmi'
@@ -55,7 +55,7 @@
 	var/sneak_cooldown = 0
 	var/sneak_cooldown_delay = 30 SECONDS
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia/Initialize()
 	. = ..()
 	if(prob(20))
 		gender = MALE
@@ -63,12 +63,12 @@
 		icon_living = "lamia"
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia/AttackingTarget()
 	if(sneaking)
 		break_sneak()
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/handle_automated_action()
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia/handle_automated_action()
 	if(!sneaking && world.time >= sneak_cooldown && isturf(loc) && light_check < world.time)
 		var/turf/ourlocation = get_turf(src)
 		var/light_amount = ourlocation.get_lumcount()
@@ -77,12 +77,12 @@
 			sneak_now()
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/proc/sneak_now()
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia/proc/sneak_now()
 	if(!sneaking && world.time >= sneak_cooldown)
 		sneaking = TRUE
 		alpha = 100
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/lamia/proc/break_sneak()
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia/proc/break_sneak()
 	sneaking = FALSE
 	alpha = 255
 	sneak_cooldown = world.time + sneak_cooldown_delay

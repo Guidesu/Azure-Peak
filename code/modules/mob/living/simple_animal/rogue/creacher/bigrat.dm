@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat
 	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/bigrat.dmi'
@@ -84,7 +84,7 @@
 	pixel_x = -16
 	pixel_y = -8
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -99,13 +99,13 @@
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/death(gibbed)
 	..()
 	update_icon()
 	if(!QDELETED(src) && !gibbed)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD && !undead_rat)
@@ -114,7 +114,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/rat/aggro (1).ogg','sound/vo/mobs/rat/aggro (2).ogg','sound/vo/mobs/rat/aggro (3).ogg')
@@ -125,13 +125,13 @@
 		if("idle")
 			return pick('sound/vo/mobs/rat/rat_life.ogg','sound/vo/mobs/rat/rat_life2.ogg','sound/vo/mobs/rat/rat_life3.ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/Life()
 	..()
 	if(pulledby)
 		Retaliate()

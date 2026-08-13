@@ -1,5 +1,5 @@
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc
+/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc
 	name = "WEREWOLF"
 	desc = "THE HOWL OF A MAD GOD SHAKES YOUR BONES! FLESH SHORN INTO VISCERA SPRAYS THE WALLS! RIP AND TEAR!"
 	icon = 'icons/roguetown/mob/monster/werewolf.dmi'
@@ -67,7 +67,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	regenerate_icons()
@@ -77,12 +77,12 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc/f
+/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc/f
 	icon_state = "wwolf_f"
 	icon_living = "wwolf_f"
 	gender = FEMALE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc/f/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc/f/Initialize()
 	. = ..()
 	regenerate_icons()
 	regenerate_icons()

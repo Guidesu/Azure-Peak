@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead
 	threat_point = THREAT_LOW
 	anatomy_type = /datum/anatomy/quadruped/undead
 	icon = 'icons/roguetown/mob/monster/deadites/fox_undead.dmi'
@@ -28,6 +28,6 @@
 						/obj/item/natural/fur/fox = 1,
 						/obj/item/natural/bone = 4)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox/undead/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 15 MINUTES, "fox_downed")

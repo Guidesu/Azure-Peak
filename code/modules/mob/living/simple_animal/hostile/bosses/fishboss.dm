@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/boss/fishboss
+/mob/living/simple_animal/hostile/boss/fishboss
 	name = "Duke of the Deep"
 	desc = ""
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -34,21 +34,21 @@
 	STALUC = 14
 	projectiletype = /obj/projectile/bullet/reusable/deepone
 	projectilesound = 'sound/combat/wooshes/punch/punchwoosh (1).ogg'
-	patron = /datum/patron/concordat/wulfric
+	patron = /datum/patron/divine/abyssor
 	stat_attack = SOFT_CRIT
 	var/minions_to_spawn = 8
 	var/next_summon = 0
 	var/list/minions = list(
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone/boss = 40,
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit/boss = 30,
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone/arm/boss = 20,
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone/wiz/boss = 20)
+		/mob/living/simple_animal/hostile/rogue/deepone/boss = 40,
+		/mob/living/simple_animal/hostile/rogue/deepone/spit/boss = 30,
+		/mob/living/simple_animal/hostile/rogue/deepone/arm/boss = 20,
+		/mob/living/simple_animal/hostile/rogue/deepone/wiz/boss = 20)
 	var/mob_type
 	var/mob/new_mob
 	var/spawned_mobs = 0	
 	loot = list(/obj/item/rogueweapon/mace/goden/deepduke)
 //stolen from lich code
-/mob/living/carbon/simple_animal/hostile/boss/fishboss/handle_automated_action()
+/mob/living/simple_animal/hostile/boss/fishboss/handle_automated_action()
 	. = ..()
 	if(target && next_summon < world.time) //Second summon ability. Spawns a mob of simple skeletons
 		spawn_minions(minions_to_spawn)
@@ -56,7 +56,7 @@
 		next_summon = world.time + 600
 		return .
 
-/mob/living/carbon/simple_animal/hostile/boss/fishboss/proc/spawn_minions()
+/mob/living/simple_animal/hostile/boss/fishboss/proc/spawn_minions()
 	var/spawn_chance = 100
 	if (prob(spawn_chance))
 		var/turf/spawn_turf
@@ -70,7 +70,7 @@
 					spawned_mobs++
 			i++
 
-/mob/living/carbon/simple_animal/hostile/boss/fishboss/proc/get_random_valid_turf()
+/mob/living/simple_animal/hostile/boss/fishboss/proc/get_random_valid_turf()
 	var/list/valid_turfs = list()
 	for (var/turf/T in range(6, src))
 		if (is_valid_spawn_turf(T))
@@ -79,14 +79,14 @@
 		return null
 	return pick(valid_turfs)
 
-/mob/living/carbon/simple_animal/hostile/boss/fishboss/proc/is_valid_spawn_turf(turf/T)
+/mob/living/simple_animal/hostile/boss/fishboss/proc/is_valid_spawn_turf(turf/T)
 	if (!(istype(T, /turf/open/floor/rogue)))
 		return FALSE
 	if (istype(T, /turf/closed))
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/simple_animal/hostile/boss/fishboss/death()
+/mob/living/simple_animal/hostile/boss/fishboss/death()
 	src.visible_message("<span class='warning'>The bloated, grotesque fishman explodes in a shower of gore!</span>","<span class='warning'>The bloated, grotesque fishman explodes in a shower of gore!</span>")
 	src.spawn_gibs()
 	src.spawn_gibs()

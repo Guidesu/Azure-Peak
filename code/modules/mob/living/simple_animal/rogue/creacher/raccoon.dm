@@ -1,5 +1,5 @@
 //Raccoons are a faster, still hostile, but weakest small predator.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon
+/mob/living/simple_animal/hostile/retaliate/rogue/raccoon
 	attack_aim = MOB_AIM_LOW
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/raccoon.dmi'
@@ -70,7 +70,7 @@
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 	melee_cooldown = WOLF_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/raccoon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
@@ -85,7 +85,7 @@
 	icon_state = "bones"
 	icon = 'icons/roguetown/mob/monster/raccoon.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/raccoon/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -98,13 +98,13 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/raccoon/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/raccoon/Life()
 	..()
 	if(pulledby)
 		Retaliate()

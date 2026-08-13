@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus
 	anatomy_type = /datum/anatomy/construct/apex
 	icon = 'icons/mob/summonable/64x64.dmi'
 	name = "earthen colossus"
@@ -60,7 +60,7 @@
 	var/list/spawned_crawlers
 	var/max_crawlers = 3
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
@@ -69,13 +69,13 @@
 	var/datum/action/cooldown/spell/projectile/earthen_chunk/chunk = new(src)
 	chunk.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/live_crawler_count()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/live_crawler_count()
 	var/list/still_up = list()
 	for(var/datum/weakref/ref as anything in spawned_crawlers)
 		var/mob/living/crawler = ref.resolve()
@@ -85,7 +85,7 @@
 	spawned_crawlers = length(still_up) ? still_up : null
 	return length(still_up)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/shed_crawlers(turf/where, count = 3)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/shed_crawlers(turf/where, count = 3)
 	if(!where)
 		return
 	var/room = max_crawlers - live_crawler_count()
@@ -99,7 +99,7 @@
 	if(!length(turflist))
 		return
 	for(var/i in 1 to min(count, room))
-		var/mob/living/spawned = new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler(pick(turflist))
+		var/mob/living/spawned = new /mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler(pick(turflist))
 		spawned.faction = faction.Copy()
 		LAZYADD(spawned_crawlers, WEAKREF(spawned))
 
@@ -119,7 +119,7 @@
 	. = ..()
 	if(!prob(split_chance))
 		return
-	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/colossus/parent = thrower?.resolve()
+	var/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/parent = thrower?.resolve()
 	if(QDELETED(parent))
 		return
 	var/turf/where = get_turf(src)

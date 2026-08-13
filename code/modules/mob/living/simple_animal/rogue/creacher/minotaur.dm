@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur
 	attack_aim = MOB_AIM_HIGH
 	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/mob/newminotaur.dmi'
@@ -68,7 +68,7 @@
 
 //	stat_attack = UNCONSCIOUS
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	update_icon()
@@ -82,12 +82,12 @@
 		var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/sweep = new sweep_ability(src)
 		sweep.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/female
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/female
 	icon_state = "MinotaurFem"
 	icon_living = "MinotaurFem"
 	icon_dead = "MinotaurFem_dead"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"
@@ -97,28 +97,28 @@
 	melee_damage_upper = 85
 	limb_destroyer = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/female
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female
 	icon_state = "MinotaurFem_Axe"
 	icon_living = "MinotaurFem_Axe"
 	icon_dead = "MinotaurFem_dead"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/minotaur/minoroar.ogg','sound/vo/mobs/minotaur/minoroar2.ogg','sound/vo/mobs/minotaur/minoroar3.ogg','sound/vo/mobs/minotaur/minoroar4.ogg')
@@ -160,19 +160,19 @@
 	item_d_type = "stab"
 	clickcd = MINOTAUR_AXE_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/original
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/original
 	AIStatus = AI_ON
 	can_have_ai = TRUE
 
 // Dungeon-taur - Less health then normal.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/wounded
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur"
 	icon_living = "wminotaur"
 	health = MINOTAUR_WOUNDED_HEALTH
 	maxHealth = MINOTAUR_WOUNDED_HEALTH
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/wounded
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/wounded
 	name = "Wounded Minotaur"
 	icon_state = "wminotaur_axe"
 	icon_living = "wminotaur_axe"
@@ -180,7 +180,7 @@
 	maxHealth = MINOTAUR_WOUNDED_HEALTH
 
 //Same as usual wounded, unique for orc dungeon. Prisoner-minotaur, doesn't attack orcs for dungeon related stuff.
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained
 	name = "Chained Minotaur"
 	icon_state = "chainedminotaur"
 	icon_living = "chainedminotaur"

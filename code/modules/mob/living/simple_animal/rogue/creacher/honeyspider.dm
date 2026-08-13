@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider
+/mob/living/simple_animal/hostile/retaliate/rogue/spider
 	anatomy_type = /datum/anatomy/spider
 	attack_aim = MOB_AIM_GROUND
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
@@ -62,7 +62,7 @@
 	melee_cooldown = HONEYSPIDER_ATTACK_SPEED
 	stat_attack = UNCONSCIOUS
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/mutated
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated
 	threat_point = THREAT_HIGH
 	icon = 'icons/roguetown/mob/monster/spider.dmi'
 	name = "skallax spider"
@@ -77,7 +77,7 @@
 	health = HONEYSPIDER_MUTATED_HEALTH
 	maxHealth = HONEYSPIDER_MUTATED_HEALTH
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	gender = MALE
@@ -87,18 +87,18 @@
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
 		if(L.reagents)
 			L.reagents.add_reagent(/datum/reagent/toxin/venom, 1)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/death(gibbed)
 	..()
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -107,7 +107,7 @@
 		eye_lights.layer = 19
 		add_overlay(eye_lights)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/spider/aggro (1).ogg','sound/vo/mobs/spider/aggro (2).ogg','sound/vo/mobs/spider/aggro (3).ogg')
@@ -118,13 +118,13 @@
 		if("idle")
 			return pick('sound/vo/mobs/spider/idle (1).ogg','sound/vo/mobs/spider/idle (2).ogg','sound/vo/mobs/spider/idle (3).ogg','sound/vo/mobs/spider/idle (4).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/Life()
 	..()
 	if(stat == CONSCIOUS)
 		if(!target)

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing
 	anatomy_type = /datum/anatomy/winged/standard
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "glimmerwing"
@@ -24,8 +24,8 @@
 	health = 270
 	maxHealth = 270
 	threat_point = THREAT_HIGH
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 18
+	melee_damage_upper = 25
 	vision_range = 7
 	aggro_vision_range = 9
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
@@ -52,11 +52,11 @@
 	ai_controller = /datum/ai_controller/fae/skirmisher/melee/reactive
 	move_base_delay = MOVEMENT_DELAY_SPD_10
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

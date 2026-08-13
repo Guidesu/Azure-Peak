@@ -1,5 +1,5 @@
 //Look Sir, free crabs!
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab
 	threat_point = THREAT_TRASH
 	anatomy_type = /datum/anatomy/quadruped/trash
 	attack_aim = MOB_AIM_GROUND
@@ -41,19 +41,19 @@
 	ai_controller = /datum/ai_controller/mudcrab
 	move_base_delay = MOVEMENT_DELAY_CRAWLING
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/mudcrabcrab/Life()
+/mob/living/simple_animal/mudcrabcrab/Life()
 	..()
 	//CRAB movement
 	if(!ckey && !stat)
 		if(isturf(loc) && !resting && !buckled)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/get_sound(input)
 	switch(input)
 		if("idle")
 			return pick('sound/vo/mobs/crab/crab noise (1).ogg','sound/vo/mobs/crab/crab noise (2).ogg','sound/vo/mobs/crab/crab noise (3).ogg')
@@ -84,7 +84,7 @@
 	if(!spawning)
 		return
 	spawning = FALSE
-	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab(get_turf(src))
+	new /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab(get_turf(src))
 	crabs++
 	update_icon()
 	if(crabs < maxcrabs)

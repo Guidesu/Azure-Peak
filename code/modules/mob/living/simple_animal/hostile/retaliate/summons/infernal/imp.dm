@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp
 	anatomy_type = /datum/anatomy/winged/infernal
 	threat_point = THREAT_LOW
 	icon = 'icons/mob/summonable/32x32.dmi'
@@ -51,7 +51,7 @@
 	ai_controller = /datum/ai_controller/infernal/harasser
 	move_base_delay = MOVEMENT_DELAY_SPD_17
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/Initialize()
 	. = ..()
 	var/datum/action/cooldown/spell/projectile/spitfire_bolt/spit = new(src)
 	spit.Grant(src)
@@ -74,20 +74,20 @@
 			return BULLET_ACT_BLOCK
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/death(gibbed)
 	..()
 	update_icon()
 	spawn(1)
 		qdel(src)
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/Life()
 	..()
 	if(pulledby)
 		Retaliate()

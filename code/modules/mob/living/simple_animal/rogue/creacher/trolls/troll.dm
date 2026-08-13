@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
+/mob/living/simple_animal/hostile/retaliate/rogue/troll
 	attack_aim = MOB_AIM_HIGH
 	anatomy_type = /datum/anatomy/biped/tough
 	icon = 'icons/roguetown/mob/monster/trolls/trolls.dmi'
@@ -85,20 +85,20 @@
 
 	var/critvuln = FALSE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
 	..()
 	update_icon()
 	if(!QDELETED(src) && !no_reanimate)
 		src.AddComponent(/datum/component/deadite_animal_reanimation)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/troll/aggro1.ogg','sound/vo/mobs/troll/aggro2.ogg')
@@ -111,13 +111,13 @@
 		if("cidle")
 			return pick('sound/vo/mobs/troll/cidle1.ogg','sound/vo/mobs/troll/aggro2.ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/Life()
 	..()
 	if(pulledby)
 		Retaliate()
@@ -125,27 +125,27 @@
 	if(has_status_effect(/datum/status_effect/fire_handler))
 		adjustHealth(-rand(20,35))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/proc/hide()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/proc/hide()
 	flick("troll_hiding", src)
 	sleep(1 SECONDS)
 	icon_state = "troll_hide"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/proc/ambush()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/proc/ambush()
 	flick("troll_ambush", src)
 	sleep(1 SECONDS)
 	icon_state = initial(icon_state)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()
 	..()
 	if(health > 0)
 		hide()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/Moved()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/Moved()
 	. = ..()
 	if(icon_state != initial(icon_state))
 		icon_state = initial(icon_state)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog/GiveTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/GiveTarget()
 	..()
 	ambush()
 

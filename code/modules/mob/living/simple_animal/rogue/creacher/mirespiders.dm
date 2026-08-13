@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider
 	anatomy_type = /datum/anatomy/spider/mirespider
 	attack_aim = MOB_AIM_GROUND
 	icon = 'icons/mob/mirespider_small.dmi'
@@ -56,7 +56,7 @@
 	ai_controller = /datum/ai_controller/mirespider
 	move_base_delay = MOVEMENT_DELAY_SPD_17
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_retaliate)
@@ -66,9 +66,9 @@
 
 	addtimer(CALLBACK(src, PROC_REF(find_lurker_to_follow)), 10)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/proc/find_lurker_to_follow()
-	var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/lurker = null
-	for(var/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/L in view(10, src))
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/proc/find_lurker_to_follow()
+	var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/lurker = null
+	for(var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/L in view(10, src))
 	{
 		lurker = L
 		break
@@ -77,14 +77,14 @@
 	if(lurker && ai_controller)
 		ai_controller.set_blackboard_key(BB_FOLLOW_TARGET, lurker)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/death(gibbed)
 	..()
 	update_icon()
 
 /datum/intent/simple/bite/mirespider
 	clickcd = MIRESPIDER_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/spider/aggro (1).ogg','sound/vo/mobs/spider/aggro (2).ogg','sound/vo/mobs/spider/aggro (3).ogg')
@@ -95,19 +95,19 @@
 		if("idle")
 			return pick('sound/vo/mobs/spider/idle (1).ogg','sound/vo/mobs/spider/idle (2).ogg','sound/vo/mobs/spider/idle (3).ogg','sound/vo/mobs/spider/idle (4).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/Life()
 	..()
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker
 	anatomy_type = /datum/anatomy/spider/spitter
 	attack_aim = MOB_AIM_HIGH // BIG spidah with tall sprite
 	icon = 'icons/mob/mirespider_new.dmi'
@@ -164,9 +164,9 @@
 	ranged_cooldown_time = 100
 	check_friendly_fire = 1
 
-	var/list/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/followers = list()
+	var/list/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/followers = list()
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/mushroom
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/mushroom
 	icon = 'icons/mob/mirespider_shroom.dmi'
 	desc = "While recognizable as a mire lurker, this specimen appears to suffer a gigantic \
 	fungal growth over its rear end. It reeks of the smell of mold, and tar-like secretions \
@@ -200,7 +200,7 @@
 						/obj/item/alch/viscera = 4)
 	head_butcher = /obj/item/natural/head/mirelurker
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/Initialize()
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_retaliate)
@@ -208,7 +208,7 @@
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
 	// I'll replace this with something better later. Stopgap for now to make killing them more than just a nuisance.
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/death(gibbed)
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/death(gibbed)
 	..()
 	if(prob(40))
 		new /obj/item/reagent_containers/food/snacks/rogue/honey(loc)
@@ -219,15 +219,15 @@
 /datum/intent/simple/bite/mirespider_lurker
 	clickcd = MIRESPIDER_LURKER_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/proc/add_follower(mob/living/simple_animal/hostile/retaliate/rogue/mirespider)
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/proc/add_follower(mob/living/simple_animal/hostile/retaliate/rogue/mirespider)
 	if (!(mirespider in followers))
 		followers += mirespider
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/proc/clear_followers_if_any()
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/proc/clear_followers_if_any()
 	if (!followers || !length(followers))
 		return
 
-	for (var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/follower in followers)
+	for (var/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/follower in followers)
 		follower.ai_controller.clear_blackboard_key(BB_FOLLOW_TARGET)
 		follower.ai_controller.clear_blackboard_key(BB_TRAVEL_DESTINATION)
 		follower.ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
@@ -235,7 +235,7 @@
 		follower.ai_controller.CancelActions()
 	followers.Cut()
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic
 	anatomy_type = /datum/anatomy/spider/mirespider
 	attack_aim = MOB_AIM_HIGH // BIG spidah with tall sprite
 	icon = 'icons/mob/mirespider_small.dmi'
@@ -287,12 +287,12 @@
 /datum/intent/simple/bite/mirespider_paralytic
 	clickcd = ARAGN_ATTACK_SPEED
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic/Initialize()
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 	AddElement(/datum/element/ai_retaliate)
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic/AttackingTarget()
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
@@ -311,16 +311,16 @@
 	qdel(src)
 
 /obj/random/spider/proc/spawn_random_spider_at(turf/T)
-	var/newspider = list(/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic = 10, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider = 90)
+	var/newspider = list(/mob/living/simple_animal/hostile/rogue/mirespider_paralytic = 10, /mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 90)
 	var/spider_to_spawn = pickweight(newspider)
 	new spider_to_spawn(get_turf(src))
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider/angry
+/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/angry
 	faction = list(FACTION_MAD, FACTION_ZOMBIE)
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic/angry
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic/angry
 	faction = list(FACTION_MAD, FACTION_ZOMBIE)
 
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/angry
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/angry
 	faction = list(FACTION_MAD, FACTION_ZOMBIE)

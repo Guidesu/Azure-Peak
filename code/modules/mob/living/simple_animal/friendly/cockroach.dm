@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/cockroach
+/mob/living/simple_animal/cockroach
 	name = "cockroach"
 	desc = ""
 	icon_state = "cockroach"
@@ -28,10 +28,10 @@
 	var/squish_chance = 50
 	del_on_death = 1
 
-/mob/living/carbon/simple_animal/cockroach/death(gibbed)
+/mob/living/simple_animal/cockroach/death(gibbed)
 	..()
 
-/mob/living/carbon/simple_animal/cockroach/Crossed(atom/movable/AM)
+/mob/living/simple_animal/cockroach/Crossed(atom/movable/AM)
 	if(ismob(AM))
 		if(isliving(AM))
 			var/mob/living/A = AM
@@ -54,5 +54,5 @@
 			else
 				visible_message(span_notice("[src] avoids getting crushed."))
 
-/mob/living/carbon/simple_animal/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
+/mob/living/simple_animal/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
 	return

@@ -255,8 +255,9 @@
 	var/on_hit_state = P.on_hit(src, armor)
 	var/actual_damage = P.damage
 	if(istype(src, /mob/living/simple_animal))
-		var/mob/living/carbon/simple_animal/weakpoint_target = src
+		var/mob/living/simple_animal/weakpoint_target = src
 		actual_damage *= weakpoint_target.weakpoint_damage_mod(def_zone)
+		actual_damage *= P.npc_simple_damage_mult
 	var/nodmg = FALSE
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
 		if(!apply_damage(actual_damage, P.damage_type, def_zone, armor))
@@ -308,7 +309,7 @@
 	return 0
 
 /mob/living/proc/check_projectile_wounding(obj/projectile/P, def_zone)
-	return simple_woundcritroll(P.woundclass, P.damage, null, def_zone, crit_message = TRUE, ranged = TRUE)
+	return simple_woundcritroll(P.woundclass, P.damage, null, def_zone, crit_message = TRUE, ranged = TRUE, penfactor = P.armor_penetration)
 
 /mob/living/proc/check_projectile_embed(obj/projectile/P, def_zone)
 	// Disable embeds on simples, allowing it to override on complex.
@@ -348,7 +349,7 @@
 						affecting.bodypart_attacked_by(I.thrown_bclass, I.throwforce, throwee, affecting.body_zone, crit_message = TRUE, weapon = I)
 					I.do_special_attack_effect(I.thrownby, affecting, null, src, zone, thrown = TRUE)
 				else
-					simple_woundcritroll(I.thrown_bclass, I.throwforce, null, zone, crit_message = TRUE, ranged = TRUE)
+					simple_woundcritroll(I.thrown_bclass, I.throwforce, null, zone, crit_message = TRUE, ranged = TRUE, penfactor = I.armor_penetration)
 					if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
 						if(can_embed(I) && prob(I.embedding.embed_chance) && HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 							simple_add_embedded_object(I, silent = FALSE, crit_message = TRUE)
@@ -543,7 +544,7 @@
 						span_danger("[user] tightens [user.p_their()] grip on me!"), span_hear("I hear aggressive shuffling!"), null, user)
 		to_chat(user, span_danger("I tighten my grip on [src]!"))
 
-/mob/living/attack_animal(mob/living/carbon/simple_animal/M)
+/mob/living/attack_animal(mob/living/simple_animal/M)
 	if(M.swinging)
 		return
 	M.swinging = TRUE

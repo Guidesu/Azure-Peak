@@ -1,6 +1,6 @@
 //Dogs.
 
-/mob/living/carbon/simple_animal/pet/dog
+/mob/living/simple_animal/pet/dog
 	anatomy_type = /datum/anatomy/quadruped/trash
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help_continuous = "pets"
@@ -22,7 +22,7 @@
 
 	footstep_type = FOOTSTEP_MOB_CLAW
 
-/mob/living/carbon/simple_animal/pet/dog/Life()
+/mob/living/simple_animal/pet/dog/Life()
 	..()
 
 	//Feeding, chasing food, FOOOOODDDD
@@ -75,7 +75,7 @@
 
 //Corgis and pugs are now under one dog subtype
 
-/mob/living/carbon/simple_animal/pet/dog/corgi
+/mob/living/simple_animal/pet/dog/corgi
 	name = "\improper corgi"
 	real_name = "corgi"
 	desc = ""
@@ -83,20 +83,20 @@
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3)
-	childtype = list(/mob/living/carbon/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/carbon/simple_animal/pet/dog/corgi/puppy/void = 5)
-	animal_species = /mob/living/carbon/simple_animal/pet/dog
+	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/simple_animal/pet/dog/corgi/puppy/void = 5)
+	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 	var/shaved = FALSE
 	var/nofur = FALSE 		//Corgis that have risen past the material plane of existence.
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Destroy()
+/mob/living/simple_animal/pet/dog/corgi/Destroy()
 	QDEL_NULL(inventory_head)
 	QDEL_NULL(inventory_back)
 	return ..()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/handle_atom_del(atom/A)
+/mob/living/simple_animal/pet/dog/corgi/handle_atom_del(atom/A)
 	if(A == inventory_head)
 		inventory_head = null
 		update_corgi_fluff()
@@ -108,7 +108,7 @@
 	return ..()
 
 
-/mob/living/carbon/simple_animal/pet/dog/pug
+/mob/living/simple_animal/pet/dog/pug
 	name = "\improper pug"
 	real_name = "pug"
 	desc = ""
@@ -119,30 +119,30 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/exoticcorgi
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi
 	name = "Exotic Corgi"
 	desc = ""
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgigrey"
 	icon_living = "corgigrey"
 	icon_dead = "corgigrey_dead"
-	animal_species = /mob/living/carbon/simple_animal/pet/dog/corgi/exoticcorgi
+	animal_species = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
 	nofur = TRUE
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/Initialize()
 	. = ..()
 	regenerate_icons()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/exoticcorgi/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi/Initialize()
 		. = ..()
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/death(gibbed)
+/mob/living/simple_animal/pet/dog/corgi/death(gibbed)
 	..(gibbed)
 	regenerate_icons()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/show_inv(mob/user)
+/mob/living/simple_animal/pet/dog/corgi/show_inv(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 	user.set_machine(src)
@@ -155,7 +155,7 @@
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/getarmor(def_zone, type)
+/mob/living/simple_animal/pet/dog/corgi/getarmor(def_zone, type)
 	var/armorval = 0
 
 	if(def_zone)
@@ -173,7 +173,7 @@
 			armorval += inventory_back.armor.getRating(type)
 	return armorval*0.5
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/pet/dog/corgi/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/razor))
 		if (shaved)
 			to_chat(user, "<span class='warning'>I can't shave this corgi, it's already been shaved!</span>")
@@ -196,7 +196,7 @@
 	..()
 	update_corgi_fluff()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Topic(href, href_list)
+/mob/living/simple_animal/pet/dog/corgi/Topic(href, href_list)
 	if(!(iscarbon(usr) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK)))
 		usr << browse(null, "window=mob[REF(src)]")
 		usr.unset_machine()
@@ -277,7 +277,7 @@
 //Many  hats added, Some will probably be removed, just want to see which ones are popular.
 // > some will probably be removed
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
+/mob/living/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
 	if(inventory_head)
 		if(user)
 			to_chat(user, "<span class='warning'>I can't put more than one hat on [src]!</span>")
@@ -318,7 +318,7 @@
 
 	return valid
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/proc/update_corgi_fluff()
+/mob/living/simple_animal/pet/dog/corgi/proc/update_corgi_fluff()
 	// First, change back to defaults
 	name = real_name
 	desc = initial(desc)
@@ -339,7 +339,7 @@
 		DF.apply(src)
 
 //IAN! SQUEEEEEEEEE~
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian
+/mob/living/simple_animal/pet/dog/corgi/Ian
 	name = "Ian"
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
@@ -357,7 +357,7 @@
 	var/memory_saved = FALSE
 	var/saved_head //path
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Initialize()
 	. = ..()
 	//parent call must happen first to ensure IAN
 	//is not in nullspace when child puppies spawn
@@ -365,7 +365,7 @@
 	if(age == 0)
 		var/turf/target = get_turf(loc)
 		if(target)
-			var/mob/living/carbon/simple_animal/pet/dog/corgi/puppy/P = new /mob/living/carbon/simple_animal/pet/dog/corgi/puppy(target)
+			var/mob/living/simple_animal/pet/dog/corgi/puppy/P = new /mob/living/simple_animal/pet/dog/corgi/puppy(target)
 			P.name = "Ian"
 			P.real_name = "Ian"
 			P.gender = MALE
@@ -379,18 +379,18 @@
 		desc = "" //RIP
 		turns_per_move = 20
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/Life()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Life()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
 	..()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/death()
+/mob/living/simple_animal/pet/dog/corgi/Ian/death()
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	..()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/proc/Read_Memory()
+/mob/living/simple_animal/pet/dog/corgi/Ian/proc/Read_Memory()
 	if(fexists("data/npc_saves/Ian.sav")) //legacy compatability to convert old format to new
 		var/savefile/S = new /savefile("data/npc_saves/Ian.sav")
 		S["age"] 		>> age
@@ -412,7 +412,7 @@
 	if(saved_head)
 		place_on_head(new saved_head)
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/proc/Write_Memory(dead)
+/mob/living/simple_animal/pet/dog/corgi/Ian/proc/Write_Memory(dead)
 	var/json_file = file("data/npc_saves/Ian.json")
 	var/list/file_data = list()
 	if(!dead)
@@ -432,13 +432,13 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Ian/narsie_act()
+/mob/living/simple_animal/pet/dog/corgi/Ian/narsie_act()
 	playsound(src, 'sound/blank.ogg', 75, TRUE)
-	var/mob/living/carbon/simple_animal/pet/dog/corgi/narsie/N = new(loc)
+	var/mob/living/simple_animal/pet/dog/corgi/narsie/N = new(loc)
 	N.setDir(dir)
 	gib()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/narsie
+/mob/living/simple_animal/pet/dog/corgi/narsie
 	name = "Nars-Ian"
 	desc = ""
 	icon_state = "narsian"
@@ -449,10 +449,10 @@
 	nofur = TRUE
 	unique_pet = TRUE
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/narsie/Life()
+/mob/living/simple_animal/pet/dog/corgi/narsie/Life()
 	..()
-	for(var/mob/living/carbon/simple_animal/pet/P in range(1, src))
-		if(P != src && !istype(P,/mob/living/carbon/simple_animal/pet/dog/corgi/narsie))
+	for(var/mob/living/simple_animal/pet/P in range(1, src))
+		if(P != src && !istype(P,/mob/living/simple_animal/pet/dog/corgi/narsie))
 			visible_message("<span class='warning'>[src] devours [P]!</span>", \
 			"<span class='cult big bold'>DELICIOUS SOULS</span>")
 			playsound(src, 'sound/blank.ogg', 75, TRUE)
@@ -464,18 +464,18 @@
 					visible_message("<span class='cult big bold'>... Aw, someone beat me to this one.</span>")
 			P.gib()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/narsie/update_corgi_fluff()
+/mob/living/simple_animal/pet/dog/corgi/narsie/update_corgi_fluff()
 	..()
 	speak = list("Tari'karat-pasnar!", "IA! IA!", "BRRUUURGHGHRHR")
 	speak_emote = list("growls", "barks ominously")
 	emote_hear = list("barks echoingly!", "woofs hauntingly!", "yaps in an eldritch manner.", "mutters something unspeakable.")
 	emote_see = list("communes with the unnameable.", "ponders devouring some souls.", "shakes.")
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/narsie/narsie_act()
+/mob/living/simple_animal/pet/dog/corgi/narsie/narsie_act()
 	adjustBruteLoss(-maxHealth)
 
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/regenerate_icons()
+/mob/living/simple_animal/pet/dog/corgi/regenerate_icons()
 	..()
 	if(inventory_head)
 		var/image/head_icon
@@ -520,7 +520,7 @@
 
 
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/puppy
+/mob/living/simple_animal/pet/dog/corgi/puppy
 	name = "\improper corgi puppy"
 	real_name = "corgi"
 	desc = ""
@@ -532,14 +532,14 @@
 	mob_size = MOB_SIZE_SMALL
 
 //puppies cannot wear anything.
-/mob/living/carbon/simple_animal/pet/dog/corgi/puppy/Topic(href, href_list)
+/mob/living/simple_animal/pet/dog/corgi/puppy/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
 		to_chat(usr, "<span class='warning'>I can't fit this on [src]!</span>")
 		return
 	..()
 
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/puppy/void		//Tribute to the corgis born in nullspace
+/mob/living/simple_animal/pet/dog/corgi/puppy/void		//Tribute to the corgis born in nullspace
 	name = "\improper void puppy"
 	real_name = "voidy"
 	desc = ""
@@ -552,7 +552,7 @@
 	maxbodytemp = T0C + 40
 
 //LISA! SQUEEEEEEEEE~
-/mob/living/carbon/simple_animal/pet/dog/corgi/Lisa
+/mob/living/simple_animal/pet/dog/corgi/Lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
@@ -571,18 +571,18 @@
 	var/puppies = 0
 
 //Lisa already has a cute bow!
-/mob/living/carbon/simple_animal/pet/dog/corgi/Lisa/Topic(href, href_list)
+/mob/living/simple_animal/pet/dog/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
 		to_chat(usr, "<span class='warning'>[src] already has a cute bow!</span>")
 		return
 	..()
 
-/mob/living/carbon/simple_animal/pet/dog/corgi/Lisa/Life()
+/mob/living/simple_animal/pet/dog/corgi/Lisa/Life()
 	..()
 
 	make_babies()
 
-/mob/living/carbon/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.used_intent.type)
 		if(INTENT_HELP)
@@ -590,7 +590,7 @@
 		if(INTENT_HARM)
 			wuv(-1,M)
 
-/mob/living/carbon/simple_animal/pet/dog/proc/wuv(change, mob/M)
+/mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)
 	if(change)
 		if(change > 0)
 			if(M && stat != DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454

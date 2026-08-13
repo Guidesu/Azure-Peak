@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/boss/lich
+/mob/living/simple_animal/hostile/boss/lich
 	name = "Archlich"
 	desc = "An incomprehensibly powerful necromancer, dressed in the papal garbs of a Rockhillian priest - a glimpse into what once was. The air around you crackles with unholy energy."
 	mob_biotypes = MOB_HUMANOID|MOB_UNDEAD
@@ -40,7 +40,7 @@
 	/obj/projectile/magic/arcane_barrage,
 	/obj/projectile/magic/acidsplash,
 	/obj/projectile/magic/spitfire)
-	patron = /datum/patron/unveiled/aurelian
+	patron = /datum/patron/inhumen/zizo
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 
@@ -58,7 +58,7 @@
 		/mob/living/carbon/human/species/skeleton/npc/mediumspread/lich = 60,
 	)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/Initialize()
+/mob/living/simple_animal/hostile/boss/lich/Initialize()
 	projectiletype = /obj/projectile/bullet/reusable/deepone
 	. = ..()
 	blink = new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
@@ -75,7 +75,7 @@
 	ADD_TRAIT(src, TRAIT_NPC_EXAMINE, TRAIT_GENERIC)
 	//REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC) //Ditto.
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/Shoot()
+/mob/living/simple_animal/hostile/boss/lich/Shoot()
 	projectiletype = pick(allowed_projectile_types)
 	..()
 
@@ -85,7 +85,7 @@
 	button_icon_state = "art_summon"
 	usage_probability = 100
 	boss_cost = 70
-	boss_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boss/lich
+	boss_type = /mob/living/simple_animal/hostile/retaliate/rogue/boss/lich
 	needs_target = TRUE
 	say_when_triggered = "Hgf'ant'kthar!"
 	var/static/summoned_minions = 0
@@ -100,7 +100,7 @@
 			new minions_chosen (get_step(boss,pick_n_take(directions)), 1)
 		summoned_minions += 1;
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/handle_automated_action()
+/mob/living/simple_animal/hostile/boss/lich/handle_automated_action()
 	. = ..()
 	if(target && next_cast < world.time && next_summon < world.time) //Second summon ability. Spawns a mob of simple skeletons
 		spawn_minions(minions_to_spawn)
@@ -128,7 +128,7 @@
 		return .
 
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/blast(set_angle)
+/mob/living/simple_animal/hostile/boss/lich/proc/blast(set_angle)
 	var/turf/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
@@ -137,7 +137,7 @@
 	for(var/i in colossus_shotgun_shot_angles)
 		shoot_projectile(target_turf, angle_to_target + i)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/shoot_projectile(turf/marker, set_angle)
+/mob/living/simple_animal/hostile/boss/lich/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
@@ -148,7 +148,7 @@
 		P.original = target
 	P.fire(set_angle)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/blaststrong(set_angle)
+/mob/living/simple_animal/hostile/boss/lich/proc/blaststrong(set_angle)
 	var/turf/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
@@ -157,7 +157,7 @@
 	for(var/i in colossus_shotgun_shot_angles)
 		shoot_projectilestrong(target_turf, angle_to_target + i)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/shoot_projectilestrong(turf/marker, set_angle)
+/mob/living/simple_animal/hostile/boss/lich/proc/shoot_projectilestrong(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
@@ -206,7 +206,7 @@
 			playsound(get_turf(src), pick('sound/misc/elec (1).ogg', 'sound/misc/elec (2).ogg', 'sound/misc/elec (3).ogg'), 100, FALSE)
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/spawn_minions()
+/mob/living/simple_animal/hostile/boss/lich/proc/spawn_minions()
 	var/spawn_chance = 100
 	if (prob(spawn_chance))
 		var/turf/spawn_turf
@@ -220,7 +220,7 @@
 					spawned_mobs++
 			i++
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/get_random_valid_turf()
+/mob/living/simple_animal/hostile/boss/lich/proc/get_random_valid_turf()
 	var/list/valid_turfs = list()
 	for (var/turf/T in range(6, src))
 		if (is_valid_spawn_turf(T))
@@ -229,7 +229,7 @@
 		return null
 	return pick(valid_turfs)
 
-/mob/living/carbon/simple_animal/hostile/boss/lich/proc/is_valid_spawn_turf(turf/T)
+/mob/living/simple_animal/hostile/boss/lich/proc/is_valid_spawn_turf(turf/T)
 	if (!(istype(T, /turf/open/floor/rogue)))
 		return FALSE
 	if (istype(T, /turf/closed))
@@ -259,7 +259,7 @@
 	new /obj/item/roguekey/mage/lich(T)
 	return ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boss/lich/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/boss/lich/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

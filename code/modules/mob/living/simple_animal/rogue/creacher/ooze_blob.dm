@@ -1,6 +1,6 @@
 //Sprites contributed by VelSlime
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob
 	threat_point = THREAT_LOW
 	anatomy_type = /datum/anatomy/amorphous
 	attack_aim = MOB_AIM_GROUND
@@ -66,7 +66,7 @@
 	melee_cooldown = WOLF_ATTACK_SPEED
 	color = "#88ff7d"
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/AttackingTarget() //7+1d6 vs con to knock ppl down
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/AttackingTarget() //7+1d6 vs con to knock ppl down
 	. = ..()
 	if(. && prob(8) && iscarbon(target))
 		var/mob/living/carbon/C = target
@@ -85,7 +85,7 @@
 				C.visible_message(span_danger("\The [src] fails to drag \the [C] down!"))
 			chomp_cd = world.time
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.4)
@@ -95,13 +95,13 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/death(gibbed)
 	..()
 	update_icon()
 	if(!QDELETED(src))
 		AddComponent(/datum/component/deadite_animal_reanimation)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/foley/gross.ogg')
@@ -114,13 +114,13 @@
 		if("cidle")
 			return pick('sound/foley/water_land2.ogg','sound/foley/water_land3.ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/ooze_blob/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/ooze_blob/Life()
 	..()
 	if(pulledby)
 		Retaliate()

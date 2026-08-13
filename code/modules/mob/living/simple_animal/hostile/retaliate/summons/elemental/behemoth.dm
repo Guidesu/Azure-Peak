@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth
 	anatomy_type = /datum/anatomy/construct/tough
 	icon = 'icons/mob/summonable/32x64.dmi'
 	name = "earthen behemoth"
@@ -54,7 +54,7 @@
 
 	ai_controller = /datum/ai_controller/elemental
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
@@ -63,7 +63,7 @@
 	var/datum/action/cooldown/spell/telegraphed_strike/mob_ability/elemental_slam/sunder/sunder = new(src)
 	sunder.Grant(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()

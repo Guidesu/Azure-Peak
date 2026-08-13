@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/ghost
+/mob/living/simple_animal/hostile/retaliate/ghost
 	name = "ghost"
 	desc = ""
 	icon = 'icons/mob/mob.dmi'
@@ -36,7 +36,7 @@
 	var/mutable_appearance/ghost_facial_hair
 	var/random = TRUE //if you want random names for ghosts or not
 
-/mob/living/carbon/simple_animal/hostile/retaliate/ghost/Initialize()
+/mob/living/simple_animal/hostile/retaliate/ghost/Initialize()
 	. = ..()
 	give_hair()
 	set_light(1, 1, 2) // same glowing as visible player ghosts
@@ -48,7 +48,7 @@
 				name = "ghost of [pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/ghost/proc/give_hair()
+/mob/living/simple_animal/hostile/retaliate/ghost/proc/give_hair()
 	if(ghost_hairstyle != null)
 		ghost_hair = mutable_appearance('icons/mob/human_face.dmi', "hair_[ghost_hairstyle]", -HAIR_LAYER)
 		ghost_hair.alpha = 200
@@ -60,7 +60,7 @@
 		ghost_facial_hair.color = ghost_facial_hair_color
 		add_overlay(ghost_facial_hair)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/gaseousform
+/mob/living/simple_animal/hostile/retaliate/gaseousform
 	name = "gaseous mist"
 	desc = ""
 	icon = 'icons/mob/mob.dmi'
@@ -94,15 +94,15 @@
 	gold_core_spawnable = NO_SPAWN //too spooky for science
 	var/random = TRUE //if you want random names for ghosts or not
 
-/mob/living/carbon/simple_animal/hostile/retaliate/gaseousform/Initialize()
+/mob/living/simple_animal/hostile/retaliate/gaseousform/Initialize()
 	. = ..()
 	set_light(1, 1, 2)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/simple_animal/hostile/retaliate/gaseousform, revert), "VAMPIRE LORD"), 10 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/retaliate/gaseousform, revert), "VAMPIRE LORD"), 10 SECONDS)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/gaseousform/proc/revert()
+/mob/living/simple_animal/hostile/retaliate/gaseousform/proc/revert()
 	qdel()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/gaseousform/Move(NewLoc, direct)
+/mob/living/simple_animal/hostile/retaliate/gaseousform/Move(NewLoc, direct)
 	var/oldloc = loc
 
 	if(NewLoc)

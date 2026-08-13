@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler
 	anatomy_type = /datum/anatomy/construct/trash
 	icon = 'icons/mob/summonable/32x32.dmi'
 	name = "earthen crawler"
@@ -52,11 +52,11 @@
 	ai_controller = /datum/ai_controller/elemental
 	move_base_delay = MOVEMENT_DELAY_SPD_3
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/Initialize()
 	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/crawler/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/death(gibbed)
 	..()
 	update_icon()
 	spawn(1)

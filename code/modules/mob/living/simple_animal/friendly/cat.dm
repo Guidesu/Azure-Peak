@@ -1,5 +1,5 @@
 //Cat
-/mob/living/carbon/simple_animal/pet/cat
+/mob/living/simple_animal/pet/cat
 	anatomy_type = /datum/anatomy/quadruped/trash
 	name = "cat"
 	desc = "A nuisance and a valued, pest-killing companion. Also symbols of the benevolent side of Saint Pestra for their enmity with vermin."
@@ -24,8 +24,8 @@
 	minbodytemp = 200
 	maxbodytemp = 400
 	unsuitable_atmos_damage = 1
-	animal_species = /mob/living/carbon/simple_animal/pet/cat
-	childtype = list(/mob/living/carbon/simple_animal/pet/cat/kitten)
+	animal_species = /mob/living/simple_animal/pet/cat
+	childtype = list(/mob/living/simple_animal/pet/cat/kitten)
 	butcher_results = list(
 					/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 					/obj/item/organ/ears/cat = 1,
@@ -52,11 +52,11 @@
 	ai_controller = /datum/ai_controller/generic
 	move_base_delay = MOVEMENT_DELAY_SLOW
 
-/mob/living/carbon/simple_animal/pet/cat/Initialize()
+/mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()
 	add_verb(src, /mob/living/proc/lay_down)
 
-/mob/living/carbon/simple_animal/pet/cat/update_mobility()
+/mob/living/simple_animal/pet/cat/update_mobility()
 	..()
 	if(client && stat != DEAD)
 		if (resting)
@@ -66,7 +66,7 @@
 	regenerate_icons()
 
 
-/mob/living/carbon/simple_animal/pet/cat/Crossed(mob/living/L) // Gato Basado - makes it leave when people step too close
+/mob/living/simple_animal/pet/cat/Crossed(mob/living/L) // Gato Basado - makes it leave when people step too close
 	. = ..()
 	if(L)
 		if(health > 1)
@@ -79,7 +79,7 @@
 			if(!stat && resting && !buckled)
 				return
 
-/mob/living/carbon/simple_animal/proc/personal_space()
+/mob/living/simple_animal/proc/personal_space()
 	if(locate(/mob/living/carbon) in get_turf(src))
 		sleep(1)
 		dir = pick(GLOB.alldirs)
@@ -88,13 +88,13 @@
 	else
 		return
 
-/mob/living/carbon/simple_animal/pet/cat/rogue/inn
+/mob/living/simple_animal/pet/cat/rogue/inn
 	name = "inn cat"
 	desc = "This old, fat cat keeps the inn free of rats... allegedly. It seems like he mostly lazes about in the sun and asks for treats."
 	health = 5000
 	maxHealth = 5000
 
-/mob/living/carbon/simple_animal/pet/cat/rogue/black
+/mob/living/simple_animal/pet/cat/rogue/black
 	name = "black cat"
 	desc = "Possessed of lamplike eyes and a meow that sounds like the rattle of bones. Black cats are sacred to Necra, said to bring wandering spirits to the Ferryman."
 	gender = FEMALE
@@ -103,14 +103,14 @@
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 
-/mob/living/carbon/simple_animal/pet/cat/rogue/black/academy
+/mob/living/simple_animal/pet/cat/rogue/black/academy
     name = "Kalathrax the All Knowing"
     desc = "Whispers around the Academy say that this cat was once an Associate that decided they had achieved enough knowledge to challenge the Court Wizard for their role and failed. (Or maybe it's just a cat)"
     STAINT = 20
     health = 5000
     maxHealth = 5000
 
-/mob/living/carbon/simple_animal/pet/cat/original
+/mob/living/simple_animal/pet/cat/original
 	name = "Batsy"
 	desc = ""
 	gender = FEMALE
@@ -119,7 +119,7 @@
 	icon_dead = "original_dead"
 	unique_pet = TRUE
 
-/mob/living/carbon/simple_animal/pet/cat/kitten
+/mob/living/simple_animal/pet/cat/kitten
 	name = "kitten"
 	desc = ""
 	icon_state = "kitten"
@@ -130,7 +130,7 @@
 	mob_size = MOB_SIZE_SMALL
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
-/mob/living/carbon/simple_animal/pet/cat/Runtime
+/mob/living/simple_animal/pet/cat/Runtime
 	name = "Runtime"
 	desc = ""
 	icon_state = "cat"
@@ -144,7 +144,7 @@
 	var/cats_deployed = 0
 	var/memory_saved = FALSE
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/Initialize()
+/mob/living/simple_animal/pet/cat/Runtime/Initialize()
 	if(prob(5))
 		icon_state = "original"
 		icon_living = "original"
@@ -152,7 +152,7 @@
 	Read_Memory()
 	. = ..()
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/Life()
+/mob/living/simple_animal/pet/cat/Runtime/Life()
 	if(!cats_deployed && SSticker.current_state >= GAME_STATE_SETTING_UP)
 		Deploy_The_Cats()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
@@ -160,18 +160,18 @@
 		memory_saved = TRUE
 	..()
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/make_babies()
+/mob/living/simple_animal/pet/cat/Runtime/make_babies()
 	var/mob/baby = ..()
 	if(baby)
 		children += baby
 		return baby
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/death()
+/mob/living/simple_animal/pet/cat/Runtime/death()
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	..()
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/proc/Read_Memory()
+/mob/living/simple_animal/pet/cat/Runtime/proc/Read_Memory()
 	if(fexists("data/npc_saves/Runtime.sav")) //legacy compatability to convert old format to new
 		var/savefile/S = new /savefile("data/npc_saves/Runtime.sav")
 		S["family"] >> family
@@ -185,12 +185,12 @@
 	if(isnull(family))
 		family = list()
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/proc/Write_Memory(dead)
+/mob/living/simple_animal/pet/cat/Runtime/proc/Write_Memory(dead)
 	var/json_file = file("data/npc_saves/Runtime.json")
 	var/list/file_data = list()
 	family = list()
 	if(!dead)
-		for(var/mob/living/carbon/simple_animal/pet/cat/kitten/C in children)
+		for(var/mob/living/simple_animal/pet/cat/kitten/C in children)
 			if(istype(C,type) || C.stat || !C.z || (C.flags_1 & HOLOGRAM_1))
 				continue
 			if(C.type in family)
@@ -201,20 +201,20 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/mob/living/carbon/simple_animal/pet/cat/Runtime/proc/Deploy_The_Cats()
+/mob/living/simple_animal/pet/cat/Runtime/proc/Deploy_The_Cats()
 	cats_deployed = 1
 	for(var/cat_type in family)
 		if(family[cat_type] > 0)
 			for(var/i in 1 to min(family[cat_type],100)) //Limits to about 500 cats, you wouldn't think this would be needed (BUT IT IS)
 				new cat_type(loc)
 
-/mob/living/carbon/simple_animal/pet/cat/Proc
+/mob/living/simple_animal/pet/cat/Proc
 	name = "Proc"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
-/mob/living/carbon/simple_animal/pet/cat/Life()
+/mob/living/simple_animal/pet/cat/Life()
 	if(!stat && !buckled && !client)
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
@@ -248,7 +248,7 @@
 	make_babies()
 
 // Life proc inherent to roguecats only
-/mob/living/carbon/simple_animal/pet/cat/rogue/Life()
+/mob/living/simple_animal/pet/cat/rogue/Life()
 	..()
 	// Gato Basado - catches RT rats too when not too lazy
 	if((src.loc) && isturf(src.loc))
@@ -267,7 +267,7 @@
 
 
 
-/mob/living/carbon/simple_animal/pet/cat/rogue/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/pet/cat/rogue/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	if( (isdarkelf(M)) ) // l´cursed bonbonbon
 		wuv(-1, M)
@@ -279,7 +279,7 @@
 				wuv(-1, M)
 
 
-/mob/living/carbon/simple_animal/pet/cat/proc/wuv(change, mob/M)
+/mob/living/simple_animal/pet/cat/proc/wuv(change, mob/M)
 	if(change)
 		if(change > 0)
 			if(M && stat != DEAD)
@@ -291,7 +291,7 @@
 			if(M && stat != DEAD)
 				emote("me", 1, "hisses!")
 
-/mob/living/carbon/simple_animal/pet/cat/inn/attack_hand(mob/living/carbon/human/M) // Gato Basado - not all pets are welcome
+/mob/living/simple_animal/pet/cat/inn/attack_hand(mob/living/carbon/human/M) // Gato Basado - not all pets are welcome
 	. = ..()
 	if((isdarkelf(M)))  // l´cursed bonbonbon
 		visible_message("<span class='notice'>The cat hisses at [M] and recoils in disgust.</span>")

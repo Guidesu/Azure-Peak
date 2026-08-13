@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/rogue/zardman_jailer_mage
+/mob/living/simple_animal/hostile/rogue/zardman_jailer_mage
 	name = "Zardman Jailer"
 	desc = ""
 	icon = 'icons/mob/zard_guard_mage.dmi'
@@ -42,7 +42,7 @@
 	projectiletype = /obj/projectile/magic/zardman_jailer_mage/lightning
 	projectilesound = list('sound/magic/charged.ogg')
 
-/mob/living/carbon/simple_animal/hostile/rogue/zardman_jailer_mage/Initialize()
+/mob/living/simple_animal/hostile/rogue/zardman_jailer_mage/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_aggro_system)
 
@@ -94,7 +94,7 @@
 			playsound(get_turf(src), pick('sound/misc/elec (1).ogg', 'sound/misc/elec (2).ogg', 'sound/misc/elec (3).ogg'), 100, FALSE)
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/rogue/zardman_jailer_mage/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/rogue/zardman_jailer_mage/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

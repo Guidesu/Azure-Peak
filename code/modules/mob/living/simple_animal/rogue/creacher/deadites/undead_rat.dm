@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead
 	anatomy_type = /datum/anatomy/quadruped/undead
 	icon = 'icons/roguetown/mob/monster/deadites/rat_undead.dmi'
 	name = "deadite rous"
@@ -32,10 +32,10 @@
 	move_base_delay = MOVEMENT_DELAY_SLOW
 	undead_rat = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/Initialize()
 	. = ..()
 	AddComponent(/datum/component/deadite, 4 MINUTES, "rat_downed", 0)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/undead/summoned
 	ai_controller = /datum/ai_controller/rat/undead/summoned
 	move_base_delay = MOVEMENT_DELAY_SLOW

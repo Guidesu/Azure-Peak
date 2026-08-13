@@ -1,5 +1,5 @@
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound
 	anatomy_type = /datum/anatomy/quadruped/standard/hellhound
 	threat_point = THREAT_MODERATE
 	icon = 'icons/mob/summonable/32x32.dmi'
@@ -55,13 +55,13 @@
 	var/scorch_cooldown = 10 SECONDS
 	var/next_scorch = 0
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
 	..()
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/AttackingTarget()
 	. = ..()
 	if(!. || !isliving(target) || world.time < next_scorch)
 		return

@@ -24,6 +24,8 @@
 	/// Extra fatigue removed on missing the target, or if the enemy dodges.
 	var/misscost = 1
 	var/tranged = 0
+	/// Sound played to the charger when a charge/draw reaches full. Null = no sound.
+	var/ready_sound
 	/// Turns of auto-aim as well as the attack anim.
 	var/noaa = FALSE
 	/// Restores turf-click auto-aim on a noaa intent silently (so without the attack anim).
@@ -237,6 +239,23 @@
 	inspec += "<br>----------------------"
 
 	to_chat(user, "[inspec.Join()]")
+
+/datum/intent/proc/out_of_effective_range(atom/target, mob/user)
+	if(!effective_range || !target || !user)
+		return FALSE
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			return FALSE
+	var/dist = get_dist(target, user)
+	switch(effective_range_type)
+		if(EFF_RANGE_EXACT)
+			return dist != effective_range
+		if(EFF_RANGE_ABOVE)
+			return dist < effective_range
+		if(EFF_RANGE_BELOW)
+			return dist > effective_range
+	CRASH("effective_range found without a valid effective_range_type on [type] used by [user]")
 
 /datum/intent/proc/get_chargetime()
 	if(chargetime)
@@ -607,7 +626,7 @@
 			var/mob/living/L = user
 			var/taunticon = "taunt" // Regular fist
 			var/custom_offset = 21
-			if(istype(L.patron, /datum/patron/oldkin/volkovoi) || L.get_stress_amount() > 10 || L.get_flaw(/datum/charflaw/addiction/paranoid))
+			if(istype(L.patron, /datum/patron/inhumen/graggar) || L.get_stress_amount() > 10 || L.get_flaw(/datum/charflaw/addiction/paranoid))
 				taunticon = "midfinger" // Very rude, but we're also a Rude Person (or stressed)
 				custom_offset = 23
 
@@ -616,7 +635,7 @@
 				if(AV.check_aversion(L, M))
 					taunticon = "midfinger"	// We hate this person in particular
 
-			if(istype(L.patron, /datum/patron/concordat/miluse) || HAS_TRAIT(L, TRAIT_PACIFISM))
+			if(istype(L.patron, /datum/patron/divine/eora) || HAS_TRAIT(L, TRAIT_PACIFISM))
 				taunticon = "thumbsdown"
 				custom_offset = 24
 
