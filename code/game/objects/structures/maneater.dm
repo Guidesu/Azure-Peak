@@ -145,7 +145,7 @@
 	if(victim.stat == DEAD || victim.stat == UNCONSCIOUS)
 		if(!victim.mind)
 			if(isanimal(victim))
-				var/mob/living/carbon/simple_animal/A = victim
+				var/mob/living/simple_animal/A = victim
 				A.gib_with_novice_butchery()
 			else
 				victim.gib()

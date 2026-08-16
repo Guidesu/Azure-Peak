@@ -84,8 +84,8 @@
 			continue
 
 		if(dispel_revenants)
-			if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant))
-				var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/F = L
+			if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/revenant))
+				var/mob/living/simple_animal/hostile/retaliate/rogue/revenant/F = L
 				F.disappear_animated()
 				continue // Don't try to ward the thing we're dispelling
 

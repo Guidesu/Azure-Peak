@@ -122,7 +122,7 @@
 		return FALSE
 	if(!length(required_zones))
 		return FALSE
-	var/mob/living/carbon/simple_animal/beast = owner
+	var/mob/living/simple_animal/beast = owner
 	if(!length(beast.broken_parts))
 		return FALSE
 	for(var/zone in required_zones)

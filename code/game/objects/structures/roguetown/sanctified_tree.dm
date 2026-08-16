@@ -1026,7 +1026,7 @@
 		new /obj/effect/temp_visual/heal_rogue(get_turf(H))
 		healed_any = TRUE
 	// Also heal non-undead animals and lesser dryads within range.
-	for(var/mob/living/carbon/simple_animal/A in range(5, src))
+	for(var/mob/living/simple_animal/A in range(5, src))
 		if(A.mob_biotypes & MOB_UNDEAD)
 			continue
 		if(A.stat == DEAD)

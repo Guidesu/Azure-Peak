@@ -310,7 +310,7 @@
 	Simple animals
 */
 
-/mob/living/carbon/simple_animal/UnarmedAttack(atom/A, proximity)
+/mob/living/simple_animal/UnarmedAttack(atom/A, proximity)
 	if(!dextrous)
 		return ..()
 	A.attack_hand(src)
@@ -321,7 +321,7 @@
 	Hostile animals
 */
 
-/mob/living/carbon/simple_animal/hostile/UnarmedAttack(atom/A)
+/mob/living/simple_animal/hostile/UnarmedAttack(atom/A)
 	if(A == src)
 		return
 	target = A

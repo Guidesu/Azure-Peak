@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(towner_orevein_varieties, list(
 /datum/quest/kill/recovery/towner/miner_orevein/compose_warband()
 	if(posting_tier != TOWNER_POSTING_TIER_HARD)
 		return ..()
-	var/behemoth = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/behemoth
+	var/behemoth = /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth
 	var/saved_budget = tp_budget
 	tp_budget = max(0, tp_budget - initial_threat_point(behemoth))
 	. = ..()

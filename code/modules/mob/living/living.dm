@@ -159,7 +159,7 @@
 	if(!M.buckled && !M.has_buckled_mobs())
 		var/mob_swap = FALSE
 		var/too_strong = (M.move_resist > move_force) //can't swap with immovable objects unless they help us
-		if(istype(M,/mob/living/carbon/simple_animal/hostile/retaliate))
+		if(istype(M,/mob/living/simple_animal/hostile/retaliate))
 			if(!M:aggressive && !M.client)
 				mob_swap = TRUE
 		if(!they_can_move) //we have to physically move them
@@ -2004,7 +2004,7 @@
 			if (new_z)
 				SSmobs.clients_by_zlevel[new_z] += src
 				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
-					var/mob/living/carbon/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
+					var/mob/living/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
 					if (SA)
 						SA.toggle_ai(AI_ON) // Guarantees responsiveness for when appearing right next to mobs
 					else

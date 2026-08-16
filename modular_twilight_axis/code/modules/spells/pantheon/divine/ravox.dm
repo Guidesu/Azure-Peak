@@ -624,7 +624,7 @@ GLOBAL_LIST_EMPTY(TAarenafolks) // we're just going to use a list and add to it.
 				swarm.ai_controller.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, target)
 				swarm.visible_message(span_notice("A [swarm] manifests following after [target]... !"))
 				if(swarm.buffed_r == FALSE)
-					addtimer(CALLBACK(swarm, TYPE_PROC_REF(/mob/living/carbon/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), time)
+					addtimer(CALLBACK(swarm, TYPE_PROC_REF(/mob/living/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), time)
 					swarm.buffed_r = TRUE
 					swarm.name = "[user.real_name]'s Spirit"
 			return TRUE
@@ -642,7 +642,7 @@ GLOBAL_LIST_EMPTY(TAarenafolks) // we're just going to use a list and add to it.
 				if(swarm.buffed_r == FALSE)
 					swarm.maxHealth *= skill
 					swarm.health *= skill
-					addtimer(CALLBACK(swarm, TYPE_PROC_REF(/mob/living/carbon/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), time)
+					addtimer(CALLBACK(swarm, TYPE_PROC_REF(/mob/living/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), time)
 					swarm.buffed_r = TRUE
 			return TRUE
 	return FALSE

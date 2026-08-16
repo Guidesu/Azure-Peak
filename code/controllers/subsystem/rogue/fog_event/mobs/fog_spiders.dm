@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider
 	name = "mire crawler revenant"
 	desc = "A skittering, translucent horror. The eons-old legionnaire heads have returned as vengeful spirits."
 	icon = 'icons/mob/mirespider_small.dmi'
@@ -29,11 +29,11 @@
 	base_intents = list(/datum/intent/simple/bite/mirespider)
 	attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker
 	name = "mire lurker revenant"
 	desc = "A towering spectral arachnid. It no longer cares about the younglings, all that matters now is delivering death."
 	icon = 'icons/mob/mirespider_big.dmi'
@@ -67,6 +67,6 @@
 	base_intents = list(/datum/intent/simple/bite/mirespider_lurker)
 	attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/mirespider_lurker/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)

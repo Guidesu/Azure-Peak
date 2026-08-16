@@ -185,7 +185,7 @@
 					L.changeNext_move(clickcd)
 				M.changeNext_move(CLICK_CD_HEAVY)
 	if(istype(AM, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/simple_animal = AM
+		var/mob/living/simple_animal/simple_animal = AM
 		simple_animal.toggle_ai(AI_ON)
 	return TRUE
 

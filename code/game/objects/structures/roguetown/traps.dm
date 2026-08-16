@@ -55,7 +55,7 @@
 		return
 
 	if(istype(AM, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/L = AM
+		var/mob/living/simple_animal/L = AM
 		L.adjustHealth(40)
 		L.Paralyze(40)
 		buckle_mob(L, TRUE)

@@ -1162,7 +1162,7 @@
 /area/indoors/town/keep)
 "fl" = (
 /obj/structure/flora/grass,
-/mob/living/carbon/simple_animal/hostile/retaliate/cow,
+/mob/living/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/grass/yel,
 /area/outdoors)
 "fn" = (
@@ -1725,7 +1725,7 @@
 	dir = 4;
 	pixel_y = -1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/cow,
+/mob/living/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/cobblerock,
 /area/outdoors)
 "ri" = (
@@ -2863,7 +2863,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/town/keep)
 "Lm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male{
+/mob/living/simple_animal/hostile/retaliate/trufflepig/male{
 	name = "GENERIC BLOCKER TESTER"
 	},
 /turf/open/floor/tile/bfloorz,

@@ -140,7 +140,7 @@
 	for(var/t in bodyparts)	//this really should not be necessary
 		qdel(t)
 
-	var/mob/living/carbon/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/carbon/simple_animal/pet/dog/corgi (loc)
+	var/mob/living/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/simple_animal/pet/dog/corgi (loc)
 	new_corgi.a_intent = INTENT_HARM
 	new_corgi.key = key
 
@@ -212,9 +212,9 @@
 		return 0	//Sanity, this should never happen.
 
 //Good mobs!
-	if(ispath(MP, /mob/living/carbon/simple_animal/pet/cat))
+	if(ispath(MP, /mob/living/simple_animal/pet/cat))
 		return 1
-	if(ispath(MP, /mob/living/carbon/simple_animal/pet/dog/corgi))
+	if(ispath(MP, /mob/living/simple_animal/pet/dog/corgi))
 		return 1
 
 	//Not in here? Must be untested!

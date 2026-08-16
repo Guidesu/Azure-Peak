@@ -180,10 +180,10 @@
 			playsound(src, 'sound/misc/jumpscare (4).ogg', 100, 1)
 			visible_message(span_userdanger("The earth bursts as underdweller creatures are coaxed out of the ground!"))
 			var/list/vengeance_mobs = list(
-				/mob/living/carbon/simple_animal/hostile/rogue/mirespider_paralytic = 2,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mirespider = 5,
-				/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker = 5,
-				/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/mushroom = 2
+				/mob/living/simple_animal/hostile/rogue/mirespider_paralytic = 2,
+				/mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 5,
+				/mob/living/simple_animal/hostile/rogue/mirespider_lurker = 5,
+				/mob/living/simple_animal/hostile/rogue/mirespider_lurker/mushroom = 2
 			)
 			for(var/i in 1 to 3)
 				var/spawnloc = pick(possible_targets)
@@ -191,7 +191,7 @@
 					var/random_delay = rand(1, 5)
 					spawn(random_delay SECONDS)
 						var/mob_type = pickweight(vengeance_mobs)
-						var/mob/living/carbon/simple_animal/hostile/vengeance_mob = new mob_type(spawnloc)
+						var/mob/living/simple_animal/hostile/vengeance_mob = new mob_type(spawnloc)
 						vengeance_mob.attack_same = FALSE
 						vengeance_mob.del_on_deaggro = 45 SECONDS
 						vengeance_mob.faction += "ambush"

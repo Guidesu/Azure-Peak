@@ -132,7 +132,7 @@
 // Called in Initialize() after ..() (which calls create_bodyparts()).
 // ---------------------------------------------------------------------------
 
-/mob/living/carbon/simple_animal/proc/apply_bodypart_reduction(list/bp_presets)
+/mob/living/simple_animal/proc/apply_bodypart_reduction(list/bp_presets)
 	if(!length(bp_presets))
 		return
 	for(var/zone in bp_presets)
@@ -153,7 +153,7 @@
 
 // --- Direbear: thick hide on chest, vulnerable head, tough limbs ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear
+/mob/living/simple_animal/hostile/retaliate/rogue/direbear
 	natural_armor_default = ANIMAL_ARMOR_THICK_HIDE
 	natural_armor = list(
 		BODY_ZONE_HEAD = ANIMAL_ARMOR_VULNERABLE_HEAD,
@@ -166,7 +166,7 @@
 
 // --- Wolf: tough hide overall, vulnerable head and limbs ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf
 	natural_armor_default = ANIMAL_ARMOR_TOUGH_HIDE
 	natural_armor = list(
 		BODY_ZONE_HEAD = ANIMAL_ARMOR_VULNERABLE_HEAD,
@@ -179,7 +179,7 @@
 
 // --- Boar: tough bristled hide, thick skull ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar
+/mob/living/simple_animal/hostile/retaliate/rogue/boar
 	natural_armor_default = ANIMAL_ARMOR_TOUGH_HIDE
 	natural_armor = list(
 		BODY_ZONE_HEAD = ANIMAL_ARMOR_TOUGH_HIDE,
@@ -192,7 +192,7 @@
 
 // --- Troll: stone skin, regenerating, weak to fire on all parts ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
+/mob/living/simple_animal/hostile/retaliate/rogue/troll
 	natural_armor_default = ANIMAL_ARMOR_STONE_SKIN
 	natural_armor = list(
 		BODY_ZONE_HEAD = list(
@@ -211,7 +211,7 @@
 
 // --- Minotaur: thick hide, tough head (horns) ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur
 	natural_armor_default = ANIMAL_ARMOR_THICK_HIDE
 	natural_armor = list(
 		BODY_ZONE_HEAD = ANIMAL_ARMOR_TOUGH_HIDE,
@@ -224,7 +224,7 @@
 
 // --- Dragon: dragon scales everywhere, near-impenetrable ---
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon
 	natural_armor_default = ANIMAL_ARMOR_DRAGON_SCALES
 	natural_armor = list(
 		BODY_ZONE_HEAD = list(

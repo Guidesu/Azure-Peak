@@ -55,7 +55,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/geas/proc/apply_geas(turf/T, mob/living/caster)
-	for(var/mob/living/carbon/simple_animal/hostile/animal in range(area_of_effect, T))
+	for(var/mob/living/simple_animal/hostile/animal in range(area_of_effect, T))
 		animal.Paralyze(hold_duration, updating = TRUE, ignore_canstun = TRUE)
 	for(var/mob/living/L in range(area_of_effect, T))
 		if(L.anti_magic_check())

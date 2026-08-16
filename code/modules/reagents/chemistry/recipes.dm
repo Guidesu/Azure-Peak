@@ -42,7 +42,7 @@
 			C.flash_act()
 
 		for(var/i in 1 to amount_to_spawn)
-			var/mob/living/carbon/simple_animal/S
+			var/mob/living/simple_animal/S
 			if(random)
 				S = create_random_mob(get_turf(holder.my_atom), mob_class)
 			else

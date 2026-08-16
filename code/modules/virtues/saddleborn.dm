@@ -11,20 +11,20 @@
 		recipient.AddSpell(new /obj/effect/proc_holder/spell/self/choose_riding_virtue_mount)
 
 GLOBAL_LIST_INIT(virtue_mount_choices, (list(
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tame/saddled,
-	/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tame,
+	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
+	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
+	/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled,
+	/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame/saddled,
+	/mob/living/simple_animal/hostile/retaliate/rogue/goat/tame,
 )))
 
 GLOBAL_LIST_INIT(virtue_mount_choices_noble, (list(
-	list("fogbeast mare", /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/tame/saddled),
-	list("fogbeast stallion", /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame/saddled),
+	list("fogbeast mare", /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/tame/saddled),
+	list("fogbeast stallion", /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast/male/tame/saddled),
 )))
 
 GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
-	list("drider spider", /mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tame/saddled),
+	list("drider spider", /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled),
 )))
 
 /datum/stressevent/precious_mob_died
@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		mount_choices += GLOB.virtue_mount_choices_anthrax
 
 	for(var/i = 1, i <= mount_choices.len, i++)
-		var/mob/living/carbon/simple_animal/honse
+		var/mob/living/simple_animal/honse
 		if (islist(mount_choices[i])) // noble/other overrides are lists (because of how horse typing works), so hacky workaround for display's sake
 			honse = mount_choices[i][2]
 			choices[mount_choices[i][1]] = honse
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 	choices = sortList(choices)
 
 	var/choice = input("What form does your treasured steed take?") as null|anything in choices
-	var/mob/living/carbon/simple_animal/our_chosen_honse = choices[choice]
+	var/mob/living/simple_animal/our_chosen_honse = choices[choice]
 
 	if (!our_chosen_honse)
 		return
@@ -102,16 +102,16 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		has_name = "No"
 
 	//spawn in our creature and set it up
-	var/mob/living/carbon/simple_animal/the_real_honse
-	if(ispath(our_chosen_honse, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast))
+	var/mob/living/simple_animal/the_real_honse
+	if(ispath(our_chosen_honse, /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast))
 		var/fogbeast_color_choice = input("What color is your trusty steed?") as null|anything in GLOB.valid_fogbeast_colors
 		the_real_honse = new our_chosen_honse(user.loc, fogbeast_color_choice)
 	else
 		the_real_honse = new our_chosen_honse(user.loc)
 	the_real_honse.AddComponent(/datum/component/precious_creature, user)
 	user.saddleborn_mount = WEAKREF(the_real_honse)
-	if(istype(the_real_honse, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/friendly_horse = the_real_honse
+	if(istype(the_real_honse, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/friendly_horse = the_real_honse
 		friendly_horse.friends += user
 
 	if (has_name == "Yes")
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 			the_real_honse.name = honse_name
 			the_real_honse.real_name = honse_name
 
-	if(istype(the_real_honse, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga))
+	if(istype(the_real_honse, /mob/living/simple_animal/hostile/retaliate/rogue/saiga))
 		var/saiga_barding = list("None","Padded Barding","Chainmail Barding")
 		var/saiga_barding_choice = input(user, "What protection have you acquired for your steed?", "Saddleborn") as anything in saiga_barding
 		switch(saiga_barding_choice)
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 			if("Chainmail Barding")
 				the_real_honse.bbarding = new /obj/item/clothing/barding/chain()
 				the_real_honse.update_icon()
-	else if(istype(the_real_honse, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast))
+	else if(istype(the_real_honse, /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast))
 		var/fogbeast_barding = list("None","Padded Barding","Chainmail Barding")
 		var/fogbeast_barding_choice = input(user, "What protection have you acquired for your steed?", "Saddleborn") as anything in fogbeast_barding
 		switch(fogbeast_barding_choice)
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 	playsound(user, 'sound/magic/saddleborn-call.ogg', 150, FALSE, 5)
 	if (!user.buckled)
 		the_real_honse.buckle_mob(user, TRUE)
-		if(istype(the_real_honse, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tame/saddled))
+		if(istype(the_real_honse, /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled))
 			playsound(the_real_honse, 'sound/vo/mobs/spider/speak (3).ogg', 100, FALSE, 2)
 		else
 			playsound(the_real_honse, 'sound/magic/saddleborn-summoned.ogg', 100, FALSE, 2)
@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		QDEL_IN(src, 0)
 		return FALSE
 
-	var/mob/living/carbon/simple_animal/honse = user.saddleborn_mount.resolve()
+	var/mob/living/simple_animal/honse = user.saddleborn_mount.resolve()
 	if (!honse || honse.stat == DEAD)
 		to_chat(user, span_warning("Necra has them now..."))
 		return FALSE
@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		revert_cast()
 		return FALSE
 
-	var/mob/living/carbon/simple_animal/honse = user.saddleborn_mount.resolve()
+	var/mob/living/simple_animal/honse = user.saddleborn_mount.resolve()
 	if (!user.Adjacent(honse))
 		to_chat(user, span_warning("You need to be next to your steed to send them away!"))
 		revert_cast()
@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		revert_cast()
 		return FALSE
 
-	var/mob/living/carbon/simple_animal/honse = user.saddleborn_mount.resolve()
+	var/mob/living/simple_animal/honse = user.saddleborn_mount.resolve()
 	var/back_from_the_void = (honse.loc == null)
 	var/callback_time = back_from_the_void ? 10 SECONDS : 5 SECONDS // nullspace returns take a lot longer to incentivize leaving it in the world
 	var/dangerous_summon = FALSE // will we try to proc an ambush upon return?
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 		honse.forceMove(user.loc)
 		if (!user.buckled)
 			honse.buckle_mob(user, TRUE)
-		if(istype(honse, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider/tame/saddled))
+		if(istype(honse, /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled))
 			playsound(honse, 'sound/vo/mobs/spider/speak (3).ogg', 100, FALSE, 2)
 		else
 			playsound(honse, 'sound/magic/saddleborn-summoned.ogg', 100, FALSE, 2)

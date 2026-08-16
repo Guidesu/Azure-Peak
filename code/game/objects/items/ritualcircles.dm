@@ -784,12 +784,12 @@
 	var/awakened = FALSE
 	var/converting = FALSE
 	var/turf_to_use = /turf/open/floor/rogue/dark_ice
-	var/mob/living/initial_fiend = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major/unbound
+	var/mob/living/initial_fiend = /mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound
 	pixel_y = 8
 
 /obj/structure/crystal_spire/greater
 	name = "greater crystal spire"
-	initial_fiend = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
+	initial_fiend = /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
 	max_integrity = 1000
 	max_radius = 5
 	max_fiends = 7
@@ -955,7 +955,7 @@
 		return FALSE
 	return ..()
 
-/obj/structure/crystal_spire/proc/spawn_spire_fiend(turf/spawn_turf, obj/structure/crystal_spire/spire, mob/living/fiend_type = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/unbound)
+/obj/structure/crystal_spire/proc/spawn_spire_fiend(turf/spawn_turf, obj/structure/crystal_spire/spire, mob/living/fiend_type = /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound)
 	if(!spawn_turf || !spire || !ispath(fiend_type))
 		return FALSE
 
@@ -965,7 +965,7 @@
 	var/datum/component/comp = F.AddComponent(/datum/component/spire_fiend, spire)
 	return comp ? TRUE : FALSE
 
-/obj/structure/crystal_spire/proc/spawn_fiends(amount, mob/living/fiend_type = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/unbound)
+/obj/structure/crystal_spire/proc/spawn_fiends(amount, mob/living/fiend_type = /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound)
 	if(fiend_count >= max_fiends)
 		return
 

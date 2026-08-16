@@ -120,7 +120,7 @@
 /obj/item/natural/saddle/attack(mob/living/target, mob/living/carbon/human/user)
 	if(istype(target, /mob/living/carbon/simple_animal))
 
-		var/mob/living/carbon/simple_animal/S = target
+		var/mob/living/simple_animal/S = target
 		if(S.can_saddle && !S.ssaddle)
 
 			if(!target.has_buckled_mobs())
@@ -146,7 +146,7 @@
 	var/obj/item/ssaddle
 	var/simple_detect_bonus = 0 // A flat percentage bonus to our ability to detect sneaking people only. Use in lieu of giving mobs huge STAPER bonuses if you want them to be observant.
 
-/mob/living/carbon/simple_animal/can_be_held(mob/by)
+/mob/living/simple_animal/can_be_held(mob/by)
 	return mob_size <= MOB_SIZE_SMALL
 
 /obj/item/natural/bone

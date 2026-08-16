@@ -410,7 +410,7 @@ GLOBAL_LIST_INIT(t4rune_types, generate_t4rune_types())
 	layer = SIGIL_LAYER
 	can_be_scribed = TRUE
 	var/busy = FALSE
-	var/mob/living/carbon/simple_animal/summoned_mob
+	var/mob/living/simple_animal/summoned_mob
 
 /obj/effect/decal/cleanable/roguerune/arcyne/binding/New()
 	. = ..()
@@ -442,13 +442,13 @@ GLOBAL_LIST_INIT(t4rune_types, generate_t4rune_types())
 		if(busy)
 			to_chat(user, span_warning("I am already attempting to bind this familiar! I must have patience..."))
 			return
-		var/mob/living/carbon/simple_animal/pet/familiar/S = summoned_mob
+		var/mob/living/simple_animal/pet/familiar/S = summoned_mob
 		if(!S || QDELETED(S))
 			to_chat(user, span_warning("The containment has already faded."))
 			summoned_mob = null
 			return
 		var/plane = S.planar_origin
-		for(var/mob/living/carbon/simple_animal/pet/familiar/existing_fam in GLOB.alive_mob_list + GLOB.dead_mob_list)
+		for(var/mob/living/simple_animal/pet/familiar/existing_fam in GLOB.alive_mob_list + GLOB.dead_mob_list)
 			if(existing_fam.familiar_summoner == user)
 				to_chat(user, span_warning("You can only bind one familiar at once!"))
 				return FALSE
@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(t4rune_types, generate_t4rune_types())
 			qdel(S)
 			summoned_mob = null
 			var/to_summon = prefs.familiar_species[plane]
-			var/mob/living/carbon/simple_animal/pet/familiar/fam = new to_summon(loc)
+			var/mob/living/simple_animal/pet/familiar/fam = new to_summon(loc)
 			fam.familiar_summoner = user
 			fam.fully_replace_character_name(null, prefs.familiar_names[plane])
 			fam.pronouns = prefs.familiar_pronouns[plane] ? prefs.familiar_pronouns[plane] : THEY_THEM
@@ -550,11 +550,11 @@ GLOBAL_LIST_INIT(t4rune_types, generate_t4rune_types())
 			var/faction_to_add = "[user.mind.current.real_name]_faction"
 			fam.faction |= faction_to_add
 			var/tutorial = null
-			if(istype(fam,/mob/living/carbon/simple_animal/pet/familiar/fae))
+			if(istype(fam,/mob/living/simple_animal/pet/familiar/fae))
 				tutorial = "You are a familiar: a lesser being drawn from the outer planes. The faewyld is a primal place, and those that grow beyond their station are often pruned... for those of little power like yourself, the mortal realm is a safer place to grow. Serve your summoner, learn from this realm, and return stronger."
-			else if(istype(fam,/mob/living/carbon/simple_animal/pet/familiar/infernal))
+			else if(istype(fam,/mob/living/simple_animal/pet/familiar/infernal))
 				tutorial = "You are a familiar: a lesser being drawn from the outer planes. The hells are a brutal place, and those with ambition beyond their ability are often culled... for those of little power like yourself, the mortal realm is a safer place to refuel. Serve your summoner, learn from this realm, and return stronger."
-			else if(istype(fam,/mob/living/carbon/simple_animal/pet/familiar/elemental))
+			else if(istype(fam,/mob/living/simple_animal/pet/familiar/elemental))
 				tutorial = "You are a familiar: a lesser being drawn from the outer planes. The depths are an unchanging place, and pebbles that stick up are eroded down... for those of little power like yourself, the mortal realm is a safer place to accumulate. Serve your summoner, learn from this realm, and return stronger."
 			else
 				tutorial = "You are a Void Drakeling: a being entirely new to this world, and all others. A fragment of draconic power torn from elsewhere, if you are ever to become as strong as what you were once part of, you must sate this hunger. Serve your creator, and be voracious; planar beings shall be the fuel for your ascension."
@@ -583,7 +583,7 @@ GLOBAL_LIST_INIT(t4rune_types, generate_t4rune_types())
 	. = ..()
 	if(summoned_mob && (input(user,"Would you like to cancel this summoning attempt?","Fallback","No") as anything in list("Yes","No") | null)=="Yes")
 		busy = FALSE
-		if(istype(summoned_mob,/mob/living/carbon/simple_animal/pet/familiar/void))
+		if(istype(summoned_mob,/mob/living/simple_animal/pet/familiar/void))
 			var/list/refund_costs = list(/obj/item/magic/artifact = 1, /obj/item/magic/voidstone = 2, /obj/item/magic/leyline = 1)
 			for(var/index in refund_costs)
 				for(var/i in 1 to refund_costs[index])

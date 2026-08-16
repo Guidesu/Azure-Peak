@@ -16,11 +16,11 @@
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
 	ambush_mobs = list(
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog = 20,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider = 40,
+				/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/spider = 40,
 				/mob/living/carbon/human/species/npc/deadite = 20,
 				/mob/living/carbon/human/species/skeleton/npc/hardspread = 40,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe = 15,
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe = 15,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30,
 				new /datum/ambush_config/mirespiders_ambush = 110,
 				new /datum/ambush_config/mirespiders_crawlers = 25,
@@ -38,12 +38,12 @@
 	soundenv = 19
 	ambush_times = list("night")
 	ambush_mobs = list(
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 20,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 30,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 10,
+				/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/fox = 10,
 				/mob/living/carbon/human/species/goblin/npc/ambush/sea = 20,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback = 10,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/bog = 5,
+				/mob/living/simple_animal/hostile/retaliate/rogue/mossback = 10,
+				/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = 5,
 				/mob/living/carbon/human/species/npc/deadite = 5,
 				/mob/living/carbon/human/species/skeleton/npc/supereasy = 10,
 				/mob/living/carbon/human/species/skeleton/npc/pirate = 30)
@@ -63,9 +63,9 @@
 	detail_text = THREAT_REGION_ISLAND
 	ambush_times = list("night")
 	ambush_mobs = list(
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 20,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 30,
-				/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/fox = 30,
 				/mob/living/carbon/human/species/skeleton/npc/supereasy = 30)
 
 /area/rogue/indoors/banditcamp/byos
@@ -118,7 +118,7 @@
 	ambush_times = list("night","dawn","dusk","day")
 	ambush_mobs = list(
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea = 20,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback = 30,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mossback = 30,
 		new /datum/ambush_config/triple_deepone = 20,
 		new /datum/ambush_config/deepone_party = 10,
 	)

@@ -1165,7 +1165,7 @@
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/byos)
 "adv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab,
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 /obj/item/alch/viscera{
 	name = "viscera";
 	dir = 2;
@@ -2469,7 +2469,7 @@
 /turf/open/floor/rogue/snowrough,
 /area/rogue/outdoors/woods/north)
 "aeE" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/underdark/north)
 "aeF" = (
@@ -2906,7 +2906,7 @@
 	},
 /area/rogue/indoors/town/shop)
 "aff" = (
-/mob/living/carbon/simple_animal/butterfly,
+/mob/living/simple_animal/butterfly,
 /obj/item/ash{
 	name = "ash";
 	dir = 2;
@@ -3494,7 +3494,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/tribeden)
 "aqy" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider{
+/mob/living/simple_animal/hostile/retaliate/rogue/spider{
 	STACON = 10;
 	STASPD = 12;
 	resize = 2
@@ -3814,7 +3814,7 @@
 	},
 /area/rogue/outdoors/byos)
 "aJD" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog/north)
 "aKv" = (
@@ -4071,7 +4071,7 @@
 /area/rogue/indoors)
 "bdS" = (
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf,
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
 /turf/open/floor/rogue/naturalstone/sandstone,
 /area/rogue/under/cave)
 "bdW" = (
@@ -4169,7 +4169,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/cave)
 "bmd" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat{
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat{
 	faction = list("rats", "blood", "undead");
 	health = 60
 	},
@@ -4321,7 +4321,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/bog/north)
 "bvm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	wander = 0;
 	faction = list("infernal", "tribe")
 	},
@@ -4568,7 +4568,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave)
 "bHa" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden{
 	color = "#ffe100";
 	name = "Gold Golem";
 	faction = list("elemental", "mimic")
@@ -5577,7 +5577,7 @@
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/town/tavern)
 "cTR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll/cave,
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/cave,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "cTU" = (
@@ -5778,7 +5778,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cavewet/byos/banditcove)
 "dgD" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider,
+/mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/under/cave)
 "dgT" = (
@@ -5982,7 +5982,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "dpk" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale,
+/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
 /obj/structure/fluff/nest,
 /obj/structure/fluff/railing/wood{
 	dir = 8;
@@ -6449,7 +6449,7 @@
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors)
 "dTJ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	STASTR = 8;
 	STACON = 10;
 	resize = 2;
@@ -6751,7 +6751,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/tribeden)
 "epK" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
 	STACON = 15;
 	STASPD = 15;
 	STASTR = 12;
@@ -6988,7 +6988,7 @@
 /area/rogue/outdoors/byos)
 "eER" = (
 /obj/effect/decal/remains/human,
-/mob/living/carbon/simple_animal/hostile/rogue/haunt,
+/mob/living/simple_animal/hostile/rogue/haunt,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "eFb" = (
@@ -7068,13 +7068,13 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/tribeden)
 "eLq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "eLt" = (
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole{
+/mob/living/simple_animal/hostile/retaliate/rogue/mole{
 	STASPD = 16
 	},
 /turf/open/floor/rogue/naturalstone,
@@ -7718,7 +7718,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "fwL" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider,
+/mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/town/tavern)
 "fwQ" = (
@@ -7898,7 +7898,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "fJn" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole,
+/mob/living/simple_animal/hostile/retaliate/rogue/mole,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "fKn" = (
@@ -8242,7 +8242,7 @@
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/inq/boat)
 "fZM" = (
-/mob/living/carbon/simple_animal/butterfly,
+/mob/living/simple_animal/butterfly,
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/woods/north)
 "gal" = (
@@ -9057,7 +9057,7 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/indoors/inq/boat/office)
 "gTW" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
 	resize = 2;
 	STACON = 12;
 	STASTR = 12;
@@ -10394,7 +10394,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/indoors/town/shop)
 "iAP" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing,
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing,
 /turf/open/water/cleanshallow,
 /area/rogue/under/cave)
 "iBk" = (
@@ -10471,7 +10471,7 @@
 /area/rogue/indoors/town/tavern)
 "iEY" = (
 /obj/structure/spider/stickyweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider{
+/mob/living/simple_animal/hostile/retaliate/rogue/spider{
 	STACON = 10;
 	STASPD = 12;
 	resize = 2
@@ -11227,7 +11227,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "jxa" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead,
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
 "jxJ" = (
@@ -11997,7 +11997,7 @@
 /area/rogue/indoors)
 "krl" = (
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,
 /turf/open/floor/rogue/greenstone/runed{
 	dir = 1
 	},
@@ -12745,7 +12745,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/inq/boat/office)
 "ldH" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden,
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave)
 "ldX" = (
@@ -12825,7 +12825,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave)
 "ljv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole{
+/mob/living/simple_animal/hostile/retaliate/rogue/mole{
 	STASPD = 16
 	},
 /obj/structure/fluff/nest,
@@ -12868,7 +12868,7 @@
 	},
 /area/rogue/under/cave/tribeden)
 "lml" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/fiend{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend{
 	wander = 0;
 	health = 900
 	},
@@ -13595,7 +13595,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave)
 "lXZ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/headless{
+/mob/living/simple_animal/hostile/retaliate/rogue/headless{
 	faction = list("crabs")
 	},
 /turf/open/floor/rogue/naturalstone,
@@ -13849,7 +13849,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/cave)
 "miV" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,
+/mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk,
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning,
 /turf/open/floor/rogue/greenstone/runed,
 /area/rogue/under/cave)
@@ -14093,7 +14093,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/under/town/basement)
 "mwX" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
 	wander = 0
 	},
 /turf/open/floor/rogue/naturalstone,
@@ -14716,7 +14716,7 @@
 	},
 /area/rogue/indoors)
 "nfZ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/grassred,
 /area/rogue/under/underdark/north)
@@ -14798,7 +14798,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/indoors/town/shop)
 "nme" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe{
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe{
 	faction = list("infernal");
 	wander = 0;
 	health = 800
@@ -15092,7 +15092,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/cave/tribeden)
 "nGj" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole{
+/mob/living/simple_animal/hostile/retaliate/rogue/mole{
 	STASTR = 24;
 	health = 500;
 	faction = list("undead")
@@ -15111,7 +15111,7 @@
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/inq/boat)
 "nHR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
 "nHV" = (
@@ -15296,7 +15296,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)
 "nWP" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab,
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
 "nXi" = (
@@ -15369,7 +15369,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/xtracks,
-/mob/living/carbon/simple_animal/hostile/rogue/dragger/flesh,
+/mob/living/simple_animal/hostile/rogue/dragger/flesh,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/cave)
 "nZZ" = (
@@ -15473,7 +15473,7 @@
 "oeP" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
 	wander = 0
 	},
 /turf/open/floor/rogue/naturalstone,
@@ -16194,7 +16194,7 @@
 /turf/open/floor/rogue/naturalstone/sandstone,
 /area/rogue/under/cave)
 "oRg" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback,
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/byos)
 "oRs" = (
@@ -16215,7 +16215,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cavewet)
 "oSt" = (
-/mob/living/carbon/simple_animal/butterfly,
+/mob/living/simple_animal/butterfly,
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "oSF" = (
@@ -17117,7 +17117,7 @@
 	},
 /area/rogue/indoors/town/shop)
 "pNp" = (
-/mob/living/carbon/simple_animal/hostile/rogue/dragger{
+/mob/living/simple_animal/hostile/rogue/dragger{
 	wander = 0
 	},
 /turf/open/floor/rogue/concrete,
@@ -18047,7 +18047,7 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
 "qRA" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat{
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat{
 	faction = list("rats", "blood", "undead");
 	health = 60
 	},
@@ -18177,7 +18177,7 @@
 /area/rogue/under/cave/tribeden)
 "rax" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/rogue/dragger{
+/mob/living/simple_animal/hostile/rogue/dragger{
 	wander = 0
 	},
 /turf/open/floor/rogue/concrete,
@@ -18239,7 +18239,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/byos/banditcove)
 "rcV" = (
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker,
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker,
 /turf/open/floor/rogue/naturalstone/sandstone,
 /area/rogue/under/cave)
 "rdj" = (
@@ -18983,7 +18983,7 @@
 /area/rogue/indoors/banditcamp/byos)
 "rST" = (
 /obj/effect/decal/cleanable/debris,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/glimmerwing,
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave)
 "rTy" = (
@@ -19262,7 +19262,7 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/indoors/inq/boat)
 "sgu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe{
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe{
 	faction = list("infernal");
 	wander = 0
 	},
@@ -19449,7 +19449,7 @@
 /area/rogue/under/cave)
 "srp" = (
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat{
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat{
 	faction = list("rats", "blood", "undead");
 	health = 60
 	},
@@ -19857,7 +19857,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/town/tavern)
 "sMY" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
 	STACON = 15;
 	STASPD = 15;
 	STASTR = 12;
@@ -20214,7 +20214,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/cave/tribeden)
 "teF" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	wander = 0;
 	faction = list("infernal", "tribe")
 	},
@@ -20641,7 +20641,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "tDt" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/bog/north)
 "tDL" = (
@@ -20785,7 +20785,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/byos)
 "tLM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	STASTR = 8;
 	STACON = 10;
 	resize = 2;
@@ -21112,12 +21112,12 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/vampire_manor)
 "uft" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon/broodmother,
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/tribeden)
 "ufW" = (
 /obj/structure/spider/stickyweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider{
+/mob/living/simple_animal/hostile/retaliate/rogue/spider{
 	STACON = 10;
 	STASPD = 12;
 	resize = 2
@@ -21271,7 +21271,7 @@
 	color = "#ff0008";
 	light_color = "#ff0008"
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf_undead{
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead{
 	faction = list("undead")
 	},
 /turf/open/floor/rogue/grassred,
@@ -21283,7 +21283,7 @@
 	},
 /area/rogue/under/cavewet)
 "uow" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole,
+/mob/living/simple_animal/hostile/retaliate/rogue/mole,
 /turf/open/floor/rogue/naturalstone/sandstone,
 /area/rogue/under/cave)
 "uoy" = (
@@ -21332,7 +21332,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark/north)
 "urg" = (
-/mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker,
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker,
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/under/cave)
 "url" = (
@@ -21654,7 +21654,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "uKh" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback,
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "uKB" = (
@@ -22147,7 +22147,7 @@
 /turf/closed/wall/mineral/rogue/wooddark/horizontal,
 /area/rogue/indoors/town/shop)
 "vqQ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite,
 /turf/open/water/cleanshallow,
 /area/rogue/under/cave)
 "vqW" = (
@@ -22533,7 +22533,7 @@
 	},
 /area/rogue/indoors/inq/boat)
 "vNj" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite,
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/cave)
 "vNE" = (
@@ -22631,7 +22631,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/church)
 "vTy" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden{
 	color = "#ffe100";
 	name = "Gold Golem";
 	faction = list("elemental", "mimic")
@@ -22992,7 +22992,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 10
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	STASTR = 8;
 	STACON = 10;
 	resize = 2;
@@ -23300,7 +23300,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cavewet)
 "wGp" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
 	resize = 2;
 	STACON = 12;
 	STASTR = 12;
@@ -23338,7 +23338,7 @@
 	},
 /area/rogue/under/cavewet/byos/banditcove)
 "wIm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider,
+/mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/naturalstone/sandstone,
 /area/rogue/under/cave)
 "wJf" = (
@@ -23616,7 +23616,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/under/underdark/north)
 "wZv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female{
 	STACON = 15;
 	STASPD = 15;
 	STASTR = 12;
@@ -24387,7 +24387,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark/north)
 "xXZ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat,
+/mob/living/simple_animal/hostile/retaliate/rogue/goat,
 /obj/structure/fluff/nest,
 /obj/structure/fluff/railing/wood{
 	pixel_y = -4
@@ -24433,7 +24433,7 @@
 /area/rogue/under/cavewet)
 "yaj" = (
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback,
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "yaK" = (
@@ -24518,7 +24518,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 6
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp{
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
 	STASTR = 8;
 	STACON = 10;
 	resize = 2;

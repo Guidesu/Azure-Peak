@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/flesh_decoy
+/mob/living/simple_animal/flesh_decoy
 	icon = 'icons/obj/structures/heart_items.dmi'
 	name = "flesh decoy"
 	desc = "A fleshy, immoving golem with a nasty grin. You can clearly tell it isn't alive, yet the scent of its putrid flesh is strangely alluring. Can be picked up with middle click."
@@ -19,13 +19,13 @@
 	var/mob_health = 100
 	var/mob_maxHealth = 100
 
-/mob/living/carbon/simple_animal/flesh_decoy/death(gibbed)
+/mob/living/simple_animal/flesh_decoy/death(gibbed)
 	. = ..()
 	var/obj/item/reagent_containers/food/snacks/rogue/meat/steak/F = new /obj/item/reagent_containers/food/snacks/rogue/meat/steak (src.loc)
 	F.become_rotten()
 	qdel(src)
 
-/mob/living/carbon/simple_animal/flesh_decoy/MiddleClick(mob/living/user)
+/mob/living/simple_animal/flesh_decoy/MiddleClick(mob/living/user)
 	. = ..()
 	if(user.incapacitated() || !Adjacent(user))
 		return
@@ -71,7 +71,7 @@
 	return ..()
 
 /obj/item/flesh_decoy/proc/convert_to_mob(turf/T)
-	var/mob/living/carbon/simple_animal/flesh_decoy/mob = new(T)
+	var/mob/living/simple_animal/flesh_decoy/mob = new(T)
 
 	if(mob_health)
 		mob.health = mob_health

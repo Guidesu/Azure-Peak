@@ -15,10 +15,10 @@
 
 /datum/round_event/animal_migration/hostile
 	animals = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+		/mob/living/simple_animal/hostile/retaliate/rogue/direbear,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mole,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bobcat,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fox,
 	)

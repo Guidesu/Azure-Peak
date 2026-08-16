@@ -3,7 +3,7 @@
 	desc = ""
 
 	var/list/summon_type = list() //determines what exactly will be summoned
-	//should be text, like list("/mob/living/carbon/simple_animal/bot/ed209")
+	//should be text, like list("/mob/living/simple_animal/bot/ed209")
 
 	var/summon_lifespan = 0 // 0=permanent, any other time in deciseconds
 	var/summon_amt = 1 //amount of objects summoned

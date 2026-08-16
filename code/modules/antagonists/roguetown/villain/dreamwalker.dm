@@ -168,7 +168,7 @@
 		summon_dreamfiend(
 			target = user,
 			user = user,
-			F = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend,
+			F = /mob/living/simple_animal/hostile/rogue/dreamfiend,
 			outer_tele_radius = 3,
 			inner_tele_radius = 2,
 			include_dense = FALSE,

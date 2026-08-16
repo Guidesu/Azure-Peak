@@ -15,7 +15,7 @@
 		UnregisterSignal(owner.current, COMSIG_ANIMAL_TAMED)
 	return ..()
 
-/datum/objective/tame_animal/proc/on_animal_tamed(datum/source, mob/living/carbon/simple_animal/animal)
+/datum/objective/tame_animal/proc/on_animal_tamed(datum/source, mob/living/simple_animal/animal)
 	SIGNAL_HANDLER
 	if(completed)
 		return
@@ -24,7 +24,7 @@
 	if(tamed_count >= required_tames)
 		complete_objective(animal)
 
-/datum/objective/tame_animal/proc/complete_objective(mob/living/carbon/simple_animal/animal)
+/datum/objective/tame_animal/proc/complete_objective(mob/living/simple_animal/animal)
 	to_chat(owner.current, span_greentext("You have tamed [animal], fulfilling Ignatius's will!"))
 	owner.current.adjust_triumphs(1)
 	completed = TRUE

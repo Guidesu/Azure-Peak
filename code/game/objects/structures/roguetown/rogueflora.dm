@@ -912,7 +912,7 @@
 	static_debris = list(/obj/item/natural/fibers = 1,
 						 /obj/item/grown/log/tree/small = 1,
 						 /obj/item/reagent_containers/food/snacks/rogue/mushroom = 2)
-	rare_mush_bonus_drop = /mob/living/carbon/simple_animal/hostile/rogue/mirespider_lurker/mushroom
+	rare_mush_bonus_drop = /mob/living/simple_animal/hostile/rogue/mirespider_lurker/mushroom
 	mush_animate = FALSE
 
 /obj/structure/flora/rogueshroom/happy/fat

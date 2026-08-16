@@ -2507,7 +2507,7 @@
 
 "dd" = (
 /obj/structure/bed/rogue/shit,
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit,
+/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter/bog_hag)
 

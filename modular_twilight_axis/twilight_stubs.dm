@@ -3,6 +3,8 @@
 // code references but that don't exist in DreamValley's codebase.
 // Defines are in twilight_defines.dm (included before Twilight code).
 
+GLOBAL_VAR_INIT(cold_breath_overlay, null)
+
 // ============================================================================
 // MISSING STRESS EVENTS
 // ============================================================================
@@ -31,129 +33,6 @@
 /datum/job/roguetown/headslave
 /datum/job/roguetown/slave
 /datum/job/roguetown/freeman
-
-// ============================================================================
-// MISSING SIMPLE_ANIMAL TYPE ALIASES
-// Twilight uses /mob/living/simple_animal/... but DV uses /mob/living/carbon/simple_animal/...
-// Create type aliases that point to the carbon versions
-// ============================================================================
-/mob/living/simple_animal/hostile/rogue
-	parent_type = /mob/living/carbon/simple_animal/hostile/rogue
-
-/mob/living/simple_animal/hostile
-	var/attack_same = 0
-	var/target = null
-	proc/LoseTarget()
-		target = null
-
-/mob/living/simple_animal/hostile/rogue/skeleton
-	parent_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton
-
-/mob/living/simple_animal/hostile/rogue/haunt
-	parent_type = /mob/living/carbon/simple_animal/hostile/rogue/haunt
-
-/mob/living/simple_animal/hostile/rogue/haunt/omen
-	parent_type = /mob/living/carbon/simple_animal/hostile/rogue/haunt
-
-/mob/living/simple_animal/hostile/retaliate
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate
-
-/mob/living/simple_animal/hostile/retaliate/rogue
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/smallrat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/smallrat
-
-/mob/living/simple_animal/hostile/retaliate/rogue/cat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat
-
-/mob/living/simple_animal/hostile/retaliate/bat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/bat
-
-/mob/living/simple_animal/hostile/retaliate/bat/crow
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/bat
-
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf
-
-/mob/living/simple_animal/hostile/retaliate/rogue/bobcat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat
-
-/mob/living/simple_animal/hostile/retaliate/rogue/badger
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger
-
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat
-
-/mob/living/simple_animal/hostile/retaliate/rogue/spider
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider
-
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider
-
-/mob/living/simple_animal/hostile/rogue/mirespider_lurker
-	parent_type = /mob/living/carbon/simple_animal/hostile/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/lamia
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/direbear
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/boar
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/mossback
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/mole
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/troll
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
-
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
-
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/axe
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll
-
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf
-
-/mob/living/simple_animal/hostile/retaliate/rogue/cow
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/hag_shapeshift
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue
-
-/mob/living/simple_animal/hostile/retaliate/goat
-	parent_type = /mob/living/carbon/simple_animal/hostile/retaliate
-
-/mob/living/simple_animal/hostile/boss
-	parent_type = /mob/living/carbon/simple_animal/hostile
-
-/mob/living/carbon/human/species/human/northern/ravox_spirit
-	parent_type = /mob/living/carbon/human/species/human/northern
-	var/buffed_r = FALSE
 
 // ============================================================================
 // MISSING CLOTHING TYPES
@@ -210,6 +89,10 @@
 // ============================================================================
 /datum/storyteller/zizo
 /datum/asset/spritesheet_batched/loadout_icons
+	name = "loadout-icons"
+
+/datum/asset/spritesheet_batched/loadout_icons/create_spritesheets()
+	return
 
 // ============================================================================
 // MISSING OBJ TYPES
@@ -362,14 +245,25 @@
 	var/defiant = 0
 
 /mob/living/simple_animal
-	var/icon_living = ""
-	var/icon_dead = ""
-	var/speak_emote = list()
-	var/emote_hear = list()
 	var/speed = 0
+	var/obj/item/natural/saddle/ssaddle = null
+	var/can_saddle = FALSE
+	var/simple_detect_bonus = 0
+	var/dodge_fatigue = 0
+	var/dodge_fatigue_updated = 0
+	var/winded_until = 0
+	var/natural_armor_default = list()
+	var/natural_armor = list()
 
-/mob/living/carbon/simple_animal
-	var/speed = 0
+/mob/living/carbon/human/species/human/northern/ravox_spirit
+	parent_type = /mob/living/carbon/human
+	var/buffed_r = FALSE
+
+/datum/species
+	var/fur_insulation = 0
+	var/vaeltic = 0
+
+/datum/world_trait/zizo_pet_cementery
 
 /obj/item
 	var/persistence_path = ""

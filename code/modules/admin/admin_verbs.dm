@@ -96,6 +96,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
+	/client/proc/cmd_admin_hypno_narrate,	/*send text directly to a player as a big pulsing hypno-phrase*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_local_narrate,	/*sends text to all mobs within view of atom*/
 	/client/proc/cmd_admin_create_centcom_report,
@@ -260,6 +261,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 //	/client/proc/cmd_admin_headset_message,
 	/client/proc/cmd_admin_check_contents,
 	/client/proc/cmd_admin_direct_narrate,
+	/client/proc/cmd_admin_hypno_narrate,
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/cmd_admin_local_narrate,
 	/client/proc/play_local_sound,

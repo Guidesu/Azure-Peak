@@ -183,6 +183,31 @@
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Direct Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_hypno_narrate(mob/M)
+	set category = "Admin.Special"
+	set name = "Narrate - Hypno"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(!M)
+		M = input("Hypno narrate to whom?", "Active Players") as null|anything in GLOB.player_list
+
+	if(!M)
+		return
+
+	var/msg = input("Message:", text("Enter the phrase you wish to appear as a big pulsing hypno-phrase to your target:")) as text|null
+
+	if(!msg)
+		return
+
+	to_chat(M, span_reallybighypnophrase("[msg]"))
+	log_admin("HypnoNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
+	msg = span_adminnotice("<b> HypnoNarrate: [key_name(usr)] to ([M.name]/[M.key]):</b> [msg]<BR>")
+	message_admins(msg)
+	admin_ticket_log(M, msg)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Hypno Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_local_narrate(atom/A)
 	set category = "Admin.Special"
 	set name = "Narrate - Local"

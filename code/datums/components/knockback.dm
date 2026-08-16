@@ -25,7 +25,7 @@
 		return
 	do_knockback(target, user, get_dir(source, target))
 
-/datum/component/knockback/proc/hostile_attackingtarget(mob/living/carbon/simple_animal/hostile/attacker, atom/target)
+/datum/component/knockback/proc/hostile_attackingtarget(mob/living/simple_animal/hostile/attacker, atom/target)
 	do_knockback(target, attacker, get_dir(attacker, target))
 
 /datum/component/knockback/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)

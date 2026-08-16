@@ -40,7 +40,7 @@
 		target.ai_controller = /datum/ai_controller/undead
 		target.InitializeAIController()
 		if(issimple(target))
-			var/mob/living/carbon/simple_animal/simple_target = target
+			var/mob/living/simple_animal/simple_target = target
 			simple_target.tamed()
 
 	return TRUE

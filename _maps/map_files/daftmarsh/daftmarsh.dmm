@@ -2570,7 +2570,7 @@
 /turf/open/floor/churchmarble/purple,
 /area/indoors/town/church/inquisition)
 "caI" = (
-/mob/living/carbon/simple_animal/pet/cat/black{
+/mob/living/simple_animal/pet/cat/black{
 	name = "Morticia"
 	},
 /turf/open/floor/dirt/road,
@@ -2851,7 +2851,7 @@
 /turf/open/floor/wood,
 /area/indoors/town)
 "coH" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/blocks,
 /area/under/town/sewer)
 "coM" = (
@@ -2920,7 +2920,7 @@
 	},
 /area/under/cavewet)
 "crd" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Dennis"
 	},
@@ -4070,7 +4070,7 @@
 /turf/open/floor/blocks/stonered/tiny,
 /area/indoors/town/dwarfin)
 "dlA" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bigrat,
+/mob/living/simple_animal/hostile/retaliate/bigrat,
 /turf/open/floor/blocks,
 /area/under/town/sewer)
 "dlD" = (
@@ -5166,7 +5166,7 @@
 /turf/open/floor/wood,
 /area/indoors/town/shop)
 "ejK" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Robin"
 	},
@@ -6229,7 +6229,7 @@
 	dir = 8;
 	pixel_y = -1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/cow,
+/mob/living/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "fbk" = (
@@ -8480,7 +8480,7 @@
 /turf/open/floor/wood,
 /area/indoors/town/keep/garrison)
 "hiW" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/saiga/tame,
+/mob/living/simple_animal/hostile/retaliate/saiga/tame,
 /turf/open/floor/twig,
 /area/indoors/butchershop)
 "hiY" = (
@@ -8927,7 +8927,7 @@
 /turf/open/floor/blocks/stonered/tiny,
 /area/indoors/town/bath)
 "hDF" = (
-/mob/living/carbon/simple_animal/pet/cat/cabbit{
+/mob/living/simple_animal/pet/cat/cabbit{
 	name = "Tongs"
 	},
 /turf/open/floor/ruinedwood/spiral,
@@ -9289,7 +9289,7 @@
 /turf/open/floor/blocks/newstone,
 /area/indoors/town/keep/hand)
 "hRU" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck/tame,
+/mob/living/simple_animal/hostile/retaliate/saigabuck/tame,
 /obj/structure/fluff/nest{
 	name = "patch of straw"
 	},
@@ -9531,7 +9531,7 @@
 /turf/open/floor/blocks/paving,
 /area/outdoors/town)
 "igu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck/tame/saddled,
+/mob/living/simple_animal/hostile/retaliate/saigabuck/tame/saddled,
 /obj/structure/fluff/nest{
 	name = "patch of straw"
 	},
@@ -10409,7 +10409,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/indoors/town/orphanage)
 "iSm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider,
+/mob/living/simple_animal/hostile/retaliate/spider,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/cobblerock,
 /area/under/town/sewer)
@@ -10858,7 +10858,7 @@
 /turf/open/floor/cobblerock,
 /area/outdoors/basin)
 "jkx" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Gabby"
 	},
@@ -12108,7 +12108,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/outdoors/town)
 "kqq" = (
-/mob/living/carbon/simple_animal/pet/cat/inn{
+/mob/living/simple_animal/pet/cat/inn{
 	name = "His Majesty";
 	desc = "This old, wrinkled cat demands the utmost respect from his servants. Not even the king of Vanderlin is exempt from his worship."
 	},
@@ -13531,7 +13531,7 @@
 /turf/open/floor/wood,
 /area/indoors/town/keep/guest/meeting)
 "lCb" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider,
+/mob/living/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/blocks,
 /area/under/town/sewer)
 "lCc" = (
@@ -13925,7 +13925,7 @@
 /turf/open/floor/church/purple,
 /area/indoors/town/church/inquisition)
 "lVa" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Alice"
 	},
@@ -16226,7 +16226,7 @@
 /turf/open/floor/church,
 /area/indoors/town/church/inquisition)
 "nUz" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/goat,
+/mob/living/simple_animal/hostile/retaliate/goat,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "nUB" = (
@@ -17032,7 +17032,7 @@
 /turf/closed/wall/mineral/wooddark,
 /area/outdoors/town)
 "oJk" = (
-/mob/living/carbon/simple_animal/pet/cat/cabbit{
+/mob/living/simple_animal/pet/cat/cabbit{
 	name = "Hammer"
 	},
 /turf/open/floor/ruinedwood/spiral,
@@ -17696,7 +17696,7 @@
 /turf/open/floor/wood/nosmooth,
 /area/indoors/town)
 "psl" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Arthur"
 	},
@@ -19072,7 +19072,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/indoors/town/keep/gate)
 "qCE" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
+/mob/living/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "qCF" = (
@@ -19412,7 +19412,7 @@
 /area/indoors/town/clocktower)
 "qTg" = (
 /obj/structure/fluff/railing/wood,
-/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
+/mob/living/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "qTl" = (
@@ -19590,7 +19590,7 @@
 /obj/structure/fluff/railing/wood{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/goatmale,
+/mob/living/simple_animal/hostile/retaliate/goatmale,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "qZM" = (
@@ -21179,7 +21179,7 @@
 /turf/open/floor/woodturned,
 /area/indoors/butchershop)
 "syp" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig,
+/mob/living/simple_animal/hostile/retaliate/trufflepig,
 /obj/structure/fluff/railing/wood{
 	dir = 1
 	},
@@ -21969,7 +21969,7 @@
 /turf/open/floor/cobble,
 /area/indoors/town/bath)
 "tmg" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bigrat,
+/mob/living/simple_animal/hostile/retaliate/bigrat,
 /turf/open/floor/dirt/road,
 /area/under/town/sewer)
 "tmt" = (
@@ -23508,7 +23508,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/outdoors/town)
 "uJI" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bull,
+/mob/living/simple_animal/hostile/retaliate/bull,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "uJJ" = (
@@ -23536,7 +23536,7 @@
 /turf/open/openspace,
 /area/indoors/town/keep/knight)
 "uLM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig,
+/mob/living/simple_animal/hostile/retaliate/trufflepig,
 /turf/open/floor/dirt,
 /area/outdoors/town)
 "uMc" = (
@@ -23832,7 +23832,7 @@
 /turf/open/floor/cobblerock,
 /area/under/town/sewer)
 "vbr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider,
+/mob/living/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/naturalstone,
 /area/under/town/sewer)
 "vbv" = (
@@ -24193,7 +24193,7 @@
 /turf/open/floor/wood,
 /area/indoors/town)
 "vul" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Herbert"
 	},
@@ -24594,7 +24594,7 @@
 /turf/open/floor/cobble,
 /area/under/town/basement)
 "vKq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider,
+/mob/living/simple_animal/hostile/retaliate/spider,
 /turf/open/floor/cobblerock,
 /area/under/town/sewer)
 "vKR" = (
@@ -27028,7 +27028,7 @@
 /turf/open/floor/tile,
 /area/indoors/town/tavern)
 "xMT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf{
+/mob/living/simple_animal/hostile/retaliate/wolf{
 	del_on_deaggro = 0;
 	name = "Galahad"
 	},

@@ -29,7 +29,7 @@
 	if(attack_delay_mult != 1)
 		affected.next_move_modifier /= attack_delay_mult
 	if(crippled_zone && istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		animal.clear_part_damage(crippled_zone)
 
 /datum/wound/cripple/limb
@@ -66,7 +66,7 @@
 /datum/wound/cripple/maw/on_mob_gain(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		removed_lower = round(animal.melee_damage_lower * damage_penalty, 1)
 		removed_upper = round(animal.melee_damage_upper * damage_penalty, 1)
 		animal.melee_damage_lower = max(0, animal.melee_damage_lower - removed_lower)
@@ -76,7 +76,7 @@
 /datum/wound/cripple/maw/on_mob_loss(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		animal.melee_damage_lower += removed_lower
 		animal.melee_damage_upper += removed_upper
 	REMOVE_TRAIT(affected, TRAIT_NO_BITE, "[type]")
@@ -97,7 +97,7 @@
 /datum/wound/cripple/arm/on_mob_gain(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		removed_lower = round(animal.melee_damage_lower * damage_penalty, 1)
 		removed_upper = round(animal.melee_damage_upper * damage_penalty, 1)
 		animal.melee_damage_lower = max(0, animal.melee_damage_lower - removed_lower)
@@ -106,7 +106,7 @@
 /datum/wound/cripple/arm/on_mob_loss(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		animal.melee_damage_lower += removed_lower
 		animal.melee_damage_upper += removed_upper
 
@@ -135,8 +135,8 @@
 
 /datum/wound/cripple/skull/on_mob_gain(mob/living/affected)
 	. = ..()
-	if(istype(affected, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/hostile_affected = affected
+	if(istype(affected, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/hostile_affected = affected
 		removed_vision = min(vision_penalty, max(0, hostile_affected.vision_range - 1))
 		removed_aggro = min(vision_penalty, max(0, hostile_affected.aggro_vision_range - 1))
 		hostile_affected.vision_range = max(1, hostile_affected.vision_range - removed_vision)
@@ -147,8 +147,8 @@
 
 /datum/wound/cripple/skull/on_mob_loss(mob/living/affected)
 	. = ..()
-	if(istype(affected, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/hostile_affected = affected
+	if(istype(affected, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/hostile_affected = affected
 		hostile_affected.vision_range += removed_vision
 		hostile_affected.aggro_vision_range += removed_aggro
 	if(mortal_break)
@@ -178,7 +178,7 @@
 /datum/wound/cripple/fatal/on_mob_gain(mob/living/affected)
 	. = ..()
 	if(istype(affected, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal = affected
+		var/mob/living/simple_animal/animal = affected
 		animal.no_reanimate = TRUE
 	affected.visible_message(span_danger(kill_message(affected)))
 	var/turf/where = affected.drop_location()
@@ -233,7 +233,7 @@
 /datum/wound/cripple/limb/topple/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.Stun(20, ignore_canstun = TRUE)
-	var/mob/living/carbon/simple_animal/animal = affected
+	var/mob/living/simple_animal/animal = affected
 	if(istype(animal) && animal.sprite_drawn_prone())
 		return
 	upright_transform = matrix(affected.transform)
@@ -289,14 +289,14 @@
 
 /datum/wound/cripple/spinneret/on_mob_gain(mob/living/affected)
 	. = ..()
-	var/mob/living/carbon/simple_animal/hostile/beast = affected
+	var/mob/living/simple_animal/hostile/beast = affected
 	if(istype(beast) && beast.ranged)
 		beast.ranged = FALSE
 		removed_ranged = TRUE
 
 /datum/wound/cripple/spinneret/on_mob_loss(mob/living/affected)
 	. = ..()
-	var/mob/living/carbon/simple_animal/hostile/beast = affected
+	var/mob/living/simple_animal/hostile/beast = affected
 	if(removed_ranged && istype(beast))
 		beast.ranged = TRUE
 	removed_ranged = FALSE

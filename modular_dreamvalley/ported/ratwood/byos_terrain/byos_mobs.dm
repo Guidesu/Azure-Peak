@@ -1,11 +1,11 @@
-// Mobs for byos.dmm. Ported from Ratwood-2.0 code/modules/mob/living/carbon/simple_animal/rogue/creacher/dragger.dm.
-// Note: /mob/living/carbon/simple_animal/pet/cat/inn is NOT ported here — it already exists
-// implicitly in this codebase (code/modules/mob/living/carbon/simple_animal/friendly/cat.dm
+// Mobs for byos.dmm. Ported from Ratwood-2.0 code/modules/mob/living/simple_animal/rogue/creacher/dragger.dm.
+// Note: /mob/living/simple_animal/pet/cat/inn is NOT ported here — it already exists
+// implicitly in this codebase (code/modules/mob/living/simple_animal/friendly/cat.dm
 // defines an /attack_hand override directly on that path with no explicit parent
 // declaration), exactly as it does upstream, so DM's implicit type creation already
 // gives it a real definition with no vars — the map's direct placement compiles as-is.
 
-/mob/living/carbon/simple_animal/hostile/rogue/dragger/flesh
+/mob/living/simple_animal/hostile/rogue/dragger/flesh
 	name = "FLESH HOMUNCULUS"
 	desc = null
 	icon = 'modular_dreamvalley/ported/ratwood/byos_terrain/icons/flesh.dmi'

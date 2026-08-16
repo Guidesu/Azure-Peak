@@ -28,7 +28,7 @@
 	ranged_attack_behavior = /datum/ai_behavior/opportunistic_ranged_attack
 
 /datum/ai_planning_subtree/basic_ranged_attack_subtree/opportunistic/SelectBehaviors(datum/ai_controller/controller, delta_time)
-	var/mob/living/carbon/simple_animal/hostile/pawn = controller.pawn
+	var/mob/living/simple_animal/hostile/pawn = controller.pawn
 	if(!istype(pawn) || !pawn.ranged || pawn.ranged_cooldown > world.time)
 		return
 	var/atom/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]

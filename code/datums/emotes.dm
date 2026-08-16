@@ -238,7 +238,7 @@
 				H.last_sound = used_sound
 				return used_sound
 		else if(user.mind && isanimal(user))
-			var/mob/living/carbon/simple_animal/A = user
+			var/mob/living/simple_animal/A = user
 			var/datum/voicepack/VP = A.get_animal_voicepack()
 			if(VP)
 				var/possible_sounds = VP.get_sound(key)

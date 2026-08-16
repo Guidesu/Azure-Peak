@@ -365,7 +365,7 @@
 		used_time -= ((medskill * 10) + (human_user.STASPD / 2)) //With 20 SPD you can insta bandage at max medicine.
 
 	if(istype(M, /mob/living/carbon/simple_animal))
-		var/mob/living/carbon/simple_animal/animal_patient = M
+		var/mob/living/simple_animal/animal_patient = M
 		if(!animal_patient.bruteloss)
 			to_chat(user, span_warning("[animal_patient] doesn't need bandaging right now."))
 			return

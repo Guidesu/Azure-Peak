@@ -8,8 +8,8 @@
 	droning_sound_dusk = 'sound/music/area/morosewaters.ogg'
 	droning_sound_night = 'sound/music/area/angrywaters.ogg'
 	ambush_mobs = list(
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone = 50,
-		/mob/living/carbon/simple_animal/hostile/rogue/deepone/spit = 30
+		/mob/living/simple_animal/hostile/rogue/deepone = 50,
+		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30
 	)
 	first_time_text = "ABYSSOR'S GRASP"
 	deathsight_message = "amidst abyssor's grasp"

@@ -56,7 +56,7 @@
 	},
 /area/outdoors/bog/beach/east)
 "abm" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -387,7 +387,7 @@
 /turf/open/floor/blocks,
 /area/indoors/shelter/bog)
 "ahc" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /obj/structure/fluff/walldeco/church/line{
@@ -530,7 +530,7 @@
 /turf/open/floor/abyss_sand,
 /area/under/cavewet)
 "akL" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -539,7 +539,7 @@
 	},
 /area/under/cavewet)
 "akO" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -551,7 +551,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -850,7 +850,7 @@
 /area/under/tomb/indoors/magic)
 "arE" = (
 /obj/structure/flora/ocean_plants,
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_sand/path,
@@ -941,7 +941,7 @@
 /area/under/cavewet)
 "atx" = (
 /obj/structure/flora/shells,
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_sand/path,
@@ -1113,7 +1113,7 @@
 	},
 /area/under/tomb/indoors/magic)
 "awG" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -1198,7 +1198,7 @@
 	},
 /area/under/cavewet)
 "axN" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -1416,7 +1416,7 @@
 /area/under/cavewet)
 "aBB" = (
 /obj/structure/flora/grass/water/reeds,
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/swamp/deep,
 /area/outdoors/bog/north)
 "aBD" = (
@@ -1463,14 +1463,14 @@
 	},
 /area/under/cavewet)
 "aDg" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
 /turf/open/water/ocean,
 /area/under/cavewet)
 "aDr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,
@@ -2074,7 +2074,7 @@
 	},
 /area/under/cavewet)
 "aRu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/metal/alt,
 /area/indoors/shelter/bog/lich)
 "aRB" = (
@@ -2108,7 +2108,7 @@
 /area/indoors/shelter/bog/lich)
 "aSm" = (
 /obj/structure/flora/ocean_plants,
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,
@@ -2184,7 +2184,7 @@
 	},
 /area/under/cavewet)
 "aUx" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -2343,7 +2343,7 @@
 /area/under/cavewet)
 "aWB" = (
 /obj/structure/flora/grass/water,
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,
@@ -2531,7 +2531,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/west)
 "bcH" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/swamp/deep,
 /area/outdoors/bog/beach/east)
 "bcV" = (
@@ -2679,7 +2679,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/outdoors/bog/south/west)
 "bjP" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -3139,7 +3139,7 @@
 /area/outdoors/bog/south/east)
 "bIn" = (
 /obj/structure/flora/kelp,
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,
@@ -3290,7 +3290,7 @@
 	},
 /area/under/cavewet)
 "bNT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/swamp/deep,
 /area/outdoors/bog/north)
 "bOm" = (
@@ -3343,7 +3343,7 @@
 /area/ship/topdeck)
 "bRp" = (
 /obj/structure/closet/dirthole/closed,
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /obj/effect/mapping_helpers/structure/grave_spawner/t2,
 /turf/open/floor/dirt,
 /area/outdoors/bog/central)
@@ -3358,7 +3358,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/south)
 "bTF" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -3620,7 +3620,7 @@
 	},
 /area/under/cavewet)
 "chT" = (
-/mob/living/carbon/simple_animal/hostile/orc/ranged,
+/mob/living/simple_animal/hostile/orc/ranged,
 /turf/open/floor/twig,
 /area/indoors/shelter/bog/inhumen_camp)
 "cii" = (
@@ -3979,7 +3979,7 @@
 	},
 /area/under/cavewet)
 "cBf" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/quiet,
+/mob/living/simple_animal/hostile/retaliate/troll/quiet,
 /turf/open/floor/twig,
 /area/indoors/shelter/bog/inhumen_camp)
 "cBj" = (
@@ -4099,7 +4099,7 @@
 	},
 /area/under/cavewet)
 "cHu" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -4606,7 +4606,7 @@
 /area/indoors/shelter/bog/lich)
 "djF" = (
 /obj/item/natural/stoneblock,
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -4829,7 +4829,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/indoors/shelter/bog)
 "dsH" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean/abyss,
@@ -4950,7 +4950,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -4968,7 +4968,7 @@
 /area/indoors/shelter/bog/inhumen_camp)
 "dAN" = (
 /obj/structure/carpet/blue,
-/mob/living/carbon/simple_animal/hostile/boss/fishboss,
+/mob/living/simple_animal/hostile/boss/fishboss,
 /turf/open/floor/abyss_tile/three{
 	color = "#547285"
 	},
@@ -5257,7 +5257,7 @@
 /turf/open/water/swamp,
 /area/outdoors/bog/north/east)
 "dQc" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -5336,7 +5336,7 @@
 	},
 /area/under/tomb/indoors/magic)
 "dSQ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/water/blood,
@@ -5379,7 +5379,7 @@
 /area/outdoors/bog/e_highroad)
 "dWs" = (
 /obj/effect/decal/shadow_floor,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/concrete,
@@ -5389,7 +5389,7 @@
 	dir = 4;
 	color = "#7D9BAE"
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing{
+/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile{
@@ -5476,7 +5476,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -5592,7 +5592,7 @@
 	},
 /area/under/cavewet)
 "ecx" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -6151,7 +6151,7 @@
 /turf/open/floor/ruinedwood,
 /area/under/cavewet)
 "eEm" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -6314,7 +6314,7 @@
 /turf/open/water/swamp,
 /area/outdoors/bog/south/west)
 "eLF" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile{
@@ -6474,7 +6474,7 @@
 "eSt" = (
 /obj/structure/chair/stool/bar,
 /obj/structure/spider/stickyweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/woodturned,
 /area/indoors/ship)
 "eSS" = (
@@ -6714,7 +6714,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/ship/topdeck)
 "ffD" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -6802,7 +6802,7 @@
 /turf/open/floor/wood,
 /area/indoors/ship)
 "fkm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -6980,7 +6980,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/snapper{
+/mob/living/simple_animal/hostile/retaliate/snapper{
 	faction = list("Undead")
 	},
 /turf/open/floor/tile/diamond/blue,
@@ -7028,7 +7028,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog/south)
 "fvF" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -7197,7 +7197,7 @@
 	pixel_x = -17;
 	pixel_y = -18
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/blood/weird{
+/mob/living/simple_animal/hostile/retaliate/blood/weird{
 	faction = list("Hostile")
 	},
 /turf/open/floor/tile/diamond/purple,
@@ -7425,7 +7425,7 @@
 /turf/open/floor/ruinedwood/turned/alt,
 /area/outdoors/bog/witch)
 "fPp" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -7604,7 +7604,7 @@
 /turf/open/floor/tile,
 /area/indoors/shelter/bog/lich)
 "fYw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/dirt,
 /area/outdoors/bog/south/west)
 "fYA" = (
@@ -7642,7 +7642,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -7842,7 +7842,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -8250,7 +8250,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog/inhumen_camp)
 "gGm" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -8339,7 +8339,7 @@
 	},
 /area/under/cavewet)
 "gKM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt,
 /area/outdoors/bog/beach)
 "gKR" = (
@@ -8583,7 +8583,7 @@
 	},
 /area/under/cavewet)
 "gXG" = (
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -9284,7 +9284,7 @@
 	},
 /area/under/cavewet)
 "hIS" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/grass,
 /area/outdoors/bog/north)
 "hJP" = (
@@ -9476,7 +9476,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/metal/alt,
@@ -9592,7 +9592,7 @@
 /area/indoors/ship)
 "ifa" = (
 /obj/structure/chair/stool/bar,
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -9654,7 +9654,7 @@
 "iiw" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/stickyweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /obj/item/reagent_containers/food/snacks/spiderhoney/honey/toxic,
 /turf/open/floor/woodturned,
 /area/indoors/ship)
@@ -10110,7 +10110,7 @@
 /turf/open/floor/twig,
 /area/outdoors/bog/south/west)
 "iEg" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/grass,
 /area/outdoors/bog/south/east)
 "iEm" = (
@@ -10143,7 +10143,7 @@
 /turf/open/floor/abyss_sand,
 /area/outdoors/bog/beach/east)
 "iHr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -10545,7 +10545,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/indoors/shelter/bog)
 "iYX" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt,
 /area/outdoors/bog/north/east)
 "iZf" = (
@@ -10583,7 +10583,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -10758,7 +10758,7 @@
 /turf/open/water/swamp,
 /area/outdoors/bog/central)
 "jhf" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -10914,7 +10914,7 @@
 /turf/open/floor/tile/kitchen,
 /area/under/cavewet)
 "jqN" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/direbear{
+/mob/living/simple_animal/hostile/retaliate/direbear{
 	dir = 8;
 	color = "#4B758F";
 	name = "Sea Bear";
@@ -10954,7 +10954,7 @@
 	},
 /area/under/cavewet)
 "jsw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_sand,
@@ -11096,7 +11096,7 @@
 "jAc" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11105,7 +11105,7 @@
 	},
 /area/under/cavewet)
 "jAd" = (
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11185,7 +11185,7 @@
 /area/under/cavewet)
 "jEm" = (
 /obj/item/natural/stone,
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11467,7 +11467,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors/bog/east)
 "jSx" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11674,7 +11674,7 @@
 	},
 /area/under/cavewet)
 "kds" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/direbear{
+/mob/living/simple_animal/hostile/retaliate/direbear{
 	dir = 8;
 	color = "#4B758F";
 	name = "Sea Bear";
@@ -11741,7 +11741,7 @@
 /turf/open/floor/cobble,
 /area/outdoors/bog/north/west)
 "kgt" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt,
 /area/outdoors/bog/east)
 "kgA" = (
@@ -11783,7 +11783,7 @@
 /turf/open/floor/cobblerock,
 /area/indoors/shelter/bog/witch)
 "khU" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11861,7 +11861,7 @@
 /turf/open/floor/metal/barograte/open,
 /area/indoors/shelter/bog/lich)
 "kmN" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -11902,7 +11902,7 @@
 	},
 /area/under/cavewet)
 "knB" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/headless{
+/mob/living/simple_animal/hostile/retaliate/headless{
 	faction = list("Hostile")
 	},
 /turf/open/water/blood,
@@ -12121,7 +12121,7 @@
 /turf/open/floor/dirt,
 /area/outdoors/bog/east)
 "kxN" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -12240,7 +12240,7 @@
 	},
 /area/under/cavewet)
 "kDe" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/water/blood,
@@ -12304,7 +12304,7 @@
 /turf/open/water/swamp/deep,
 /area/outdoors/bog/north/west)
 "kEL" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -12435,7 +12435,7 @@
 /obj/structure/fluff/walldeco/bath/wallpipes/innie{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/carpet/royalblack,
@@ -12683,7 +12683,7 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/fluff/steamvent,
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/metal/barograte,
 /area/indoors/shelter/bog/lich)
 "kYy" = (
@@ -12714,7 +12714,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/west)
 "las" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -12875,7 +12875,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/indoors/shelter/bog/lich)
 "llp" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -13082,7 +13082,7 @@
 	},
 /area/outdoors/bog/east)
 "lvO" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /obj/structure/fluff/walldeco/bath/wallrope{
@@ -13134,7 +13134,7 @@
 "lyu" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/cobweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/blocks,
 /area/indoors/shelter/bog)
 "lyx" = (
@@ -13177,7 +13177,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/concrete,
@@ -13269,7 +13269,7 @@
 /turf/open/floor/concrete,
 /area/outdoors/bog/e_highroad)
 "lEu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/metal/alt,
@@ -13319,7 +13319,7 @@
 /turf/open/floor/dirt/road,
 /area/outdoors/bog/inhumen_camp)
 "lHP" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -13398,7 +13398,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/central)
 "lMw" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -13813,7 +13813,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -14006,7 +14006,7 @@
 /turf/closed/wall/mineral/decostone/moss,
 /area/outdoors/bog/north)
 "mtM" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -14847,7 +14847,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/indoors/shelter/bog/lich)
 "noy" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/blood/weird{
+/mob/living/simple_animal/hostile/retaliate/blood/weird{
 	faction = list("Hostile")
 	},
 /turf/open/floor/tile/diamond/purple,
@@ -15088,7 +15088,7 @@
 /area/under/cavewet)
 "nzG" = (
 /obj/structure/fluff/walldeco/chains,
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/blocks,
 /area/indoors/shelter/bog/lich)
 "nzX" = (
@@ -15140,7 +15140,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/indoors/shelter/bog/lich)
 "nCu" = (
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -15169,7 +15169,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/snapper{
+/mob/living/simple_animal/hostile/retaliate/snapper{
 	faction = list("Undead")
 	},
 /turf/open/floor/carpet/royalblack,
@@ -15261,7 +15261,7 @@
 /turf/open/floor/concrete,
 /area/indoors/shelter/bog/lich)
 "nKt" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/direbear{
+/mob/living/simple_animal/hostile/retaliate/direbear{
 	dir = 8;
 	color = "#4B758F";
 	name = "Sea Bear";
@@ -15641,7 +15641,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile{
@@ -15903,7 +15903,7 @@
 	pixel_y = 15;
 	pixel_x = -17
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/robotic{
+/mob/living/simple_animal/hostile/retaliate/spider/robotic{
 	faction = list("Undead")
 	},
 /turf/open/floor/carpet/royalblack,
@@ -16253,7 +16253,7 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/ship/topdeck)
 "oOm" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -16447,7 +16447,7 @@
 	},
 /area/under/cavewet)
 "peq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing{
+/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -17206,7 +17206,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/shelter/bog)
 "qeJ" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -17257,7 +17257,7 @@
 /turf/open/floor/concrete,
 /area/outdoors/bog/central)
 "qhe" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -17410,7 +17410,7 @@
 	},
 /area/under/cavewet)
 "qrF" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -17528,7 +17528,7 @@
 /turf/open/floor/tile/diamond/blue,
 /area/indoors/shelter/bog/lich)
 "qwH" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18107,7 +18107,7 @@
 /area/outdoors/bog/central)
 "rcO" = (
 /obj/structure/chair/stool/bar,
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18212,7 +18212,7 @@
 "rho" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18318,7 +18318,7 @@
 	},
 /area/under/cavewet)
 "rqR" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18419,7 +18419,7 @@
 /turf/open/floor/ruinedwood/turned/alt,
 /area/outdoors/bog/beach/east)
 "ruA" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18458,7 +18458,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/ship/topdeck)
 "rwB" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm{
+/mob/living/simple_animal/hostile/deepone/arm{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -18634,7 +18634,7 @@
 "rEM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19116,7 +19116,7 @@
 /area/outdoors/bog/east)
 "srA" = (
 /obj/structure/flora/grass/water,
-/mob/living/carbon/simple_animal/hostile/retaliate/minotaur/axe{
+/mob/living/simple_animal/hostile/retaliate/minotaur/axe{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,
@@ -19161,7 +19161,7 @@
 /turf/open/floor/concrete,
 /area/outdoors/bog/w_highroad)
 "stv" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19350,7 +19350,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /turf/open/floor/herringbone,
 /area/indoors/shelter/bog/lich)
 "sDM" = (
@@ -19434,7 +19434,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/gator{
+/mob/living/simple_animal/hostile/retaliate/gator{
 	faction = list("Orcs")
 	},
 /turf/open/floor/ruinedwood/turned/darker,
@@ -19500,7 +19500,7 @@
 /turf/closed/wall/mineral/decostone/moss,
 /area/outdoors/bog/north/west)
 "sKM" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19532,7 +19532,7 @@
 	},
 /area/under/cavewet)
 "sNr" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19616,19 +19616,19 @@
 	},
 /area/indoors/wilderness/magic)
 "sTl" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/blood{
+/mob/living/simple_animal/hostile/retaliate/blood{
 	faction = list("Undead")
 	},
 /turf/open/floor/concrete,
 /area/indoors/shelter/bog/lich)
 "sTr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/swamp_kraken{
+/mob/living/simple_animal/hostile/retaliate/swamp_kraken{
 	anchored = 1
 	},
 /turf/open/water/ocean/abyss,
 /area/under/cavewet)
 "sTw" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19732,7 +19732,7 @@
 /turf/open/water/ocean,
 /area/outdoors/bog/beach)
 "sZR" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -19921,7 +19921,7 @@
 	color = "#7D9BAE";
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -20326,7 +20326,7 @@
 /turf/open/floor/twig,
 /area/outdoors/bog/east)
 "tKQ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/swamp,
 /area/outdoors/bog/north/west)
 "tLw" = (
@@ -20392,7 +20392,7 @@
 /turf/open/floor/twig,
 /area/outdoors/bog/e_highroad)
 "tOt" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -20740,7 +20740,7 @@
 /area/under/cavewet)
 "udZ" = (
 /obj/structure/carpet/blue,
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -20767,7 +20767,7 @@
 /area/indoors/shelter/bog/witch)
 "ufw" = (
 /obj/structure/carpet/blue,
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -20811,7 +20811,7 @@
 /turf/open/floor/abyss_tile,
 /area/outdoors/bog/central)
 "uhu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/grass,
 /area/outdoors/bog/south/west)
 "uhA" = (
@@ -21081,7 +21081,7 @@
 /turf/open/floor/rooftop/green,
 /area/outdoors/bog/south/west)
 "utJ" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -21127,7 +21127,7 @@
 /area/under/cavewet)
 "uvP" = (
 /obj/structure/chair/stool/bar,
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -21159,7 +21159,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/inhumen_camp)
 "uzv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile{
@@ -21586,7 +21586,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 4
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile{
@@ -21759,7 +21759,7 @@
 /area/under/cavewet)
 "uZu" = (
 /obj/structure/fluff/steamvent,
-/mob/living/carbon/simple_animal/hostile/retaliate/snapper{
+/mob/living/simple_animal/hostile/retaliate/snapper{
 	faction = list("Undead")
 	},
 /turf/open/floor/metal/barograte,
@@ -21791,7 +21791,7 @@
 /turf/open/floor/grass,
 /area/outdoors/bog/north/east)
 "vaY" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/snapper{
+/mob/living/simple_animal/hostile/retaliate/snapper{
 	faction = list("Undead")
 	},
 /turf/open/floor/carpet/royalblack,
@@ -22114,7 +22114,7 @@
 /obj/effect/decal/shadow_floor{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/snapper{
+/mob/living/simple_animal/hostile/retaliate/snapper{
 	faction = list("Undead")
 	},
 /turf/open/floor/concrete,
@@ -22329,7 +22329,7 @@
 	},
 /area/under/cavewet)
 "vAL" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/troll/bog,
+/mob/living/simple_animal/hostile/retaliate/troll/bog,
 /turf/open/floor/dirt,
 /area/outdoors/bog/south/east)
 "vBE" = (
@@ -22402,7 +22402,7 @@
 	},
 /area/outdoors/bog/beach/east)
 "vFT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound{
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/three{
@@ -22410,7 +22410,7 @@
 	},
 /area/indoors/wilderness/magic)
 "vGE" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -22520,7 +22520,7 @@
 /turf/open/floor/concrete,
 /area/indoors/shelter/bog/lich)
 "vLB" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/mimic,
+/mob/living/simple_animal/hostile/retaliate/mimic,
 /obj/machinery/light/fueled/wallfire/candle/blue{
 	pixel_x = 32;
 	pixel_y = 0
@@ -22748,7 +22748,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/outdoors/bog/beach)
 "vWV" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/floor/dirt,
 /area/outdoors/bog/east)
 "vXy" = (
@@ -22820,7 +22820,7 @@
 /turf/closed/wall/mineral/pipe,
 /area/indoors/shelter/bog/lich)
 "waU" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon,
+/mob/living/simple_animal/hostile/retaliate/voiddragon,
 /turf/open/floor/abyss_tile/three{
 	color = "#7D9BAE"
 	},
@@ -22872,7 +22872,7 @@
 /turf/open/openspace,
 /area/outdoors/bog/lich)
 "wcT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /turf/open/floor/abyss_tile/two{
@@ -22891,7 +22891,7 @@
 /area/outdoors/bog/witch)
 "wdo" = (
 /obj/structure/fluff/nest,
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -22915,7 +22915,7 @@
 	dir = 8
 	},
 /obj/structure/fluff/walldeco/church/line,
-/mob/living/carbon/simple_animal/hostile/retaliate/direbear{
+/mob/living/simple_animal/hostile/retaliate/direbear{
 	dir = 8;
 	color = "#4B758F";
 	name = "Sea Bear";
@@ -22999,7 +22999,7 @@
 "wgT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/spider/stickyweb,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/wood,
 /area/indoors/ship)
 "whe" = (
@@ -23060,7 +23060,7 @@
 /turf/open/water/blood,
 /area/under/cavewet)
 "wlf" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -23165,7 +23165,7 @@
 /turf/open/floor/churchrough/green,
 /area/outdoors/bog/central)
 "wqA" = (
-/mob/living/carbon/simple_animal/hostile/orc/ranged,
+/mob/living/simple_animal/hostile/orc/ranged,
 /turf/open/floor/dirt/road,
 /area/outdoors/bog/inhumen_camp)
 "wrs" = (
@@ -23410,7 +23410,7 @@
 	color = "#7D9BAE";
 	dir = 4
 	},
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -23609,7 +23609,7 @@
 	},
 /area/under/cavewet)
 "wNQ" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -23864,7 +23864,7 @@
 /area/indoors/shelter/bog/witch)
 "xbo" = (
 /obj/structure/fluff/walldeco/church/line,
-/mob/living/carbon/simple_animal/hostile/deepone/elite{
+/mob/living/simple_animal/hostile/deepone/elite{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -23979,7 +23979,7 @@
 /turf/open/floor/concrete,
 /area/outdoors/bog/e_highroad)
 "xiA" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/mimic{
+/mob/living/simple_animal/hostile/retaliate/mimic{
 	faction = list("mimic","Undead")
 	},
 /turf/open/glass,
@@ -24399,7 +24399,7 @@
 /turf/open/floor/blocks/newstone,
 /area/outdoors/bog/e_highroad)
 "xCj" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
+/mob/living/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/bog/witch)
 "xCL" = (
@@ -24508,7 +24508,7 @@
 /turf/open/water/ocean,
 /area/under/tomb/indoors/magic)
 "xFj" = (
-/mob/living/carbon/simple_animal/hostile/deepone{
+/mob/living/simple_animal/hostile/deepone{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -24608,7 +24608,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/under/cavewet)
 "xLH" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit{
+/mob/living/simple_animal/hostile/deepone/spit{
 	faction = list("Hostile");
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/mince/fish = 5, /obj/item/alch/viscera = 2)
 	},
@@ -24738,7 +24738,7 @@
 /turf/open/water/swamp,
 /area/outdoors/bog/south/west)
 "xPm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shark{
+/mob/living/simple_animal/hostile/retaliate/shark{
 	faction = list("Hostile")
 	},
 /obj/structure/fluff/walldeco/church/line,
@@ -24946,7 +24946,7 @@
 /area/under/cavewet)
 "yeL" = (
 /obj/structure/flora/ocean_plants,
-/mob/living/carbon/simple_animal/hostile/retaliate/bogbug{
+/mob/living/simple_animal/hostile/retaliate/bogbug{
 	faction = list("Hostile")
 	},
 /turf/open/water/ocean,

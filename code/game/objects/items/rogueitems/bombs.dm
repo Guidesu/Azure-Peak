@@ -76,7 +76,7 @@
 	playsound(T, 'sound/items/firesnuff.ogg', 100)
 	for(var/mob/living/target in range(1, T))
 		if(istype(target, /mob/living/carbon/simple_animal))
-			var/mob/living/carbon/simple_animal/SA = target
+			var/mob/living/simple_animal/SA = target
 			if(SA.can_buckle) // rideable/saddleborn animals are excluded
 				continue
 		if(target.mob_timers[MT_BOMB_HIT] && world.time < target.mob_timers[MT_BOMB_HIT] + BOMB_HIT_IMMUNITY_DURATION)

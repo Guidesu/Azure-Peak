@@ -4,10 +4,10 @@
 	var/dodge_fatigue_updated = 0
 	var/winded_until = 0
 
-/mob/living/carbon/simple_animal/proc/is_winded()
+/mob/living/simple_animal/proc/is_winded()
 	return world.time < winded_until
 
-/mob/living/carbon/simple_animal/proc/current_dodge_fatigue()
+/mob/living/simple_animal/proc/current_dodge_fatigue()
 	if(dodge_fatigue <= 0)
 		return 0
 	var/idle = world.time - dodge_fatigue_updated - SIMPLEMOB_DODGE_RECOVERY_DELAY
@@ -17,7 +17,7 @@
 	dodge_fatigue_updated = world.time
 	return dodge_fatigue
 
-/mob/living/carbon/simple_animal/proc/spend_dodge_reserve()
+/mob/living/simple_animal/proc/spend_dodge_reserve()
 	dodge_fatigue = min(current_dodge_fatigue() + SIMPLEMOB_DODGE_FATIGUE_PER_DODGE, SIMPLEMOB_DODGE_FATIGUE_MAX)
 	dodge_fatigue_updated = world.time
 	if(dodge_fatigue < SIMPLEMOB_DODGE_FATIGUE_MAX)
@@ -31,7 +31,7 @@
 	if(pulledby || pulling)
 		return FALSE
 	if(isanimal(src))
-		var/mob/living/carbon/simple_animal/beast = src
+		var/mob/living/simple_animal/beast = src
 		if(beast.is_winded())
 			return FALSE
 	if(world.time < last_dodge + dodgetime)
@@ -314,7 +314,7 @@
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human
-		var/mob/living/carbon/simple_animal/beast = isanimal(src) ? src : null
+		var/mob/living/simple_animal/beast = isanimal(src) ? src : null
 		prob2defend = SIMPLEMOB_DODGE_BASE + ((L.STASPD - U.STASPD) * SIMPLEMOB_DODGE_PER_SPD)
 		if(I && UH)
 			prob2defend -= UH.get_skill_level(I.associated_skill) * SIMPLEMOB_DODGE_PER_SKILL

@@ -1,11 +1,11 @@
-// /mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/find_food()
+// /mob/living/simple_animal/hostile/retaliate/rogue/camel/find_food()
 // 	..()
 // 	var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
 // 	if(SV)
 // 		SV.eat(src)
 // 		food = max(food + 30, 100)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -18,16 +18,16 @@
 			var/mutable_appearance/mounted = mutable_appearance(icon, "camel_mounted", 4.3)
 			add_overlay(mounted)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/tamed()
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/tamed()
 	..()
 	deaggroprob = 30
 	setup_mount(list(TEXT_NORTH = list(0, 10), TEXT_SOUTH = list(0, 10), TEXT_EAST = list(-6, 10), TEXT_WEST = list(6, 10)))
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/death()
 	unbuckle_all_mobs()
 	. = ..()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel
+/mob/living/simple_animal/hostile/retaliate/rogue/camel
 	icon = 'modular_deserttown/icons/camel.dmi'
 	name = "camel"
 	desc = ""
@@ -42,7 +42,7 @@
 	see_in_dark = 6
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	move_to_delay = 8
-	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel
+	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/camel
 
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
 						/obj/item/natural/hide = 2)
@@ -86,7 +86,7 @@
 	icon_state = "camel_dead"
 	icon = 'modular_deserttown/icons/camel.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/saiga/attack (1).ogg', 'sound/vo/mobs/saiga/attack (2).ogg')
@@ -97,10 +97,10 @@
 		if("idle")
 			return pick('sound/vo/mobs/saiga/idle (1).ogg', 'sound/vo/mobs/saiga/idle (2).ogg', 'sound/vo/mobs/saiga/idle (3).ogg', 'sound/vo/mobs/saiga/idle (4).ogg', 'sound/vo/mobs/saiga/idle (5).ogg', 'sound/vo/mobs/saiga/idle (6).ogg', 'sound/vo/mobs/saiga/idle (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/tame
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/tame
 	tame = TRUE
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel/tame/saddled/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/camel/tame/saddled/Initialize()
 	. = ..()
 	setup_mount(list(TEXT_NORTH = list(0, 10), TEXT_SOUTH = list(0, 10), TEXT_EAST = list(-6, 10), TEXT_WEST = list(6, 10)))
 	var/obj/item/natural/saddle/S = new(src)

@@ -22,7 +22,7 @@
 	if(isturf(the_target) || !the_target) // bail out on invalids
 		return FALSE
 
-	var/mob/living/carbon/simple_animal/simple_mob = living_mob
+	var/mob/living/simple_animal/simple_mob = living_mob
 	if(istype(simple_mob) && simple_mob.binded)
 		return FALSE
 

@@ -53,7 +53,7 @@
 		rewind_type = PROC_REF(rewind_living)
 
 	else if(isanimal(parent))
-		var/mob/living/carbon/simple_animal/M = parent
+		var/mob/living/simple_animal/M = parent
 		brute_loss = M.bruteloss
 		rewind_type = PROC_REF(rewind_animal)
 
@@ -95,7 +95,7 @@
 	rewind_living()
 
 /datum/component/dejavu/proc/rewind_animal()
-	var/mob/living/carbon/simple_animal/master = parent
+	var/mob/living/simple_animal/master = parent
 	master.bruteloss = brute_loss
 	master.updatehealth()
 	rewind_living()

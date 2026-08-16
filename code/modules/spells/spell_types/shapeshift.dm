@@ -20,14 +20,14 @@
 	var/pick_again = null
 	var/shapeshift_type
 	var/list/possible_shapes = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mole,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga
+		/mob/living/simple_animal/hostile/retaliate/rogue/cat,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+		/mob/living/simple_animal/hostile/retaliate/rogue/spider,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mossback,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mole,
+		/mob/living/simple_animal/hostile/retaliate/rogue/saiga
 	)
 
 
@@ -56,7 +56,7 @@
 		if(!shapeshift_type)
 			var/list/animal_list = list()
 			for(var/path in possible_shapes)
-				var/mob/living/carbon/simple_animal/A = path
+				var/mob/living/simple_animal/A = path
 				animal_list[initial(A.name)] = path
 
 			var/choice = input(M, "Choose Your Animal Form!", "It's Morphing Time!", null) as null|anything in sortList(animal_list)
@@ -75,7 +75,7 @@
 			continue
 
 		// Special delayed revert case
-		if(shapeshift_type == /mob/living/carbon/simple_animal/hostile/retaliate/gaseousform)
+		if(shapeshift_type == /mob/living/simple_animal/hostile/retaliate/gaseousform)
 			spawn(100)
 				Restore(M)
 

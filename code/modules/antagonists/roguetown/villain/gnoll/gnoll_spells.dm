@@ -363,7 +363,7 @@
 		if(corpse.stat == DEAD && !was_player)
 			var/is_animal = istype(corpse, /mob/living/carbon/simple_animal)
 			if(is_animal)
-				var/mob/living/carbon/simple_animal/animal = corpse
+				var/mob/living/simple_animal/animal = corpse
 				if(animal.initial_butcher_count > 0 && length(animal.butcher_results) < animal.initial_butcher_count)
 					to_chat(owner, span_warning("This creature has already been partially butchered! There's not enough left to consume."))
 					return FALSE

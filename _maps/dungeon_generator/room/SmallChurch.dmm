@@ -85,7 +85,7 @@
 	dir = 4;
 	pixel_x = 1
 	},
-/mob/living/carbon/simple_animal/hostile/rogue/skeleton/bow,
+/mob/living/simple_animal/hostile/rogue/skeleton/bow,
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/under/tomb/indoors/church)
 "dc" = (
@@ -207,7 +207,7 @@
 	dir = 8;
 	pixel_y = -1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/tomb)
 "gY" = (
@@ -273,11 +273,11 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/tomb/cave/wet)
 "jk" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "jm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /obj/item/rogueore/gold{
 	pixel_y = -12;
 	pixel_x = -10
@@ -334,7 +334,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb)
 "lg" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /obj/item/rogueore/gold{
 	pixel_y = 5;
 	pixel_x = -10
@@ -420,7 +420,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/tomb/indoors/church)
 "nJ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/tomb)
 "nT" = (
@@ -547,7 +547,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "tH" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/cave)
 "uJ" = (
@@ -556,7 +556,7 @@
 	dir = 8;
 	pixel_y = -1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/tomb)
 "uK" = (
@@ -616,7 +616,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "wW" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mimic,
+/mob/living/simple_animal/hostile/retaliate/rogue/mimic,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "xb" = (
@@ -730,7 +730,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "Cp" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb/cave)
 "Cq" = (
@@ -1137,7 +1137,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb)
 "Rp" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb)
 "RM" = (

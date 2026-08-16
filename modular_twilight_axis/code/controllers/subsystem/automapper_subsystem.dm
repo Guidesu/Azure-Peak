@@ -19,7 +19,9 @@ SUBSYSTEM_DEF(automapper)
 	
 /datum/controller/subsystem/automapper/Initialize()
 	if(!fexists(config_file))
-		CRASH("Automapper: TOML file not found: [config_file]")
+		log_world("Automapper: TOML file not found: [config_file], running with empty config.")
+		loaded_config = list("templates" = list())
+		return SS_INIT_SUCCESS
 
 	var/txt = file2text(config_file)
 	if(!istext(txt) || !length(txt))

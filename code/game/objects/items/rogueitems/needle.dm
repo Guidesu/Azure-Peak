@@ -300,7 +300,7 @@
 			else
 				doctor.visible_message(span_notice("[doctor] sews \a [target_wound.name] on [patient]."), span_notice("I stitch \a [target_wound.name] on [patient]."))
 		if(is_simple_animal)
-			var/mob/living/carbon/simple_animal/animal_patient = patient
+			var/mob/living/simple_animal/animal_patient = patient
 			animal_patient.adjustHealth(-((animal_patient.maxHealth / 20) * (medskill + 1)), TRUE)
 		log_combat(doctor, patient, "sew", "needle")
 		return TRUE

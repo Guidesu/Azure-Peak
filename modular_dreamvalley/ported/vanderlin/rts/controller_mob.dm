@@ -137,7 +137,7 @@
 	/// World Core may ever be built per controller.
 	var/has_core = FALSE
 
-	var/worker_type = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fae/sprite
+	var/worker_type = /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite
 
 	/// PHASE 4 (UI): the per-worker panel currently displayed, if any (see
 	/// ui/controller_ui.dm). Unlike the source, this port doesn't overwrite a

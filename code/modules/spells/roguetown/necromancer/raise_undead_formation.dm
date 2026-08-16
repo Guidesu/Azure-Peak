@@ -59,17 +59,17 @@
 
 		switch(skeleton_roll)
 			if(1 to 20)
-				skeleton_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton/axe
+				skeleton_type = /mob/living/simple_animal/hostile/rogue/skeleton/axe
 			if(21 to 30)
-				skeleton_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton/spear
+				skeleton_type = /mob/living/simple_animal/hostile/rogue/skeleton/spear
 			if(31 to 60)
-				skeleton_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton/guard
+				skeleton_type = /mob/living/simple_animal/hostile/rogue/skeleton/guard
 			if(61 to 70)
-				skeleton_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton/axe
+				skeleton_type = /mob/living/simple_animal/hostile/rogue/skeleton/axe
 			if(71 to 100)
-				skeleton_type = /mob/living/carbon/simple_animal/hostile/rogue/skeleton/guard
+				skeleton_type = /mob/living/simple_animal/hostile/rogue/skeleton/guard
 
-		var/mob/living/carbon/simple_animal/hostile/rogue/skeleton/S = new skeleton_type(spawn_turf, owner, cabal_affine)
+		var/mob/living/simple_animal/hostile/rogue/skeleton/S = new skeleton_type(spawn_turf, owner, cabal_affine)
 
 		if(!S)
 			continue

@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena
 	icon = 'modular_deserttown/icons/Hyena.dmi'
 	name = "hyena"
 	desc = "Usually content to leave menfolk alone if well-fed, but something in the wilds turns them hungry, persistent, and vicious."
@@ -58,7 +58,7 @@
 	icon_state = "bones"
 //	icon = 'icons/roguetown/mob/monster/vol.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_flee_while_injured, 0.75, retreat_health)
 
@@ -68,12 +68,12 @@
 	ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/death(gibbed)
 	..()
 	update_icon()
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -86,25 +86,25 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/Life()
 	..()
 	if(pulledby && !tame)
 		Retaliate()
 		GiveTarget(pulledby)
 
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/find_food()
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/find_food()
 	. = ..()
 	if(!.)
 		return eat_bodies()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/hyena/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

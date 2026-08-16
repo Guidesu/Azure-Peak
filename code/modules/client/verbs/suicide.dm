@@ -188,7 +188,7 @@
 		adjustOxyLoss(max(200 - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		death(FALSE)
 
-/mob/living/carbon/simple_animal/verb/suicide()
+/mob/living/simple_animal/verb/suicide()
 	set hidden = 1
 	if(!usr.client.holder)
 		return

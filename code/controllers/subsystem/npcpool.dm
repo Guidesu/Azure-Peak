@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(npcpool)
 	var/list/currentrun = src.currentrun
 
 	while(currentrun.len)
-		var/mob/living/carbon/simple_animal/SA = currentrun[currentrun.len]
+		var/mob/living/simple_animal/SA = currentrun[currentrun.len]
 		--currentrun.len
 
 		if(!SA || SA.ckey || SA.notransform || SA.stat == DEAD)
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(npcpool)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/npcpool/proc/handle_automated_action(mob/living/carbon/simple_animal/mobinput)
+/datum/controller/subsystem/npcpool/proc/handle_automated_action(mob/living/simple_animal/mobinput)
 	if(!mobinput)
 		return
 	if(QDELETED(mobinput))
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(npcpool)
 	mobinput.handle_automated_action()
 	mobinput.action_skip = FALSE
 
-/datum/controller/subsystem/npcpool/proc/handle_automated_movement(mob/living/carbon/simple_animal/mobinput)
+/datum/controller/subsystem/npcpool/proc/handle_automated_movement(mob/living/simple_animal/mobinput)
 	if(!mobinput)
 		return
 	if(QDELETED(mobinput))

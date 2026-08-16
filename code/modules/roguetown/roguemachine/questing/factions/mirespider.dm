@@ -6,7 +6,7 @@
 	faction_tag = FACTION_SPIDERS
 	category = FACTION_CAT_BEAST
 	mob_types = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider = 70,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/drider = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/spider = 70,
+		/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
+		/mob/living/simple_animal/hostile/retaliate/rogue/drider = 10,
 	)

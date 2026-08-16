@@ -180,7 +180,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	if(user == O && isliving(O))
 		var/mob/living/L = O
 		if(isanimal(L))
-			var/mob/living/carbon/simple_animal/A = L
+			var/mob/living/simple_animal/A = L
 			if (!A.dextrous)
 				return
 		if(L.mobility_flags & MOBILITY_MOVE)

@@ -64,7 +64,7 @@
 		/obj/effect/spawner/lootdrop/roguetown/dungeon/clothing = 2,
 	)
 	mobs = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 10,
 		/mob/living/carbon/human/species/skeleton/npc/ambush = 5,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 3,
 	)
@@ -91,7 +91,7 @@
 		/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
 		/mob/living/carbon/human/species/skeleton/npc/mediumspread = 5,
 		/mob/living/carbon/human/species/skeleton/npc/hardspread = 2,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 5,
 	)
 
 /datum/dungeon_biome/cave
@@ -111,11 +111,11 @@
 		/obj/effect/spawner/lootdrop/random_gem = 2,
 	)
 	mobs = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/spider = 5,
 		/mob/living/carbon/human/species/skeleton/npc/ambush = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 2,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 2,
+		/mob/living/simple_animal/hostile/retaliate/rogue/boar = 2,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 2,
 	)
 
 /datum/dungeon_biome/sewer
@@ -135,9 +135,9 @@
 		/obj/effect/spawner/lootdrop/cheap_clutter_spawner = 3,
 	)
 	mobs = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 15,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 15,
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/spider = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/spider = 3,
 	)
 
 /datum/dungeon_biome/lair
@@ -159,9 +159,9 @@
 	)
 	mobs = list(
 		/mob/living/carbon/human/species/skeleton/npc/hardspread = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/troll = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 5,
 	)
 
 /datum/dungeon_biome/treasure
@@ -183,9 +183,9 @@
 	)
 	mobs = list(
 		/mob/living/carbon/human/species/skeleton/npc/hardspread = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/dragon = 1,
+		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/troll = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/dragon = 1,
 	)
 
 // ============================================================================

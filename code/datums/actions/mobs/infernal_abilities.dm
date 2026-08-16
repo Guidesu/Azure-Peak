@@ -84,8 +84,8 @@
 	charge_required = FALSE
 
 	var/list/spawn_types = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/imp,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
+		/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
+		/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
 	)
 	var/summon_count = 2
 	/// Hard ceiling on how many of its own summons can be alive at once.

@@ -485,7 +485,7 @@
 	miracle = TRUE
 	devotion_cost = 50
 	var/townercrab = TRUE //I was looking at this for three days and i am utterly stupid for not fixing it
-	var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback/summoned
+	var/mob/living/simple_animal/hostile/retaliate/rogue/mossback/summoned
 
 /obj/effect/proc_holder/spell/invoked/call_mossback/cast(list/targets, mob/living/user)
 	. = ..()
@@ -494,7 +494,7 @@
 		if(!user.mind.has_spell(/datum/action/cooldown/spell/minion_order))
 			user.mind.AddSpell(new /datum/action/cooldown/spell/minion_order)
 		QDEL_NULL(summoned)
-		summoned = new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mossback(T, user, townercrab)
+		summoned = new /mob/living/simple_animal/hostile/retaliate/rogue/mossback(T, user, townercrab)
 		return TRUE
 	else
 		to_chat(user, span_warning("The targeted location is blocked. My call fails to draw a mossback."))
@@ -539,7 +539,7 @@
 	if(!summon_dreamfiend(
 		target = target,
 		user = user,
-		F = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend,
+		F = /mob/living/simple_animal/hostile/rogue/dreamfiend,
 		outer_tele_radius = outer_tele_radius,
 		inner_tele_radius = inner_tele_radius,
 		include_dense = FALSE,
@@ -551,7 +551,7 @@
 
 	return TRUE
 
-/proc/summon_dreamfiend(mob/living/target, mob/living/user, mob/F = /mob/living/carbon/simple_animal/hostile/rogue/dreamfiend, outer_tele_radius = 3, inner_tele_radius = 2, include_dense = FALSE, include_teleport_restricted = FALSE)
+/proc/summon_dreamfiend(mob/living/target, mob/living/user, mob/F = /mob/living/simple_animal/hostile/rogue/dreamfiend, outer_tele_radius = 3, inner_tele_radius = 2, include_dense = FALSE, include_teleport_restricted = FALSE)
 	var/turf/target_turf = get_turf(target)
 	var/list/turfs = list()
 
@@ -672,9 +672,9 @@
 	var/casts_in_stage = 0
 	var/current_stage3_chance = 50
 	var/static/list/stage_mobs = list(
-		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend,
-		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/major,
-		/mob/living/carbon/simple_animal/hostile/rogue/dreamfiend/ancient
+		/mob/living/simple_animal/hostile/rogue/dreamfiend,
+		/mob/living/simple_animal/hostile/rogue/dreamfiend/major,
+		/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient
 	)
 
 /obj/effect/proc_holder/spell/invoked/abyssal_strength/cast(list/targets, mob/living/user)

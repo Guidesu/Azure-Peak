@@ -1,6 +1,6 @@
 /datum/ambush_config/pair_of_direbear
 	mob_types = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear = 2
+		/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 2
 	)
 	threat_point = 2 * THREAT_DEADLY
 	faction_tag = "wildlife"
@@ -14,14 +14,14 @@
 
 /datum/ambush_config/singular_minotaur
 	mob_types = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 1
+		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 1
 	)
 	threat_point = THREAT_ELITE
 	faction_tag = "wildlife"
 
 /datum/ambush_config/duo_minotaur
 	mob_types = list(
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/minotaur = 2
+		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 2
 	)
 	threat_point = 2 * THREAT_ELITE
 	faction_tag = "wildlife"

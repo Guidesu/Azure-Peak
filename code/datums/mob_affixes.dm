@@ -192,15 +192,15 @@ GLOBAL_LIST_INIT(mob_affixes, list(
 	forbidden_affixes = list(/datum/mob_affix/steadfast, /datum/mob_affix/clumsy, /datum/mob_affix/weak)
 
 /datum/mob_affix/berserker/on_apply(mob/living/M, tier = 1)
-	if(istype(M, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/H = M
+	if(istype(M, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = M
 		H.melee_damage_lower += 5 * tier
 		H.melee_damage_upper += 5 * tier
 		H.move_to_delay = max(1, H.move_to_delay - (2 * tier))
 
 /datum/mob_affix/berserker/on_remove(mob/living/M)
-	if(istype(M, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/H = M
+	if(istype(M, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = M
 		H.melee_damage_lower -= 5
 		H.melee_damage_upper -= 5
 		H.move_to_delay += 2
@@ -283,13 +283,13 @@ GLOBAL_LIST_INIT(mob_affixes, list(
 	forbidden_affixes = list(/datum/mob_affix/clumsy, /datum/mob_affix/giant)
 
 /datum/mob_affix/swift/on_apply(mob/living/M, tier = 1)
-	if(istype(M, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/H = M
+	if(istype(M, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = M
 		H.move_to_delay = max(1, H.move_to_delay - tier)
 
 /datum/mob_affix/swift/on_remove(mob/living/M)
-	if(istype(M, /mob/living/carbon/simple_animal/hostile))
-		var/mob/living/carbon/simple_animal/hostile/H = M
+	if(istype(M, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = M
 		H.move_to_delay += 1
 
 /datum/mob_affix/armored

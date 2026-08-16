@@ -215,4 +215,4 @@
 
 /obj/structure/closet/crate/chest/saigabuck/Initialize()
 	. = ..()
-	new /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled(src)
+	new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled(src)

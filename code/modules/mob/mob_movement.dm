@@ -272,14 +272,14 @@
 		return TRUE
 
 	if(isanimal(mob.pulling))
-		var/mob/living/carbon/simple_animal/bound = mob.pulling
+		var/mob/living/simple_animal/bound = mob.pulling
 		if(bound.binded)
 			move_delay = world.time + 10
 			to_chat(src, span_warning("[bound] is bound in a summoning circle. I can't move them!"))
 			return TRUE
 
 	if(isanimal(mob.pulling))
-		var/mob/living/carbon/simple_animal/bound = mob.pulling
+		var/mob/living/simple_animal/bound = mob.pulling
 		if(bound.binded)
 			move_delay = world.time + 10
 			to_chat(src, span_warning("[bound] is bound in a summoning circle. I can't move them!"))
@@ -296,7 +296,7 @@
 		if(buckled)
 			return TRUE
 	if(isanimal(pulling))
-		var/mob/living/carbon/simple_animal/bound = pulling
+		var/mob/living/simple_animal/bound = pulling
 		if(bound.binded)
 			return TRUE
 
@@ -685,8 +685,8 @@
 /mob/proc/toggle_rogmove_intent(intent, silent = FALSE)
 	var/is_mounted = FALSE
 	if(buckled && intent != MOVE_INTENT_SNEAK)
-		if(is_type_in_list(buckled, list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast)))
-			var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/mount = buckled
+		if(is_type_in_list(buckled, list(/mob/living/simple_animal/hostile/retaliate/rogue/saiga, /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast)))
+			var/mob/living/simple_animal/hostile/retaliate/rogue/mount = buckled
 			is_mounted = TRUE
 			if(m_intent == MOVE_INTENT_WALK)
 				visible_message(span_notice("[src] digs their heels into \the [mount], preparing to gallop!"))

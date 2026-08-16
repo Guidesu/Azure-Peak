@@ -105,7 +105,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "nm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave/lava)
 "np" = (
@@ -163,7 +163,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave/lava)
 "sb" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "sp" = (
@@ -174,11 +174,11 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/indoors)
 "uk" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb/cave/lava)
 "uw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/tomb/cave/lava)
 "uE" = (
@@ -195,7 +195,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/cave/lava)
 "zf" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/indoors)
 "zW" = (
@@ -217,7 +217,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "FD" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/cave/lava)
 "FI" = (
@@ -243,7 +243,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "Hq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/indoors)
 "Hs" = (
@@ -268,7 +268,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/under/tomb/cave/lava)
 "Ie" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "ID" = (

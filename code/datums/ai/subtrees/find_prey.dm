@@ -66,49 +66,49 @@
 	if(!isanimal(L))
 		return FALSE
 	// Don't hunt other large predators
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/wolf))
 		return FALSE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc))
 		return FALSE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc))
 		return FALSE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/troll))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/troll))
 		return FALSE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/direbear))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/direbear))
 		return FALSE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/boar))
 		return FALSE // Boars are too tough to be prey
 	// Hunt domestic animals
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/chicken))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/cow))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/bull))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/goat))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/goatmale))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/swine))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/cat))
 		return TRUE
 	// Hunt wild herd animals
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/saiga))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/fogbeast))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/camel))
 		return TRUE
 	// Hunt small animals (easy prey for wolves)
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/fox))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/raccoon))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/badger))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/bobcat))
 		return TRUE
-	if(istype(L, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat))
+	if(istype(L, /mob/living/simple_animal/hostile/retaliate/rogue/bigrat))
 		return TRUE
 	return FALSE

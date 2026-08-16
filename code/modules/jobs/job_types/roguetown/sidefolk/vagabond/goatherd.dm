@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/vagabond/goatherd
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	category_tags = list(CTAG_VAGABOND)
-	horse = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale/tame
+	horse = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_INT = -1,
@@ -42,6 +42,6 @@
 		SStreasury.grant_savings(ECONOMIC_DESTITUTE, H)
 		H.adjust_skillrank(/datum/skill/misc/riding, rand(1,6), TRUE)//This could potentially be hilarious
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat/tame/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/goat/tame/Initialize()
 	..()
 	tamed()

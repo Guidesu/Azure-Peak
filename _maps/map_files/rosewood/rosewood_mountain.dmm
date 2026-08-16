@@ -25,7 +25,7 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/indoors/mountains/anvil/surface/building)
 "al" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "as" = (
@@ -231,7 +231,7 @@
 /area/under/mountains/anvil/dungeon/lower)
 "ck" = (
 /obj/effect/spawner/map_spawner/loot/potion_ingredient/herb,
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "cl" = (
@@ -281,7 +281,7 @@
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/dungeon)
 "cw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/cobble,
@@ -290,7 +290,7 @@
 /turf/open/water/river,
 /area/under/cavewet)
 "cz" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/cobble,
@@ -338,11 +338,11 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "cR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/dungeon)
 "cS" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher,
+/mob/living/simple_animal/hostile/retaliate/infernal/watcher,
 /turf/open/floor/grass/red,
 /area/under/mountains/anvil/upper)
 "cV" = (
@@ -404,7 +404,7 @@
 /area/under/mountains/anvil/upper)
 "dt" = (
 /obj/structure/spider/cocoon,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "dv" = (
@@ -468,7 +468,7 @@
 /area/under/mountains/anvil/upper)
 "dR" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/mid,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	name = "Guardian Warden"
 	},
 /turf/open/floor/herringbone,
@@ -796,7 +796,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "gw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/dungeon/lower)
 "gx" = (
@@ -829,7 +829,7 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/indoors/mountains/anvil/surface/building)
 "gF" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "gG" = (
@@ -988,7 +988,7 @@
 /obj/structure/chair/wood/alt/fancy{
 	dir = 4
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "hv" = (
@@ -1034,7 +1034,7 @@
 /turf/open/floor/grass/cold,
 /area/under/mountains/anvil/upper)
 "hN" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/grass/red,
 /area/under/mountains/anvil/upper)
 "hP" = (
@@ -1103,7 +1103,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "in" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /obj/machinery/light/fueled/wallfire/candle/blue,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
@@ -1181,7 +1181,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "iX" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/hexstone,
 /area/under/mountains/anvil/lower)
 "iY" = (
@@ -1250,7 +1250,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "jq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/herringbone,
@@ -1336,11 +1336,11 @@
 	pixel_y = 0;
 	redstone_id = "DragonLair"
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "kk" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/grass/red,
 /area/under/mountains/anvil/upper)
 "kl" = (
@@ -1365,7 +1365,7 @@
 /area/under/mountains/anvil/dungeon)
 "ks" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "ky" = (
@@ -1403,13 +1403,13 @@
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/dungeon)
 "kR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	name = "Guardian Warden"
 	},
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "kS" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "kU" = (
@@ -1426,12 +1426,12 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "lh" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler,
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler,
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon)
 "li" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "lj" = (
@@ -1542,7 +1542,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "me" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /obj/structure/fluff/walldeco/painting{
 	pixel_x = 1;
 	pixel_y = 32
@@ -1691,7 +1691,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "nv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/herringbone,
@@ -1734,7 +1734,7 @@
 /area/under/mountains/anvil/dungeon/lower)
 "nM" = (
 /obj/structure/spider/cocoon,
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "nO" = (
@@ -1750,7 +1750,7 @@
 /obj/structure/chair/wood/alt/fancy{
 	dir = 4
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/carpet/red,
@@ -1799,7 +1799,7 @@
 /turf/open/water/clean,
 /area/under/mountains/anvil/lower)
 "ol" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/carpet/purple,
@@ -1987,11 +1987,11 @@
 /turf/open/floor/dirt/ambush,
 /area/under/mountains/anvil/dungeon/lower)
 "pL" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "pM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "pN" = (
@@ -2107,7 +2107,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "qP" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sylph,
+/mob/living/simple_animal/hostile/retaliate/fae/sylph,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "qT" = (
@@ -2147,7 +2147,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "ro" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "rp" = (
@@ -2196,7 +2196,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon)
 "rD" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon)
 "rE" = (
@@ -2223,7 +2223,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "rM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher,
+/mob/living/simple_animal/hostile/retaliate/infernal/watcher,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "rN" = (
@@ -2235,7 +2235,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 6
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "rS" = (
@@ -2311,11 +2311,11 @@
 /turf/open/floor/grass/red,
 /area/under/mountains/anvil/upper)
 "sq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/ruinedwood/chevron,
 /area/under/mountains/anvil/lower)
 "sr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/dungeon/lower)
 "st" = (
@@ -2406,7 +2406,7 @@
 /turf/open/floor/dirt/ambush,
 /area/outdoors/mountains/anvil/snowyforest)
 "tk" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "tl" = (
@@ -2450,7 +2450,7 @@
 /area/under/mountains/anvil/dungeon/lower)
 "tI" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher,
+/mob/living/simple_animal/hostile/retaliate/infernal/watcher,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "tM" = (
@@ -2502,7 +2502,7 @@
 /turf/open/floor/snow,
 /area/under/mountains/anvil/upper)
 "ul" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/ruinedwood/chevron,
 /area/under/mountains/anvil/dungeon/lower)
 "um" = (
@@ -2529,7 +2529,7 @@
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "uu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/collossus{
+/mob/living/simple_animal/hostile/retaliate/elemental/collossus{
 	name = "Guardian Colossus"
 	},
 /turf/open/floor/carpet/royalblack,
@@ -2564,7 +2564,7 @@
 /turf/open/floor/carpet/red,
 /area/indoors/mountains/anvil/surface/building)
 "uK" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/naturalstone,
@@ -2624,7 +2624,7 @@
 /obj/structure/chair/wood/alt/fancy{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon)
 "vc" = (
@@ -2677,7 +2677,7 @@
 /area/under/mountains/anvil/dungeon/lower)
 "vH" = (
 /obj/item/chair/fancy,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "vI" = (
@@ -2762,7 +2762,7 @@
 /turf/open/floor/naturalstone,
 /area/under/mountains/anvil/lower)
 "wB" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/herringbone,
@@ -2772,7 +2772,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon)
 "wF" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/carpet/purple,
@@ -2810,7 +2810,7 @@
 /area/under/mountains/anvil/dungeon)
 "wR" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/adv,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/watcher,
+/mob/living/simple_animal/hostile/retaliate/infernal/watcher,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "wX" = (
@@ -2851,7 +2851,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "xx" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/behemoth{
+/mob/living/simple_animal/hostile/retaliate/elemental/behemoth{
 	name = "Guardian Behemoth"
 	},
 /turf/open/floor/herringbone,
@@ -2918,7 +2918,7 @@
 /turf/open/floor/cobblerock/snow,
 /area/outdoors/mountains/anvil/snowyforest)
 "xT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "xV" = (
@@ -2970,7 +2970,7 @@
 "yk" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/mid,
 /obj/effect/spawner/map_spawner/loot/common,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	name = "Guardian Warden"
 	},
 /turf/open/floor/herringbone,
@@ -2988,7 +2988,7 @@
 /turf/open/floor/twig,
 /area/under/mountains/anvil/lower)
 "yr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/lower)
 "ys" = (
@@ -3042,7 +3042,7 @@
 "yK" = (
 /obj/structure/table/vtable,
 /obj/effect/spawner/map_spawner/loot,
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "yL" = (
@@ -3228,7 +3228,7 @@
 /area/under/mountains/anvil/upper)
 "Ap" = (
 /obj/effect/decal/cleanable/food/flour,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/herringbone,
@@ -3294,7 +3294,7 @@
 /area/under/mountains/anvil/dungeon/lower)
 "AO" = (
 /obj/item/chair/fancy,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/dungeon/lower)
 "AQ" = (
@@ -3508,7 +3508,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "Cj" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/cobblerock,
@@ -3524,7 +3524,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon)
 "Co" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/behemoth{
+/mob/living/simple_animal/hostile/retaliate/elemental/behemoth{
 	name = "Guardian Behemoth"
 	},
 /turf/open/floor/cobble,
@@ -3534,7 +3534,7 @@
 /area/indoors/mountains/anvil/surface/building)
 "Cw" = (
 /obj/item/natural/obsidian,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/upper)
 "Cy" = (
@@ -3646,7 +3646,7 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/lower)
 "DJ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /obj/machinery/light/fueled/wallfire/candle/blue/l{
 	pixel_x = 0;
 	pixel_y = -32
@@ -3664,7 +3664,7 @@
 	},
 /area/under/mountains/anvil/upper)
 "DR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/cobble,
@@ -3715,7 +3715,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "Eu" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler,
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler,
 /turf/open/floor/grass/cold,
 /area/under/mountains/anvil/upper)
 "Ew" = (
@@ -3766,7 +3766,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/upper)
 "EV" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "EX" = (
@@ -3854,7 +3854,7 @@
 /area/under/mountains/anvil/dungeon)
 "FE" = (
 /obj/structure/table/wood/plain,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/dungeon/lower)
 "FF" = (
@@ -4063,7 +4063,7 @@
 /turf/closed,
 /area/under/mountains/anvil/lower)
 "Hm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/herringbone,
@@ -4109,7 +4109,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "HC" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/cobble,
@@ -4313,7 +4313,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "Jf" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	name = "Guardian Warden"
 	},
 /turf/open/floor/herringbone,
@@ -4429,7 +4429,7 @@
 /turf/open/floor/ruinedwood/chevron,
 /area/indoors/mountains/anvil/surface/building)
 "JY" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/glimmerwing,
+/mob/living/simple_animal/hostile/retaliate/fae/glimmerwing,
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "JZ" = (
@@ -4478,7 +4478,7 @@
 "Ko" = (
 /obj/structure/bed/inn/double,
 /obj/item/bedsheet/fabric_double,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /obj/structure/fluff/walldeco/bigpainting,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon)
@@ -4608,7 +4608,7 @@
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "Ll" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon)
 "Lo" = (
@@ -4617,11 +4617,11 @@
 /area/under/mountains/anvil/dungeon/lower)
 "Lq" = (
 /obj/effect/decal/cleanable/ash,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/upper)
 "Lt" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/cobblerock,
@@ -4689,7 +4689,7 @@
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "LO" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/carpet/purple,
@@ -4802,7 +4802,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/carpet/royalblack,
@@ -4813,7 +4813,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "MB" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/lower)
 "ME" = (
@@ -4845,7 +4845,7 @@
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "MT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/cobblerock,
@@ -4887,7 +4887,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/mountains/anvil/snowyforest)
 "Ni" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/carpet/red,
 /area/under/mountains/anvil/dungeon/lower)
 "Nj" = (
@@ -5017,7 +5017,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "Og" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/dirt/ambush,
@@ -5118,7 +5118,7 @@
 /turf/open/floor/ruinedwood/chevron,
 /area/indoors/mountains/anvil/surface/building)
 "Ph" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/upper)
 "Pi" = (
@@ -5208,7 +5208,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "PP" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/collossus{
+/mob/living/simple_animal/hostile/retaliate/elemental/collossus{
 	name = "Guardian Colossus"
 	},
 /turf/open/floor/carpet/purple,
@@ -5286,7 +5286,7 @@
 	name = "Petrified Terrified Elf";
 	desc = "This very life like statue looks terrified and is in a pose running for its life."
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /obj/item/natural/rock/mana_crystal,
 /obj/item/natural/rock/mana_crystal,
 /turf/open/floor/herringbone,
@@ -5302,7 +5302,7 @@
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "Qs" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /obj/item/natural/rock/gemerald,
 /turf/open/floor/grass/red,
 /area/under/mountains/anvil/upper)
@@ -5323,12 +5323,12 @@
 /obj/structure/chair/wood/alt/fancy{
 	dir = 8
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "QA" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/mid,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden{
+/mob/living/simple_animal/hostile/retaliate/elemental/warden{
 	name = "Guardian Warden"
 	},
 /turf/open/floor/cobblerock,
@@ -5385,13 +5385,13 @@
 /turf/open/floor/dirt/road,
 /area/outdoors/mountains/anvil/snowyforest)
 "QT" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/under/mountains/anvil/dungeon/lower)
 "QV" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/collossus{
+/mob/living/simple_animal/hostile/retaliate/elemental/collossus{
 	name = "Guardian Colossus"
 	},
 /turf/open/floor/cobblerock,
@@ -5547,7 +5547,7 @@
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "Sg" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "Sh" = (
@@ -5586,7 +5586,7 @@
 /turf/open/floor/cobble,
 /area/under/mountains/anvil/lower)
 "Sz" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "SA" = (
@@ -5614,7 +5614,7 @@
 /turf/open/floor/carpet/purple,
 /area/under/mountains/anvil/dungeon/lower)
 "SI" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/grass/cold,
@@ -5820,7 +5820,7 @@
 /turf/open/floor/dirt,
 /area/under/mountains/anvil/dungeon)
 "Um" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/hellhound,
+/mob/living/simple_animal/hostile/retaliate/infernal/hellhound,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon/lower)
 "Un" = (
@@ -5953,7 +5953,7 @@
 /turf/open/floor/dirt/ambush,
 /area/under/mountains/anvil/upper)
 "Vr" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/grass/cold,
@@ -5962,7 +5962,7 @@
 /turf/closed/mineral/gemeralds/cold,
 /area/under/mountains/anvil/lower)
 "Vw" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Guardian Lycan"
 	},
 /turf/open/floor/grass/red,
@@ -5999,7 +5999,7 @@
 /turf/open/floor/snow,
 /area/outdoors/mountains/anvil/snowyforest)
 "VM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider/mutated,
+/mob/living/simple_animal/hostile/retaliate/spider/mutated,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/lower)
 "VO" = (
@@ -6044,7 +6044,7 @@
 /area/under/mountains/anvil/upper)
 "Wc" = (
 /obj/structure/fermentation_keg/random/water,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/crawler{
+/mob/living/simple_animal/hostile/retaliate/elemental/crawler{
 	name = "Guardian Crawler"
 	},
 /turf/open/floor/herringbone,
@@ -6166,14 +6166,14 @@
 /obj/structure/fluff/railing/border{
 	dir = 10
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/fae/sprite,
+/mob/living/simple_animal/hostile/retaliate/fae/sprite,
 /turf/open/floor/herringbone,
 /area/under/mountains/anvil/dungeon)
 "Xi" = (
 /obj/structure/chair/wood/alt/fancy{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/ruinedwood/spiral,
 /area/under/mountains/anvil/dungeon/lower)
 "Xl" = (
@@ -6293,7 +6293,7 @@
 /turf/open/floor/ruinedwood/chevron,
 /area/under/mountains/anvil/lower)
 "Yf" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/upper)
 "Yi" = (
@@ -6390,8 +6390,8 @@
 /turf/open/floor/ruinedwood/turned/darker,
 /area/under/mountains/anvil/upper)
 "YM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
-/mob/living/carbon/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
+/mob/living/simple_animal/hostile/retaliate/infernal/imp,
 /turf/open/floor/cobblerock,
 /area/under/mountains/anvil/dungeon/lower)
 "YO" = (
@@ -6552,7 +6552,7 @@
 	desc = "Tsere's bone adorns this blade, its strength empowering each swing.";
 	name = "Tsere's Spine"
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/voiddragon/red/tsere,
+/mob/living/simple_animal/hostile/retaliate/voiddragon/red/tsere,
 /turf/open/floor/volcanic,
 /area/under/mountains/anvil/dungeon)
 

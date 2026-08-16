@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf
 	name = "volf revenant"
 	desc = "A snarling beast of mangy fur and yellowed teeth. This one's hunger has outlasted its life, returning as a shimmering predator in the fog."
 	icon = 'icons/roguetown/mob/monster/volf.dmi'
@@ -37,7 +37,7 @@
 	var/chomp_cd = 0
 	var/chomp_roll = 0
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf/AttackingTarget()
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf/AttackingTarget()
 	. = ..()
 	// Exact copy of the knockdown logic
 	if(. && prob(8) && iscarbon(target))
@@ -57,7 +57,7 @@
 				C.visible_message(span_danger("\The [src] fails to drag \the [C] down!"))
 			chomp_cd = world.time
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')
@@ -70,7 +70,7 @@
 		if("cidle")
 			return pick('sound/vo/mobs/vw/bark (1).ogg','sound/vo/mobs/vw/bark (2).ogg','sound/vo/mobs/vw/bark (3).ogg','sound/vo/mobs/vw/bark (4).ogg','sound/vo/mobs/vw/bark (5).ogg','sound/vo/mobs/vw/bark (6).ogg','sound/vo/mobs/vw/bark (7).ogg')
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/wolf/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/wolf/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)

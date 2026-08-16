@@ -7,7 +7,7 @@
 	They despawn at dawn (handled by SSwildlife).
 */
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc
+/mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc
 	name = "gnoll"
 	desc = "A hunched, hyena-like beastman with matted fur and gleaming eyes. Its laugh chills the blood."
 	icon = 'icons/roguetown/mob/monster/gnoll.dmi'
@@ -76,7 +76,7 @@
 						/obj/item/natural/fur/wolf = 2,
 						/obj/item/natural/bone = 4)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc/Initialize()
 	. = ..()
 	// Pick a random pelt variant
 	var/pelt = pick(pelt_variants)
@@ -90,13 +90,13 @@
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/death(gibbed)
+/mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc/death(gibbed)
 	..()
 	if(gibbed)
 		return
 	update_icon()
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc/update_icon()
 	if(stat == DEAD)
 		// Gnoll sprites don't have a separate dead state; use the living icon
 		// with a rotation to indicate death

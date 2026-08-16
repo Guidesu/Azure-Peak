@@ -2792,7 +2792,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/indoors/town/orphanage)
 "bBs" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/goat/goatlet,
+/mob/living/simple_animal/hostile/retaliate/goat/goatlet,
 /turf/open/floor/grass/cold,
 /area/outdoors/basin)
 "bBV" = (
@@ -2995,7 +2995,7 @@
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "bIE" = (
-/mob/living/carbon/simple_animal/pet/cat/cabbit{
+/mob/living/simple_animal/pet/cat/cabbit{
 	name = "Hammer"
 	},
 /turf/open/floor/hexstone,
@@ -3118,7 +3118,7 @@
 /turf/open/floor/cobble,
 /area/indoors/town/church)
 "bNS" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/male,
+/mob/living/simple_animal/hostile/retaliate/trufflepig/male,
 /turf/open/floor/grass/yel,
 /area/outdoors/basin)
 "bNY" = (
@@ -3378,7 +3378,7 @@
 /turf/open/floor/grass/cold,
 /area/outdoors/town)
 "bWv" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/swamp,
 /area/outdoors/river)
 "bWG" = (
@@ -3898,7 +3898,7 @@
 /turf/closed/wall/mineral/stone,
 /area/outdoors/exposed/cell)
 "cnL" = (
-/mob/living/carbon/simple_animal/pet/cat/cabbit{
+/mob/living/simple_animal/pet/cat/cabbit{
 	name = "Tongs"
 	},
 /turf/open/floor/hexstone,
@@ -4079,7 +4079,7 @@
 /turf/open/floor/cobblerock/alt,
 /area/outdoors/basin)
 "csi" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider{
+/mob/living/simple_animal/hostile/retaliate/spider{
 	name = "Webber"
 	},
 /turf/open/floor/naturalstone,
@@ -5509,7 +5509,7 @@
 /turf/open/floor/dirt/road,
 /area/indoors/soilsons)
 "dor" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "doP" = (
@@ -6888,7 +6888,7 @@
 /turf/open/floor/tile/diamond/blue,
 /area/indoors/town/keep/feast)
 "ebx" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/cow,
+/mob/living/simple_animal/hostile/retaliate/cow,
 /turf/open/floor/grass/yel,
 /area/outdoors/basin)
 "ebT" = (
@@ -8070,7 +8070,7 @@
 /turf/open/floor/tile/diamond/purple,
 /area/indoors/town/keep/hand)
 "eIP" = (
-/mob/living/carbon/simple_animal/hostile/deepone/arm,
+/mob/living/simple_animal/hostile/deepone/arm,
 /turf/open/floor/dirt,
 /area/under/cavewet)
 "eJq" = (
@@ -9133,7 +9133,7 @@
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
 "fpS" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/goat,
+/mob/living/simple_animal/hostile/retaliate/goat,
 /turf/open/floor/grass/cold,
 /area/outdoors/basin)
 "fqF" = (
@@ -9958,7 +9958,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/keep/knight)
 "fUm" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "Leyline Ghost";
 	desc = "A spirit trapped in the powerful leylines below. Its form is now that of a monster similar to the one mage's fight";
 	faction = list("Undead")
@@ -10453,7 +10453,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/keep/captain)
 "glJ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/cobblerock,
@@ -11781,7 +11781,7 @@
 /turf/open/floor/grass/cold,
 /area/indoors/town/church/chapel)
 "hev" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
+/mob/living/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/basin)
 "hex" = (
@@ -13535,7 +13535,7 @@
 /turf/open/floor/tile/masonic/spiral,
 /area/indoors/town/keep/throne)
 "igb" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/saigabuck/tame/saddled{
+/mob/living/simple_animal/hostile/retaliate/saigabuck/tame/saddled{
 	name = "Royal Dumbo"
 	},
 /turf/open/floor/dirt/road,
@@ -13869,7 +13869,7 @@
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
 "isR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
+/mob/living/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/cobble,
 /area/under/town/basement)
 "itf" = (
@@ -14711,7 +14711,7 @@
 /obj/structure/spider/stickyweb{
 	dir = 1
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "iWB" = (
@@ -16160,7 +16160,7 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/mob/living/carbon/simple_animal/hostile/retaliate/chicken,
+/mob/living/simple_animal/hostile/retaliate/chicken,
 /turf/open/floor/dirt,
 /area/outdoors/basin)
 "jRh" = (
@@ -16742,7 +16742,7 @@
 /turf/open/floor/carpet/red,
 /area/indoors/town/tavern)
 "kls" = (
-/mob/living/carbon/simple_animal/hostile/deepone/elite,
+/mob/living/simple_animal/hostile/deepone/elite,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "klB" = (
@@ -17122,7 +17122,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/town/clinic_large)
 "kyq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "King's Ancient Guard";
 	faction = list("Undead");
 	desc = "A beast summoned to protect the king's grave using the power of the leylines."
@@ -18348,7 +18348,7 @@
 /turf/open/floor/cobble,
 /area/indoors/town/keep/magician)
 "ljj" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider{
+/mob/living/simple_animal/hostile/retaliate/spider{
 	name = "Silky"
 	},
 /turf/open/floor/naturalstone,
@@ -18618,7 +18618,7 @@
 /turf/closed/wall/mineral/decorstone,
 /area/indoors/town/keep/halls/w)
 "lru" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/gator,
+/mob/living/simple_animal/hostile/retaliate/gator,
 /turf/open/water/clean,
 /area/under/cave)
 "lrS" = (
@@ -18945,7 +18945,7 @@
 /turf/open/floor/ruinedwood/chevron,
 /area/indoors/town/keep/hand)
 "lCz" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
 /turf/open/floor/cobble,
 /area/under/town/basement)
 "lCT" = (
@@ -19357,7 +19357,7 @@
 /turf/open/floor/carpet/red,
 /area/indoors/town/clinic_large)
 "lRy" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/wolf,
+/mob/living/simple_animal/hostile/retaliate/wolf,
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
 "lRz" = (
@@ -21222,7 +21222,7 @@
 /turf/open/openspace,
 /area/outdoors/town)
 "mXc" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit,
+/mob/living/simple_animal/hostile/deepone/spit,
 /turf/open/floor/dirt,
 /area/under/cavewet)
 "mXk" = (
@@ -21334,7 +21334,7 @@
 /turf/open/floor/cobble,
 /area/indoors/town/keep/magician)
 "nal" = (
-/mob/living/carbon/simple_animal/hostile/deepone,
+/mob/living/simple_animal/hostile/deepone,
 /turf/open/floor/dirt,
 /area/under/cavewet)
 "nax" = (
@@ -21814,7 +21814,7 @@
 /turf/open/floor/concrete,
 /area/indoors/villagegarrison)
 "noW" = (
-/mob/living/carbon/simple_animal/hostile/deepone/spit,
+/mob/living/simple_animal/hostile/deepone/spit,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "npb" = (
@@ -24030,7 +24030,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/clinic_large)
 "oOv" = (
-/mob/living/carbon/simple_animal/pet/cat/black{
+/mob/living/simple_animal/pet/cat/black{
 	name = "Kiki"
 	},
 /turf/open/floor/carpet/lord/left,
@@ -24049,7 +24049,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/town/orphanage)
 "oPh" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/trufflepig/female,
+/mob/living/simple_animal/hostile/retaliate/trufflepig/female,
 /turf/open/floor/dirt,
 /area/outdoors/basin)
 "oPs" = (
@@ -26492,7 +26492,7 @@
 /turf/open/floor/ruinedwood/two,
 /area/indoors/town/shop)
 "qvD" = (
-/mob/living/carbon/simple_animal/hostile/deepone/wiz,
+/mob/living/simple_animal/hostile/deepone/wiz,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "qvR" = (
@@ -26709,7 +26709,7 @@
 /turf/open/floor/grass/yel,
 /area/outdoors/basin)
 "qCV" = (
-/mob/living/carbon/simple_animal/hostile/mirespider_lurker/angry,
+/mob/living/simple_animal/hostile/mirespider_lurker/angry,
 /turf/open/floor/cobble,
 /area/under/town/basement)
 "qDb" = (
@@ -28800,7 +28800,7 @@
 /turf/open/floor/blocks/newstone,
 /area/under/town/basement)
 "rRX" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /turf/open/water/blood,
 /area/under/town/basement)
 "rSd" = (
@@ -29007,7 +29007,7 @@
 /area/under/cave)
 "saT" = (
 /obj/effect/decal/cleanable/ritual_rune/arcyne/summoning/mid,
-/mob/living/carbon/simple_animal/hostile/retaliate/elemental/warden,
+/mob/living/simple_animal/hostile/retaliate/elemental/warden,
 /turf/open/floor/blocks,
 /area/under/town/basement)
 "saU" = (
@@ -29732,7 +29732,7 @@
 /turf/open/floor/carpet/purple,
 /area/indoors/town/orphanage)
 "sBZ" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bull,
+/mob/living/simple_animal/hostile/retaliate/bull,
 /turf/open/floor/grass/yel,
 /area/outdoors/basin)
 "sCa" = (
@@ -32227,7 +32227,7 @@
 /turf/open/floor/ruinedwood,
 /area/indoors/town/noble_manor/blue)
 "ugK" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/shade,
+/mob/living/simple_animal/hostile/retaliate/shade,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/cobble,
@@ -33851,7 +33851,7 @@
 /turf/open/floor/snow/patchy,
 /area/outdoors/town)
 "vgt" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/spider{
+/mob/living/simple_animal/hostile/retaliate/spider{
 	name = "Spinner"
 	},
 /turf/open/floor/naturalstone,
@@ -34394,7 +34394,7 @@
 /area/indoors/town/clinic_large/apothecary)
 "vzE" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/simple_animal/hostile/retaliate/bat,
+/mob/living/simple_animal/hostile/retaliate/bat,
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
 "vzF" = (
@@ -34476,7 +34476,7 @@
 /turf/closed/wall/mineral/craftstone,
 /area/outdoors/town)
 "vCO" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/mirespider/angry,
+/mob/living/simple_animal/hostile/retaliate/mirespider/angry,
 /obj/structure/spider/stickyweb{
 	dir = 1
 	},
@@ -35540,7 +35540,7 @@
 /turf/open/floor/carpet/red,
 /area/indoors/town/garrison)
 "wkI" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/blood,
+/mob/living/simple_animal/hostile/retaliate/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/cobblerock,
 /area/under/town/basement)
@@ -36989,7 +36989,7 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/noble_manor/red)
 "xfq" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/leylinelycan{
+/mob/living/simple_animal/hostile/retaliate/leylinelycan{
 	name = "King's Ancient Guard";
 	faction = list("Undead");
 	desc = "A beast summoned to protect the king's grave using the power of the leylines."
@@ -37668,7 +37668,7 @@
 	},
 /area/under/town/basement)
 "xIO" = (
-/mob/living/carbon/simple_animal/hostile/deepone,
+/mob/living/simple_animal/hostile/deepone,
 /turf/open/floor/naturalstone,
 /area/under/cavewet)
 "xJa" = (
@@ -37935,7 +37935,7 @@
 /turf/open/floor/grass/cold,
 /area/indoors/town/keep/magician)
 "xRR" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/goatmale,
+/mob/living/simple_animal/hostile/retaliate/goatmale,
 /turf/open/floor/grass/yel,
 /area/outdoors/basin)
 "xRT" = (
@@ -38191,7 +38191,7 @@
 /turf/open/floor/carpet/lord/right,
 /area/indoors/town/keep/feast)
 "xYM" = (
-/mob/living/carbon/simple_animal/pet/cat/inn{
+/mob/living/simple_animal/pet/cat/inn{
 	name = "Minx"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -38447,7 +38447,7 @@
 /turf/closed/wall/mineral/decorstone,
 /area/indoors/town/keep/halls/e)
 "yiM" = (
-/mob/living/carbon/simple_animal/hostile/retaliate/bigrat,
+/mob/living/simple_animal/hostile/retaliate/bigrat,
 /turf/open/floor/naturalstone,
 /area/under/cave)
 "yiO" = (

@@ -1279,7 +1279,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	return SEND_SIGNAL(src, COMSIG_ATOM_HITBY, AM, skipcatch, hitpush, blocked, throwingdatum, damage_flag)
 
-/obj/item/attack_animal(mob/living/carbon/simple_animal/M)
+/obj/item/attack_animal(mob/living/simple_animal/M)
 	if (obj_flags & CAN_BE_HIT)
 		return ..()
 	return 0

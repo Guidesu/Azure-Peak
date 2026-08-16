@@ -375,7 +375,7 @@
 		ADD_TRAIT(L, TRAIT_DNR, "hag_final_death")
 		L.visible_message(span_danger("The roots that once sustained [L.name] wither and turn to ash! There is no sanctuary for the hag left."))
 		to_chat(L, span_userdanger("Your connection to the Mossmother's hearts has been severed. This is the end."))
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hag_shapeshift/S = new(get_turf(L))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/hag_shapeshift/S = new(get_turf(L))
 		S.death()
 		playsound(L, 'sound/hag/hag_cackles.ogg', 100, TRUE)
 		execute_final_spite()

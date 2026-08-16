@@ -97,7 +97,7 @@
 		var/turf/spawn_turf = pick(spawn_candidates)
 		var/list/spawned_mobs = encounter.spawn_at(spawn_turf)
 
-		for(var/mob/living/carbon/simple_animal/hostile/H in spawned_mobs)
+		for(var/mob/living/simple_animal/hostile/H in spawned_mobs)
 			H.faction += "ambush"
 			ADD_TRAIT(H, TRAIT_FRESHSPAWN, "ambush_spawn")
 			addtimer(TRAIT_CALLBACK_REMOVE(H, TRAIT_FRESHSPAWN, "ambush_spawn"), 60 SECONDS)

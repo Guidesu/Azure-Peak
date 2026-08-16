@@ -10,7 +10,7 @@
 	var/list/symbol_types
 	var/female_caparison_state = "caparison-f"
 	gender = NEUTER
-	var/list/valid_animal_types = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga)
+	var/list/valid_animal_types = list(/mob/living/simple_animal/hostile/retaliate/rogue/saiga)
 
 /obj/item/caparison/attack(mob/living/M, mob/living/user)
 	if(!issimple(M))
@@ -20,7 +20,7 @@
 		to_chat(user, span_warning("\The [src] cannot be used on [M]! It is only meant for specific animals."))
 		return
 
-	var/mob/living/carbon/simple_animal/animal = M
+	var/mob/living/simple_animal/animal = M
 	if(animal.adult_growth)
 		to_chat(user, span_warning("[animal] is a juvenile and cannot wear a caparison!"))
 		return
@@ -127,7 +127,7 @@
 	name = "caparison"
 	desc = "A decorative piece of cloth meant to be used as a saddle decoration. This one fits on a Fogbeast."
 	caparison_icon = 'icons/roguetown/mob/monster/fogbeast.dmi'
-	valid_animal_types = list(/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast)
+	valid_animal_types = list(/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast)
 	color = COLOR_WHITE
 	detail_types = list("Quad" = "quad")
 	symbol_types = list("Psycross" = "psycross", "Auxentius" = "astrata")

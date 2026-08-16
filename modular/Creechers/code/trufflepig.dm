@@ -78,7 +78,7 @@
 	. = ..()
 
 //	........   Truffle Pig   ................
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig
 	icon = 'modular/Creechers/icons/piggie.dmi'
 	name = "truffle pig"
 	desc = "A hairy pig, bred for finding truffles in the bog."
@@ -94,7 +94,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	move_to_delay = 7
-	animal_species = /mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig
+	animal_species = /mob/living/simple_animal/hostile/retaliate/rogue/trufflepig
 	botched_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/rogue/meat/fatty = 2,
 		/obj/item/alch/sinew = 2,
@@ -156,7 +156,7 @@
 	icon_state = "skele"
 	icon = 'icons/roguetown/mob/monster/cow.dmi'
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig/Life()
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/Life()
 	. = ..()
 	if((src.loc) && isturf(src.loc))
 		for(var/obj/item/reagent_containers/food/snacks/rogue/truffles/M in view(1,src))
@@ -170,12 +170,12 @@
 				qdel(M)
 				break
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/Initialize()
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	hangry_meter += 1
 	if(hangry_meter > 9)
@@ -197,7 +197,7 @@
 		var/turf/t = get_turf(src)
 		trufflesearch(t, 5)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig/attackby(obj/item/O, mob/user, params)
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/rogue/truffles))
 		visible_message("<span class='notice'>The pig munches the truffles, looking happy.</span>")
 		hangry_meter = 0 //Satisfies him fully
@@ -229,7 +229,7 @@
 
 
 //	........   Truffle Search   ................
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/trufflepig/proc/trufflesearch(turf/T, range = world.view)
+/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/proc/trufflesearch(turf/T, range = world.view)
 	var/list/found_stuff = list()
 	for(var/turf/open/floor/rogue/dirt/M in range(range, T))
 		if(M.hidden_truffles)

@@ -388,7 +388,7 @@
 							if(!do_after(user,ow, target = target))
 								if(ismob(A))
 									var/mob/M = A
-									if(M.type in subtypesof(/mob/living/carbon/simple_animal/hostile))
+									if(M.type in subtypesof(/mob/living/simple_animal/hostile))
 										new M(target)
 									else
 										new M(user.loc)
@@ -695,7 +695,7 @@
 								if(A in subtypesof(/mob/living))
 									var/mob/M = A
 									new M(target)
-									if (!(M.type == /mob/living/carbon/simple_animal/hostile/retaliate/rogue/mudcrab))
+									if (!(M.type == /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab))
 										user.playsound_local(src, pick('sound/misc/jumpscare (1).ogg','sound/misc/jumpscare (2).ogg','sound/misc/jumpscare (3).ogg','sound/misc/jumpscare (4).ogg'), 100)
 									user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT*2) // High risk high reward
 								else

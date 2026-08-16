@@ -50,91 +50,91 @@ SUBSYSTEM_DEF(wildlife)
 	/// Large predators (wolf, boar) spawn in deep wilderness, more in winter
 	var/list/spring_wildlife = list(
 		// Prey (common in spring - birthing season)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga = 30,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat = 20,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow = 15,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken = 20,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 15,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/saiga = 30,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goat = 20,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goatmale = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cow = 15,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bull = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/chicken = 20,
+		/mob/living/simple_animal/hostile/retaliate/rogue/swine = 15,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/camel = 5,
 		// Small predators
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fox = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/hyena = 3,
 		// Large predators (rarer in spring)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/boar = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 3,
 	)
 	var/list/summer_wildlife = list(
 		// Prey (common)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga = 25,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat = 15,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull = 4,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken = 18,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/saiga = 25,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goat = 15,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goatmale = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cow = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bull = 4,
+		/mob/living/simple_animal/hostile/retaliate/rogue/chicken = 18,
+		/mob/living/simple_animal/hostile/retaliate/rogue/swine = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/camel = 5,
 		// Small predators (active in summer)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 6,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fox = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 6,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/hyena = 5,
 		// Large predators
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/boar = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 5,
 	)
 	var/list/autumn_wildlife = list(
 		// Prey (still common, fattening for winter)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga = 20,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale = 6,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bull = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/chicken = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cat = 3,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/camel = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/saiga = 20,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goat = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goatmale = 6,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cow = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bull = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/chicken = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/swine = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cat = 3,
+		/mob/living/simple_animal/hostile/retaliate/rogue/camel = 3,
 		// Small predators (stocking up)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 6,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fox = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 6,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/hyena = 8,
 		// Large predators (more active in autumn)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/boar = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 10,
 	)
 	var/list/winter_wildlife = list(
 		// Prey (scarce in winter)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/saiga = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goat = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/goatmale = 4,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/cow = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/swine = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fogbeast = 2,
+		/mob/living/simple_animal/hostile/retaliate/rogue/saiga = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goat = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/goatmale = 4,
+		/mob/living/simple_animal/hostile/retaliate/rogue/cow = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/swine = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fogbeast = 2,
 		// Small predators (desperate, more visible)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/fox = 12,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/raccoon = 6,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/badger = 5,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bobcat = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/bigrat = 10,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/hyena = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/fox = 12,
+		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 6,
+		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 5,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bobcat = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/hyena = 10,
 		// Large predators (very active — hungry wolves hunt in winter)
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/boar = 8,
-		/mob/living/carbon/simple_animal/hostile/retaliate/rogue/wolf = 20,
+		/mob/living/simple_animal/hostile/retaliate/rogue/boar = 8,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 20,
 	)
 
 /datum/controller/subsystem/wildlife/Initialize(start_timeofday)
@@ -228,14 +228,14 @@ SUBSYSTEM_DEF(wildlife)
 
 	if(GLOB.is_blood_moon)
 		// Blood moon: spawn gnolls
-		var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/gnoll_npc/spawned = new(spawn_turf)
+		var/mob/living/simple_animal/hostile/retaliate/rogue/gnoll_npc/spawned = new(spawn_turf)
 		if(spawned)
 			moon_spawned += spawned
 			RegisterSignal(spawned, COMSIG_PARENT_QDELETING, PROC_REF(on_moon_spawn_deleted))
 	else if(is_full_moon())
 		// Regular full moon: spawn werewolves (less frequently)
 		if(prob(40))
-			var/mob/living/carbon/simple_animal/hostile/retaliate/rogue/werewolf_npc/spawned = new(spawn_turf)
+			var/mob/living/simple_animal/hostile/retaliate/rogue/werewolf_npc/spawned = new(spawn_turf)
 			if(spawned)
 				moon_spawned += spawned
 				RegisterSignal(spawned, COMSIG_PARENT_QDELETING, PROC_REF(on_moon_spawn_deleted))

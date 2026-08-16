@@ -1,4 +1,4 @@
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/dragon
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon
 	name = "drakkyn revenant"
 	desc = "Even the drakkyn arise to enact revenge upon the living. Run."
 	icon = 'modular/icons/mob/96x96/revenant_dragon.dmi'
@@ -36,7 +36,7 @@
 	retreat_health = 0.05
 	dodgetime = 30
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/dragon/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon/Initialize()
 	. = ..()
 
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
@@ -52,7 +52,7 @@
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	AddElement(/datum/element/ai_retaliate)
 
-/mob/living/carbon/simple_animal/hostile/retaliate/rogue/revenant/dragon/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/revenant/dragon/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/vw/aggro (1).ogg','sound/vo/mobs/vw/aggro (2).ogg')

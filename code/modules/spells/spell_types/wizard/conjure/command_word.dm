@@ -163,33 +163,33 @@
 	return FALSE
 
 /datum/action/cooldown/spell/command_word/proc/is_primordial(mob/living/summon)
-	return istype(summon, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial)
+	return istype(summon, /mob/living/simple_animal/hostile/retaliate/rogue/primordial)
 
-/datum/action/cooldown/spell/command_word/proc/primordial_ward(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P)
+/datum/action/cooldown/spell/command_word/proc/primordial_ward(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P)
 	P.defprob = min(initial(P.defprob) + 40, 95)
 	addtimer(CALLBACK(src, PROC_REF(end_primordial_ward), P), 5 SECONDS)
 	return TRUE
 
-/datum/action/cooldown/spell/command_word/proc/end_primordial_ward(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P)
+/datum/action/cooldown/spell/command_word/proc/end_primordial_ward(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P)
 	if(QDELETED(P))
 		return
 	P.defprob = initial(P.defprob)
 
-/datum/action/cooldown/spell/command_word/proc/primordial_shove(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P, mob/living/target)
+/datum/action/cooldown/spell/command_word/proc/primordial_shove(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P, mob/living/target)
 	var/shove_dir = get_dir(P, target)
 	var/turf/dest = get_ranged_target_turf(target, shove_dir, 2)
 	if(dest)
 		target.throw_at(dest, 2, 1, P)
 	return TRUE
 
-/datum/action/cooldown/spell/command_word/proc/primordial_heal(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P)
+/datum/action/cooldown/spell/command_word/proc/primordial_heal(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P)
 	if(world.time < P.next_heal_time)
 		return FALSE
 	P.next_heal_time = world.time + 15 SECONDS
 	P.adjustHealth(-round(P.maxHealth * 0.25))
 	return TRUE
 
-/datum/action/cooldown/spell/command_word/proc/primordial_overcharge(mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial/P)
+/datum/action/cooldown/spell/command_word/proc/primordial_overcharge(mob/living/simple_animal/hostile/retaliate/rogue/primordial/P)
 	for(var/datum/action/cooldown/special in P.actions)
 		if(special.shared_cooldown != "mob_special")
 			continue
@@ -304,7 +304,7 @@
 /datum/action/cooldown/spell/command_word/proc/overload_scale(mob/living/summon)
 	if(istype(summon, /mob/living/carbon/human/species/dwarf/gnome/conjured_horde))
 		return 1/3
-	if(istype(summon, /mob/living/carbon/simple_animal/hostile/retaliate/rogue/primordial))
+	if(istype(summon, /mob/living/simple_animal/hostile/retaliate/rogue/primordial))
 		return 0.5
 	return 1
 
@@ -432,7 +432,7 @@
 				summon.ai_controller.set_blackboard_key(BB_CURRENT_PET_TARGET, foe)
 				summon.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, foe)
 		if(isanimal(summon))
-			var/mob/living/carbon/simple_animal/SA = summon
+			var/mob/living/simple_animal/SA = summon
 			SA.pet_passive = FALSE
 		for(var/mob/living/enemy in oview(5, summon))
 			if(QDELETED(enemy) || enemy.stat == DEAD || enemy == summon)

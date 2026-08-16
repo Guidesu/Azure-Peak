@@ -33,7 +33,7 @@
 	proc/get_sound(key)
 		return null
 
-/mob/living/carbon/simple_animal/pet/familiar
+/mob/living/simple_animal/pet/familiar
 	var/tier = 0
 	var/mob/living/carbon/familiar_summoner = null
 	var/inherent_spell = null
@@ -49,10 +49,10 @@
 	proc/is_aligned_leyline(obj/structure/leyline/ley)
 		return FALSE
 
-/mob/living/carbon/simple_animal/pet/familiar/elemental
-/mob/living/carbon/simple_animal/pet/familiar/fae
-/mob/living/carbon/simple_animal/pet/familiar/infernal
-/mob/living/carbon/simple_animal/pet/familiar/void
+/mob/living/simple_animal/pet/familiar/elemental
+/mob/living/simple_animal/pet/familiar/fae
+/mob/living/simple_animal/pet/familiar/infernal
+/mob/living/simple_animal/pet/familiar/void
 
 // ============== VIRTUE STUBS ==============
 
@@ -97,16 +97,12 @@
 
 // ============== MOB STUBS ==============
 
-// Old simple_animal path stubs (our code uses /mob/living/carbon/simple_animal)
+// Old simple_animal path stubs (our code uses /mob/living/simple_animal)
 /mob/living/simple_animal/hostile/rogue/deepone
 /mob/living/simple_animal/hostile/rogue/deepone/arm
 /mob/living/simple_animal/hostile/rogue/deepone/spit
 /mob/living/simple_animal/hostile/rogue/deepone/wiz
 /mob/living/simple_animal/hostile/retaliate/rogue/mimic
-	proc/undisguise()
-		return
-	proc/disguise()
-		return
 
 // ============== LANGUAGE STUBS ==============
 
@@ -161,9 +157,11 @@
 // simple_animal.dm, hostile.dm, retaliate.dm, or primordial.dm.
 // No additional vars needed here.
 
-// Intent vars (upstream added ready_sound to intents)
-/datum/intent
-	var/ready_sound = null
+// TEMPO tags used by the AP magic/weapon systems
+#define TEMPO_TAG_SPELL_COOLDOWN "tempo_spell_cooldown"
+#define TEMPO_TAG_SPELL_COST "tempo_spell_cost"
+#define TEMPO_TAG_SPELL_POWER "tempo_spell_power"
+#define TEMPO_TAG_MELEE_DAMAGE "tempo_melee_damage"
 
 // FETCH_YEET_RANGE define from upstream
 #define FETCH_YEET_RANGE 8

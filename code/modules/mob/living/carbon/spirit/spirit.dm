@@ -151,7 +151,7 @@
 	qdel(src)
 	return
 
-/mob/living/carbon/spirit/attack_animal(mob/living/carbon/simple_animal/M)
+/mob/living/carbon/spirit/attack_animal(mob/living/simple_animal/M)
 	if(beingmoved)
 		return
 	beingmoved = TRUE
