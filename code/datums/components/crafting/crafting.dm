@@ -1,4 +1,4 @@
-/datum/component/personal_crafting/Initialize()
+/datum/component/personal_crafting/Initialize(mapload)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/L = parent

@@ -532,7 +532,7 @@
 		EVENT_TRACK_RAIDS = 0.8,
 	)
 
-	cost_variance = 50  // Events will be highly variable in cost
+	cost_variance = 50	// Events will be highly variable in cost
 
 	influence_sets = list(
 		"Set 1" = list(

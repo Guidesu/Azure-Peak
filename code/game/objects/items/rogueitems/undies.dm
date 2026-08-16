@@ -133,3 +133,9 @@
 	result = list(/obj/item/undies/braies)
 	reqs = list(/obj/item/natural/cloth = 1)
 	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/sewing/bandages_underwear
+	name = "bandages (underwear)"
+	result = list(/obj/item/undies/bandages)
+	reqs = list(/obj/item/natural/cloth/bandage = 1)
+	craftdiff = 2

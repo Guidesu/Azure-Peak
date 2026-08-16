@@ -12,7 +12,7 @@
 					/datum/action/cooldown/spell/miracle/heal 				= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle		= CLERIC_T1,
 					/datum/action/cooldown/spell/ravox/strikeoraegis		= CLERIC_T1,
-					/datum/action/cooldown/spell/ravox/withstand		   	= CLERIC_T2,
+					/datum/action/cooldown/spell/ravox/withstand				= CLERIC_T2,
 					/datum/action/cooldown/spell/ravox/challenge			= CLERIC_T2,
 					/datum/action/cooldown/spell/ravox/persistence			= CLERIC_T3,
 					/datum/action/cooldown/spell/ravox/battlecry			= CLERIC_T3,
@@ -29,7 +29,7 @@
 
 	titles = list(
 		"Justiciar",
-		"Justicar", // it is misspelled ingame enough that we should probably accept this too 
+		"Justicar", // it is misspelled ingame enough that we should probably accept this too
 		"Ratake"
 	)
 
@@ -52,12 +52,12 @@
 	return FALSE
 
 /datum/patron/divine/ravox/on_lesser_heal(
-    mob/living/user,
-    mob/living/target,
-    message_out,
-    message_self,
-    conditional_buff,
-    situational_bonus
+	mob/living/user,
+	mob/living/target,
+	message_out,
+	message_self,
+	conditional_buff,
+	situational_bonus
 )
 	*message_out = span_info("An air of righteous defiance rises near [target]!")
 	*message_self = span_notice("I'm filled with an urge to fight on!")
@@ -66,10 +66,10 @@
 
 	if(istype(target.rmb_intent, /datum/rmb_intent/strong))
 		bonus++
-	
+
 	if(istype(target.get_active_held_item(), /obj/item/rogueweapon))
 		bonus += 0.5
-	
+
 	if(target == user && target.blood_volume <= BLOOD_VOLUME_OKAY && COOLDOWN_FINISHED(src, lesser_heal_buff_cooldown))
 		user.emote("warcry")
 		user.blood_volume += BLOOD_VOLUME_SURVIVE / 3

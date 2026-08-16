@@ -8,9 +8,9 @@
 	lifespan = 55
 	fadein = 6
 	//Weather effects, max values
-	maxSpawning            = 25
-	minSpawning            = 3
-	wind                   = 2
+	maxSpawning			= 25
+	minSpawning			= 3
+	wind					= 2
 
 
 /particles/weather/leaves/sakura
@@ -22,9 +22,9 @@
 	lifespan = 55
 	fadein = 6
 	//Weather effects, max values
-	maxSpawning            = 30
-	minSpawning            = 5
-	wind                   = 1
+	maxSpawning			= 30
+	minSpawning			= 5
+	wind					= 1
 
 /datum/particle_weather/leaves_gentle
 	name = "Strong Winds"

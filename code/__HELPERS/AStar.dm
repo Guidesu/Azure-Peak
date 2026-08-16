@@ -146,7 +146,7 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 			if(source_stairs)
 				T = source_stairs.get_transit_destination(dir_to_check)
 			if(T != exclude)
-				var/datum/PathNode/CN = openc[T]  //current checking turf
+				var/datum/PathNode/CN = openc[T]	//current checking turf
 				var/reverse = GLOB.reverse_dir[dir_to_check]
 				var/newg = cur.g + call(cur.source,dist)(T, pathing_mover) // add the travel distance between these two tiles to the distance so far
 				if(CN)

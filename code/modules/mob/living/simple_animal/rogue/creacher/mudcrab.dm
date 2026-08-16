@@ -74,7 +74,7 @@
 	var/spawning = FALSE
 	attacked_sound = null
 
-/obj/structure/crabnest/Initialize()
+/obj/structure/crabnest/Initialize(mapload)
 	. = ..()
 	spawn_crab()
 

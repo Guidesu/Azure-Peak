@@ -135,7 +135,7 @@
 #undef RECUPERATION_BASE_FILTER
 
 ///////////////////
-// T1 - Miracle  //
+// T1 - Miracle	//
 ///////////////////
 
 /datum/action/cooldown/spell/miracle/heal/undivided
@@ -196,7 +196,7 @@
 	.=..()
 
 /datum/status_effect/buff/twinned_gaze/on_apply()
-	// Reset base values because the miracle can 
+	// Reset base values because the miracle can
 	// now actually be recast at high enough skill and during day time
 	// This is a safeguard because buff code makes my head hurt
 	duration = 20 SECONDS
@@ -299,7 +299,7 @@
 				return TRUE
 
 /datum/stressevent/perseverance
-	timer = 2 MINUTES 
+	timer = 2 MINUTES
 	stressadd = -4 //Should be enough to offset the bleed
 	desc = span_undivided("A mere respite from the horrors.")
 
@@ -350,7 +350,7 @@
 
 /datum/action/cooldown/spell/undivided/undivided_spellpack/cast(atom/cast_on)
 	. = ..()
-	
+
 	if(choosing_bundle)
 		return FALSE
 	var/choice = chosen_bundle
@@ -462,7 +462,7 @@
 	icon_state = "gallows"
 
 /datum/stressevent/gallowshumor
-	timer = 5 MINUTES 
+	timer = 5 MINUTES
 	stressadd = 6 //Hop Tuah
 	desc = span_undivided("NO NO NO!")
 
@@ -558,3 +558,12 @@
 	name = "Undivided Camaraderie"
 	desc = span_undivided("WE STAND TOGETHER!")
 	icon_state = "ten_united"
+
+/datum/action/cooldown/spell/miracle/anastasis/undivided
+	name = "Lesser Anastasis"
+	desc = "Resurrect a person that is free of rot and decay, deadites (such as lyckers / skeletons) instead explode when it is attempted."
+	fluff_desc = "The greatest feat any priest can manage is reversion of death, a true rebirth unlike the perversion Necromancers aspire to."
+	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
+	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
+	spell_color = GLOW_COLOR_UNDIVIDED
+	cooldown_time = 15 MINUTES

@@ -26,7 +26,7 @@
 /obj/structure/chair/bench/church/r
 	icon_state = "church_benchright"
 
-/obj/structure/chair/bench/Initialize()
+/obj/structure/chair/bench/Initialize(mapload)
 	. = ..()
 	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
 	AddElement(/datum/element/connect_loc, loc_connections)
@@ -140,7 +140,7 @@
 /obj/structure/chair/bench/couchamagenta/r
 	icon_state = "couchamagentaright"
 
-/obj/structure/chair/bench/couch/Initialize()
+/obj/structure/chair/bench/couch/Initialize(mapload)
 	. = ..()
 	if(GLOB.lordprimary)
 		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
@@ -165,7 +165,7 @@
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
 
-/obj/structure/chair/wood/rogue/Initialize()
+/obj/structure/chair/wood/rogue/Initialize(mapload)
 	. = ..()
 	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
 	AddElement(/datum/element/connect_loc, loc_connections)
@@ -270,21 +270,21 @@
 		return FALSE
 
 /obj/structure/chair/wood/rogue/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
-    SIGNAL_HANDLER
-    if(!isliving(leaving))
-        return
-    var/mob/living/M = leaving
-    if(!(M.mobility_flags & MOBILITY_STAND))
-        return
-    if(get_dir(leaving.loc, new_location) == REVERSE_DIR(dir))
-        if(!item_chair)
-            return
-        playsound(loc, 'sound/foley/chairfall.ogg', 100, FALSE)
-        var/obj/item/I = new item_chair(loc)
-        item_chair = null
-        I.dir = dir
-        qdel(src)
-        return COMPONENT_ATOM_BLOCK_EXIT
+	SIGNAL_HANDLER
+	if(!isliving(leaving))
+		return
+	var/mob/living/M = leaving
+	if(!(M.mobility_flags & MOBILITY_STAND))
+		return
+	if(get_dir(leaving.loc, new_location) == REVERSE_DIR(dir))
+		if(!item_chair)
+			return
+		playsound(loc, 'sound/foley/chairfall.ogg', 100, FALSE)
+		var/obj/item/I = new item_chair(loc)
+		item_chair = null
+		I.dir = dir
+		qdel(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/chair/wood/rogue/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	if(damage_amount > 5 && item_chair != null)
@@ -569,7 +569,7 @@
 	pixel_y = 0
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 2)
-/*            ///////WIP  This will essentially allow for multiple mobs to buckle, just needs to change mousedrop function
+/*			///////WIP	This will essentially allow for multiple mobs to buckle, just needs to change mousedrop function
 /obj/structure/bed/rogue/inn/double
 	var/list/buckled_mobs = list()
 

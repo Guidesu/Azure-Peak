@@ -1,11 +1,11 @@
 /*
-	These defines specificy screen locations.  For more information, see the byond documentation on the screen_loc var.
+	These defines specificy screen locations.	For more information, see the byond documentation on the screen_loc var.
 
 	The short version:
 
 	Everything is encoded as strings because apparently that's how Byond rolls.
 
-	"1,1" is the bottom left square of the user's screen.  This aligns perfectly with the turf grid.
+	"1,1" is the bottom left square of the user's screen.	This aligns perfectly with the turf grid.
 	"1:2,3:4" is the square (1,3) with pixel offsets (+2, +4); slightly right and slightly above the turf grid.
 	Pixel offsets are used so you don't perfectly hide the turf under them, that would be crappy.
 
@@ -56,8 +56,8 @@
 #define ui_borg_lamp "CENTER-4:16, SOUTH:5"			//borgs
 #define ui_borg_thrusters "CENTER-5:16, SOUTH:5"	//borgs
 #define ui_inv1 "CENTER-2:16,SOUTH:5"				//borgs
-#define ui_inv2 "CENTER-1  :16,SOUTH:5"				//borgs
-#define ui_inv3 "CENTER  :16,SOUTH:5"				//borgs
+#define ui_inv2 "CENTER-1	:16,SOUTH:5"				//borgs
+#define ui_inv3 "CENTER	:16,SOUTH:5"				//borgs
 #define ui_borg_module "CENTER+1:16,SOUTH:5"		//borgs
 #define ui_borg_store "CENTER+2:16,SOUTH:5"			//borgs
 #define ui_borg_camera "CENTER+3:21,SOUTH:5"		//borgs
@@ -69,10 +69,10 @@
 #define ui_spirit_back "CENTER-2:16,SOUTH:5"	//spirit
 #define ui_spirit_neck "CENTER-3:15,SOUTH:5"	//spirit
 
-#define ui_drone_drop "CENTER+1:18,SOUTH:5"     //maintenance drones
-#define ui_drone_pull "CENTER+2:2,SOUTH:5"      //maintenance drones
-#define ui_drone_storage "CENTER-2:14,SOUTH:5"  //maintenance drones
-#define ui_drone_head "CENTER-3:14,SOUTH:5"     //maintenance drones
+#define ui_drone_drop "CENTER+1:18,SOUTH:5"		//maintenance drones
+#define ui_drone_pull "CENTER+2:2,SOUTH:5"		//maintenance drones
+#define ui_drone_storage "CENTER-2:14,SOUTH:5"	//maintenance drones
+#define ui_drone_head "CENTER-3:14,SOUTH:5"		//maintenance drones
 
 //Lower right, persistent menu
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
@@ -205,10 +205,10 @@
 
 //constructs
 #define ui_construct_pull "EAST,CENTER-2:15"
-#define ui_construct_health "EAST,CENTER:15"  //same as borgs and humans
+#define ui_construct_health "EAST,CENTER:15"	//same as borgs and humans
 
 //slimes
-#define ui_slime_health "EAST,CENTER:15"  //same as borgs, constructs and humans
+#define ui_slime_health "EAST,CENTER:15"	//same as borgs, constructs and humans
 
 // AI
 

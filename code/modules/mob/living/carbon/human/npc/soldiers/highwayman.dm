@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 
 
 
-/mob/living/carbon/human/species/human/northern/highwayman/Initialize()
+/mob/living/carbon/human/species/human/northern/highwayman/Initialize(mapload)
 	. = ..()
 	//Begin RANDOMISE here
 	set_species(pick(NPC_RACES_TYPES))
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	r_hand = /obj/item/rogueweapon/huntingknife/idagger
 	l_hand = null
-	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/iron
 	backl = /obj/item/quiver/bolt/npc
 	H.STAPER = 9
 	H.STACON -= 1

@@ -97,7 +97,7 @@
 	// I hate this but let's be consistent.
 	var/datum/patron/patron
 
-/datum/component/blessed_food/Initialize(mob/living/_caster, var/holy_skill, var/patron_init)
+/datum/component/blessed_food/Initialize(mob/living/_caster, holy_skill, patron_init)
 	if(!isitem(parent) || !istype(parent, /obj/item/reagent_containers/food/snacks))
 		return COMPONENT_INCOMPATIBLE
 
@@ -113,7 +113,7 @@
 		F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
 	else
 		F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#f0b000", "size" = 1))
-	RegisterSignal(F, COMSIG_FOOD_EATEN, .proc/on_food_eaten)
+	RegisterSignal(F, COMSIG_FOOD_EATEN, PROC_REF(on_food_eaten))
 
 /datum/component/blessed_food/proc/on_food_eaten(datum/source, mob/living/eater, mob/living/feeder)
 	SIGNAL_HANDLER
@@ -328,7 +328,7 @@
 /datum/component/eora_bond/partner
 	ispartner = TRUE
 
-/datum/component/eora_bond/Initialize(mob/living/partner_mob, mob/living/caster_mob, var/holy_skill)
+/datum/component/eora_bond/Initialize(mob/living/partner_mob, mob/living/caster_mob, holy_skill)
 	if(!isliving(parent) || !isliving(partner_mob))
 		return COMPONENT_INCOMPATIBLE
 
@@ -353,7 +353,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, PROC_REF(on_deletion))
 
 	START_PROCESSING(SSprocessing, src)
-	addtimer(CALLBACK(src, .proc/remove_bond), duration)
+	addtimer(CALLBACK(src, PROC_REF(remove_bond)), duration)
 
 	var/mob/living/L = parent
 	L.apply_status_effect(/datum/status_effect/eora_bond)
@@ -612,7 +612,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/human/sacrifice = user
 			visible_message(span_danger("[user] begins altruistically channeling the crimson aril's power to restore the tree."),
-	 		 span_info("I begin channeling the crimson aril's power into the tree using my own blood."))
+					span_info("I begin channeling the crimson aril's power into the tree using my own blood."))
 			if(!do_after(sacrifice, 15 SECONDS))
 				return
 			// same blood loss as using it to heal someone
@@ -691,7 +691,7 @@
 
 		var/remaining_cap = 25 - water_happiness
 		var/skill = get_farming_skill(user)
-		var/potential_gain = 10 + (skill * 5)  // 10 at skill 0, 25 at skill 3+
+		var/potential_gain = 10 + (skill * 5)	// 10 at skill 0, 25 at skill 3+
 		var/actual_gain = min(potential_gain, remaining_cap)
 		var/action_time = get_skill_delay(skill, fastest = 0.5, slowest = 3)
 
@@ -921,13 +921,13 @@
 		spawn_fruit()
 
 /obj/structure/eoran_pomegranate_tree/proc/spawn_fruit()
-	if(fruit)  // Already has fruit
+	if(fruit)	// Already has fruit
 		return
 
 	fruit = TRUE
 	fruit_ready = FALSE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/ripen_fruit), rand(10 SECONDS, 15 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(ripen_fruit)), rand(10 SECONDS, 15 SECONDS))
 
 /obj/structure/eoran_pomegranate_tree/proc/ripen_fruit()
 	fruit_ready = TRUE

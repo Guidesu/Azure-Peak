@@ -24,7 +24,7 @@ GLOBAL_VAR(king_throne)
 	density = FALSE
 	M.reset_offsets("bed_buckle")
 
-/obj/structure/roguethrone/Initialize()
+/obj/structure/roguethrone/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 	if(GLOB.king_throne == null)

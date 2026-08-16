@@ -11,9 +11,9 @@
 	worshippers = "Druids, Gamblers, Smiths, Settlers, and Madmen"
 	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_LEECHIMMUNE)
 	miracles = list(/datum/action/cooldown/spell/touch/orison					= CLERIC_ORI,
-					/obj/effect/proc_holder/spell/invoked/spiderspeak 			= CLERIC_T0,
+					/obj/effect/proc_holder/spell/invoked/spiderspeak			= CLERIC_T0,
 					/obj/effect/proc_holder/spell/targeted/blesscrop			= CLERIC_T0,
-					/datum/action/cooldown/spell/miracle/heal 					= CLERIC_T1,
+					/datum/action/cooldown/spell/miracle/heal					= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle			= CLERIC_T1,
 					/datum/action/cooldown/spell/ignatius_expansion/ember_touch	= CLERIC_T1,
 					/obj/effect/proc_holder/spell/self/wildshape				= CLERIC_T2,

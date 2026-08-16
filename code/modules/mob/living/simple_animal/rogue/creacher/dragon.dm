@@ -154,22 +154,16 @@
 	reach = 2
 
 /obj/projectile/magic/aoe/dragon_breath
-    name = "fire hairball"
-    icon_state = "fireball"
-    damage = 10
-    damage_type = BRUTE
-    nodamage = FALSE
-    light_color = "#f8af07"
-    light_outer_range = 2
-    damage = 40
-    flag = "fire"
-    hitsound = 'sound/blank.ogg'
-
-    //explosion values
-    var/exp_heavy = 0
-    var/exp_light = 2
-    var/exp_flash = 3
-    var/exp_fire = 3
+	name = "fire hairball"
+	icon_state = "fireball"
+	damage = 10
+	damage_type = BRUTE
+	nodamage = FALSE
+	light_color = "#f8af07"
+	light_outer_range = 2
+	damage = 40
+	flag = "fire"
+	hitsound = 'sound/blank.ogg'
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 	threat_point = THREAT_LEGENDARY

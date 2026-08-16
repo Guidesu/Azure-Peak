@@ -36,7 +36,7 @@
 		T.remove_heat_source(src)
 	update_turf_heat()
 
-/obj/machinery/light/rogue/Initialize()
+/obj/machinery/light/rogue/Initialize(mapload)
 	if(soundloop)
 		soundloop = new soundloop(src, FALSE)
 		soundloop.start()

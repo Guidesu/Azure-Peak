@@ -58,7 +58,7 @@
 	dropshrink = 0.75
 	var/wax_pigment = "white" //Default pigment for tallow, can be changed by mixing with other reagents
 
-/obj/item/reagent_containers/food/snacks/tallow/Initialize()
+/obj/item/reagent_containers/food/snacks/tallow/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/soap,
@@ -128,7 +128,7 @@
 					success = TRUE
 					IND.fullreset(user)
 				else
-					return	
+					return
 				if(success)
 					changefood(/obj/item/reagent_containers/food/snacks/tallow/red, user)
 	if(istype(I, /obj/item/ash))

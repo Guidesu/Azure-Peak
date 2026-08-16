@@ -9,9 +9,9 @@ SUBSYSTEM_DEF(nightshift)
 
 	var/nightshift_active = FALSE
 	var/nightshift_start_time = 576000	//4pm	//702000=7:30 PM, station time
-	var/nightshift_dawn_start = 288000		//198000=    530am
-	var/nightshift_day_start = 360000		//270000=    730am
-	var/nightshift_dusk_start = 504000		//630000=    530pm
+	var/nightshift_dawn_start = 288000		//198000=	530am
+	var/nightshift_day_start = 360000		//270000=	730am
+	var/nightshift_dusk_start = 504000		//630000=	530pm
 
 	/* Default STONEKEEP config.
 	var/nightshift_start_time = 756000	//9:00 PM - 2100 hrs
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(nightshift)
 
 	var/high_security_mode = FALSE
 
-/datum/controller/subsystem/nightshift/Initialize()
+/datum/controller/subsystem/nightshift/Initialize(mapload)
 	if(!CONFIG_GET(flag/enable_night_shifts))
 		can_fire = FALSE
 	GLOB.dreamvalley_campaign?.apply_clock()

@@ -32,7 +32,7 @@
 /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/loadout
 	name = "aesthetic grenzelhoft gloves"
 
-/obj/item/clothing/gloves/roguetown/angle/grenzelgloves/loadout/Initialize()
+/obj/item/clothing/gloves/roguetown/angle/grenzelgloves/loadout/Initialize(mapload)
 	. = ..()
 	loadoutize()
 
@@ -57,7 +57,7 @@
 /obj/item/clothing/gloves/roguetown/angle/freifechter/loadout
 	name = "aesthetic fencing gloves"
 
-/obj/item/clothing/gloves/roguetown/angle/freifechter/loadout/Initialize()
+/obj/item/clothing/gloves/roguetown/angle/freifechter/loadout/Initialize(mapload)
 	. = ..()
 	loadoutize()
 

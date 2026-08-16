@@ -134,7 +134,7 @@
 	update_icon()
 	isSwitchingStates = FALSE
 
-/obj/structure/mineral_door/Initialize()
+/obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 	if(!base_state)
 		base_state = icon_state
@@ -420,7 +420,7 @@
 			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
 			user.visible_message("<span class='info'>[user] Carves a name into the door.</span>")
 			if(do_after(user, 10))
-				doorname = sanitize(input("What name would you like to carve into the door?"))
+				doorname = sanitize(input(user, "What name would you like to carve into the door?"))
 				if (doorname)
 					name = doorname + "(door)"
 					desc = "a door with a name carved into it"
@@ -757,7 +757,7 @@
 	repair_skill = /datum/skill/craft/carpentry
 	smashable = TRUE
 
-/obj/structure/mineral_door/wood/Initialize()
+/obj/structure/mineral_door/wood/Initialize(mapload)
 	if(icon_state =="woodhandle")
 		if(icon_state != "wcv")
 			if(prob(10))
@@ -859,7 +859,7 @@
 	dir = turn(dirin, 180)
 	lockdir = dir
 
-/obj/structure/mineral_door/wood/deadbolt/Initialize()
+/obj/structure/mineral_door/wood/deadbolt/Initialize(mapload)
 	. = ..()
 	lockdir = dir
 	icon_state = base_state
@@ -917,7 +917,7 @@
 /obj/structure/mineral_door/wood/donjon/stone/view_toggle(mob/user)
 	return
 
-/obj/structure/mineral_door/wood/donjon/Initialize()
+/obj/structure/mineral_door/wood/donjon/Initialize(mapload)
 	viewportdir = dir
 	icon_state = base_state
 	..()
@@ -960,7 +960,7 @@
 	obj_broken = 1
 	repairable = FALSE
 
-/obj/structure/mineral_door/wood/donjon/stone/broken/Initialize()
+/obj/structure/mineral_door/wood/donjon/stone/broken/Initialize(mapload)
 	..()
 	icon_state = "stonebr" // Weird override otherwise
 
@@ -1009,7 +1009,7 @@
 	name = "iron door"
 	icon_state = "barsold"
 
-/obj/structure/mineral_door/bars/Initialize()
+/obj/structure/mineral_door/bars/Initialize(mapload)
 	. = ..()
 	add_overlay(mutable_appearance(icon, "barsopen", ABOVE_MOB_LAYER))
 

@@ -168,7 +168,7 @@
 			playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
 			return TRUE
 
-///obj/item/clothing/shoes/roguetown/ridingboots/Initialize()
+///obj/item/clothing/shoes/roguetown/ridingboots/Initialize(mapload)
 //	. = ..()
 //	AddComponent(/datum/component/squeak, list('sound/foley/spurs (1).ogg'sound/blank.ogg'=1), 50)
 
@@ -347,7 +347,7 @@
 /obj/item/clothing/shoes/roguetown/grenzelhoft/loadout
 	name = "aesthetic grenzelhoft boots"
 
-/obj/item/clothing/shoes/roguetown/grenzelhoft/loadout/Initialize()
+/obj/item/clothing/shoes/roguetown/grenzelhoft/loadout/Initialize(mapload)
 	. = ..()
 	loadoutize()
 
@@ -361,7 +361,7 @@
 /obj/item/clothing/shoes/roguetown/grenzelhoft/freifechter/loadout
 	name = "aesthetic fencing boots"
 
-/obj/item/clothing/shoes/roguetown/grenzelhoft/freifechter/loadout/Initialize()
+/obj/item/clothing/shoes/roguetown/grenzelhoft/freifechter/loadout/Initialize(mapload)
 	. = ..()
 	loadoutize()
 
@@ -527,7 +527,7 @@
 	smeltresult = /obj/item/ingot/component/graggar
 	unenchantable = TRUE
 
-/obj/item/clothing/shoes/roguetown/boots/armor/graggar/Initialize()
+/obj/item/clothing/shoes/roguetown/boots/armor/graggar/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
@@ -546,7 +546,7 @@
 /obj/item/clothing/shoes/roguetown/boots/armor/matthios/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_MATTHIOS_ARMOR)
 
-/obj/item/clothing/shoes/roguetown/boots/armor/matthios/Initialize()
+/obj/item/clothing/shoes/roguetown/boots/armor/matthios/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
@@ -568,7 +568,7 @@
 	smeltresult = /obj/item/ingot/component/zizo
 	unenchantable = TRUE
 
-/obj/item/clothing/shoes/roguetown/boots/armor/zizo/Initialize()
+/obj/item/clothing/shoes/roguetown/boots/armor/zizo/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "ARMOR")
 
@@ -600,7 +600,7 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	smeltresult = /obj/item/ingot/component/baotha
 
-/obj/item/clothing/shoes/roguetown/boots/armor/baotha/Initialize()
+/obj/item/clothing/shoes/roguetown/boots/armor/baotha/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_DEPRAVED, "BOOTS")
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
@@ -693,7 +693,7 @@
 	color = primary
 	update_icon()
 
-/obj/item/clothing/shoes/roguetown/jester/Initialize()
+/obj/item/clothing/shoes/roguetown/jester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS, 2)
 	if(GLOB.lordprimary)
@@ -901,7 +901,7 @@
 	detail_tag = "_detail"
 	detail_color = CLOTHING_RED
 
-/obj/item/clothing/shoes/courtphysician/female/Initialize()
+/obj/item/clothing/shoes/courtphysician/female/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -971,3 +971,13 @@
 	salvage_result = /obj/item/natural/hide/cured
 	armor = ARMOR_LEATHER
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
+
+/obj/item/clothing/shoes/roguetown/sandals/toga
+	name = "toga sandals"
+	desc = "A fancy pair of sandals delicately woven in a style that harken back to bygone yils of antiquity."
+	gender = PLURAL
+	icon_state = "togasandals"
+	item_state = "togasandals"
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/cloth
+

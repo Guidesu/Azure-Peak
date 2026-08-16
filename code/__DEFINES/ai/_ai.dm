@@ -132,8 +132,8 @@
 #define AI_ALERT_MODE_DURATION           (30 SECONDS)
 #define BB_HUMAN_NPC_CURRENT_INTENT_ATTACKS_LEFT "human_npc_intent_attacks"
 #define BB_BEGGING_FOOD_ITEM "item_beg_target"
-#define BB_ARCHER_NPC_TARGET_ARROW      "archer_target_arrow"
-#define BB_ARCHER_NPC_STASHED_WEAPON    "archer_stashed_weapon"
+#define BB_ARCHER_NPC_TARGET_ARROW		"archer_target_arrow"
+#define BB_ARCHER_NPC_STASHED_WEAPON	"archer_stashed_weapon"
 #define BB_ARCHER_NPC_EQUIPMENT_CACHE_EXPIRY "archer_npc_equipment_cache_expiry"
 #define BB_ARCHER_NPC_BOW               "archer_npc_bow"
 #define BB_ARCHER_NPC_QUIVER            "archer_npc_quiver"
@@ -157,10 +157,10 @@
 #define BB_MUG_TARGET_ITEM "mug_rootbeer"
 
 #define ARCHER_NPC_EQUIPMENT_CACHE_TIME (40 SECONDS)
-#define ARCHER_NPC_MIN_RANGE            4
-#define ARCHER_NPC_KITE_FLOOR           1
-#define ARCHER_NPC_KITE_RANGE           3
-#define ARCHER_NPC_SHOOT_RANGE          6
+#define ARCHER_NPC_MIN_RANGE			4
+#define ARCHER_NPC_KITE_FLOOR			1
+#define ARCHER_NPC_KITE_RANGE			3
+#define ARCHER_NPC_SHOOT_RANGE			6
 // We want to somewhat simulate an actual draw. A Nock Time has no slowdown and simulate mouse
 // travelling to click on the Quiver, the min aim time simulate the process of holding the bow and
 // then actually aiming at the target and is added to the draw time, and the draw time is the
@@ -218,8 +218,8 @@
 #define BB_FIND_TARGETS_FIELD(type) "bb_find_targets_field_[type]"
 
 
-#define AI_ITEM_THROWING        (1<<0)
-#define AI_ITEM_QUIVER          (1<<1)
+#define AI_ITEM_THROWING		(1<<0)
+#define AI_ITEM_QUIVER			(1<<1)
 
 GLOBAL_LIST_INIT(ai_item_flags, list(
 	AI_ITEM_THROWING,

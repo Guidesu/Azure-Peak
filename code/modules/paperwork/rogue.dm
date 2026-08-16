@@ -75,7 +75,7 @@
 	else
 		return span_warning("I'm too far away to read it.")
 
-/obj/item/paper/scroll/Initialize()
+/obj/item/paper/scroll/Initialize(mapload)
 	open = FALSE
 	update_icon_state()
 	..()
@@ -187,7 +187,7 @@
 			if(signedname)
 				to_chat(user, span_warning("[signedname]"))
 				return
-			switch(alert("Sign your name?",,"Yes","No"))
+			switch(alert(user, "Sign your name?",,"Yes","No"))
 				if("Yes")
 					if(user.mind && user.mind.assigned_role)
 						if(do_after(user, 20, target = src))
@@ -412,7 +412,7 @@
 	if(istype(I, /obj/item/clothing/ring/signet/psy))
 		var/obj/item/clothing/ring/signet/psy/S = I
 		if(waxed)
-			to_chat(user,  span_warning("It's already wax-sealed."))
+			to_chat(user,	span_warning("It's already wax-sealed."))
 			return
 		if(S.tallowed && sealed && S.tallow_color == "red")
 			waxed = TRUE
@@ -422,11 +422,11 @@
 			playsound(src, 'sound/items/inqslip_sealed.ogg', 75, TRUE, 4)
 			marquevalue += 2
 		else if(S.tallowed && sealed && S.tallow_color != "red")
-			to_chat(user,  span_warning("I need to use redtallow to seal this properly."))
+			to_chat(user,	span_warning("I need to use redtallow to seal this properly."))
 		else if(S.tallowed && !sealed && S.tallow_color == "red")
-			to_chat(user,  span_warning("I need to fold the [src] first."))
+			to_chat(user,	span_warning("I need to fold the [src] first."))
 		else
-			to_chat(user,  span_warning("The ring hasn't been waxed."))
+			to_chat(user,	span_warning("The ring hasn't been waxed."))
 	else if(istype(I, /obj/item/clothing/ring/signet))
 		to_chat(user, span_warning("The [src] can only be stamped with a signet ring bearing the Archbishop's symbol."))
 		return
@@ -462,7 +462,7 @@
 					user.transferItemToLoc(Q, src, TRUE)
 					update_icon()
 			else
-				to_chat(user,  span_warning("[Q] isn't completely full."))
+				to_chat(user,	span_warning("[Q] isn't completely full."))
 
 /obj/item/paper/inqslip/attack_right(mob/user)
 	. = ..()
@@ -527,6 +527,6 @@
 		if(!path)
 			continue
 		prices |= path
-		var/starting_rand  = rand(100, 50)
+		var/starting_rand	= rand(100, 50)
 		prices[path] = list("[starting_rand]", "[round(starting_rand * 0.5, 1)]")
 	sell_prices = prices

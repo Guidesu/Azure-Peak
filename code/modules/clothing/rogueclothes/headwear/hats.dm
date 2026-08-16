@@ -455,7 +455,7 @@
 	worn_y_dimension = 64
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/wizhat/Initialize()
+/obj/item/clothing/head/roguetown/wizhat/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -545,7 +545,7 @@
 
 // random wizard hats
 
-/obj/item/clothing/head/roguetown/wizhat/random/Initialize()
+/obj/item/clothing/head/roguetown/wizhat/random/Initialize(mapload)
 	color = pick(CLOTHING_MAGE_GREEN, CLOTHING_SCARLET, CLOTHING_MAGE_BLUE, CLOTHING_BLACK)
 	..()
 
@@ -691,7 +691,7 @@
 	salvage_result = /obj/item/natural/silk
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/courtphysician/Initialize()
+/obj/item/clothing/head/roguetown/courtphysician/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -712,7 +712,7 @@
 	detail_tag = "_detail"
 	detail_color = CLOTHING_RED
 
-/obj/item/clothing/head/roguetown/courtphysician/female/Initialize()
+/obj/item/clothing/head/roguetown/courtphysician/female/Initialize(mapload)
 	. = ..()
 	update_icon()
 

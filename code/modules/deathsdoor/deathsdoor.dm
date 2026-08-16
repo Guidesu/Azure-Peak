@@ -125,7 +125,7 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 
 /obj/structure/deaths_door_portal
 	name = "death's door"
-	desc = "A misty passageway, vague shapes move beyond the veil, lit by what might be a blue lighthouse. There is no coming back if you step in here. Undead beware, you are not welcome in Necra's Precipice." 
+	desc = "A misty passageway, vague shapes move beyond the veil, lit by what might be a blue lighthouse. There is no coming back if you step in here. Undead beware, you are not welcome in Necra's Precipice."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "underworldportal"
 	anchored = TRUE
@@ -194,7 +194,7 @@ GLOBAL_VAR_INIT(underworld_strands, 0)
 /obj/effect/landmark/underworldstrands
 	var/spawn_timer
 
-/obj/effect/landmark/underworldstrands/Initialize()
+/obj/effect/landmark/underworldstrands/Initialize(mapload)
 	. = ..()
 	start_timer()
 

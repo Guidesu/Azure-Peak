@@ -1,7 +1,7 @@
 //Lazily shoving all donator fluff items in here for now. Feel free to make this a sub-folder or something, I think it's just easier to keep a list here and just modify as needed.
 
 ///////////////////
-// UNIVERSAL     //
+// UNIVERSAL		//
 ///////////////////
 
 /obj/item/herbseed/rosa/lunara
@@ -119,10 +119,10 @@
 /datum/reagent/consumable/azurosa_tea/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if (M.mob_biotypes & MOB_BEAST)
-		M.adjustFireLoss(0.5  * REAGENTS_EFFECT_MULTIPLIER)
+		M.adjustFireLoss(0.5	* REAGENTS_EFFECT_MULTIPLIER)
 	else
-		M.adjustBruteLoss(-0.3  * REAGENTS_EFFECT_MULTIPLIER)
-		M.adjustFireLoss(-0.3  * REAGENTS_EFFECT_MULTIPLIER)
+		M.adjustBruteLoss(-0.3	* REAGENTS_EFFECT_MULTIPLIER)
+		M.adjustFireLoss(-0.3	* REAGENTS_EFFECT_MULTIPLIER)
 		M.adjustOxyLoss(-0.3, 0)
 		M.adjustToxLoss(-3, 0)
 		var/list/our_wounds = M.get_wounds()
@@ -140,7 +140,8 @@
 	verbage_simple = "dry"
 	verbage = "dries"
 	craftsound = null
-	skillcraft = null
+	skillcraft = /datum/skill/craft/cooking
+	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/flowercrown_azurosa
 	name = "azurosa crown"
@@ -443,7 +444,7 @@
 	name = "layer a gothic cuirass atop hauberk"
 	result = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/heavy/donator_gothic)
 	reqs = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/donator_gothic = 1,
-	            /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk = 1)
+				/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk = 1)
 	craftdiff = 0
 	req_table = TRUE
 	bypass_dupe_test = TRUE
@@ -564,7 +565,7 @@
 	name = "layer a gothic iron cuirass atop hauberk"
 	result = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron/heavy/donator_gothic)
 	reqs = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron/donator_gothic = 1,
-	            /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron = 1)
+				/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron = 1)
 	craftdiff = 0
 	req_table = TRUE
 	bypass_dupe_test = TRUE
@@ -595,6 +596,24 @@
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
 	item_state = "gcuirass"
 	icon_state = "gcuirass"
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/donator_cropped
+	name = "Low Cut Padded Gambeson"
+	desc = "A gambeson that's padded in the areas that matter, and trimmed down at the top and below by design to be more revealing and fitted to the body for more comfort."
+	icon = 'icons/clothing/donor_clothes.dmi'
+	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
+	item_state = "cropgambeson"
+	icon_state = "cropgambeson"
+	sleeved = 'icons/clothing/onmob/donor_sleeves_armor.dmi'
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/donator_cropped
+	name = "Low Cut Gambeson"
+	desc = "An ordinary gambeson, trimmed down at the top and below by design to be more revealing and fitted to the body for more comfort."
+	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
+	icon = 'icons/clothing/donor_clothes.dmi'
+	item_state = "cropgambeson"
+	icon_state = "cropgambeson"
+	sleeved = 'icons/clothing/onmob/donor_sleeves_armor.dmi'
 
 /obj/item/storage/belt/rogue/leather/donator
 	name = "belt of caped leathers"
@@ -689,7 +708,7 @@
 	detail_color = CLOTHING_SCARLET
 	altdetail_color = CLOTHING_LUNARA
 
-/obj/item/clothing/head/roguetown/decoration/orle/donator_dyeable/Initialize()
+/obj/item/clothing/head/roguetown/decoration/orle/donator_dyeable/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -730,7 +749,7 @@
 	detail_tag = "_detail"
 	detail_color = CLOTHING_WHITE
 
-/obj/item/clothing/head/roguetown/decoration/featherplume/Initialize()
+/obj/item/clothing/head/roguetown/decoration/featherplume/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -765,6 +784,7 @@
 	sleeved = 'icons/clothing/onmob/donor_sleeves_armor.dmi'
 	color = null
 	custom_design = TRUE
+	body_parts_covered = CHEST
 	slot_flags = ITEM_SLOT_HEAD | ITEM_SLOT_CLOAK
 	storage = FALSE
 	grid_width = 32
@@ -1352,13 +1372,13 @@
 //Bigfoot's donator item - steel great axe with gilded pattern
 /obj/item/rogueweapon/greataxe/steel/gilded
 	name = "Aureline"
-	desc = "An axe crafted of carefully forged steel, this weapon bears the mark of many hours toiling over a forge.  \
-	Inlaid with gold patterns depicting a side-facing griffon with interwoven vines of fabric trailing in a curve along the centre of the axe.   \
-	The axe head itself is a more darkened metal save for the edge of the blade itself, a strip of curved, deadly silver against the black and gold of the rest of the axe.   \
-	Not a single flaw is to be found in the metal itself, no matter how many times it is brought to wielded; not a chip in the blade nor loss of its bite.   \
+	desc = "An axe crafted of carefully forged steel, this weapon bears the mark of many hours toiling over a forge.	\
+	Inlaid with gold patterns depicting a side-facing griffon with interwoven vines of fabric trailing in a curve along the centre of the axe.	\
+	The axe head itself is a more darkened metal save for the edge of the blade itself, a strip of curved, deadly silver against the black and gold of the rest of the axe.	\
+	Not a single flaw is to be found in the metal itself, no matter how many times it is brought to wielded; not a chip in the blade nor loss of its bite.	\
 	Evidently it is a very well cared for piece. \n\
 	\n\
-	The handle itself is no less impressive, made of a darkened heartwood and banded with gold-appearing steel to both fasten the weapon and provide contrast along the bottom and top.  \
+	The handle itself is no less impressive, made of a darkened heartwood and banded with gold-appearing steel to both fasten the weapon and provide contrast along the bottom and top.	\
 	Inlaid at the bottom most band is the sigil of House Xulu, a long ago served house that is carried in remembrance of an Oath he is now released from."
 	icon_state = "orin"
 	icon = 'icons/obj/items/donor_weapons_64.dmi'
@@ -1397,7 +1417,7 @@
 	color = CLOTHING_WHITE
 	boobed = FALSE
 
-/obj/item/clothing/suit/roguetown/armor/longcoat/eiren/Initialize()
+/obj/item/clothing/suit/roguetown/armor/longcoat/eiren/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -1932,7 +1952,7 @@ As Excaliber."
 	detail_color = CLOTHING_SCARLET
 	adjustable = CAN_CADJUST
 
-/obj/item/clothing/head/roguetown/crown_hat/Initialize()
+/obj/item/clothing/head/roguetown/crown_hat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/adjustable_clothing, null, null, null, null, null, UPD_HEAD)
 	update_icon()
@@ -2207,14 +2227,14 @@ As Excaliber."
 /obj/item/rogueweapon/ollanius_sword
 	name = "azurosa-wrapped sword"
 	desc = "<font color='007FFF'>LIED TO YOU? TRICKED YOU? NOT I.</font> \
-    </br>‎ <font color='007FFF'>FOR I ANSWERED STRAIGHT. I TOLD YOU TRUE..</font> \
-    </br>‎ <font color='007FFF'>THE SCAFFOLD HAS BEEN RAISED FOR NONE BUT YOU.</font> \
-    </br>‎ <font color='007FFF'>FOR WHO HAS SERVED MORE FAITHFULLY THAN YOU?</font> \
-    </br>‎ <font color='007FFF'>AND WHERE ARE THE OTHERS THAT HAVE STOOD BY YOUR SIDE..</font> \
-    </br>‎ <font color='007FFF'>..ON YOUR SIDE, IN THE COMMON GOOD?</font> \
-    </br>‎ <font color='007FFF'>DEAD.</font> \
+	</br>‎ <font color='007FFF'>FOR I ANSWERED STRAIGHT. I TOLD YOU TRUE..</font> \
+	</br>‎ <font color='007FFF'>THE SCAFFOLD HAS BEEN RAISED FOR NONE BUT YOU.</font> \
+	</br>‎ <font color='007FFF'>FOR WHO HAS SERVED MORE FAITHFULLY THAN YOU?</font> \
+	</br>‎ <font color='007FFF'>AND WHERE ARE THE OTHERS THAT HAVE STOOD BY YOUR SIDE..</font> \
+	</br>‎ <font color='007FFF'>..ON YOUR SIDE, IN THE COMMON GOOD?</font> \
+	</br>‎ <font color='007FFF'>DEAD.</font> \
 	</br>‎ <font color='007FFF'>MURDERED.</font> \
-    </br>‎ <font color='007FFF'>I DID NO MORE THAN YOU LET ME DO.</font>"
+	</br>‎ <font color='007FFF'>I DID NO MORE THAN YOU LET ME DO.</font>"
 	icon_state = "ollanius_sword"
 	icon = 'icons/obj/items/donor_weapons.dmi'
 	sheathe_icon = "ollanius_sword"
@@ -2229,16 +2249,16 @@ As Excaliber."
 
 // OLYMPUS7
 /obj/item/rogueweapon/greatsword/olygsword
-    name = "Gre'as'anto d'Shar"
-    desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerholdian bluntness into a \
-    greatsword impregnated with dark alloy threads    that knit together forming cracks.\
-    From the wielder’s perspective,<i>Dro'xun phor jal dkinoss.</i> is engraved as a reminder.\
-    The center piece of The crossguard features a clan emblem of a shattered symbol of progress held together by arcane energy, \
-    in place of the intersection of the cross is a slited eye within a halo, the arms of the cross are triangular.\
-    This is not a blade of faith or morals, it is a tool with a purpose to it's user."
-    icon = 'icons/obj/items/donor_weapons_64.dmi'
-    icon_state = "olygsword"
-    bigboy = TRUE
+	name = "Gre'as'anto d'Shar"
+	desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerholdian bluntness into a \
+	greatsword impregnated with dark alloy threads	that knit together forming cracks.\
+	From the wielder’s perspective,<i>Dro'xun phor jal dkinoss.</i> is engraved as a reminder.\
+	The center piece of The crossguard features a clan emblem of a shattered symbol of progress held together by arcane energy, \
+	in place of the intersection of the cross is a slited eye within a halo, the arms of the cross are triangular.\
+	This is not a blade of faith or morals, it is a tool with a purpose to it's user."
+	icon = 'icons/obj/items/donor_weapons_64.dmi'
+	icon_state = "olygsword"
+	bigboy = TRUE
 
 // SPARTANBOBBY
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/spartanbobby
@@ -2258,7 +2278,7 @@ As Excaliber."
 	icon = 'icons/clothing/donor_clothes.dmi'
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
-	alternate_worn_layer  = 8.9
+	alternate_worn_layer	= 8.9
 	icon_state = "donor_skull"
 	worn_offsets = list("x" = 0, "y" = 14)
 	color = null
@@ -2268,7 +2288,7 @@ As Excaliber."
 	desc = "A silver lined cloak, capable of quickly being wrapped around the arm for comfort. \
 	The Longest Night sect is an underground 'association,' those involved are often those who wish to be the least, and those who wish to be a part will never be. \
 	Few know of the sect, fewer of their secrets.\ </br>Inside the cloak, woven words preach,\ </br>‎<font color='c4c9d2'>Are those within the cave to be faulted, when all they know of reality are the shadows it casts on the wall?\
-	 </br>Fault or not, it falls upon us to lead them out of that wretched cave.</font>"
+		</br>Fault or not, it falls upon us to lead them out of that wretched cave.</font>"
 	icon = 'icons/clothing/donor_clothes.dmi'
 	experimental_inhand = FALSE
 	experimental_onback = FALSE
@@ -2352,9 +2372,9 @@ As Excaliber."
 
 // Octus
 /obj/item/rogueweapon/greatsword/falling_star
-    name = "Falling Star"
-    desc = "A curved executioner's blade designated as suicidal because of its ridiculously unwieldy nature. \
+	name = "Falling Star"
+	desc = "A curved executioner's blade designated as suicidal because of its ridiculously unwieldy nature. \
 	Its niche gained popularity among Graggarite warlords for its sheer raw force and homage to the Darkstar, a descending omen of devastation and war. \
 	The curved blade design makes it suitable for swings and chops, but poor for stabbing victims."
-    icon = 'icons/obj/items/donor_weapons_64.dmi'
-    icon_state = "fallingstar"
+	icon = 'icons/obj/items/donor_weapons_64.dmi'
+	icon_state = "fallingstar"

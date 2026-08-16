@@ -124,7 +124,7 @@
 	trait = TRAIT_CURSE_HAUSVETTE
 
 //////////////////////
-///	ON LIFE	 ///
+///	ON LIFE		///
 //////////////////////
 
 /datum/curse/auxentius/on_life(mob/user)
