@@ -43,7 +43,6 @@
 	var/splash_damage = 40
 	displayed_damage = 120
 	var/fragment_damage = 15
-	var/npc_simple_damage_mult = 2
 	var/impact_count = 12
 
 /datum/action/cooldown/spell/meteor_strike/cast(atom/cast_on)
@@ -82,7 +81,7 @@
 
 	// Show telegraph markers on all tiles in the impact zone
 	for(var/turf/T in valid_turfs)
-		new /obj/effect/temp_visual/trap/meteor(T)
+		new /obj/effect/temp_visual/telegraph/meteor(T)
 
 	// Boulders start dropping after the telegraph
 	var/delay_offset = METEOR_TELEGRAPH_TIME
@@ -110,8 +109,6 @@
 	var/static/list/random_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	// Direct hit on impact tile
 	for(var/mob/living/L in T.contents)
-		if(L == owner)
-			continue
 		if(L.anti_magic_check())
 			L.visible_message(span_warning("The boulder fades away around [L]!"))
 			playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
@@ -120,12 +117,10 @@
 			L.visible_message(span_warning("[L] endures the boulder strike!"))
 			continue
 		var/actual_damage = direct_damage
-		if(!L.mind && !ishuman(L))
-			actual_damage *= npc_simple_damage_mult
 		if(istype(caster) && ishuman(L))
 			arcyne_strike(caster, L, null, actual_damage, pick(random_zones), \
 				BCLASS_BLUNT, spell_name = "Meteor Strike", \
-				damage_type = BRUTE, npc_simple_damage_mult = 1, \
+				damage_type = BRUTE, \
 				skip_animation = TRUE)
 		else
 			L.adjustBruteLoss(actual_damage)
@@ -136,19 +131,15 @@
 		if(aoe_turf == T)
 			continue
 		for(var/mob/living/L in aoe_turf.contents)
-			if(L == owner)
-				continue
 			if(L.anti_magic_check())
 				continue
 			if(spell_guard_check(L, TRUE))
 				continue
 			var/actual_damage = splash_damage
-			if(!L.mind && !ishuman(L))
-				actual_damage *= npc_simple_damage_mult
 			if(istype(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, actual_damage, pick(random_zones), \
 					BCLASS_BLUNT, spell_name = "Meteor Strike", \
-					damage_type = BRUTE, npc_simple_damage_mult = 1, \
+					damage_type = BRUTE, \
 					skip_animation = TRUE)
 			else
 				L.adjustBruteLoss(actual_damage)
@@ -191,8 +182,7 @@
 /obj/effect/temp_visual/falling_boulder/proc/do_impact()
 	on_impact?.Invoke()
 
-/obj/effect/temp_visual/trap/meteor
-	color = GLOW_COLOR_EARTHEN
+/obj/effect/temp_visual/telegraph/meteor
 	light_color = GLOW_COLOR_EARTHEN
 	duration = METEOR_TELEGRAPH_TIME
 

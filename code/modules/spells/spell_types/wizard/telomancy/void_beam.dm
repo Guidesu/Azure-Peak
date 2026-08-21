@@ -3,7 +3,7 @@
 /datum/action/cooldown/spell/void_beam
 	button_icon = 'icons/mob/actions/mage_telomancy.dmi'
 	name = "Void Beam"
-	desc = "Fire a lance of raw arcyne force that exposes your foe. It is well telegraphed and does a decent amount of damaage."
+	desc = "Fire a lance of raw arcyne force that exposes your foe. It is well telegraphed and does a decent amount of damage."
 	button_icon_state = "void_beam"
 	sound = 'sound/magic/soulshot.ogg'
 	spell_color = GLOW_COLOR_ARCANE
@@ -123,7 +123,7 @@
 		qdel(old)
 	warnings.Cut()
 	for(var/turf/T in line)
-		warnings += new /obj/effect/temp_visual/trap/telomancy(T)
+		warnings += new /obj/effect/temp_visual/telegraph/telomancy(T)
 
 /datum/action/cooldown/spell/void_beam/proc/finish_windup(mob/living/carbon/human/H, list/warnings)
 	for(var/obj/effect/old in warnings)
@@ -172,7 +172,7 @@
 			if(istype(caster) && !QDELETED(caster) && ishuman(L))
 				arcyne_strike(caster, L, null, damage, caster.zone_selected, \
 					BCLASS_PIERCE, spell_name = spell_name, \
-					damage_type = BRUTE, npc_simple_damage_mult = 1, \
+					damage_type = BRUTE, \
 					skip_animation = TRUE)
 			else
 				L.adjustBruteLoss(damage)

@@ -50,7 +50,7 @@
 		return FALSE
 
 	for(var/turf/T in range(blast_radius, center))
-		new /obj/effect/temp_visual/trap/meteor(T)
+		new /obj/effect/temp_visual/telegraph/meteor(T)
 	center.visible_message(span_boldwarning("The sky darkens - a meteor plummets down!"))
 	addtimer(CALLBACK(src, PROC_REF(drop_meteor), center), impact_delay)
 	return TRUE
@@ -72,8 +72,6 @@
 			S.take_damage(structural_damage, BRUTE, "blunt", object_damage_multiplier = 2)
 		T.take_damage(structural_damage, BRUTE, "blunt", object_damage_multiplier = 2)
 		for(var/mob/living/L in T.contents)
-			if(L == owner)
-				continue
 			if(L.anti_magic_check())
 				L.visible_message(span_warning("The meteor fades away around [L]!"))
 				continue
