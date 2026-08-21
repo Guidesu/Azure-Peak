@@ -55,7 +55,7 @@
 	var/mob/living/carbon/follower = user
 	var/datum/patron/patron = follower.patron
 
-	var/prayer = input(user, "Whisper your prayer:", "Prayer") as text|null
+	var/prayer = sanitize(input(user, "Whisper your prayer:", "Prayer") as text|null)
 	if(!prayer)
 		return
 
